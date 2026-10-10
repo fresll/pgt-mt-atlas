@@ -83,3 +83,16 @@ test('language switch keeps the section', async ({ page }) => {
   await page.getByRole('link', { name: 'Русский' }).click()
   await expect(page).toHaveURL(/\/ru\/science\/embryo-concordance\/?$/)
 })
+
+test('curator page keeps the full CV content in both languages', async ({ page }) => {
+  for (const lang of ['en', 'ru']) {
+    await page.goto(`${lang}/ilya-mazunin/`)
+    await expect(page.locator('.cv-research li')).toHaveCount(5)
+    await expect(page.locator('.cv-topic')).toHaveCount(4)
+    await expect(page.locator('.pub-list li')).toHaveCount(15)
+    await expect(page.locator('.pub-list a[href*="doi.org"]')).toHaveCount(15)
+    await expect(page.locator('#education')).toContainText('ISBN 978-5-906748-37-9')
+    await expect(page.locator('#education')).toContainText('ISBN 978-5-906748-38-6')
+    await expect(page.locator('#career .cv-timeline li')).toHaveCount(14)
+  }
+})

@@ -484,6 +484,50 @@ body:has(.sk-home) main { padding-top: 0; max-width: 1280px; }
   .portrait { max-width: 220px; }
 }
 .pub-list li { margin-bottom: 0.7rem; }
+
+/* Страница куратора в стиле Scientific Sketchbook: синие чернила, красные пометки на полях */
+body:has(.sk-curator-page) { background: var(--sk-paper); }
+body:has(.sk-curator-page) main { max-width: 1280px; }
+.sk-curator-page { color: var(--sk-ink-2); font-family: var(--font-text); }
+.sk-curator-page a { color: var(--sk-ink); }
+.sk-curator-page a:hover { color: var(--sk-red); }
+.sk-curator-page h1 { color: var(--sk-ink); font-size: clamp(2.6rem, 5.4vw, 4.2rem); font-weight: 500; line-height: 1; margin: 6px 0 10px; }
+.sk-curator-page h2 { color: var(--sk-ink); font-size: clamp(1.6rem, 2.6vw, 2.1rem); font-weight: 600; line-height: 1.12; margin: 0; }
+.sk-curator-page h3 { font-family: var(--font-display); color: var(--sk-ink); font-size: clamp(1.25rem, 1.8vw, 1.45rem); font-weight: 600; line-height: 1.2; margin: 1.8rem 0 0.7rem; }
+.sk-curator-page .cv-body > h3:first-child, .sk-curator-page .cv-topic:first-of-type h3, .sk-curator-page .cv-two h3 { margin-top: 0; }
+.sk-curator-page .curator-hero { grid-template-columns: 280px minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); padding: clamp(24px, 4vw, 48px) 0 clamp(32px, 5vw, 64px); margin: 0; align-items: start; }
+.sk-curator-page .portrait { border-radius: 0; box-shadow: none; outline: 0; border: 1.5px solid var(--sk-ink); padding: 5px; background: var(--sk-paper); object-position: 50% 35%; filter: grayscale(0.1); }
+.cv-degree { font-family: var(--font-display); font-style: italic; font-size: clamp(1.15rem, 1.6vw, 1.35rem); color: var(--sk-ink); margin: 0 0 12px; }
+.cv-headline { list-style: none; margin: 0 0 18px; padding: 0; font-family: var(--font); font-size: 0.95rem; line-height: 1.5; }
+.cv-headline li { padding: 6px 0; border-bottom: 1px dashed var(--sk-rule); }
+.cv-toc { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 18px; font-family: var(--font); }
+.cv-toc .sk-link { font-size: 0.9rem; }
+.cv-section .cv-body { min-width: 0; }
+.cv-prose { max-width: 42em; font-size: 1.05rem; line-height: 1.7; }
+.cv-prose details { font-family: var(--font); margin-top: 1rem; }
+.cv-prose summary { cursor: pointer; color: var(--sk-ink); }
+.cv-research li { grid-template-columns: 3.2rem minmax(0, 1fr); }
+.cv-research p { margin: 0; font-size: 1.05rem; line-height: 1.55; }
+.cv-timeline { list-style: none; margin: 0; padding: 0; max-width: 52em; }
+.cv-timeline li { display: grid; grid-template-columns: 8.5rem minmax(0, 1fr); gap: 4px 18px; padding: 10px 0; border-bottom: 1px dashed var(--sk-rule); line-height: 1.55; }
+.cv-years { font-family: var(--font-hand); font-size: 1.3rem; line-height: 1.2; color: var(--sk-red); white-space: nowrap; font-variant-numeric: lining-nums; }
+.cv-muted, .sk-curator-page .muted { color: var(--sk-muted); }
+.sk-curator-page .pub-list { max-width: 52em; padding-left: 1.4em; font-size: 0.98rem; line-height: 1.55; }
+.sk-curator-page .pub-list li::marker { color: var(--sk-red); font-family: var(--font-hand); font-size: 1.15em; }
+.sk-curator-page .pub-title { color: var(--sk-ink); font-weight: 600; }
+.cv-two { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 4vw, 56px); }
+.cv-kv { list-style: none; margin: 0 0 12px; padding: 0; font-family: var(--font); font-size: 0.93rem; }
+.cv-kv li { display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: 2px 14px; padding: 8px 0; border-bottom: 1px dashed var(--sk-rule); overflow-wrap: anywhere; }
+.cv-k { color: var(--sk-ink-2); font-weight: 500; }
+@media (max-width: 980px) {
+  .cv-two { grid-template-columns: 1fr; }
+}
+@media (max-width: 700px) {
+  .sk-curator-page .curator-hero { grid-template-columns: 1fr; }
+  .cv-timeline li { grid-template-columns: 1fr; gap: 0; }
+  .cv-kv li { grid-template-columns: 1fr; }
+  .cv-research li { grid-template-columns: 2.4rem minmax(0, 1fr); }
+}
 .curator-card { display: flex; gap: 16px; align-items: center; margin: 12px 0 16px; }
 .curator-card img { width: 72px; height: 96px; object-fit: cover; object-position: 50% 35%; border-radius: 8px; flex: none; }
 
