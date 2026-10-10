@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  data:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - run: pip install openpyxl pyyaml python-docx pytest
+      - name: ETL checks + golden tests (source workbook must match SOURCE_MANIFEST.sha256)
+        working-directory: etl
+        run: |
+          python -m atlas_etl.build --check > /dev/null
+          python -m pytest -q
+      - name: Generated data are up to date
+        working-directory: etl
+        run: |
+          python -m atlas_etl.build
+          git -c core.quotepath=off diff --stat -- ../site/public/data ../site/src/data
+          git diff --quiet -I '"dataset_version"' -- ../site/public/data ../site/src/data || \
+            (echo "::error::site data are stale — run python -m atlas_etl.build and commit"; exit 1)
+
+  site:
+    runs-on: ubuntu-latest
+    needs: data
+    defaults: { run: { working-directory: site } }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '22', cache: npm, cache-dependency-path: site/package-lock.json }
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: npx playwright test --reporter=line
+      - uses: actions/upload-artifact@v4
+        with:
+          name: site-dist
+          path: site/dist
+          retention-days: 14

@@ -1,0 +1,28 @@
+name: Literature watch
+
+# Еженедельно ищет новые публикации-кандидаты (PubMed E-utilities) и сверяет DOI набора (Crossref).
+# Только создаёт issue для куратора. Значения в базу автоматически НЕ добавляются.
+on:
+  schedule:
+    - cron: '41 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - run: pip install pyyaml
+      - run: python .github/scripts/literature_watch.py > report.md
+        env:
+          NCBI_API_KEY: ${{ secrets.NCBI_API_KEY }}
+      - name: Create issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh issue create --title "Literature watch $(date -u +%Y-%m-%d)" --body-file report.md

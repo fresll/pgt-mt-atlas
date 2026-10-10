@@ -1,0 +1,65 @@
+import { expect, test, type Page } from '@playwright/test'
+
+const PAGES = ['', 'science/', 'science/data/', 'science/between-embryos/', 'science/within-embryo/', 'science/embryo-to-offspring/', 'science/pgt-mt-and-pgt-a/', 'science/cases/', 'science/sources/', 'science/methods/', 'patients/', 'about/']
+const CHARTS: Record<string, number> = { 'science/between-embryos/': 1, 'science/within-embryo/': 3, 'science/embryo-to-offspring/': 2, 'science/pgt-mt-and-pgt-a/': 3 }
+
+function collectErrors(page: Page) {
+  const errors: string[] = []
+  page.on('pageerror', (e) => errors.push(e.message))
+  page.on('console', (m) => m.type() === 'error' && errors.push(m.text()))
+  return errors
+}
+
+for (const lang of ['en', 'ru']) {
+  for (const p of PAGES) {
+    test(`${lang}/${p} renders without errors`, async ({ page }) => {
+      const errors = collectErrors(page)
+      await page.goto(`${lang}/${p}`)
+      await expect(page.locator('html')).toHaveAttribute('lang', lang)
+      await expect(page.locator('h1').first()).toBeVisible()
+      if (CHARTS[p]) await expect(page.locator('.chart-frame .js-plotly-plot')).toHaveCount(CHARTS[p], { timeout: 20_000 })
+      expect(errors).toEqual([])
+    })
+  }
+}
+
+test('observed vs model badges are separated', async ({ page }) => {
+  await page.goto('ru/science/pgt-mt-and-pgt-a/')
+  await expect(page.locator('.badge.model')).toBeVisible()
+  await expect(page.locator('.badge.observed')).toHaveCount(0)
+  await page.goto('ru/science/between-embryos/')
+  await expect(page.locator('.badge.observed')).toBeVisible()
+  await expect(page.locator('.badge.model')).toHaveCount(0)
+})
+
+test('Tofilo 2026 observations show the confirmed DOI and published status', async ({ page }) => {
+  await page.goto('en/science/data/')
+  await page.selectOption('select >> nth=1', 'tofilo2026')
+  await expect(page.locator('table.data tbody tr')).toHaveCount(6)
+  await page.locator('table.data tbody tr').first().click()
+  const card = page.locator('.detail')
+  await expect(card).toContainText('doi:10.1007/s10815-026-04012-y')
+  await expect(card).toContainText('published')
+  await expect(card).toContainText('42649365')
+})
+
+test('figure 3 shows manuscript fractions', async ({ page }) => {
+  await page.goto('en/science/between-embryos/')
+  const svg = page.locator('.chart-frame .main-svg').first()
+  await expect(svg).toBeVisible({ timeout: 20_000 })
+  const text = (await page.locator('.chart-frame').innerText()).replace(/\s+/g, '')
+  for (const s of ['0.47 (41/87)', '0.60 (52/87)', '0.21 (6/28)', '0.92 (24/26)', '0.05 (1/21)', '0.56 (5/9)']) expect(text).toContain(s.replace(' ', ''))
+})
+
+test('figure 4 flags ESM discrepancies in the embryo card', async ({ page }) => {
+  await page.goto('ru/science/within-embryo/')
+  await page.locator('summary', { hasText: 'Таблица данных' }).click()
+  await page.locator('table.data tbody tr', { hasText: 'Tofilo_6' }).click()
+  await expect(page.locator('.detail')).toContainText('расхождение с ESM')
+})
+
+test('language switch keeps the section', async ({ page }) => {
+  await page.goto('en/science/within-embryo/')
+  await page.getByRole('link', { name: 'Русский' }).click()
+  await expect(page).toHaveURL(/\/ru\/science\/within-embryo\/?$/)
+})
