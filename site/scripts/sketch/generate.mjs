@@ -176,7 +176,9 @@ function teCell(cx, cy, R0, th, half, thick) {
   }
   return pts
 }
-function blastocyst(prefix, { cx, cy, Rb, n = 24, icmAngle = (3 * Math.PI) / 4, zona = true, skip = [], extraCells = '', sp: o_sp }) {
+function blastocyst(prefix, { cx, cy, Rb, n = 24, icmAngle = (3 * Math.PI) / 4, zona = true, skip = [], extraCells = '', sp: o_sp, groups = false }) {
+  // groups: обернуть бластоцель, ВКМ и ТЭ в <g class="bx-…"> для интерактивной подсветки (по умолчанию выключено — прежние файлы не меняются)
+  const open = (k) => (groups ? `<g class="bx-${k}">` : ''), close = groups ? '</g>' : ''
   let s = '<g class="blastocyst">'
   if (zona) {
     s += ink(blob(cx, cy, Rb + 25, Rb + 25, { n: 70, wob: 0.008, open: true }), { w: 1.1, jit: 0.4, second: false, extra: ' opacity="0.75"' })
@@ -184,7 +186,7 @@ function blastocyst(prefix, { cx, cy, Rb, n = 24, icmAngle = (3 * Math.PI) / 4, 
   }
   // бластоцель — лёгкая штриховка
   const cav = blob(cx, cy, Rb - 12, Rb - 12, { n: 40, wob: 0.01 })
-  s += hatch(prefix, cav, [cx - Rb, cy - Rb, cx + Rb, cy + Rb], { step: 9, op: 0.09, angle: -0.7 })
+  s += open('cav') + hatch(prefix, cav, [cx - Rb, cy - Rb, cx + Rb, cy + Rb], { step: 9, op: 0.09, angle: -0.7 }) + close
   // ВКМ
   const icm = []
   const ca = Math.cos(icmAngle), sa = Math.sin(icmAngle)
@@ -199,13 +201,16 @@ function blastocyst(prefix, { cx, cy, Rb, n = 24, icmAngle = (3 * Math.PI) / 4, 
     }
   }
   icm.sort((a, b) => Math.hypot(b[0] - cx, b[1] - cy) - Math.hypot(a[0] - cx, a[1] - cy))
+  s += open('icm')
   for (const [x, y] of icm) {
     const r = sp * (0.56 + R() * 0.1)
     s += ink(blob(x, y, r, r * (0.86 + R() * 0.12), { rot: R() * 3, n: 16, wob: 0.05 }), { closed: true, fill: true, w: 1.5, jit: 0.4 })
     s += ink(blob(x + J(2), y + J(2), r * 0.38, r * 0.3, { rot: R() * 3, n: 10, wob: 0.06 }), { closed: true, w: 0.9, jit: 0.25, second: false })
     s += `<circle class="sk-dot" cx="${n1(x + J(1.5))}" cy="${n1(y + J(1.5))}" r="${n1(r * 0.09)}"/>`
   }
+  s += close
   // трофэктодерма
+  s += open('te')
   const half = (Math.PI * Rb) / n - 1.2
   for (let i = 0; i < n; i++) {
     if (skip.includes(i)) continue
@@ -216,7 +221,7 @@ function blastocyst(prefix, { cx, cy, Rb, n = 24, icmAngle = (3 * Math.PI) / 4, 
     s += ink(blob(nx, ny, half * 0.34, Rb * 0.026, { rot: th + Math.PI / 2, n: 12, wob: 0.05 }), { closed: true, w: 0.9, jit: 0.25, second: false })
     s += `<circle class="sk-dot" cx="${n1(nx)}" cy="${n1(ny)}" r="1.1"/>`
   }
-  s += extraCells + '</g>'
+  s += close + extraCells + '</g>'
   return s
 }
 
@@ -488,4 +493,158 @@ R = rng(61)
   labels.pathway = lab
 }
 
+// ——— Раздел Fundamentals / Основы ПГТ-мт ———
+// Геометрия интерактивных схем (позиции молекул мтДНК, области бластоцисты) — в fundamentals.json;
+// интерактивные элементы рисует React поверх SVG в тех же координатах viewBox.
+const fund = {}
+
+// 7. Клетка с митохондриями для модели «Гетероплазмия в клетке».
+//    Кольца мтДНК не рисуются — их положения (100 слотов) выводятся в fundamentals.json.
+R = rng(71)
+{
+  const W = 640, H = 420
+  let body = ''
+  const cellOutline = blob(322, 212, 290, 182, { n: 60, wob: 0.035, rot: -0.04 })
+  body += ink(cellOutline, { closed: true, fill: true, w: 2.4, jit: 0.8 })
+  body += hatch('cl', cellOutline, [20, 20, 620, 400], { step: 11, op: 0.07, angle: -0.6 })
+  // ядро с ядрышком
+  const nuc = blob(150, 214, 70, 62, { n: 34, wob: 0.03 })
+  body += ink(nuc, { closed: true, fill: true, w: 2, jit: 0.5 })
+  body += ink(blob(150, 214, 76, 68, { n: 34, wob: 0.02, open: true }), { w: 0.9, jit: 0.4, second: false, extra: ' opacity="0.6"' })
+  body += hatch('cl', nuc, [70, 140, 230, 290], { step: 6, op: 0.18, angle: 0.9 })
+  body += ink(blob(166, 200, 15, 13, { n: 14, wob: 0.06 }), { closed: true, w: 1.4, jit: 0.3, second: false })
+  const mitos = [
+    { cx: 330, cy: 112, L: 200, H: 92, rot: -0.12 },
+    { cx: 486, cy: 150, L: 176, H: 84, rot: 0.42 },
+    { cx: 362, cy: 236, L: 196, H: 90, rot: 0.08 },
+    { cx: 512, cy: 290, L: 168, H: 82, rot: -0.36 },
+    { cx: 306, cy: 336, L: 190, H: 86, rot: -0.04 },
+  ]
+  const slots = []
+  mitos.forEach((o, mi) => {
+    const m = mitochondrion(`clm${mi}`, { ...o, rings: 0, hatching: false, top: [-0.5, 0.42], bot: [-0.04], weight: 0.8 })
+    body += m.svg
+    // 20 позиций в матриксе: сетка внутри суперэллипса, с лёгкой нерегулярностью
+    const pts = []
+    for (let gy = -1; gy <= 1; gy++) for (let gx = -4; gx <= 4; gx++) {
+      const u = (gx + (gy % 2 ? 0.5 : 0)) / 4.6, v = gy * 0.52
+      if (Math.abs(u) ** 2.3 + Math.abs(v) ** 2.3 < 0.82) pts.push([u * m.ix + J(3), v * m.iy + J(3)])
+    }
+    pts.slice(0, 20).forEach((q) => {
+      const [x, y] = m.xf(q)
+      slots.push([n1(x), n1(y), mi])
+    })
+  })
+  file('cell.svg', W, H, body, 'A cell with a nucleus and five mitochondria')
+  fund.cell = { w: W, h: H, r: 4.6, slots }
+}
+
+// 8. Бластоциста и биопсия трофэктодермы для «Blastocyst & Biopsy Explorer»:
+//    ВКМ слева, отверстие в блестящей оболочке справа, биопсийная пипетка с несколькими клетками ТЭ.
+R = rng(83)
+{
+  const W = 760, H = 480
+  const cx = 260, cy = 240, Rb = 168, n = 26
+  let body = blastocyst('bx', { cx, cy, Rb, n, icmAngle: Math.PI, zona: false, skip: [0, 1, n - 1], groups: true })
+  body += '<g class="bx-zona">'
+  for (const [rr, w, op] of [[Rb + 25, 1.1, 0.75], [Rb + 17, 0.8, 0.55]]) {
+    const pts = []
+    for (let i = 0; i <= 70; i++) {
+      const t = 0.16 + ((TAU - 0.32) * i) / 70
+      pts.push([cx + rr * Math.cos(t), cy + rr * Math.sin(t)])
+    }
+    body += ink(pts, { w, jit: 0.4, second: false, extra: ` opacity="${op}"` })
+  }
+  body += '</g>'
+  // биоптат: несколько клеток ТЭ, выходящих в пипетку
+  const cell = (x, y, a, b, rot) => ink(blob(x, y, a, b, { rot, n: 16, wob: 0.05 }), { closed: true, fill: true, w: 1.6, jit: 0.35 }) + ink(blob(x + J(1.5), y + J(1.5), a * 0.38, b * 0.28, { rot, n: 10 }), { closed: true, w: 0.9, jit: 0.2, second: false })
+  const tip = cx + Rb + 44
+  let bx = '<g class="bx-bx">'
+  bx += cell(cx + Rb + 2, cy - 14, 12, 18, 0.1) + cell(cx + Rb + 4, cy + 16, 12, 17, -0.1)
+  bx += cell(cx + Rb + 30, cy - 9, 16, 12, 0.35) + cell(cx + Rb + 31, cy + 12, 15, 11, -0.35)
+  bx += cell(tip + 28, cy + 1, 17, 13, 0.1)
+  bx += '</g>'
+  body += bx
+  // биопсийная пипетка
+  const rIn = 24, wall = 6, end = tip + 200
+  body += '<g class="bx-pipette">'
+  for (const sg of [-1, 1]) {
+    body += ink([[tip, cy + sg * rIn], [tip + 80, cy + sg * rIn], [end, cy + sg * rIn]], { w: 1.7, jit: 0.3 })
+    body += ink([[tip + 3, cy + sg * (rIn + wall)], [tip + 80, cy + sg * (rIn + wall)], [end, cy + sg * (rIn + wall)]], { w: 1.4, jit: 0.3 })
+    body += ink([[tip, cy + sg * rIn], [tip + 3, cy + sg * (rIn + wall)]], { w: 1.3, jit: 0.15, second: false })
+  }
+  body += hatch('bx', [[tip + 70, cy - rIn - wall], [end, cy - rIn - wall], [end, cy - rIn], [tip + 70, cy - rIn]], [tip, cy - 40, end, cy], { step: 6, op: 0.3, angle: 1.0 })
+  body += hatch('bx', [[tip + 70, cy + rIn], [end, cy + rIn], [end, cy + rIn + wall], [tip + 70, cy + rIn + wall]], [tip, cy, end, cy + 40], { step: 6, op: 0.3, angle: 1.0 })
+  body += '</g>'
+  // выносные линии от подписей (текст — в HTML) к структурам
+  const teP = [cx + (Rb + 4) * Math.cos(-1.2), cy + (Rb + 4) * Math.sin(-1.2)]
+  body += leader([cx + 36, 52], teP) + `<circle class="sk-dot" cx="${n1(teP[0])}" cy="${n1(teP[1])}" r="2.2"/>`
+  body += leader([58, 408], [128, 318]) + `<circle class="sk-dot" cx="128" cy="318" r="2.2"/>`
+  body += leader([tip + 56, cy + 58], [tip + 30, cy + 14], 'r') + `<circle class="sk-dot r" cx="${tip + 30}" cy="${cy + 14}" r="2.2"/>`
+  file('blastocyst-biopsy.svg', W, H, body, 'Blastocyst with trophectoderm, inner cell mass and a trophectoderm biopsy')
+  const ca = Math.cos(Math.PI), sa = Math.sin(Math.PI)
+  fund.blastocyst = {
+    w: W, h: H,
+    te: { cx, cy, r: Rb, width: Rb * 0.16 },
+    icm: { cx: n1(cx + (Rb - 70) * ca), cy: n1(cy + (Rb - 70) * sa), rx: n1(Rb * 0.38), ry: n1(Rb * 0.57) },
+    bx: { cx: cx + Rb + 30, cy, rx: 46, ry: 34 },
+    labels: [
+      { key: 'te', x: n1(((cx + 40) / W) * 100), y: n1((44 / H) * 100), align: 'start', tone: 'i' },
+      { key: 'icm', x: n1((24 / W) * 100), y: n1((430 / H) * 100), align: 'start', tone: 'i' },
+      { key: 'cav', x: n1(((cx + 30) / W) * 100), y: n1((cy / H) * 100), align: 'start', tone: 'i' },
+      { key: 'bx', x: n1(((tip + 60) / W) * 100), y: n1(((cy + 70) / H) * 100), align: 'start', tone: 'r' },
+    ],
+  }
+}
+
+// 9. Стадии до имплантации: зигота → 4 клетки → 8 клеток (биопсия бластомера) → морула → бластоциста (биопсия ТЭ).
+R = rng(97)
+{
+  const W = 1000, H = 260
+  let body = ''
+  const cy = 118, Rz = 66
+  const xs = [90, 278, 466, 654, 842]
+  const zona = (x) => ink(blob(x, cy, Rz + 12, Rz + 12, { n: 40, wob: 0.01, open: true }), { w: 1, jit: 0.4, second: false, extra: ' opacity="0.7"' }) + ink(blob(x, cy, Rz + 6, Rz + 6, { n: 40, wob: 0.01, open: true }), { w: 0.7, jit: 0.3, second: false, extra: ' opacity="0.5"' })
+  const cellC = (x, y, r, tone = 'i') => ink(blob(x, y, r, r * (0.9 + R() * 0.1), { rot: R() * 3, n: 18, wob: 0.04 }), { closed: true, fill: true, w: 1.6, jit: 0.35, tone }) + `<circle class="sk-dot${tone === 'r' ? ' r' : ''}" cx="${n1(x + J(2))}" cy="${n1(y + J(2))}" r="1.6"/>`
+  // зигота с двумя пронуклеусами
+  body += zona(xs[0]) + ink(blob(xs[0], cy, Rz - 4, Rz - 6, { n: 34, wob: 0.02 }), { closed: true, fill: true, w: 1.8, jit: 0.4 })
+  body += ink(blob(xs[0] - 15, cy - 2, 14, 13, { n: 14, wob: 0.05 }), { closed: true, w: 1.3, jit: 0.3 }) + ink(blob(xs[0] + 15, cy + 2, 14, 13, { n: 14, wob: 0.05 }), { closed: true, w: 1.3, jit: 0.3 })
+  // 4 клетки
+  body += zona(xs[1])
+  for (const [dx, dy] of [[-24, -22], [24, -24], [-22, 24], [25, 22]]) body += cellC(xs[1] + dx, cy + dy, 31)
+  // 8 клеток; один бластомер извлекается (красный)
+  body += zona(xs[2])
+  for (const [dx, dy] of [[-30, -30], [2, -40], [33, -22], [-40, 2], [-26, 34], [6, 38], [34, 20], [0, 0]]) body += cellC(xs[2] + dx, cy + dy, 21)
+  body += cellC(xs[2] + 96, cy - 4, 20, 'r')
+  body += ink([[xs[2] + 50, cy - 2], [xs[2] + 62, cy - 6], [xs[2] + 72, cy - 5]], { w: 1.2, tone: 'r', jit: 0.3, second: false, extra: ' stroke-dasharray="3 4"' })
+  // морула: компактная масса мелких клеток
+  body += zona(xs[3])
+  const mor = blob(xs[3], cy, Rz - 6, Rz - 8, { n: 36, wob: 0.02 })
+  body += ink(mor, { closed: true, fill: true, w: 1.8, jit: 0.4 })
+  for (const [dx, dy] of [[-30, -28], [-4, -40], [24, -32], [40, -6], [-42, -2], [-30, 26], [-4, 40], [24, 32], [42, 18], [-14, -12], [12, -10], [-12, 14], [14, 12]]) body += ink(blob(xs[3] + dx, cy + dy, 13, 12, { rot: R() * 3, n: 12, wob: 0.06 }), { closed: true, w: 1, jit: 0.3, second: false })
+  // бластоциста: кольцо ТЭ, ВКМ слева, полость; справа — биопсия нескольких клеток ТЭ (красные)
+  const bxX = xs[4]
+  body += zona(bxX)
+  const cav = blob(bxX, cy, Rz - 14, Rz - 14, { n: 30, wob: 0.01 })
+  body += hatch('dv', cav, [bxX - Rz, cy - Rz, bxX + Rz, cy + Rz], { step: 7, op: 0.12, angle: -0.7 })
+  const nT = 14, halfT = (Math.PI * (Rz - 4)) / nT - 1.4
+  for (let i = 0; i < nT; i++) {
+    const th = (TAU * i) / nT
+    const tone = i === 0 ? 'r' : 'i'
+    body += ink(teCell(bxX, cy, Rz - 4, th, halfT, 6.5), { closed: true, fill: true, w: 1.4, jit: 0.3, tone })
+  }
+  for (const [dx, dy] of [[-34, -12], [-36, 10], [-22, -2], [-24, 20], [-22, -24]]) body += ink(blob(bxX + dx, cy + dy, 10, 9, { rot: R() * 3, n: 12, wob: 0.06 }), { closed: true, fill: true, w: 1.3, jit: 0.3 })
+  body += cellC(bxX + Rz + 30, cy + 2, 11, 'r') + cellC(bxX + Rz + 40, cy - 14, 9, 'r')
+  // ось времени
+  body += ink([[40, 222], [300, 220], [600, 223], [960, 221]], { w: 1.2, jit: 0.5, second: false })
+  xs.forEach((x) => (body += ink([[x, 214], [x + J(1), 230]], { w: 1.2, jit: 0.2, second: false })))
+  file('development.svg', W, H, body, 'Human preimplantation development from zygote to blastocyst with biopsy stages')
+  labels.development = [
+    ...['d1', 'd2', 'd3', 'd4', 'd5'].map((key, i) => ({ key, x: n1((xs[i] / W) * 100), y: 96, align: 'middle', tone: 'i' })),
+    { key: 'bxBlastomere', x: n1(((xs[2] + 96) / W) * 100), y: 13, align: 'middle', tone: 'r' },
+    { key: 'bxTe', x: n1(((xs[4] + Rz + 34) / W) * 100), y: 13, align: 'middle', tone: 'r' },
+  ]
+}
+
+writeFileSync(join(OUT, 'fundamentals.json'), JSON.stringify(fund) + '\n')
 writeFileSync(join(OUT, 'labels.json'), JSON.stringify(labels, null, 2) + '\n')

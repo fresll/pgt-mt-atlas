@@ -1,6 +1,8 @@
 import { expect, test, type Page } from '@playwright/test'
 
-const PAGES = ['', 'science/', 'science/data/', 'science/heteroplasmy-landscape/', 'science/embryo-concordance/', 'science/embryo-to-offspring/', 'science/pgt-mt-pgt-a-model/', 'science/cases/', 'science/sources/', 'science/methods/', 'patients/', 'contribute/', 'about/', 'ilya-mazunin/']
+// Основы ПГТ-мт: оглавление, шесть глав и библиография
+const FUNDAMENTALS = ['fundamentals/', 'fundamentals/mtdna-and-maternal-inheritance/', 'fundamentals/heteroplasmy-and-threshold-effects/', 'fundamentals/mitochondrial-genetic-bottleneck/', 'fundamentals/embryo-development-and-biopsy/', 'fundamentals/how-pgt-mt-works/', 'fundamentals/interpretation-and-limitations/', 'fundamentals/references/']
+const PAGES = ['', 'science/', 'science/data/', 'science/heteroplasmy-landscape/', 'science/embryo-concordance/', 'science/embryo-to-offspring/', 'science/pgt-mt-pgt-a-model/', 'science/cases/', 'science/sources/', 'science/methods/', 'patients/', 'contribute/', 'about/', 'ilya-mazunin/', ...FUNDAMENTALS]
 const CHARTS: Record<string, number> = { 'science/heteroplasmy-landscape/': 1, 'science/embryo-concordance/': 3, 'science/embryo-to-offspring/': 2, 'science/pgt-mt-pgt-a-model/': 3 }
 
 function collectErrors(page: Page) {

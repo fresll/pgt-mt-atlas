@@ -6,6 +6,8 @@ import About from './pages/About'
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 import Contribute from './pages/Contribute'
+import { CHAPTER_SLUGS } from './content/fundamentals'
+import { ChapterPage, FundamentalsIndex, FundamentalsLayout, FundamentalsReferences } from './pages/fundamentals/Fundamentals'
 import Curator from './pages/Curator'
 import Patients from './pages/patients/Patients'
 import RootRedirect from './pages/RootRedirect'
@@ -38,6 +40,15 @@ function langRoutes(lang: Lang): RouteRecord {
           { path: 'cases', element: <Cases /> },
           { path: 'sources', element: <Sources /> },
           { path: 'methods', element: <Methods /> },
+        ],
+      },
+      {
+        path: 'fundamentals',
+        element: <FundamentalsLayout lang={lang} />,
+        children: [
+          { index: true, element: <FundamentalsIndex /> },
+          ...CHAPTER_SLUGS.map((slug) => ({ path: slug, element: <ChapterPage slug={slug} /> })),
+          { path: 'references', element: <FundamentalsReferences /> },
         ],
       },
       { path: 'patients', element: <Patients /> },

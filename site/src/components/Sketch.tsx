@@ -1,4 +1,7 @@
+import blastocystBiopsy from '../illustrations/blastocyst-biopsy.svg?raw'
+import cell from '../illustrations/cell.svg?raw'
 import dataPathway from '../illustrations/data-pathway.svg?raw'
+import development from '../illustrations/development.svg?raw'
 import hero from '../illustrations/hero.svg?raw'
 import mark from '../illustrations/mark.svg?raw'
 import mitochondrion from '../illustrations/mitochondrion.svg?raw'
@@ -7,7 +10,7 @@ import teBiopsy from '../illustrations/te-biopsy.svg?raw'
 // Иллюстрации Scientific Sketchbook (генерируются scripts/sketch/generate.mjs).
 // Встраиваются как inline SVG, чтобы цвета чернил брались из CSS-токенов и следовали теме.
 // blastocyst.svg — отдельная иллюстрация для будущих страниц; в бандл не входит, пока не используется.
-const SVG = { hero, mark, mitochondrion, teBiopsy, dataPathway } as const
+const SVG = { hero, mark, mitochondrion, teBiopsy, dataPathway, cell, blastocystBiopsy, development } as const
 export type IllustrationName = keyof typeof SVG
 
 export function Illustration({ name, className }: { name: IllustrationName; className?: string }) {

@@ -54,6 +54,7 @@ function Header({ lang }: { lang: Lang }) {
           </span>
         </Link>
         <nav className="primary" aria-label="primary">
+          <NavLink to={`/${lang}/fundamentals/`}>{t('nav.fundamentals')}</NavLink>
           <NavLink to={`/${lang}/science/`} className={() => (inScience ? 'active' : '')}>{t('nav.science')}</NavLink>
           <NavLink to={`/${lang}/science/data/`}>{t('nav.data')}</NavLink>
           <NavLink to={`/${lang}/patients/`}>{t('nav.patients')}</NavLink>

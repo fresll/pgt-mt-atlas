@@ -79,5 +79,56 @@
       "align": "middle",
       "tone": "i"
     }
+  ],
+  "development": [
+    {
+      "key": "d1",
+      "x": 9,
+      "y": 96,
+      "align": "middle",
+      "tone": "i"
+    },
+    {
+      "key": "d2",
+      "x": 27.8,
+      "y": 96,
+      "align": "middle",
+      "tone": "i"
+    },
+    {
+      "key": "d3",
+      "x": 46.6,
+      "y": 96,
+      "align": "middle",
+      "tone": "i"
+    },
+    {
+      "key": "d4",
+      "x": 65.4,
+      "y": 96,
+      "align": "middle",
+      "tone": "i"
+    },
+    {
+      "key": "d5",
+      "x": 84.2,
+      "y": 96,
+      "align": "middle",
+      "tone": "i"
+    },
+    {
+      "key": "bxBlastomere",
+      "x": 56.2,
+      "y": 13,
+      "align": "middle",
+      "tone": "r"
+    },
+    {
+      "key": "bxTe",
+      "x": 94.2,
+      "y": 13,
+      "align": "middle",
+      "tone": "r"
+    }
   ]
 }
