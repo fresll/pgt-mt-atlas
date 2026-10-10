@@ -1,0 +1,39 @@
+{
+  "hero": [
+    {
+      "key": "te",
+      "x": 2,
+      "y": 26.3,
+      "align": "start",
+      "tone": "i"
+    },
+    {
+      "key": "icm",
+      "x": 2,
+      "y": 94.7,
+      "align": "start",
+      "tone": "i"
+    },
+    {
+      "key": "cristae",
+      "x": 77,
+      "y": 6.6,
+      "align": "start",
+      "tone": "i"
+    },
+    {
+      "key": "wt",
+      "x": 54.8,
+      "y": 89.4,
+      "align": "end",
+      "tone": "i"
+    },
+    {
+      "key": "variant",
+      "x": 97.2,
+      "y": 89.4,
+      "align": "end",
+      "tone": "r"
+    }
+  ]
+}

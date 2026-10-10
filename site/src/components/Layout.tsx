@@ -3,6 +3,7 @@ import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { Head } from 'vite-react-ssg'
 import { atlas, type Lang } from '../data/atlas'
 import { LangProvider, useT } from '../i18n'
+import { Illustration } from './Sketch'
 
 type Theme = 'system' | 'light' | 'dark'
 
@@ -41,18 +42,20 @@ function Header({ lang }: { lang: Lang }) {
   const other: Lang = lang === 'en' ? 'ru' : 'en'
   // путь без base и языка → тот же раздел на другом языке
   const rest = pathname.replace(new RegExp(`^.*?/${lang}(?=/|$)`), '')
+  const inScience = /\/science(\/|$)/.test(rest) && !/\/science\/data(\/|$)/.test(rest)
   return (
     <header className="site">
       <div className="header-inner">
         <Link className="brand" to={`/${lang}/`}>
-          <BrandMark />
+          <Illustration name="mark" className="brand-mark" />
           <span>
             {t('site.title')}
             <small>{t('site.curated')}</small>
           </span>
         </Link>
         <nav className="primary" aria-label="primary">
-          <NavLink to={`/${lang}/science/`}>{t('nav.science')}</NavLink>
+          <NavLink to={`/${lang}/science/`} className={() => (inScience ? 'active' : '')}>{t('nav.science')}</NavLink>
+          <NavLink to={`/${lang}/science/data/`}>{t('nav.data')}</NavLink>
           <NavLink to={`/${lang}/patients/`}>{t('nav.patients')}</NavLink>
           <NavLink to={`/${lang}/about/`}>{t('nav.about')}</NavLink>
           <NavLink to={`/${lang}/ilya-mazunin/`}>{t('nav.curator')}</NavLink>
@@ -65,17 +68,6 @@ function Header({ lang }: { lang: Lang }) {
         </div>
       </div>
     </header>
-  )
-}
-
-/** Знак атласа: кольцо мтДНК (teal) с медным маркером варианта. */
-function BrandMark() {
-  return (
-    <svg className="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
-      <circle cx="16" cy="16" r="12" fill="none" stroke="#137F80" strokeWidth="4" />
-      <circle cx="16" cy="16" r="12" fill="none" stroke="#D7EDE5" strokeWidth="4" strokeDasharray="10 65.4" strokeDashoffset="-6" />
-      <circle cx="24.5" cy="7.5" r="3.6" fill="#D28A56" />
-    </svg>
   )
 }
 
