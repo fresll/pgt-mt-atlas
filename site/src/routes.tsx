@@ -3,6 +3,7 @@ import { ScienceLayout, Shell } from './components/Layout'
 import type { Lang } from './data/atlas'
 import { LANGS } from './i18n'
 import About from './pages/About'
+import Creator from './pages/Creator'
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 import Patients from './pages/patients/Patients'
@@ -39,6 +40,7 @@ function langRoutes(lang: Lang): RouteRecord {
         ],
       },
       { path: 'patients', element: <Patients /> },
+      { path: 'creator', element: <Creator /> },
       { path: 'about', element: <About /> },
       { path: '*', element: <NotFound /> },
     ],

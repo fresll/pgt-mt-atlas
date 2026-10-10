@@ -38,9 +38,7 @@ export function PubRef({ id, showStatus = false }: { id: string; showStatus?: bo
     <span>
       {p.short} [{p.review_ref_no}]{' '}
       {p.doi ? (
-        <a href={doiUrl(p.doi)} target="_blank" rel="noreferrer">
-          doi:{p.doi}
-        </a>
+        <Doi doi={p.doi} />
       ) : (
         <span className="muted">({t('common.noDoi')})</span>
       )}
@@ -113,5 +111,25 @@ export function Seg<T extends string | number>({ value, options, onChange, label
         </button>
       ))}
     </span>
+  )
+}
+
+/** Фотография из public/img: WebP с JPEG-запасным вариантом. */
+export function Photo({ src, w, h, alt, className, eager = false }: { src: string; w: number; h: number; alt: string; className?: string; eager?: boolean }) {
+  const base = import.meta.env.BASE_URL
+  return (
+    <picture className={className}>
+      <source srcSet={`${base}${src}.webp`} type="image/webp" />
+      <img src={`${base}${src}.jpg`} width={w} height={h} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" />
+    </picture>
+  )
+}
+
+/** DOI как ссылка в едином стиле. */
+export function Doi({ doi }: { doi: string }) {
+  return (
+    <a className="doi" href={doiUrl(doi)} target="_blank" rel="noreferrer">
+      doi:{doi}
+    </a>
   )
 }

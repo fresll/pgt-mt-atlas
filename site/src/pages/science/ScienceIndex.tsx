@@ -9,7 +9,7 @@ export default function ScienceIndex() {
   const ru = lang === 'ru'
   const s = atlas.stats
   const items: [string, string, string, boolean][] = [
-    ['between-embryos/', t('fig3.title'), ru ? `Рисунок 3 обзора · ${s.fig3.n} значений, 7 вариантов` : `Review Figure 3 · ${s.fig3.n} values, 7 variants`, false],
+    ['between-embryos/', t('fig3.title'), ru ? `Рисунок 3 · ${s.fig3.n} значений, ${Object.keys(s.fig3.by_variant).length} вариантов` : `Figure 3 · ${s.fig3.n} values, ${Object.keys(s.fig3.by_variant).length} variants`, false],
     ['within-embryo/', t('fig4.title'), ru ? `Рисунок 4 · ${s.fig4.n_embryos} бластоцист + ${s.fig4.n_cleavage} эмбрионов дробления` : `Figure 4 · ${s.fig4.n_embryos} blastocysts + ${s.fig4.n_cleavage} cleavage embryos`, false],
     ['embryo-to-offspring/', t('fig5.title'), ru ? `Рисунок 5 · ${s.fig5.n_pairs} сопоставлений, ${s.fig5.n_children} детей` : `Figure 5 · ${s.fig5.n_pairs} comparisons, ${s.fig5.n_children} children`, false],
     ['pgt-mt-and-pgt-a/', t('fig6.title'), ru ? 'Рисунок 6 · сценарный расчёт' : 'Figure 6 · scenario calculation', true],
@@ -19,8 +19,8 @@ export default function ScienceIndex() {
       <h1>{t('nav.science')}</h1>
       <p className="lead">
         {ru
-          ? 'Интерактивные версии рисунков 3–6 обзора. По умолчанию каждый рисунок показан так, как в статье; дополнительные фильтры помечены «вне рисунка статьи».'
-          : 'Interactive versions of review Figures 3–6. By default each figure is shown as in the article; extra filters are labelled “not in the article figure”.'}
+          ? 'Интерактивные рисунки 3–6 на основе базы атласа. По умолчанию каждый рисунок воспроизводит соответствующий рисунок обзора-источника (Тофило и Мазунин, рукопись для Acta Naturae); дополнительные фильтры помечены «вне рисунка статьи».'
+          : 'Interactive Figures 3–6 built on the Atlas database. By default each figure reproduces the corresponding figure of the source review (Tofilo & Mazunin, manuscript for Acta Naturae); extra filters are labelled “not in the article figure”.'}
       </p>
       <div className="cards">
         {items.map(([to, title, sub, model]) => (

@@ -1,6 +1,6 @@
 import { expect, test, type Page } from '@playwright/test'
 
-const PAGES = ['', 'science/', 'science/data/', 'science/between-embryos/', 'science/within-embryo/', 'science/embryo-to-offspring/', 'science/pgt-mt-and-pgt-a/', 'science/cases/', 'science/sources/', 'science/methods/', 'patients/', 'about/']
+const PAGES = ['', 'science/', 'science/data/', 'science/between-embryos/', 'science/within-embryo/', 'science/embryo-to-offspring/', 'science/pgt-mt-and-pgt-a/', 'science/cases/', 'science/sources/', 'science/methods/', 'patients/', 'creator/', 'about/']
 const CHARTS: Record<string, number> = { 'science/between-embryos/': 1, 'science/within-embryo/': 3, 'science/embryo-to-offspring/': 2, 'science/pgt-mt-and-pgt-a/': 3 }
 
 function collectErrors(page: Page) {
@@ -62,4 +62,46 @@ test('language switch keeps the section', async ({ page }) => {
   await page.goto('en/science/within-embryo/')
   await page.getByRole('link', { name: 'Русский' }).click()
   await expect(page).toHaveURL(/\/ru\/science\/within-embryo\/?$/)
+})
+
+test('creator photo loads on the creator page and the home page', async ({ page }) => {
+  for (const url of ['en/creator/', 'ru/creator/', 'en/']) {
+    await page.goto(url)
+    const img = page.locator('picture img').first()
+    await expect(img).toBeVisible()
+    await expect.poll(() => img.evaluate((el: HTMLImageElement) => el.complete && el.naturalWidth > 0)).toBe(true)
+  }
+})
+
+test('home page numbers come from the database', async ({ page }) => {
+  await page.goto('en/')
+  const nums = await page.locator('.stats .num').allInnerTexts()
+  expect(nums[0]).toBe('187')
+  await expect(page.locator('.hero')).toContainText('Created and curated by Ilya Mazunin')
+  await page.goto('ru/')
+  await expect(page.locator('.hero')).toContainText('Создатель и научный куратор — Илья Мазунин')
+})
+
+test('no broken internal links', async ({ page, request }) => {
+  const seen = new Set<string>()
+  const queue = ['en/', 'ru/']
+  const broken: string[] = []
+  while (queue.length) {
+    const url = queue.shift()!
+    if (seen.has(url)) continue
+    seen.add(url)
+    const res = await page.goto(url)
+    if (!res || res.status() >= 400) { broken.push(url); continue }
+    const hrefs = await page.locator('a[href]').evaluateAll((as) => as.map((a) => (a as HTMLAnchorElement).href))
+    for (const h of hrefs) {
+      const u = new URL(h)
+      if (u.host !== 'localhost:4173') continue
+      const rel = u.pathname.replace(/^\/pgt-mt-atlas\//, '')
+      if (/\.(csv|json|jpg|webp)$/.test(rel)) {
+        if (!seen.has(rel)) { seen.add(rel); const r = await request.get(rel); if (r.status() >= 400) broken.push(rel) }
+      } else if (!seen.has(rel)) queue.push(rel)
+    }
+  }
+  expect(broken).toEqual([])
+  expect(seen.size).toBeGreaterThan(25)
 })

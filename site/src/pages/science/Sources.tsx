@@ -1,5 +1,5 @@
-import { PubStatus } from '../../components/ui'
-import { atlas, doiUrl } from '../../data/atlas'
+import { Doi, PubStatus } from '../../components/ui'
+import { atlas } from '../../data/atlas'
 import { useLang, useT } from '../../i18n'
 
 export default function Sources() {
@@ -16,12 +16,12 @@ export default function Sources() {
       <p className="lead">{t('sources.lead')}</p>
       <ol className="prose" style={{ listStyle: 'none', paddingLeft: 0 }}>
         {pubs.map((p) => (
-          <li key={p.id} id={p.id} className="card" style={{ marginBottom: 12 }}>
+          <li key={p.id} id={p.id} className="card source-card">
             <p style={{ margin: 0 }}>
               <strong>[{p.review_ref_no}]</strong> {p.citation.replace(/\s*doi:.*$/i, '')} <PubStatus p={p} />
             </p>
             <p className="small" style={{ margin: '4px 0 0' }}>
-              {p.doi ? <a href={doiUrl(p.doi)} target="_blank" rel="noreferrer">doi:{p.doi}</a> : <span className="muted">{t('common.noDoi')}</span>}
+              {p.doi ? <Doi doi={p.doi} /> : <span className="muted">{t('common.noDoi')}</span>}
               {p.pmid && <> · PMID <a href={`https://pubmed.ncbi.nlm.nih.gov/${p.pmid}/`} target="_blank" rel="noreferrer">{p.pmid}</a></>}
               {p.published_date && <> · {new Date(p.published_date).toLocaleDateString(lang === 'ru' ? 'ru-RU' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</>}
               {count(p.id) > 0 && <> · {count(p.id)} {t('sources.records')}</>}

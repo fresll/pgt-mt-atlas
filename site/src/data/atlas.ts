@@ -217,3 +217,25 @@ export function rangeOf(fr: Partial<Record<string, number>>): number {
   const v = Object.values(fr) as number[]
   return Math.max(...v) - Math.min(...v)
 }
+
+/** Сводные показатели для главной страницы — считаются из atlas.json, не задаются вручную. */
+export const summary = (() => {
+  const pubsWithData = new Set([...atlas.fig3, ...atlas.fig4, ...atlas.cleavage, ...atlas.fig5].map((o) => o.pub))
+  return {
+    embryoValues: atlas.stats.fig3.n,
+    variants: Object.keys(atlas.stats.fig3.by_variant).length,
+    pubsWithData: pubsWithData.size,
+    publications: atlas.publications.length,
+    blastocystsTeIcm: atlas.stats.fig4.n_embryos,
+    cleavage: atlas.stats.fig4.n_cleavage,
+    offspringPairs: atlas.stats.fig5.n_pairs,
+    children: atlas.stats.fig5.n_children,
+    updated: atlas.meta.dataset_version,
+    version: atlas.meta.dataset_version,
+  }
+})()
+
+export function formatDate(iso: string, lang: Lang): string {
+  const d = new Date(`${iso}T00:00:00Z`)
+  return Number.isNaN(d.getTime()) ? iso : d.toLocaleDateString(lang === 'ru' ? 'ru-RU' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })
+}

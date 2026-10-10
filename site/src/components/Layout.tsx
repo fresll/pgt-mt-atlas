@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { Head } from 'vite-react-ssg'
-import { atlas, type Lang } from '../data/atlas'
+import { atlas, formatDate, type Lang } from '../data/atlas'
 import { LangProvider, useT } from '../i18n'
 
 type Theme = 'system' | 'light' | 'dark'
@@ -45,16 +45,25 @@ function Header({ lang }: { lang: Lang }) {
     <header className="site">
       <div className="header-inner">
         <Link className="brand" to={`/${lang}/`}>
-          {t('site.title')}
+          <span className="brand-mark" aria-hidden>
+            mt
+          </span>
+          <span>{t('site.title')}</span>
         </Link>
-        <nav className="primary" aria-label="primary">
+        <nav className="primary" aria-label={t('nav.menu')}>
           <NavLink to={`/${lang}/science/`}>{t('nav.science')}</NavLink>
           <NavLink to={`/${lang}/patients/`}>{t('nav.patients')}</NavLink>
+          <NavLink to={`/${lang}/creator/`}>{t('nav.creator')}</NavLink>
           <NavLink to={`/${lang}/about/`}>{t('nav.about')}</NavLink>
         </nav>
         <div className="header-tools">
-          <Link className="btn-link" to={`/${other}${rest || '/'}`} hrefLang={other} lang={other}>
-            {t('nav.switchTo')}
+          <Link
+            className="btn-link lang-switch"
+            to={`/${other}${rest || '/'}`}
+            hrefLang={other}
+            lang={other}
+          >
+            <span aria-hidden className="lang-code">{other.toUpperCase()}</span> {t('nav.switchTo')}
           </Link>
           <ThemeToggle />
         </div>
@@ -63,15 +72,34 @@ function Header({ lang }: { lang: Lang }) {
   )
 }
 
-function Footer() {
+function Footer({ lang }: { lang: Lang }) {
   const t = useT()
   return (
     <footer className="site">
-      <div className="inner">
-        <p>{t('home.caveat')}</p>
-        <p className="muted">
-          v{atlas.meta.dataset_version} · {atlas.meta.source_file} · SHA-256 {atlas.meta.source_sha256.slice(0, 12)}…
-        </p>
+      <div className="inner footer-grid">
+        <div>
+          <p className="footer-title">{t('site.title')}</p>
+          <p>{t('site.tagline')}.</p>
+          <p>
+            <Link to={`/${lang}/creator/`}>{t('site.credit')}</Link>
+          </p>
+        </div>
+        <nav aria-label={lang === 'ru' ? 'Разделы' : 'Sections'}>
+          <ul className="footer-links">
+            <li><Link to={`/${lang}/science/`}>{t('nav.science')}</Link></li>
+            <li><Link to={`/${lang}/science/data/`}>{t('nav.data')}</Link></li>
+            <li><Link to={`/${lang}/science/sources/`}>{t('nav.sources')}</Link></li>
+            <li><Link to={`/${lang}/patients/`}>{t('nav.patients')}</Link></li>
+            <li><Link to={`/${lang}/creator/`}>{t('nav.creator')}</Link></li>
+            <li><Link to={`/${lang}/about/`}>{t('nav.about')}</Link></li>
+          </ul>
+        </nav>
+        <div className="small">
+          <p>{t('home.caveat')}</p>
+          <p className="muted">
+            {t('home.updated')}: {formatDate(atlas.meta.dataset_version, lang)} · v{atlas.meta.dataset_version} · SHA-256 {atlas.meta.source_sha256.slice(0, 12)}…
+          </p>
+        </div>
       </div>
     </footer>
   )
@@ -99,7 +127,7 @@ function ShellInner({ lang }: { lang: Lang }) {
     <>
       <Head>
         <html lang={lang} />
-        <title>{`${t('site.title')} — ${t('site.tagline')}`}</title>
+        <title>{t('site.title')}</title>
         <meta name="description" content={t('site.tagline')} />
       </Head>
       <a className="skip" href="#content">
@@ -112,36 +140,45 @@ function ShellInner({ lang }: { lang: Lang }) {
       <main id="content">
         <Outlet />
       </main>
-      <Footer />
+      <Footer lang={lang} />
     </>
   )
 }
 
 export function ScienceLayout({ lang }: { lang: Lang }) {
   const t = useT()
-  const items: [string, string][] = [
-    ['', 'nav.science'],
-    ['data/', 'nav.data'],
-    ['between-embryos/', 'nav.fig3'],
-    ['within-embryo/', 'nav.fig4'],
-    ['embryo-to-offspring/', 'nav.fig5'],
-    ['pgt-mt-and-pgt-a/', 'nav.fig6'],
-    ['cases/', 'nav.cases'],
-    ['sources/', 'nav.sources'],
-    ['methods/', 'nav.methods'],
+  const groups: [string, [string, string][]][] = [
+    ['nav.sciGroupOverview', [['', 'nav.science']]],
+    ['nav.sciGroupFigures', [
+      ['between-embryos/', 'nav.fig3'],
+      ['within-embryo/', 'nav.fig4'],
+      ['embryo-to-offspring/', 'nav.fig5'],
+      ['pgt-mt-and-pgt-a/', 'nav.fig6'],
+    ]],
+    ['nav.sciGroupData', [
+      ['data/', 'nav.data'],
+      ['cases/', 'nav.cases'],
+      ['sources/', 'nav.sources'],
+      ['methods/', 'nav.methods'],
+    ]],
   ]
   return (
     <div className="layout-science">
-      <nav className="side" aria-label="science">
-        <ul>
-          {items.map(([p, k]) => (
-            <li key={p}>
-              <NavLink to={`/${lang}/science/${p}`} end={p === ''}>
-                {t(k)}
-              </NavLink>
-            </li>
-          ))}
-        </ul>
+      <nav className="side" aria-label={t('nav.science')}>
+        {groups.map(([g, items]) => (
+          <div className="side-group" key={g}>
+            <p className="side-title">{t(g)}</p>
+            <ul>
+              {items.map(([p, k]) => (
+                <li key={p}>
+                  <NavLink to={`/${lang}/science/${p}`} end={p === ''}>
+                    {t(k)}
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </nav>
       <div className="page">
         <Outlet />
