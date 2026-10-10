@@ -18,10 +18,11 @@ export interface ChartTheme {
   warn: string
 }
 
+// Палитра атласа (см. styles.css): navy #182A40, teal #137F80, sage #D7EDE5, ivory #F7F8F4, copper #D28A56
 const LIGHT: ChartTheme = {
-  ink: '#0b0b0b', ink2: '#52514e', muted: '#6f6d68', grid: '#e1e0d9', surface: '#fcfcfb',
-  s1: '#2a78d6', s2: '#eb6834', s3: '#1baf7a', s4: '#eda100',
-  bandGreen: '#e9f0e9', bandBlue: '#e6eef8', bandRed: '#f9eded', accent: '#1c5cab', critical: '#d03b3b', warn: '#fab219',
+  ink: '#182a40', ink2: '#3d4e62', muted: '#5d6d7c', grid: '#e1e7e3', surface: '#ffffff',
+  s1: '#137f80', s2: '#d28a56', s3: '#4a6fa5', s4: '#8e5c8a',
+  bandGreen: '#e3f1eb', bandBlue: '#e3eaf3', bandRed: '#f7e7dc', accent: '#137f80', critical: '#b5452b', warn: '#c9772f',
 }
 
 function read(): ChartTheme {
@@ -34,7 +35,7 @@ function read(): ChartTheme {
     s1: v('--s1', LIGHT.s1), s2: v('--s2', LIGHT.s2), s3: v('--s3', LIGHT.s3), s4: v('--s4', LIGHT.s4),
     bandGreen: v('--band-green', LIGHT.bandGreen), bandBlue: v('--band-blue', LIGHT.bandBlue),
     bandRed: v('--band-red', LIGHT.bandRed), accent: v('--accent', LIGHT.accent),
-    critical: v('--critical', LIGHT.critical), warn: LIGHT.warn,
+    critical: v('--critical', LIGHT.critical), warn: v('--flag', LIGHT.warn),
   }
 }
 
@@ -60,7 +61,7 @@ export function baseLayout(th: ChartTheme) {
   return {
     paper_bgcolor: th.surface,
     plot_bgcolor: th.surface,
-    font: { family: 'system-ui, -apple-system, Segoe UI, Roboto, sans-serif', color: th.ink2, size: 13 },
+    font: { family: 'Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif', color: th.ink2, size: 13 },
     hoverlabel: { bgcolor: th.surface, bordercolor: th.grid, font: { color: th.ink, size: 13 } },
     margin: { l: 64, r: 16, t: 24, b: 56 },
     showlegend: false,

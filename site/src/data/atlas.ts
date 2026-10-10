@@ -1,5 +1,5 @@
 // Типизированный доступ к atlas.json (генерируется etl/atlas_etl/build.py — не редактировать вручную).
-// Правила выборок совпадают с ETL и со скриптами рисунков обзора.
+// Правила выборок совпадают с ETL (etl/atlas_etl/curation/rules.yaml).
 import raw from './atlas.json'
 
 export type Lang = 'en' | 'ru'

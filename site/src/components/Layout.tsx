@@ -45,12 +45,17 @@ function Header({ lang }: { lang: Lang }) {
     <header className="site">
       <div className="header-inner">
         <Link className="brand" to={`/${lang}/`}>
-          {t('site.title')}
+          <BrandMark />
+          <span>
+            {t('site.title')}
+            <small>{t('site.curated')}</small>
+          </span>
         </Link>
         <nav className="primary" aria-label="primary">
           <NavLink to={`/${lang}/science/`}>{t('nav.science')}</NavLink>
           <NavLink to={`/${lang}/patients/`}>{t('nav.patients')}</NavLink>
           <NavLink to={`/${lang}/about/`}>{t('nav.about')}</NavLink>
+          <NavLink to={`/${lang}/ilya-mazunin/`}>{t('nav.curator')}</NavLink>
         </nav>
         <div className="header-tools">
           <Link className="btn-link" to={`/${other}${rest || '/'}`} hrefLang={other} lang={other}>
@@ -63,11 +68,25 @@ function Header({ lang }: { lang: Lang }) {
   )
 }
 
-function Footer() {
+/** Знак атласа: кольцо мтДНК (teal) с медным маркером варианта. */
+function BrandMark() {
+  return (
+    <svg className="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+      <circle cx="16" cy="16" r="12" fill="none" stroke="#137F80" strokeWidth="4" />
+      <circle cx="16" cy="16" r="12" fill="none" stroke="#D7EDE5" strokeWidth="4" strokeDasharray="10 65.4" strokeDashoffset="-6" />
+      <circle cx="24.5" cy="7.5" r="3.6" fill="#D28A56" />
+    </svg>
+  )
+}
+
+function Footer({ lang }: { lang: Lang }) {
   const t = useT()
   return (
     <footer className="site">
       <div className="inner">
+        <p className="curated" style={{ margin: 0 }}>
+          {t('site.title')} · <Link to={`/${lang}/ilya-mazunin/`}>{t('site.curated')}</Link>
+        </p>
         <p>{t('home.caveat')}</p>
         <p className="muted">
           v{atlas.meta.dataset_version} · {atlas.meta.source_file} · SHA-256 {atlas.meta.source_sha256.slice(0, 12)}…
@@ -101,6 +120,7 @@ function ShellInner({ lang }: { lang: Lang }) {
         <html lang={lang} />
         <title>{`${t('site.title')} — ${t('site.tagline')}`}</title>
         <meta name="description" content={t('site.tagline')} />
+        <meta name="author" content="Ilya Mazunin" />
       </Head>
       <a className="skip" href="#content">
         {t('site.skip')}
@@ -112,7 +132,7 @@ function ShellInner({ lang }: { lang: Lang }) {
       <main id="content">
         <Outlet />
       </main>
-      <Footer />
+      <Footer lang={lang} />
     </>
   )
 }
@@ -122,10 +142,10 @@ export function ScienceLayout({ lang }: { lang: Lang }) {
   const items: [string, string][] = [
     ['', 'nav.science'],
     ['data/', 'nav.data'],
-    ['between-embryos/', 'nav.fig3'],
-    ['within-embryo/', 'nav.fig4'],
+    ['heteroplasmy-landscape/', 'nav.fig3'],
+    ['embryo-concordance/', 'nav.fig4'],
     ['embryo-to-offspring/', 'nav.fig5'],
-    ['pgt-mt-and-pgt-a/', 'nav.fig6'],
+    ['pgt-mt-pgt-a-model/', 'nav.fig6'],
     ['cases/', 'nav.cases'],
     ['sources/', 'nav.sources'],
     ['methods/', 'nav.methods'],

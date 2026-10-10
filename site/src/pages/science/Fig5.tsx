@@ -16,7 +16,7 @@ export function materialCat(p: OffspringPair): 0 | 1 | 2 {
 }
 const SYMBOL = ['circle', 'square', 'triangle-up'] as const
 
-// Случаи вне количественного набора (правила включения — «Рисунок 5»!A29:A35 и подпись к рис. 5 обзора)
+// Случаи вне количественного набора (правила включения — лист «Рисунок 5»!A29:A35 исходной таблицы)
 const NOT_INCLUDED = [
   { pub: 'sallevelt2017', ru: 'm.14487T>C — перенесены два эмбриона с разными значениями; ребёнка нельзя однозначно связать ни с одним из них.', en: 'm.14487T>C — two embryos with different values were transferred; the child cannot be linked to either of them.' },
   { pub: 'steffann2014', ru: 'm.8344A>G — ткань, в которой измерена гетероплазмия при рождении, не указана.', en: 'm.8344A>G — the tissue measured at birth is not specified.' },
@@ -143,6 +143,7 @@ export default function Fig5() {
     <article>
       <p><ObservedBadge /></p>
       <h1>{t('fig5.title')}</h1>
+      <p className="subtitle">{t('fig5.subtitle')}</p>
       <p className="lead">{t('fig5.lead')}</p>
       <div className="controls">
         <label>
@@ -161,7 +162,7 @@ export default function Fig5() {
         <span>- - {t('fig5.identity')}</span>
       </div>
       <div className="grid-2">
-        <div><h3>{lang === 'ru' ? 'А' : 'A'}</h3><PlotlyChart ariaLabel={t('fig5.title')} height={460} data={panelA.data as never} layout={panelA.layout as never} onClick={pick} /></div>
+        <div><h3>{lang === 'ru' ? 'А' : 'A'}</h3><PlotlyChart ariaLabel={t('fig5.subtitle')} height={460} data={panelA.data as never} layout={panelA.layout as never} onClick={pick} /></div>
         <div><h3>{lang === 'ru' ? 'Б' : 'B'}</h3><PlotlyChart ariaLabel={t('fig5.yB')} height={460} data={panelB.data as never} layout={panelB.layout as never} onClick={pick} /></div>
       </div>
       <p className="small muted">{t('common.clickHint')} {t('fig5.lowSpread')}</p>
@@ -183,7 +184,7 @@ export default function Fig5() {
             [t('common.value'), pairValueText(sel.value, sel.q, sel.value_raw, lang, t)],
             [t('common.age'), sel.age],
             [t('common.method'), sel.method],
-            [lang === 'ru' ? 'На рисунке статьи' : 'In the article figure', sel.in_figure ? (lang === 'ru' ? 'да' : 'yes') : `${lang === 'ru' ? 'нет' : 'no'} — «${sel.on_plot_raw}»`],
+            [lang === 'ru' ? 'В базовом виде графика' : 'In the reference view', sel.in_figure ? (lang === 'ru' ? 'да' : 'yes') : `${lang === 'ru' ? 'нет' : 'no'} — «${sel.on_plot_raw}»`],
             [t('common.provenance'), t('common.sheetRow', { sheet: sel.src.sheet, row: sel.src.row })],
           ]}
         />
@@ -210,7 +211,7 @@ export default function Fig5() {
           rowKey={(p) => p.id}
           selected={selected}
           onSelect={(p) => setSelected(p.id)}
-          csvName="pgt-mt-atlas_fig5.csv"
+          csvName="pgt-mt-atlas_embryo-to-offspring.csv"
           csvRow={(p) => ({ id: p.id, child: p.child, variant: p.variant, publication: p.pub, doi: pubById[p.pub]?.doi, embryo_pct: p.emb, embryo_raw: p.emb_raw, phase: p.phase, tissue: p.tissue, tissue_raw: p.tissue_raw, value_pct: p.value, qualifier: p.q, age: p.age, method: p.method, in_figure: p.in_figure })}
           columns={[
             { key: 'id', header: 'ID', render: (p) => p.id, sort: (p) => p.id },

@@ -12,8 +12,8 @@ export default function Cases() {
       <p className="lead">{t('cases.lead')}</p>
       <p className="callout warn small">
         {useLang() === 'ru'
-          ? 'Номера ссылок в квадратных скобках внутри ячеек взяты из таблицы как есть и относятся к ранней нумерации; со списком литературы обзора они могут не совпадать. Источник каждой строки указан в столбце «Источник».'
-          : 'Reference numbers in square brackets inside cells are quoted from the workbook as is and follow an earlier numbering; they may not match the review reference list. The source of each row is given in the “Source” column.'}
+          ? 'Номера в квадратных скобках внутри ячеек взяты из исходной таблицы как есть и не соответствуют списку источников атласа. Источник каждой строки указан в столбце «Источник».'
+          : 'Numbers in square brackets inside cells are quoted from the source workbook as is and do not correspond to the Atlas source list. The source of each row is given in the “Source” column.'}
       </p>
       <DataTable
         maxHeight={900}

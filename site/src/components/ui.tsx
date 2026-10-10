@@ -36,7 +36,7 @@ export function PubRef({ id, showStatus = false }: { id: string; showStatus?: bo
   if (!p) return <span>{id}</span>
   return (
     <span>
-      {p.short} [{p.review_ref_no}]{' '}
+      {p.short}{' '}
       {p.doi ? (
         <a href={doiUrl(p.doi)} target="_blank" rel="noreferrer">
           doi:{p.doi}

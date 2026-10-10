@@ -72,12 +72,13 @@ export default function Fig6() {
     <article>
       <p><ModelBadge /></p>
       <h1>{t('fig6.title')}</h1>
+      <p className="subtitle">{t('fig6.subtitle')}</p>
       <div className="callout model" role="note"><strong>◆ </strong>{t('fig6.banner')}</div>
       <div className="controls">
         <span>
           {t('common.threshold')}:{' '}
           <Seg label={t('common.threshold')} value={cut} onChange={setCut} options={[
-            { v: 'both', label: `18% + 30% (${t('common.figureInArticle').toLowerCase()})` },
+            { v: 'both', label: `18% + 30%` },
             { v: '18', label: '≤18%' },
             { v: '30', label: '≤30%' },
           ]} />

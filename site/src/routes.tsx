@@ -5,6 +5,7 @@ import { LANGS } from './i18n'
 import About from './pages/About'
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
+import Curator from './pages/Curator'
 import Patients from './pages/patients/Patients'
 import RootRedirect from './pages/RootRedirect'
 import Cases from './pages/science/Cases'
@@ -29,10 +30,10 @@ function langRoutes(lang: Lang): RouteRecord {
         children: [
           { index: true, element: <ScienceIndex /> },
           { path: 'data', element: <Data /> },
-          { path: 'between-embryos', element: <Fig3 /> },
-          { path: 'within-embryo', element: <Fig4 /> },
+          { path: 'heteroplasmy-landscape', element: <Fig3 /> },
+          { path: 'embryo-concordance', element: <Fig4 /> },
           { path: 'embryo-to-offspring', element: <Fig5 /> },
-          { path: 'pgt-mt-and-pgt-a', element: <Fig6 /> },
+          { path: 'pgt-mt-pgt-a-model', element: <Fig6 /> },
           { path: 'cases', element: <Cases /> },
           { path: 'sources', element: <Sources /> },
           { path: 'methods', element: <Methods /> },
@@ -40,6 +41,7 @@ function langRoutes(lang: Lang): RouteRecord {
       },
       { path: 'patients', element: <Patients /> },
       { path: 'about', element: <About /> },
+      { path: 'ilya-mazunin', element: <Curator /> },
       { path: '*', element: <NotFound /> },
     ],
   }

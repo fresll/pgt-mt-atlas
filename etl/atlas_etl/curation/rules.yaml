@@ -72,13 +72,13 @@ thresholds:
   - id: lod1
     value: 1
     publication: null
-    ru: Условный предел обнаружения (линия на рисунке 3)
-    en: Nominal detection limit (line on Figure 3)
+    ru: Условный предел обнаружения (линия на графике «Распределение гетероплазмии»)
+    en: Nominal detection limit (line on the Heteroplasmy Landscape chart)
   - id: high70
     value: 70
     publication: null
-    ru: Условная граница высокой нагрузки (зона на рисунке 3)
-    en: Nominal high-load zone (Figure 3)
+    ru: Условная граница высокой нагрузки (зона на графике «Распределение гетероплазмии»)
+    en: Nominal high-load zone (Heteroplasmy Landscape chart)
 
 # Параметры модели рисунка 6 (лист «Рисунок 6» и подпись к рис. 6)
 model:

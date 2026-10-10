@@ -155,6 +155,7 @@ export default function Fig4() {
     <article>
       <p><ObservedBadge /></p>
       <h1>{t('fig4.title')}</h1>
+      <p className="subtitle">{t('fig4.subtitle')}</p>
       <p className="lead">{t('fig4.lead')}</p>
       <div className="controls">
         <label>
@@ -163,7 +164,7 @@ export default function Fig4() {
         <span className="legend-row" style={{ margin: 0 }}>
           <span><span className="sw" style={{ background: 'var(--ink)' }} />{t('fig4.pathogenic')}</span>
           <span><span className="sw" style={{ background: 'var(--surface)', border: '1.5px solid var(--muted)' }} />{t('fig4.hv2')}</span>
-          <span><span className="sw" style={{ background: 'var(--ink)', border: '2.5px solid #fab219' }} />ESM ⚠</span>
+          <span><span className="sw" style={{ background: 'var(--ink)', border: '2.5px solid var(--flag)' }} />ESM ⚠</span>
         </span>
       </div>
       <div className="grid-3">
@@ -214,7 +215,7 @@ export default function Fig4() {
           rowKey={(e) => e.embryo}
           selected={selected}
           onSelect={(e) => setSelected(e.embryo)}
-          csvName="pgt-mt-atlas_fig4.csv"
+          csvName="pgt-mt-atlas_embryo-concordance.csv"
           csvRow={(e) => ({ embryo: e.embryo, variant: e.variant, publication: e.pub, doi: pubById[e.pub]?.doi, te_biopsy: e.fr.te_biopsy, icm: e.fr.icm, remaining_te: e.fr.remaining_te, range_pp: rangeOf(e.fr) })}
           columns={[
             { key: 'e', header: t('common.embryo'), render: (e) => <>{e.embryo}{hasVerificationIssue(e.embryo) && ' ⚠'}</>, sort: (e) => e.embryo },

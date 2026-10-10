@@ -8,7 +8,8 @@ export default function Sources() {
   const count = (id: string) =>
     atlas.fig3.filter((o) => o.pub === id).length + atlas.fig4.filter((o) => o.pub === id).length +
     atlas.cleavage.filter((o) => o.pub === id).length * 2 + atlas.fig5.filter((o) => o.pub === id).length
-  const pubs = [...atlas.publications].sort((a, b) => a.review_ref_no - b.review_ref_no)
+  const year = (s: string) => Number(s.match(/\d{4}/)?.[0] ?? 0)
+  const pubs = [...atlas.publications].sort((a, b) => year(a.short) - year(b.short) || a.short.localeCompare(b.short))
   const ver = atlas.verification
   return (
     <article>
@@ -18,7 +19,7 @@ export default function Sources() {
         {pubs.map((p) => (
           <li key={p.id} id={p.id} className="card" style={{ marginBottom: 12 }}>
             <p style={{ margin: 0 }}>
-              <strong>[{p.review_ref_no}]</strong> {p.citation.replace(/\s*doi:.*$/i, '')} <PubStatus p={p} />
+              <strong>{p.short}.</strong> {p.citation.replace(/\s*doi:.*$/i, '')} <PubStatus p={p} />
             </p>
             <p className="small" style={{ margin: '4px 0 0' }}>
               {p.doi ? <a href={doiUrl(p.doi)} target="_blank" rel="noreferrer">doi:{p.doi}</a> : <span className="muted">{t('common.noDoi')}</span>}
