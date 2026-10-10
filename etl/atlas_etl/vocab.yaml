@@ -1,0 +1,136 @@
+# Контролируемые словари. Исходная строка из xlsx всегда сохраняется рядом с кодом (поля *_raw).
+# Каждая исходная строка должна быть сопоставлена явно — иначе ETL падает.
+# Сопоставление консервативное: если стадия из строки не следует, ставится `unspecified`.
+
+labels:
+  stage:
+    cleavage:    {ru: Стадия дробления, en: Cleavage stage}
+    morula:      {ru: Морула, en: Morula}
+    blastocyst:  {ru: Бластоциста, en: Blastocyst}
+    arrested:    {ru: Остановившийся / дегенерирующий эмбрион, en: Arrested / degenerating embryo}
+    unspecified: {ru: Стадия не указана в наборе, en: Stage not specified in dataset}
+  sample_type:
+    te_biopsy:              {ru: Биоптат ТЭ, en: TE biopsy}
+    te_icm_multiple:        {ru: Несколько биоптатов ТЭ и ВКМ (среднее), en: Multiple TE and ICM biopsies (mean)}
+    single_blastomeres:     {ru: Одиночные бластомеры, en: Single blastomeres}
+    multiple_blastomeres:   {ru: Несколько бластомеров, en: Multiple blastomeres}
+    blastomeres_unspecified: {ru: Бластомер(ы), en: Blastomere(s)}
+    half_embryo:            {ru: Половина эмбриона, en: Half embryo}
+    whole_embryo:           {ru: Эмбрион целиком, en: Whole embryo}
+    mixed_unspecified:      {ru: Бластомеры и/или эмбрион (не уточнено), en: Blastomeres and/or whole embryo (unspecified)}
+  fraction:
+    te_biopsy:     {ru: Биоптат ТЭ, en: TE biopsy}
+    icm:           {ru: ВКМ, en: ICM}
+    remaining_te:  {ru: Оставшаяся ТЭ, en: Remaining TE}
+  tissue:
+    amniotic_fluid: {ru: Амниотическая жидкость, en: Amniotic fluid}
+    fetal_tissue:   {ru: Ткани плода, en: Fetal tissues}
+    cord_blood:     {ru: Пуповинная кровь, en: Cord blood}
+    blood:          {ru: Кровь, en: Blood}
+    urine:          {ru: Моча, en: Urine}
+    buccal:         {ru: Буккальный эпителий, en: Buccal epithelium}
+  phase:
+    prenatal:  {ru: Пренатальный, en: Prenatal}
+    postnatal: {ru: Постнатальный, en: Postnatal}
+  qualifier:
+    exact:        {ru: Точное значение, en: Exact value}
+    not_detected: {ru: Не выявлено методом, en: Not detected by the method}
+    less_than:    {ru: Меньше указанного значения, en: Below the stated value}
+    interval:     {ru: Опубликован только интервал, en: Only an interval was published}
+  derivation:
+    as_reported_in_dataset:  {ru: Как в наборе данных (правило вывода не записано), en: As in the dataset (no derivation rule recorded)}
+    mean_of_blastomeres:     {ru: Среднее двух бластомеров, en: Mean of two blastomeres}
+    mean_of_halves:          {ru: Среднее двух половин эмбриона, en: Mean of two embryo halves}
+    mean_of_biopsies:        {ru: Среднее нескольких биоптатов, en: Mean of several biopsies}
+    digitized_from_figure:   {ru: Снято с рисунка первоисточника, en: Read from a figure of the source}
+    via_secondary_review:    {ru: Взято из обзоров (первоисточник — тезисы), en: Taken from reviews (primary source is an abstract)}
+  variant_class:
+    pathogenic:             {ru: Патогенный вариант, en: Pathogenic variant}
+    uncertain_significance: {ru: Вариант неопределённого значения, en: Variant of uncertain significance}
+    neutral_polymorphism:   {ru: Нейтральный полиморфизм, en: Neutral polymorphism}
+
+stage_map:
+  'blastocyst': blastocyst
+  'transferred embryo(s) linked to live birth': unspecified
+  'cleavage/blastocyst-stage analyzed embryo': unspecified
+  'blastocyst/embryo sample': unspecified
+  'cleavage stage': cleavage
+  'cleavage-stage embryo': cleavage
+  'morula': morula
+  'embryo sample': unspecified
+  'arrested embryo': arrested
+  'Day5/6 4BC': blastocyst
+  'Day5 4AB': blastocyst
+  '1PN/arrested; 6 blastomeres': arrested
+  'degenerated embryo': arrested
+  'Day5 5BB': blastocyst
+  'Day5 4BB': blastocyst
+  'Day5 4CB': blastocyst
+  'Day5/6 4BB': blastocyst
+  '10-cell embryo; 6 blastomeres': cleavage
+  'Day 3 cleavage embryo, 2PN': cleavage
+  'Day 3 cleavage embryo, 3PN': cleavage
+  'Day 5/6 blastocyst': blastocyst
+  'Day 5 blastocyst': blastocyst
+  'cleavage-stage': cleavage
+  'whole embryo': unspecified
+  'blastocyst TE biopsy': blastocyst
+  'Day 3/4 cleavage': cleavage
+  'cleavage-stage biopsy': cleavage
+  'Day 7 blastocyst (E1, aneuploid)': blastocyst
+  'Day 5 arrested embryo (E2)': arrested
+  'Day 7 blastocyst (E3, euploid)': blastocyst
+  'Day 6 blastocyst (E4, aneuploid)': blastocyst
+  'Day 7 blastocyst (E5, mosaic)': blastocyst
+  'Day 6 blastocyst (E6, euploid, transferred)': blastocyst
+  'Day 5 arrested embryo (E7)': arrested
+  'Day 6 blastocyst (E8, euploid)': blastocyst
+
+material_map:
+  'TE biopsy': te_biopsy
+  'TE biopsy (3–5 cells)': te_biopsy
+  '5–6 TE cells': te_biopsy
+  'TE biopsy; later TE/ICM fractions for donated embryos': te_biopsy
+  'TE biopsy / multiple TE+ICM biopsies': te_icm_multiple
+  'test blastomere(s)': blastomeres_unspecified
+  'blastomere(s)': blastomeres_unspecified
+  'single blastomeres, diagnostic analysis': single_blastomeres
+  'blastomeres and/or whole embryo fractions': mixed_unspecified
+  'multiple blastomeres / whole embryo': mixed_unspecified
+  'blastomeres / whole affected embryo': mixed_unspecified
+  'TE/whole embryo sample': mixed_unspecified
+  'whole/biopsy sample': mixed_unspecified
+  'sample': mixed_unspecified
+  'half embryo': half_embryo
+  'whole embryo': whole_embryo
+  'multiple blastomeres': multiple_blastomeres
+  'multiple blastomeres, reanalysis': multiple_blastomeres
+  'six blastomeres': multiple_blastomeres
+  '5 blastomeres': multiple_blastomeres
+  '11 blastomeres': multiple_blastomeres
+  'two blastomeres': multiple_blastomeres
+  'blastomeres': multiple_blastomeres
+
+fraction_map:
+  'Биоптат ТЭ': te_biopsy
+  'ВКМ': icm
+  'Оставшаяся ТЭ': remaining_te
+
+# Сопоставление по началу строки (строки материалов рис. 5 содержат уточнения в скобках)
+tissue_prefix_map:
+  'амниотическая жидкость': amniotic_fluid
+  'ткани плода': fetal_tissue
+  'пуповинная кровь': cord_blood
+  'кровь': blood
+  'осадок мочи': urine
+  'моча': urine
+  'буккальный': buccal
+
+phase_map:
+  'пренатальный': prenatal
+  'постнатальный': postnatal
+
+variant_class:
+  'HV2 polymorphism': neutral_polymorphism
+  'm.3250T>C': uncertain_significance
+  default: pathogenic

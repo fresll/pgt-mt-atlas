@@ -1,0 +1,12 @@
+[project]
+name = "atlas-etl"
+version = "0.1.0"
+description = "PGT-mt Atlas: supplementary workbook -> normalized dataset"
+requires-python = ">=3.11"
+dependencies = ["openpyxl>=3.1", "pyyaml>=6", "python-docx>=1.1"]
+
+[project.optional-dependencies]
+test = ["pytest>=8"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

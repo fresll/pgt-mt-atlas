@@ -1,0 +1,323 @@
+sample_id,embryo_id,sample_type,material_raw
+emb-f3-004-s1,emb-f3-004,te_biopsy,TE biopsy
+emb-f3-005-s1,emb-f3-005,te_biopsy,TE biopsy
+emb-f3-006-s1,emb-f3-006,te_biopsy,TE biopsy
+emb-f3-007-s1,emb-f3-007,te_biopsy,TE biopsy
+emb-f3-008-s1,emb-f3-008,te_biopsy,TE biopsy
+emb-f3-009-s1,emb-f3-009,te_biopsy,TE biopsy
+emb-f3-010-s1,emb-f3-010,te_biopsy,TE biopsy
+emb-f3-011-s1,emb-f3-011,te_biopsy,TE biopsy
+emb-f3-012-s1,emb-f3-012,te_biopsy,TE biopsy
+emb-f3-013-s1,emb-f3-013,te_biopsy,TE biopsy
+emb-f3-014-s1,emb-f3-014,te_biopsy,TE biopsy
+emb-f3-015-s1,emb-f3-015,blastomeres_unspecified,test blastomere(s)
+emb-f3-016-s1,emb-f3-016,blastomeres_unspecified,test blastomere(s)
+emb-f3-017-s1,emb-f3-017,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-f3-018-s1,emb-f3-018,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-f3-019-s1,emb-f3-019,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-f3-020-s1,emb-f3-020,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-f3-021-s1,emb-f3-021,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-f3-022-s1,emb-f3-022,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-f3-023-s1,emb-f3-023,half_embryo,half embryo
+emb-f3-024-s1,emb-f3-024,te_biopsy,TE biopsy
+emb-f3-025-s1,emb-f3-025,te_biopsy,TE biopsy
+emb-f3-026-s1,emb-f3-026,te_biopsy,TE biopsy
+emb-f3-027-s1,emb-f3-027,te_biopsy,TE biopsy
+emb-f3-028-s1,emb-f3-028,half_embryo,half embryo
+emb-f3-029-s1,emb-f3-029,te_biopsy,TE biopsy
+emb-f3-030-s1,emb-f3-030,half_embryo,half embryo
+emb-f3-031-s1,emb-f3-031,half_embryo,half embryo
+emb-f3-032-s1,emb-f3-032,half_embryo,half embryo
+emb-f3-033-s1,emb-f3-033,whole_embryo,whole embryo
+emb-f3-034-s1,emb-f3-034,te_biopsy,TE biopsy
+emb-f3-035-s1,emb-f3-035,te_biopsy,TE biopsy
+emb-f3-036-s1,emb-f3-036,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-f3-037-s1,emb-f3-037,half_embryo,half embryo
+emb-f3-038-s1,emb-f3-038,mixed_unspecified,multiple blastomeres / whole embryo
+emb-f3-039-s1,emb-f3-039,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-f3-040-s1,emb-f3-040,te_biopsy,TE biopsy
+emb-f3-041-s1,emb-f3-041,te_icm_multiple,TE biopsy / multiple TE+ICM biopsies
+emb-f3-042-s1,emb-f3-042,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-f3-043-s1,emb-f3-043,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-f3-044-s1,emb-f3-044,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-f3-045-s1,emb-f3-045,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-f3-046-s1,emb-f3-046,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-f3-047-s1,emb-f3-047,blastomeres_unspecified,test blastomere(s)
+emb-f3-048-s1,emb-f3-048,multiple_blastomeres,multiple blastomeres
+emb-f3-049-s1,emb-f3-049,multiple_blastomeres,multiple blastomeres
+emb-f3-050-s1,emb-f3-050,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-f3-051-s1,emb-f3-051,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-f3-052-s1,emb-f3-052,te_icm_multiple,TE biopsy / multiple TE+ICM biopsies
+emb-f3-053-s1,emb-f3-053,mixed_unspecified,multiple blastomeres / whole embryo
+emb-f3-054-s1,emb-f3-054,mixed_unspecified,multiple blastomeres / whole embryo
+emb-f3-055-s1,emb-f3-055,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-f3-056-s1,emb-f3-056,te_biopsy,TE biopsy
+emb-f3-057-s1,emb-f3-057,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-f3-058-s1,emb-f3-058,half_embryo,half embryo
+emb-f3-059-s1,emb-f3-059,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-f3-060-s1,emb-f3-060,half_embryo,half embryo
+emb-f3-061-s1,emb-f3-061,half_embryo,half embryo
+emb-f3-062-s1,emb-f3-062,te_icm_multiple,TE biopsy / multiple TE+ICM biopsies
+emb-f3-063-s1,emb-f3-063,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-f3-064-s1,emb-f3-064,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-f3-065-s1,emb-f3-065,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-f3-066-s1,emb-f3-066,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-f3-067-s1,emb-f3-067,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-f3-068-s1,emb-f3-068,multiple_blastomeres,multiple blastomeres
+emb-f3-069-s1,emb-f3-069,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-f3-070-s1,emb-f3-070,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-f3-071-s1,emb-f3-071,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-f3-072-s1,emb-f3-072,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-f3-073-s1,emb-f3-073,mixed_unspecified,multiple blastomeres / whole embryo
+emb-f3-074-s1,emb-f3-074,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-f3-075-s1,emb-f3-075,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-f3-076-s1,emb-f3-076,whole_embryo,whole embryo
+emb-f3-077-s1,emb-f3-077,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-f3-078-s1,emb-f3-078,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-f3-079-s1,emb-f3-079,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-f3-080-s1,emb-f3-080,mixed_unspecified,multiple blastomeres / whole embryo
+emb-f3-081-s1,emb-f3-081,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-f3-082-s1,emb-f3-082,te_icm_multiple,TE biopsy / multiple TE+ICM biopsies
+emb-f3-083-s1,emb-f3-083,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-f3-084-s1,emb-f3-084,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-f3-085-s1,emb-f3-085,te_icm_multiple,TE biopsy / multiple TE+ICM biopsies
+emb-f3-086-s1,emb-f3-086,te_icm_multiple,TE biopsy / multiple TE+ICM biopsies
+emb-f3-087-s1,emb-f3-087,mixed_unspecified,multiple blastomeres / whole embryo
+emb-f3-088-s1,emb-f3-088,te_icm_multiple,TE biopsy / multiple TE+ICM biopsies
+emb-f3-089-s1,emb-f3-089,te_icm_multiple,TE biopsy / multiple TE+ICM biopsies
+emb-f3-090-s1,emb-f3-090,whole_embryo,whole embryo
+emb-f3-091-s1,emb-f3-091,mixed_unspecified,TE/whole embryo sample
+emb-f3-092-s1,emb-f3-092,mixed_unspecified,whole/biopsy sample
+emb-f3-093-s1,emb-f3-093,te_biopsy,TE biopsy
+emb-f3-094-s1,emb-f3-094,te_biopsy,TE biopsy
+emb-f3-095-s1,emb-f3-095,mixed_unspecified,TE/whole embryo sample
+emb-f3-096-s1,emb-f3-096,multiple_blastomeres,six blastomeres
+emb-f3-097-s1,emb-f3-097,mixed_unspecified,sample
+emb-f3-098-s1,emb-f3-098,mixed_unspecified,TE/whole embryo sample
+emb-f3-099-s1,emb-f3-099,mixed_unspecified,TE/whole embryo sample
+emb-f3-100-s1,emb-f3-100,te_biopsy,TE biopsy
+emb-f3-101-s1,emb-f3-101,mixed_unspecified,whole/biopsy sample
+emb-f3-102-s1,emb-f3-102,te_biopsy,TE biopsy
+emb-f3-103-s1,emb-f3-103,te_biopsy,TE biopsy
+emb-f3-104-s1,emb-f3-104,mixed_unspecified,TE/whole embryo sample
+emb-f3-105-s1,emb-f3-105,te_biopsy,TE biopsy
+emb-f3-106-s1,emb-f3-106,te_biopsy,TE biopsy
+emb-f3-107-s1,emb-f3-107,mixed_unspecified,whole/biopsy sample
+emb-f3-108-s1,emb-f3-108,te_biopsy,TE biopsy
+emb-f3-109-s1,emb-f3-109,te_biopsy,TE biopsy
+emb-f3-110-s1,emb-f3-110,mixed_unspecified,TE/whole embryo sample
+emb-f3-111-s1,emb-f3-111,multiple_blastomeres,six blastomeres
+emb-f3-112-s1,emb-f3-112,single_blastomeres,"single blastomeres, diagnostic analysis"
+emb-f3-113-s1,emb-f3-113,multiple_blastomeres,"multiple blastomeres, reanalysis"
+emb-f3-114-s1,emb-f3-114,te_biopsy,TE biopsy; later TE/ICM fractions for donated embryos
+emb-f3-115-s1,emb-f3-115,te_biopsy,TE biopsy; later TE/ICM fractions for donated embryos
+emb-f3-116-s1,emb-f3-116,single_blastomeres,"single blastomeres, diagnostic analysis"
+emb-f3-117-s1,emb-f3-117,te_biopsy,TE biopsy; later TE/ICM fractions for donated embryos
+emb-f3-118-s1,emb-f3-118,single_blastomeres,"single blastomeres, diagnostic analysis"
+emb-f3-119-s1,emb-f3-119,single_blastomeres,"single blastomeres, diagnostic analysis"
+emb-f3-120-s1,emb-f3-120,multiple_blastomeres,"multiple blastomeres, reanalysis"
+emb-f3-121-s1,emb-f3-121,single_blastomeres,"single blastomeres, diagnostic analysis"
+emb-f3-122-s1,emb-f3-122,single_blastomeres,"single blastomeres, diagnostic analysis"
+emb-f3-123-s1,emb-f3-123,single_blastomeres,"single blastomeres, diagnostic analysis"
+emb-f3-124-s1,emb-f3-124,single_blastomeres,"single blastomeres, diagnostic analysis"
+emb-f3-125-s1,emb-f3-125,single_blastomeres,"single blastomeres, diagnostic analysis"
+emb-f3-126-s1,emb-f3-126,te_biopsy,TE biopsy; later TE/ICM fractions for donated embryos
+emb-f3-127-s1,emb-f3-127,single_blastomeres,"single blastomeres, diagnostic analysis"
+emb-f3-128-s1,emb-f3-128,single_blastomeres,"single blastomeres, diagnostic analysis"
+emb-f3-129-s1,emb-f3-129,single_blastomeres,"single blastomeres, diagnostic analysis"
+emb-f3-130-s1,emb-f3-130,te_biopsy,TE biopsy; later TE/ICM fractions for donated embryos
+emb-f3-131-s1,emb-f3-131,single_blastomeres,"single blastomeres, diagnostic analysis"
+emb-f3-132-s1,emb-f3-132,single_blastomeres,"single blastomeres, diagnostic analysis"
+emb-f3-133-s1,emb-f3-133,single_blastomeres,"single blastomeres, diagnostic analysis"
+emb-f3-134-s1,emb-f3-134,single_blastomeres,"single blastomeres, diagnostic analysis"
+emb-f3-135-s1,emb-f3-135,single_blastomeres,"single blastomeres, diagnostic analysis"
+emb-f3-136-s1,emb-f3-136,single_blastomeres,"single blastomeres, diagnostic analysis"
+emb-f3-137-s1,emb-f3-137,single_blastomeres,"single blastomeres, diagnostic analysis"
+emb-f3-138-s1,emb-f3-138,te_biopsy,TE biopsy; later TE/ICM fractions for donated embryos
+emb-f3-139-s1,emb-f3-139,multiple_blastomeres,"multiple blastomeres, reanalysis"
+emb-f3-140-s1,emb-f3-140,te_biopsy,5–6 TE cells
+emb-f3-141-s1,emb-f3-141,te_biopsy,5–6 TE cells
+emb-f3-142-s1,emb-f3-142,te_biopsy,5–6 TE cells
+emb-f3-143-s1,emb-f3-143,te_biopsy,5–6 TE cells
+emb-f3-144-s1,emb-f3-144,te_biopsy,5–6 TE cells
+emb-f3-145-s1,emb-f3-145,te_biopsy,5–6 TE cells
+emb-f3-146-s1,emb-f3-146,te_biopsy,5–6 TE cells
+emb-f3-147-s1,emb-f3-147,te_biopsy,5–6 TE cells
+emb-f3-148-s1,emb-f3-148,te_biopsy,5–6 TE cells
+emb-f3-149-s1,emb-f3-149,multiple_blastomeres,blastomeres
+emb-f3-150-s1,emb-f3-150,multiple_blastomeres,blastomeres
+emb-f3-151-s1,emb-f3-151,whole_embryo,whole embryo
+emb-f3-152-s1,emb-f3-152,multiple_blastomeres,blastomeres
+emb-f3-153-s1,emb-f3-153,multiple_blastomeres,blastomeres
+emb-f3-154-s1,emb-f3-154,whole_embryo,whole embryo
+emb-f3-155-s1,emb-f3-155,whole_embryo,whole embryo
+emb-f3-156-s1,emb-f3-156,multiple_blastomeres,blastomeres
+emb-f3-157-s1,emb-f3-157,blastomeres_unspecified,test blastomere(s)
+emb-f3-158-s1,emb-f3-158,blastomeres_unspecified,test blastomere(s)
+emb-f3-159-s1,emb-f3-159,te_biopsy,TE biopsy
+emb-f3-160-s1,emb-f3-160,whole_embryo,whole embryo
+emb-f3-161-s1,emb-f3-161,te_biopsy,TE biopsy
+emb-f3-162-s1,emb-f3-162,te_biopsy,TE biopsy
+emb-f3-163-s1,emb-f3-163,multiple_blastomeres,5 blastomeres
+emb-f3-164-s1,emb-f3-164,te_biopsy,TE biopsy
+emb-f3-165-s1,emb-f3-165,multiple_blastomeres,11 blastomeres
+emb-f3-166-s1,emb-f3-166,whole_embryo,whole embryo
+emb-f3-167-s1,emb-f3-167,te_biopsy,TE biopsy
+emb-f3-168-s1,emb-f3-168,te_biopsy,TE biopsy
+emb-f3-169-s1,emb-f3-169,te_biopsy,TE biopsy
+emb-f3-170-s1,emb-f3-170,te_biopsy,TE biopsy
+emb-f3-171-s1,emb-f3-171,te_biopsy,TE biopsy
+emb-f3-172-s1,emb-f3-172,te_biopsy,TE biopsy
+emb-f3-173-s1,emb-f3-173,te_biopsy,TE biopsy
+emb-f3-174-s1,emb-f3-174,te_biopsy,TE biopsy
+emb-f3-175-s1,emb-f3-175,te_biopsy,TE biopsy
+emb-f3-176-s1,emb-f3-176,te_biopsy,TE biopsy
+emb-f3-177-s1,emb-f3-177,te_biopsy,TE biopsy
+emb-f3-178-s1,emb-f3-178,multiple_blastomeres,two blastomeres
+emb-f3-179-s1,emb-f3-179,multiple_blastomeres,two blastomeres
+emb-f3-180-s1,emb-f3-180,blastomeres_unspecified,blastomere(s)
+emb-f3-181-s1,emb-f3-181,whole_embryo,whole embryo
+emb-f3-182-s1,emb-f3-182,mixed_unspecified,blastomeres / whole affected embryo
+emb-f3-183-s1,emb-f3-183,te_biopsy,TE biopsy (3–5 cells)
+emb-f3-184-s1,emb-f3-184,whole_embryo,whole embryo
+emb-f3-185-s1,emb-f3-185,te_biopsy,TE biopsy (3–5 cells)
+emb-f3-186-s1,emb-f3-186,te_biopsy,TE biopsy (3–5 cells)
+emb-f3-187-s1,emb-f3-187,te_biopsy,TE biopsy (3–5 cells)
+emb-f3-188-s1,emb-f3-188,te_biopsy,TE biopsy (3–5 cells)
+emb-f3-189-s1,emb-f3-189,whole_embryo,whole embryo
+emb-f3-190-s1,emb-f3-190,te_biopsy,TE biopsy (3–5 cells)
+emb-Janssen2024_F20_E45-te_biopsy,emb-Janssen2024_F20_E45,te_biopsy,Биоптат ТЭ
+emb-Janssen2024_F20_E45-remaining_te,emb-Janssen2024_F20_E45,remaining_te,Оставшаяся ТЭ
+emb-Janssen2024_F20_E46-te_biopsy,emb-Janssen2024_F20_E46,te_biopsy,Биоптат ТЭ
+emb-Janssen2024_F20_E46-remaining_te,emb-Janssen2024_F20_E46,remaining_te,Оставшаяся ТЭ
+emb-Janssen2024_F20_E47-te_biopsy,emb-Janssen2024_F20_E47,te_biopsy,Биоптат ТЭ
+emb-Janssen2024_F20_E47-remaining_te,emb-Janssen2024_F20_E47,remaining_te,Оставшаяся ТЭ
+emb-Janssen2024_F20_E48-te_biopsy,emb-Janssen2024_F20_E48,te_biopsy,Биоптат ТЭ
+emb-Janssen2024_F20_E48-remaining_te,emb-Janssen2024_F20_E48,remaining_te,Оставшаяся ТЭ
+emb-Rubens_113-te_biopsy,emb-Rubens_113,te_biopsy,Биоптат ТЭ
+emb-Rubens_113-remaining_te,emb-Rubens_113,remaining_te,Оставшаяся ТЭ
+emb-Rubens_114-te_biopsy,emb-Rubens_114,te_biopsy,Биоптат ТЭ
+emb-Rubens_114-remaining_te,emb-Rubens_114,remaining_te,Оставшаяся ТЭ
+emb-Rubens_115-te_biopsy,emb-Rubens_115,te_biopsy,Биоптат ТЭ
+emb-Rubens_115-remaining_te,emb-Rubens_115,remaining_te,Оставшаяся ТЭ
+emb-Rubens_116-te_biopsy,emb-Rubens_116,te_biopsy,Биоптат ТЭ
+emb-Rubens_116-icm,emb-Rubens_116,icm,ВКМ
+emb-Rubens_116-remaining_te,emb-Rubens_116,remaining_te,Оставшаяся ТЭ
+emb-Rubens_117-te_biopsy,emb-Rubens_117,te_biopsy,Биоптат ТЭ
+emb-Rubens_117-icm,emb-Rubens_117,icm,ВКМ
+emb-Rubens_117-remaining_te,emb-Rubens_117,remaining_te,Оставшаяся ТЭ
+emb-Rubens_118-te_biopsy,emb-Rubens_118,te_biopsy,Биоптат ТЭ
+emb-Rubens_118-remaining_te,emb-Rubens_118,remaining_te,Оставшаяся ТЭ
+emb-Rubens_120-te_biopsy,emb-Rubens_120,te_biopsy,Биоптат ТЭ
+emb-Rubens_120-icm,emb-Rubens_120,icm,ВКМ
+emb-Rubens_120-remaining_te,emb-Rubens_120,remaining_te,Оставшаяся ТЭ
+emb-Rubens_123-te_biopsy,emb-Rubens_123,te_biopsy,Биоптат ТЭ
+emb-Rubens_123-icm,emb-Rubens_123,icm,ВКМ
+emb-Rubens_123-remaining_te,emb-Rubens_123,remaining_te,Оставшаяся ТЭ
+emb-Rubens_125-te_biopsy,emb-Rubens_125,te_biopsy,Биоптат ТЭ
+emb-Rubens_125-remaining_te,emb-Rubens_125,remaining_te,Оставшаяся ТЭ
+emb-Rubens_126-te_biopsy,emb-Rubens_126,te_biopsy,Биоптат ТЭ
+emb-Rubens_126-remaining_te,emb-Rubens_126,remaining_te,Оставшаяся ТЭ
+emb-Rubens_127-te_biopsy,emb-Rubens_127,te_biopsy,Биоптат ТЭ
+emb-Rubens_127-remaining_te,emb-Rubens_127,remaining_te,Оставшаяся ТЭ
+emb-Rubens_128-te_biopsy,emb-Rubens_128,te_biopsy,Биоптат ТЭ
+emb-Rubens_128-icm,emb-Rubens_128,icm,ВКМ
+emb-Rubens_128-remaining_te,emb-Rubens_128,remaining_te,Оставшаяся ТЭ
+emb-Rubens_129-te_biopsy,emb-Rubens_129,te_biopsy,Биоптат ТЭ
+emb-Rubens_129-remaining_te,emb-Rubens_129,remaining_te,Оставшаяся ТЭ
+emb-Rubens_130-te_biopsy,emb-Rubens_130,te_biopsy,Биоптат ТЭ
+emb-Rubens_130-remaining_te,emb-Rubens_130,remaining_te,Оставшаяся ТЭ
+emb-Rubens_131-te_biopsy,emb-Rubens_131,te_biopsy,Биоптат ТЭ
+emb-Rubens_131-icm,emb-Rubens_131,icm,ВКМ
+emb-Rubens_131-remaining_te,emb-Rubens_131,remaining_te,Оставшаяся ТЭ
+emb-Rubens_132-te_biopsy,emb-Rubens_132,te_biopsy,Биоптат ТЭ
+emb-Rubens_132-icm,emb-Rubens_132,icm,ВКМ
+emb-Rubens_132-remaining_te,emb-Rubens_132,remaining_te,Оставшаяся ТЭ
+emb-Rubens_134-te_biopsy,emb-Rubens_134,te_biopsy,Биоптат ТЭ
+emb-Rubens_134-remaining_te,emb-Rubens_134,remaining_te,Оставшаяся ТЭ
+emb-Rubens_135-te_biopsy,emb-Rubens_135,te_biopsy,Биоптат ТЭ
+emb-Rubens_135-remaining_te,emb-Rubens_135,remaining_te,Оставшаяся ТЭ
+emb-Rubens_136-te_biopsy,emb-Rubens_136,te_biopsy,Биоптат ТЭ
+emb-Rubens_136-remaining_te,emb-Rubens_136,remaining_te,Оставшаяся ТЭ
+emb-Rubens_55-te_biopsy,emb-Rubens_55,te_biopsy,Биоптат ТЭ
+emb-Rubens_55-icm,emb-Rubens_55,icm,ВКМ
+emb-Rubens_56-te_biopsy,emb-Rubens_56,te_biopsy,Биоптат ТЭ
+emb-Rubens_56-remaining_te,emb-Rubens_56,remaining_te,Оставшаяся ТЭ
+emb-Rubens_57-te_biopsy,emb-Rubens_57,te_biopsy,Биоптат ТЭ
+emb-Rubens_57-icm,emb-Rubens_57,icm,ВКМ
+emb-Rubens_61-te_biopsy,emb-Rubens_61,te_biopsy,Биоптат ТЭ
+emb-Rubens_61-icm,emb-Rubens_61,icm,ВКМ
+emb-Rubens_105-te_biopsy,emb-Rubens_105,te_biopsy,Биоптат ТЭ
+emb-Rubens_105-remaining_te,emb-Rubens_105,remaining_te,Оставшаяся ТЭ
+emb-Tofilo_1-te_biopsy,emb-Tofilo_1,te_biopsy,Биоптат ТЭ
+emb-Tofilo_1-icm,emb-Tofilo_1,icm,ВКМ
+emb-Tofilo_1-remaining_te,emb-Tofilo_1,remaining_te,Оставшаяся ТЭ
+emb-Tofilo_2-te_biopsy,emb-Tofilo_2,te_biopsy,Биоптат ТЭ
+emb-Tofilo_2-icm,emb-Tofilo_2,icm,ВКМ
+emb-Tofilo_2-remaining_te,emb-Tofilo_2,remaining_te,Оставшаяся ТЭ
+emb-Tofilo_3-te_biopsy,emb-Tofilo_3,te_biopsy,Биоптат ТЭ
+emb-Tofilo_3-remaining_te,emb-Tofilo_3,remaining_te,Оставшаяся ТЭ
+emb-Tofilo_4-te_biopsy,emb-Tofilo_4,te_biopsy,Биоптат ТЭ
+emb-Tofilo_4-remaining_te,emb-Tofilo_4,remaining_te,Оставшаяся ТЭ
+emb-Tofilo_5-te_biopsy,emb-Tofilo_5,te_biopsy,Биоптат ТЭ
+emb-Tofilo_5-icm,emb-Tofilo_5,icm,ВКМ
+emb-Tofilo_5-remaining_te,emb-Tofilo_5,remaining_te,Оставшаяся ТЭ
+emb-Tofilo_6-te_biopsy,emb-Tofilo_6,te_biopsy,Биоптат ТЭ
+emb-Tofilo_6-icm,emb-Tofilo_6,icm,ВКМ
+emb-Tofilo_6-remaining_te,emb-Tofilo_6,remaining_te,Оставшаяся ТЭ
+emb-Treff_blastocyst_1-te_biopsy,emb-Treff_blastocyst_1,te_biopsy,Биоптат ТЭ
+emb-Treff_blastocyst_1-icm,emb-Treff_blastocyst_1,icm,ВКМ
+emb-Treff_blastocyst_2-te_biopsy,emb-Treff_blastocyst_2,te_biopsy,Биоптат ТЭ
+emb-Treff_blastocyst_2-icm,emb-Treff_blastocyst_2,icm,ВКМ
+emb-Treff_blastocyst_3-te_biopsy,emb-Treff_blastocyst_3,te_biopsy,Биоптат ТЭ
+emb-Treff_blastocyst_3-icm,emb-Treff_blastocyst_3,icm,ВКМ
+emb-Treff_blastocyst_4-te_biopsy,emb-Treff_blastocyst_4,te_biopsy,Биоптат ТЭ
+emb-Treff_blastocyst_4-icm,emb-Treff_blastocyst_4,icm,ВКМ
+emb-Treff_blastocyst_5-te_biopsy,emb-Treff_blastocyst_5,te_biopsy,Биоптат ТЭ
+emb-Treff_blastocyst_5-icm,emb-Treff_blastocyst_5,icm,ВКМ
+emb-Treff_blastocyst_6-te_biopsy,emb-Treff_blastocyst_6,te_biopsy,Биоптат ТЭ
+emb-Treff_blastocyst_6-icm,emb-Treff_blastocyst_6,icm,ВКМ
+emb-Monnot2011_P2_emb1-b1,emb-Monnot2011_P2_emb1,single_blastomeres,b1
+emb-Monnot2011_P2_emb1-b2,emb-Monnot2011_P2_emb1,single_blastomeres,b2
+emb-Monnot2011_P2_emb2-b1,emb-Monnot2011_P2_emb2,single_blastomeres,b1
+emb-Monnot2011_P2_emb2-b2,emb-Monnot2011_P2_emb2,single_blastomeres,b2
+emb-Monnot2011_P2_emb3-b1,emb-Monnot2011_P2_emb3,single_blastomeres,b1
+emb-Monnot2011_P2_emb3-b2,emb-Monnot2011_P2_emb3,single_blastomeres,b2
+emb-Monnot2011_P2_emb7-b1,emb-Monnot2011_P2_emb7,single_blastomeres,b1
+emb-Monnot2011_P2_emb7-b2,emb-Monnot2011_P2_emb7,single_blastomeres,b2
+emb-Monnot2011_P2_emb8-b1,emb-Monnot2011_P2_emb8,single_blastomeres,b1
+emb-Monnot2011_P2_emb8-b2,emb-Monnot2011_P2_emb8,single_blastomeres,b2
+emb-Monnot2011_P2_emb9-b1,emb-Monnot2011_P2_emb9,single_blastomeres,b1
+emb-Monnot2011_P2_emb9-b2,emb-Monnot2011_P2_emb9,single_blastomeres,b2
+emb-Monnot2011_P2_emb10-b1,emb-Monnot2011_P2_emb10,single_blastomeres,b1
+emb-Monnot2011_P2_emb10-b2,emb-Monnot2011_P2_emb10,single_blastomeres,b2
+emb-Monnot2011_P2_emb11-b1,emb-Monnot2011_P2_emb11,single_blastomeres,b1
+emb-Monnot2011_P2_emb11-b2,emb-Monnot2011_P2_emb11,single_blastomeres,b2
+emb-Monnot2011_P2_emb12-b1,emb-Monnot2011_P2_emb12,single_blastomeres,b1
+emb-Monnot2011_P2_emb12-b2,emb-Monnot2011_P2_emb12,single_blastomeres,b2
+emb-Monnot2011_P2_emb13-b1,emb-Monnot2011_P2_emb13,single_blastomeres,b1
+emb-Monnot2011_P2_emb13-b2,emb-Monnot2011_P2_emb13,single_blastomeres,b2
+emb-Monnot2011_P2_emb15-b1,emb-Monnot2011_P2_emb15,single_blastomeres,b1
+emb-Monnot2011_P2_emb15-b2,emb-Monnot2011_P2_emb15,single_blastomeres,b2
+emb-Monnot2011_P2_emb17-b1,emb-Monnot2011_P2_emb17,single_blastomeres,b1
+emb-Monnot2011_P2_emb17-b2,emb-Monnot2011_P2_emb17,single_blastomeres,b2
+emb-Monnot2011_P2_emb18-b1,emb-Monnot2011_P2_emb18,single_blastomeres,b1
+emb-Monnot2011_P2_emb18-b2,emb-Monnot2011_P2_emb18,single_blastomeres,b2
+emb-Monnot2011_P2_emb23-b1,emb-Monnot2011_P2_emb23,single_blastomeres,b1
+emb-Monnot2011_P2_emb23-b2,emb-Monnot2011_P2_emb23,single_blastomeres,b2
+emb-Monnot2011_P2_emb26-b1,emb-Monnot2011_P2_emb26,single_blastomeres,b1
+emb-Monnot2011_P2_emb26-b2,emb-Monnot2011_P2_emb26,single_blastomeres,b2
+emb-Monnot2011_P2_emb27-b1,emb-Monnot2011_P2_emb27,single_blastomeres,b1
+emb-Monnot2011_P2_emb27-b2,emb-Monnot2011_P2_emb27,single_blastomeres,b2
+emb-Monnot2011_P2_emb30-b1,emb-Monnot2011_P2_emb30,single_blastomeres,b1
+emb-Monnot2011_P2_emb30-b2,emb-Monnot2011_P2_emb30,single_blastomeres,b2
+emb-Monnot2011_P2_emb31-b1,emb-Monnot2011_P2_emb31,single_blastomeres,b1
+emb-Monnot2011_P2_emb31-b2,emb-Monnot2011_P2_emb31,single_blastomeres,b2
+emb-Monnot2011_P2_emb32-b1,emb-Monnot2011_P2_emb32,single_blastomeres,b1
+emb-Monnot2011_P2_emb32-b2,emb-Monnot2011_P2_emb32,single_blastomeres,b2
+emb-Monnot2011_P2_emb33-b1,emb-Monnot2011_P2_emb33,single_blastomeres,b1
+emb-Monnot2011_P2_emb33-b2,emb-Monnot2011_P2_emb33,single_blastomeres,b2
+emb-Monnot2011_P2_emb34-b1,emb-Monnot2011_P2_emb34,single_blastomeres,b1
+emb-Monnot2011_P2_emb34-b2,emb-Monnot2011_P2_emb34,single_blastomeres,b2
+emb-Monnot2011_P2_emb35-b1,emb-Monnot2011_P2_emb35,single_blastomeres,b1
+emb-Monnot2011_P2_emb35-b2,emb-Monnot2011_P2_emb35,single_blastomeres,b2
