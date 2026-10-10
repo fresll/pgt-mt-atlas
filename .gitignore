@@ -8,3 +8,7 @@ site/dist/
 site/test-results/
 site/playwright-report/
 site/tsconfig.tsbuildinfo
+# Поступившие от исследователей материалы никогда не хранятся в репозитории (раздел Contribute Data)
+submissions/
+incoming/
+*.submission.xlsx

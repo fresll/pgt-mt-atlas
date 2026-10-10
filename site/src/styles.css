@@ -623,3 +623,80 @@ footer.site .muted { color: var(--sk-muted); }
 .prose li { margin-bottom: 0.35rem; }
 .formula { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--surface-2); padding: 2px 6px; border-radius: 4px; }
 header.site button.ghost { min-width: 34px; font-size: 1.15rem; line-height: 1.2; font-family: system-ui, sans-serif; }
+
+/* ——— Поделиться данными (Scientific Sketchbook) ——— */
+.sk-c-hero { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); min-height: 0; }
+.sk-c-hero h1 { font-size: clamp(2.8rem, 6.4vw, 5.6rem); }
+.sk-c-meta { font-size: 0.82rem; color: var(--sk-muted); margin: 14px 0 0; letter-spacing: 0.02em; }
+.sk-actions .sk-c-meta { margin: 0; }
+.sk-motto { margin: 0; padding: 0 0 0 clamp(16px, 3vw, 40px); border-left: 1.5px solid var(--sk-red); }
+.sk-motto p { font-family: var(--font-display); font-style: italic; font-weight: 500; font-size: clamp(1.9rem, 3.6vw, 3rem); line-height: 1.12; color: var(--sk-ink); margin: 0; }
+.sk-motto-rule { width: min(80%, 320px); height: 12px; margin: 14px 0 0 -4px; }
+.sk-c-text { max-width: 46em; font-family: var(--font-text); font-size: 1.04rem; line-height: 1.65; }
+.sk-c-text h3, .sk-contribute h3 { font-family: var(--font-display); font-size: 1.42rem; font-weight: 600; color: var(--sk-ink); margin: 2rem 0 0.6rem; line-height: 1.2; }
+.sk-c-emph { color: var(--sk-ink); font-style: italic; border-left: 2px solid var(--sk-red); padding-left: 14px; }
+.sk-c-small { font-size: 0.92rem; color: var(--sk-muted); }
+
+/* цепочка цикла: от ооцита до ребёнка */
+.sk-chain { list-style: none; display: flex; flex-wrap: wrap; gap: 8px 0; margin: 22px 0 18px; padding: 0; font-family: var(--font); font-size: 0.9rem; }
+.sk-chain li { color: var(--sk-ink); padding: 4px 10px 6px; border-bottom: 1.5px solid var(--sk-ink); }
+.sk-chain li + li::before { content: '→'; color: var(--sk-muted); margin: 0 10px 0 -10px; position: relative; left: -2px; }
+.sk-c-losses-title { margin: 6px 0 4px; font-size: 0.95rem; color: var(--sk-ink-2); }
+.sk-c-losses { list-style: none; display: flex; flex-wrap: wrap; gap: 4px 18px; margin: 0 0 18px; padding: 0; }
+.sk-c-losses li { font-family: var(--font-hand); font-size: 1.32rem; line-height: 1.15; color: var(--sk-red); }
+
+/* списки с чернильными маркерами */
+.sk-c-list { list-style: none; margin: 0; padding: 0; max-width: 46em; font-family: var(--font-text); font-size: 1.04rem; }
+.sk-c-list li { position: relative; padding: 10px 0 10px 26px; border-bottom: 1px dashed var(--sk-rule); line-height: 1.55; }
+.sk-c-list li::before { content: ''; position: absolute; left: 4px; top: 1.05em; width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid var(--sk-ink); }
+.sk-c-list.compact li { padding: 5px 0 5px 22px; border-bottom: 0; font-size: 0.98rem; }
+.sk-c-list.compact li::before { top: 0.8em; width: 6px; height: 6px; }
+.sk-c-steps h3 { margin: 0 0 4px; font-size: clamp(1.3rem, 2vw, 1.6rem); }
+
+/* таблица листов шаблона — линейки, без карточек */
+.sk-c-table { border-collapse: collapse; width: 100%; font-size: 0.96rem; border-top: 1.5px solid var(--sk-ink); }
+.sk-c-table th, .sk-c-table td { text-align: left; vertical-align: top; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--sk-rule); }
+.sk-c-table th { width: 30%; font-weight: 400; }
+.sk-c-sheet { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.86rem; color: var(--sk-ink); display: block; overflow-wrap: anywhere; }
+.sk-c-sheet-ru { display: block; font-size: 0.84rem; color: var(--sk-muted); }
+.sk-c-count { display: block; margin-top: 2px; font-family: var(--font); font-size: 0.8rem; color: var(--sk-muted); }
+.sk-c-two { display: grid; grid-template-columns: 1fr 1fr; gap: 0 clamp(20px, 3vw, 40px); }
+
+/* проверка */
+.sk-c-figure { margin: 26px 0 8px; max-width: 920px; }
+.sk-c-figure figcaption { font-family: var(--font-text); font-style: italic; font-size: 0.9rem; line-height: 1.5; color: var(--sk-muted); margin: 10px 0 0; }
+.sk-c-figure .sk-label { transform: translate(-50%, -50%); text-align: center; white-space: pre; }
+.sk-c-figure .sk-label.end { transform: translate(-100%, -50%); text-align: right; }
+.sk-c-status { list-style: none; margin: 0; padding: 0; counter-reset: st; }
+.sk-c-status li { display: grid; grid-template-columns: minmax(9rem, 2fr) minmax(0, 5fr); gap: 4px 18px; padding: 10px 0; border-bottom: 1px dashed var(--sk-rule); counter-increment: st; }
+.sk-c-status strong { font-family: var(--font); font-weight: 600; color: var(--sk-ink); }
+.sk-c-status strong::before { content: counter(st) '. '; color: var(--sk-muted); font-weight: 400; }
+.sk-c-status li.st-rejected strong { color: var(--sk-red); }
+.sk-c-status li.st-rejected strong::before { content: '× '; color: var(--sk-red); }
+.sk-c-status span { font-size: 0.98rem; }
+.sk-c-tiers { margin: 0; }
+.sk-c-tiers div { padding: 10px 0; border-bottom: 1px dashed var(--sk-rule); }
+.sk-c-tiers dt { font-family: var(--font); font-weight: 600; color: var(--sk-ink); }
+.sk-c-tiers dd { margin: 2px 0 0 2.4rem; font-size: 0.98rem; }
+.sk-c-tier-no { display: inline-block; width: 2.1rem; font-family: var(--font-display); font-size: 1.15rem; color: var(--sk-red); }
+.sk-c-tiers .unverified dt { color: var(--sk-muted); text-decoration: line-through; text-decoration-color: var(--sk-red); text-decoration-thickness: 1px; }
+
+/* связь с куратором */
+.sk-c-inactive { border: 1.5px dashed var(--sk-red); border-radius: 3px 2px 4px 2px; padding: 14px 18px 4px; margin: 6px 0 10px; max-width: 42em; }
+.sk-c-inactive-title { font-family: var(--font-hand); font-size: 1.55rem; line-height: 1.1; color: var(--sk-red); margin: 0 0 6px; }
+.sk-c-subject { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.9rem; color: var(--sk-ink); border-bottom: 1px solid var(--sk-rule); padding-bottom: 6px; overflow-wrap: anywhere; }
+.sk-c-warning { font-size: 0.94rem; color: var(--sk-red); }
+.sk-contribute :target { scroll-margin-top: 90px; }
+
+@media (max-width: 980px) {
+  .sk-c-hero { grid-template-columns: 1fr; }
+}
+@media (max-width: 620px) {
+  .sk-c-two { grid-template-columns: 1fr; }
+  .sk-c-table th { width: auto; display: block; padding-bottom: 0; border-bottom: 0; }
+  .sk-c-table td { display: block; }
+  .sk-c-table tr { display: block; border-bottom: 1px solid var(--sk-rule); }
+  .sk-c-table td { border-bottom: 0; }
+  .sk-c-status li { grid-template-columns: 1fr; }
+  .sk-c-figure .sk-label { font-size: clamp(10px, 3.2cqw, 15px); }
+}

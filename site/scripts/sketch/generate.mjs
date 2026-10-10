@@ -349,4 +349,143 @@ R = rng(3)
   writeFileSync(join(OUT, '../../public/favicon.svg'), `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">${STYLE}${s}</svg>\n`)
 }
 
+// 6. Путь данных: исследователь → передача → проверка → Atlas (страница Contribute Data).
+//    Красное — отрицательные исходы в таблице и ветка «отклонено»; подписи — в HTML (labels.json → pathway).
+R = rng(61)
+{
+  const W = 1000, H = 420
+  const lab = []
+  const put = (key, x, y, align = 'middle', tone = 'i') => lab.push({ key, x: n1((x / W) * 100), y: n1((y / H) * 100), align, tone })
+  const rot = (pts, c, a) => pts.map(([x, y]) => [c[0] + (x - c[0]) * Math.cos(a) - (y - c[1]) * Math.sin(a), c[1] + (x - c[0]) * Math.sin(a) + (y - c[1]) * Math.cos(a)])
+  const rect = (x, y, w, h, k = 4) => {
+    const pts = []
+    for (let i = 0; i < k; i++) pts.push([x + (w * i) / k, y])
+    for (let i = 0; i < k; i++) pts.push([x + w, y + (h * i) / k])
+    for (let i = 0; i < k; i++) pts.push([x + w - (w * i) / k, y + h])
+    for (let i = 0; i < k; i++) pts.push([x, y + h - (h * i) / k])
+    return pts
+  }
+  const line = (a, b, o = {}) => ink([a, [(a[0] + b[0]) / 2 + J(1.2), (a[1] + b[1]) / 2 + J(1.2)], b], { w: 1, jit: 0.4, second: false, ...o })
+  /** Лист-таблица: шапка со штриховкой, строки, столбцы; red — ячейки с отрицательными исходами. */
+  const sheet = (id, x, y, w, h, a, { rows = 7, cols = 4, red = [], fill = true } = {}) => {
+    const c = [x + w / 2, y + h / 2]
+    const R0 = (pts) => rot(pts, c, a)
+    let g = ''
+    const outline = R0(rect(x, y, w, h))
+    g += ink(outline, { closed: true, fill, w: 1.8, jit: 0.5 })
+    const rh = h / (rows + 1)
+    g += hatch(id, R0(rect(x, y, w, rh, 2)), [x - 10, y - 10, x + w + 10, y + rh + 10], { step: 5, op: 0.3, angle: -0.8 })
+    for (let i = 1; i <= rows; i++) {
+      const [p, q] = R0([[x + 2, y + rh * i], [x + w - 2, y + rh * i]])
+      g += line(p, q, { w: i === 1 ? 1.3 : 0.7 })
+    }
+    for (let j = 1; j < cols; j++) {
+      const [p, q] = R0([[x + (w * j) / cols, y + 2], [x + (w * j) / cols, y + h - 2]])
+      g += line(p, q, { w: 0.6 })
+    }
+    for (const [ri, cj] of red) {
+      const [p] = R0([[x + (w * (cj + 0.5)) / cols, y + rh * (ri + 1.5)]])
+      g += `<circle class="sk-dot r" cx="${n1(p[0])}" cy="${n1(p[1])}" r="2.6"/>`
+    }
+    return g
+  }
+  /** Стрелка пером: изогнутый штрих и два коротких «усика». */
+  const arrow = (pts, tone = 'i', dash = false) => {
+    let g = ink(pts, { w: 1.5, tone, jit: 0.5, second: false, extra: dash ? ' stroke-dasharray="5 6"' : '' })
+    const [a, b] = [pts[pts.length - 2], pts[pts.length - 1]]
+    const ang = Math.atan2(b[1] - a[1], b[0] - a[0])
+    for (const s of [-1, 1]) {
+      const t = [b[0] - 14 * Math.cos(ang + s * 0.42), b[1] - 14 * Math.sin(ang + s * 0.42)]
+      g += ink([t, [(t[0] + b[0]) / 2 + J(0.6), (t[1] + b[1]) / 2 + J(0.6)], b], { w: 1.5, tone, jit: 0.2, second: false })
+    }
+    return g
+  }
+  let body = ''
+  const mid = 168
+
+  // 1. Таблица исследовательской группы: все циклы, в т. ч. отрицательные исходы (красные точки)
+  body += sheet('pw1b', 30, 84, 124, 160, -0.12, { rows: 0, cols: 1 }) // лист под таблицей — стопка
+  body += sheet('pw1', 46, 70, 124, 160, -0.05, { rows: 8, cols: 4, red: [[1, 3], [3, 2], [4, 3], [6, 1]] })
+  put('researcher', 96, 292)
+
+  // 2. Передача: конверт с вложенным листом
+  body += arrow([[188, mid], [228, mid - 14], [266, mid - 4]])
+  {
+    const x = 284, y = 112, w = 150, h = 102
+    body += sheet('pw2', x + 22, y - 40, 104, 92, 0.03, { rows: 4, cols: 3 })
+    const env = rect(x, y, w, h)
+    body += ink(env, { closed: true, fill: true, w: 1.9, jit: 0.5 })
+    body += ink([[x + 2, y + 3], [x + w * 0.3, y + h * 0.36], [x + w / 2, y + h * 0.56], [x + w * 0.7, y + h * 0.36], [x + w - 2, y + 3]], { w: 1.4, jit: 0.4 })
+    body += ink([[x + 3, y + h - 3], [x + w * 0.38, y + h * 0.48]], { w: 0.9, jit: 0.3, second: false })
+    body += ink([[x + w - 3, y + h - 3], [x + w * 0.62, y + h * 0.48]], { w: 0.9, jit: 0.3, second: false })
+  }
+  put('submitted', 359, 272)
+
+  // 3. Научная проверка: лупа над листом
+  body += arrow([[450, mid], [488, mid + 12], [524, mid + 2]])
+  {
+    const x = 548, y = 76
+    body += sheet('pw3', x, y, 118, 150, 0.06, { rows: 7, cols: 3, red: [[2, 2], [5, 0]] })
+    const M = [x + 86, y + 92], r = 40
+    body += `<circle class="sk-fill" cx="${M[0]}" cy="${M[1]}" r="${r}" opacity="0.72"/>`
+    body += ink(blob(M[0], M[1], r, r, { n: 34, wob: 0.01, open: true }), { w: 2.4, jit: 0.4 })
+    body += ink(blob(M[0], M[1], r - 6, r - 6, { n: 30, wob: 0.01, open: true }), { w: 0.8, jit: 0.3, second: false })
+    // отражение на стекле
+    body += ink([[M[0] - 22, M[1] - 10], [M[0] - 18, M[1] - 20], [M[0] - 9, M[1] - 26]], { w: 1.1, jit: 0.2, second: false })
+    // ручка
+    const a = 0.75, h0 = [M[0] + r * Math.cos(a), M[1] + r * Math.sin(a)], h1 = [M[0] + (r + 64) * Math.cos(a), M[1] + (r + 64) * Math.sin(a)]
+    const nx = -Math.sin(a) * 7, ny = Math.cos(a) * 7
+    const handle = [[h0[0] + nx, h0[1] + ny], [h1[0] + nx, h1[1] + ny], [h1[0] - nx, h1[1] - ny], [h0[0] - nx, h0[1] - ny]]
+    body += ink(handle, { closed: true, fill: true, w: 1.9, jit: 0.4 })
+    body += hatch('pw3', handle, [h0[0] - 20, h0[1] - 20, h1[0] + 20, h1[1] + 20], { step: 4, op: 0.45, angle: 0.75 + Math.PI / 2 })
+  }
+  put('review', 610, 272)
+
+  // 3a. Отклонено: красная пунктирная ветка вниз
+  body += arrow([[614, 296], [604, 330], [566, 356]], 'r', true)
+  {
+    const x = 470, y = 336, w = 76, h = 56
+    body += sheet('pw4', x, y, w, h, -0.08, { rows: 3, cols: 2 })
+    body += ink([[x + 8, y + 6], [x + w / 2, y + h / 2], [x + w - 6, y + h - 4]], { w: 2, tone: 'r', jit: 0.5, second: false })
+    body += ink([[x + w - 8, y + 6], [x + w / 2, y + h / 2 + 1], [x + 8, y + h - 2]], { w: 2, tone: 'r', jit: 0.5, second: false })
+  }
+  put('rejected', 458, 368, 'end', 'r')
+
+  // 4. Atlas: раскрытая книга с митохондрией и рядами значений
+  body += arrow([[712, mid], [740, mid - 12], [766, mid - 4]])
+  // «проверено» — галочка над стрелкой
+  body += ink([[724, mid - 46], [732, mid - 36], [750, mid - 62]], { w: 2.1, jit: 0.3 })
+  put('validated', 722, mid - 82)
+  {
+    const cx = 876, top = 104, bot = 236, wd = 96
+    const page = (s) => [[cx, top + 8], [cx + s * wd * 0.35, top - 4], [cx + s * wd * 0.8, top - 2], [cx + s * wd, top + 4], [cx + s * wd, bot], [cx + s * wd * 0.6, bot - 8], [cx + s * wd * 0.25, bot - 6], [cx, bot + 6]]
+    for (const s of [-1, 1]) body += ink(page(s), { closed: true, fill: true, w: 1.9, jit: 0.5 })
+    body += ink([[cx, top + 8], [cx + J(1), (top + bot) / 2], [cx, bot + 6]], { w: 1.4, jit: 0.3 })
+    // нижние листы — толщина книги
+    for (const s of [-1, 1]) body += ink([[cx + s * (wd - 2), bot + 4], [cx + s * wd * 0.6, bot - 2], [cx + s * wd * 0.25, bot], [cx, bot + 11]], { w: 0.9, jit: 0.4, second: false })
+    // левая страница: строки текста и точки значений
+    for (let i = 0; i < 7; i++) {
+      const y = top + 22 + i * 15
+      body += line([cx - wd + 14, y + 2], [cx - 14 - (i % 3) * 10, y], { w: 0.8 })
+    }
+    // правая страница: точечный график
+    const ox = cx + 16, oy = bot - 26
+    body += line([ox, oy], [ox + wd - 30, oy], { w: 1 }) + line([ox, oy], [ox, top + 24], { w: 1 })
+    const pts = [[0.1, 0.12], [0.2, 0.08], [0.28, 0.3], [0.4, 0.18], [0.5, 0.55], [0.6, 0.22], [0.7, 0.72], [0.82, 0.4], [0.9, 0.86]]
+    pts.forEach(([u, v], k) => {
+      const tone = k === 4 || k === 6 ? ' r' : ''
+      body += `<circle class="sk-dot${tone}" cx="${n1(ox + u * (wd - 30))}" cy="${n1(oy - v * (oy - top - 30))}" r="2.6"/>`
+    })
+    // маленькая митохондрия-знак над книгой
+    const m = mitochondrion('pwm', { cx: cx + 2, cy: top - 40, L: 300, H: 160, rot: -0.2, scale: 0.17, rings: 0, hatching: false, second: false, weight: 2.2, top: [-0.3, 0.38], bot: [0.04], gap: 22, cw: 22 })
+    body += m.svg
+    const [rx, ry] = m.xf([-96, 22])
+    body += `<circle class="sk-r" stroke-width="2.2" cx="${n1(rx + 3)}" cy="${n1(ry - 2)}" r="4.2"/>`
+  }
+  put('atlas', 876, 284)
+
+  file('data-pathway.svg', W, H, body, 'Path of research data: research group, submission, scientific review, PGT-mt Atlas')
+  labels.pathway = lab
+}
+
 writeFileSync(join(OUT, 'labels.json'), JSON.stringify(labels, null, 2) + '\n')

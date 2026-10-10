@@ -57,6 +57,7 @@ function Header({ lang }: { lang: Lang }) {
           <NavLink to={`/${lang}/science/`} className={() => (inScience ? 'active' : '')}>{t('nav.science')}</NavLink>
           <NavLink to={`/${lang}/science/data/`}>{t('nav.data')}</NavLink>
           <NavLink to={`/${lang}/patients/`}>{t('nav.patients')}</NavLink>
+          <NavLink to={`/${lang}/contribute/`}>{t('nav.contribute')}</NavLink>
           <NavLink to={`/${lang}/about/`}>{t('nav.about')}</NavLink>
           <NavLink to={`/${lang}/ilya-mazunin/`}>{t('nav.curator')}</NavLink>
         </nav>

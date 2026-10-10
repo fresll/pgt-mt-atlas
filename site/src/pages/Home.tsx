@@ -118,6 +118,7 @@ export default function Home() {
             </Link>
             <Link className="sk-link" to={`${sci}sources/`}>{t('home.sourcesLink')}</Link>
             <Link className="sk-link" to={`${sci}methods/`}>{t('home.methodsLink')}</Link>
+            <Link className="sk-link" to={`/${lang}/contribute/`}>{t('nav.contribute')}</Link>
           </div>
         </div>
       </section>

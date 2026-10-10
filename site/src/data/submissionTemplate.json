@@ -1,0 +1,77 @@
+{
+  "version": "1.0",
+  "released": "2026-10-10",
+  "file": "templates/PGT-mt_Research_Data_Submission_v1.0.xlsx",
+  "sheets": [
+    {
+      "name": "Study",
+      "title_en": "Study",
+      "title_ru": "Исследование",
+      "purpose_en": "One row per study or data set: who generated the data, where, and in what publication status.",
+      "purpose_ru": "Одна строка на исследование или набор данных: кто, где и в каком статусе публикации получил данные.",
+      "n_fields": 26,
+      "n_required": 15
+    },
+    {
+      "name": "Cycle",
+      "title_en": "Cycle",
+      "title_ru": "Цикл",
+      "purpose_en": "One row per started IVF/PGT-mt cycle — including cycles that ended without a suitable embryo or without transfer.",
+      "purpose_ru": "Одна строка на начатый цикл ЭКО/ПГТ-мт — включая циклы, завершившиеся без пригодного эмбриона или без переноса.",
+      "n_fields": 30,
+      "n_required": 18
+    },
+    {
+      "name": "Embryos",
+      "title_en": "Embryos",
+      "title_ru": "Эмбрионы",
+      "purpose_en": "One row per embryo (or tested oocyte) — every embryo of the cycle, not only the transferred ones.",
+      "purpose_ru": "Одна строка на эмбрион (или исследованный ооцит) — все эмбрионы цикла, а не только перенесённые.",
+      "n_fields": 17,
+      "n_required": 7
+    },
+    {
+      "name": "Samples_Measurements",
+      "title_en": "Samples and Measurements",
+      "title_ru": "Образцы и измерения",
+      "purpose_en": "One row per measurement: carrier tissues, oocytes, polar bodies, embryo fractions, prenatal and postnatal samples. Replicates are separate rows.",
+      "purpose_ru": "Одна строка на измерение: ткани носительницы, ооциты, полярные тельца, фракции эмбриона, пренатальные и постнатальные образцы. Повторы — отдельными строками.",
+      "n_fields": 24,
+      "n_required": 9
+    },
+    {
+      "name": "Methods",
+      "title_en": "Methods",
+      "title_ru": "Методы",
+      "purpose_en": "One row per analytical method or protocol version used in the measurements.",
+      "purpose_ru": "Одна строка на аналитический метод или версию протокола, использованные в измерениях.",
+      "n_fields": 22,
+      "n_required": 11
+    },
+    {
+      "name": "Clinical_Outcomes",
+      "title_en": "Clinical Outcomes",
+      "title_ru": "Клинические исходы",
+      "purpose_en": "One row per outcome event: cycles without a suitable embryo, transfers without implantation, pregnancy losses, births and each follow-up visit.",
+      "purpose_ru": "Одна строка на событие: цикл без пригодного эмбриона, перенос без имплантации, потеря беременности, роды и каждый визит наблюдения.",
+      "n_fields": 13,
+      "n_required": 3
+    }
+  ],
+  "value_qualifiers": [
+    "exact",
+    "below_lod",
+    "less_than",
+    "greater_than",
+    "interval",
+    "qualitative",
+    "failed_qc",
+    "not_measured",
+    "not_reported"
+  ],
+  "evidence_tiers": [
+    "peer_reviewed_published",
+    "published_not_peer_reviewed",
+    "unpublished_research_data"
+  ]
+}

@@ -5,6 +5,7 @@ import { LANGS } from './i18n'
 import About from './pages/About'
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
+import Contribute from './pages/Contribute'
 import Curator from './pages/Curator'
 import Patients from './pages/patients/Patients'
 import RootRedirect from './pages/RootRedirect'
@@ -40,6 +41,7 @@ function langRoutes(lang: Lang): RouteRecord {
         ],
       },
       { path: 'patients', element: <Patients /> },
+      { path: 'contribute', element: <Contribute /> },
       { path: 'about', element: <About /> },
       { path: 'ilya-mazunin', element: <Curator /> },
       { path: '*', element: <NotFound /> },

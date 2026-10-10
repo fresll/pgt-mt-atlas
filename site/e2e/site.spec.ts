@@ -1,6 +1,6 @@
 import { expect, test, type Page } from '@playwright/test'
 
-const PAGES = ['', 'science/', 'science/data/', 'science/heteroplasmy-landscape/', 'science/embryo-concordance/', 'science/embryo-to-offspring/', 'science/pgt-mt-pgt-a-model/', 'science/cases/', 'science/sources/', 'science/methods/', 'patients/', 'about/', 'ilya-mazunin/']
+const PAGES = ['', 'science/', 'science/data/', 'science/heteroplasmy-landscape/', 'science/embryo-concordance/', 'science/embryo-to-offspring/', 'science/pgt-mt-pgt-a-model/', 'science/cases/', 'science/sources/', 'science/methods/', 'patients/', 'contribute/', 'about/', 'ilya-mazunin/']
 const CHARTS: Record<string, number> = { 'science/heteroplasmy-landscape/': 1, 'science/embryo-concordance/': 3, 'science/embryo-to-offspring/': 2, 'science/pgt-mt-pgt-a-model/': 3 }
 
 function collectErrors(page: Page) {
@@ -94,5 +94,42 @@ test('curator page keeps the full CV content in both languages', async ({ page }
     await expect(page.locator('#education')).toContainText('ISBN 978-5-906748-37-9')
     await expect(page.locator('#education')).toContainText('ISBN 978-5-906748-38-6')
     await expect(page.locator('#career .cv-timeline li')).toHaveCount(14)
+  }
+})
+
+test('contribute page: template download, review statuses and an honest contact block', async ({ page, request }) => {
+  for (const [lang, title, inactive] of [
+    ['en', 'Contribute Data', 'The contact channel is not active yet'],
+    ['ru', 'Поделиться данными', 'Канал связи пока не активирован'],
+  ]) {
+    await page.goto(`${lang}/`)
+    await page.locator('nav.primary').getByRole('link', { name: title }).click()
+    await expect(page).toHaveURL(new RegExp(`/${lang}/contribute/?$`))
+    await expect(page.locator('h1')).toHaveText(title)
+    // шаблон скачивается и является xlsx (zip)
+    const href = await page.locator('a[download]').first().getAttribute('href')
+    expect(href).toMatch(/templates\/PGT-mt_Research_Data_Submission_v[\d.]+\.xlsx$/)
+    const res = await request.get(href!)
+    expect(res.status()).toBe(200)
+    expect((await res.body()).subarray(0, 2).toString()).toBe('PK')
+    // статусы проверки в утверждённом порядке
+    await expect(page.locator('.sk-c-status li')).toHaveCount(5)
+    await expect(page.locator('.sk-c-tiers > div')).toHaveCount(4)
+    // канал связи не выбран: нет формы, нет mailto, есть пояснение
+    await expect(page.locator('#contact form, #contact input, #contact textarea')).toHaveCount(0)
+    await expect(page.locator('a[href^="mailto:"]')).toHaveCount(0)
+    await expect(page.locator('[data-channel="inactive"]')).toContainText(inactive)
+    // иллюстрация пути данных с двуязычными подписями
+    await expect(page.locator('.sk-c-figure svg')).toBeVisible()
+    await expect(page.locator('.sk-c-figure .sk-label')).toHaveCount(6)
+  }
+})
+
+test('contribute page fits a phone screen', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 })
+  for (const lang of ['en', 'ru']) {
+    await page.goto(`${lang}/contribute/`)
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)
+    expect(overflow, lang).toBeLessThanOrEqual(0)
   }
 })

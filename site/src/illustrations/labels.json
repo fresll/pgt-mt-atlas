@@ -35,5 +35,49 @@
       "align": "end",
       "tone": "r"
     }
+  ],
+  "pathway": [
+    {
+      "key": "researcher",
+      "x": 9.6,
+      "y": 69.5,
+      "align": "middle",
+      "tone": "i"
+    },
+    {
+      "key": "submitted",
+      "x": 35.9,
+      "y": 64.8,
+      "align": "middle",
+      "tone": "i"
+    },
+    {
+      "key": "review",
+      "x": 61,
+      "y": 64.8,
+      "align": "middle",
+      "tone": "i"
+    },
+    {
+      "key": "rejected",
+      "x": 45.8,
+      "y": 87.6,
+      "align": "end",
+      "tone": "r"
+    },
+    {
+      "key": "validated",
+      "x": 72.2,
+      "y": 20.5,
+      "align": "middle",
+      "tone": "i"
+    },
+    {
+      "key": "atlas",
+      "x": 87.6,
+      "y": 67.6,
+      "align": "middle",
+      "tone": "i"
+    }
   ]
 }
