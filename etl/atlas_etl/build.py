@@ -572,7 +572,7 @@ def main(argv=None) -> int:
         print(json.dumps(atlas['stats'], ensure_ascii=False, indent=1))
         return 0
     OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
-    OUT_JSON.write_text(json.dumps(atlas, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+    OUT_JSON.write_text(json.dumps(atlas, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
     pubs, vocab = load_publications(), Vocab()
     tables = normalized_tables(pubs, atlas['fig3'], atlas['fig4'], atlas['cleavage'], atlas['fig5'], vocab)
     for name, recs in tables.items():
