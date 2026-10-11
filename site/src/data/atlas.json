@@ -1,9 +1,60 @@
 {
  "meta": {
-  "dataset_version": "2026-10-10",
+  "dataset_version": "2026-10-11",
   "source_file": "data/Сопроводительная информация.xlsx",
   "source_sha256": "6ef93fd0109935521f571040c5c9f282a1c055310aafa7e733ff6f26ed73ecea",
-  "generator": "etl/atlas_etl/build.py"
+  "generator": "etl/atlas_etl/build.py",
+  "baseline": {
+   "version": "2026-10-10",
+   "label": {
+    "ru": "исходный зафиксированный набор (первая версия Atlas)",
+    "en": "initial frozen dataset (first Atlas release)"
+   },
+   "source_file": "data/Сопроводительная информация.xlsx",
+   "source_sha256": "6ef93fd0109935521f571040c5c9f282a1c055310aafa7e733ff6f26ed73ecea",
+   "counts": {
+    "landscape_values": 187,
+    "landscape_variants": 7,
+    "concordance_blastocysts": 40,
+    "concordance_records": 91,
+    "cleavage_embryos": 22,
+    "offspring_records": 24,
+    "offspring_children": 9,
+    "offspring_children_exact_pair": 8,
+    "publications": 22
+   }
+  },
+  "changes": [
+   {
+    "date": "2026-10-11",
+    "kind": "correction",
+    "ids": [
+     "corr-tofilo2026-e6-icm",
+     "corr-tofilo2026-e6-remaining-te",
+     "corr-tofilo2026-e3-fraction",
+     "corr-tofilo2026-e4-fraction"
+    ],
+    "ru": "Tofilo et al. 2026: значения эмбриона 6 (ВКМ, оставшаяся ТЭ) и категория фракции эмбрионов 3 и 4 приведены к опубликованному ESM 2 (curation/corrections.yaml). Медиана размаха для патогенных бластоцист пересчитана.",
+    "en": "Tofilo et al. 2026: embryo 6 values (ICM, remaining TE) and the fraction category of embryos 3 and 4 follow the published ESM 2 (curation/corrections.yaml). The median range for pathogenic blastocysts was recalculated."
+   },
+   {
+    "date": "2026-10-11",
+    "kind": "identifiers",
+    "ru": "Введены стабильные идентификаторы записей (HL-, EC-, CL-); прежние идентификаторы по строке xlsx сохранены как алиасы.",
+    "en": "Stable record identifiers introduced (HL-, EC-, CL-); former row-based identifiers are kept as aliases."
+   }
+  ],
+  "current_counts": {
+   "landscape_values": 187,
+   "landscape_variants": 7,
+   "concordance_blastocysts": 40,
+   "concordance_records": 91,
+   "cleavage_embryos": 22,
+   "offspring_records": 24,
+   "offspring_children": 9,
+   "offspring_children_exact_pair": 8,
+   "publications": 22
+  }
  },
  "labels": {
   "stage": {
@@ -74,6 +125,10 @@
    "remaining_te": {
     "ru": "Оставшаяся ТЭ",
     "en": "Remaining TE"
+   },
+   "combined_te_icm": {
+    "ru": "ВКМ+ТЭ (объединённая фракция)",
+    "en": "ICM+TE (combined fraction)"
    }
   },
   "tissue": {
@@ -178,12 +233,30 @@
    "short": "Steffann et al., 2006",
    "citation": "Steffann J, Frydman N, Gigarel N, et al. Analysis of mtDNA variant segregation during early human embryonic development: a tool for successful NARP preimplantation diagnosis. J Med Genet. 2006;43(3):244-247. doi: 10.1136/jmg.2005.032326",
    "doi": "10.1136/jmg.2005.032326",
-   "pmid": null,
+   "pmid": "16155197",
    "pub_status": "published",
    "published_date": null,
    "data_access_note": null,
-   "verified": null,
-   "supplementary": null
+   "verified": {
+    "date": "2026-10-11",
+    "by": "PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 16155197"
+   },
+   "doi_exception": null,
+   "supplementary": null,
+   "roles": [
+    {
+     "role": "observations",
+     "section": "heteroplasmy-landscape"
+    },
+    {
+     "role": "observations",
+     "section": "embryo-to-offspring"
+    },
+    {
+     "role": "case_summary",
+     "section": "cases"
+    }
+   ]
   },
   {
    "id": "thorburn2009",
@@ -199,7 +272,22 @@
     "en": "Conference abstract; no full text or PubMed record. Values taken from the reviews by Castelluccio 2025 and Smeets 2023."
    },
    "verified": null,
-   "supplementary": null
+   "doi_exception": "DOI нет: тезисы конференции. DOI не подбирался; наблюдения сохраняются со ссылкой на вторичные обзоры (раздел 7 задания: исключение зарегистрировано 2026-10-11).",
+   "supplementary": null,
+   "roles": [
+    {
+     "role": "observations",
+     "section": "heteroplasmy-landscape"
+    },
+    {
+     "role": "observations",
+     "section": "embryo-to-offspring"
+    },
+    {
+     "role": "case_summary",
+     "section": "cases"
+    }
+   ]
   },
   {
    "id": "sallevelt2013",
@@ -207,12 +295,26 @@
    "short": "Sallevelt et al., 2013",
    "citation": "Sallevelt SCEH, Dreesen JCFM, Drüsedau M, et al. Preimplantation genetic diagnosis in mitochondrial DNA disorders: challenge and success. J Med Genet. 2013;50(2):125-132. doi: 10.1136/jmedgenet-2012-101172",
    "doi": "10.1136/jmedgenet-2012-101172",
-   "pmid": null,
+   "pmid": "23339111",
    "pub_status": "published",
    "published_date": null,
    "data_access_note": null,
-   "verified": null,
-   "supplementary": null
+   "verified": {
+    "date": "2026-10-11",
+    "by": "PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 23339111"
+   },
+   "doi_exception": null,
+   "supplementary": null,
+   "roles": [
+    {
+     "role": "observations",
+     "section": "embryo-to-offspring"
+    },
+    {
+     "role": "case_summary",
+     "section": "cases"
+    }
+   ]
   },
   {
    "id": "hyslop2025",
@@ -220,12 +322,30 @@
    "short": "Hyslop et al., 2025",
    "citation": "Hyslop LA, Blakely EL, Aushev M, et al. Mitochondrial donation and preimplantation genetic testing for mtDNA disease. N Engl J Med. 2025;393(5):438-449. doi: 10.1056/NEJMoa2415539",
    "doi": "10.1056/NEJMoa2415539",
-   "pmid": null,
+   "pmid": "40673696",
    "pub_status": "published",
    "published_date": null,
    "data_access_note": null,
-   "verified": null,
-   "supplementary": null
+   "verified": {
+    "date": "2026-10-11",
+    "by": "PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 40673696"
+   },
+   "doi_exception": null,
+   "supplementary": null,
+   "roles": [
+    {
+     "role": "observations",
+     "section": "heteroplasmy-landscape"
+    },
+    {
+     "role": "case_summary",
+     "section": "cases"
+    },
+    {
+     "role": "threshold",
+     "section": "t30"
+    }
+   ]
   },
   {
    "id": "monnot2011",
@@ -233,12 +353,30 @@
    "short": "Monnot et al., 2011",
    "citation": "Monnot S, Gigarel N, Samuels DC, et al. Segregation of mtDNA throughout human embryofetal development: m.3243A>G as a model system. Hum Mutat. 2011;32(1):116-125. doi: 10.1002/humu.21417",
    "doi": "10.1002/humu.21417",
-   "pmid": null,
+   "pmid": "21120938",
    "pub_status": "published",
    "published_date": null,
    "data_access_note": null,
-   "verified": null,
-   "supplementary": null
+   "verified": {
+    "date": "2026-10-11",
+    "by": "PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 21120938"
+   },
+   "doi_exception": null,
+   "supplementary": null,
+   "roles": [
+    {
+     "role": "observations",
+     "section": "heteroplasmy-landscape"
+    },
+    {
+     "role": "observations",
+     "section": "embryo-concordance"
+    },
+    {
+     "role": "case_summary",
+     "section": "cases"
+    }
+   ]
   },
   {
    "id": "treff2012",
@@ -246,12 +384,34 @@
    "short": "Treff et al., 2012",
    "citation": "Treff NR, Campos J, Tao X, et al. Blastocyst preimplantation genetic diagnosis of a mitochondrial DNA disorder. Fertil Steril. 2012;98(5):1236-1240. doi: 10.1016/j.fertnstert.2012.07.1119",
    "doi": "10.1016/j.fertnstert.2012.07.1119",
-   "pmid": null,
+   "pmid": "22921075",
    "pub_status": "published",
    "published_date": null,
    "data_access_note": null,
-   "verified": null,
-   "supplementary": null
+   "verified": {
+    "date": "2026-10-11",
+    "by": "PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 22921075"
+   },
+   "doi_exception": null,
+   "supplementary": null,
+   "roles": [
+    {
+     "role": "observations",
+     "section": "heteroplasmy-landscape"
+    },
+    {
+     "role": "observations",
+     "section": "embryo-concordance"
+    },
+    {
+     "role": "observations",
+     "section": "embryo-to-offspring"
+    },
+    {
+     "role": "case_summary",
+     "section": "cases"
+    }
+   ]
   },
   {
    "id": "heindryckx2014",
@@ -259,12 +419,30 @@
    "short": "Heindryckx et al., 2014",
    "citation": "Heindryckx B, Neupane J, Vandewoestyne M, et al. Mutation-free baby born from a mitochondrial encephalopathy, lactic acidosis and stroke-like syndrome carrier after blastocyst trophectoderm preimplantation genetic diagnosis. Mitochondrion. 2014;18:12-17. doi: 10.1016/j.mito.2014.08.005",
    "doi": "10.1016/j.mito.2014.08.005",
-   "pmid": null,
+   "pmid": "25159128",
    "pub_status": "published",
    "published_date": null,
    "data_access_note": null,
-   "verified": null,
-   "supplementary": null
+   "verified": {
+    "date": "2026-10-11",
+    "by": "PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 25159128"
+   },
+   "doi_exception": null,
+   "supplementary": null,
+   "roles": [
+    {
+     "role": "observations",
+     "section": "heteroplasmy-landscape"
+    },
+    {
+     "role": "observations",
+     "section": "embryo-to-offspring"
+    },
+    {
+     "role": "case_summary",
+     "section": "cases"
+    }
+   ]
   },
   {
    "id": "tofilo2026",
@@ -281,6 +459,7 @@
     "by": "PubMed (PMID 42649365) — название, журнал, дата публикации и DOI совпадают с рукописью [27]",
     "note": "Страница Springer (link.springer.com) недоступна из окружения сборки (сетевая политика), поэтому проверка выполнена по записи PubMed и по ESM 1/ESM 2, предоставленным авторами. Файл references/Tofilo et al 2026 PGTmt 14487.pdf — ранняя рукопись (Fertil Steril), не опубликованная версия."
    },
+   "doi_exception": null,
    "supplementary": [
     {
      "file": "references/10815_2026_4012_MOESM1_ESM.docx",
@@ -292,6 +471,24 @@
      "label": "ESM 2",
      "content": "Supplementary Table S2 — покрытие, число прочтений и гетероплазмия по фракциям 6 эмбрионов"
     }
+   ],
+   "roles": [
+    {
+     "role": "observations",
+     "section": "heteroplasmy-landscape"
+    },
+    {
+     "role": "observations",
+     "section": "embryo-concordance"
+    },
+    {
+     "role": "case_summary",
+     "section": "cases"
+    },
+    {
+     "role": "classification_basis",
+     "section": "m.14487T>C"
+    }
    ]
   },
   {
@@ -300,12 +497,26 @@
    "short": "Sallevelt et al., 2017",
    "citation": "Sallevelt SCEH, Dreesen JCFM, Drüsedau M, et al. PGD for the m.14487T>C mitochondrial DNA mutation resulted in the birth of a healthy boy. Hum Reprod. 2017;32(3):698-703. doi: 10.1093/humrep/dew356",
    "doi": "10.1093/humrep/dew356",
-   "pmid": null,
+   "pmid": "28122886",
    "pub_status": "published",
    "published_date": null,
    "data_access_note": null,
-   "verified": null,
-   "supplementary": null
+   "verified": {
+    "date": "2026-10-11",
+    "by": "PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 28122886"
+   },
+   "doi_exception": null,
+   "supplementary": null,
+   "roles": [
+    {
+     "role": "observations",
+     "section": "heteroplasmy-landscape"
+    },
+    {
+     "role": "case_summary",
+     "section": "cases"
+    }
+   ]
   },
   {
    "id": "ji2021",
@@ -313,12 +524,34 @@
    "short": "Ji et al., 2021",
    "citation": "Ji D, Li X, Pan J, et al. Preimplantation genetic diagnosis for a carrier with m.3697G>A mitochondrial DNA mutation. J Assist Reprod Genet. 2021;38(12):3251-3260. doi: 10.1007/s10815-021-02354-3",
    "doi": "10.1007/s10815-021-02354-3",
-   "pmid": null,
+   "pmid": "34802141",
    "pub_status": "published",
    "published_date": null,
    "data_access_note": null,
-   "verified": null,
-   "supplementary": null
+   "verified": {
+    "date": "2026-10-11",
+    "by": "PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 34802141"
+   },
+   "doi_exception": null,
+   "supplementary": null,
+   "roles": [
+    {
+     "role": "observations",
+     "section": "heteroplasmy-landscape"
+    },
+    {
+     "role": "observations",
+     "section": "embryo-to-offspring"
+    },
+    {
+     "role": "case_summary",
+     "section": "cases"
+    },
+    {
+     "role": "classification_basis",
+     "section": "m.3697G>A"
+    }
+   ]
   },
   {
    "id": "mizuguchi2025",
@@ -326,12 +559,34 @@
    "short": "Mizuguchi et al., 2025",
    "citation": "Mizuguchi Y, Sueoka K, Sato S, Tanaka M. Successful birth after preimplantation genetic testing for rare mitochondrial DNA mutation m.10197G>A. Hum Genome Var. 2025;12:7. doi: 10.1038/s41439-025-00311-5",
    "doi": "10.1038/s41439-025-00311-5",
-   "pmid": null,
+   "pmid": "40164591",
    "pub_status": "published",
    "published_date": null,
    "data_access_note": null,
-   "verified": null,
-   "supplementary": null
+   "verified": {
+    "date": "2026-10-11",
+    "by": "PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 40164591"
+   },
+   "doi_exception": null,
+   "supplementary": null,
+   "roles": [
+    {
+     "role": "observations",
+     "section": "heteroplasmy-landscape"
+    },
+    {
+     "role": "observations",
+     "section": "embryo-to-offspring"
+    },
+    {
+     "role": "case_summary",
+     "section": "cases"
+    },
+    {
+     "role": "classification_basis",
+     "section": "m.10197G>A"
+    }
+   ]
   },
   {
    "id": "hu2026",
@@ -339,12 +594,34 @@
    "short": "Hu et al., 2026",
    "citation": "Hu X, Zhang Y, Wan Z, et al. Successful live birth after preimplantation genetic testing for combined nuclear RNASEH2C and mitochondrial MT-TL1 variants. J Assist Reprod Genet. 2026. doi: 10.1007/s10815-026-04041-7",
    "doi": "10.1007/s10815-026-04041-7",
-   "pmid": null,
+   "pmid": "42821212",
    "pub_status": "published",
    "published_date": null,
    "data_access_note": null,
-   "verified": null,
-   "supplementary": null
+   "verified": {
+    "date": "2026-10-11",
+    "by": "PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 42821212"
+   },
+   "doi_exception": null,
+   "supplementary": null,
+   "roles": [
+    {
+     "role": "observations",
+     "section": "heteroplasmy-landscape"
+    },
+    {
+     "role": "observations",
+     "section": "embryo-to-offspring"
+    },
+    {
+     "role": "case_summary",
+     "section": "cases"
+    },
+    {
+     "role": "classification_basis",
+     "section": "m.3250T>C"
+    }
+   ]
   },
   {
    "id": "mitalipov2014",
@@ -352,12 +629,26 @@
    "short": "Mitalipov et al., 2014",
    "citation": "Mitalipov S, Amato P, Parry S, Falk MJ. Limitations of preimplantation genetic diagnosis for mitochondrial DNA diseases. Cell Rep. 2014;7(4):935-937. doi: 10.1016/j.celrep.2014.05.004",
    "doi": "10.1016/j.celrep.2014.05.004",
-   "pmid": null,
+   "pmid": "24856294",
    "pub_status": "published",
    "published_date": null,
    "data_access_note": null,
-   "verified": null,
-   "supplementary": null
+   "verified": {
+    "date": "2026-10-11",
+    "by": "PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 24856294"
+   },
+   "doi_exception": null,
+   "supplementary": null,
+   "roles": [
+    {
+     "role": "observations",
+     "section": "embryo-to-offspring"
+    },
+    {
+     "role": "case_summary",
+     "section": "cases"
+    }
+   ]
   },
   {
    "id": "steffann2014",
@@ -365,12 +656,22 @@
    "short": "Steffann et al., 2014",
    "citation": "Steffann J, Gigarel N, Samuels DC, et al. Data from artificial models of mitochondrial DNA disorders are not always applicable to humans. Cell Rep. 2014;7(4):933-934. doi: 10.1016/j.celrep.2014.05.005",
    "doi": "10.1016/j.celrep.2014.05.005",
-   "pmid": null,
+   "pmid": "24856293",
    "pub_status": "published",
    "published_date": null,
    "data_access_note": null,
-   "verified": null,
-   "supplementary": null
+   "verified": {
+    "date": "2026-10-11",
+    "by": "PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 24856293"
+   },
+   "doi_exception": null,
+   "supplementary": null,
+   "roles": [
+    {
+     "role": "case_summary",
+     "section": "cases"
+    }
+   ]
   },
   {
    "id": "spath2021",
@@ -378,12 +679,39 @@
    "short": "Spath et al., 2021",
    "citation": "Spath K, Babariya D, Konstantinidis M, et al. Clinical application of sequencing-based methods for parallel preimplantation genetic testing for mitochondrial DNA disease and aneuploidy. Fertil Steril. 2021;115(6):1521-1532. doi: 10.1016/j.fertnstert.2021.01.026",
    "doi": "10.1016/j.fertnstert.2021.01.026",
-   "pmid": null,
+   "pmid": "33745725",
    "pub_status": "published",
    "published_date": null,
    "data_access_note": null,
-   "verified": null,
-   "supplementary": null
+   "verified": {
+    "date": "2026-10-11",
+    "by": "PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 33745725",
+    "note": "Внутреннее расхождение источника: в абстракте и введении вариант пациентки C назван m.10191T>G, в результатах, подписи к рисунку и обсуждении — m.10191T>C (5 мест). Набор следует основному тексту (m.10191T>C); значения не менялись. Требует решения куратора."
+   },
+   "doi_exception": null,
+   "supplementary": null,
+   "roles": [
+    {
+     "role": "observations",
+     "section": "heteroplasmy-landscape"
+    },
+    {
+     "role": "observations",
+     "section": "embryo-to-offspring"
+    },
+    {
+     "role": "case_summary",
+     "section": "cases"
+    },
+    {
+     "role": "classification_basis",
+     "section": "m.3243A>G"
+    },
+    {
+     "role": "classification_basis",
+     "section": "m.8993T>G"
+    }
+   ]
   },
   {
    "id": "janssen2024",
@@ -391,12 +719,22 @@
    "short": "Janssen et al., 2024",
    "citation": "Janssen AEJ, Koeck RM, Essers R, et al. Clinical-grade whole genome sequencing-based haplarithmisis enables all forms of preimplantation genetic testing. Nat Commun. 2024;15:7164. doi: 10.1038/s41467-024-51508-1",
    "doi": "10.1038/s41467-024-51508-1",
-   "pmid": null,
+   "pmid": "39223156",
    "pub_status": "published",
    "published_date": null,
    "data_access_note": null,
-   "verified": null,
-   "supplementary": null
+   "verified": {
+    "date": "2026-10-11",
+    "by": "PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 39223156"
+   },
+   "doi_exception": null,
+   "supplementary": null,
+   "roles": [
+    {
+     "role": "observations",
+     "section": "embryo-concordance"
+    }
+   ]
   },
   {
    "id": "rubens2025",
@@ -404,12 +742,26 @@
    "short": "Rubens et al., 2025",
    "citation": "Rubens P, Mayeur A, Chatzovoulou K, et al. Profiling mitochondrial DNA variant segregation during human preimplantation development: a prerequisite to preimplantation genetic testing for mitochondrial DNA-related disorders. Hum Reprod. 2025;40(5):956-961. doi: 10.1093/humrep/deaf050",
    "doi": "10.1093/humrep/deaf050",
-   "pmid": null,
+   "pmid": "40174913",
    "pub_status": "published",
    "published_date": null,
    "data_access_note": null,
-   "verified": null,
-   "supplementary": null
+   "verified": {
+    "date": "2026-10-11",
+    "by": "PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 40174913"
+   },
+   "doi_exception": null,
+   "supplementary": null,
+   "roles": [
+    {
+     "role": "observations",
+     "section": "embryo-concordance"
+    },
+    {
+     "role": "case_summary",
+     "section": "cases"
+    }
+   ]
   },
   {
    "id": "tajima2007",
@@ -417,12 +769,22 @@
    "short": "Tajima et al., 2007",
    "citation": "Tajima H, Sueoka K, Moon SY, et al. The development of novel quantification assay for mitochondrial DNA heteroplasmy aimed at preimplantation genetic diagnosis of Leigh encephalopathy. J Assist Reprod Genet. 2007;24:227-232. doi: 10.1007/s10815-007-9114-0",
    "doi": "10.1007/s10815-007-9114-0",
-   "pmid": null,
+   "pmid": "17342424",
    "pub_status": "published",
    "published_date": null,
    "data_access_note": null,
-   "verified": null,
-   "supplementary": null
+   "verified": {
+    "date": "2026-10-11",
+    "by": "PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 17342424"
+   },
+   "doi_exception": null,
+   "supplementary": null,
+   "roles": [
+    {
+     "role": "excluded_data",
+     "section": "methods"
+    }
+   ]
   },
   {
    "id": "mayeur2023",
@@ -430,12 +792,22 @@
    "short": "Mayeur et al., 2023",
    "citation": "Mayeur A, Benaloun E, Benguigui J, et al. Preimplantation genetic testing for mitochondrial DNA mutation: ovarian response to stimulation, outcomes and follow-up. Reprod Biomed Online. 2023;47(1):61-69. doi: 10.1016/j.rbmo.2023.02.010",
    "doi": "10.1016/j.rbmo.2023.02.010",
-   "pmid": null,
+   "pmid": "37202317",
    "pub_status": "published",
    "published_date": null,
    "data_access_note": null,
-   "verified": null,
-   "supplementary": null
+   "verified": {
+    "date": "2026-10-11",
+    "by": "PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 37202317"
+   },
+   "doi_exception": null,
+   "supplementary": null,
+   "roles": [
+    {
+     "role": "case_summary",
+     "section": "cases"
+    }
+   ]
   },
   {
    "id": "ji2023",
@@ -443,12 +815,22 @@
    "short": "Ji et al., 2023",
    "citation": "Ji D, Zhang N, Zou W, et al. Modeling-based prediction tools for preimplantation genetic testing of mitochondrial DNA diseases: estimating symptomatic thresholds, risk, and chance of success. J Assist Reprod Genet. 2023;40:2185-2196. doi: 10.1007/s10815-023-02880-2",
    "doi": "10.1007/s10815-023-02880-2",
-   "pmid": null,
+   "pmid": "37439868",
    "pub_status": "published",
    "published_date": null,
    "data_access_note": null,
-   "verified": null,
-   "supplementary": null
+   "verified": {
+    "date": "2026-10-11",
+    "by": "PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 37439868"
+   },
+   "doi_exception": null,
+   "supplementary": null,
+   "roles": [
+    {
+     "role": "threshold",
+     "section": "t15_30"
+    }
+   ]
   },
   {
    "id": "hellebrekers2012",
@@ -456,12 +838,22 @@
    "short": "Hellebrekers et al., 2012",
    "citation": "Hellebrekers DMEI, Wolfe R, Hendrickx ATM, et al. PGD and heteroplasmic mitochondrial DNA point mutations: a systematic review estimating the chance of healthy offspring. Hum Reprod Update. 2012;18(4):341-349. doi: 10.1093/humupd/dms008",
    "doi": "10.1093/humupd/dms008",
-   "pmid": null,
+   "pmid": "22456975",
    "pub_status": "published",
    "published_date": null,
    "data_access_note": null,
-   "verified": null,
-   "supplementary": null
+   "verified": {
+    "date": "2026-10-11",
+    "by": "PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 22456975"
+   },
+   "doi_exception": null,
+   "supplementary": null,
+   "roles": [
+    {
+     "role": "threshold",
+     "section": "t18"
+    }
+   ]
   },
   {
    "id": "volodyaev2025",
@@ -473,13 +865,95 @@
    "pub_status": "published",
    "published_date": null,
    "data_access_note": null,
-   "verified": null,
-   "supplementary": null
+   "verified": {
+    "date": "2026-10-11",
+    "by": "PDF издателя (references/Volodyaev et al 2025.pdf): F S Rev 2025;6:100082, doi:10.1016/j.xfnr.2024.100082. Записи в PubMed нет (поиск по DOI 2026-10-11)."
+   },
+   "doi_exception": null,
+   "supplementary": null,
+   "roles": [
+    {
+     "role": "model_parameter",
+     "section": "p_eupl"
+    }
+   ]
   }
  ],
+ "variant_classes": {
+  "HV2 polymorphism": {
+   "class": "neutral_polymorphism",
+   "status": "not_verified",
+   "publication": "rubens2025",
+   "locator": null,
+   "checked": "2026-10-11"
+  },
+  "m.10191T>C": {
+   "class": "pathogenic",
+   "status": "not_verified",
+   "publication": "spath2021",
+   "locator": null,
+   "checked": "2026-10-11"
+  },
+  "m.10197G>A": {
+   "class": "pathogenic",
+   "status": "stated_in_source",
+   "publication": "mizuguchi2025",
+   "locator": "PDF с. 1: «The m.10197G>A mutation… is a rare pathogenic mutation of Leigh encephalopathy»",
+   "checked": "2026-10-11"
+  },
+  "m.14487T>C": {
+   "class": "pathogenic",
+   "status": "stated_in_source",
+   "publication": "tofilo2026",
+   "locator": "Рукопись Tofilo et al. (references/Tofilo et al 2026 PGTmt 14487.pdf), с. 1: «carrying the pathogenic mtDNA variant m.14487T>C». В абстракте опубликованной версии (PubMed 42649365) класс не назван; окончательный текст статьи в репозитории отсутствует.",
+   "checked": "2026-10-11"
+  },
+  "m.3243A>G": {
+   "class": "pathogenic",
+   "status": "stated_in_source",
+   "publication": "spath2021",
+   "locator": "PDF с. 8: «Unlike many other pathogenic mtDNA mutations, m.3243A>G heteroplasmy levels are poorly predictive…»",
+   "checked": "2026-10-11"
+  },
+  "m.3250T>C": {
+   "class": "uncertain_significance",
+   "status": "stated_in_source",
+   "publication": "hu2026",
+   "locator": "PDF с. 3: «the variant is annotated as a variant of uncertain significance (VUS) due to incomplete penetrance and likely benign in silico predictions» (у авторов — ссылки на MITOMAP и Wong et al.)",
+   "checked": "2026-10-11"
+  },
+  "m.3697G>A": {
+   "class": "pathogenic",
+   "status": "implied_in_source",
+   "publication": "ji2021",
+   "locator": "PDF с. 7: «the inheritance of different pathogenic mtDNA mutations… previous analysis has not included m.3697G>A»",
+   "checked": "2026-10-11"
+  },
+  "m.8344A>G": {
+   "class": "pathogenic",
+   "status": "not_verified",
+   "publication": "rubens2025",
+   "locator": null,
+   "checked": "2026-10-11"
+  },
+  "m.8993T>C": {
+   "class": "pathogenic",
+   "status": "not_verified",
+   "publication": "rubens2025",
+   "locator": null,
+   "checked": "2026-10-11"
+  },
+  "m.8993T>G": {
+   "class": "pathogenic",
+   "status": "implied_in_source",
+   "publication": "spath2021",
+   "locator": "PDF с. 9: «clear differences in transmission patterns between pathogenic mutations… m.8993T>G…»",
+   "checked": "2026-10-11"
+  }
+ },
  "fig3": [
   {
-   "id": "f3-004",
+   "id": "HL-heindryckx2014-001",
    "variant": "m.3243A>G",
    "pub": "heindryckx2014",
    "value": 0.0,
@@ -498,10 +972,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 4
-   }
+   },
+   "legacy_id": "f3-004"
   },
   {
-   "id": "f3-005",
+   "id": "HL-heindryckx2014-002",
    "variant": "m.3243A>G",
    "pub": "heindryckx2014",
    "value": 40.3,
@@ -520,10 +995,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 5
-   }
+   },
+   "legacy_id": "f3-005"
   },
   {
-   "id": "f3-006",
+   "id": "HL-heindryckx2014-003",
    "variant": "m.3243A>G",
    "pub": "heindryckx2014",
    "value": 28.2,
@@ -542,10 +1018,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 6
-   }
+   },
+   "legacy_id": "f3-006"
   },
   {
-   "id": "f3-007",
+   "id": "HL-heindryckx2014-004",
    "variant": "m.3243A>G",
    "pub": "heindryckx2014",
    "value": 0.0,
@@ -564,10 +1041,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 7
-   }
+   },
+   "legacy_id": "f3-007"
   },
   {
-   "id": "f3-008",
+   "id": "HL-heindryckx2014-005",
    "variant": "m.3243A>G",
    "pub": "heindryckx2014",
    "value": 15.3,
@@ -586,10 +1064,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 8
-   }
+   },
+   "legacy_id": "f3-008"
   },
   {
-   "id": "f3-009",
+   "id": "HL-heindryckx2014-006",
    "variant": "m.3243A>G",
    "pub": "heindryckx2014",
    "value": 62.0,
@@ -608,10 +1087,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 9
-   }
+   },
+   "legacy_id": "f3-009"
   },
   {
-   "id": "f3-010",
+   "id": "HL-heindryckx2014-007",
    "variant": "m.3243A>G",
    "pub": "heindryckx2014",
    "value": 11.4,
@@ -630,10 +1110,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 10
-   }
+   },
+   "legacy_id": "f3-010"
   },
   {
-   "id": "f3-011",
+   "id": "HL-heindryckx2014-008",
    "variant": "m.3243A>G",
    "pub": "heindryckx2014",
    "value": 27.8,
@@ -652,10 +1133,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 11
-   }
+   },
+   "legacy_id": "f3-011"
   },
   {
-   "id": "f3-012",
+   "id": "HL-heindryckx2014-009",
    "variant": "m.3243A>G",
    "pub": "heindryckx2014",
    "value": 8.4,
@@ -674,10 +1156,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 12
-   }
+   },
+   "legacy_id": "f3-012"
   },
   {
-   "id": "f3-013",
+   "id": "HL-heindryckx2014-010",
    "variant": "m.3243A>G",
    "pub": "heindryckx2014",
    "value": 12.3,
@@ -696,10 +1179,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 13
-   }
+   },
+   "legacy_id": "f3-013"
   },
   {
-   "id": "f3-014",
+   "id": "HL-heindryckx2014-011",
    "variant": "m.3243A>G",
    "pub": "heindryckx2014",
    "value": 11.3,
@@ -718,10 +1202,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 14
-   }
+   },
+   "legacy_id": "f3-014"
   },
   {
-   "id": "f3-015",
+   "id": "HL-hyslop2025-001",
    "variant": "m.3243A>G",
    "pub": "hyslop2025",
    "value": 0.0,
@@ -740,10 +1225,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 15
-   }
+   },
+   "legacy_id": "f3-015"
   },
   {
-   "id": "f3-016",
+   "id": "HL-hyslop2025-002",
    "variant": "m.3243A>G",
    "pub": "hyslop2025",
    "value": 0.0,
@@ -762,10 +1248,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 16
-   }
+   },
+   "legacy_id": "f3-016"
   },
   {
-   "id": "f3-017",
+   "id": "HL-monnot2011-001",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
    "value": 0.0,
@@ -784,10 +1271,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 17
-   }
+   },
+   "legacy_id": "f3-017"
   },
   {
-   "id": "f3-018",
+   "id": "HL-monnot2011-002",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
    "value": 0.0,
@@ -806,10 +1294,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 18
-   }
+   },
+   "legacy_id": "f3-018"
   },
   {
-   "id": "f3-019",
+   "id": "HL-monnot2011-003",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
    "value": 0.0,
@@ -828,10 +1317,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 19
-   }
+   },
+   "legacy_id": "f3-019"
   },
   {
-   "id": "f3-020",
+   "id": "HL-monnot2011-004",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
    "value": 0.0,
@@ -850,10 +1340,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 20
-   }
+   },
+   "legacy_id": "f3-020"
   },
   {
-   "id": "f3-021",
+   "id": "HL-monnot2011-005",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
    "value": 0.0,
@@ -872,10 +1363,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 21
-   }
+   },
+   "legacy_id": "f3-021"
   },
   {
-   "id": "f3-022",
+   "id": "HL-monnot2011-006",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
    "value": 0.0,
@@ -894,10 +1386,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 22
-   }
+   },
+   "legacy_id": "f3-022"
   },
   {
-   "id": "f3-023",
+   "id": "HL-spath2021-001",
    "variant": "m.3243A>G",
    "pub": "spath2021",
    "value": 0.0,
@@ -916,10 +1409,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 23
-   }
+   },
+   "legacy_id": "f3-023"
   },
   {
-   "id": "f3-024",
+   "id": "HL-spath2021-002",
    "variant": "m.3243A>G",
    "pub": "spath2021",
    "value": 0.0,
@@ -938,10 +1432,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 24
-   }
+   },
+   "legacy_id": "f3-024"
   },
   {
-   "id": "f3-025",
+   "id": "HL-spath2021-003",
    "variant": "m.3243A>G",
    "pub": "spath2021",
    "value": 0.0,
@@ -960,10 +1455,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 25
-   }
+   },
+   "legacy_id": "f3-025"
   },
   {
-   "id": "f3-026",
+   "id": "HL-spath2021-004",
    "variant": "m.3243A>G",
    "pub": "spath2021",
    "value": 0.0,
@@ -982,10 +1478,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 26
-   }
+   },
+   "legacy_id": "f3-026"
   },
   {
-   "id": "f3-027",
+   "id": "HL-spath2021-005",
    "variant": "m.3243A>G",
    "pub": "spath2021",
    "value": 0.0,
@@ -1004,10 +1501,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 27
-   }
+   },
+   "legacy_id": "f3-027"
   },
   {
-   "id": "f3-028",
+   "id": "HL-spath2021-006",
    "variant": "m.3243A>G",
    "pub": "spath2021",
    "value": 0.0,
@@ -1026,10 +1524,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 28
-   }
+   },
+   "legacy_id": "f3-028"
   },
   {
-   "id": "f3-029",
+   "id": "HL-spath2021-007",
    "variant": "m.3243A>G",
    "pub": "spath2021",
    "value": 0.0,
@@ -1048,10 +1547,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 29
-   }
+   },
+   "legacy_id": "f3-029"
   },
   {
-   "id": "f3-030",
+   "id": "HL-spath2021-008",
    "variant": "m.3243A>G",
    "pub": "spath2021",
    "value": 0.0,
@@ -1070,10 +1570,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 30
-   }
+   },
+   "legacy_id": "f3-030"
   },
   {
-   "id": "f3-031",
+   "id": "HL-spath2021-009",
    "variant": "m.3243A>G",
    "pub": "spath2021",
    "value": 0.0,
@@ -1092,10 +1593,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 31
-   }
+   },
+   "legacy_id": "f3-031"
   },
   {
-   "id": "f3-032",
+   "id": "HL-spath2021-010",
    "variant": "m.3243A>G",
    "pub": "spath2021",
    "value": 0.0,
@@ -1114,10 +1616,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 32
-   }
+   },
+   "legacy_id": "f3-032"
   },
   {
-   "id": "f3-033",
+   "id": "HL-spath2021-011",
    "variant": "m.3243A>G",
    "pub": "spath2021",
    "value": 0.0,
@@ -1136,10 +1639,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 33
-   }
+   },
+   "legacy_id": "f3-033"
   },
   {
-   "id": "f3-034",
+   "id": "HL-spath2021-012",
    "variant": "m.3243A>G",
    "pub": "spath2021",
    "value": 0.0,
@@ -1158,10 +1662,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 34
-   }
+   },
+   "legacy_id": "f3-034"
   },
   {
-   "id": "f3-035",
+   "id": "HL-spath2021-013",
    "variant": "m.3243A>G",
    "pub": "spath2021",
    "value": 3.1,
@@ -1180,10 +1685,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 35
-   }
+   },
+   "legacy_id": "f3-035"
   },
   {
-   "id": "f3-036",
+   "id": "HL-monnot2011-007",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
    "value": 5.0,
@@ -1202,10 +1708,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 36
-   }
+   },
+   "legacy_id": "f3-036"
   },
   {
-   "id": "f3-037",
+   "id": "HL-spath2021-014",
    "variant": "m.3243A>G",
    "pub": "spath2021",
    "value": 5.7,
@@ -1224,10 +1731,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 37
-   }
+   },
+   "legacy_id": "f3-037"
   },
   {
-   "id": "f3-038",
+   "id": "HL-treff2012-001",
    "variant": "m.3243A>G",
    "pub": "treff2012",
    "value": 7.0,
@@ -1246,10 +1754,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 38
-   }
+   },
+   "legacy_id": "f3-038"
   },
   {
-   "id": "f3-039",
+   "id": "HL-monnot2011-008",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
    "value": 7.5,
@@ -1268,10 +1777,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 39
-   }
+   },
+   "legacy_id": "f3-039"
   },
   {
-   "id": "f3-040",
+   "id": "HL-spath2021-015",
    "variant": "m.3243A>G",
    "pub": "spath2021",
    "value": 11.5,
@@ -1290,10 +1800,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 40
-   }
+   },
+   "legacy_id": "f3-040"
   },
   {
-   "id": "f3-041",
+   "id": "HL-treff2012-002",
    "variant": "m.3243A>G",
    "pub": "treff2012",
    "value": 12.0,
@@ -1312,10 +1823,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 41
-   }
+   },
+   "legacy_id": "f3-041"
   },
   {
-   "id": "f3-042",
+   "id": "HL-monnot2011-009",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
    "value": 13.0,
@@ -1334,10 +1846,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 42
-   }
+   },
+   "legacy_id": "f3-042"
   },
   {
-   "id": "f3-043",
+   "id": "HL-monnot2011-010",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
    "value": 14.0,
@@ -1356,10 +1869,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 43
-   }
+   },
+   "legacy_id": "f3-043"
   },
   {
-   "id": "f3-044",
+   "id": "HL-monnot2011-011",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
    "value": 14.5,
@@ -1378,10 +1892,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 44
-   }
+   },
+   "legacy_id": "f3-044"
   },
   {
-   "id": "f3-045",
+   "id": "HL-monnot2011-012",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
    "value": 15.0,
@@ -1400,10 +1915,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 45
-   }
+   },
+   "legacy_id": "f3-045"
   },
   {
-   "id": "f3-046",
+   "id": "HL-monnot2011-013",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
    "value": 16.0,
@@ -1422,10 +1938,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 46
-   }
+   },
+   "legacy_id": "f3-046"
   },
   {
-   "id": "f3-047",
+   "id": "HL-hyslop2025-003",
    "variant": "m.3243A>G",
    "pub": "hyslop2025",
    "value": 16.5,
@@ -1444,10 +1961,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 47
-   }
+   },
+   "legacy_id": "f3-047"
   },
   {
-   "id": "f3-048",
+   "id": "HL-monnot2011-014",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
    "value": 18.0,
@@ -1466,10 +1984,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 48
-   }
+   },
+   "legacy_id": "f3-048"
   },
   {
-   "id": "f3-049",
+   "id": "HL-monnot2011-015",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
    "value": 23.0,
@@ -1488,10 +2007,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 49
-   }
+   },
+   "legacy_id": "f3-049"
   },
   {
-   "id": "f3-050",
+   "id": "HL-monnot2011-016",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
    "value": 23.0,
@@ -1510,10 +2030,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 50
-   }
+   },
+   "legacy_id": "f3-050"
   },
   {
-   "id": "f3-051",
+   "id": "HL-monnot2011-017",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
    "value": 23.0,
@@ -1532,10 +2053,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 51
-   }
+   },
+   "legacy_id": "f3-051"
   },
   {
-   "id": "f3-052",
+   "id": "HL-treff2012-003",
    "variant": "m.3243A>G",
    "pub": "treff2012",
    "value": 24.0,
@@ -1554,10 +2076,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 52
-   }
+   },
+   "legacy_id": "f3-052"
   },
   {
-   "id": "f3-053",
+   "id": "HL-treff2012-004",
    "variant": "m.3243A>G",
    "pub": "treff2012",
    "value": 24.0,
@@ -1576,10 +2099,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 53
-   }
+   },
+   "legacy_id": "f3-053"
   },
   {
-   "id": "f3-054",
+   "id": "HL-treff2012-005",
    "variant": "m.3243A>G",
    "pub": "treff2012",
    "value": 25.0,
@@ -1598,10 +2122,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 54
-   }
+   },
+   "legacy_id": "f3-054"
   },
   {
-   "id": "f3-055",
+   "id": "HL-monnot2011-018",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
    "value": 28.0,
@@ -1620,10 +2145,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 55
-   }
+   },
+   "legacy_id": "f3-055"
   },
   {
-   "id": "f3-056",
+   "id": "HL-spath2021-016",
    "variant": "m.3243A>G",
    "pub": "spath2021",
    "value": 29.2,
@@ -1642,10 +2168,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 56
-   }
+   },
+   "legacy_id": "f3-056"
   },
   {
-   "id": "f3-057",
+   "id": "HL-monnot2011-019",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
    "value": 30.0,
@@ -1664,10 +2191,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 57
-   }
+   },
+   "legacy_id": "f3-057"
   },
   {
-   "id": "f3-058",
+   "id": "HL-spath2021-017",
    "variant": "m.3243A>G",
    "pub": "spath2021",
    "value": 36.3,
@@ -1686,10 +2214,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 58
-   }
+   },
+   "legacy_id": "f3-058"
   },
   {
-   "id": "f3-059",
+   "id": "HL-monnot2011-020",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
    "value": 37.0,
@@ -1708,10 +2237,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 59
-   }
+   },
+   "legacy_id": "f3-059"
   },
   {
-   "id": "f3-060",
+   "id": "HL-spath2021-018",
    "variant": "m.3243A>G",
    "pub": "spath2021",
    "value": 37.0,
@@ -1730,10 +2260,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 60
-   }
+   },
+   "legacy_id": "f3-060"
   },
   {
-   "id": "f3-061",
+   "id": "HL-spath2021-019",
    "variant": "m.3243A>G",
    "pub": "spath2021",
    "value": 38.0,
@@ -1752,10 +2283,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 61
-   }
+   },
+   "legacy_id": "f3-061"
   },
   {
-   "id": "f3-062",
+   "id": "HL-treff2012-006",
    "variant": "m.3243A>G",
    "pub": "treff2012",
    "value": 38.0,
@@ -1774,10 +2306,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 62
-   }
+   },
+   "legacy_id": "f3-062"
   },
   {
-   "id": "f3-063",
+   "id": "HL-monnot2011-021",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
    "value": 42.0,
@@ -1796,10 +2329,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 63
-   }
+   },
+   "legacy_id": "f3-063"
   },
   {
-   "id": "f3-064",
+   "id": "HL-monnot2011-022",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
    "value": 42.0,
@@ -1818,10 +2352,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 64
-   }
+   },
+   "legacy_id": "f3-064"
   },
   {
-   "id": "f3-065",
+   "id": "HL-monnot2011-023",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
    "value": 43.0,
@@ -1840,10 +2375,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 65
-   }
+   },
+   "legacy_id": "f3-065"
   },
   {
-   "id": "f3-066",
+   "id": "HL-monnot2011-024",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
    "value": 47.0,
@@ -1862,10 +2398,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 66
-   }
+   },
+   "legacy_id": "f3-066"
   },
   {
-   "id": "f3-067",
+   "id": "HL-monnot2011-025",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
    "value": 48.0,
@@ -1884,10 +2421,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 67
-   }
+   },
+   "legacy_id": "f3-067"
   },
   {
-   "id": "f3-068",
+   "id": "HL-monnot2011-026",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
    "value": 50.0,
@@ -1906,10 +2444,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 68
-   }
+   },
+   "legacy_id": "f3-068"
   },
   {
-   "id": "f3-069",
+   "id": "HL-monnot2011-027",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
    "value": 50.0,
@@ -1928,10 +2467,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 69
-   }
+   },
+   "legacy_id": "f3-069"
   },
   {
-   "id": "f3-070",
+   "id": "HL-monnot2011-028",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
    "value": 50.0,
@@ -1950,10 +2490,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 70
-   }
+   },
+   "legacy_id": "f3-070"
   },
   {
-   "id": "f3-071",
+   "id": "HL-monnot2011-029",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
    "value": 50.0,
@@ -1972,10 +2513,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 71
-   }
+   },
+   "legacy_id": "f3-071"
   },
   {
-   "id": "f3-072",
+   "id": "HL-monnot2011-030",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
    "value": 50.0,
@@ -1994,10 +2536,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 72
-   }
+   },
+   "legacy_id": "f3-072"
   },
   {
-   "id": "f3-073",
+   "id": "HL-treff2012-007",
    "variant": "m.3243A>G",
    "pub": "treff2012",
    "value": 52.0,
@@ -2016,10 +2559,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 73
-   }
+   },
+   "legacy_id": "f3-073"
   },
   {
-   "id": "f3-074",
+   "id": "HL-monnot2011-031",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
    "value": 55.0,
@@ -2038,10 +2582,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 74
-   }
+   },
+   "legacy_id": "f3-074"
   },
   {
-   "id": "f3-075",
+   "id": "HL-monnot2011-032",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
    "value": 60.0,
@@ -2060,10 +2605,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 75
-   }
+   },
+   "legacy_id": "f3-075"
   },
   {
-   "id": "f3-076",
+   "id": "HL-treff2012-008",
    "variant": "m.3243A>G",
    "pub": "treff2012",
    "value": 61.0,
@@ -2082,10 +2628,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 76
-   }
+   },
+   "legacy_id": "f3-076"
   },
   {
-   "id": "f3-077",
+   "id": "HL-monnot2011-033",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
    "value": 62.0,
@@ -2104,10 +2651,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 77
-   }
+   },
+   "legacy_id": "f3-077"
   },
   {
-   "id": "f3-078",
+   "id": "HL-monnot2011-034",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
    "value": 63.0,
@@ -2126,10 +2674,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 78
-   }
+   },
+   "legacy_id": "f3-078"
   },
   {
-   "id": "f3-079",
+   "id": "HL-monnot2011-035",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
    "value": 66.0,
@@ -2148,10 +2697,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 79
-   }
+   },
+   "legacy_id": "f3-079"
   },
   {
-   "id": "f3-080",
+   "id": "HL-treff2012-009",
    "variant": "m.3243A>G",
    "pub": "treff2012",
    "value": 71.0,
@@ -2170,10 +2720,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 80
-   }
+   },
+   "legacy_id": "f3-080"
   },
   {
-   "id": "f3-081",
+   "id": "HL-monnot2011-036",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
    "value": 74.0,
@@ -2192,10 +2743,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 81
-   }
+   },
+   "legacy_id": "f3-081"
   },
   {
-   "id": "f3-082",
+   "id": "HL-treff2012-010",
    "variant": "m.3243A>G",
    "pub": "treff2012",
    "value": 74.0,
@@ -2214,10 +2766,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 82
-   }
+   },
+   "legacy_id": "f3-082"
   },
   {
-   "id": "f3-083",
+   "id": "HL-monnot2011-037",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
    "value": 74.5,
@@ -2236,10 +2789,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 83
-   }
+   },
+   "legacy_id": "f3-083"
   },
   {
-   "id": "f3-084",
+   "id": "HL-monnot2011-038",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
    "value": 75.0,
@@ -2258,10 +2812,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 84
-   }
+   },
+   "legacy_id": "f3-084"
   },
   {
-   "id": "f3-085",
+   "id": "HL-treff2012-011",
    "variant": "m.3243A>G",
    "pub": "treff2012",
    "value": 81.0,
@@ -2280,10 +2835,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 85
-   }
+   },
+   "legacy_id": "f3-085"
   },
   {
-   "id": "f3-086",
+   "id": "HL-treff2012-012",
    "variant": "m.3243A>G",
    "pub": "treff2012",
    "value": 82.0,
@@ -2302,10 +2858,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 86
-   }
+   },
+   "legacy_id": "f3-086"
   },
   {
-   "id": "f3-087",
+   "id": "HL-treff2012-013",
    "variant": "m.3243A>G",
    "pub": "treff2012",
    "value": 86.0,
@@ -2324,10 +2881,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 87
-   }
+   },
+   "legacy_id": "f3-087"
   },
   {
-   "id": "f3-088",
+   "id": "HL-treff2012-014",
    "variant": "m.3243A>G",
    "pub": "treff2012",
    "value": 89.0,
@@ -2346,10 +2904,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 88
-   }
+   },
+   "legacy_id": "f3-088"
   },
   {
-   "id": "f3-089",
+   "id": "HL-treff2012-015",
    "variant": "m.3243A>G",
    "pub": "treff2012",
    "value": 90.0,
@@ -2368,10 +2927,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 89
-   }
+   },
+   "legacy_id": "f3-089"
   },
   {
-   "id": "f3-090",
+   "id": "HL-treff2012-016",
    "variant": "m.3243A>G",
    "pub": "treff2012",
    "value": 91.0,
@@ -2390,10 +2950,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 90
-   }
+   },
+   "legacy_id": "f3-090"
   },
   {
-   "id": "f3-091",
+   "id": "HL-ji2021-001",
    "variant": "m.3697G>A",
    "pub": "ji2021",
    "value": 15.2,
@@ -2412,10 +2973,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 91
-   }
+   },
+   "legacy_id": "f3-091"
   },
   {
-   "id": "f3-092",
+   "id": "HL-ji2021-002",
    "variant": "m.3697G>A",
    "pub": "ji2021",
    "value": 23.5,
@@ -2434,10 +2996,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 92
-   }
+   },
+   "legacy_id": "f3-092"
   },
   {
-   "id": "f3-093",
+   "id": "HL-ji2021-003",
    "variant": "m.3697G>A",
    "pub": "ji2021",
    "value": 29.4,
@@ -2456,10 +3019,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 93
-   }
+   },
+   "legacy_id": "f3-093"
   },
   {
-   "id": "f3-094",
+   "id": "HL-ji2021-004",
    "variant": "m.3697G>A",
    "pub": "ji2021",
    "value": 31.7,
@@ -2478,10 +3042,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 94
-   }
+   },
+   "legacy_id": "f3-094"
   },
   {
-   "id": "f3-095",
+   "id": "HL-ji2021-005",
    "variant": "m.3697G>A",
    "pub": "ji2021",
    "value": 34.3,
@@ -2500,10 +3065,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 95
-   }
+   },
+   "legacy_id": "f3-095"
   },
   {
-   "id": "f3-096",
+   "id": "HL-ji2021-006",
    "variant": "m.3697G>A",
    "pub": "ji2021",
    "value": 36.48,
@@ -2522,10 +3088,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 96
-   }
+   },
+   "legacy_id": "f3-096"
   },
   {
-   "id": "f3-097",
+   "id": "HL-ji2021-007",
    "variant": "m.3697G>A",
    "pub": "ji2021",
    "value": 43.9,
@@ -2544,10 +3111,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 97
-   }
+   },
+   "legacy_id": "f3-097"
   },
   {
-   "id": "f3-098",
+   "id": "HL-ji2021-008",
    "variant": "m.3697G>A",
    "pub": "ji2021",
    "value": 46.7,
@@ -2566,10 +3134,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 98
-   }
+   },
+   "legacy_id": "f3-098"
   },
   {
-   "id": "f3-099",
+   "id": "HL-ji2021-009",
    "variant": "m.3697G>A",
    "pub": "ji2021",
    "value": 47.3,
@@ -2588,10 +3157,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 99
-   }
+   },
+   "legacy_id": "f3-099"
   },
   {
-   "id": "f3-100",
+   "id": "HL-ji2021-010",
    "variant": "m.3697G>A",
    "pub": "ji2021",
    "value": 53.9,
@@ -2610,10 +3180,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 100
-   }
+   },
+   "legacy_id": "f3-100"
   },
   {
-   "id": "f3-101",
+   "id": "HL-ji2021-011",
    "variant": "m.3697G>A",
    "pub": "ji2021",
    "value": 58.9,
@@ -2632,10 +3203,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 101
-   }
+   },
+   "legacy_id": "f3-101"
   },
   {
-   "id": "f3-102",
+   "id": "HL-ji2021-012",
    "variant": "m.3697G>A",
    "pub": "ji2021",
    "value": 67.0,
@@ -2654,10 +3226,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 102
-   }
+   },
+   "legacy_id": "f3-102"
   },
   {
-   "id": "f3-103",
+   "id": "HL-ji2021-013",
    "variant": "m.3697G>A",
    "pub": "ji2021",
    "value": 70.9,
@@ -2676,10 +3249,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 103
-   }
+   },
+   "legacy_id": "f3-103"
   },
   {
-   "id": "f3-104",
+   "id": "HL-ji2021-014",
    "variant": "m.3697G>A",
    "pub": "ji2021",
    "value": 85.3,
@@ -2698,10 +3272,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 104
-   }
+   },
+   "legacy_id": "f3-104"
   },
   {
-   "id": "f3-105",
+   "id": "HL-ji2021-015",
    "variant": "m.3697G>A",
    "pub": "ji2021",
    "value": 98.7,
@@ -2720,10 +3295,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 105
-   }
+   },
+   "legacy_id": "f3-105"
   },
   {
-   "id": "f3-106",
+   "id": "HL-ji2021-016",
    "variant": "m.3697G>A",
    "pub": "ji2021",
    "value": 99.0,
@@ -2742,10 +3318,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 106
-   }
+   },
+   "legacy_id": "f3-106"
   },
   {
-   "id": "f3-107",
+   "id": "HL-ji2021-017",
    "variant": "m.3697G>A",
    "pub": "ji2021",
    "value": 99.3,
@@ -2764,10 +3341,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 107
-   }
+   },
+   "legacy_id": "f3-107"
   },
   {
-   "id": "f3-108",
+   "id": "HL-ji2021-018",
    "variant": "m.3697G>A",
    "pub": "ji2021",
    "value": 99.4,
@@ -2786,10 +3364,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 108
-   }
+   },
+   "legacy_id": "f3-108"
   },
   {
-   "id": "f3-109",
+   "id": "HL-ji2021-019",
    "variant": "m.3697G>A",
    "pub": "ji2021",
    "value": 99.7,
@@ -2808,10 +3387,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 109
-   }
+   },
+   "legacy_id": "f3-109"
   },
   {
-   "id": "f3-110",
+   "id": "HL-ji2021-020",
    "variant": "m.3697G>A",
    "pub": "ji2021",
    "value": 100.0,
@@ -2830,10 +3410,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 110
-   }
+   },
+   "legacy_id": "f3-110"
   },
   {
-   "id": "f3-111",
+   "id": "HL-ji2021-021",
    "variant": "m.3697G>A",
    "pub": "ji2021",
    "value": 100.0,
@@ -2852,10 +3433,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 111
-   }
+   },
+   "legacy_id": "f3-111"
   },
   {
-   "id": "f3-112",
+   "id": "HL-sallevelt2017-001",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
    "value": 5.75,
@@ -2874,10 +3456,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 112
-   }
+   },
+   "legacy_id": "f3-112"
   },
   {
-   "id": "f3-113",
+   "id": "HL-sallevelt2017-002",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
    "value": 8.0,
@@ -2896,10 +3479,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 113
-   }
+   },
+   "legacy_id": "f3-113"
   },
   {
-   "id": "f3-114",
+   "id": "HL-tofilo2026-001",
    "variant": "m.14487T>C",
    "pub": "tofilo2026",
    "value": 11.4,
@@ -2918,10 +3502,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 114
-   }
+   },
+   "legacy_id": "f3-114"
   },
   {
-   "id": "f3-115",
+   "id": "HL-tofilo2026-002",
    "variant": "m.14487T>C",
    "pub": "tofilo2026",
    "value": 12.0,
@@ -2940,10 +3525,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 115
-   }
+   },
+   "legacy_id": "f3-115"
   },
   {
-   "id": "f3-116",
+   "id": "HL-sallevelt2017-003",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
    "value": 12.25,
@@ -2962,10 +3548,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 116
-   }
+   },
+   "legacy_id": "f3-116"
   },
   {
-   "id": "f3-117",
+   "id": "HL-tofilo2026-003",
    "variant": "m.14487T>C",
    "pub": "tofilo2026",
    "value": 13.5,
@@ -2984,10 +3571,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 117
-   }
+   },
+   "legacy_id": "f3-117"
   },
   {
-   "id": "f3-118",
+   "id": "HL-sallevelt2017-004",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
    "value": 21.1,
@@ -3006,10 +3594,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 118
-   }
+   },
+   "legacy_id": "f3-118"
   },
   {
-   "id": "f3-119",
+   "id": "HL-sallevelt2017-005",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
    "value": 21.4,
@@ -3028,10 +3617,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 119
-   }
+   },
+   "legacy_id": "f3-119"
   },
   {
-   "id": "f3-120",
+   "id": "HL-sallevelt2017-006",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
    "value": 43.6,
@@ -3050,10 +3640,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 120
-   }
+   },
+   "legacy_id": "f3-120"
   },
   {
-   "id": "f3-121",
+   "id": "HL-sallevelt2017-007",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
    "value": 51.3,
@@ -3072,10 +3663,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 121
-   }
+   },
+   "legacy_id": "f3-121"
   },
   {
-   "id": "f3-122",
+   "id": "HL-sallevelt2017-008",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
    "value": 56.75,
@@ -3094,10 +3686,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 122
-   }
+   },
+   "legacy_id": "f3-122"
   },
   {
-   "id": "f3-123",
+   "id": "HL-sallevelt2017-009",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
    "value": 59.4,
@@ -3116,10 +3709,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 123
-   }
+   },
+   "legacy_id": "f3-123"
   },
   {
-   "id": "f3-124",
+   "id": "HL-sallevelt2017-010",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
    "value": 62.5,
@@ -3138,10 +3732,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 124
-   }
+   },
+   "legacy_id": "f3-124"
   },
   {
-   "id": "f3-125",
+   "id": "HL-sallevelt2017-011",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
    "value": 64.35,
@@ -3160,10 +3755,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 125
-   }
+   },
+   "legacy_id": "f3-125"
   },
   {
-   "id": "f3-126",
+   "id": "HL-tofilo2026-004",
    "variant": "m.14487T>C",
    "pub": "tofilo2026",
    "value": 73.2,
@@ -3182,10 +3778,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 126
-   }
+   },
+   "legacy_id": "f3-126"
   },
   {
-   "id": "f3-127",
+   "id": "HL-sallevelt2017-012",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
    "value": 79.3,
@@ -3204,10 +3801,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 127
-   }
+   },
+   "legacy_id": "f3-127"
   },
   {
-   "id": "f3-128",
+   "id": "HL-sallevelt2017-013",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
    "value": 88.2,
@@ -3226,10 +3824,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 128
-   }
+   },
+   "legacy_id": "f3-128"
   },
   {
-   "id": "f3-129",
+   "id": "HL-sallevelt2017-014",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
    "value": 90.1,
@@ -3248,10 +3847,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 129
-   }
+   },
+   "legacy_id": "f3-129"
   },
   {
-   "id": "f3-130",
+   "id": "HL-tofilo2026-005",
    "variant": "m.14487T>C",
    "pub": "tofilo2026",
    "value": 92.3,
@@ -3270,10 +3870,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 130
-   }
+   },
+   "legacy_id": "f3-130"
   },
   {
-   "id": "f3-131",
+   "id": "HL-sallevelt2017-015",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
    "value": 93.2,
@@ -3292,10 +3893,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 131
-   }
+   },
+   "legacy_id": "f3-131"
   },
   {
-   "id": "f3-132",
+   "id": "HL-sallevelt2017-016",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
    "value": 95.45,
@@ -3314,10 +3916,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 132
-   }
+   },
+   "legacy_id": "f3-132"
   },
   {
-   "id": "f3-133",
+   "id": "HL-sallevelt2017-017",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
    "value": 96.4,
@@ -3336,10 +3939,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 133
-   }
+   },
+   "legacy_id": "f3-133"
   },
   {
-   "id": "f3-134",
+   "id": "HL-sallevelt2017-018",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
    "value": 96.45,
@@ -3358,10 +3962,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 134
-   }
+   },
+   "legacy_id": "f3-134"
   },
   {
-   "id": "f3-135",
+   "id": "HL-sallevelt2017-019",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
    "value": 97.7,
@@ -3380,10 +3985,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 135
-   }
+   },
+   "legacy_id": "f3-135"
   },
   {
-   "id": "f3-136",
+   "id": "HL-sallevelt2017-020",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
    "value": 98.35,
@@ -3402,10 +4008,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 136
-   }
+   },
+   "legacy_id": "f3-136"
   },
   {
-   "id": "f3-137",
+   "id": "HL-sallevelt2017-021",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
    "value": 98.4,
@@ -3424,10 +4031,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 137
-   }
+   },
+   "legacy_id": "f3-137"
   },
   {
-   "id": "f3-138",
+   "id": "HL-tofilo2026-006",
    "variant": "m.14487T>C",
    "pub": "tofilo2026",
    "value": 99.6,
@@ -3446,10 +4054,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 138
-   }
+   },
+   "legacy_id": "f3-138"
   },
   {
-   "id": "f3-139",
+   "id": "HL-sallevelt2017-022",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
    "value": 100.0,
@@ -3468,10 +4077,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 139
-   }
+   },
+   "legacy_id": "f3-139"
   },
   {
-   "id": "f3-140",
+   "id": "HL-mizuguchi2025-001",
    "variant": "m.10197G>A",
    "pub": "mizuguchi2025",
    "value": 1.0,
@@ -3490,10 +4100,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 140
-   }
+   },
+   "legacy_id": "f3-140"
   },
   {
-   "id": "f3-141",
+   "id": "HL-mizuguchi2025-002",
    "variant": "m.10197G>A",
    "pub": "mizuguchi2025",
    "value": 2.0,
@@ -3512,10 +4123,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 141
-   }
+   },
+   "legacy_id": "f3-141"
   },
   {
-   "id": "f3-142",
+   "id": "HL-mizuguchi2025-003",
    "variant": "m.10197G>A",
    "pub": "mizuguchi2025",
    "value": 2.0,
@@ -3534,10 +4146,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 142
-   }
+   },
+   "legacy_id": "f3-142"
   },
   {
-   "id": "f3-143",
+   "id": "HL-mizuguchi2025-004",
    "variant": "m.10197G>A",
    "pub": "mizuguchi2025",
    "value": 5.0,
@@ -3556,10 +4169,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 143
-   }
+   },
+   "legacy_id": "f3-143"
   },
   {
-   "id": "f3-144",
+   "id": "HL-mizuguchi2025-005",
    "variant": "m.10197G>A",
    "pub": "mizuguchi2025",
    "value": 5.0,
@@ -3578,10 +4192,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 144
-   }
+   },
+   "legacy_id": "f3-144"
   },
   {
-   "id": "f3-145",
+   "id": "HL-mizuguchi2025-006",
    "variant": "m.10197G>A",
    "pub": "mizuguchi2025",
    "value": null,
@@ -3600,10 +4215,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 145
-   }
+   },
+   "legacy_id": "f3-145"
   },
   {
-   "id": "f3-146",
+   "id": "HL-mizuguchi2025-007",
    "variant": "m.10197G>A",
    "pub": "mizuguchi2025",
    "value": null,
@@ -3622,10 +4238,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 146
-   }
+   },
+   "legacy_id": "f3-146"
   },
   {
-   "id": "f3-147",
+   "id": "HL-mizuguchi2025-008",
    "variant": "m.10197G>A",
    "pub": "mizuguchi2025",
    "value": 96.0,
@@ -3644,10 +4261,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 147
-   }
+   },
+   "legacy_id": "f3-147"
   },
   {
-   "id": "f3-148",
+   "id": "HL-mizuguchi2025-009",
    "variant": "m.10197G>A",
    "pub": "mizuguchi2025",
    "value": 96.5,
@@ -3666,10 +4284,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 148
-   }
+   },
+   "legacy_id": "f3-148"
   },
   {
-   "id": "f3-149",
+   "id": "HL-spath2021-020",
    "variant": "m.10191T>C",
    "pub": "spath2021",
    "value": 0.0,
@@ -3688,10 +4307,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 149
-   }
+   },
+   "legacy_id": "f3-149"
   },
   {
-   "id": "f3-150",
+   "id": "HL-spath2021-021",
    "variant": "m.10191T>C",
    "pub": "spath2021",
    "value": 0.0,
@@ -3710,10 +4330,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 150
-   }
+   },
+   "legacy_id": "f3-150"
   },
   {
-   "id": "f3-151",
+   "id": "HL-spath2021-022",
    "variant": "m.10191T>C",
    "pub": "spath2021",
    "value": 0.0,
@@ -3732,10 +4353,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 151
-   }
+   },
+   "legacy_id": "f3-151"
   },
   {
-   "id": "f3-152",
+   "id": "HL-spath2021-023",
    "variant": "m.10191T>C",
    "pub": "spath2021",
    "value": 0.0,
@@ -3754,10 +4376,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 152
-   }
+   },
+   "legacy_id": "f3-152"
   },
   {
-   "id": "f3-153",
+   "id": "HL-spath2021-024",
    "variant": "m.10191T>C",
    "pub": "spath2021",
    "value": 0.0,
@@ -3776,10 +4399,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 153
-   }
+   },
+   "legacy_id": "f3-153"
   },
   {
-   "id": "f3-154",
+   "id": "HL-spath2021-025",
    "variant": "m.10191T>C",
    "pub": "spath2021",
    "value": 0.0,
@@ -3798,10 +4422,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 154
-   }
+   },
+   "legacy_id": "f3-154"
   },
   {
-   "id": "f3-155",
+   "id": "HL-spath2021-026",
    "variant": "m.10191T>C",
    "pub": "spath2021",
    "value": 0.0,
@@ -3820,10 +4445,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 155
-   }
+   },
+   "legacy_id": "f3-155"
   },
   {
-   "id": "f3-156",
+   "id": "HL-spath2021-027",
    "variant": "m.10191T>C",
    "pub": "spath2021",
    "value": 0.0,
@@ -3842,10 +4468,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 156
-   }
+   },
+   "legacy_id": "f3-156"
   },
   {
-   "id": "f3-157",
+   "id": "HL-hyslop2025-004",
    "variant": "m.8993T>G",
    "pub": "hyslop2025",
    "value": 0.0,
@@ -3864,10 +4491,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 157
-   }
+   },
+   "legacy_id": "f3-157"
   },
   {
-   "id": "f3-158",
+   "id": "HL-hyslop2025-005",
    "variant": "m.8993T>G",
    "pub": "hyslop2025",
    "value": 0.0,
@@ -3886,10 +4514,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 158
-   }
+   },
+   "legacy_id": "f3-158"
   },
   {
-   "id": "f3-159",
+   "id": "HL-spath2021-028",
    "variant": "m.8993T>G",
    "pub": "spath2021",
    "value": 0.0,
@@ -3908,10 +4537,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 159
-   }
+   },
+   "legacy_id": "f3-159"
   },
   {
-   "id": "f3-160",
+   "id": "HL-spath2021-029",
    "variant": "m.8993T>G",
    "pub": "spath2021",
    "value": 0.0,
@@ -3930,10 +4560,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 160
-   }
+   },
+   "legacy_id": "f3-160"
   },
   {
-   "id": "f3-161",
+   "id": "HL-spath2021-030",
    "variant": "m.8993T>G",
    "pub": "spath2021",
    "value": 0.0,
@@ -3952,10 +4583,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 161
-   }
+   },
+   "legacy_id": "f3-161"
   },
   {
-   "id": "f3-162",
+   "id": "HL-spath2021-031",
    "variant": "m.8993T>G",
    "pub": "spath2021",
    "value": 0.0,
@@ -3974,10 +4606,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 162
-   }
+   },
+   "legacy_id": "f3-162"
   },
   {
-   "id": "f3-163",
+   "id": "HL-spath2021-032",
    "variant": "m.8993T>G",
    "pub": "spath2021",
    "value": 0.0,
@@ -3996,10 +4629,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 163
-   }
+   },
+   "legacy_id": "f3-163"
   },
   {
-   "id": "f3-164",
+   "id": "HL-spath2021-033",
    "variant": "m.8993T>G",
    "pub": "spath2021",
    "value": 0.0,
@@ -4018,10 +4652,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 164
-   }
+   },
+   "legacy_id": "f3-164"
   },
   {
-   "id": "f3-165",
+   "id": "HL-spath2021-034",
    "variant": "m.8993T>G",
    "pub": "spath2021",
    "value": 0.0,
@@ -4040,10 +4675,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 165
-   }
+   },
+   "legacy_id": "f3-165"
   },
   {
-   "id": "f3-166",
+   "id": "HL-spath2021-035",
    "variant": "m.8993T>G",
    "pub": "spath2021",
    "value": 0.0,
@@ -4062,10 +4698,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 166
-   }
+   },
+   "legacy_id": "f3-166"
   },
   {
-   "id": "f3-167",
+   "id": "HL-spath2021-036",
    "variant": "m.8993T>G",
    "pub": "spath2021",
    "value": 0.0,
@@ -4084,10 +4721,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 167
-   }
+   },
+   "legacy_id": "f3-167"
   },
   {
-   "id": "f3-168",
+   "id": "HL-spath2021-037",
    "variant": "m.8993T>G",
    "pub": "spath2021",
    "value": 0.0,
@@ -4106,10 +4744,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 168
-   }
+   },
+   "legacy_id": "f3-168"
   },
   {
-   "id": "f3-169",
+   "id": "HL-spath2021-038",
    "variant": "m.8993T>G",
    "pub": "spath2021",
    "value": 0.0,
@@ -4128,10 +4767,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 169
-   }
+   },
+   "legacy_id": "f3-169"
   },
   {
-   "id": "f3-170",
+   "id": "HL-spath2021-039",
    "variant": "m.8993T>G",
    "pub": "spath2021",
    "value": 0.0,
@@ -4150,10 +4790,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 170
-   }
+   },
+   "legacy_id": "f3-170"
   },
   {
-   "id": "f3-171",
+   "id": "HL-spath2021-040",
    "variant": "m.8993T>G",
    "pub": "spath2021",
    "value": 0.0,
@@ -4172,10 +4813,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 171
-   }
+   },
+   "legacy_id": "f3-171"
   },
   {
-   "id": "f3-172",
+   "id": "HL-spath2021-041",
    "variant": "m.8993T>G",
    "pub": "spath2021",
    "value": 0.0,
@@ -4194,10 +4836,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 172
-   }
+   },
+   "legacy_id": "f3-172"
   },
   {
-   "id": "f3-173",
+   "id": "HL-spath2021-042",
    "variant": "m.8993T>G",
    "pub": "spath2021",
    "value": 0.0,
@@ -4216,10 +4859,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 173
-   }
+   },
+   "legacy_id": "f3-173"
   },
   {
-   "id": "f3-174",
+   "id": "HL-spath2021-043",
    "variant": "m.8993T>G",
    "pub": "spath2021",
    "value": 0.0,
@@ -4238,10 +4882,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 174
-   }
+   },
+   "legacy_id": "f3-174"
   },
   {
-   "id": "f3-175",
+   "id": "HL-spath2021-044",
    "variant": "m.8993T>G",
    "pub": "spath2021",
    "value": 0.0,
@@ -4260,10 +4905,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 175
-   }
+   },
+   "legacy_id": "f3-175"
   },
   {
-   "id": "f3-176",
+   "id": "HL-spath2021-045",
    "variant": "m.8993T>G",
    "pub": "spath2021",
    "value": 0.0,
@@ -4282,10 +4928,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 176
-   }
+   },
+   "legacy_id": "f3-176"
   },
   {
-   "id": "f3-177",
+   "id": "HL-spath2021-046",
    "variant": "m.8993T>G",
    "pub": "spath2021",
    "value": 0.0,
@@ -4304,10 +4951,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 177
-   }
+   },
+   "legacy_id": "f3-177"
   },
   {
-   "id": "f3-178",
+   "id": "HL-steffann2006-001",
    "variant": "m.8993T>G",
    "pub": "steffann2006",
    "value": 0.0,
@@ -4326,10 +4974,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 178
-   }
+   },
+   "legacy_id": "f3-178"
   },
   {
-   "id": "f3-179",
+   "id": "HL-steffann2006-002",
    "variant": "m.8993T>G",
    "pub": "steffann2006",
    "value": 0.0,
@@ -4348,10 +4997,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 179
-   }
+   },
+   "legacy_id": "f3-179"
   },
   {
-   "id": "f3-180",
+   "id": "HL-thorburn2009-001",
    "variant": "m.8993T>G",
    "pub": "thorburn2009",
    "value": 2.5,
@@ -4370,10 +5020,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 180
-   }
+   },
+   "legacy_id": "f3-180"
   },
   {
-   "id": "f3-181",
+   "id": "HL-spath2021-047",
    "variant": "m.8993T>G",
    "pub": "spath2021",
    "value": 88.7,
@@ -4392,10 +5043,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 181
-   }
+   },
+   "legacy_id": "f3-181"
   },
   {
-   "id": "f3-182",
+   "id": "HL-steffann2006-003",
    "variant": "m.8993T>G",
    "pub": "steffann2006",
    "value": 94.0,
@@ -4414,10 +5066,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 182
-   }
+   },
+   "legacy_id": "f3-182"
   },
   {
-   "id": "f3-183",
+   "id": "HL-hu2026-001",
    "variant": "m.3250T>C",
    "pub": "hu2026",
    "value": 17.8,
@@ -4436,10 +5089,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 183
-   }
+   },
+   "legacy_id": "f3-183"
   },
   {
-   "id": "f3-184",
+   "id": "HL-hu2026-002",
    "variant": "m.3250T>C",
    "pub": "hu2026",
    "value": 0.0,
@@ -4458,10 +5112,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 184
-   }
+   },
+   "legacy_id": "f3-184"
   },
   {
-   "id": "f3-185",
+   "id": "HL-hu2026-003",
    "variant": "m.3250T>C",
    "pub": "hu2026",
    "value": 0.0,
@@ -4480,10 +5135,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 185
-   }
+   },
+   "legacy_id": "f3-185"
   },
   {
-   "id": "f3-186",
+   "id": "HL-hu2026-004",
    "variant": "m.3250T>C",
    "pub": "hu2026",
    "value": 0.0,
@@ -4502,10 +5158,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 186
-   }
+   },
+   "legacy_id": "f3-186"
   },
   {
-   "id": "f3-187",
+   "id": "HL-hu2026-005",
    "variant": "m.3250T>C",
    "pub": "hu2026",
    "value": 0.0,
@@ -4524,10 +5181,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 187
-   }
+   },
+   "legacy_id": "f3-187"
   },
   {
-   "id": "f3-188",
+   "id": "HL-hu2026-006",
    "variant": "m.3250T>C",
    "pub": "hu2026",
    "value": 1.8,
@@ -4546,10 +5204,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 188
-   }
+   },
+   "legacy_id": "f3-188"
   },
   {
-   "id": "f3-189",
+   "id": "HL-hu2026-007",
    "variant": "m.3250T>C",
    "pub": "hu2026",
    "value": 0.0,
@@ -4568,10 +5227,11 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 189
-   }
+   },
+   "legacy_id": "f3-189"
   },
   {
-   "id": "f3-190",
+   "id": "HL-hu2026-008",
    "variant": "m.3250T>C",
    "pub": "hu2026",
    "value": 8.1,
@@ -4590,7 +5250,8 @@
    "src": {
     "sheet": "Рисунок 3",
     "row": 190
-   }
+   },
+   "legacy_id": "f3-190"
   }
  ],
  "fig3_blocks": [
@@ -4657,7 +5318,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 4
-   }
+   },
+   "id": "EC-janssen2024-001",
+   "legacy_id": "f4-004"
   },
   {
    "embryo": "Janssen2024_F20_E45",
@@ -4670,7 +5333,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 5
-   }
+   },
+   "id": "EC-janssen2024-002",
+   "legacy_id": "f4-005"
   },
   {
    "embryo": "Janssen2024_F20_E46",
@@ -4683,7 +5348,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 6
-   }
+   },
+   "id": "EC-janssen2024-003",
+   "legacy_id": "f4-006"
   },
   {
    "embryo": "Janssen2024_F20_E46",
@@ -4696,7 +5363,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 7
-   }
+   },
+   "id": "EC-janssen2024-004",
+   "legacy_id": "f4-007"
   },
   {
    "embryo": "Janssen2024_F20_E47",
@@ -4709,7 +5378,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 8
-   }
+   },
+   "id": "EC-janssen2024-005",
+   "legacy_id": "f4-008"
   },
   {
    "embryo": "Janssen2024_F20_E47",
@@ -4722,7 +5393,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 9
-   }
+   },
+   "id": "EC-janssen2024-006",
+   "legacy_id": "f4-009"
   },
   {
    "embryo": "Janssen2024_F20_E48",
@@ -4735,7 +5408,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 10
-   }
+   },
+   "id": "EC-janssen2024-007",
+   "legacy_id": "f4-010"
   },
   {
    "embryo": "Janssen2024_F20_E48",
@@ -4748,7 +5423,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 11
-   }
+   },
+   "id": "EC-janssen2024-008",
+   "legacy_id": "f4-011"
   },
   {
    "embryo": "Rubens_113",
@@ -4761,7 +5438,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 12
-   }
+   },
+   "id": "EC-rubens2025-001",
+   "legacy_id": "f4-012"
   },
   {
    "embryo": "Rubens_113",
@@ -4774,7 +5453,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 13
-   }
+   },
+   "id": "EC-rubens2025-002",
+   "legacy_id": "f4-013"
   },
   {
    "embryo": "Rubens_114",
@@ -4787,7 +5468,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 14
-   }
+   },
+   "id": "EC-rubens2025-003",
+   "legacy_id": "f4-014"
   },
   {
    "embryo": "Rubens_114",
@@ -4800,7 +5483,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 15
-   }
+   },
+   "id": "EC-rubens2025-004",
+   "legacy_id": "f4-015"
   },
   {
    "embryo": "Rubens_115",
@@ -4813,7 +5498,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 16
-   }
+   },
+   "id": "EC-rubens2025-005",
+   "legacy_id": "f4-016"
   },
   {
    "embryo": "Rubens_115",
@@ -4826,7 +5513,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 17
-   }
+   },
+   "id": "EC-rubens2025-006",
+   "legacy_id": "f4-017"
   },
   {
    "embryo": "Rubens_116",
@@ -4839,7 +5528,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 18
-   }
+   },
+   "id": "EC-rubens2025-007",
+   "legacy_id": "f4-018"
   },
   {
    "embryo": "Rubens_116",
@@ -4852,7 +5543,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 19
-   }
+   },
+   "id": "EC-rubens2025-008",
+   "legacy_id": "f4-019"
   },
   {
    "embryo": "Rubens_116",
@@ -4865,7 +5558,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 20
-   }
+   },
+   "id": "EC-rubens2025-009",
+   "legacy_id": "f4-020"
   },
   {
    "embryo": "Rubens_117",
@@ -4878,7 +5573,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 21
-   }
+   },
+   "id": "EC-rubens2025-010",
+   "legacy_id": "f4-021"
   },
   {
    "embryo": "Rubens_117",
@@ -4891,7 +5588,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 22
-   }
+   },
+   "id": "EC-rubens2025-011",
+   "legacy_id": "f4-022"
   },
   {
    "embryo": "Rubens_117",
@@ -4904,7 +5603,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 23
-   }
+   },
+   "id": "EC-rubens2025-012",
+   "legacy_id": "f4-023"
   },
   {
    "embryo": "Rubens_118",
@@ -4917,7 +5618,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 24
-   }
+   },
+   "id": "EC-rubens2025-013",
+   "legacy_id": "f4-024"
   },
   {
    "embryo": "Rubens_118",
@@ -4930,7 +5633,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 25
-   }
+   },
+   "id": "EC-rubens2025-014",
+   "legacy_id": "f4-025"
   },
   {
    "embryo": "Rubens_120",
@@ -4943,7 +5648,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 26
-   }
+   },
+   "id": "EC-rubens2025-015",
+   "legacy_id": "f4-026"
   },
   {
    "embryo": "Rubens_120",
@@ -4956,7 +5663,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 27
-   }
+   },
+   "id": "EC-rubens2025-016",
+   "legacy_id": "f4-027"
   },
   {
    "embryo": "Rubens_120",
@@ -4969,7 +5678,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 28
-   }
+   },
+   "id": "EC-rubens2025-017",
+   "legacy_id": "f4-028"
   },
   {
    "embryo": "Rubens_123",
@@ -4982,7 +5693,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 29
-   }
+   },
+   "id": "EC-rubens2025-018",
+   "legacy_id": "f4-029"
   },
   {
    "embryo": "Rubens_123",
@@ -4995,7 +5708,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 30
-   }
+   },
+   "id": "EC-rubens2025-019",
+   "legacy_id": "f4-030"
   },
   {
    "embryo": "Rubens_123",
@@ -5008,7 +5723,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 31
-   }
+   },
+   "id": "EC-rubens2025-020",
+   "legacy_id": "f4-031"
   },
   {
    "embryo": "Rubens_125",
@@ -5021,7 +5738,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 32
-   }
+   },
+   "id": "EC-rubens2025-021",
+   "legacy_id": "f4-032"
   },
   {
    "embryo": "Rubens_125",
@@ -5034,7 +5753,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 33
-   }
+   },
+   "id": "EC-rubens2025-022",
+   "legacy_id": "f4-033"
   },
   {
    "embryo": "Rubens_126",
@@ -5047,7 +5768,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 34
-   }
+   },
+   "id": "EC-rubens2025-023",
+   "legacy_id": "f4-034"
   },
   {
    "embryo": "Rubens_126",
@@ -5060,7 +5783,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 35
-   }
+   },
+   "id": "EC-rubens2025-024",
+   "legacy_id": "f4-035"
   },
   {
    "embryo": "Rubens_127",
@@ -5073,7 +5798,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 36
-   }
+   },
+   "id": "EC-rubens2025-025",
+   "legacy_id": "f4-036"
   },
   {
    "embryo": "Rubens_127",
@@ -5086,7 +5813,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 37
-   }
+   },
+   "id": "EC-rubens2025-026",
+   "legacy_id": "f4-037"
   },
   {
    "embryo": "Rubens_128",
@@ -5099,7 +5828,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 38
-   }
+   },
+   "id": "EC-rubens2025-027",
+   "legacy_id": "f4-038"
   },
   {
    "embryo": "Rubens_128",
@@ -5112,7 +5843,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 39
-   }
+   },
+   "id": "EC-rubens2025-028",
+   "legacy_id": "f4-039"
   },
   {
    "embryo": "Rubens_128",
@@ -5125,7 +5858,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 40
-   }
+   },
+   "id": "EC-rubens2025-029",
+   "legacy_id": "f4-040"
   },
   {
    "embryo": "Rubens_129",
@@ -5138,7 +5873,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 41
-   }
+   },
+   "id": "EC-rubens2025-030",
+   "legacy_id": "f4-041"
   },
   {
    "embryo": "Rubens_129",
@@ -5151,7 +5888,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 42
-   }
+   },
+   "id": "EC-rubens2025-031",
+   "legacy_id": "f4-042"
   },
   {
    "embryo": "Rubens_130",
@@ -5164,7 +5903,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 43
-   }
+   },
+   "id": "EC-rubens2025-032",
+   "legacy_id": "f4-043"
   },
   {
    "embryo": "Rubens_130",
@@ -5177,7 +5918,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 44
-   }
+   },
+   "id": "EC-rubens2025-033",
+   "legacy_id": "f4-044"
   },
   {
    "embryo": "Rubens_131",
@@ -5190,7 +5933,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 45
-   }
+   },
+   "id": "EC-rubens2025-034",
+   "legacy_id": "f4-045"
   },
   {
    "embryo": "Rubens_131",
@@ -5203,7 +5948,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 46
-   }
+   },
+   "id": "EC-rubens2025-035",
+   "legacy_id": "f4-046"
   },
   {
    "embryo": "Rubens_131",
@@ -5216,7 +5963,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 47
-   }
+   },
+   "id": "EC-rubens2025-036",
+   "legacy_id": "f4-047"
   },
   {
    "embryo": "Rubens_132",
@@ -5229,7 +5978,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 48
-   }
+   },
+   "id": "EC-rubens2025-037",
+   "legacy_id": "f4-048"
   },
   {
    "embryo": "Rubens_132",
@@ -5242,7 +5993,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 49
-   }
+   },
+   "id": "EC-rubens2025-038",
+   "legacy_id": "f4-049"
   },
   {
    "embryo": "Rubens_132",
@@ -5255,7 +6008,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 50
-   }
+   },
+   "id": "EC-rubens2025-039",
+   "legacy_id": "f4-050"
   },
   {
    "embryo": "Rubens_134",
@@ -5268,7 +6023,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 51
-   }
+   },
+   "id": "EC-rubens2025-040",
+   "legacy_id": "f4-051"
   },
   {
    "embryo": "Rubens_134",
@@ -5281,7 +6038,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 52
-   }
+   },
+   "id": "EC-rubens2025-041",
+   "legacy_id": "f4-052"
   },
   {
    "embryo": "Rubens_135",
@@ -5294,7 +6053,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 53
-   }
+   },
+   "id": "EC-rubens2025-042",
+   "legacy_id": "f4-053"
   },
   {
    "embryo": "Rubens_135",
@@ -5307,7 +6068,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 54
-   }
+   },
+   "id": "EC-rubens2025-043",
+   "legacy_id": "f4-054"
   },
   {
    "embryo": "Rubens_136",
@@ -5320,7 +6083,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 55
-   }
+   },
+   "id": "EC-rubens2025-044",
+   "legacy_id": "f4-055"
   },
   {
    "embryo": "Rubens_136",
@@ -5333,7 +6098,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 56
-   }
+   },
+   "id": "EC-rubens2025-045",
+   "legacy_id": "f4-056"
   },
   {
    "embryo": "Rubens_55",
@@ -5346,7 +6113,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 57
-   }
+   },
+   "id": "EC-rubens2025-046",
+   "legacy_id": "f4-057"
   },
   {
    "embryo": "Rubens_55",
@@ -5359,7 +6128,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 58
-   }
+   },
+   "id": "EC-rubens2025-047",
+   "legacy_id": "f4-058"
   },
   {
    "embryo": "Rubens_56",
@@ -5372,7 +6143,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 59
-   }
+   },
+   "id": "EC-rubens2025-048",
+   "legacy_id": "f4-059"
   },
   {
    "embryo": "Rubens_56",
@@ -5385,7 +6158,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 60
-   }
+   },
+   "id": "EC-rubens2025-049",
+   "legacy_id": "f4-060"
   },
   {
    "embryo": "Rubens_57",
@@ -5398,7 +6173,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 61
-   }
+   },
+   "id": "EC-rubens2025-050",
+   "legacy_id": "f4-061"
   },
   {
    "embryo": "Rubens_57",
@@ -5411,7 +6188,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 62
-   }
+   },
+   "id": "EC-rubens2025-051",
+   "legacy_id": "f4-062"
   },
   {
    "embryo": "Rubens_61",
@@ -5424,7 +6203,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 63
-   }
+   },
+   "id": "EC-rubens2025-052",
+   "legacy_id": "f4-063"
   },
   {
    "embryo": "Rubens_61",
@@ -5437,7 +6218,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 64
-   }
+   },
+   "id": "EC-rubens2025-053",
+   "legacy_id": "f4-064"
   },
   {
    "embryo": "Rubens_105",
@@ -5450,7 +6233,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 65
-   }
+   },
+   "id": "EC-rubens2025-054",
+   "legacy_id": "f4-065"
   },
   {
    "embryo": "Rubens_105",
@@ -5463,7 +6248,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 66
-   }
+   },
+   "id": "EC-rubens2025-055",
+   "legacy_id": "f4-066"
   },
   {
    "embryo": "Tofilo_1",
@@ -5476,7 +6263,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 67
-   }
+   },
+   "id": "EC-tofilo2026-001",
+   "legacy_id": "f4-067"
   },
   {
    "embryo": "Tofilo_1",
@@ -5489,7 +6278,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 68
-   }
+   },
+   "id": "EC-tofilo2026-002",
+   "legacy_id": "f4-068"
   },
   {
    "embryo": "Tofilo_1",
@@ -5502,7 +6293,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 69
-   }
+   },
+   "id": "EC-tofilo2026-003",
+   "legacy_id": "f4-069"
   },
   {
    "embryo": "Tofilo_2",
@@ -5515,7 +6308,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 70
-   }
+   },
+   "id": "EC-tofilo2026-004",
+   "legacy_id": "f4-070"
   },
   {
    "embryo": "Tofilo_2",
@@ -5528,7 +6323,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 71
-   }
+   },
+   "id": "EC-tofilo2026-005",
+   "legacy_id": "f4-071"
   },
   {
    "embryo": "Tofilo_2",
@@ -5541,7 +6338,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 72
-   }
+   },
+   "id": "EC-tofilo2026-006",
+   "legacy_id": "f4-072"
   },
   {
    "embryo": "Tofilo_3",
@@ -5554,20 +6353,28 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 73
-   }
+   },
+   "id": "EC-tofilo2026-007",
+   "legacy_id": "f4-073"
   },
   {
    "embryo": "Tofilo_3",
    "pub": "tofilo2026",
    "variant": "m.14487T>C",
    "cls": "pathogenic",
-   "fraction": "remaining_te",
+   "fraction": "combined_te_icm",
    "fraction_raw": "Оставшаяся ТЭ",
    "value": 13.5,
    "src": {
     "sheet": "Рисунок 4",
     "row": 74
-   }
+   },
+   "fraction_source": "remaining_te",
+   "corrections": [
+    "corr-tofilo2026-e3-fraction"
+   ],
+   "id": "EC-tofilo2026-008",
+   "legacy_id": "f4-074"
   },
   {
    "embryo": "Tofilo_4",
@@ -5580,20 +6387,28 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 75
-   }
+   },
+   "id": "EC-tofilo2026-009",
+   "legacy_id": "f4-075"
   },
   {
    "embryo": "Tofilo_4",
    "pub": "tofilo2026",
    "variant": "m.14487T>C",
    "cls": "pathogenic",
-   "fraction": "remaining_te",
+   "fraction": "combined_te_icm",
    "fraction_raw": "Оставшаяся ТЭ",
    "value": 90.0,
    "src": {
     "sheet": "Рисунок 4",
     "row": 76
-   }
+   },
+   "fraction_source": "remaining_te",
+   "corrections": [
+    "corr-tofilo2026-e4-fraction"
+   ],
+   "id": "EC-tofilo2026-010",
+   "legacy_id": "f4-076"
   },
   {
    "embryo": "Tofilo_5",
@@ -5606,7 +6421,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 77
-   }
+   },
+   "id": "EC-tofilo2026-011",
+   "legacy_id": "f4-077"
   },
   {
    "embryo": "Tofilo_5",
@@ -5619,7 +6436,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 78
-   }
+   },
+   "id": "EC-tofilo2026-012",
+   "legacy_id": "f4-078"
   },
   {
    "embryo": "Tofilo_5",
@@ -5632,7 +6451,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 79
-   }
+   },
+   "id": "EC-tofilo2026-013",
+   "legacy_id": "f4-079"
   },
   {
    "embryo": "Tofilo_6",
@@ -5645,7 +6466,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 80
-   }
+   },
+   "id": "EC-tofilo2026-014",
+   "legacy_id": "f4-080"
   },
   {
    "embryo": "Tofilo_6",
@@ -5654,11 +6477,17 @@
    "cls": "pathogenic",
    "fraction": "icm",
    "fraction_raw": "ВКМ",
-   "value": 11.4,
+   "value": 11.3,
    "src": {
     "sheet": "Рисунок 4",
     "row": 81
-   }
+   },
+   "value_source": 11.4,
+   "corrections": [
+    "corr-tofilo2026-e6-icm"
+   ],
+   "id": "EC-tofilo2026-015",
+   "legacy_id": "f4-081"
   },
   {
    "embryo": "Tofilo_6",
@@ -5667,11 +6496,17 @@
    "cls": "pathogenic",
    "fraction": "remaining_te",
    "fraction_raw": "Оставшаяся ТЭ",
-   "value": 11.9,
+   "value": 11.7,
    "src": {
     "sheet": "Рисунок 4",
     "row": 82
-   }
+   },
+   "value_source": 11.9,
+   "corrections": [
+    "corr-tofilo2026-e6-remaining-te"
+   ],
+   "id": "EC-tofilo2026-016",
+   "legacy_id": "f4-082"
   },
   {
    "embryo": "Treff_blastocyst_1",
@@ -5684,7 +6519,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 83
-   }
+   },
+   "id": "EC-treff2012-001",
+   "legacy_id": "f4-083"
   },
   {
    "embryo": "Treff_blastocyst_1",
@@ -5697,7 +6534,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 84
-   }
+   },
+   "id": "EC-treff2012-002",
+   "legacy_id": "f4-084"
   },
   {
    "embryo": "Treff_blastocyst_2",
@@ -5710,7 +6549,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 85
-   }
+   },
+   "id": "EC-treff2012-003",
+   "legacy_id": "f4-085"
   },
   {
    "embryo": "Treff_blastocyst_2",
@@ -5723,7 +6564,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 86
-   }
+   },
+   "id": "EC-treff2012-004",
+   "legacy_id": "f4-086"
   },
   {
    "embryo": "Treff_blastocyst_3",
@@ -5736,7 +6579,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 87
-   }
+   },
+   "id": "EC-treff2012-005",
+   "legacy_id": "f4-087"
   },
   {
    "embryo": "Treff_blastocyst_3",
@@ -5749,7 +6594,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 88
-   }
+   },
+   "id": "EC-treff2012-006",
+   "legacy_id": "f4-088"
   },
   {
    "embryo": "Treff_blastocyst_4",
@@ -5762,7 +6609,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 89
-   }
+   },
+   "id": "EC-treff2012-007",
+   "legacy_id": "f4-089"
   },
   {
    "embryo": "Treff_blastocyst_4",
@@ -5775,7 +6624,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 90
-   }
+   },
+   "id": "EC-treff2012-008",
+   "legacy_id": "f4-090"
   },
   {
    "embryo": "Treff_blastocyst_5",
@@ -5788,7 +6639,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 91
-   }
+   },
+   "id": "EC-treff2012-009",
+   "legacy_id": "f4-091"
   },
   {
    "embryo": "Treff_blastocyst_5",
@@ -5801,7 +6654,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 92
-   }
+   },
+   "id": "EC-treff2012-010",
+   "legacy_id": "f4-092"
   },
   {
    "embryo": "Treff_blastocyst_6",
@@ -5814,7 +6669,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 93
-   }
+   },
+   "id": "EC-treff2012-011",
+   "legacy_id": "f4-093"
   },
   {
    "embryo": "Treff_blastocyst_6",
@@ -5827,7 +6684,9 @@
    "src": {
     "sheet": "Рисунок 4",
     "row": 94
-   }
+   },
+   "id": "EC-treff2012-012",
+   "legacy_id": "f4-094"
   }
  ],
  "cleavage": [
@@ -5842,7 +6701,9 @@
    "src": {
     "sheet": "Бластомеры (дробление)",
     "row": 4
-   }
+   },
+   "id": "CL-monnot2011-001",
+   "legacy_id": "cl-004"
   },
   {
    "embryo": "Monnot2011_P2_emb2",
@@ -5855,7 +6716,9 @@
    "src": {
     "sheet": "Бластомеры (дробление)",
     "row": 5
-   }
+   },
+   "id": "CL-monnot2011-002",
+   "legacy_id": "cl-005"
   },
   {
    "embryo": "Monnot2011_P2_emb3",
@@ -5868,7 +6731,9 @@
    "src": {
     "sheet": "Бластомеры (дробление)",
     "row": 6
-   }
+   },
+   "id": "CL-monnot2011-003",
+   "legacy_id": "cl-006"
   },
   {
    "embryo": "Monnot2011_P2_emb7",
@@ -5881,7 +6746,9 @@
    "src": {
     "sheet": "Бластомеры (дробление)",
     "row": 7
-   }
+   },
+   "id": "CL-monnot2011-004",
+   "legacy_id": "cl-007"
   },
   {
    "embryo": "Monnot2011_P2_emb8",
@@ -5894,7 +6761,9 @@
    "src": {
     "sheet": "Бластомеры (дробление)",
     "row": 8
-   }
+   },
+   "id": "CL-monnot2011-005",
+   "legacy_id": "cl-008"
   },
   {
    "embryo": "Monnot2011_P2_emb9",
@@ -5907,7 +6776,9 @@
    "src": {
     "sheet": "Бластомеры (дробление)",
     "row": 9
-   }
+   },
+   "id": "CL-monnot2011-006",
+   "legacy_id": "cl-009"
   },
   {
    "embryo": "Monnot2011_P2_emb10",
@@ -5920,7 +6791,9 @@
    "src": {
     "sheet": "Бластомеры (дробление)",
     "row": 10
-   }
+   },
+   "id": "CL-monnot2011-007",
+   "legacy_id": "cl-010"
   },
   {
    "embryo": "Monnot2011_P2_emb11",
@@ -5933,7 +6806,9 @@
    "src": {
     "sheet": "Бластомеры (дробление)",
     "row": 11
-   }
+   },
+   "id": "CL-monnot2011-008",
+   "legacy_id": "cl-011"
   },
   {
    "embryo": "Monnot2011_P2_emb12",
@@ -5946,7 +6821,9 @@
    "src": {
     "sheet": "Бластомеры (дробление)",
     "row": 12
-   }
+   },
+   "id": "CL-monnot2011-009",
+   "legacy_id": "cl-012"
   },
   {
    "embryo": "Monnot2011_P2_emb13",
@@ -5959,7 +6836,9 @@
    "src": {
     "sheet": "Бластомеры (дробление)",
     "row": 13
-   }
+   },
+   "id": "CL-monnot2011-010",
+   "legacy_id": "cl-013"
   },
   {
    "embryo": "Monnot2011_P2_emb15",
@@ -5972,7 +6851,9 @@
    "src": {
     "sheet": "Бластомеры (дробление)",
     "row": 14
-   }
+   },
+   "id": "CL-monnot2011-011",
+   "legacy_id": "cl-014"
   },
   {
    "embryo": "Monnot2011_P2_emb17",
@@ -5985,7 +6866,9 @@
    "src": {
     "sheet": "Бластомеры (дробление)",
     "row": 15
-   }
+   },
+   "id": "CL-monnot2011-012",
+   "legacy_id": "cl-015"
   },
   {
    "embryo": "Monnot2011_P2_emb18",
@@ -5998,7 +6881,9 @@
    "src": {
     "sheet": "Бластомеры (дробление)",
     "row": 16
-   }
+   },
+   "id": "CL-monnot2011-013",
+   "legacy_id": "cl-016"
   },
   {
    "embryo": "Monnot2011_P2_emb23",
@@ -6011,7 +6896,9 @@
    "src": {
     "sheet": "Бластомеры (дробление)",
     "row": 17
-   }
+   },
+   "id": "CL-monnot2011-014",
+   "legacy_id": "cl-017"
   },
   {
    "embryo": "Monnot2011_P2_emb26",
@@ -6024,7 +6911,9 @@
    "src": {
     "sheet": "Бластомеры (дробление)",
     "row": 18
-   }
+   },
+   "id": "CL-monnot2011-015",
+   "legacy_id": "cl-018"
   },
   {
    "embryo": "Monnot2011_P2_emb27",
@@ -6037,7 +6926,9 @@
    "src": {
     "sheet": "Бластомеры (дробление)",
     "row": 19
-   }
+   },
+   "id": "CL-monnot2011-016",
+   "legacy_id": "cl-019"
   },
   {
    "embryo": "Monnot2011_P2_emb30",
@@ -6050,7 +6941,9 @@
    "src": {
     "sheet": "Бластомеры (дробление)",
     "row": 20
-   }
+   },
+   "id": "CL-monnot2011-017",
+   "legacy_id": "cl-020"
   },
   {
    "embryo": "Monnot2011_P2_emb31",
@@ -6063,7 +6956,9 @@
    "src": {
     "sheet": "Бластомеры (дробление)",
     "row": 21
-   }
+   },
+   "id": "CL-monnot2011-018",
+   "legacy_id": "cl-021"
   },
   {
    "embryo": "Monnot2011_P2_emb32",
@@ -6076,7 +6971,9 @@
    "src": {
     "sheet": "Бластомеры (дробление)",
     "row": 22
-   }
+   },
+   "id": "CL-monnot2011-019",
+   "legacy_id": "cl-022"
   },
   {
    "embryo": "Monnot2011_P2_emb33",
@@ -6089,7 +6986,9 @@
    "src": {
     "sheet": "Бластомеры (дробление)",
     "row": 23
-   }
+   },
+   "id": "CL-monnot2011-020",
+   "legacy_id": "cl-023"
   },
   {
    "embryo": "Monnot2011_P2_emb34",
@@ -6102,7 +7001,9 @@
    "src": {
     "sheet": "Бластомеры (дробление)",
     "row": 24
-   }
+   },
+   "id": "CL-monnot2011-021",
+   "legacy_id": "cl-024"
   },
   {
    "embryo": "Monnot2011_P2_emb35",
@@ -6115,7 +7016,9 @@
    "src": {
     "sheet": "Бластомеры (дробление)",
     "row": 25
-   }
+   },
+   "id": "CL-monnot2011-022",
+   "legacy_id": "cl-025"
   }
  ],
  "fig5": [
@@ -7502,9 +8405,12 @@
   {
    "id": "t18",
    "value": 18,
+   "role": "study_estimate",
    "publication": "hellebrekers2012",
-   "ru": "Расчётная граница ≥95% вероятности остаться бессимптомным по совокупности точковых вариантов (мышечная ткань)",
-   "en": "Calculated bound for ≥95% probability of remaining asymptomatic across point variants (muscle tissue)"
+   "locator": "Hum Reprod Update 2012;18(4):341–349, абстракт (PubMed 22456975), раздел Results",
+   "checked": "2026-10-11 по абстракту PubMed. Полного текста нет ни в репозитории, ни в PMC: состав выборки и исключения сверены только в объёме абстракта.",
+   "ru": "Расчётный ориентир систематического обзора: уровень мутации ≤18% в мышечной ткани связан с вероятностью ≥95% остаться непоражённым (159 точковых вариантов мтДНК; семейные данные 137 родословных; априорная доля поражённых 0,477). Для m.3243A>G вероятность остаться непоражённым ниже. Оценка получена не на эмбрионах и не является порогом для биоптата эмбриона.",
+   "en": "Calculated estimate from a systematic review: a muscle mutation level of ≤18% is associated with a ≥95% chance of being unaffected (159 mtDNA point variants; familial data from 137 pedigrees; a priori probability of being affected 0.477). For m.3243A>G the chance of being unaffected is lower. The estimate was not derived from embryos and is not a threshold for an embryo biopsy."
   },
   {
    "id": "t15_30",
@@ -7512,30 +8418,42 @@
     15,
     30
    ],
+   "role": "literature_range",
    "publication": "ji2023",
-   "ru": "Литературный диапазон симптоматического порога m.3243A>G",
-   "en": "Literature range of the symptomatic threshold for m.3243A>G"
+   "locator": "J Assist Reprod Genet 2023;40:2185–2196, с. 2190 (Results) и с. 2193 (Discussion); у авторов — ссылка [23]",
+   "checked": "2026-10-11 по PDF (references/Ji et al 2023 PGTmt risk and chance.pdf)",
+   "ru": "Диапазон симптоматического порога m.3243A>G, который Ji и соавт. приводят как общепринятый со ссылкой на литературу; собственный порог для m.3243A>G по своим данным авторы определить не смогли.",
+   "en": "Range of the symptomatic threshold for m.3243A>G that Ji et al. cite as generally accepted from the literature; the authors could not determine a threshold for m.3243A>G from their own data."
   },
   {
    "id": "t30",
    "value": 30,
+   "role": "programme_criterion",
    "publication": "hyslop2025",
-   "ru": "Операционный критерий отбора эмбрионов в программе Newcastle",
-   "en": "Operational embryo-selection criterion of the Newcastle programme"
+   "locator": "N Engl J Med 2025, Methods (с. 3 PDF: «single blastomere was removed on day 3»; «less than 30% heteroplasmy») и с. 5 PDF",
+   "checked": "2026-10-11 по PDF (references/Hyslop et al 2025 MRT PGTmt.pdf)",
+   "ru": "Рабочий критерий программы Newcastle: для переноса или витрификации преимущественно использовали эмбрионы с гетероплазмией менее 30%, измеренной в одном бластомере 3-го дня. Это критерий конкретной клинической программы, а не универсальная граница.",
+   "en": "Working criterion of the Newcastle programme: embryos with less than 30% heteroplasmy, measured in a single day-3 blastomere, were preferentially used for transfer or vitrification. It is the criterion of one clinical programme, not a universal threshold."
   },
   {
    "id": "lod1",
    "value": 1,
+   "role": "chart_convention",
    "publication": null,
-   "ru": "Условный предел обнаружения (линия на графике «Распределение гетероплазмии»)",
-   "en": "Nominal detection limit (line on the Heteroplasmy Landscape chart)"
+   "locator": null,
+   "checked": "2026-10-11 — опубликованного источника для значения 1% нет",
+   "ru": "Условная линия 1% на графике «Распределение гетероплазмии». Это не предел обнаружения конкретного метода: пределы обнаружения у методов разные и указаны в записях наблюдений там, где они известны.",
+   "en": "Nominal 1% line on the Heteroplasmy Landscape chart. It is not the detection limit of any particular method: detection limits differ between methods and are given in the observation records where known."
   },
   {
    "id": "high70",
    "value": 70,
+   "role": "chart_convention",
    "publication": null,
-   "ru": "Условная граница высокой нагрузки (зона на графике «Распределение гетероплазмии»)",
-   "en": "Nominal high-load zone (Heteroplasmy Landscape chart)"
+   "locator": null,
+   "checked": "2026-10-11 — опубликованного источника для значения 70% нет",
+   "ru": "Условная зона ≥70% на графике «Распределение гетероплазмии» для наглядности; не клиническая граница.",
+   "en": "Nominal ≥70% zone on the Heteroplasmy Landscape chart, for orientation only; not a clinical threshold."
   }
  ],
  "model": {
@@ -7554,7 +8472,12 @@
    }
   ],
   "p_eupl_publication": "volodyaev2025",
-  "p_eupl_locator": null,
+  "p_eupl_status": "scenario",
+  "p_eupl_locator": "Volodyaev et al. 2025, F S Rev 6:100082, doi:10.1016/j.xfnr.2024.100082: с. 2, раздел «Incidence, parental origin, and age relation» (анеуплоидии целых хромосом 20–30% в 25–35 лет, почти линейный рост ≈6% в год после 35 лет, 80–90% в 42–44 года); с. 3, рис. 2 (доля эуплоидных бластоцист по возрасту, данные Franasiak et al.)",
+  "p_eupl_note": {
+   "ru": "Сценарные значения. Точек 0,7 / 0,5 / 0,3 в источнике нет. Текст обзора даёт долю анеуплоидий целых хромосом 20–30% в 25–35 лет и рост около 6% в год после 35 лет; значение 0,7 для 30 лет с этим согласуется. Значения 0,5 для 35 лет и 0,3 для 40 лет из текстовых оценок напрямую не следуют; их соответствие рисунку 2 обзора и учёт мозаицизма и сегментных анеуплоидий требуют подтверждения автором модели.",
+   "en": "Scenario values. The source does not give the points 0.7 / 0.5 / 0.3. The review text gives 20–30% whole-chromosome aneuploidy at 25–35 years and an increase of about 6% per year after 35; 0.7 at age 30 agrees with this. The values 0.5 at 35 and 0.3 at 40 do not follow directly from the text estimates; their agreement with Figure 2 of the review and the handling of mosaicism and segmental aneuploidy need confirmation by the model author."
+  },
   "n_max": 8,
   "fig6_variants": [
    "m.8993T>G",
@@ -7578,7 +8501,9 @@
    "source": "ESM 2 (Supplementary Table S2), Tofilo et al. 2026",
    "dataset_fraction": "te_biopsy",
    "dataset_value": 11.4,
-   "status": "match"
+   "status": "match",
+   "resolution": null,
+   "correction_ids": []
   },
   {
    "publication": "tofilo2026",
@@ -7590,7 +8515,9 @@
    "source": "ESM 2 (Supplementary Table S2), Tofilo et al. 2026",
    "dataset_fraction": "remaining_te",
    "dataset_value": 12.9,
-   "status": "match"
+   "status": "match",
+   "resolution": null,
+   "correction_ids": []
   },
   {
    "publication": "tofilo2026",
@@ -7602,7 +8529,9 @@
    "source": "ESM 2 (Supplementary Table S2), Tofilo et al. 2026",
    "dataset_fraction": "icm",
    "dataset_value": 12.2,
-   "status": "match"
+   "status": "match",
+   "resolution": null,
+   "correction_ids": []
   },
   {
    "publication": "tofilo2026",
@@ -7616,7 +8545,9 @@
    "dataset_value": null,
    "dataset_fraction": null,
    "comment_ru": "Остаточные клетки и фрагменты под блестящей оболочкой в набор не включены (так задумано в обзоре: их нельзя приравнивать к эмбриональным линиям).",
-   "comment_en": "Residual extra cells/fragments under the zona are not in the dataset (by design of the review)."
+   "comment_en": "Residual extra cells/fragments under the zona are not in the dataset (by design of the review).",
+   "resolution": null,
+   "correction_ids": []
   },
   {
    "publication": "tofilo2026",
@@ -7628,7 +8559,9 @@
    "source": "ESM 2 (Supplementary Table S2), Tofilo et al. 2026",
    "dataset_fraction": "te_biopsy",
    "dataset_value": 99.6,
-   "status": "match"
+   "status": "match",
+   "resolution": null,
+   "correction_ids": []
   },
   {
    "publication": "tofilo2026",
@@ -7640,7 +8573,9 @@
    "source": "ESM 2 (Supplementary Table S2), Tofilo et al. 2026",
    "dataset_fraction": "remaining_te",
    "dataset_value": 100.0,
-   "status": "match"
+   "status": "match",
+   "resolution": null,
+   "correction_ids": []
   },
   {
    "publication": "tofilo2026",
@@ -7652,7 +8587,9 @@
    "source": "ESM 2 (Supplementary Table S2), Tofilo et al. 2026",
    "dataset_fraction": "icm",
    "dataset_value": 99.6,
-   "status": "match"
+   "status": "match",
+   "resolution": null,
+   "correction_ids": []
   },
   {
    "publication": "tofilo2026",
@@ -7666,7 +8603,9 @@
    "dataset_value": null,
    "dataset_fraction": null,
    "comment_ru": "Остаточные клетки и фрагменты под блестящей оболочкой в набор не включены (так задумано в обзоре: их нельзя приравнивать к эмбриональным линиям).",
-   "comment_en": "Residual extra cells/fragments under the zona are not in the dataset (by design of the review)."
+   "comment_en": "Residual extra cells/fragments under the zona are not in the dataset (by design of the review).",
+   "resolution": null,
+   "correction_ids": []
   },
   {
    "publication": "tofilo2026",
@@ -7678,7 +8617,9 @@
    "source": "ESM 2 (Supplementary Table S2), Tofilo et al. 2026",
    "dataset_fraction": "te_biopsy",
    "dataset_value": 12.0,
-   "status": "match"
+   "status": "match",
+   "resolution": null,
+   "correction_ids": []
   },
   {
    "publication": "tofilo2026",
@@ -7692,7 +8633,13 @@
    "dataset_value": 13.5,
    "status": "fraction_label_mismatch",
    "comment_ru": "Значение совпадает, но в ESM 2 это объединённая фракция «ICM+ / TE+ICM», а в наборе данных — «Оставшаяся ТЭ».",
-   "comment_en": "Value matches, but ESM 2 labels the fraction as combined “ICM+ / TE+ICM”, whereas the dataset labels it “Remaining TE”."
+   "comment_en": "Value matches, but ESM 2 labels the fraction as combined “ICM+ / TE+ICM”, whereas the dataset labels it “Remaining TE”.",
+   "resolution": "corrected",
+   "correction_ids": [
+    "corr-tofilo2026-e3-fraction"
+   ],
+   "atlas_value": 13.5,
+   "atlas_fraction": "combined_te_icm"
   },
   {
    "publication": "tofilo2026",
@@ -7706,7 +8653,9 @@
    "dataset_value": null,
    "dataset_fraction": null,
    "comment_ru": "Остаточные клетки и фрагменты под блестящей оболочкой в набор не включены (так задумано в обзоре: их нельзя приравнивать к эмбриональным линиям).",
-   "comment_en": "Residual extra cells/fragments under the zona are not in the dataset (by design of the review)."
+   "comment_en": "Residual extra cells/fragments under the zona are not in the dataset (by design of the review).",
+   "resolution": null,
+   "correction_ids": []
   },
   {
    "publication": "tofilo2026",
@@ -7718,7 +8667,9 @@
    "source": "ESM 2 (Supplementary Table S2), Tofilo et al. 2026",
    "dataset_fraction": "te_biopsy",
    "dataset_value": 92.3,
-   "status": "match"
+   "status": "match",
+   "resolution": null,
+   "correction_ids": []
   },
   {
    "publication": "tofilo2026",
@@ -7732,7 +8683,13 @@
    "dataset_value": 90.0,
    "status": "fraction_label_mismatch",
    "comment_ru": "Значение совпадает, но в ESM 2 это объединённая фракция «ICM+ / TE+ICM», а в наборе данных — «Оставшаяся ТЭ».",
-   "comment_en": "Value matches, but ESM 2 labels the fraction as combined “ICM+ / TE+ICM”, whereas the dataset labels it “Remaining TE”."
+   "comment_en": "Value matches, but ESM 2 labels the fraction as combined “ICM+ / TE+ICM”, whereas the dataset labels it “Remaining TE”.",
+   "resolution": "corrected",
+   "correction_ids": [
+    "corr-tofilo2026-e4-fraction"
+   ],
+   "atlas_value": 90.0,
+   "atlas_fraction": "combined_te_icm"
   },
   {
    "publication": "tofilo2026",
@@ -7746,7 +8703,9 @@
    "dataset_value": null,
    "dataset_fraction": null,
    "comment_ru": "Остаточные клетки и фрагменты под блестящей оболочкой в набор не включены (так задумано в обзоре: их нельзя приравнивать к эмбриональным линиям).",
-   "comment_en": "Residual extra cells/fragments under the zona are not in the dataset (by design of the review)."
+   "comment_en": "Residual extra cells/fragments under the zona are not in the dataset (by design of the review).",
+   "resolution": null,
+   "correction_ids": []
   },
   {
    "publication": "tofilo2026",
@@ -7758,7 +8717,9 @@
    "source": "ESM 2 (Supplementary Table S2), Tofilo et al. 2026",
    "dataset_fraction": "te_biopsy",
    "dataset_value": 73.2,
-   "status": "match"
+   "status": "match",
+   "resolution": null,
+   "correction_ids": []
   },
   {
    "publication": "tofilo2026",
@@ -7770,7 +8731,9 @@
    "source": "ESM 2 (Supplementary Table S2), Tofilo et al. 2026",
    "dataset_fraction": "remaining_te",
    "dataset_value": 78.7,
-   "status": "match"
+   "status": "match",
+   "resolution": null,
+   "correction_ids": []
   },
   {
    "publication": "tofilo2026",
@@ -7782,7 +8745,9 @@
    "source": "ESM 2 (Supplementary Table S2), Tofilo et al. 2026",
    "dataset_fraction": "icm",
    "dataset_value": 72.3,
-   "status": "match"
+   "status": "match",
+   "resolution": null,
+   "correction_ids": []
   },
   {
    "publication": "tofilo2026",
@@ -7796,7 +8761,9 @@
    "dataset_value": null,
    "dataset_fraction": null,
    "comment_ru": "Остаточные клетки и фрагменты под блестящей оболочкой в набор не включены (так задумано в обзоре: их нельзя приравнивать к эмбриональным линиям).",
-   "comment_en": "Residual extra cells/fragments under the zona are not in the dataset (by design of the review)."
+   "comment_en": "Residual extra cells/fragments under the zona are not in the dataset (by design of the review).",
+   "resolution": null,
+   "correction_ids": []
   },
   {
    "publication": "tofilo2026",
@@ -7808,7 +8775,9 @@
    "source": "ESM 2 (Supplementary Table S2), Tofilo et al. 2026",
    "dataset_fraction": "te_biopsy",
    "dataset_value": 13.5,
-   "status": "match"
+   "status": "match",
+   "resolution": null,
+   "correction_ids": []
   },
   {
    "publication": "tofilo2026",
@@ -7822,7 +8791,13 @@
    "dataset_value": 11.9,
    "status": "value_mismatch",
    "comment_ru": "В наборе 11.9%, в ESM 2 11.7% (Δ = 0.2 п.п.).",
-   "comment_en": "Dataset 11.9%, ESM 2 11.7% (Δ = 0.2 pp)."
+   "comment_en": "Dataset 11.9%, ESM 2 11.7% (Δ = 0.2 pp).",
+   "resolution": "corrected",
+   "correction_ids": [
+    "corr-tofilo2026-e6-remaining-te"
+   ],
+   "atlas_value": 11.7,
+   "atlas_fraction": "remaining_te"
   },
   {
    "publication": "tofilo2026",
@@ -7836,7 +8811,13 @@
    "dataset_value": 11.4,
    "status": "value_mismatch",
    "comment_ru": "В наборе 11.4%, в ESM 2 11.3% (Δ = 0.1 п.п.).",
-   "comment_en": "Dataset 11.4%, ESM 2 11.3% (Δ = 0.1 pp)."
+   "comment_en": "Dataset 11.4%, ESM 2 11.3% (Δ = 0.1 pp).",
+   "resolution": "corrected",
+   "correction_ids": [
+    "corr-tofilo2026-e6-icm"
+   ],
+   "atlas_value": 11.3,
+   "atlas_fraction": "icm"
   },
   {
    "publication": "tofilo2026",
@@ -7850,7 +8831,9 @@
    "dataset_value": null,
    "dataset_fraction": null,
    "comment_ru": "Остаточные клетки и фрагменты под блестящей оболочкой в набор не включены (так задумано в обзоре: их нельзя приравнивать к эмбриональным линиям).",
-   "comment_en": "Residual extra cells/fragments under the zona are not in the dataset (by design of the review)."
+   "comment_en": "Residual extra cells/fragments under the zona are not in the dataset (by design of the review).",
+   "resolution": null,
+   "correction_ids": []
   },
   {
    "publication": "tofilo2026",
@@ -7876,6 +8859,105 @@
    "dataset_fraction": "te_biopsy",
    "source": "ESM 2 (Supplementary Table S2), Tofilo et al. 2026; «Рисунок 3»",
    "status": "match"
+  }
+ ],
+ "corrections": [
+  {
+   "id": "corr-tofilo2026-e6-icm",
+   "target": {
+    "sheet": "Рисунок 4",
+    "row": 81,
+    "embryo": "Tofilo_6",
+    "fraction": "icm"
+   },
+   "field": "value",
+   "from": 11.4,
+   "to": 11.3,
+   "unit": "% гетероплазмии m.14487T>C (доля прочтений C)",
+   "category_note": "В ESM 2 строка называется «ICM»; по методам статьи (ESM 1, подпись к Supplementary Figure S2) это фракция «ICM+» — ВКМ вместе с прилегающими клетками полярной и муральной ТЭ.",
+   "source": {
+    "publication": "tofilo2026",
+    "document": "ESM 2 (Supplementary Table S2), Tofilo et al. 2026, J Assist Reprod Genet, doi:10.1007/s10815-026-04012-y",
+    "file": "references/10815_2026_4012_MOESM2_ESM.xlsx",
+    "locator": "лист «Supplementary Table S2», строка 22 (Embryo 6, ICM), столбец I «Heteroplasmy (%)» = 11.3"
+   },
+   "evidence": "В той же строке ESM 2: покрытие 485, прочтений C 55 → 55/485 = 11.34 %, что округляется до 11.3, а не до 11.4. Опубликованный абстракт (PubMed 42649365) значений фракций эмбриона 6 не приводит.",
+   "verified": {
+    "date": "2026-10-11",
+    "by": "Claude (раунд 1 рецензии); научная приёмка — куратор"
+   }
+  },
+  {
+   "id": "corr-tofilo2026-e6-remaining-te",
+   "target": {
+    "sheet": "Рисунок 4",
+    "row": 82,
+    "embryo": "Tofilo_6",
+    "fraction": "remaining_te"
+   },
+   "field": "value",
+   "from": 11.9,
+   "to": 11.7,
+   "unit": "% гетероплазмии m.14487T>C (доля прочтений C)",
+   "source": {
+    "publication": "tofilo2026",
+    "document": "ESM 2 (Supplementary Table S2), Tofilo et al. 2026, J Assist Reprod Genet, doi:10.1007/s10815-026-04012-y",
+    "file": "references/10815_2026_4012_MOESM2_ESM.xlsx",
+    "locator": "лист «Supplementary Table S2», строка 21 (Embryo 6, TE), столбец I «Heteroplasmy (%)» = 11.7"
+   },
+   "evidence": "В той же строке ESM 2: покрытие 2045, прочтений C 240 → 240/2045 = 11.74 %, что округляется до 11.7, а не до 11.9.",
+   "verified": {
+    "date": "2026-10-11",
+    "by": "Claude (раунд 1 рецензии); научная приёмка — куратор"
+   }
+  },
+  {
+   "id": "corr-tofilo2026-e3-fraction",
+   "target": {
+    "sheet": "Рисунок 4",
+    "row": 74,
+    "embryo": "Tofilo_3",
+    "fraction": "remaining_te"
+   },
+   "field": "fraction",
+   "from": "remaining_te",
+   "to": "combined_te_icm",
+   "unit": "категория фракции (значение 13.5 % не меняется)",
+   "source": {
+    "publication": "tofilo2026",
+    "document": "ESM 2 (Supplementary Table S2) и ESM 1 (Supplementary Figures S1–S2), Tofilo et al. 2026, doi:10.1007/s10815-026-04012-y",
+    "file": "references/10815_2026_4012_MOESM2_ESM.xlsx; references/10815_2026_4012_MOESM1_ESM.docx",
+    "locator": "ESM 2, строка 11: «Embryo 3 — ICM+ / TE+ICM fraction — 13.5»; ESM 1: «embryo 3, TE rest + ICM», «Embryo 3, TE+ICM, after dissection»"
+   },
+   "evidence": "ВКМ и оставшаяся ТЭ эмбриона 3 не разделялись; измерена объединённая фракция. Опубликованный абстракт (PubMed 42649365) называет такие образцы «combined TE + ICM».",
+   "verified": {
+    "date": "2026-10-11",
+    "by": "Claude (раунд 1 рецензии); научная приёмка — куратор"
+   }
+  },
+  {
+   "id": "corr-tofilo2026-e4-fraction",
+   "target": {
+    "sheet": "Рисунок 4",
+    "row": 76,
+    "embryo": "Tofilo_4",
+    "fraction": "remaining_te"
+   },
+   "field": "fraction",
+   "from": "remaining_te",
+   "to": "combined_te_icm",
+   "unit": "категория фракции (значение 90 % не меняется)",
+   "source": {
+    "publication": "tofilo2026",
+    "document": "ESM 2 (Supplementary Table S2) и ESM 1 (Supplementary Figures S1–S2), Tofilo et al. 2026, doi:10.1007/s10815-026-04012-y",
+    "file": "references/10815_2026_4012_MOESM2_ESM.xlsx; references/10815_2026_4012_MOESM1_ESM.docx",
+    "locator": "ESM 2, строка 14: «Embryo 4 — ICM+ / TE+ICM fraction — 90»; ESM 1: «embryo 4, TE rest + ICM», «Embryo 4, TE+ICM, after dissection»"
+   },
+   "evidence": "ВКМ и оставшаяся ТЭ эмбриона 4 не разделялись; измерена объединённая фракция. Опубликованный абстракт (PubMed 42649365) называет такие образцы «combined TE + ICM».",
+   "verified": {
+    "date": "2026-10-11",
+    "by": "Claude (раунд 1 рецензии); научная приёмка — куратор"
+   }
   }
  ],
  "stats": {
@@ -7973,9 +9055,9 @@
    "n_embryos": 40,
    "n_pathogenic": 21,
    "n_hv2": 19,
-   "median_range_pathogenic": 2.0999999999999996,
+   "median_range_pathogenic": 2.2,
    "median_range_hv2": 1.0,
-   "median_range_all": 1.1666666666500003,
+   "median_range_all": 1.1666666666499999,
    "max_range_pathogenic": 8.0,
    "share_le5_pathogenic": 0.7619047619047619,
    "share_le5_all": 0.85,
@@ -8016,6 +9098,20 @@
     "sheet_p_het": 0.05,
     "exact": 0.047619047619047616
    }
-  ]
+  ],
+  "fig4_source_xlsx": {
+   "n_embryos": 40,
+   "n_pathogenic": 21,
+   "n_hv2": 19,
+   "median_range_pathogenic": 2.1,
+   "median_range_hv2": 1.0,
+   "median_range_all": 1.1666666666499999,
+   "max_range_pathogenic": 8.0,
+   "share_le5_pathogenic": 0.7619047619047619,
+   "share_le5_all": 0.85,
+   "n_cleavage": 22,
+   "median_range_cleavage": 1.0,
+   "max_range_cleavage": 6.0
+  }
  }
 }

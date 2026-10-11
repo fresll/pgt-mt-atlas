@@ -1,24 +1,24 @@
-publication,embryo,esm_fraction,esm_label,esm_value,esm_coverage,source,dataset_fraction,dataset_value,status,comment_ru
-tofilo2026,Tofilo_1,te_biopsy,TE biopsy,11.4,4997,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",te_biopsy,11.4,match,
-tofilo2026,Tofilo_1,remaining_te,TE,12.9,3049,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",remaining_te,12.9,match,
-tofilo2026,Tofilo_1,icm,ICM,12.2,1263,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",icm,12.2,match,
-tofilo2026,Tofilo_1,residual_extra_cells,Residual extra cells/cellular fragments,26.4,21269,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",,,not_in_dataset,Остаточные клетки и фрагменты под блестящей оболочкой в набор не включены (так задумано в обзоре: их нельзя приравнивать к эмбриональным линиям).
-tofilo2026,Tofilo_2,te_biopsy,TE biopsy,99.6,3685,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",te_biopsy,99.6,match,
-tofilo2026,Tofilo_2,remaining_te,TE,100.0,617,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",remaining_te,100.0,match,
-tofilo2026,Tofilo_2,icm,ICM,99.6,6554,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",icm,99.6,match,
-tofilo2026,Tofilo_2,residual_extra_cells,Residual extra cells/cellular fragments,99.6,26551,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",,,not_in_dataset,Остаточные клетки и фрагменты под блестящей оболочкой в набор не включены (так задумано в обзоре: их нельзя приравнивать к эмбриональным линиям).
-tofilo2026,Tofilo_3,te_biopsy,TE biopsy,12.0,1498,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",te_biopsy,12.0,match,
-tofilo2026,Tofilo_3,combined_te_icm,ICM+ / TE+ICM fraction,13.5,1513,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",remaining_te,13.5,fraction_label_mismatch,"Значение совпадает, но в ESM 2 это объединённая фракция «ICM+ / TE+ICM», а в наборе данных — «Оставшаяся ТЭ»."
-tofilo2026,Tofilo_3,residual_extra_cells,Residual extra cells/cellular fragments,16.9,94842,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",,,not_in_dataset,Остаточные клетки и фрагменты под блестящей оболочкой в набор не включены (так задумано в обзоре: их нельзя приравнивать к эмбриональным линиям).
-tofilo2026,Tofilo_4,te_biopsy,TE biopsy,92.3,1554,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",te_biopsy,92.3,match,
-tofilo2026,Tofilo_4,combined_te_icm,ICM+ / TE+ICM fraction,90.0,160,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",remaining_te,90.0,fraction_label_mismatch,"Значение совпадает, но в ESM 2 это объединённая фракция «ICM+ / TE+ICM», а в наборе данных — «Оставшаяся ТЭ»."
-tofilo2026,Tofilo_4,residual_extra_cells,Residual extra cells/cellular fragments,91.9,78099,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",,,not_in_dataset,Остаточные клетки и фрагменты под блестящей оболочкой в набор не включены (так задумано в обзоре: их нельзя приравнивать к эмбриональным линиям).
-tofilo2026,Tofilo_5,te_biopsy,TE biopsy,73.2,2764,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",te_biopsy,73.2,match,
-tofilo2026,Tofilo_5,remaining_te,TE,78.7,494,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",remaining_te,78.7,match,
-tofilo2026,Tofilo_5,icm,ICM,72.3,480,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",icm,72.3,match,
-tofilo2026,Tofilo_5,residual_extra_cells,Residual extra cells/cellular fragments,74.5,93651,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",,,not_in_dataset,Остаточные клетки и фрагменты под блестящей оболочкой в набор не включены (так задумано в обзоре: их нельзя приравнивать к эмбриональным линиям).
-tofilo2026,Tofilo_6,te_biopsy,TE biopsy,13.5,3626,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",te_biopsy,13.5,match,
-tofilo2026,Tofilo_6,remaining_te,TE,11.7,2045,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",remaining_te,11.9,value_mismatch,"В наборе 11.9%, в ESM 2 11.7% (Δ = 0.2 п.п.)."
-tofilo2026,Tofilo_6,icm,ICM,11.3,485,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",icm,11.4,value_mismatch,"В наборе 11.4%, в ESM 2 11.3% (Δ = 0.1 п.п.)."
-tofilo2026,Tofilo_6,residual_extra_cells,Residual extra cells/cellular fragments,18.0,136399,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",,,not_in_dataset,Остаточные клетки и фрагменты под блестящей оболочкой в набор не включены (так задумано в обзоре: их нельзя приравнивать к эмбриональным линиям).
-tofilo2026,,te_biopsy,TE biopsy (all embryos),"[11.4, 12.0, 13.5, 73.2, 92.3, 99.6]",,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026; «Рисунок 3»",te_biopsy,"[11.4, 12.0, 13.5, 73.2, 92.3, 99.6]",match,
+publication,embryo,esm_fraction,esm_label,esm_value,esm_coverage,source,dataset_fraction,dataset_value,status,resolution,correction_ids,comment_ru,atlas_value,atlas_fraction
+tofilo2026,Tofilo_1,te_biopsy,TE biopsy,11.4,4997,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",te_biopsy,11.4,match,,[],,,
+tofilo2026,Tofilo_1,remaining_te,TE,12.9,3049,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",remaining_te,12.9,match,,[],,,
+tofilo2026,Tofilo_1,icm,ICM,12.2,1263,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",icm,12.2,match,,[],,,
+tofilo2026,Tofilo_1,residual_extra_cells,Residual extra cells/cellular fragments,26.4,21269,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",,,not_in_dataset,,[],Остаточные клетки и фрагменты под блестящей оболочкой в набор не включены (так задумано в обзоре: их нельзя приравнивать к эмбриональным линиям).,,
+tofilo2026,Tofilo_2,te_biopsy,TE biopsy,99.6,3685,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",te_biopsy,99.6,match,,[],,,
+tofilo2026,Tofilo_2,remaining_te,TE,100.0,617,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",remaining_te,100.0,match,,[],,,
+tofilo2026,Tofilo_2,icm,ICM,99.6,6554,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",icm,99.6,match,,[],,,
+tofilo2026,Tofilo_2,residual_extra_cells,Residual extra cells/cellular fragments,99.6,26551,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",,,not_in_dataset,,[],Остаточные клетки и фрагменты под блестящей оболочкой в набор не включены (так задумано в обзоре: их нельзя приравнивать к эмбриональным линиям).,,
+tofilo2026,Tofilo_3,te_biopsy,TE biopsy,12.0,1498,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",te_biopsy,12.0,match,,[],,,
+tofilo2026,Tofilo_3,combined_te_icm,ICM+ / TE+ICM fraction,13.5,1513,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",remaining_te,13.5,fraction_label_mismatch,corrected,"[""corr-tofilo2026-e3-fraction""]","Значение совпадает, но в ESM 2 это объединённая фракция «ICM+ / TE+ICM», а в наборе данных — «Оставшаяся ТЭ».",13.5,combined_te_icm
+tofilo2026,Tofilo_3,residual_extra_cells,Residual extra cells/cellular fragments,16.9,94842,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",,,not_in_dataset,,[],Остаточные клетки и фрагменты под блестящей оболочкой в набор не включены (так задумано в обзоре: их нельзя приравнивать к эмбриональным линиям).,,
+tofilo2026,Tofilo_4,te_biopsy,TE biopsy,92.3,1554,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",te_biopsy,92.3,match,,[],,,
+tofilo2026,Tofilo_4,combined_te_icm,ICM+ / TE+ICM fraction,90.0,160,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",remaining_te,90.0,fraction_label_mismatch,corrected,"[""corr-tofilo2026-e4-fraction""]","Значение совпадает, но в ESM 2 это объединённая фракция «ICM+ / TE+ICM», а в наборе данных — «Оставшаяся ТЭ».",90.0,combined_te_icm
+tofilo2026,Tofilo_4,residual_extra_cells,Residual extra cells/cellular fragments,91.9,78099,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",,,not_in_dataset,,[],Остаточные клетки и фрагменты под блестящей оболочкой в набор не включены (так задумано в обзоре: их нельзя приравнивать к эмбриональным линиям).,,
+tofilo2026,Tofilo_5,te_biopsy,TE biopsy,73.2,2764,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",te_biopsy,73.2,match,,[],,,
+tofilo2026,Tofilo_5,remaining_te,TE,78.7,494,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",remaining_te,78.7,match,,[],,,
+tofilo2026,Tofilo_5,icm,ICM,72.3,480,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",icm,72.3,match,,[],,,
+tofilo2026,Tofilo_5,residual_extra_cells,Residual extra cells/cellular fragments,74.5,93651,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",,,not_in_dataset,,[],Остаточные клетки и фрагменты под блестящей оболочкой в набор не включены (так задумано в обзоре: их нельзя приравнивать к эмбриональным линиям).,,
+tofilo2026,Tofilo_6,te_biopsy,TE biopsy,13.5,3626,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",te_biopsy,13.5,match,,[],,,
+tofilo2026,Tofilo_6,remaining_te,TE,11.7,2045,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",remaining_te,11.9,value_mismatch,corrected,"[""corr-tofilo2026-e6-remaining-te""]","В наборе 11.9%, в ESM 2 11.7% (Δ = 0.2 п.п.).",11.7,remaining_te
+tofilo2026,Tofilo_6,icm,ICM,11.3,485,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",icm,11.4,value_mismatch,corrected,"[""corr-tofilo2026-e6-icm""]","В наборе 11.4%, в ESM 2 11.3% (Δ = 0.1 п.п.).",11.3,icm
+tofilo2026,Tofilo_6,residual_extra_cells,Residual extra cells/cellular fragments,18.0,136399,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026",,,not_in_dataset,,[],Остаточные клетки и фрагменты под блестящей оболочкой в набор не включены (так задумано в обзоре: их нельзя приравнивать к эмбриональным линиям).,,
+tofilo2026,,te_biopsy,TE biopsy (all embryos),"[11.4, 12.0, 13.5, 73.2, 92.3, 99.6]",,"ESM 2 (Supplementary Table S2), Tofilo et al. 2026; «Рисунок 3»",te_biopsy,"[11.4, 12.0, 13.5, 73.2, 92.3, 99.6]",match,,,,,

@@ -1,11 +1,11 @@
-variant_id,variant_class
-HV2 polymorphism,neutral_polymorphism
-m.10191T>C,pathogenic
-m.10197G>A,pathogenic
-m.14487T>C,pathogenic
-m.3243A>G,pathogenic
-m.3250T>C,uncertain_significance
-m.3697G>A,pathogenic
-m.8344A>G,pathogenic
-m.8993T>C,pathogenic
-m.8993T>G,pathogenic
+variant_id,variant_class,class_basis_status,class_basis_publication,class_basis_locator,class_checked
+HV2 polymorphism,neutral_polymorphism,not_verified,rubens2025,,2026-10-11
+m.10191T>C,pathogenic,not_verified,spath2021,,2026-10-11
+m.10197G>A,pathogenic,stated_in_source,mizuguchi2025,PDF с. 1: «The m.10197G>A mutation… is a rare pathogenic mutation of Leigh encephalopathy»,2026-10-11
+m.14487T>C,pathogenic,stated_in_source,tofilo2026,"Рукопись Tofilo et al. (references/Tofilo et al 2026 PGTmt 14487.pdf), с. 1: «carrying the pathogenic mtDNA variant m.14487T>C». В абстракте опубликованной версии (PubMed 42649365) класс не назван; окончательный текст статьи в репозитории отсутствует.",2026-10-11
+m.3243A>G,pathogenic,stated_in_source,spath2021,"PDF с. 8: «Unlike many other pathogenic mtDNA mutations, m.3243A>G heteroplasmy levels are poorly predictive…»",2026-10-11
+m.3250T>C,uncertain_significance,stated_in_source,hu2026,PDF с. 3: «the variant is annotated as a variant of uncertain significance (VUS) due to incomplete penetrance and likely benign in silico predictions» (у авторов — ссылки на MITOMAP и Wong et al.),2026-10-11
+m.3697G>A,pathogenic,implied_in_source,ji2021,PDF с. 7: «the inheritance of different pathogenic mtDNA mutations… previous analysis has not included m.3697G>A»,2026-10-11
+m.8344A>G,pathogenic,not_verified,rubens2025,,2026-10-11
+m.8993T>C,pathogenic,not_verified,rubens2025,,2026-10-11
+m.8993T>G,pathogenic,implied_in_source,spath2021,PDF с. 9: «clear differences in transmission patterns between pathogenic mutations… m.8993T>G…»,2026-10-11

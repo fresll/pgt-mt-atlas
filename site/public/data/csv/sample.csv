@@ -1,191 +1,191 @@
 sample_id,embryo_id,sample_type,material_raw
-emb-f3-004-s1,emb-f3-004,te_biopsy,TE biopsy
-emb-f3-005-s1,emb-f3-005,te_biopsy,TE biopsy
-emb-f3-006-s1,emb-f3-006,te_biopsy,TE biopsy
-emb-f3-007-s1,emb-f3-007,te_biopsy,TE biopsy
-emb-f3-008-s1,emb-f3-008,te_biopsy,TE biopsy
-emb-f3-009-s1,emb-f3-009,te_biopsy,TE biopsy
-emb-f3-010-s1,emb-f3-010,te_biopsy,TE biopsy
-emb-f3-011-s1,emb-f3-011,te_biopsy,TE biopsy
-emb-f3-012-s1,emb-f3-012,te_biopsy,TE biopsy
-emb-f3-013-s1,emb-f3-013,te_biopsy,TE biopsy
-emb-f3-014-s1,emb-f3-014,te_biopsy,TE biopsy
-emb-f3-015-s1,emb-f3-015,blastomeres_unspecified,test blastomere(s)
-emb-f3-016-s1,emb-f3-016,blastomeres_unspecified,test blastomere(s)
-emb-f3-017-s1,emb-f3-017,mixed_unspecified,blastomeres and/or whole embryo fractions
-emb-f3-018-s1,emb-f3-018,mixed_unspecified,blastomeres and/or whole embryo fractions
-emb-f3-019-s1,emb-f3-019,mixed_unspecified,blastomeres and/or whole embryo fractions
-emb-f3-020-s1,emb-f3-020,mixed_unspecified,blastomeres and/or whole embryo fractions
-emb-f3-021-s1,emb-f3-021,mixed_unspecified,blastomeres and/or whole embryo fractions
-emb-f3-022-s1,emb-f3-022,mixed_unspecified,blastomeres and/or whole embryo fractions
-emb-f3-023-s1,emb-f3-023,half_embryo,half embryo
-emb-f3-024-s1,emb-f3-024,te_biopsy,TE biopsy
-emb-f3-025-s1,emb-f3-025,te_biopsy,TE biopsy
-emb-f3-026-s1,emb-f3-026,te_biopsy,TE biopsy
-emb-f3-027-s1,emb-f3-027,te_biopsy,TE biopsy
-emb-f3-028-s1,emb-f3-028,half_embryo,half embryo
-emb-f3-029-s1,emb-f3-029,te_biopsy,TE biopsy
-emb-f3-030-s1,emb-f3-030,half_embryo,half embryo
-emb-f3-031-s1,emb-f3-031,half_embryo,half embryo
-emb-f3-032-s1,emb-f3-032,half_embryo,half embryo
-emb-f3-033-s1,emb-f3-033,whole_embryo,whole embryo
-emb-f3-034-s1,emb-f3-034,te_biopsy,TE biopsy
-emb-f3-035-s1,emb-f3-035,te_biopsy,TE biopsy
-emb-f3-036-s1,emb-f3-036,mixed_unspecified,blastomeres and/or whole embryo fractions
-emb-f3-037-s1,emb-f3-037,half_embryo,half embryo
-emb-f3-038-s1,emb-f3-038,mixed_unspecified,multiple blastomeres / whole embryo
-emb-f3-039-s1,emb-f3-039,mixed_unspecified,blastomeres and/or whole embryo fractions
-emb-f3-040-s1,emb-f3-040,te_biopsy,TE biopsy
-emb-f3-041-s1,emb-f3-041,te_icm_multiple,TE biopsy / multiple TE+ICM biopsies
-emb-f3-042-s1,emb-f3-042,mixed_unspecified,blastomeres and/or whole embryo fractions
-emb-f3-043-s1,emb-f3-043,mixed_unspecified,blastomeres and/or whole embryo fractions
-emb-f3-044-s1,emb-f3-044,mixed_unspecified,blastomeres and/or whole embryo fractions
-emb-f3-045-s1,emb-f3-045,mixed_unspecified,blastomeres and/or whole embryo fractions
-emb-f3-046-s1,emb-f3-046,mixed_unspecified,blastomeres and/or whole embryo fractions
-emb-f3-047-s1,emb-f3-047,blastomeres_unspecified,test blastomere(s)
-emb-f3-048-s1,emb-f3-048,multiple_blastomeres,multiple blastomeres
-emb-f3-049-s1,emb-f3-049,multiple_blastomeres,multiple blastomeres
-emb-f3-050-s1,emb-f3-050,mixed_unspecified,blastomeres and/or whole embryo fractions
-emb-f3-051-s1,emb-f3-051,mixed_unspecified,blastomeres and/or whole embryo fractions
-emb-f3-052-s1,emb-f3-052,te_icm_multiple,TE biopsy / multiple TE+ICM biopsies
-emb-f3-053-s1,emb-f3-053,mixed_unspecified,multiple blastomeres / whole embryo
-emb-f3-054-s1,emb-f3-054,mixed_unspecified,multiple blastomeres / whole embryo
-emb-f3-055-s1,emb-f3-055,mixed_unspecified,blastomeres and/or whole embryo fractions
-emb-f3-056-s1,emb-f3-056,te_biopsy,TE biopsy
-emb-f3-057-s1,emb-f3-057,mixed_unspecified,blastomeres and/or whole embryo fractions
-emb-f3-058-s1,emb-f3-058,half_embryo,half embryo
-emb-f3-059-s1,emb-f3-059,mixed_unspecified,blastomeres and/or whole embryo fractions
-emb-f3-060-s1,emb-f3-060,half_embryo,half embryo
-emb-f3-061-s1,emb-f3-061,half_embryo,half embryo
-emb-f3-062-s1,emb-f3-062,te_icm_multiple,TE biopsy / multiple TE+ICM biopsies
-emb-f3-063-s1,emb-f3-063,mixed_unspecified,blastomeres and/or whole embryo fractions
-emb-f3-064-s1,emb-f3-064,mixed_unspecified,blastomeres and/or whole embryo fractions
-emb-f3-065-s1,emb-f3-065,mixed_unspecified,blastomeres and/or whole embryo fractions
-emb-f3-066-s1,emb-f3-066,mixed_unspecified,blastomeres and/or whole embryo fractions
-emb-f3-067-s1,emb-f3-067,mixed_unspecified,blastomeres and/or whole embryo fractions
-emb-f3-068-s1,emb-f3-068,multiple_blastomeres,multiple blastomeres
-emb-f3-069-s1,emb-f3-069,mixed_unspecified,blastomeres and/or whole embryo fractions
-emb-f3-070-s1,emb-f3-070,mixed_unspecified,blastomeres and/or whole embryo fractions
-emb-f3-071-s1,emb-f3-071,mixed_unspecified,blastomeres and/or whole embryo fractions
-emb-f3-072-s1,emb-f3-072,mixed_unspecified,blastomeres and/or whole embryo fractions
-emb-f3-073-s1,emb-f3-073,mixed_unspecified,multiple blastomeres / whole embryo
-emb-f3-074-s1,emb-f3-074,mixed_unspecified,blastomeres and/or whole embryo fractions
-emb-f3-075-s1,emb-f3-075,mixed_unspecified,blastomeres and/or whole embryo fractions
-emb-f3-076-s1,emb-f3-076,whole_embryo,whole embryo
-emb-f3-077-s1,emb-f3-077,mixed_unspecified,blastomeres and/or whole embryo fractions
-emb-f3-078-s1,emb-f3-078,mixed_unspecified,blastomeres and/or whole embryo fractions
-emb-f3-079-s1,emb-f3-079,mixed_unspecified,blastomeres and/or whole embryo fractions
-emb-f3-080-s1,emb-f3-080,mixed_unspecified,multiple blastomeres / whole embryo
-emb-f3-081-s1,emb-f3-081,mixed_unspecified,blastomeres and/or whole embryo fractions
-emb-f3-082-s1,emb-f3-082,te_icm_multiple,TE biopsy / multiple TE+ICM biopsies
-emb-f3-083-s1,emb-f3-083,mixed_unspecified,blastomeres and/or whole embryo fractions
-emb-f3-084-s1,emb-f3-084,mixed_unspecified,blastomeres and/or whole embryo fractions
-emb-f3-085-s1,emb-f3-085,te_icm_multiple,TE biopsy / multiple TE+ICM biopsies
-emb-f3-086-s1,emb-f3-086,te_icm_multiple,TE biopsy / multiple TE+ICM biopsies
-emb-f3-087-s1,emb-f3-087,mixed_unspecified,multiple blastomeres / whole embryo
-emb-f3-088-s1,emb-f3-088,te_icm_multiple,TE biopsy / multiple TE+ICM biopsies
-emb-f3-089-s1,emb-f3-089,te_icm_multiple,TE biopsy / multiple TE+ICM biopsies
-emb-f3-090-s1,emb-f3-090,whole_embryo,whole embryo
-emb-f3-091-s1,emb-f3-091,mixed_unspecified,TE/whole embryo sample
-emb-f3-092-s1,emb-f3-092,mixed_unspecified,whole/biopsy sample
-emb-f3-093-s1,emb-f3-093,te_biopsy,TE biopsy
-emb-f3-094-s1,emb-f3-094,te_biopsy,TE biopsy
-emb-f3-095-s1,emb-f3-095,mixed_unspecified,TE/whole embryo sample
-emb-f3-096-s1,emb-f3-096,multiple_blastomeres,six blastomeres
-emb-f3-097-s1,emb-f3-097,mixed_unspecified,sample
-emb-f3-098-s1,emb-f3-098,mixed_unspecified,TE/whole embryo sample
-emb-f3-099-s1,emb-f3-099,mixed_unspecified,TE/whole embryo sample
-emb-f3-100-s1,emb-f3-100,te_biopsy,TE biopsy
-emb-f3-101-s1,emb-f3-101,mixed_unspecified,whole/biopsy sample
-emb-f3-102-s1,emb-f3-102,te_biopsy,TE biopsy
-emb-f3-103-s1,emb-f3-103,te_biopsy,TE biopsy
-emb-f3-104-s1,emb-f3-104,mixed_unspecified,TE/whole embryo sample
-emb-f3-105-s1,emb-f3-105,te_biopsy,TE biopsy
-emb-f3-106-s1,emb-f3-106,te_biopsy,TE biopsy
-emb-f3-107-s1,emb-f3-107,mixed_unspecified,whole/biopsy sample
-emb-f3-108-s1,emb-f3-108,te_biopsy,TE biopsy
-emb-f3-109-s1,emb-f3-109,te_biopsy,TE biopsy
-emb-f3-110-s1,emb-f3-110,mixed_unspecified,TE/whole embryo sample
-emb-f3-111-s1,emb-f3-111,multiple_blastomeres,six blastomeres
-emb-f3-112-s1,emb-f3-112,single_blastomeres,"single blastomeres, diagnostic analysis"
-emb-f3-113-s1,emb-f3-113,multiple_blastomeres,"multiple blastomeres, reanalysis"
-emb-f3-114-s1,emb-f3-114,te_biopsy,TE biopsy; later TE/ICM fractions for donated embryos
-emb-f3-115-s1,emb-f3-115,te_biopsy,TE biopsy; later TE/ICM fractions for donated embryos
-emb-f3-116-s1,emb-f3-116,single_blastomeres,"single blastomeres, diagnostic analysis"
-emb-f3-117-s1,emb-f3-117,te_biopsy,TE biopsy; later TE/ICM fractions for donated embryos
-emb-f3-118-s1,emb-f3-118,single_blastomeres,"single blastomeres, diagnostic analysis"
-emb-f3-119-s1,emb-f3-119,single_blastomeres,"single blastomeres, diagnostic analysis"
-emb-f3-120-s1,emb-f3-120,multiple_blastomeres,"multiple blastomeres, reanalysis"
-emb-f3-121-s1,emb-f3-121,single_blastomeres,"single blastomeres, diagnostic analysis"
-emb-f3-122-s1,emb-f3-122,single_blastomeres,"single blastomeres, diagnostic analysis"
-emb-f3-123-s1,emb-f3-123,single_blastomeres,"single blastomeres, diagnostic analysis"
-emb-f3-124-s1,emb-f3-124,single_blastomeres,"single blastomeres, diagnostic analysis"
-emb-f3-125-s1,emb-f3-125,single_blastomeres,"single blastomeres, diagnostic analysis"
-emb-f3-126-s1,emb-f3-126,te_biopsy,TE biopsy; later TE/ICM fractions for donated embryos
-emb-f3-127-s1,emb-f3-127,single_blastomeres,"single blastomeres, diagnostic analysis"
-emb-f3-128-s1,emb-f3-128,single_blastomeres,"single blastomeres, diagnostic analysis"
-emb-f3-129-s1,emb-f3-129,single_blastomeres,"single blastomeres, diagnostic analysis"
-emb-f3-130-s1,emb-f3-130,te_biopsy,TE biopsy; later TE/ICM fractions for donated embryos
-emb-f3-131-s1,emb-f3-131,single_blastomeres,"single blastomeres, diagnostic analysis"
-emb-f3-132-s1,emb-f3-132,single_blastomeres,"single blastomeres, diagnostic analysis"
-emb-f3-133-s1,emb-f3-133,single_blastomeres,"single blastomeres, diagnostic analysis"
-emb-f3-134-s1,emb-f3-134,single_blastomeres,"single blastomeres, diagnostic analysis"
-emb-f3-135-s1,emb-f3-135,single_blastomeres,"single blastomeres, diagnostic analysis"
-emb-f3-136-s1,emb-f3-136,single_blastomeres,"single blastomeres, diagnostic analysis"
-emb-f3-137-s1,emb-f3-137,single_blastomeres,"single blastomeres, diagnostic analysis"
-emb-f3-138-s1,emb-f3-138,te_biopsy,TE biopsy; later TE/ICM fractions for donated embryos
-emb-f3-139-s1,emb-f3-139,multiple_blastomeres,"multiple blastomeres, reanalysis"
-emb-f3-140-s1,emb-f3-140,te_biopsy,5–6 TE cells
-emb-f3-141-s1,emb-f3-141,te_biopsy,5–6 TE cells
-emb-f3-142-s1,emb-f3-142,te_biopsy,5–6 TE cells
-emb-f3-143-s1,emb-f3-143,te_biopsy,5–6 TE cells
-emb-f3-144-s1,emb-f3-144,te_biopsy,5–6 TE cells
-emb-f3-145-s1,emb-f3-145,te_biopsy,5–6 TE cells
-emb-f3-146-s1,emb-f3-146,te_biopsy,5–6 TE cells
-emb-f3-147-s1,emb-f3-147,te_biopsy,5–6 TE cells
-emb-f3-148-s1,emb-f3-148,te_biopsy,5–6 TE cells
-emb-f3-149-s1,emb-f3-149,multiple_blastomeres,blastomeres
-emb-f3-150-s1,emb-f3-150,multiple_blastomeres,blastomeres
-emb-f3-151-s1,emb-f3-151,whole_embryo,whole embryo
-emb-f3-152-s1,emb-f3-152,multiple_blastomeres,blastomeres
-emb-f3-153-s1,emb-f3-153,multiple_blastomeres,blastomeres
-emb-f3-154-s1,emb-f3-154,whole_embryo,whole embryo
-emb-f3-155-s1,emb-f3-155,whole_embryo,whole embryo
-emb-f3-156-s1,emb-f3-156,multiple_blastomeres,blastomeres
-emb-f3-157-s1,emb-f3-157,blastomeres_unspecified,test blastomere(s)
-emb-f3-158-s1,emb-f3-158,blastomeres_unspecified,test blastomere(s)
-emb-f3-159-s1,emb-f3-159,te_biopsy,TE biopsy
-emb-f3-160-s1,emb-f3-160,whole_embryo,whole embryo
-emb-f3-161-s1,emb-f3-161,te_biopsy,TE biopsy
-emb-f3-162-s1,emb-f3-162,te_biopsy,TE biopsy
-emb-f3-163-s1,emb-f3-163,multiple_blastomeres,5 blastomeres
-emb-f3-164-s1,emb-f3-164,te_biopsy,TE biopsy
-emb-f3-165-s1,emb-f3-165,multiple_blastomeres,11 blastomeres
-emb-f3-166-s1,emb-f3-166,whole_embryo,whole embryo
-emb-f3-167-s1,emb-f3-167,te_biopsy,TE biopsy
-emb-f3-168-s1,emb-f3-168,te_biopsy,TE biopsy
-emb-f3-169-s1,emb-f3-169,te_biopsy,TE biopsy
-emb-f3-170-s1,emb-f3-170,te_biopsy,TE biopsy
-emb-f3-171-s1,emb-f3-171,te_biopsy,TE biopsy
-emb-f3-172-s1,emb-f3-172,te_biopsy,TE biopsy
-emb-f3-173-s1,emb-f3-173,te_biopsy,TE biopsy
-emb-f3-174-s1,emb-f3-174,te_biopsy,TE biopsy
-emb-f3-175-s1,emb-f3-175,te_biopsy,TE biopsy
-emb-f3-176-s1,emb-f3-176,te_biopsy,TE biopsy
-emb-f3-177-s1,emb-f3-177,te_biopsy,TE biopsy
-emb-f3-178-s1,emb-f3-178,multiple_blastomeres,two blastomeres
-emb-f3-179-s1,emb-f3-179,multiple_blastomeres,two blastomeres
-emb-f3-180-s1,emb-f3-180,blastomeres_unspecified,blastomere(s)
-emb-f3-181-s1,emb-f3-181,whole_embryo,whole embryo
-emb-f3-182-s1,emb-f3-182,mixed_unspecified,blastomeres / whole affected embryo
-emb-f3-183-s1,emb-f3-183,te_biopsy,TE biopsy (3–5 cells)
-emb-f3-184-s1,emb-f3-184,whole_embryo,whole embryo
-emb-f3-185-s1,emb-f3-185,te_biopsy,TE biopsy (3–5 cells)
-emb-f3-186-s1,emb-f3-186,te_biopsy,TE biopsy (3–5 cells)
-emb-f3-187-s1,emb-f3-187,te_biopsy,TE biopsy (3–5 cells)
-emb-f3-188-s1,emb-f3-188,te_biopsy,TE biopsy (3–5 cells)
-emb-f3-189-s1,emb-f3-189,whole_embryo,whole embryo
-emb-f3-190-s1,emb-f3-190,te_biopsy,TE biopsy (3–5 cells)
+emb-HL-heindryckx2014-001-s1,emb-HL-heindryckx2014-001,te_biopsy,TE biopsy
+emb-HL-heindryckx2014-002-s1,emb-HL-heindryckx2014-002,te_biopsy,TE biopsy
+emb-HL-heindryckx2014-003-s1,emb-HL-heindryckx2014-003,te_biopsy,TE biopsy
+emb-HL-heindryckx2014-004-s1,emb-HL-heindryckx2014-004,te_biopsy,TE biopsy
+emb-HL-heindryckx2014-005-s1,emb-HL-heindryckx2014-005,te_biopsy,TE biopsy
+emb-HL-heindryckx2014-006-s1,emb-HL-heindryckx2014-006,te_biopsy,TE biopsy
+emb-HL-heindryckx2014-007-s1,emb-HL-heindryckx2014-007,te_biopsy,TE biopsy
+emb-HL-heindryckx2014-008-s1,emb-HL-heindryckx2014-008,te_biopsy,TE biopsy
+emb-HL-heindryckx2014-009-s1,emb-HL-heindryckx2014-009,te_biopsy,TE biopsy
+emb-HL-heindryckx2014-010-s1,emb-HL-heindryckx2014-010,te_biopsy,TE biopsy
+emb-HL-heindryckx2014-011-s1,emb-HL-heindryckx2014-011,te_biopsy,TE biopsy
+emb-HL-hyslop2025-001-s1,emb-HL-hyslop2025-001,blastomeres_unspecified,test blastomere(s)
+emb-HL-hyslop2025-002-s1,emb-HL-hyslop2025-002,blastomeres_unspecified,test blastomere(s)
+emb-HL-monnot2011-001-s1,emb-HL-monnot2011-001,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-HL-monnot2011-002-s1,emb-HL-monnot2011-002,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-HL-monnot2011-003-s1,emb-HL-monnot2011-003,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-HL-monnot2011-004-s1,emb-HL-monnot2011-004,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-HL-monnot2011-005-s1,emb-HL-monnot2011-005,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-HL-monnot2011-006-s1,emb-HL-monnot2011-006,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-HL-spath2021-001-s1,emb-HL-spath2021-001,half_embryo,half embryo
+emb-HL-spath2021-002-s1,emb-HL-spath2021-002,te_biopsy,TE biopsy
+emb-HL-spath2021-003-s1,emb-HL-spath2021-003,te_biopsy,TE biopsy
+emb-HL-spath2021-004-s1,emb-HL-spath2021-004,te_biopsy,TE biopsy
+emb-HL-spath2021-005-s1,emb-HL-spath2021-005,te_biopsy,TE biopsy
+emb-HL-spath2021-006-s1,emb-HL-spath2021-006,half_embryo,half embryo
+emb-HL-spath2021-007-s1,emb-HL-spath2021-007,te_biopsy,TE biopsy
+emb-HL-spath2021-008-s1,emb-HL-spath2021-008,half_embryo,half embryo
+emb-HL-spath2021-009-s1,emb-HL-spath2021-009,half_embryo,half embryo
+emb-HL-spath2021-010-s1,emb-HL-spath2021-010,half_embryo,half embryo
+emb-HL-spath2021-011-s1,emb-HL-spath2021-011,whole_embryo,whole embryo
+emb-HL-spath2021-012-s1,emb-HL-spath2021-012,te_biopsy,TE biopsy
+emb-HL-spath2021-013-s1,emb-HL-spath2021-013,te_biopsy,TE biopsy
+emb-HL-monnot2011-007-s1,emb-HL-monnot2011-007,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-HL-spath2021-014-s1,emb-HL-spath2021-014,half_embryo,half embryo
+emb-HL-treff2012-001-s1,emb-HL-treff2012-001,mixed_unspecified,multiple blastomeres / whole embryo
+emb-HL-monnot2011-008-s1,emb-HL-monnot2011-008,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-HL-spath2021-015-s1,emb-HL-spath2021-015,te_biopsy,TE biopsy
+emb-HL-treff2012-002-s1,emb-HL-treff2012-002,te_icm_multiple,TE biopsy / multiple TE+ICM biopsies
+emb-HL-monnot2011-009-s1,emb-HL-monnot2011-009,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-HL-monnot2011-010-s1,emb-HL-monnot2011-010,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-HL-monnot2011-011-s1,emb-HL-monnot2011-011,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-HL-monnot2011-012-s1,emb-HL-monnot2011-012,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-HL-monnot2011-013-s1,emb-HL-monnot2011-013,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-HL-hyslop2025-003-s1,emb-HL-hyslop2025-003,blastomeres_unspecified,test blastomere(s)
+emb-HL-monnot2011-014-s1,emb-HL-monnot2011-014,multiple_blastomeres,multiple blastomeres
+emb-HL-monnot2011-015-s1,emb-HL-monnot2011-015,multiple_blastomeres,multiple blastomeres
+emb-HL-monnot2011-016-s1,emb-HL-monnot2011-016,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-HL-monnot2011-017-s1,emb-HL-monnot2011-017,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-HL-treff2012-003-s1,emb-HL-treff2012-003,te_icm_multiple,TE biopsy / multiple TE+ICM biopsies
+emb-HL-treff2012-004-s1,emb-HL-treff2012-004,mixed_unspecified,multiple blastomeres / whole embryo
+emb-HL-treff2012-005-s1,emb-HL-treff2012-005,mixed_unspecified,multiple blastomeres / whole embryo
+emb-HL-monnot2011-018-s1,emb-HL-monnot2011-018,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-HL-spath2021-016-s1,emb-HL-spath2021-016,te_biopsy,TE biopsy
+emb-HL-monnot2011-019-s1,emb-HL-monnot2011-019,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-HL-spath2021-017-s1,emb-HL-spath2021-017,half_embryo,half embryo
+emb-HL-monnot2011-020-s1,emb-HL-monnot2011-020,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-HL-spath2021-018-s1,emb-HL-spath2021-018,half_embryo,half embryo
+emb-HL-spath2021-019-s1,emb-HL-spath2021-019,half_embryo,half embryo
+emb-HL-treff2012-006-s1,emb-HL-treff2012-006,te_icm_multiple,TE biopsy / multiple TE+ICM biopsies
+emb-HL-monnot2011-021-s1,emb-HL-monnot2011-021,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-HL-monnot2011-022-s1,emb-HL-monnot2011-022,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-HL-monnot2011-023-s1,emb-HL-monnot2011-023,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-HL-monnot2011-024-s1,emb-HL-monnot2011-024,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-HL-monnot2011-025-s1,emb-HL-monnot2011-025,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-HL-monnot2011-026-s1,emb-HL-monnot2011-026,multiple_blastomeres,multiple blastomeres
+emb-HL-monnot2011-027-s1,emb-HL-monnot2011-027,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-HL-monnot2011-028-s1,emb-HL-monnot2011-028,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-HL-monnot2011-029-s1,emb-HL-monnot2011-029,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-HL-monnot2011-030-s1,emb-HL-monnot2011-030,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-HL-treff2012-007-s1,emb-HL-treff2012-007,mixed_unspecified,multiple blastomeres / whole embryo
+emb-HL-monnot2011-031-s1,emb-HL-monnot2011-031,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-HL-monnot2011-032-s1,emb-HL-monnot2011-032,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-HL-treff2012-008-s1,emb-HL-treff2012-008,whole_embryo,whole embryo
+emb-HL-monnot2011-033-s1,emb-HL-monnot2011-033,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-HL-monnot2011-034-s1,emb-HL-monnot2011-034,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-HL-monnot2011-035-s1,emb-HL-monnot2011-035,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-HL-treff2012-009-s1,emb-HL-treff2012-009,mixed_unspecified,multiple blastomeres / whole embryo
+emb-HL-monnot2011-036-s1,emb-HL-monnot2011-036,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-HL-treff2012-010-s1,emb-HL-treff2012-010,te_icm_multiple,TE biopsy / multiple TE+ICM biopsies
+emb-HL-monnot2011-037-s1,emb-HL-monnot2011-037,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-HL-monnot2011-038-s1,emb-HL-monnot2011-038,mixed_unspecified,blastomeres and/or whole embryo fractions
+emb-HL-treff2012-011-s1,emb-HL-treff2012-011,te_icm_multiple,TE biopsy / multiple TE+ICM biopsies
+emb-HL-treff2012-012-s1,emb-HL-treff2012-012,te_icm_multiple,TE biopsy / multiple TE+ICM biopsies
+emb-HL-treff2012-013-s1,emb-HL-treff2012-013,mixed_unspecified,multiple blastomeres / whole embryo
+emb-HL-treff2012-014-s1,emb-HL-treff2012-014,te_icm_multiple,TE biopsy / multiple TE+ICM biopsies
+emb-HL-treff2012-015-s1,emb-HL-treff2012-015,te_icm_multiple,TE biopsy / multiple TE+ICM biopsies
+emb-HL-treff2012-016-s1,emb-HL-treff2012-016,whole_embryo,whole embryo
+emb-HL-ji2021-001-s1,emb-HL-ji2021-001,mixed_unspecified,TE/whole embryo sample
+emb-HL-ji2021-002-s1,emb-HL-ji2021-002,mixed_unspecified,whole/biopsy sample
+emb-HL-ji2021-003-s1,emb-HL-ji2021-003,te_biopsy,TE biopsy
+emb-HL-ji2021-004-s1,emb-HL-ji2021-004,te_biopsy,TE biopsy
+emb-HL-ji2021-005-s1,emb-HL-ji2021-005,mixed_unspecified,TE/whole embryo sample
+emb-HL-ji2021-006-s1,emb-HL-ji2021-006,multiple_blastomeres,six blastomeres
+emb-HL-ji2021-007-s1,emb-HL-ji2021-007,mixed_unspecified,sample
+emb-HL-ji2021-008-s1,emb-HL-ji2021-008,mixed_unspecified,TE/whole embryo sample
+emb-HL-ji2021-009-s1,emb-HL-ji2021-009,mixed_unspecified,TE/whole embryo sample
+emb-HL-ji2021-010-s1,emb-HL-ji2021-010,te_biopsy,TE biopsy
+emb-HL-ji2021-011-s1,emb-HL-ji2021-011,mixed_unspecified,whole/biopsy sample
+emb-HL-ji2021-012-s1,emb-HL-ji2021-012,te_biopsy,TE biopsy
+emb-HL-ji2021-013-s1,emb-HL-ji2021-013,te_biopsy,TE biopsy
+emb-HL-ji2021-014-s1,emb-HL-ji2021-014,mixed_unspecified,TE/whole embryo sample
+emb-HL-ji2021-015-s1,emb-HL-ji2021-015,te_biopsy,TE biopsy
+emb-HL-ji2021-016-s1,emb-HL-ji2021-016,te_biopsy,TE biopsy
+emb-HL-ji2021-017-s1,emb-HL-ji2021-017,mixed_unspecified,whole/biopsy sample
+emb-HL-ji2021-018-s1,emb-HL-ji2021-018,te_biopsy,TE biopsy
+emb-HL-ji2021-019-s1,emb-HL-ji2021-019,te_biopsy,TE biopsy
+emb-HL-ji2021-020-s1,emb-HL-ji2021-020,mixed_unspecified,TE/whole embryo sample
+emb-HL-ji2021-021-s1,emb-HL-ji2021-021,multiple_blastomeres,six blastomeres
+emb-HL-sallevelt2017-001-s1,emb-HL-sallevelt2017-001,single_blastomeres,"single blastomeres, diagnostic analysis"
+emb-HL-sallevelt2017-002-s1,emb-HL-sallevelt2017-002,multiple_blastomeres,"multiple blastomeres, reanalysis"
+emb-HL-tofilo2026-001-s1,emb-HL-tofilo2026-001,te_biopsy,TE biopsy; later TE/ICM fractions for donated embryos
+emb-HL-tofilo2026-002-s1,emb-HL-tofilo2026-002,te_biopsy,TE biopsy; later TE/ICM fractions for donated embryos
+emb-HL-sallevelt2017-003-s1,emb-HL-sallevelt2017-003,single_blastomeres,"single blastomeres, diagnostic analysis"
+emb-HL-tofilo2026-003-s1,emb-HL-tofilo2026-003,te_biopsy,TE biopsy; later TE/ICM fractions for donated embryos
+emb-HL-sallevelt2017-004-s1,emb-HL-sallevelt2017-004,single_blastomeres,"single blastomeres, diagnostic analysis"
+emb-HL-sallevelt2017-005-s1,emb-HL-sallevelt2017-005,single_blastomeres,"single blastomeres, diagnostic analysis"
+emb-HL-sallevelt2017-006-s1,emb-HL-sallevelt2017-006,multiple_blastomeres,"multiple blastomeres, reanalysis"
+emb-HL-sallevelt2017-007-s1,emb-HL-sallevelt2017-007,single_blastomeres,"single blastomeres, diagnostic analysis"
+emb-HL-sallevelt2017-008-s1,emb-HL-sallevelt2017-008,single_blastomeres,"single blastomeres, diagnostic analysis"
+emb-HL-sallevelt2017-009-s1,emb-HL-sallevelt2017-009,single_blastomeres,"single blastomeres, diagnostic analysis"
+emb-HL-sallevelt2017-010-s1,emb-HL-sallevelt2017-010,single_blastomeres,"single blastomeres, diagnostic analysis"
+emb-HL-sallevelt2017-011-s1,emb-HL-sallevelt2017-011,single_blastomeres,"single blastomeres, diagnostic analysis"
+emb-HL-tofilo2026-004-s1,emb-HL-tofilo2026-004,te_biopsy,TE biopsy; later TE/ICM fractions for donated embryos
+emb-HL-sallevelt2017-012-s1,emb-HL-sallevelt2017-012,single_blastomeres,"single blastomeres, diagnostic analysis"
+emb-HL-sallevelt2017-013-s1,emb-HL-sallevelt2017-013,single_blastomeres,"single blastomeres, diagnostic analysis"
+emb-HL-sallevelt2017-014-s1,emb-HL-sallevelt2017-014,single_blastomeres,"single blastomeres, diagnostic analysis"
+emb-HL-tofilo2026-005-s1,emb-HL-tofilo2026-005,te_biopsy,TE biopsy; later TE/ICM fractions for donated embryos
+emb-HL-sallevelt2017-015-s1,emb-HL-sallevelt2017-015,single_blastomeres,"single blastomeres, diagnostic analysis"
+emb-HL-sallevelt2017-016-s1,emb-HL-sallevelt2017-016,single_blastomeres,"single blastomeres, diagnostic analysis"
+emb-HL-sallevelt2017-017-s1,emb-HL-sallevelt2017-017,single_blastomeres,"single blastomeres, diagnostic analysis"
+emb-HL-sallevelt2017-018-s1,emb-HL-sallevelt2017-018,single_blastomeres,"single blastomeres, diagnostic analysis"
+emb-HL-sallevelt2017-019-s1,emb-HL-sallevelt2017-019,single_blastomeres,"single blastomeres, diagnostic analysis"
+emb-HL-sallevelt2017-020-s1,emb-HL-sallevelt2017-020,single_blastomeres,"single blastomeres, diagnostic analysis"
+emb-HL-sallevelt2017-021-s1,emb-HL-sallevelt2017-021,single_blastomeres,"single blastomeres, diagnostic analysis"
+emb-HL-tofilo2026-006-s1,emb-HL-tofilo2026-006,te_biopsy,TE biopsy; later TE/ICM fractions for donated embryos
+emb-HL-sallevelt2017-022-s1,emb-HL-sallevelt2017-022,multiple_blastomeres,"multiple blastomeres, reanalysis"
+emb-HL-mizuguchi2025-001-s1,emb-HL-mizuguchi2025-001,te_biopsy,5–6 TE cells
+emb-HL-mizuguchi2025-002-s1,emb-HL-mizuguchi2025-002,te_biopsy,5–6 TE cells
+emb-HL-mizuguchi2025-003-s1,emb-HL-mizuguchi2025-003,te_biopsy,5–6 TE cells
+emb-HL-mizuguchi2025-004-s1,emb-HL-mizuguchi2025-004,te_biopsy,5–6 TE cells
+emb-HL-mizuguchi2025-005-s1,emb-HL-mizuguchi2025-005,te_biopsy,5–6 TE cells
+emb-HL-mizuguchi2025-006-s1,emb-HL-mizuguchi2025-006,te_biopsy,5–6 TE cells
+emb-HL-mizuguchi2025-007-s1,emb-HL-mizuguchi2025-007,te_biopsy,5–6 TE cells
+emb-HL-mizuguchi2025-008-s1,emb-HL-mizuguchi2025-008,te_biopsy,5–6 TE cells
+emb-HL-mizuguchi2025-009-s1,emb-HL-mizuguchi2025-009,te_biopsy,5–6 TE cells
+emb-HL-spath2021-020-s1,emb-HL-spath2021-020,multiple_blastomeres,blastomeres
+emb-HL-spath2021-021-s1,emb-HL-spath2021-021,multiple_blastomeres,blastomeres
+emb-HL-spath2021-022-s1,emb-HL-spath2021-022,whole_embryo,whole embryo
+emb-HL-spath2021-023-s1,emb-HL-spath2021-023,multiple_blastomeres,blastomeres
+emb-HL-spath2021-024-s1,emb-HL-spath2021-024,multiple_blastomeres,blastomeres
+emb-HL-spath2021-025-s1,emb-HL-spath2021-025,whole_embryo,whole embryo
+emb-HL-spath2021-026-s1,emb-HL-spath2021-026,whole_embryo,whole embryo
+emb-HL-spath2021-027-s1,emb-HL-spath2021-027,multiple_blastomeres,blastomeres
+emb-HL-hyslop2025-004-s1,emb-HL-hyslop2025-004,blastomeres_unspecified,test blastomere(s)
+emb-HL-hyslop2025-005-s1,emb-HL-hyslop2025-005,blastomeres_unspecified,test blastomere(s)
+emb-HL-spath2021-028-s1,emb-HL-spath2021-028,te_biopsy,TE biopsy
+emb-HL-spath2021-029-s1,emb-HL-spath2021-029,whole_embryo,whole embryo
+emb-HL-spath2021-030-s1,emb-HL-spath2021-030,te_biopsy,TE biopsy
+emb-HL-spath2021-031-s1,emb-HL-spath2021-031,te_biopsy,TE biopsy
+emb-HL-spath2021-032-s1,emb-HL-spath2021-032,multiple_blastomeres,5 blastomeres
+emb-HL-spath2021-033-s1,emb-HL-spath2021-033,te_biopsy,TE biopsy
+emb-HL-spath2021-034-s1,emb-HL-spath2021-034,multiple_blastomeres,11 blastomeres
+emb-HL-spath2021-035-s1,emb-HL-spath2021-035,whole_embryo,whole embryo
+emb-HL-spath2021-036-s1,emb-HL-spath2021-036,te_biopsy,TE biopsy
+emb-HL-spath2021-037-s1,emb-HL-spath2021-037,te_biopsy,TE biopsy
+emb-HL-spath2021-038-s1,emb-HL-spath2021-038,te_biopsy,TE biopsy
+emb-HL-spath2021-039-s1,emb-HL-spath2021-039,te_biopsy,TE biopsy
+emb-HL-spath2021-040-s1,emb-HL-spath2021-040,te_biopsy,TE biopsy
+emb-HL-spath2021-041-s1,emb-HL-spath2021-041,te_biopsy,TE biopsy
+emb-HL-spath2021-042-s1,emb-HL-spath2021-042,te_biopsy,TE biopsy
+emb-HL-spath2021-043-s1,emb-HL-spath2021-043,te_biopsy,TE biopsy
+emb-HL-spath2021-044-s1,emb-HL-spath2021-044,te_biopsy,TE biopsy
+emb-HL-spath2021-045-s1,emb-HL-spath2021-045,te_biopsy,TE biopsy
+emb-HL-spath2021-046-s1,emb-HL-spath2021-046,te_biopsy,TE biopsy
+emb-HL-steffann2006-001-s1,emb-HL-steffann2006-001,multiple_blastomeres,two blastomeres
+emb-HL-steffann2006-002-s1,emb-HL-steffann2006-002,multiple_blastomeres,two blastomeres
+emb-HL-thorburn2009-001-s1,emb-HL-thorburn2009-001,blastomeres_unspecified,blastomere(s)
+emb-HL-spath2021-047-s1,emb-HL-spath2021-047,whole_embryo,whole embryo
+emb-HL-steffann2006-003-s1,emb-HL-steffann2006-003,mixed_unspecified,blastomeres / whole affected embryo
+emb-HL-hu2026-001-s1,emb-HL-hu2026-001,te_biopsy,TE biopsy (3–5 cells)
+emb-HL-hu2026-002-s1,emb-HL-hu2026-002,whole_embryo,whole embryo
+emb-HL-hu2026-003-s1,emb-HL-hu2026-003,te_biopsy,TE biopsy (3–5 cells)
+emb-HL-hu2026-004-s1,emb-HL-hu2026-004,te_biopsy,TE biopsy (3–5 cells)
+emb-HL-hu2026-005-s1,emb-HL-hu2026-005,te_biopsy,TE biopsy (3–5 cells)
+emb-HL-hu2026-006-s1,emb-HL-hu2026-006,te_biopsy,TE biopsy (3–5 cells)
+emb-HL-hu2026-007-s1,emb-HL-hu2026-007,whole_embryo,whole embryo
+emb-HL-hu2026-008-s1,emb-HL-hu2026-008,te_biopsy,TE biopsy (3–5 cells)
 emb-Janssen2024_F20_E45-te_biopsy,emb-Janssen2024_F20_E45,te_biopsy,Биоптат ТЭ
 emb-Janssen2024_F20_E45-remaining_te,emb-Janssen2024_F20_E45,remaining_te,Оставшаяся ТЭ
 emb-Janssen2024_F20_E46-te_biopsy,emb-Janssen2024_F20_E46,te_biopsy,Биоптат ТЭ
@@ -256,9 +256,9 @@ emb-Tofilo_2-te_biopsy,emb-Tofilo_2,te_biopsy,Биоптат ТЭ
 emb-Tofilo_2-icm,emb-Tofilo_2,icm,ВКМ
 emb-Tofilo_2-remaining_te,emb-Tofilo_2,remaining_te,Оставшаяся ТЭ
 emb-Tofilo_3-te_biopsy,emb-Tofilo_3,te_biopsy,Биоптат ТЭ
-emb-Tofilo_3-remaining_te,emb-Tofilo_3,remaining_te,Оставшаяся ТЭ
+emb-Tofilo_3-combined_te_icm,emb-Tofilo_3,combined_te_icm,Оставшаяся ТЭ
 emb-Tofilo_4-te_biopsy,emb-Tofilo_4,te_biopsy,Биоптат ТЭ
-emb-Tofilo_4-remaining_te,emb-Tofilo_4,remaining_te,Оставшаяся ТЭ
+emb-Tofilo_4-combined_te_icm,emb-Tofilo_4,combined_te_icm,Оставшаяся ТЭ
 emb-Tofilo_5-te_biopsy,emb-Tofilo_5,te_biopsy,Биоптат ТЭ
 emb-Tofilo_5-icm,emb-Tofilo_5,icm,ВКМ
 emb-Tofilo_5-remaining_te,emb-Tofilo_5,remaining_te,Оставшаяся ТЭ
