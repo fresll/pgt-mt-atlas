@@ -18,11 +18,12 @@ export interface ChartTheme {
   warn: string
 }
 
-// Палитра атласа (см. styles.css): navy #182A40, teal #137F80, sage #D7EDE5, ivory #F7F8F4, copper #D28A56
+// Цвета графиков берутся из CSS-токенов Scientific Sketchbook (styles.css); здесь — значения светлой темы на случай,
+// когда токены недоступны (статическая генерация): чернила #34406E, синий #1F3FB4, красный #D42A2F.
 const LIGHT: ChartTheme = {
-  ink: '#182a40', ink2: '#3d4e62', muted: '#5d6d7c', grid: '#e1e7e3', surface: '#ffffff',
-  s1: '#137f80', s2: '#d28a56', s3: '#4a6fa5', s4: '#8e5c8a',
-  bandGreen: '#e3f1eb', bandBlue: '#e3eaf3', bandRed: '#f7e7dc', accent: '#137f80', critical: '#b5452b', warn: '#c9772f',
+  ink: '#34406e', ink2: '#4a5582', muted: '#5f6787', grid: '#e4e8f5', surface: '#ffffff',
+  s1: '#1f3fb4', s2: '#d28a56', s3: '#137f80', s4: '#8e5c8a',
+  bandGreen: '#e3f1eb', bandBlue: '#e3eaf3', bandRed: '#f7e7dc', accent: '#1f3fb4', critical: '#d42a2f', warn: '#c9772f',
 }
 
 function read(): ChartTheme {

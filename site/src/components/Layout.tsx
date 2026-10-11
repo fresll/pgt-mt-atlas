@@ -27,10 +27,12 @@ function ThemeToggle() {
       /* ignore */
     }
   }, [theme])
+  const t = useT()
+  const label = t('nav.theme', { mode: t(`nav.themeMode.${theme}`) })
   const next: Record<Theme, Theme> = { system: 'light', light: 'dark', dark: 'system' }
   const icon: Record<Theme, string> = { system: '◐', light: '☀', dark: '☾' }
   return (
-    <button className="ghost" type="button" onClick={() => setTheme(next[theme])} aria-label={`Theme: ${theme}`} title={`Theme: ${theme}`}>
+    <button className="ghost" type="button" onClick={() => setTheme(next[theme])} aria-label={label} title={label}>
       {icon[theme]}
     </button>
   )
@@ -63,7 +65,7 @@ function Header({ lang }: { lang: Lang }) {
             <small>{t('site.curated')}</small>
           </span>
         </Link>
-        <nav className="primary" aria-label="primary">
+        <nav className="primary" aria-label={t('nav.primaryLabel')}>
           <NavLink to={`/${lang}/fundamentals/`}>{t('nav.fundamentals')}</NavLink>
           <NavLink to={`/${lang}/science/`} className={() => (inScience ? 'active' : '')}>{t('nav.science')}</NavLink>
           <NavLink to={`/${lang}/science/data/`}>{t('nav.data')}</NavLink>
@@ -156,7 +158,7 @@ export function ScienceLayout({ lang }: { lang: Lang }) {
   ]
   return (
     <div className="layout-science">
-      <nav className="side" aria-label="science">
+      <nav className="side" aria-label={t('nav.scienceLabel')}>
         <ul>
           {items.map(([p, k]) => (
             <li key={p}>

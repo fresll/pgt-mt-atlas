@@ -119,8 +119,6 @@ test('pages fit phone and wide screens with visible photo and chart', async ({ p
       await page.goto(`http://localhost:4174/pgt-mt-atlas/${p}`)
       if (p.includes('science')) await expect(page.locator('.chart-frame .js-plotly-plot').first()).toBeVisible({ timeout: 20_000 })
       else await expectPhoto(page, p.includes('ilya') ? 'img.portrait' : '.sk-home img')
-      // промежуточная ширина: известное переполнение RU-меню (до этого раунда, этап дизайна) — проверяется только видимость
-      if (width === 820) continue
       const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)
       expect(overflow, `${width} ${p}`).toBeLessThanOrEqual(0)
     }

@@ -186,7 +186,7 @@ export default function Fig3() {
       </div>
 
       <div style={{ overflowX: 'auto' }}>
-        <div style={{ minWidth: 1080 }}>
+        <div style={{ minWidth: 960 }}>
           <PlotlyChart
             ariaLabel={t('fig3.title')}
             height={600}

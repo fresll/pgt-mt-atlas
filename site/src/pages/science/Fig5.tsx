@@ -38,7 +38,16 @@ function position(p: OffspringPair): [number, number] {
   return C5_POS[p.id] ?? [p.emb as number, p.value as number]
 }
 
+/** Ребёнок с наибольшим числом сопоставлений на графике (сопоставления одного ребёнка не независимы). */
+function largestChildGroup(): { top: string; k: number } {
+  const n = new Map<string, number>()
+  for (const p of atlas.fig5) if (p.in_figure) n.set(p.child, (n.get(p.child) ?? 0) + 1)
+  const [top, k] = [...n.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))[0] ?? ['—', 0]
+  return { top, k }
+}
+
 export default function Fig5() {
+  const topChild = largestChildGroup()
   const t = useT()
   const lang = useLang()
   const th = useChartTheme()
@@ -166,7 +175,7 @@ export default function Fig5() {
         <div><h3>{lang === 'ru' ? 'Б' : 'B'}</h3><PlotlyChart ariaLabel={t('fig5.yB')} height={460} data={panelB.data as never} layout={panelB.layout as never} onClick={pick} /></div>
       </div>
       <p className="small muted">{t('common.clickHint')} {t('fig5.lowSpread')}</p>
-      <p className="small"><strong>{t('fig5.dependency', { pairs: s.n_pairs, children: s.n_children })}</strong>{' '}
+      <p className="small"><strong>{t('fig5.dependency', { pairs: s.n_pairs, children: s.n_children, ...topChild })}</strong>{' '}
         {lang === 'ru'
           ? `Из ${s.n_low_embryo} сопоставлений с низкой гетероплазмией эмбриона ${s.n_concordant_low} сопровождались низкой или неопределяемой гетероплазмией в ткани; все расхождения (${s.discordant_ids.join(', ')}) — повторный анализ одного ребёнка другим методом.`
           : `Of ${s.n_low_embryo} comparisons with low embryo heteroplasmy, ${s.n_concordant_low} showed low or undetectable tissue heteroplasmy; all discordant values (${s.discordant_ids.join(', ')}) come from re-analysis of one child by another method.`}
