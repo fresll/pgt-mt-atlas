@@ -25,11 +25,11 @@ const en: FundamentalsContent = {
         { t: 'ul', items: [
           '**Nuclear gene:** two alleles, discrete genotypes (zero, one or two copies of a variant) and transmission ratios predicted by Mendel’s laws.',
           '**mtDNA:** one parent, many copies and a continuous quantity — the proportion of the variant, from 0 to 100%. The proportion that a given oocyte will receive is not known in advance, which is why the recurrence risk of heteroplasmic variants is often unpredictable [@smeets2023].',
-          '**Consequence for testing:** a nuclear gene test returns a genotype; an mtDNA test returns a percentage. This difference shapes the logic of PGT-mt (Chapter 5).',
+          '**Consequence for PGT-mt:** testing for heteroplasmy measures the proportion of the selected mtDNA variant in a sample. Embryos are therefore compared using quantitative heteroplasmy values (Chapter 5).',
         ] },
         { t: 'h', x: 'The genetics of mitochondrial disease' },
         { t: 'p', x: 'Mitochondrial diseases are clinically and genetically heterogeneous: they can appear at any age from the neonatal period to adulthood, and some carriers remain asymptomatic [@gorman2016]. Among adults in North East England, the minimum prevalence of pathogenic mtDNA variants (symptomatic and asymptomatic) was about 1 in 5,000 [@gorman2015]. An mtDNA variant may arise anew (de novo) or be inherited from the mother; de novo variants carry a low recurrence risk, whereas the risk for inherited heteroplasmic variants is uncertain [@smeets2023].' },
-        { t: 'key', x: 'An mtDNA result is a proportion, not a genotype. Everything else in PGT-mt Fundamentals builds on this fact.' },
+        { t: 'key', x: 'PGT-mt measures the proportion of the studied mtDNA variant in a sample. This quantitative measure underlies the explanations in PGT-mt Fundamentals.' },
       ],
       advanced: [
         { t: 'h', x: 'Genome organisation' },
@@ -58,7 +58,7 @@ const en: FundamentalsContent = {
       ],
       widgets: ['heteroplasmy'],
       data: [
-        { to: 'science/heteroplasmy-landscape/', label: 'Heteroplasmy Landscape', text: 'Published embryo heteroplasmy values for the seven mtDNA variants included in the dataset: what a “proportion” looks like in real cycles.' },
+        { to: 'science/heteroplasmy-landscape/', label: 'Heteroplasmy Landscape', text: 'Published embryo heteroplasmy values for the seven mtDNA variants included in the dataset: the distribution of values in real cycles.' },
         { to: 'science/sources/', label: 'Sources', text: 'The primary publications behind the Atlas values, with authorship and DOI.' },
       ],
     },
@@ -89,7 +89,7 @@ const en: FundamentalsContent = {
       ],
       advanced: [
         { t: 'h', x: 'Formal definition and the measurement chain' },
-        { t: 'p', x: 'The heteroplasmy level h = n(variant) / [n(variant) + n(wild type)] at the variant position in DNA extracted from a sample. It is an average over a population of molecules and says nothing about how the variant is distributed among the cells of the sample. Between a cell and the number on a report lies a chain of steps — selecting cells, lysis, whole-genome amplification where needed, amplification of the variant region, detection and calibration — and each step can introduce bias [@mavraki2023; @spath2021].' },
+        { t: 'p', x: 'The heteroplasmy level h = n(variant) / [n(variant) + n(wild type)] at the variant position in DNA extracted from a sample. This value characterises the population of molecules in the sample. It cannot be used to reconstruct the heteroplasmy level of each individual cell. Between a cell and the number on a report lies a chain of steps — selecting cells, lysis, whole-genome amplification where needed, amplification of the variant region, detection and calibration — and each step can introduce bias [@mavraki2023; @spath2021].' },
         { t: 'h', x: 'Somatic segregation and tissue variability' },
         { t: 'p', x: 'mtDNA replication is not tied to the cell cycle, and at cell division molecules are partitioned between daughter cells at random; levels therefore drift within cell lineages [@chinnery2000; @stewart2015; @mavraki2023]. Cell-type-specific selection acts in addition: rapidly renewing tissues and post-mitotic cells behave differently, which helps to explain the tissue specificity of mtDNA disease [@burr2024]. For m.3243A>G, heteroplasmy in blood declines exponentially with age, whereas in skeletal muscle it does not [@burr2024]. Cell-to-cell mosaicism arises very early: in day-3 embryos, individual blastomeres carry their own variants, and this diversity persists in adult tissues [@mertens2022].' },
         { t: 'h', x: 'Thresholds: tissue, biochemical and variant-specific' },
@@ -116,7 +116,7 @@ const en: FundamentalsContent = {
       lead: 'In a carrier of a heteroplasmic variant, oocytes can range from almost no mutant load to almost complete. This variability is attributed to the mitochondrial genetic bottleneck — and it is exactly what makes PGT-mt possible.',
       essentials: [
         { t: 'h', x: 'One level in the mother, many levels in her oocytes' },
-        { t: 'p', x: 'In a 30-year-old carrier of m.3243A>G with a 35% load, the variant level ranged from 9% to 90% in her oocytes and from 7% to 91% in her embryos [@treff2012]. Such a spread is the rule rather than the exception: the proportion of pathogenic mtDNA a given oocyte will receive is not known in advance [@smeets2023].' },
+        { t: 'p', x: 'In a 30-year-old carrier of m.3243A>G with a 35% load, the variant level ranged from 9% to 90% in her oocytes and from 7% to 91% in her embryos [@treff2012]. This example shows that the heteroplasmy level can differ substantially between oocytes of one carrier. The proportion of the variant in a particular oocyte cannot be determined in advance from the mother’s heteroplasmy level [@smeets2023].' },
         { t: 'h', x: 'What the bottleneck is' },
         { t: 'p', x: 'The mitochondrial genetic bottleneck is the process by which, in the female germline, the mtDNA composition of each future oocyte is determined by far fewer “units” than the total number of molecules in a mature oocyte [@stewart2015; @xie2026]. Draw 1,000 marbles from a bag in which 30% are red, and the share of red ones will almost certainly be close to 30%. Draw 10, and it may be 0% or 60%. The same applies to mtDNA: the smaller the effective pool, the larger the random shifts in heteroplasmy between oocytes.' },
         { t: 'h', x: 'Physical copies and effective units' },
@@ -124,7 +124,7 @@ const en: FundamentalsContent = {
         { t: 'h', x: 'Chance and, possibly, selection' },
         { t: 'p', x: 'A large part of the variability is explained by random drift. However, evidence is accumulating that some variants are also subject to selection — against high loads or, conversely, in favour of mutant molecules — and that it depends on the specific variant [@otten2018; @zhang2021; @floros2018]. No single mechanism has yet been established as the universal explanation for all variants and developmental stages.' },
         { t: 'h', x: 'Why it matters for PGT-mt' },
-        { t: 'p', x: 'If every oocyte inherited the mother’s level, there would be nothing to choose from. It is the variability between oocytes and embryos that makes it possible to find an embryo with a low load. But the same variability makes the outcome of a cycle unpredictable: one cycle may produce several low-heteroplasmy embryos, another none [@hyslop2025]. The simulator below shows how the size of the effective pool affects the spread — it illustrates a model and is not a forecast for any individual patient.' },
+        { t: 'p', x: 'Differences in heteroplasmy level between oocytes and embryos make it possible to select an embryo with a lower proportion of the studied mtDNA variant. But the same variability makes the outcome of a cycle unpredictable: one cycle may produce several low-heteroplasmy embryos, another none [@hyslop2025]. The simulator below shows how the size of the effective pool affects the spread — it illustrates a model and is not a forecast for any individual patient.' },
         { t: 'key', x: 'The bottleneck explains why one woman’s oocytes differ. It does not allow the heteroplasmy of a particular embryo to be predicted in advance.' },
       ],
       advanced: [
@@ -153,7 +153,7 @@ const en: FundamentalsContent = {
         { t: 'ul', items: [
           'Whether PGT-mt is feasible depends on the spread of heteroplasmy among a particular patient’s embryos, not on the average for the variant.',
           'Modelling tools estimate risk and the chance of success before a cycle from the mother’s level and pedigree data [@ji2023]; these estimates rest on assumptions about bottleneck size and thresholds.',
-          'In the Newcastle programme, five patients undergoing PGT obtained no embryo with heteroplasmy below 30% [@hyslop2025]: an unsuccessful cycle is an expected outcome, not an exception.',
+          'In the Newcastle programme, five patients undergoing PGT obtained no embryo with heteroplasmy below 30% [@hyslop2025]. This observation shows that PGT-mt does not always yield an embryo that meets the chosen criterion.',
         ] },
         { t: 'caution', x: 'Neither drift, nor selection, nor restricted replication has been established as the single universal explanation of the bottleneck. The relative contribution of each mechanism has not been measured in humans and probably differs between variants and developmental stages.' },
       ],
@@ -169,7 +169,7 @@ const en: FundamentalsContent = {
       slug: 'embryo-development-and-biopsy',
       title: 'Embryonic Development and Biopsy',
       short: 'Preimplantation stages, blastomere and trophectoderm biopsy, how representative a biopsy is',
-      lead: 'For PGT-mt, a few cells are taken from the embryo. To understand what the result says, one needs to know at which stage the cells were taken, from which part of the embryo, and how similar they are to the rest.',
+      lead: 'PGT-mt analyses cells obtained by embryo biopsy. The interpretation of the result depends on the developmental stage of the embryo, the biopsy site and how well the measured heteroplasmy level corresponds to the other cells of the embryo.',
       essentials: [
         { t: 'h', x: 'From zygote to blastocyst' },
         { t: 'p', x: 'After fertilisation (in PGT programmes usually by ICSI, injection of a sperm into the oocyte [@hyslop2025]) the embryo passes through several stages. On day 1 it is a zygote; on days 2–3 a cleavage-stage embryo of several cells (blastomeres); on day 4 a compacted morula; on days 5–6 a blastocyst [@rubens2025]. The “Preimplantation stages” diagram below shows this sequence and the points at which biopsy is performed.' },
@@ -305,7 +305,7 @@ const en: FundamentalsContent = {
       ],
       advanced: [
         { t: 'h', x: 'Why PGT-mt is a quantitative ranking method' },
-        { t: 'p', x: 'In PGT-M, the goal is an embryo without the pathogenic genotype (or with a single allele, depending on the mode of inheritance). In PGT-mt there are no genotypes: there is a continuous scale on which embryos from the same cycle occupy different positions. The decision is made relative to the available embryos and the chosen cut-off. A difference of a few percentage points affects the choice only when the measured level lies close to the cut-off; for extreme values (0–5% or a high load) such a correction does not change the decision.' },
+        { t: 'p', x: 'In PGT-M, the goal is an embryo without the pathogenic genotype (or with a single allele, depending on the mode of inheritance). In PGT-mt, quantitative heteroplasmy values are compared between embryos of the same cycle. The decision is made relative to the available embryos and the chosen cut-off. A difference of a few percentage points affects the choice only when the measured level lies close to the cut-off; for extreme values (0–5% or a high load) such a correction does not change the decision.' },
         { t: 'h', x: 'The biopsy and later distribution across tissues' },
         { t: 'p', x: 'Trophectoderm, chorionic villi, amniocytes, cord and peripheral blood, urinary and buccal epithelium represent different cell populations [@stewart2015; @burr2024]. Agreement is therefore judged not by matching numbers but by whether the clinically relevant range is preserved. The published observations are heterogeneous. For m.8993T>G, transfer of embryos with very low or undetectable heteroplasmy was followed by the birth of children with low or undetectable variant levels [@steffann2006; @spath2021]. After TE biopsy and transfer of a blastocyst in an m.3243A>G carrier, a child was born without detectable variant in the tissues examined [@heindryckx2014]. After transfer of a blastocyst with 1.8% m.3250T>C, the variant was not detected in the child’s blood, cord blood or buccal epithelium at two years [@hu2026]. After a double transfer of m.14487T>C embryos below 18%, about 5% of the variant was found in the child’s cord blood; with a double transfer it cannot be established which embryo gave rise to the pregnancy [@sallevelt2017b]. When embryos with heteroplasmy of about 50–60% (m.8344A>G, m.3697G>A) were transferred, comparable levels were found in the fetus or child [@steffann2014; @ji2021]. For m.3243A>G, the same child received values from “less than 10%” to 46–47% depending on the method [@treff2012; @mitalipov2014].' },
         { t: 'p', x: 'In the Newcastle programme, PGT resulted in 18 live births; the variant level in blood was known for 10 of the children and ranged from undetectable to 7% [@hyslop2025]. Individual embryo–child pairs were not published in that study.' },
