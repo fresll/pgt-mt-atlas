@@ -17,12 +17,40 @@ export interface Publication {
   pub_status: 'published' | 'in_press' | 'conference_abstract' | 'preprint'
   published_date: string | null
   data_access_note: Bilingual | null
-  verified: { date: string; by: string; note: string } | null
+  verified: { date: string; by: string; note?: string } | null
   supplementary: { file: string; label: string; content: string }[] | null
+  doi_exception: string | null
+  /** Роли публикации на сайте — вычисляются ETL по фактическому использованию */
+  roles: { role: PublicationRole; section?: string }[]
+}
+
+export type PublicationRole = 'observations' | 'case_summary' | 'threshold' | 'model_parameter' | 'excluded_data' | 'classification_basis'
+
+export interface VariantClass {
+  class: 'pathogenic' | 'neutral_polymorphism' | 'uncertain_significance'
+  status: 'stated_in_source' | 'implied_in_source' | 'not_verified'
+  publication: string
+  locator: string | null
+  checked: string
+}
+
+export interface Correction {
+  id: string
+  target: { sheet: string; row: number; embryo: string; fraction: string }
+  field: 'value' | 'fraction'
+  from: number | string
+  to: number | string
+  unit: string
+  source: { publication: string; document: string; file: string; locator: string }
+  evidence: string
+  verified: { date: string; by: string }
 }
 
 export interface EmbryoObservation {
+  /** стабильный идентификатор (не зависит от строки xlsx) */
   id: string
+  /** прежний идентификатор по строке xlsx — алиас для старых ссылок */
+  legacy_id: string
   variant: string
   pub: string
   value: number | null
@@ -46,13 +74,21 @@ export interface FractionObservation {
   pub: string
   variant: string
   cls: 'pathogenic' | 'neutral_polymorphism' | 'uncertain_significance'
-  fraction: 'te_biopsy' | 'icm' | 'remaining_te'
+  fraction: 'te_biopsy' | 'icm' | 'remaining_te' | 'combined_te_icm'
   fraction_raw: string
   value: number
   src: SrcRef
+  id: string
+  legacy_id: string
+  /** исходные значения xlsx, если запись исправлена слоем корректировок (etl/atlas_etl/curation/corrections.yaml) */
+  value_source?: number
+  fraction_source?: string
+  corrections?: string[]
 }
 
 export interface CleavagePair {
+  id: string
+  legacy_id: string
   embryo: string
   variant: string
   pub: string
@@ -110,6 +146,11 @@ export interface Verification {
   source: string
   comment_ru?: string
   comment_en?: string
+  /** corrected — расхождение исправлено слоем корректировок по ESM 2 */
+  resolution?: 'corrected' | null
+  correction_ids?: string[]
+  atlas_value?: number
+  atlas_fraction?: string
 }
 
 export interface Threshold {
@@ -117,14 +158,29 @@ export interface Threshold {
   value?: number
   range?: [number, number]
   publication: string | null
+  role: 'study_estimate' | 'programme_criterion' | 'literature_range' | 'chart_convention'
+  locator: string | null
+  checked: string
   ru: string
   en: string
 }
 
+export type Counts = Record<string, number>
+
 export interface Atlas {
-  meta: { dataset_version: string; source_file: string; source_sha256: string; generator: string }
+  meta: {
+    dataset_version: string
+    source_file: string
+    source_sha256: string
+    generator: string
+    baseline: { version: string; label: Bilingual; source_file: string; source_sha256: string; counts: Counts }
+    changes: { date: string; kind: string; ids?: string[]; ru: string; en: string }[]
+    current_counts: Counts
+  }
   labels: Record<string, Record<string, Bilingual>>
   publications: Publication[]
+  variant_classes: Record<string, VariantClass>
+  corrections: Correction[]
   fig3: EmbryoObservation[]
   fig3_blocks: { variant: string; sources: string[] }[]
   fig4: FractionObservation[]
@@ -145,6 +201,8 @@ export interface Atlas {
     p_eupl: { age: number; value: number }[]
     p_eupl_publication: string
     p_eupl_locator: string | null
+    p_eupl_status: 'scenario'
+    p_eupl_note: Bilingual
     n_max: number
     fig6_variants: string[]
     formula: { p_both: string; p_at_least_one: string }
@@ -153,6 +211,8 @@ export interface Atlas {
   stats: {
     fig3: { n: number; by_variant: Record<string, { n: number; le18: { k: number; n: number }; le30: { k: number; n: number } }>; pooled_le18: { k: number; n: number } }
     fig4: Record<string, number>
+    /** те же статистики по исходной таблице, до слоя корректировок */
+    fig4_source_xlsx: Record<string, number>
     fig5: { n_pairs: number; n_children: number; n_low_embryo: number; n_concordant_low: number; discordant_ids: string[] }
   }
 }
@@ -193,8 +253,20 @@ export function verificationFor(embryo: string): Verification[] {
   return atlas.verification.filter((v) => v.embryo === embryo)
 }
 
+/** Неисправленное расхождение с ESM (исправленные по ESM 2 не считаются открытыми). */
 export function hasVerificationIssue(embryo: string): boolean {
-  return verificationFor(embryo).some((v) => v.status === 'value_mismatch' || v.status === 'fraction_label_mismatch')
+  return verificationFor(embryo).some((v) => (v.status === 'value_mismatch' || v.status === 'fraction_label_mismatch') && v.resolution !== 'corrected')
+}
+
+/** Записи эмбриона, исправленные слоем корректировок. */
+export function correctionsFor(embryo: string): Correction[] {
+  const ids = new Set(atlas.fig4.filter((f) => f.embryo === embryo).flatMap((f) => f.corrections ?? []))
+  return atlas.corrections.filter((c) => ids.has(c.id))
+}
+
+/** Поиск наблюдения по стабильному или прежнему (строковому) идентификатору. */
+export function findObservation(id: string): EmbryoObservation | undefined {
+  return atlas.fig3.find((o) => o.id === id || o.legacy_id === id)
 }
 
 export function median(xs: number[]): number {

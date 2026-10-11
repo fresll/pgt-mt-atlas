@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { DataTable } from '../../components/DataTable'
 import { PlotlyChart } from '../../components/PlotlyChart'
 import { Detail, ObservedBadge, PubRef, Seg } from '../../components/ui'
@@ -28,9 +28,27 @@ export function ObservationDetail({ o, onClose }: { o: EmbryoObservation; onClos
         [t('common.sample'), `${label('sample_type', o.sample, lang)} — «${o.material_raw}»`],
         [t('common.derivation'), <>{label('derivation', o.derivation, lang)}{o.derivation_evidence && <span className="muted"> · {o.derivation_evidence}</span>}</>],
         [t('common.note'), o.note],
+        [t('common.variantClass'), <VariantClassText variant={o.variant} />],
         [t('common.provenance'), t('common.sheetRow', { sheet: o.src.sheet, row: o.src.row })],
+        [t('common.legacyId'), o.legacy_id],
       ]}
     />
+  )
+}
+
+/** Класс варианта и его основание (etl/atlas_etl/curation/variant_classification.yaml). */
+export function VariantClassText({ variant }: { variant: string }) {
+  const t = useT()
+  const lang = useLang()
+  const c = atlas.variant_classes[variant]
+  if (!c) return null
+  return (
+    <>
+      {label('variant_class', c.class, lang)}
+      <span className="muted small">
+        {' '}· {t(`common.classBasis.${c.status}`, { source: pubById[c.publication]?.short ?? c.publication, locator: c.locator ?? '', date: c.checked })}
+      </span>
+    </>
   )
 }
 
@@ -44,12 +62,17 @@ export default function Fig3() {
   const [highlightDerived, setHighlightDerived] = useState(true)
   const [stages, setStages] = useState<string[]>(STAGES)
   const [selected, setSelected] = useState<string | null>(null)
+  // B3: точка ×n — группа совпадающих значений; открываются все её наблюдения
+  const [group, setGroup] = useState<string[] | null>(null)
 
   const explore = mode === 'explore'
   const obs = useMemo(() => (explore ? atlas.fig3.filter((o) => stages.includes(o.stage)) : atlas.fig3), [explore, stages])
   const { blocks, xmax } = useMemo(() => layoutBlocks(atlas.fig3_blocks, obs), [obs])
   const thresholds = explore ? [threshold] : [18, 30]
-  const sel = selected ? atlas.fig3.find((o) => o.id === selected) ?? null : null
+  // выбор согласован с фильтрами: скрытое фильтром наблюдение не показывается, группа пересобирается при смене фильтра
+  const sel = selected ? obs.find((o) => o.id === selected) ?? null : null
+  useEffect(() => setGroup(null), [explore, stages, aggregate])
+  const groupObs = useMemo(() => (group ? obs.filter((o) => group.includes(o.id)) : null), [group, obs])
 
   const plot = useMemo(() => {
     const filled: { x: number[]; y: number[]; text: string[]; ids: string[] } = { x: [], y: [], text: [], ids: [] }
@@ -69,11 +92,11 @@ export default function Fig3() {
           const head = pt.count > 1 ? `${pt.count} × ${obsValueText(o, lang, t)}` : obsValueText(o, lang, t)
           target.x.push(pt.x)
           target.y.push(pt.y)
-          target.ids.push(pt.ids[0])
+          target.ids.push(pt.ids.join(' '))
           target.text.push(
             `<b>${head}</b><br>${o.variant} · ${p.short}<br>${label('stage', o.stage, lang)} · ${label('sample_type', o.sample, lang)}` +
               (isDerived(o) ? `<br><i>${label('derivation', o.derivation, lang)}</i>` : '') +
-              (pt.count > 1 ? '' : `<br><span style="font-size:11px">${o.id}</span>`),
+              (pt.count > 1 ? `<br><i>${t('fig3.groupClick')}</i>` : `<br><span style="font-size:11px">${o.id}</span>`),
           )
           if (pt.count > 1)
             annotations.push({ x: pt.x + 0.12, y: pt.y, text: `×${pt.count}`, showarrow: false, xanchor: 'left', font: { size: 11, color: th.ink2 } })
@@ -120,7 +143,7 @@ export default function Fig3() {
     }
   }, [blocks, xmax, aggregate, highlightDerived, thresholds.join(','), explore, threshold, th, lang, t])
 
-  const tableRows = obs
+  const tableRows = groupObs ?? obs
   return (
     <article>
       <p>
@@ -170,18 +193,53 @@ export default function Fig3() {
             data={plot.data as never}
             layout={plot.layout as never}
             onClick={(e) => {
-              const id = e.points?.[0]?.customdata
-              if (typeof id === 'string') setSelected(id)
+              const raw = e.points?.[0]?.customdata
+              if (typeof raw !== 'string') return
+              const ids = raw.split(' ')
+              if (ids.length > 1) {
+                setGroup(ids)
+                setSelected(null)
+              } else {
+                setGroup(null)
+                setSelected(ids[0])
+              }
             }}
           />
         </div>
       </div>
       <p className="small muted">{t('common.clickHint')} {highlightDerived && t('fig3.derivedLegend')}.</p>
+      {groupObs && groupObs.length > 1 && (
+        <div className="detail obs-group" role="region" aria-label={t('fig3.groupTitle', { n: groupObs.length })} data-group-size={groupObs.length}>
+          <h3>{t('fig3.groupTitle', { n: groupObs.length })}</h3>
+          <p className="small">
+            {t('fig3.groupHint', { n: groupObs.length })} {obsValueText(groupObs[0], lang, t)} · {groupObs[0].variant} · {pubById[groupObs[0].pub].short}
+          </p>
+          <ul className="obs-group-list">
+            {groupObs.map((o) => (
+              <li key={o.id}>
+                <button type="button" className="ghost" aria-pressed={o.id === selected} onClick={() => setSelected(o.id)}>
+                  {o.id}
+                </button>{' '}
+                <span className="small muted">
+                  {label('stage', o.stage, lang)} · {o.material_raw}
+                  {o.note ? ` · ${o.note}` : ''}
+                </span>
+              </li>
+            ))}
+          </ul>
+          <p className="small">
+            {t('fig3.groupInTable')}{' '}
+            <button type="button" className="ghost" onClick={() => { setGroup(null); setSelected(null) }}>
+              {t('fig3.showAll')}
+            </button>
+          </p>
+        </div>
+      )}
       {sel && <ObservationDetail o={sel} onClose={() => setSelected(null)} />}
       <p className="small">{t('fig3.bands')}</p>
       <p className="small">{t('fig3.intervalNote')}</p>
 
-      <details className="table-details" open={false}>
+      <details className="table-details" open={groupObs ? true : undefined}>
         <summary>
           {t('common.showTable')} (n = {tableRows.length})
         </summary>

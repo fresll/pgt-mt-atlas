@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { doiUrl, pubById, type Publication, type Verification } from '../data/atlas'
+import { correctionsFor, doiUrl, label, pubById, type Publication, type Verification } from '../data/atlas'
 import { useLang, useT } from '../i18n'
 
 export function Badge({ kind, children }: { kind: 'observed' | 'model' | 'warn' | 'neutral'; children: ReactNode }) {
@@ -81,6 +81,29 @@ export function Detail({ title, rows, onClose, children }: { title: ReactNode; r
   )
 }
 
+/** Корректировки записей эмбриона по опубликованному источнику: было → стало, источник и локатор. */
+export function CorrectionList({ embryo }: { embryo: string }) {
+  const t = useT()
+  const lang = useLang()
+  const items = correctionsFor(embryo)
+  if (!items.length) return null
+  const show = (field: string, v: number | string) => (field === 'fraction' ? label('fraction', String(v), lang) : `${String(v).replace('.', lang === 'ru' ? ',' : '.')}%`)
+  return (
+    <div className="callout small" style={{ marginBottom: 8 }} data-corrections={items.length}>
+      <strong>{t('verification.correctedTitle')}</strong>
+      <ul style={{ margin: '6px 0 0', paddingLeft: 18 }}>
+        {items.map((c) => (
+          <li key={c.id}>
+            {label('fraction', c.target.fraction, lang)}: {show(c.field, c.from)} ({t('verification.sourceValue')}, «{c.target.sheet}», {lang === 'ru' ? 'строка' : 'row'} {c.target.row}) → <strong>{show(c.field, c.to)}</strong>
+            <br />
+            <span className="muted">{c.source.document}; {c.source.locator}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
 export function VerificationList({ items }: { items: Verification[] }) {
   const t = useT()
   const lang = useLang()
@@ -92,14 +115,16 @@ export function VerificationList({ items }: { items: Verification[] }) {
         {items.map((v, i) => (
           <li key={i}>
             {v.esm_label}: ESM {String(v.esm_value)}% · {t(`verification.${v.status}`)}
+            {v.resolution === 'corrected' && <> · <strong>{t('verification.corrected')}</strong></>}
             {v.dataset_value !== null && ` · ${lang === 'ru' ? 'набор' : 'dataset'} ${String(v.dataset_value)}%`}
             {(lang === 'ru' ? v.comment_ru : v.comment_en) && <> — {lang === 'ru' ? v.comment_ru : v.comment_en}</>}
           </li>
         ))}
       </ul>
-      {items.some((v) => v.status === 'value_mismatch' || v.status === 'fraction_label_mismatch') && (
+      {items.some((v) => (v.status === 'value_mismatch' || v.status === 'fraction_label_mismatch') && v.resolution !== 'corrected') && (
         <p style={{ margin: '6px 0 0' }}>{t('verification.datasetKept')}</p>
       )}
+      {items.some((v) => v.resolution === 'corrected') && <p style={{ margin: '6px 0 0' }}>{t('verification.correctedNote')}</p>}
     </div>
   )
 }

@@ -1,7 +1,7 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { DataTable } from '../../components/DataTable'
 import { ObservedBadge } from '../../components/ui'
-import { atlas, label, pubById } from '../../data/atlas'
+import { atlas, findObservation, label, pubById } from '../../data/atlas'
 import { useLang, useT } from '../../i18n'
 import { obsValueText } from '../../lib/obs'
 import { asset } from '../../lib/base'
@@ -15,16 +15,39 @@ export default function Data() {
   const [variant, setVariant] = useState('')
   const [pub, setPub] = useState('')
   const [selected, setSelected] = useState<string | null>(null)
+  const [query, setQuery] = useState('')
   const variants = [...new Set(atlas.fig3.map((o) => o.variant))]
   const pubs = [...new Set(atlas.fig3.map((o) => o.pub))]
-  const rows = useMemo(() => atlas.fig3.filter((o) => (!variant || o.variant === variant) && (!pub || o.pub === pub)), [variant, pub])
-  const sel = selected ? atlas.fig3.find((o) => o.id === selected) : null
+  // ?id=<стабильный или прежний ID>: ссылки на наблюдения переживают смену нумерации строк исходной таблицы
+  useEffect(() => {
+    const id = new URLSearchParams(window.location.search).get('id')
+    const o = id ? findObservation(id) : undefined
+    if (o) {
+      setQuery(id!)
+      setSelected(o.id)
+    }
+  }, [])
+  const q = query.trim().toLowerCase()
+  const rows = useMemo(
+    () =>
+      atlas.fig3.filter(
+        (o) =>
+          (!variant || o.variant === variant) &&
+          (!pub || o.pub === pub) &&
+          (!q || o.id.toLowerCase().includes(q) || o.legacy_id.toLowerCase() === q || o.variant.toLowerCase().includes(q) || pubById[o.pub].short.toLowerCase().includes(q)),
+      ),
+    [variant, pub, q],
+  )
+  const sel = selected ? rows.find((o) => o.id === selected) : null
+  const c = atlas.meta.current_counts
+  const base = atlas.meta.baseline
   return (
     <article>
       <p><ObservedBadge /></p>
       <h1>{t('data.title')}</h1>
       <p className="lead">{t('data.lead')}</p>
       <p className="small muted">{t('data.version', { v: atlas.meta.dataset_version, file: atlas.meta.source_file, sha: atlas.meta.source_sha256.slice(0, 12) })}</p>
+      <p className="small" data-release="current">{t('data.release', { n: c.landscape_values, base: base.version, nBase: base.counts.landscape_values, changes: atlas.meta.changes.length })}</p>
 
       <h2>{t('data.embryos')}</h2>
       <div className="controls">
@@ -42,6 +65,10 @@ export default function Data() {
             {pubs.map((p) => <option key={p} value={p}>{pubById[p].short}</option>)}
           </select>
         </label>
+        <label>
+          {t('data.search')}
+          <input type="search" value={query} placeholder="HL-…, f3-…" onChange={(e) => setQuery(e.target.value)} />
+        </label>
       </div>
       {sel && <ObservationDetail o={sel} onClose={() => setSelected(null)} />}
       <DataTable
@@ -50,7 +77,7 @@ export default function Data() {
         selected={selected}
         onSelect={(o) => setSelected(o.id)}
         csvName="pgt-mt-atlas_embryos.csv"
-        csvRow={(o) => ({ id: o.id, variant: o.variant, value_pct: o.value, qualifier: o.q, low: o.low, high: o.high, lod_pct: o.lod, publication: o.pub, doi: pubById[o.pub]?.doi, pub_status: pubById[o.pub]?.pub_status, stage: o.stage, stage_raw: o.stage_raw, sample_type: o.sample, material_raw: o.material_raw, derivation: o.derivation, note: o.note, sheet: o.src.sheet, row: o.src.row })}
+        csvRow={(o) => ({ id: o.id, legacy_id: o.legacy_id, variant: o.variant, value_pct: o.value, qualifier: o.q, low: o.low, high: o.high, lod_pct: o.lod, publication: o.pub, doi: pubById[o.pub]?.doi, pub_status: pubById[o.pub]?.pub_status, stage: o.stage, stage_raw: o.stage_raw, sample_type: o.sample, material_raw: o.material_raw, derivation: o.derivation, note: o.note, sheet: o.src.sheet, row: o.src.row })}
         columns={[
           { key: 'id', header: 'ID', render: (o) => o.id, sort: (o) => o.id },
           { key: 'v', header: t('common.variant'), render: (o) => o.variant, sort: (o) => o.variant },

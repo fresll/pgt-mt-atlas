@@ -1,13 +1,14 @@
 import { useMemo, useState } from 'react'
 import { DataTable } from '../../components/DataTable'
 import { PlotlyChart } from '../../components/PlotlyChart'
-import { Detail, ObservedBadge, PubRef, VerificationList } from '../../components/ui'
+import { CorrectionList, Detail, ObservedBadge, PubRef, VerificationList } from '../../components/ui'
 import { atlas, fig4Embryos, hasVerificationIssue, label, median, pubById, rangeOf, verificationFor } from '../../data/atlas'
 import { useLang, useT } from '../../i18n'
 import { fmt, pct } from '../../lib/format'
 import { axis, baseLayout, useChartTheme, type ChartTheme } from '../../lib/theme'
 
-const FR = ['te_biopsy', 'icm', 'remaining_te'] as const
+// combined_te_icm — объединённая фракция ВКМ+ТЭ, когда ВКМ и оставшуюся ТЭ не удалось разделить (Tofilo 2026, эмбрионы 3 и 4)
+const FR = ['te_biopsy', 'icm', 'remaining_te', 'combined_te_icm'] as const
 
 /** Простое детерминированное разнесение совпадающих значений по горизонтали. */
 function spread(values: { y: number; key: string }[], x0: number, dx: number, dyMin: number) {
@@ -66,17 +67,20 @@ export default function Fig4() {
       data,
       layout: {
         ...baseLayout(th),
-        shapes: [{ type: 'rect', x0: -0.3, x1: 2.3, y0: 18, y1: 30, fillcolor: th.bandBlue, line: { width: 0 }, layer: 'below' }],
-        xaxis: axis(th, { range: [-0.3, 2.3], tickvals: [0, 1, 2], ticktext: FR.map((f) => frLabel(f).replace(' ', '<br>')), tickangle: 0, showgrid: false, fixedrange: true }),
+        shapes: [{ type: 'rect', x0: -0.3, x1: 3.3, y0: 18, y1: 30, fillcolor: th.bandBlue, line: { width: 0 }, layer: 'below' }],
+        xaxis: axis(th, { range: [-0.3, 3.3], tickvals: [0, 1, 2, 3], ticktext: FR.map((f) => (f === 'combined_te_icm' ? t('fig4.combShort') : frLabel(f).replace(' ', '<br>'))), tickangle: 0, showgrid: false, fixedrange: true, tickfont: { size: 10, color: th.ink2 } }),
         yaxis: axis(th, { range: [-3, 103], title: { text: t('fig4.yA') } }),
       },
     }
   }, [embryos, selected, th, lang])
 
   const panelB = useMemo(() => {
-    const groups: { frac: 'remaining_te' | 'icm'; hv2: boolean }[] = [
+    const groups: { frac: 'remaining_te' | 'icm' | 'combined_te_icm'; hv2: boolean }[] = [
       { frac: 'remaining_te', hv2: false }, { frac: 'remaining_te', hv2: true }, { frac: 'icm', hv2: false }, { frac: 'icm', hv2: true },
+      // объединённая фракция есть только у патогенных бластоцист (Tofilo 2026)
+      ...(embryos.some((e) => e.fr.combined_te_icm !== undefined) ? [{ frac: 'combined_te_icm' as const, hv2: false }] : []),
     ]
+    const xMax = groups.length - 0.5
     const data: Record<string, unknown>[] = []
     const ann: Record<string, unknown>[] = []
     groups.forEach((g, gx) => {
@@ -97,17 +101,18 @@ export default function Fig4() {
       layout: {
         ...baseLayout(th),
         shapes: [
-          { type: 'rect', x0: -0.5, x1: 3.5, y0: -5, y1: 5, fillcolor: th.grid, opacity: 0.45, line: { width: 0 }, layer: 'below' },
-          { type: 'line', x0: -0.5, x1: 3.5, y0: 0, y1: 0, line: { color: th.muted, dash: 'dash', width: 1 }, layer: 'below' },
+          { type: 'rect', x0: -0.5, x1: xMax, y0: -5, y1: 5, fillcolor: th.grid, opacity: 0.45, line: { width: 0 }, layer: 'below' },
+          { type: 'line', x0: -0.5, x1: xMax, y0: 0, y1: 0, line: { color: th.muted, dash: 'dash', width: 1 }, layer: 'below' },
         ],
         annotations: [
           ...ann,
-          { x: 0.5, y: -0.16, xref: 'x', yref: 'paper', text: t('fig4.remMinusBx'), showarrow: false, font: { size: 11, color: th.ink2 } },
-          { x: 2.5, y: -0.16, xref: 'x', yref: 'paper', text: t('fig4.icmMinusBx'), showarrow: false, font: { size: 11, color: th.ink2 } },
+          { x: 0.5, y: -0.2, xref: 'x', yref: 'paper', text: t('fig4.remMinusBx').replace(' − ', '<br>− '), showarrow: false, font: { size: 10, color: th.ink2 } },
+          { x: 2.5, y: -0.2, xref: 'x', yref: 'paper', text: t('fig4.icmMinusBx').replace(' − ', '<br>− '), showarrow: false, font: { size: 10, color: th.ink2 } },
+          ...(groups.length > 4 ? [{ x: 4, y: -0.2, xref: 'x', yref: 'paper', text: t('fig4.combMinusBx').replace(' − ', '<br>− '), showarrow: false, font: { size: 10, color: th.ink2 } }] : []),
         ],
-        xaxis: axis(th, { range: [-0.5, 3.5], tickvals: [0, 1, 2, 3], ticktext: [lang === 'ru' ? 'патог.' : 'path.', 'HV2', lang === 'ru' ? 'патог.' : 'path.', 'HV2'], tickangle: 0, showgrid: false, fixedrange: true, tickfont: { size: 11, color: th.ink2 } }),
+        xaxis: axis(th, { range: [-0.5, xMax], tickvals: groups.map((_, i) => i), ticktext: groups.map((g) => (g.hv2 ? 'HV2' : lang === 'ru' ? 'патог.' : 'path.')), tickangle: 0, showgrid: false, fixedrange: true, tickfont: { size: 11, color: th.ink2 } }),
         yaxis: axis(th, { range: [-12.5, 12.5], title: { text: t('fig4.yB') }, zeroline: false }),
-        margin: { l: 64, r: 12, t: 24, b: 64 },
+        margin: { l: 64, r: 12, t: 24, b: 78 },
       },
     }
   }, [embryos, selected, th, lang])
@@ -156,7 +161,7 @@ export default function Fig4() {
       <p><ObservedBadge /></p>
       <h1>{t('fig4.title')}</h1>
       <p className="subtitle">{t('fig4.subtitle')}</p>
-      <p className="lead">{t('fig4.lead')}</p>
+      <p className="lead">{t('fig4.lead', { n: s.n_embryos, c: s.n_cleavage })}</p>
       <div className="controls">
         <label>
           <input type="checkbox" checked={showHv2} onChange={(e) => setShowHv2(e.target.checked)} /> {t('fig4.showHv2')}
@@ -164,7 +169,7 @@ export default function Fig4() {
         <span className="legend-row" style={{ margin: 0 }}>
           <span><span className="sw" style={{ background: 'var(--ink)' }} />{t('fig4.pathogenic')}</span>
           <span><span className="sw" style={{ background: 'var(--surface)', border: '1.5px solid var(--muted)' }} />{t('fig4.hv2')}</span>
-          <span><span className="sw" style={{ background: 'var(--ink)', border: '2.5px solid var(--flag)' }} />ESM ⚠</span>
+          {atlas.fig4.some((f) => hasVerificationIssue(f.embryo)) && <span><span className="sw" style={{ background: 'var(--ink)', border: '2.5px solid var(--flag)' }} />ESM ⚠</span>}
         </span>
       </div>
       <div className="grid-3">
@@ -192,6 +197,7 @@ export default function Fig4() {
             [t('common.provenance'), atlas.fig4.filter((f) => f.embryo === selEmb.embryo).map((f) => t('common.sheetRow', { sheet: f.src.sheet, row: f.src.row })).join('; ')],
           ]}
         >
+          <CorrectionList embryo={selEmb.embryo} />
           <VerificationList items={verificationFor(selEmb.embryo)} />
         </Detail>
       )}

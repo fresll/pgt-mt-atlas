@@ -74,6 +74,8 @@ export default function Fig6() {
       <h1>{t('fig6.title')}</h1>
       <p className="subtitle">{t('fig6.subtitle')}</p>
       <div className="callout model" role="note"><strong>◆ </strong>{t('fig6.banner')}</div>
+      <h2>{t('fig6.meaningTitle')}</h2>
+      <p data-testid="model-meaning">{t('fig6.meaning')}</p>
       <div className="controls">
         <span>
           {t('common.threshold')}:{' '}
@@ -104,7 +106,10 @@ export default function Fig6() {
       </div>
       <ul className="small">
         <li>{t('fig6.pHet')}</li>
-        <li>{t('fig6.pEupl')}: <PubRef id={m.p_eupl_publication} /></li>
+        <li data-testid="p-eupl">
+          {t('fig6.pEupl')}. {m.p_eupl_note[lang]} {t('fig6.pEuplSource')}: <PubRef id={m.p_eupl_publication} />
+          {m.p_eupl_locator && <span className="muted"> — {m.p_eupl_locator}</span>}
+        </li>
       </ul>
 
       <h2>{t('fig6.formula')}</h2>
@@ -114,7 +119,9 @@ export default function Fig6() {
         <li>{t('fig6.a1')}</li>
         <li>{t('fig6.a2')}</li>
         <li>{t('fig6.a3')}</li>
+        <li>{t('fig6.a4')}</li>
       </ul>
+      <p className="small muted">{t('fig6.improvement')}</p>
 
       <h2>{t('fig6.tableTitle')}</h2>
       <div className="controls">

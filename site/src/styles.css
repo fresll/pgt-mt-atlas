@@ -612,6 +612,8 @@ body:has(.sk-curator-page) main { max-width: 1280px; }
 }
 .detail dl { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 4px 16px; margin: 0; font-size: 0.92rem; }
 @media (max-width: 520px) { .detail dl { grid-template-columns: 1fr; } .detail dd { margin-bottom: 6px; } }
+.obs-group-list { list-style: none; padding: 0; margin: 6px 0; display: grid; gap: 4px; max-height: 260px; overflow-y: auto; }
+.obs-group-list button[aria-pressed="true"] { font-weight: 600; border-color: var(--accent); }
 .detail dt { color: var(--muted); }
 .detail dd { margin: 0; overflow-wrap: anywhere; }
 .detail .head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 8px; }
