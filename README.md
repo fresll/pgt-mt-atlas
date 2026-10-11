@@ -30,6 +30,11 @@ python -m pytest -q            # эталонные тесты: воспроиз
 
 * Исходный xlsx не изменяется. Если он изменён намеренно, обновите манифест
   (`python -m atlas_etl.build --write-manifest`) в PR с меткой `data-change`.
+* Обязательный вход: опубликованный ESM 2 Tofilo et al. 2026 (`references/10815_2026_4012_MOESM2_ESM.xlsx`); без него сборка останавливается.
+* Корректировки по опубликованным источникам — только слоем `etl/atlas_etl/curation/corrections.yaml` (xlsx не меняется);
+  журнал — `docs/data_provenance_log.md`; версии набора — `curation/releases.yaml`.
+* Стабильные ID записей — `curation/record_ids.yaml`. Новая запись без ID останавливает сборку; после проверки куратора:
+  `python -m atlas_etl.build --assign-ids` (существующие ID не меняются).
 * Кураторские файлы: `etl/atlas_etl/curation/publications.yaml` (статусы и проверка публикаций),
   `rules.yaml` (правила рисунков и вывода значений со ссылкой на ячейку xlsx), `etl/atlas_etl/vocab.yaml` (словари RU/EN).
 * `review_references.yaml` генерируется из списка литературы рукописи: `python3 etl/tools/extract_references.py`.
