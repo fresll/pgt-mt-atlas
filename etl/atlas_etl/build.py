@@ -321,15 +321,47 @@ ESM_FRACTION = {'TE biopsy': 'te_biopsy', 'TE': 'remaining_te', 'ICM': 'icm',
                 'Residual extra cells/cellular fragments': 'residual_extra_cells'}
 
 
-def verify_tofilo(fig3, fig4) -> list[dict]:
-    if not TOFILO_ESM2.exists():
-        return []
-    ws = openpyxl.load_workbook(TOFILO_ESM2, data_only=True).active
+ESM_HEADER = ('Embryo number', 'Sample / fraction', 'Coverage at m.14487')
+ESM_VALUE_HEADER = 'Heteroplasmy (%)'
+ESM_RESTORE_HINT = (
+    'Нужен опубликованный ESM 2 статьи Tofilo et al. 2026 (J Assist Reprod Genet, Supplementary Table S2): '
+    'references/10815_2026_4012_MOESM2_ESM.xlsx. Файл хранится в Git: восстановите его командой '
+    '`git checkout -- references/10815_2026_4012_MOESM2_ESM.xlsx` (или скачайте ESM 2 со страницы статьи, '
+    'PMID 42649365, и положите без изменений). Без него сверка с ESM и пометки расхождений исчезли бы '
+    'с сайта, поэтому сборка остановлена.')
+
+
+def read_tofilo_esm2(path: Path) -> dict[int, dict]:
+    """ESM 2 Tofilo 2026 → {номер эмбриона: {фракция: значение}}. Отсутствие файла или чужая структура — ошибка."""
+    if not path.exists():
+        raise EtlError(f'нет обязательного файла {path}. {ESM_RESTORE_HINT}')
+    try:
+        ws = openpyxl.load_workbook(path, data_only=True).active
+    except Exception as e:  # повреждённый или не-xlsx файл
+        raise EtlError(f'не удалось прочитать {path}: {e}. {ESM_RESTORE_HINT}') from e
+    header = next(ws.iter_rows(min_row=1, max_row=1, values_only=True), ())
+    if tuple(header[:3]) != ESM_HEADER or len(header) < 9 or header[8] != ESM_VALUE_HEADER:
+        raise EtlError(f'{path}: неожиданная структура листа «{ws.title}» (заголовок {header!r}); '
+                       f'ожидались столбцы {ESM_HEADER + (ESM_VALUE_HEADER,)}. {ESM_RESTORE_HINT}')
     esm = defaultdict(dict)
-    for _, r in rows(ws, 2):
-        if r[0]:
+    for i, r in rows(ws, 2):
+        if not r[0]:
+            continue
+        if r[1] not in ESM_FRACTION:
+            raise EtlError(f'{path}, строка {i}: неизвестная фракция {r[1]!r}. {ESM_RESTORE_HINT}')
+        try:
             n = int(str(r[0]).split()[-1])
-            esm[n][ESM_FRACTION[r[1]]] = {'value': clean_num(r[8]), 'coverage': r[2], 'label': r[1]}
+        except ValueError as e:
+            raise EtlError(f'{path}, строка {i}: неожиданный номер эмбриона {r[0]!r}. {ESM_RESTORE_HINT}') from e
+        esm[n][ESM_FRACTION[r[1]]] = {'value': clean_num(r[8]), 'coverage': r[2], 'label': r[1]}
+    if not esm or any('te_biopsy' not in fr for fr in esm.values()):
+        raise EtlError(f'{path}: нет строк «TE biopsy» для всех эмбрионов. {ESM_RESTORE_HINT}')
+    return esm
+
+
+def verify_tofilo(fig3, fig4, esm_path: Path | None = None) -> list[dict]:
+    """Сверка набора с ESM 2. Расхождения только помечаются; значения набора не переписываются."""
+    esm = read_tofilo_esm2(esm_path or TOFILO_ESM2)
     ds = defaultdict(dict)
     for f in fig4:
         if f['pub'] == 'tofilo2026':

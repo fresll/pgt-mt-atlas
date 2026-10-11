@@ -88,3 +88,48 @@ def test_values_in_range(atlas):
 
 def test_json_serializable(atlas):
     json.dumps(atlas, ensure_ascii=False)
+
+
+# --- ESM 2 Tofilo 2026 обязателен: без него сборка не должна молча снимать пометки расхождений
+
+def test_missing_esm2_fails_build(tmp_path, monkeypatch):
+    monkeypatch.setattr(b, 'TOFILO_ESM2', tmp_path / 'absent.xlsx')
+    with pytest.raises(b.EtlError, match='10815_2026_4012_MOESM2_ESM.xlsx'):
+        b.build()
+    assert b.main([]) == 1  # обычный запуск ETL завершается ошибкой, файлы не пишутся
+    assert b.main(['--check']) == 1
+
+
+def test_unreadable_esm2_fails(atlas, tmp_path):
+    bad = tmp_path / 'esm.xlsx'
+    bad.write_bytes(b'not an xlsx')
+    with pytest.raises(b.EtlError, match='не удалось прочитать'):
+        b.verify_tofilo(atlas['fig3'], atlas['fig4'], bad)
+
+
+def test_esm2_wrong_structure_fails(atlas, tmp_path):
+    import openpyxl
+    wb = openpyxl.Workbook()
+    wb.active.append(['Embryo', 'Fraction', 'Value'])
+    wb.active.append(['Embryo 1', 'TE biopsy', 11.4])
+    path = tmp_path / 'esm.xlsx'
+    wb.save(path)
+    with pytest.raises(b.EtlError, match='неожиданная структура'):
+        b.verify_tofilo(atlas['fig3'], atlas['fig4'], path)
+
+
+def test_esm2_discrepancy_detected_not_rewritten(atlas, tmp_path):
+    """Подмена значения в копии ESM выявляется как расхождение; значения набора остаются прежними."""
+    import openpyxl
+    src = openpyxl.load_workbook(b.TOFILO_ESM2)
+    ws = src.active
+    row = next(r for r in ws.iter_rows(min_row=2) if r[0].value == 'Embryo 1' and r[1].value == 'ICM')
+    original = row[8].value
+    row[8].value = original + 5
+    path = tmp_path / 'esm.xlsx'
+    src.save(path)
+    before = [(f['embryo'], f['fraction'], f['value']) for f in atlas['fig4']]
+    v = {(r['embryo'], r['esm_fraction']): r for r in b.verify_tofilo(atlas['fig3'], atlas['fig4'], path) if r['embryo']}
+    assert v[('Tofilo_1', 'icm')]['status'] == 'value_mismatch'
+    assert v[('Tofilo_1', 'icm')]['dataset_value'] == original
+    assert [(f['embryo'], f['fraction'], f['value']) for f in atlas['fig4']] == before
