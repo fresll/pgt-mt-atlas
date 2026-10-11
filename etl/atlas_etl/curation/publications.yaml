@@ -16,8 +16,11 @@ publications:
     review_ref_no: 19
     short: Steffann et al., 2006
     pub_status: published
+    pmid: '16155197'
+    verified:
+      date: '2026-10-11'
+      by: PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 16155197
     aliases: ['Steffann 2006 JMG', 'Steffann et al., 2006']
-
   - id: thorburn2009
     review_ref_no: 20
     short: Thorburn et al., 2009
@@ -25,38 +28,56 @@ publications:
     data_access_note:
       ru: Тезисы конференции; полного текста и записи в PubMed нет. Значения взяты из обзоров Castelluccio 2025 и Smeets 2023.
       en: Conference abstract; no full text or PubMed record. Values taken from the reviews by Castelluccio 2025 and Smeets 2023.
+    doi_exception: >-
+      DOI нет: тезисы конференции. DOI не подбирался; наблюдения сохраняются со ссылкой на вторичные обзоры
+      (раздел 7 задания: исключение зарегистрировано 2026-10-11).
     aliases: ['Thorburn/Stock-Myer 2009', 'Thorburn / Stock-Myer et al., 2009']
 
   - id: sallevelt2013
     review_ref_no: 21
     short: Sallevelt et al., 2013
     pub_status: published
+    pmid: '23339111'
+    verified:
+      date: '2026-10-11'
+      by: PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 23339111
     aliases: ['Sallevelt et al., 2013']
-
   - id: hyslop2025
     review_ref_no: 22
     short: Hyslop et al., 2025
     pub_status: published
+    pmid: '40673696'
+    verified:
+      date: '2026-10-11'
+      by: PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 40673696
     aliases: ['Hyslop 2025 NEJM']
-
   - id: monnot2011
     review_ref_no: 24
     short: Monnot et al., 2011
     pub_status: published
+    pmid: '21120938'
+    verified:
+      date: '2026-10-11'
+      by: PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 21120938
     aliases: ['Monnot 2011 Hum Mutat', 'Monnot et al., 2011']
-
   - id: treff2012
     review_ref_no: 25
     short: Treff et al., 2012
     pub_status: published
+    pmid: '22921075'
+    verified:
+      date: '2026-10-11'
+      by: PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 22921075
     aliases: ['Treff 2012 Fertil Steril', 'Treff et al. 2012', 'Treff et al., 2012']
-
   - id: heindryckx2014
     review_ref_no: 26
     short: Heindryckx et al., 2014
     pub_status: published
+    pmid: '25159128'
+    verified:
+      date: '2026-10-11'
+      by: PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 25159128
     aliases: ['Heindryckx 2014 Mitochondrion', 'Heindryckx et al., 2014']
-
   - id: tofilo2026
     review_ref_no: 27
     short: Tofilo et al., 2026
@@ -84,66 +105,104 @@ publications:
     review_ref_no: 28
     short: Sallevelt et al., 2017
     pub_status: published
+    pmid: '28122886'
+    verified:
+      date: '2026-10-11'
+      by: PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 28122886
     aliases: ['Sallevelt 2017 Hum Reprod']
-
   - id: ji2021
     review_ref_no: 29
     short: Ji et al., 2021
     pub_status: published
+    pmid: '34802141'
+    verified:
+      date: '2026-10-11'
+      by: PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 34802141
     aliases: ['Ji 2021 JARG', 'Ji et al., 2021']
-
   - id: mizuguchi2025
     review_ref_no: 30
     short: Mizuguchi et al., 2025
     pub_status: published
+    pmid: '40164591'
+    verified:
+      date: '2026-10-11'
+      by: PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 40164591
     aliases: ['Mizuguchi 2025 HGV', 'Mizuguchi et al., 2025']
-
   - id: hu2026
     review_ref_no: 31
     short: Hu et al., 2026
     pub_status: published
+    pmid: '42821212'
+    verified:
+      date: '2026-10-11'
+      by: PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 42821212
     aliases: ['Hu 2026 JARG', 'Hu et al., 2026']
-
   - id: mitalipov2014
     review_ref_no: 35
     short: Mitalipov et al., 2014
     pub_status: published
+    pmid: '24856294'
+    verified:
+      date: '2026-10-11'
+      by: PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 24856294
     aliases: ['Mitalipov et al., 2014']
-
   - id: steffann2014
     review_ref_no: 36
     short: Steffann et al., 2014
     pub_status: published
+    pmid: '24856293'
+    verified:
+      date: '2026-10-11'
+      by: PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 24856293
     aliases: []
-
   - id: spath2021
     review_ref_no: 15
     short: Spath et al., 2021
     pub_status: published
+    pmid: '33745725'
+    verified:
+      date: '2026-10-11'
+      by: PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 33745725
+      note: >-
+        Внутреннее расхождение источника: в абстракте и введении вариант пациентки C назван m.10191T>G,
+        в результатах, подписи к рисунку и обсуждении — m.10191T>C (5 мест). Набор следует основному тексту
+        (m.10191T>C); значения не менялись. Требует решения куратора.
     aliases: ['Spath 2021 Fertil Steril', 'Spath et al., 2021, patient B']
-
   - id: janssen2024
     review_ref_no: 16
     short: Janssen et al., 2024
     pub_status: published
+    pmid: '39223156'
+    verified:
+      date: '2026-10-11'
+      by: PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 39223156
     aliases: ['Janssen et al. 2024']
-
   - id: rubens2025
     review_ref_no: 40
     short: Rubens et al., 2025
     pub_status: published
+    pmid: '40174913'
+    verified:
+      date: '2026-10-11'
+      by: PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 40174913
     aliases: ['Rubens et al. 2025']
-
   - id: tajima2007
     review_ref_no: 39
     short: Tajima et al., 2007
     pub_status: published
+    pmid: '17342424'
+    verified:
+      date: '2026-10-11'
+      by: PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 17342424
     aliases: ['Tajima et al., 2007']
-
   - id: mayeur2023
     review_ref_no: 32
     short: Mayeur et al., 2023
     pub_status: published
+    pmid: '37202317'
+    verified:
+      date: '2026-10-11'
+      by: PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 37202317
     aliases: []
 
   # Источники ориентиров и параметров модели (не наблюдений)
@@ -151,16 +210,27 @@ publications:
     review_ref_no: 10
     short: Ji et al., 2023
     pub_status: published
+    pmid: '37439868'
+    verified:
+      date: '2026-10-11'
+      by: PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 37439868
     aliases: []
-
   - id: hellebrekers2012
     review_ref_no: 11
     short: Hellebrekers et al., 2012
     pub_status: published
+    pmid: '22456975'
+    verified:
+      date: '2026-10-11'
+      by: PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 22456975
     aliases: []
-
   - id: volodyaev2025
     review_ref_no: 42
     short: Volodyaev et al., 2025
     pub_status: published
+    verified:
+      date: '2026-10-11'
+      by: >-
+        PDF издателя (references/Volodyaev et al 2025.pdf): F S Rev 2025;6:100082, doi:10.1016/j.xfnr.2024.100082.
+        Записи в PubMed нет (поиск по DOI 2026-10-11).
     aliases: []

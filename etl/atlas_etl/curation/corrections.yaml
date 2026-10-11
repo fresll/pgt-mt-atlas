@@ -1,0 +1,80 @@
+# Слой корректировок набора данных (A3, раунд 1 рецензии).
+#
+# Исходный xlsx (data/Сопроводительная информация.xlsx) НЕ изменяется: это зафиксированная историческая версия.
+# ETL читает значение из xlsx, затем применяет корректировку отсюда и сохраняет исходное значение рядом
+# (value_source / fraction_source) с идентификатором корректировки. Перед применением проверяется, что в xlsx
+# по-прежнему стоит значение `from`; если исходник изменился, сборка останавливается.
+#
+# Основание каждой записи — опубликованный окончательный источник с точным локатором. Значения не подбираются
+# под ожидаемый результат: все зависимые статистики пересчитываются ETL из исправленного набора.
+
+corrections:
+  - id: corr-tofilo2026-e6-icm
+    target: {sheet: Рисунок 4, row: 81, embryo: Tofilo_6, fraction: icm}
+    field: value
+    from: 11.4
+    to: 11.3
+    unit: '% гетероплазмии m.14487T>C (доля прочтений C)'
+    category_note: >-
+      В ESM 2 строка называется «ICM»; по методам статьи (ESM 1, подпись к Supplementary Figure S2) это фракция
+      «ICM+» — ВКМ вместе с прилегающими клетками полярной и муральной ТЭ.
+    source:
+      publication: tofilo2026
+      document: 'ESM 2 (Supplementary Table S2), Tofilo et al. 2026, J Assist Reprod Genet, doi:10.1007/s10815-026-04012-y'
+      file: references/10815_2026_4012_MOESM2_ESM.xlsx
+      locator: 'лист «Supplementary Table S2», строка 22 (Embryo 6, ICM), столбец I «Heteroplasmy (%)» = 11.3'
+    evidence: >-
+      В той же строке ESM 2: покрытие 485, прочтений C 55 → 55/485 = 11.34 %, что округляется до 11.3, а не до 11.4.
+      Опубликованный абстракт (PubMed 42649365) значений фракций эмбриона 6 не приводит.
+    verified: {date: '2026-10-11', by: 'Claude (раунд 1 рецензии); научная приёмка — куратор'}
+
+  - id: corr-tofilo2026-e6-remaining-te
+    target: {sheet: Рисунок 4, row: 82, embryo: Tofilo_6, fraction: remaining_te}
+    field: value
+    from: 11.9
+    to: 11.7
+    unit: '% гетероплазмии m.14487T>C (доля прочтений C)'
+    source:
+      publication: tofilo2026
+      document: 'ESM 2 (Supplementary Table S2), Tofilo et al. 2026, J Assist Reprod Genet, doi:10.1007/s10815-026-04012-y'
+      file: references/10815_2026_4012_MOESM2_ESM.xlsx
+      locator: 'лист «Supplementary Table S2», строка 21 (Embryo 6, TE), столбец I «Heteroplasmy (%)» = 11.7'
+    evidence: >-
+      В той же строке ESM 2: покрытие 2045, прочтений C 240 → 240/2045 = 11.74 %, что округляется до 11.7, а не до 11.9.
+    verified: {date: '2026-10-11', by: 'Claude (раунд 1 рецензии); научная приёмка — куратор'}
+
+  - id: corr-tofilo2026-e3-fraction
+    target: {sheet: Рисунок 4, row: 74, embryo: Tofilo_3, fraction: remaining_te}
+    field: fraction
+    from: remaining_te
+    to: combined_te_icm
+    unit: категория фракции (значение 13.5 % не меняется)
+    source:
+      publication: tofilo2026
+      document: 'ESM 2 (Supplementary Table S2) и ESM 1 (Supplementary Figures S1–S2), Tofilo et al. 2026, doi:10.1007/s10815-026-04012-y'
+      file: references/10815_2026_4012_MOESM2_ESM.xlsx; references/10815_2026_4012_MOESM1_ESM.docx
+      locator: >-
+        ESM 2, строка 11: «Embryo 3 — ICM+ / TE+ICM fraction — 13.5»; ESM 1: «embryo 3, TE rest + ICM»,
+        «Embryo 3, TE+ICM, after dissection»
+    evidence: >-
+      ВКМ и оставшаяся ТЭ эмбриона 3 не разделялись; измерена объединённая фракция. Опубликованный абстракт
+      (PubMed 42649365) называет такие образцы «combined TE + ICM».
+    verified: {date: '2026-10-11', by: 'Claude (раунд 1 рецензии); научная приёмка — куратор'}
+
+  - id: corr-tofilo2026-e4-fraction
+    target: {sheet: Рисунок 4, row: 76, embryo: Tofilo_4, fraction: remaining_te}
+    field: fraction
+    from: remaining_te
+    to: combined_te_icm
+    unit: категория фракции (значение 90 % не меняется)
+    source:
+      publication: tofilo2026
+      document: 'ESM 2 (Supplementary Table S2) и ESM 1 (Supplementary Figures S1–S2), Tofilo et al. 2026, doi:10.1007/s10815-026-04012-y'
+      file: references/10815_2026_4012_MOESM2_ESM.xlsx; references/10815_2026_4012_MOESM1_ESM.docx
+      locator: >-
+        ESM 2, строка 14: «Embryo 4 — ICM+ / TE+ICM fraction — 90»; ESM 1: «embryo 4, TE rest + ICM»,
+        «Embryo 4, TE+ICM, after dissection»
+    evidence: >-
+      ВКМ и оставшаяся ТЭ эмбриона 4 не разделялись; измерена объединённая фракция. Опубликованный абстракт
+      (PubMed 42649365) называет такие образцы «combined TE + ICM».
+    verified: {date: '2026-10-11', by: 'Claude (раунд 1 рецензии); научная приёмка — куратор'}

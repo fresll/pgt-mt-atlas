@@ -1,0 +1,39 @@
+# Версии набора данных PGT-mt Atlas (B2).
+#
+# Atlas — обновляемая база: число наблюдений меняется по мере добавления публикаций и корректировок.
+# Исходная версия зафиксирована и не переписывается; её счётчики воспроизводятся эталонными тестами
+# (etl/tests/test_golden.py) по исходному xlsx без слоя корректировок. Текущие счётчики считает ETL.
+
+baseline:
+  version: '2026-10-10'
+  label:
+    ru: исходный зафиксированный набор (первая версия Atlas)
+    en: initial frozen dataset (first Atlas release)
+  source_file: data/Сопроводительная информация.xlsx
+  source_sha256: 6ef93fd0109935521f571040c5c9f282a1c055310aafa7e733ff6f26ed73ecea
+  counts:
+    landscape_values: 187        # значения гетероплазмии эмбрионов (распределение гетероплазмии)
+    landscape_variants: 7
+    concordance_blastocysts: 40  # бластоцисты с измерениями нескольких фракций
+    concordance_records: 91
+    cleavage_embryos: 22
+    offspring_records: 24        # записи «эмбрион → потомство» (все, включая не вошедшие в график)
+    offspring_children: 9        # дети во всех записях «эмбрион → потомство»
+    offspring_children_exact_pair: 8  # дети с точной парой «перенесённый эмбрион → ткань» (на графике)
+    publications: 22
+
+# Изменения после исходной версии. Каждое — отдельная запись с основанием; данные исходного xlsx не меняются.
+changes:
+  - date: '2026-10-11'
+    kind: correction
+    ids: [corr-tofilo2026-e6-icm, corr-tofilo2026-e6-remaining-te, corr-tofilo2026-e3-fraction, corr-tofilo2026-e4-fraction]
+    ru: >-
+      Tofilo et al. 2026: значения эмбриона 6 (ВКМ, оставшаяся ТЭ) и категория фракции эмбрионов 3 и 4 приведены
+      к опубликованному ESM 2 (curation/corrections.yaml). Медиана размаха для патогенных бластоцист пересчитана.
+    en: >-
+      Tofilo et al. 2026: embryo 6 values (ICM, remaining TE) and the fraction category of embryos 3 and 4 follow
+      the published ESM 2 (curation/corrections.yaml). The median range for pathogenic blastocysts was recalculated.
+  - date: '2026-10-11'
+    kind: identifiers
+    ru: Введены стабильные идентификаторы записей (HL-, EC-, CL-); прежние идентификаторы по строке xlsx сохранены как алиасы.
+    en: Stable record identifiers introduced (HL-, EC-, CL-); former row-based identifiers are kept as aliases.

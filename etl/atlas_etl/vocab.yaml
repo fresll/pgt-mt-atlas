@@ -22,6 +22,7 @@ labels:
     te_biopsy:     {ru: Биоптат ТЭ, en: TE biopsy}
     icm:           {ru: ВКМ, en: ICM}
     remaining_te:  {ru: Оставшаяся ТЭ, en: Remaining TE}
+    combined_te_icm: {ru: 'ВКМ+ТЭ (объединённая фракция)', en: 'ICM+TE (combined fraction)'}
   tissue:
     amniotic_fluid: {ru: Амниотическая жидкость, en: Amniotic fluid}
     fetal_tissue:   {ru: Ткани плода, en: Fetal tissues}

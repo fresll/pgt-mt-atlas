@@ -27,6 +27,7 @@ ROOT = Path(__file__).resolve().parents[2]
 SOURCE_XLSX = ROOT / 'data' / 'Сопроводительная информация.xlsx'
 MANIFEST = ROOT / 'data' / 'SOURCE_MANIFEST.sha256'
 TOFILO_ESM2 = ROOT / 'references' / '10815_2026_4012_MOESM2_ESM.xlsx'
+ID_REGISTRY = Path(__file__).resolve().parent / 'curation' / 'record_ids.yaml'
 HERE = Path(__file__).resolve().parent
 OUT_JSON = ROOT / 'site' / 'src' / 'data' / 'atlas.json'
 OUT_CSV = ROOT / 'site' / 'public' / 'data'
@@ -83,6 +84,7 @@ def load_publications() -> Pubs:
             'published_date': p.get('published_date'),
             'data_access_note': p.get('data_access_note'),
             'verified': p.get('verified'),
+            'doi_exception': p.get('doi_exception'),
             'supplementary': p.get('supplementary'),
         }
         if rec['pub_status'] == 'published' and rec['doi'] is None:
@@ -172,7 +174,7 @@ def read_fig3(ws, pubs: Pubs, vocab: Vocab, rules) -> list[dict]:
                 derivation, evidence = d['derivation'], d['evidence']
         lod = lods.get(pub)
         out.append({
-            'id': f'f3-{i:03d}',
+            'id': None,
             'variant': variant,
             'pub': pub,
             'value': clean_num(value),
@@ -211,6 +213,33 @@ def read_fig4(ws, pubs: Pubs, vocab: Vocab) -> list[dict]:
             'src': {'sheet': 'Рисунок 4', 'row': i},
         })
     return out
+
+
+def apply_corrections(fig4: list[dict], corrections: list[dict]) -> list[dict]:
+    """Прозрачный слой корректировок (curation/corrections.yaml) поверх значений xlsx.
+
+    Исходное значение остаётся в записи (value_source / fraction_source), рядом — идентификатор корректировки.
+    Если в xlsx уже не то значение, которое корректировка ожидает (`from`), сборка останавливается."""
+    by_row = {(f['src']['sheet'], f['src']['row']): f for f in fig4}
+    applied = []
+    for c in corrections:
+        tg = c['target']
+        f = by_row.get((tg['sheet'], tg['row']))
+        where = f"корректировка {c['id']} («{tg['sheet']}»!{tg['row']})"
+        if f is None or f['embryo'] != tg['embryo']:
+            raise EtlError(f'{where}: в xlsx нет записи для {tg["embryo"]}')
+        field = c['field']
+        if field not in ('value', 'fraction'):
+            raise EtlError(f'{where}: неизвестное поле {field}')
+        current = f[field]
+        if (field == 'value' and f['fraction'] != tg['fraction']) or current != c['from']:
+            raise EtlError(f'{where}: в xlsx {field} = {current!r}, корректировка ожидает {c["from"]!r}. '
+                           'Исходник изменился — проверьте корректировку заново.')
+        f[f'{field}_source'] = current
+        f[field] = c['to']
+        f.setdefault('corrections', []).append(c['id'])
+        applied.append(c)
+    return applied
 
 
 def read_cleavage(ws, pubs: Pubs, rules) -> list[dict]:
@@ -362,10 +391,12 @@ def read_tofilo_esm2(path: Path) -> dict[int, dict]:
 def verify_tofilo(fig3, fig4, esm_path: Path | None = None) -> list[dict]:
     """Сверка набора с ESM 2. Расхождения только помечаются; значения набора не переписываются."""
     esm = read_tofilo_esm2(esm_path or TOFILO_ESM2)
+    # сверяется исходная (xlsx) версия набора; исправленные записи получают resolution = corrected
     ds = defaultdict(dict)
     for f in fig4:
         if f['pub'] == 'tofilo2026':
-            ds[int(f['embryo'].split('_')[1])][f['fraction']] = f
+            src = {**f, 'value': f.get('value_source', f['value']), 'fraction': f.get('fraction_source', f['fraction'])}
+            ds[int(f['embryo'].split('_')[1])][src['fraction']] = src
     out = []
     src_ref = 'ESM 2 (Supplementary Table S2), Tofilo et al. 2026'
     for n in sorted(esm):
@@ -396,6 +427,14 @@ def verify_tofilo(fig3, fig4, esm_path: Path | None = None) -> list[dict]:
                                           f"(Δ = {round(d['value'] - e['value'], 2)} п.п.).",
                                comment_en=f"Dataset {d['value']}%, ESM 2 {e['value']}% "
                                           f"(Δ = {round(d['value'] - e['value'], 2)} pp).")
+            d = rec.get('dataset_fraction') and ds[n].get(rec['dataset_fraction'])
+            corr = (d or {}).get('corrections')
+            rec['resolution'] = 'corrected' if corr else None
+            rec['correction_ids'] = corr or []
+            if corr:
+                rec['atlas_value'] = d['value'] if 'value_source' not in d else next(
+                    x['value'] for x in fig4 if x['src'] == d['src'])
+                rec['atlas_fraction'] = next(x['fraction'] for x in fig4 if x['src'] == d['src'])
             out.append(rec)
     # биоптаты ТЭ рисунка 3 (без номеров эмбрионов) сверяются как мультимножество
     f3 = sorted(m['value'] for m in fig3 if m['pub'] == 'tofilo2026')
@@ -405,6 +444,87 @@ def verify_tofilo(fig3, fig4, esm_path: Path | None = None) -> list[dict]:
                 'dataset_fraction': 'te_biopsy', 'source': src_ref + '; «Рисунок 3»',
                 'status': 'match' if f3 == e3 else 'value_mismatch'})
     return out
+
+
+# ---------------------------------------------------------------- стабильные идентификаторы (B2)
+
+# Отпечаток записи — поля, прочитанные из источника (до слоя корректировок). Номер строки xlsx в него не входит,
+# поэтому перестановка или вставка строк не меняет идентификаторы.
+ID_KINDS = {
+    'fig3': ('HL', ('pub', 'variant', 'value', 'low', 'high', 'stage_raw', 'material_raw', 'note', 'doi_in_sheet')),
+    'fig4': ('EC', ('pub', 'embryo', 'variant', 'fraction_raw', 'value')),
+    'cleavage': ('CL', ('pub', 'embryo', 'variant', 'b1', 'b2')),
+}
+
+
+def fingerprint(kind: str, rec: dict) -> dict:
+    fields = ID_KINDS[kind][1]
+    src = {**rec, 'value': rec.get('value_source', rec.get('value'))}
+    return {k: src.get(k) for k in fields}
+
+
+def legacy_id(kind: str, rec: dict) -> str:
+    row = rec['src']['row']
+    return {'fig3': f'f3-{row:03d}', 'fig4': f'f4-{row:03d}', 'cleavage': f'cl-{row:03d}'}[kind]
+
+
+def assign_ids(records: dict[str, list[dict]], registry: dict, allow_new: bool, today: str) -> tuple[dict, list[str]]:
+    """Сопоставляет записи с реестром curation/record_ids.yaml по отпечатку.
+
+    Совпадающие отпечатки (одинаковые записи одного источника) получают идентификаторы в порядке следования.
+    Новые записи получают следующий номер только при allow_new (команда --assign-ids после проверки куратора);
+    иначе сборка останавливается. Выбывшие записи остаются в реестре со статусом retired: их ID не переиспользуются."""
+    entries = registry.setdefault('records', [])
+    new_ids = []
+    for kind, recs in records.items():
+        prefix = ID_KINDS[kind][0]
+        pool = defaultdict(list)
+        for e in entries:
+            if e['kind'] == kind and not e.get('retired'):
+                pool[json.dumps(e['fp'], sort_keys=True, ensure_ascii=False)].append(e)
+        used = set()
+        for r in recs:
+            key = json.dumps(fingerprint(kind, r), sort_keys=True, ensure_ascii=False)
+            cand = [e for e in pool.get(key, []) if e['id'] not in used]
+            if cand:
+                e = cand[0]
+            elif allow_new:
+                n = 1 + max([int(x['id'].rsplit('-', 1)[1]) for x in entries if x['kind'] == kind and x['pub'] == r['pub']] or [0])
+                e = {'id': f"{prefix}-{r['pub']}-{n:03d}", 'kind': kind, 'pub': r['pub'], 'legacy': legacy_id(kind, r),
+                     'added': today, 'fp': fingerprint(kind, r)}
+                entries.append(e)
+                new_ids.append(e['id'])
+            else:
+                raise EtlError(f"{kind} «{r['src']['sheet']}»!{r['src']['row']}: у записи нет стабильного идентификатора "
+                               f'в {ID_REGISTRY.relative_to(ROOT)}. Это новая или изменённая запись: после проверки куратора '
+                               'выполните python -m atlas_etl.build --assign-ids (существующие ID не меняются).')
+            used.add(e['id'])
+            r['id'] = e['id']
+            r['legacy_id'] = e['legacy']
+        stale = [e['id'] for e in entries if e['kind'] == kind and not e.get('retired') and e['id'] not in used]
+        if stale and not allow_new:
+            raise EtlError(f'{kind}: записи реестра без соответствия в источнике: {", ".join(stale[:5])}… '
+                           'Если запись удалена или изменена намеренно, выполните --assign-ids (ID будут помечены retired).')
+        for e in entries:
+            if e['id'] in stale:
+                e['retired'] = today
+    return registry, new_ids
+
+
+def load_registry() -> dict:
+    if not ID_REGISTRY.exists():
+        return {'records': []}
+    return yaml.safe_load(ID_REGISTRY.read_text(encoding='utf-8')) or {'records': []}
+
+
+def write_registry(reg: dict):
+    lines = ['# Реестр стабильных идентификаторов записей (B2). Генерируется: python -m atlas_etl.build --assign-ids.',
+             '# id не зависит от номера строки xlsx; legacy — прежний идентификатор по строке (алиас для старых ссылок).',
+             '# fp — отпечаток записи из источника. Выбывшие записи получают retired и не переиспользуются.',
+             'records:']
+    for e in reg['records']:
+        lines.append('  - ' + json.dumps(e, ensure_ascii=False))
+    ID_REGISTRY.write_text('\n'.join(lines) + '\n', encoding='utf-8')
 
 
 # ---------------------------------------------------------------- производные величины
@@ -429,7 +549,7 @@ def derive_stats(fig3, fig4, cleav, fig5, fig6_sheet, rules) -> dict:
     for f in fig4:
         emb[f['embryo']][f['fraction']] = f['value']
         meta[f['embryo']] = f['cls']
-    rng = {e: max(v.values()) - min(v.values()) for e, v in emb.items()}
+    rng = {e: round(max(v.values()) - min(v.values()), 10) for e, v in emb.items()}
     pat = [rng[e] for e in emb if meta[e] != 'neutral_polymorphism']
     hv2 = [rng[e] for e in emb if meta[e] == 'neutral_polymorphism']
     plotted = [p for p in fig5 if p['in_figure']]
@@ -457,21 +577,82 @@ def derive_stats(fig3, fig4, cleav, fig5, fig6_sheet, rules) -> dict:
     }
 
 
+def variant_classes(vocab: Vocab, variants: set[str], pubs: Pubs) -> dict:
+    """Класс каждого варианта и его основание (curation/variant_classification.yaml); класс должен совпадать с vocab."""
+    vc = load_yaml('curation/variant_classification.yaml')
+    out = {}
+    for v in sorted(variants):
+        e = vc['variants'].get(v)
+        if e is None:
+            raise EtlError(f'{v}: нет основания классификации в curation/variant_classification.yaml')
+        if e['class'] != vocab.variant_class(v):
+            raise EtlError(f'{v}: класс {e["class"]} в variant_classification.yaml ≠ {vocab.variant_class(v)} в vocab.yaml')
+        if e['publication'] not in pubs.by_id:
+            raise EtlError(f'{v}: публикация {e["publication"]} не найдена')
+        if e['status'] != 'not_verified' and not e.get('locator'):
+            raise EtlError(f'{v}: статус {e["status"]} требует локатора')
+        out[v] = {**e, 'checked': vc['checked']}
+    return out
+
+
+def publication_roles(fig3, fig4, cleav, fig5, table1, rules, classes) -> dict[str, list[dict]]:
+    """Роль каждой публикации на сайте — по фактическому использованию в данных, ориентирах и модели."""
+    roles = defaultdict(list)
+
+    def add(pub, role, **detail):
+        if not any(r['role'] == role and r.get('section') == detail.get('section') for r in roles[pub]):
+            roles[pub].append({'role': role, **detail})
+    for m in fig3:
+        add(m['pub'], 'observations', section='heteroplasmy-landscape')
+    for f in fig4:
+        add(f['pub'], 'observations', section='embryo-concordance')
+    for c in cleav:
+        add(c['pub'], 'observations', section='embryo-concordance')
+    for x in fig5:
+        add(x['pub'], 'observations', section='embryo-to-offspring')
+    for r in table1:
+        for pid in r['pubs']:
+            add(pid, 'case_summary', section='cases')
+    for t in rules['thresholds']:
+        if t['publication']:
+            add(t['publication'], 'threshold', section=t['id'])
+    add(rules['model']['p_eupl_publication'], 'model_parameter', section='p_eupl')
+    add('tajima2007', 'excluded_data', section='methods')
+    for v, e in classes.items():
+        if e['status'] != 'not_verified':
+            add(e['publication'], 'classification_basis', section=v)
+    return dict(roles)
+
+
+def current_counts(fig3, fig4, cleav, fig5, used_pubs) -> dict:
+    """Счётчики текущей версии в тех же определениях, что и baseline.counts (curation/releases.yaml)."""
+    return {
+        'landscape_values': len(fig3), 'landscape_variants': len({m['variant'] for m in fig3}),
+        'concordance_blastocysts': len({f['embryo'] for f in fig4}), 'concordance_records': len(fig4),
+        'cleavage_embryos': len(cleav), 'offspring_records': len(fig5),
+        'offspring_children': len({p['child'] for p in fig5}),
+        'offspring_children_exact_pair': len({p['child'] for p in fig5 if p['in_figure']}), 'publications': len(used_pubs),
+    }
+
+
 # ---------------------------------------------------------------- нормализованные таблицы (CSV)
 
 def normalized_tables(pubs, fig3, fig4, cleav, fig5, vocab):
     publication = [{k: p[k] for k in ('id', 'review_ref_no', 'short', 'doi', 'pmid', 'pub_status',
                                       'published_date', 'citation')} for p in pubs.by_id.values()]
     variants = sorted({m['variant'] for m in fig3} | {f['variant'] for f in fig4} | {p['variant'] for p in fig5})
-    variant = [{'variant_id': v, 'variant_class': vocab.variant_class(v)} for v in variants]
+    vc = load_yaml('curation/variant_classification.yaml')
+    variant = [{'variant_id': v, 'variant_class': vocab.variant_class(v),
+                'class_basis_status': vc['variants'][v]['status'], 'class_basis_publication': vc['variants'][v]['publication'],
+                'class_basis_locator': vc['variants'][v]['locator'], 'class_checked': vc['checked']} for v in variants]
     embryo, sample, measurement, membership = [], [], [], []
     for m in fig3:
-        eid = m['id'].replace('f3-', 'emb-f3-')
+        eid = 'emb-' + m['id']
         embryo.append({'embryo_id': eid, 'publication_id': m['pub'], 'variant_id': m['variant'],
                        'stage': m['stage'], 'stage_raw': m['stage_raw']})
         sid = eid + '-s1'
         sample.append({'sample_id': sid, 'embryo_id': eid, 'sample_type': m['sample'], 'material_raw': m['material_raw']})
-        measurement.append({'measurement_id': m['id'], 'sample_id': sid, 'value_pct': m['value'], 'qualifier': m['q'],
+        measurement.append({'measurement_id': m['id'], 'legacy_id': m['legacy_id'], 'sample_id': sid, 'value_pct': m['value'], 'qualifier': m['q'],
                             'value_low_pct': m['low'], 'value_high_pct': m['high'], 'lod_pct': m['lod'],
                             'derivation': m['derivation'], 'note_raw': m['note'],
                             'src_sheet': m['src']['sheet'], 'src_row': m['src']['row']})
@@ -485,11 +666,14 @@ def normalized_tables(pubs, fig3, fig4, cleav, fig5, vocab):
                            'stage': 'blastocyst', 'stage_raw': None})
         sid = f"{eid}-{f['fraction']}"
         sample.append({'sample_id': sid, 'embryo_id': eid, 'sample_type': f['fraction'], 'material_raw': f['fraction_raw']})
-        mid = f"f4-{f['src']['row']:03d}"
-        measurement.append({'measurement_id': mid, 'sample_id': sid, 'value_pct': f['value'],
+        mid = f['id']
+        measurement.append({'measurement_id': mid, 'legacy_id': f['legacy_id'], 'sample_id': sid, 'value_pct': f['value'],
                             'qualifier': 'not_detected' if f['value'] == 0 else 'exact', 'value_low_pct': None,
                             'value_high_pct': None, 'lod_pct': None, 'derivation': 'as_reported_in_dataset',
-                            'note_raw': None, 'src_sheet': f['src']['sheet'], 'src_row': f['src']['row']})
+                            'note_raw': None, 'value_source_pct': f.get('value_source', f['value']),
+                            'fraction_source': f.get('fraction_source', f['fraction']),
+                            'correction_ids': ';'.join(f.get('corrections', [])) or None,
+                            'src_sheet': f['src']['sheet'], 'src_row': f['src']['row']})
         membership.append({'figure': 'fig4', 'record_id': mid, 'included': True, 'exclusion_reason': None})
     for c in cleav:
         eid = 'emb-' + c['embryo']
@@ -498,8 +682,8 @@ def normalized_tables(pubs, fig3, fig4, cleav, fig5, vocab):
         for k in ('b1', 'b2'):
             sid = f'{eid}-{k}'
             sample.append({'sample_id': sid, 'embryo_id': eid, 'sample_type': 'single_blastomeres', 'material_raw': k})
-            mid = f"cl-{c['src']['row']:03d}-{k}"
-            measurement.append({'measurement_id': mid, 'sample_id': sid, 'value_pct': c[k],
+            mid = f"{c['id']}-{k}"
+            measurement.append({'measurement_id': mid, 'legacy_id': f"{c['legacy_id']}-{k}", 'sample_id': sid, 'value_pct': c[k],
                                 'qualifier': 'not_detected' if c[k] == 0 else 'exact', 'value_low_pct': None,
                                 'value_high_pct': None, 'lod_pct': c['lod'] if c[k] == 0 else None,
                                 'derivation': 'as_reported_in_dataset', 'note_raw': None,
@@ -532,33 +716,50 @@ def write_csv(path: Path, records: list[dict]):
 
 # ---------------------------------------------------------------- сборка
 
-def build() -> dict:
+def build(allow_new_ids: bool = False) -> dict:
     pubs = load_publications()
     vocab = Vocab()
     rules = load_yaml('curation/rules.yaml')
     wb = openpyxl.load_workbook(SOURCE_XLSX, data_only=True)
     fig3 = read_fig3(wb['Рисунок 3'], pubs, vocab, rules)
     fig4 = read_fig4(wb['Рисунок 4'], pubs, vocab)
+    corrections = apply_corrections(fig4, load_yaml('curation/corrections.yaml')['corrections'])
     cleav = read_cleavage(wb['Бластомеры (дробление)'], pubs, rules)
     fig5 = read_fig5(wb['Рисунок 5'], pubs, vocab)
+    registry, new_ids = assign_ids({'fig3': fig3, 'fig4': fig4, 'cleavage': cleav}, load_registry(), allow_new_ids,
+                                   dt.date.today().isoformat())
     table1 = read_table1(wb['Таблица 1'], pubs)
     fig6_sheet = read_fig6_sheet(wb['Рисунок 6'])
     stats = derive_stats(fig3, fig4, cleav, fig5, fig6_sheet[:4], rules)
+    # те же статистики по исходной (xlsx) версии — для журнала зависимых пересчётов
+    fig4_source = [{**f, 'value': f.get('value_source', f['value']), 'fraction': f.get('fraction_source', f['fraction'])}
+                   for f in fig4]
+    stats['fig4_source_xlsx'] = derive_stats(fig3, fig4_source, cleav, fig5, fig6_sheet[:4], rules)['fig4']
     for t in rules['thresholds']:
         if t['publication'] and t['publication'] not in pubs.by_id:
             raise EtlError(f"ориентир {t['id']}: нет публикации {t['publication']}")
     used = {m['pub'] for m in fig3} | {f['pub'] for f in fig4} | {p['pub'] for p in fig5} | \
            {c['pub'] for c in cleav} | {i for r in table1 for i in r['pubs']} | \
            {t['publication'] for t in rules['thresholds'] if t['publication']} | {rules['model']['p_eupl_publication'], 'tajima2007'}
+    releases = load_yaml('curation/releases.yaml')
+    classes = variant_classes(vocab, {m['variant'] for m in fig3} | {f['variant'] for f in fig4} | {x['variant'] for x in fig5}
+                              | {c['variant'] for c in cleav}, pubs)
+    roles = publication_roles(fig3, fig4, cleav, fig5, table1, rules, classes)
+    if set(roles) - used:
+        raise EtlError(f'роли без публикации в наборе: {set(roles) - used}')
     atlas = {
         'meta': {
             'dataset_version': dt.date.today().isoformat(),
             'source_file': str(SOURCE_XLSX.relative_to(ROOT)),
             'source_sha256': sha256(SOURCE_XLSX),
             'generator': 'etl/atlas_etl/build.py',
+            'baseline': releases['baseline'],
+            'changes': releases['changes'],
+            'current_counts': current_counts(fig3, fig4, cleav, fig5, used),
         },
         'labels': vocab.labels,
-        'publications': [p for p in pubs.by_id.values() if p['id'] in used],
+        'publications': [{**p, 'roles': roles.get(p['id'], [])} for p in pubs.by_id.values() if p['id'] in used],
+        'variant_classes': classes,
         'fig3': fig3,
         'fig3_blocks': rules['fig3_blocks'],
         'fig4': fig4,
@@ -572,8 +773,10 @@ def build() -> dict:
         'model': {**rules['model'], 'fig6_variants': rules['fig6_variants'],
                   'formula': {'p_both': 'p_het × p_eupl', 'p_at_least_one': '1 − (1 − p_both)^N'}},
         'verification': verify_tofilo(fig3, fig4),
+        'corrections': corrections,
         'stats': stats,
     }
+    atlas['_registry'], atlas['_new_ids'] = registry, new_ids
     return atlas
 
 
@@ -590,19 +793,25 @@ def main(argv=None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument('--check', action='store_true', help='только проверки')
     ap.add_argument('--write-manifest', action='store_true', help='записать SHA-256 исходника')
+    ap.add_argument('--assign-ids', action='store_true',
+                    help='после проверки куратора: выдать стабильные ID новым записям, выбывшие пометить retired')
     a = ap.parse_args(argv)
     try:
         digest = sha256(SOURCE_XLSX)
         if a.write_manifest:
             MANIFEST.write_text(f'{digest}  {SOURCE_XLSX.relative_to(ROOT).as_posix()}\n', encoding='utf-8')
         check_manifest(digest)
-        atlas = build()
+        atlas = build(allow_new_ids=a.assign_ids)
     except EtlError as e:
         print(f'ОШИБКА ETL: {e}', file=sys.stderr)
         return 1
+    registry, new_ids = atlas.pop('_registry'), atlas.pop('_new_ids')
     if a.check:
         print(json.dumps(atlas['stats'], ensure_ascii=False, indent=1))
         return 0
+    if a.assign_ids:
+        write_registry(registry)
+        print(f'реестр ID: новых {len(new_ids)}; всего {len(registry["records"])} → {ID_REGISTRY.relative_to(ROOT)}')
     OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
     OUT_JSON.write_text(json.dumps(atlas, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
     pubs, vocab = load_publications(), Vocab()
