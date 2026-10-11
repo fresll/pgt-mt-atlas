@@ -8,12 +8,17 @@ let cached: ComponentType<PlotParams> | null = null
 export function PlotlyChart({ ariaLabel, height = 420, ...props }: Omit<PlotParams, 'style'> & { ariaLabel: string; height?: number; children?: ReactNode }) {
   const t = useT()
   const [Plot, setPlot] = useState<ComponentType<PlotParams> | null>(cached)
+  const [failed, setFailed] = useState(false)
   useEffect(() => {
     if (cached) return
     let alive = true
     Promise.all([import('react-plotly.js/factory'), import('plotly.js-basic-dist-min')]).then(([factory, plotly]) => {
       cached = factory.default(plotly.default)
       if (alive) setPlot(() => cached)
+    }).catch((e: unknown) => {
+      // модуль Plotly не загрузился (сеть, неверный путь размещения): сообщить, а не крутить «загрузку» бесконечно
+      console.error('PGT-mt Atlas: chart module failed to load', e)
+      if (alive) setFailed(true)
     })
     return () => {
       alive = false
@@ -35,9 +40,9 @@ export function PlotlyChart({ ariaLabel, height = 420, ...props }: Omit<PlotPara
           }}
         />
       ) : (
-        <div className="chart-placeholder" style={{ minHeight: height }}>
-          <span>
-            {t('common.loadingChart')}
+        <div className="chart-placeholder" style={{ minHeight: height }} data-state={failed ? 'error' : 'loading'}>
+          <span role={failed ? 'alert' : undefined}>
+            {failed ? t('common.chartError') : t('common.loadingChart')}
             <noscript>
               <br />
               {t('common.noJs')}

@@ -1,10 +1,12 @@
 import type { CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
+import { EmailCopy } from '../components/EmailContact'
 import { HandRule, Illustration } from '../components/Sketch'
 import template from '../data/submissionTemplate.json'
 import { useLang, useT } from '../i18n'
 import labels from '../illustrations/labels.json'
 import { CURATOR_CONTACT, EVIDENCE_TIERS, SUBJECT_PREFIX, SUBMISSION_STATUSES, UNPUBLISHED_CHECKS, mailtoHref } from '../lib/contribute'
+import { asset } from '../lib/base'
 
 // Раздел Contribute Data / Поделиться данными. Сайт ничего не принимает и не хранит:
 // страница объясняет принципы, даёт шаблон и канал связи с куратором (когда он выбран).
@@ -13,7 +15,7 @@ export default function Contribute() {
   const lang = useLang()
   const list = (key: string) => t(key, { returnObjects: true }) as unknown as string[]
   const pairs = (key: string) => t(key, { returnObjects: true }) as unknown as [string, string][]
-  const href = `${import.meta.env.BASE_URL}${template.file}`
+  const href = asset(template.file)
   const fileName = template.file.split('/').pop()
   const meta = t('contribute.templateMeta', { v: template.version, date: template.released })
   const subject = SUBJECT_PREFIX + t('contribute.contact.subject')
@@ -240,11 +242,16 @@ export default function Contribute() {
         <div className="sk-c-text">
           <p className="sk-lead">{t('contribute.contact.lead')}</p>
           {email ? (
-            <div className="sk-actions">
-              <a className="sk-btn" href={mailtoHref(email, subject, t('contribute.contact.body'))}>
-                {t('contribute.contact.write')} <span aria-hidden="true">→</span>
-              </a>
-              <span className="sk-c-meta">{email}</span>
+            <div data-channel="email">
+              <div className="sk-actions">
+                <a className="sk-btn" href={mailtoHref(email, subject, t('contribute.contact.body'))}>
+                  {t('contribute.contact.write')} <span aria-hidden="true">→</span>
+                </a>
+              </div>
+              <p>
+                {t('contact.address')} <EmailCopy email={email} />
+              </p>
+              <p className="sk-c-meta">{t('contact.noClient')}</p>
             </div>
           ) : (
             <div className="sk-c-inactive" role="note" data-channel="inactive">

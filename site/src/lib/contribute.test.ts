@@ -35,8 +35,8 @@ describe('submission review', () => {
 })
 
 describe('curator contact', () => {
-  it('no address is configured until the curator confirms a channel', () => {
-    expect(CURATOR_CONTACT.email).toBeNull()
+  it('uses the address confirmed by the curator', () => {
+    expect(CURATOR_CONTACT.email).toBe('ilya.mazunin@gmail.com')
   })
 
   it('builds an encoded mailto link', () => {

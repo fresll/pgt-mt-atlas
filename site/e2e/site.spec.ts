@@ -99,10 +99,10 @@ test('curator page keeps the full CV content in both languages', async ({ page }
   }
 })
 
-test('contribute page: template download, review statuses and an honest contact block', async ({ page, request }) => {
-  for (const [lang, title, inactive] of [
-    ['en', 'Contribute Data', 'The contact channel is not active yet'],
-    ['ru', 'Поделиться данными', 'Канал связи пока не активирован'],
+test('contribute page: template download, review statuses and a working e-mail contact', async ({ page, request }) => {
+  for (const [lang, title, copy] of [
+    ['en', 'Contribute Data', 'Copy address'],
+    ['ru', 'Поделиться данными', 'Скопировать адрес'],
   ]) {
     await page.goto(`${lang}/`)
     await page.locator('nav.primary').getByRole('link', { name: title }).click()
@@ -117,10 +117,16 @@ test('contribute page: template download, review statuses and an honest contact 
     // статусы проверки в утверждённом порядке
     await expect(page.locator('.sk-c-status li')).toHaveCount(5)
     await expect(page.locator('.sk-c-tiers > div')).toHaveCount(4)
-    // канал связи не выбран: нет формы, нет mailto, есть пояснение
+    // утверждённый адрес куратора: mailto, адрес для ручного копирования, без формы приёма данных
     await expect(page.locator('#contact form, #contact input, #contact textarea')).toHaveCount(0)
-    await expect(page.locator('a[href^="mailto:"]')).toHaveCount(0)
-    await expect(page.locator('[data-channel="inactive"]')).toContainText(inactive)
+    await expect(page.locator('[data-channel="inactive"]')).toHaveCount(0)
+    const mail = page.locator('#contact a[href^="mailto:"]')
+    await expect(mail).toHaveCount(1)
+    expect(await mail.getAttribute('href')).toMatch(/^mailto:ilya\.mazunin@gmail\.com\?subject=/)
+    await expect(page.locator('#contact .email-address')).toHaveText('ilya.mazunin@gmail.com')
+    await page.context().grantPermissions(['clipboard-read', 'clipboard-write'])
+    await page.locator('#contact').getByRole('button', { name: copy }).click()
+    expect(await page.evaluate(() => navigator.clipboard.readText())).toBe('ilya.mazunin@gmail.com')
     // иллюстрация пути данных с двуязычными подписями
     await expect(page.locator('.sk-c-figure svg')).toBeVisible()
     await expect(page.locator('.sk-c-figure .sk-label')).toHaveCount(6)

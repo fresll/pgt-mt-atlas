@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { Photo } from '../components/Photo'
 import { useLang, useT } from '../i18n'
 
 export default function About() {
@@ -21,7 +22,7 @@ export default function About() {
 
       <h2>{ru ? 'Создатель и куратор' : 'Creator and curator'}</h2>
       <div className="curator-card card">
-        <img src={`${import.meta.env.BASE_URL}img/ilya-mazunin.jpg`} alt="" width={72} height={96} />
+        <Photo path="img/ilya-mazunin.jpg" alt="" width={72} height={96} />
         <div>
           <p style={{ margin: 0 }}>
             <strong>{ru ? 'Илья Мазунин' : 'Ilya Mazunin'}</strong>

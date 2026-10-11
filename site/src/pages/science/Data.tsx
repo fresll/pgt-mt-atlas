@@ -4,6 +4,7 @@ import { ObservedBadge } from '../../components/ui'
 import { atlas, label, pubById } from '../../data/atlas'
 import { useLang, useT } from '../../i18n'
 import { obsValueText } from '../../lib/obs'
+import { asset } from '../../lib/base'
 import { ObservationDetail } from './Fig3'
 
 const CSV = ['publication', 'variant', 'embryo', 'sample', 'measurement', 'offspring_measurement', 'figure_membership', 'verification']
@@ -18,7 +19,6 @@ export default function Data() {
   const pubs = [...new Set(atlas.fig3.map((o) => o.pub))]
   const rows = useMemo(() => atlas.fig3.filter((o) => (!variant || o.variant === variant) && (!pub || o.pub === pub)), [variant, pub])
   const sel = selected ? atlas.fig3.find((o) => o.id === selected) : null
-  const base = import.meta.env.BASE_URL
   return (
     <article>
       <p><ObservedBadge /></p>
@@ -67,7 +67,7 @@ export default function Data() {
       <ul>
         {CSV.map((n) => (
           <li key={n}>
-            <a href={`${base}data/csv/${n}.csv`} download>{n}.csv</a>
+            <a href={asset(`data/csv/${n}.csv`)} download>{n}.csv</a>
           </li>
         ))}
       </ul>

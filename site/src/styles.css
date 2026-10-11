@@ -594,6 +594,8 @@ body:has(.sk-curator-page) main { max-width: 1280px; }
   box-shadow: var(--shadow);
 }
 .chart-placeholder { display: grid; place-items: center; min-height: 240px; color: var(--muted); font-size: 0.9rem; text-align: center; padding: 16px; }
+.chart-placeholder[data-state="error"], .load-error { color: var(--ink); }
+.load-error { display: block; font-size: 0.85rem; margin-top: 6px; }
 .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
 .grid-2 { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 14px; }
 @media (max-width: 900px) { .grid-3, .grid-2 { grid-template-columns: 1fr; } }

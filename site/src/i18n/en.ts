@@ -33,6 +33,13 @@ const en: Dict = {
     outsideArticle: 'extended view',
     draft: 'Draft',
   },
+  contact: {
+    address: 'Address:',
+    copy: 'Copy address',
+    copied: 'Address copied',
+    copyFailed: 'Could not copy — select the address and copy it manually',
+    noClient: 'If no mail app opens, copy the address and write from your own email.',
+  },
   common: {
     value: 'Value',
     variant: 'mtDNA variant',
@@ -62,6 +69,8 @@ const en: Dict = {
     lessThan: 'below {{v}}%',
     loadingChart: 'Loading chart…',
     noJs: 'The interactive chart needs JavaScript. The same data are shown in the table below.',
+    chartError: 'The interactive chart module could not be loaded. Check your connection and reload the page; the same data are shown in the table below.',
+    imageError: 'The image did not load. Please reload the page.',
     figureInArticle: 'Reference view',
     explore: 'Explore',
     mode: 'Mode',

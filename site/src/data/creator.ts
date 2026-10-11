@@ -5,6 +5,7 @@
 // Расхождение между CV: для Tofilo et al., 2026 в EN CV указано «doi: in press», в RU CV и в наборе
 // данных атласа — 10.1007/s10815-026-04012-y (PMID 42649365); показывается DOI из набора данных.
 // Публичные ссылки и контакты включаются только после утверждения (null — «по согласованию»).
+import { CURATOR_CONTACT } from '../lib/contribute'
 import type { Bilingual } from './atlas'
 
 export type Item = { years: string; text: Bilingual }
@@ -135,9 +136,9 @@ export const creator = {
     { key: 'linkedin', label: 'LinkedIn', url: 'https://www.linkedin.com/in/ilya-mazunin-ph-d-910875258/' as string | null },
   ],
 
-  /** Контакты — заполнить после утверждения куратором (адрес почты или URL формы). Личные контакты из CV не публикуются. */
+  /** Контакты, утверждённые куратором (адрес — тот же, что в lib/contribute.ts). Остальные контакты из CV не публикуются. */
   contacts: {
-    collaboration: null as string | null,
+    collaboration: CURATOR_CONTACT.email,
     patients: null as string | null,
   },
 }

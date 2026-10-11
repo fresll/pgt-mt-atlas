@@ -1,6 +1,7 @@
 import type { CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
 import { HandRule, Illustration } from '../components/Sketch'
+import { Photo } from '../components/Photo'
 import { atlas } from '../data/atlas'
 import { useLang, useT } from '../i18n'
 import labels from '../illustrations/labels.json'
@@ -139,7 +140,7 @@ export default function Home() {
       </section>
 
       <section className="sk-section sk-curator">
-        <img src={`${import.meta.env.BASE_URL}img/ilya-mazunin.jpg`} alt={t('curator.title')} width={96} height={120} />
+        <Photo path="img/ilya-mazunin.jpg" alt={t('curator.title')} width={96} height={120} />
         <div>
           <p className="sk-note">{t('curator.role')}</p>
           <p className="sk-curator-name">{t('curator.title')}</p>

@@ -36,11 +36,21 @@ function ThemeToggle() {
   )
 }
 
+/** Тот же раздел на другом языке: путь без base и языка, всегда с завершающим слешем (как у статических страниц). */
+export function switchLangPath(pathname: string, lang: Lang, other: Lang, search = '', hash = ''): string {
+  let rest = pathname.replace(new RegExp(`^.*?/${lang}(?=/|$)`), '')
+  if (!rest.endsWith('/')) rest += '/'
+  return `/${other}${rest}${search}${hash}`
+}
+
 function Header({ lang }: { lang: Lang }) {
   const t = useT()
-  const { pathname } = useLocation()
+  const { pathname, search, hash } = useLocation()
   const other: Lang = lang === 'en' ? 'ru' : 'en'
-  // путь без base и языка → тот же раздел на другом языке
+  // query и hash известны только в браузере: добавляются после гидратации, чтобы первый клиентский рендер
+  // совпадал со статическим HTML
+  const [hydrated, setHydrated] = useState(false)
+  useEffect(() => setHydrated(true), [])
   const rest = pathname.replace(new RegExp(`^.*?/${lang}(?=/|$)`), '')
   const inScience = /\/science(\/|$)/.test(rest) && !/\/science\/data(\/|$)/.test(rest)
   return (
@@ -63,7 +73,7 @@ function Header({ lang }: { lang: Lang }) {
           <NavLink to={`/${lang}/ilya-mazunin/`}>{t('nav.curator')}</NavLink>
         </nav>
         <div className="header-tools">
-          <Link className="btn-link" to={`/${other}${rest || '/'}`} hrefLang={other} lang={other}>
+          <Link className="btn-link" to={switchLangPath(pathname, lang, other, hydrated ? search : '', hydrated ? hash : '')} hrefLang={other} lang={other}>
             {t('nav.switchTo')}
           </Link>
           <ThemeToggle />

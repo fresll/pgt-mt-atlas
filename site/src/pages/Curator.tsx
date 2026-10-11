@@ -1,4 +1,6 @@
 import type { ReactNode } from 'react'
+import { EmailCopy } from '../components/EmailContact'
+import { Photo } from '../components/Photo'
 import { doiUrl } from '../data/atlas'
 import { creator, topicLabel, type Item, type Pub } from '../data/creator'
 import { useLang, useT } from '../i18n'
@@ -38,7 +40,6 @@ export default function Curator() {
   const lang = useLang()
   const other = lang === 'ru' ? 'en' : 'ru'
   const c = creator
-  const base = import.meta.env.BASE_URL
   const pending = <span className="muted">{t('curator.pending')}</span>
   const toc: [string, string][] = [
     ['bio', t('curator.bio')],
@@ -52,7 +53,7 @@ export default function Curator() {
   return (
     <article className="sk-curator-page">
       <header className="curator-hero">
-        <img className="portrait" src={`${base}${c.photo.src}`} alt={t('curator.photoAlt')} width={c.photo.w} height={c.photo.h} loading="eager" />
+        <Photo className="portrait" path={c.photo.src} alt={t('curator.photoAlt')} width={c.photo.w} height={c.photo.h} loading="eager" />
         <div>
           <p className="sk-kicker">{t('curator.role')}</p>
           <h1>{t('curator.title')}</h1>
@@ -176,7 +177,17 @@ export default function Curator() {
             <ul className="cv-kv">
               <li>
                 <span className="cv-k">{t('curator.collaboration')}</span>
-                {c.contacts.collaboration ? <a href={contactHref(c.contacts.collaboration)}>{c.contacts.collaboration}</a> : pending}
+                {c.contacts.collaboration ? (
+                  <span data-channel="email">
+                    <a href={contactHref(c.contacts.collaboration)}>{t('contribute.contact.write')}</a>
+                    <br />
+                    <EmailCopy email={c.contacts.collaboration} />
+                    <br />
+                    <span className="small cv-muted">{t('contact.noClient')}</span>
+                  </span>
+                ) : (
+                  pending
+                )}
               </li>
               <li>
                 <span className="cv-k">{t('curator.patients')}</span>
