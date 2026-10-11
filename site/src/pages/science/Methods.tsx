@@ -14,8 +14,8 @@ export default function Methods() {
       <h2>{ru ? 'Что собрано' : 'What was collected'}</h2>
       <p>
         {ru
-          ? 'Значения гетероплазмии извлечены из первичных публикаций для каждого описанного эмбриона: 187 значений для семи патогенных вариантов мтДНК; 40 бластоцист с парными измерениями в биоптате ТЭ, ВКМ и оставшейся ТЭ; постимплантационные данные 8 детей, для которых известен уровень в перенесённом эмбрионе. Значения берутся из первичных публикаций; обзоры использованы только там, где оригинал недоступен, и это отмечено.'
-          : 'Heteroplasmy values were extracted from primary publications for every reported embryo: 187 values for seven pathogenic mtDNA variants; 40 blastocysts with paired measurements in the TE biopsy, ICM and remaining TE; post-implantation data for 8 children whose transferred-embryo level is known. Values come from primary publications; reviews were used only where the original is unavailable, and this is flagged.'}
+          ? 'Значения гетероплазмии извлечены из первичных публикаций для каждого описанного эмбриона: 187 значений для семи исследуемых вариантов мтДНК; 40 бластоцист с парными измерениями в биоптате ТЭ, ВКМ и оставшейся ТЭ; постимплантационные данные 8 детей, для которых известен уровень в перенесённом эмбрионе. Значения берутся из первичных публикаций; обзоры использованы только там, где оригинал недоступен, и это отмечено.'
+          : 'Heteroplasmy values were extracted from primary publications for every reported embryo: 187 values for the seven mtDNA variants included in the dataset; 40 blastocysts with paired measurements in the TE biopsy, ICM and remaining TE; post-implantation data for 8 children whose transferred-embryo level is known. Values come from primary publications; reviews were used only where the original is unavailable, and this is flagged.'}
       </p>
 
       <h2>{ru ? 'Как представлены значения' : 'How values are represented'}</h2>

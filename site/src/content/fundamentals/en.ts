@@ -58,7 +58,7 @@ const en: FundamentalsContent = {
       ],
       widgets: ['heteroplasmy'],
       data: [
-        { to: 'science/heteroplasmy-landscape/', label: 'Heteroplasmy Landscape', text: 'Published embryo heteroplasmy values for seven pathogenic mtDNA variants: what a “proportion” looks like in real cycles.' },
+        { to: 'science/heteroplasmy-landscape/', label: 'Heteroplasmy Landscape', text: 'Published embryo heteroplasmy values for the seven mtDNA variants included in the dataset: what a “proportion” looks like in real cycles.' },
         { to: 'science/sources/', label: 'Sources', text: 'The primary publications behind the Atlas values, with authorship and DOI.' },
       ],
     },
