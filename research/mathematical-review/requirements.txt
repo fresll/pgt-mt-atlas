@@ -1,0 +1,5 @@
+# No PyPI dependencies. Python standard library only.
+# Executed with Python 3.14.5; recommended Python >=3.10.
+# Optional actual TypeScript verification: Node 24.19.0 with --experimental-strip-types.
+# Optional author simulation: R 4.5.1, base R only.
+# Full Wilson inference NOT executed: would additionally need JAGS, rjags, coda.

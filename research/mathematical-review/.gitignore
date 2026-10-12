@@ -1,0 +1,5 @@
+__pycache__/
+vendor/
+*.csv
+run_manifest.json
+independent_checks.json

@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {pBoth,pAtLeastOne,curve} from './inputs/scenario.ts';
+assert.equal(pAtLeastOne(.4,.5,0),0);
+assert.equal(pAtLeastOne(0,1,6),0);
+assert.equal(pAtLeastOne(1,1,6),1);
+assert.equal(pBoth(.4,.5),.2);
+assert.ok(Math.abs(pAtLeastOne(41/87,.5,6)-(1-(133/174)**6))<1e-12);
+assert.equal(curve(.4,.5,8).length,8);
+for (const x of [-1,1.1,NaN]) assert.throws(()=>pBoth(x,.5),RangeError);
+for (const n of [-1,1.5,NaN]) assert.throws(()=>pAtLeastOne(.4,.5,n),RangeError);
+console.log('PASS: actual Atlas scenario.ts snapshot; arithmetic and domain guards');
