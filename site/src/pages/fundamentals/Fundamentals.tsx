@@ -106,7 +106,7 @@ export function FundamentalsIndex() {
           <ul className="fd-model-list">
             {models.map(([id, title, ci], k) => (
               <li key={id}>
-                <span className="fd-model-letter" aria-hidden="true">{'ABC'[k]}</span>
+                <span className="fd-model-letter" aria-hidden="true">{(lang === 'ru' ? 'АБВ' : 'ABC')[k]}</span>
                 <Link to={`${base(lang)}${chapters[ci].slug}/#model-${id}`}>{t(title)}</Link>
                 <span className="muted"> — {t('fundamentals.chapter', { n: ci + 1 })}</span>
               </li>
@@ -121,10 +121,9 @@ export function FundamentalsIndex() {
           <p className="sk-note">{t('fundamentals.bibliographyNote')}</p>
         </header>
         <div>
-          <p className="fd-howto">{t('fundamentals.bibliographyLead')}</p>
-          <Link className="sk-btn" to={`${base(lang)}references/`}>
-            {t('fundamentals.bibliography')} ({REFS.length}) <span aria-hidden="true">→</span>
-          </Link>
+          <p className="fd-howto">
+            <Link to={`${base(lang)}references/`}>{t('fundamentals.publicationsLink')}</Link>{t('fundamentals.bibliographyTail')}
+          </p>
         </div>
       </section>
       <p className="fd-disclaimer">{t('fundamentals.disclaimer')}</p>
