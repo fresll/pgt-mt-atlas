@@ -2,6 +2,7 @@ import { expect, test } from '@playwright/test'
 
 test('scenarios preserve the baseline and expose dependence, strict thresholds and zero yield', async ({ page }) => {
   await page.goto('ru/science/pgt-mt-pgt-a-model/')
+  await expect(page.getByTestId('model-version')).toHaveAttribute('data-model-version', '2026-10-12')
   const row = page.getByTestId('model-table').locator('[data-variant="m.3243A>G"]')
   await expect(row).toContainText('41/87')
   await expect(row).toContainText('52/87')

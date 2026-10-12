@@ -1,0 +1,10 @@
+{
+  "model_version": "2026-10-12",
+  "model_base_commit": "b1c9cb53a76d6c3a8c40ef1a32de085cf5ca693a",
+  "features": [
+    "beta-binomial-sensitivity",
+    "strict-thresholds",
+    "conditional-uncertainty",
+    "joint-test-evidence"
+  ]
+}

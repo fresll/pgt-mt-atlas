@@ -219,6 +219,7 @@ const en: Dict = {
     colorByVariant: 'Colour — mtDNA variant, shape — material, labels — case codes.',
   },
   fig6: {
+    versionLabel: 'Model updated 12 October 2026: embryo dependence (ρ), uncertainty sensitivity and verified joint PGT-mt × PGT-A results.',
     title: 'PGT-mt × PGT-A Model',
     subtitle: 'Joint selection scenarios and sensitivity to assumptions',
     banner: 'The calculation shows the probability of passing two laboratory criteria for a given number of blastocysts. Input fractions come from heterogeneous published series; an individual clinical probability has not been estimated.',

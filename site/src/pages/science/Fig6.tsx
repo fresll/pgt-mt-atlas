@@ -82,6 +82,7 @@ export default function Fig6() {
     <p><ModelBadge /></p>
     <h1>{t('fig6.title')}</h1>
     <p className="subtitle">{t('fig6.subtitle')}</p>
+    <p className="callout small" data-testid="model-version" data-model-version="2026-10-12">{t('fig6.versionLabel')}</p>
     <div className="callout model" role="note"><strong>◆ </strong>{t('fig6.banner')}</div>
     <h2>{t('fig6.meaningTitle')}</h2>
     <p data-testid="model-meaning">{t('fig6.meaning')}</p>
