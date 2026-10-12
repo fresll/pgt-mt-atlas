@@ -293,9 +293,11 @@ export function ChapterPage({ slug }: { slug: string }) {
             <RefItem key={id} r={refById[id]} />
           ))}
         </ol>
+        {slug !== 'mtdna-and-maternal-inheritance' && (
         <p>
           <Link className="sk-link" to={`${base(lang)}references/`}>{t('fundamentals.bibliography')} →</Link>
         </p>
+        )}
       </section>
 
       <p className="fd-disclaimer">{t('fundamentals.disclaimer')}</p>
