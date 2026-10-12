@@ -302,45 +302,63 @@ R = rng(37)
   file('te-biopsy.svg', 690, 480, `<g transform="translate(30 0)">${body}</g>`, 'Trophectoderm biopsy: holding pipette, blastocyst and biopsy pipette')
 }
 
-// 4. Композиция для главной: бластоциста → увеличенная клетка ТЭ → митохондрия с мтДНК
+// 4. Главная: два последовательных увеличения — клетка ТЭ, затем одна её митохондрия.
 R = rng(5)
 {
-  const W = 1000, H = 640
-  const B = [250, 372], Rb = 150
-  const za = -0.62 // клетка ТЭ под «лупой»
-  const zc = [B[0] + Rb * Math.cos(za), B[1] + Rb * Math.sin(za)], zr = 32
-  const M = [705, 292], MR = 222
+  const W = 1000, H = 720
+  const B = [205, 410], Rb = 128
+  const za = -0.62
+  const zc = [B[0] + Rb * Math.cos(za), B[1] + Rb * Math.sin(za)], zr = 26
+  const C = [540, 190], CR = 139
+  const M = [790, 474], MR = 175
+  const selectedMito = [C[0] + 57, C[1] + 55], mr = 23
   let body = ''
-  for (const side of [-1, 1]) {
-    const [a, b] = tangent(zc, zr, M, MR, side)
-    body += `<path class="sk-i sk-dash" stroke-width="1.1" d="M${n1(a[0])} ${n1(a[1])}L${n1(b[0])} ${n1(b[1])}"/>`
+  const magnification = (from, radius, to, enlargedRadius) => {
+    for (const side of [-1, 1]) {
+      const [a, b] = tangent(from, radius, to, enlargedRadius, side)
+      body += `<path class="sk-i sk-dash" stroke-width="1.1" d="M${n1(a[0])} ${n1(a[1])}L${n1(b[0])} ${n1(b[1])}"/>`
+    }
   }
-  body += `<circle class="sk-fill" cx="${M[0]}" cy="${M[1]}" r="${MR}"/>`
+  magnification(zc, zr, C, CR)
+  magnification(selectedMito, mr, M, MR)
   body += blastocyst('hb', { cx: B[0], cy: B[1], Rb })
   body += ink(blob(zc[0], zc[1], zr, zr, { n: 30, wob: 0.02, open: true }), { w: 1.6, jit: 0.4 })
-  body += ink(blob(M[0], M[1], MR, MR, { n: 90, wob: 0.006, open: true }), { w: 1.6, jit: 0.6 })
-  const m = mitochondrion('hm', { cx: M[0] - 2, cy: M[1] + 6, L: 340, H: 168, rot: -0.2, scale: 1.1, tones: ['i', 'i', 'i', 'r', 'r', 'i', 'i', 'r'] })
-  body += m.svg
-  // подписи: текст — в HTML (двуязычный), здесь выносные линии; координаты подписей — в labels.json
+  body += `<g data-magnification="cell"><circle class="sk-fill" cx="${C[0]}" cy="${C[1]}" r="${CR}"/>`
+  body += ink(blob(C[0], C[1], CR, CR, { n: 60, wob: 0.006, open: true }), { w: 1.6, jit: 0.6 })
+  // Мембрана клетки, центральное ядро и мелкие митохондрии в цитоплазме.
+  body += ink(blob(C[0], C[1], 120, 109, { n: 46, wob: 0.03 }), { closed: true, fill: true, w: 2.1, jit: 0.5 })
+  body += ink(blob(C[0] - 4, C[1] - 4, 34, 29, { n: 28, wob: 0.06 }), { closed: true, w: 1.7, jit: 0.4 })
+  body += circleInk(C[0] + 3, C[1] - 7, 9, { w: 1.1, jit: 0.3 })
+  const mini = [[-68, -49, -0.5], [51, -68, 0.2], [83, -7, 0.9], [57, 55, -0.2], [-55, 61, 0.4], [-87, 9, 1.0]]
+  mini.forEach(([dx, dy, rot], i) => {
+    body += `<g data-organelle="mitochondrion">` + mitochondrion(`hc${i}`, {
+      cx: C[0] + dx, cy: C[1] + dy, L: 42, H: 20, rot,
+      gap: 3, cw: 3, top: [-0.3, 0.4], bot: [0.1], rings: 0,
+      hatching: false, second: false, weight: 0.42,
+    }).svg + '</g>'
+  })
+  body += ink(blob(selectedMito[0], selectedMito[1], mr, mr, { n: 30, wob: 0.01, open: true }), { w: 1.3, jit: 0.3 })
+  body += '</g>'
+  body += `<g data-magnification="mitochondrion"><circle class="sk-fill" cx="${M[0]}" cy="${M[1]}" r="${MR}"/>`
+  body += ink(blob(M[0], M[1], MR, MR, { n: 76, wob: 0.006, open: true }), { w: 1.6, jit: 0.6 })
+  const m = mitochondrion('hm', { cx: M[0] - 2, cy: M[1] + 6, L: 280, H: 139, rot: -0.2, scale: 1.1, tones: ['i', 'i', 'i', 'r', 'r', 'i', 'i', 'r'] })
+  body += m.svg + '</g>'
+  // Двуязычные подписи располагаются в HTML; здесь только выносные линии.
   const lab = []
   const add = (key, anchor, at, align, tone = 'i') => {
-    // линия подходит к подписи сверху или снизу, не пересекая текст
     const below = anchor[1] < at[1]
-    const lines = below ? (key === 'te' || key === 'cristae' ? 1 : 2) : 1
+    const lines = key === 'te' ? 1 : 2
     const end = [at[0] + (align === 'end' ? -40 : 40), at[1] + (below ? -1 : 1) * (lines === 2 ? 34 : 18)]
     body += leader(end, anchor, tone) + `<circle class="sk-dot${tone === 'r' ? ' r' : ''}" cx="${n1(anchor[0])}" cy="${n1(anchor[1])}" r="2.2"/>`
     lab.push({ key, x: n1((at[0] / W) * 100), y: n1((at[1] / H) * 100), align, tone })
   }
-  const te = [B[0] + (Rb + 8) * Math.cos(-2.5), B[1] + (Rb + 8) * Math.sin(-2.5)]
-  add('te', te, [20, 168], 'start')
-  const icmP = [B[0] + (Rb - 70) * Math.cos(2.3), B[1] + (Rb - 70) * Math.sin(2.3)]
-  add('icm', icmP, [20, 606], 'start')
-  const crista = m.xf([m.top[2], -m.iy * 0.85])
-  add('cristae', crista, [770, 42], 'start')
+  add('te', [B[0] + (Rb + 8) * Math.cos(-2.5), B[1] + (Rb + 8) * Math.sin(-2.5)], [18, 186], 'start')
+  add('icm', [B[0] + (Rb - 60) * Math.cos(2.3), B[1] + (Rb - 60) * Math.sin(2.3)], [18, 680], 'start')
+  add('cell', [C[0] + 115, C[1] - 32], [956, 67], 'end')
   const w = m.rings[2], v = m.rings[4]
-  add('wt', [w[0] - 3, w[1] + 9], [548, 572], 'end')
-  add('variant', [v[0] + 3, v[1] + 9], [972, 572], 'end', 'r')
-  file('hero.svg', W, H, body, 'Blastocyst, a magnified trophectoderm cell and a mitochondrion with wild-type and pathogenic mtDNA')
+  add('wt', [w[0] - 3, w[1] + 9], [607, 684], 'end')
+  add('variant', [v[0] + 3, v[1] + 9], [982, 684], 'end', 'r')
+  file('hero.svg', W, H, body, 'Blastocyst, first magnification: a trophectoderm cell with nucleus and mitochondria; second magnification: one mitochondrion with mtDNA')
   labels.hero = lab
 }
 

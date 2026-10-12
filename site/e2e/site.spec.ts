@@ -70,14 +70,15 @@ test('the Atlas is presented independently of any single publication', async ({ 
   }
 })
 
-test('curator page shows the portrait and the curated-by line', async ({ page }) => {
+test('curator page shows the portrait and the homepage keeps the biography link at the bottom', async ({ page }) => {
   await page.goto('en/ilya-mazunin/')
   await expect(page.locator('h1')).toHaveText('Ilya Mazunin')
   await expect(page.locator('img.portrait')).toBeVisible()
   expect(await page.locator('img.portrait').evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0)
-  await expect(page.locator('footer')).toContainText('Created and curated by Ilya Mazunin')
   await page.goto('ru/')
-  await expect(page.locator('footer')).toContainText('Создатель и куратор — Илья Мазунин')
+  await expect(page.locator('.sk-curator')).toContainText('Создатель и куратор Атлас ПГТ-мт')
+  await expect(page.locator('.sk-curator a')).toHaveAttribute('href', /\/ru\/ilya-mazunin\//)
+  await expect(page.locator('footer')).toHaveText(/^v[\d.-]+$/)
 })
 
 test('language switch keeps the section', async ({ page }) => {

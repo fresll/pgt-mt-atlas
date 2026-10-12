@@ -76,7 +76,7 @@ test('user path: home → science → chart → language → reload → back →
   const root = 'http://localhost:4174/pgt-mt-atlas/'
   const problems = watch(page)
   await page.goto(`${root}ru/`)
-  await page.locator('nav.primary').getByRole('link', { name: 'Для специалистов' }).click()
+  await page.locator('nav.primary').getByRole('link', { name: 'Научные данные' }).click()
   await page.locator('nav.side a[href$="heteroplasmy-landscape/"]').click()
   await expect(page.locator('.chart-frame .js-plotly-plot')).toHaveCount(1, { timeout: 20_000 })
   // взаимодействие: режим исследования и пользовательская граница пересчитывают график

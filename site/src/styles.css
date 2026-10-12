@@ -941,3 +941,11 @@ body:has(.fd-layout) { background: var(--sk-paper); }
   .fd-level-switch button small, .fd-level-label { display: none; }
   .fd-dev .sk-label { font-size: clamp(8px, 2.4cqw, 14px); }
 }
+
+/* Главная: чуть крупнее и плотнее подписи научной схемы. */
+.sk-hero-figure .sk-label { width: max-content; white-space: pre; font-size: clamp(15px, 3.4cqw, 34px); font-weight: 650; line-height: 1.05; }
+@media (max-width: 760px) {
+  .sk-hero-figure .sk-label { width: max-content; white-space: pre; font-size: clamp(13px, 3.9cqw, 19px); }
+}
+
+.sk-hero h1 em { white-space: nowrap; }

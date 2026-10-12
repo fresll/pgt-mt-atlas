@@ -62,17 +62,15 @@ function Header({ lang }: { lang: Lang }) {
           <Illustration name="mark" className="brand-mark" />
           <span>
             {t('site.title')}
-            <small>{t('site.curated')}</small>
           </span>
         </Link>
         <nav className="primary" aria-label={t('nav.primaryLabel')}>
           <NavLink to={`/${lang}/fundamentals/`}>{t('nav.fundamentals')}</NavLink>
+          <NavLink to={`/${lang}/patients/`}>{t('nav.patients')}</NavLink>
           <NavLink to={`/${lang}/science/`} className={() => (inScience ? 'active' : '')}>{t('nav.science')}</NavLink>
           <NavLink to={`/${lang}/science/data/`}>{t('nav.data')}</NavLink>
-          <NavLink to={`/${lang}/patients/`}>{t('nav.patients')}</NavLink>
           <NavLink to={`/${lang}/contribute/`}>{t('nav.contribute')}</NavLink>
           <NavLink to={`/${lang}/about/`}>{t('nav.about')}</NavLink>
-          <NavLink to={`/${lang}/ilya-mazunin/`}>{t('nav.curator')}</NavLink>
         </nav>
         <div className="header-tools">
           <Link className="btn-link" to={switchLangPath(pathname, lang, other, hydrated ? search : '', hydrated ? hash : '')} hrefLang={other} lang={other}>
@@ -85,18 +83,11 @@ function Header({ lang }: { lang: Lang }) {
   )
 }
 
-function Footer({ lang }: { lang: Lang }) {
-  const t = useT()
+function Footer() {
   return (
     <footer className="site">
       <div className="inner">
-        <p className="curated" style={{ margin: 0 }}>
-          {t('site.title')} · <Link to={`/${lang}/ilya-mazunin/`}>{t('site.curated')}</Link>
-        </p>
-        <p>{t('home.caveat')}</p>
-        <p className="muted">
-          v{atlas.meta.dataset_version} · {atlas.meta.source_file} · SHA-256 {atlas.meta.source_sha256.slice(0, 12)}…
-        </p>
+        <p className="muted">v{atlas.meta.dataset_version}</p>
       </div>
     </footer>
   )
@@ -138,7 +129,7 @@ function ShellInner({ lang }: { lang: Lang }) {
       <main id="content">
         <Outlet />
       </main>
-      <Footer lang={lang} />
+      <Footer />
     </>
   )
 }

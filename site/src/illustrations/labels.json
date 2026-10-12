@@ -2,36 +2,36 @@
   "hero": [
     {
       "key": "te",
-      "x": 2,
-      "y": 26.3,
+      "x": 1.8,
+      "y": 25.8,
       "align": "start",
       "tone": "i"
     },
     {
       "key": "icm",
-      "x": 2,
-      "y": 94.7,
+      "x": 1.8,
+      "y": 94.4,
       "align": "start",
       "tone": "i"
     },
     {
-      "key": "cristae",
-      "x": 77,
-      "y": 6.6,
-      "align": "start",
+      "key": "cell",
+      "x": 95.6,
+      "y": 9.3,
+      "align": "end",
       "tone": "i"
     },
     {
       "key": "wt",
-      "x": 54.8,
-      "y": 89.4,
+      "x": 60.7,
+      "y": 95,
       "align": "end",
       "tone": "i"
     },
     {
       "key": "variant",
-      "x": 97.2,
-      "y": 89.4,
+      "x": 98.2,
+      "y": 95,
       "align": "end",
       "tone": "r"
     }

@@ -27,9 +27,8 @@ export default function Home() {
     <article className="sk-home">
       <section className="sk-hero">
         <div className="sk-hero-text">
-          <p className="sk-kicker">{t('home.kicker')}</p>
           <h1>
-            PGT-mt <em>Atlas</em>
+            {lang === 'ru' ? <>Атлас<br /><em>ПГТ-мт</em></> : <>PGT-mt <em>Atlas</em></>}
           </h1>
           <HandRule className="sk-title-rule" />
           <p className="sk-subtitle">{t('site.tagline')}</p>
@@ -37,14 +36,9 @@ export default function Home() {
             <Link className="sk-btn" to={`${sci}data/`}>
               {t('home.explore')} <span aria-hidden="true">→</span>
             </Link>
-            <Link className="sk-link" to={sci}>{t('home.allSections')}</Link>
-            <Link className="sk-link" to={`/${lang}/patients/`}>{t('home.patTitle')}</Link>
           </div>
-          <p className="sk-signature">
-            <Link to={`/${lang}/ilya-mazunin/`}>{t('site.curated')}</Link>
-          </p>
         </div>
-        <figure className="sk-hero-figure">
+        <figure className="sk-hero-figure" role="img" aria-label={t('home.figCaption')}>
           <div className="sk-plate">
             <Illustration name="hero" />
             {labels.hero.map((l) => (
@@ -58,7 +52,6 @@ export default function Home() {
               </span>
             ))}
           </div>
-          <figcaption>{t('home.figCaption')}</figcaption>
         </figure>
       </section>
 
@@ -108,7 +101,6 @@ export default function Home() {
       <section className="sk-section sk-data" aria-labelledby="sk-data">
         <figure className="sk-data-figure">
           <Illustration name="mitochondrion" />
-          <figcaption>{t('home.mitoCaption')}</figcaption>
         </figure>
         <div>
           <h2 id="sk-data">{t('home.dataTitle')}</h2>
