@@ -1,0 +1,134 @@
+{
+  "hero": [
+    {
+      "key": "te",
+      "x": 1.8,
+      "y": 25.8,
+      "align": "start",
+      "tone": "i"
+    },
+    {
+      "key": "icm",
+      "x": 1.8,
+      "y": 94.4,
+      "align": "start",
+      "tone": "i"
+    },
+    {
+      "key": "cell",
+      "x": 95.6,
+      "y": 9.3,
+      "align": "end",
+      "tone": "i"
+    },
+    {
+      "key": "wt",
+      "x": 60.7,
+      "y": 95,
+      "align": "end",
+      "tone": "i"
+    },
+    {
+      "key": "variant",
+      "x": 98.2,
+      "y": 95,
+      "align": "end",
+      "tone": "r"
+    }
+  ],
+  "pathway": [
+    {
+      "key": "researcher",
+      "x": 9.6,
+      "y": 69.5,
+      "align": "middle",
+      "tone": "i"
+    },
+    {
+      "key": "submitted",
+      "x": 35.9,
+      "y": 64.8,
+      "align": "middle",
+      "tone": "i"
+    },
+    {
+      "key": "review",
+      "x": 61,
+      "y": 64.8,
+      "align": "middle",
+      "tone": "i"
+    },
+    {
+      "key": "rejected",
+      "x": 45.8,
+      "y": 87.6,
+      "align": "end",
+      "tone": "r"
+    },
+    {
+      "key": "validated",
+      "x": 72.2,
+      "y": 20.5,
+      "align": "middle",
+      "tone": "i"
+    },
+    {
+      "key": "atlas",
+      "x": 87.6,
+      "y": 67.6,
+      "align": "middle",
+      "tone": "i"
+    }
+  ],
+  "development": [
+    {
+      "key": "d1",
+      "x": 9,
+      "y": 96,
+      "align": "middle",
+      "tone": "i"
+    },
+    {
+      "key": "d2",
+      "x": 27.8,
+      "y": 96,
+      "align": "middle",
+      "tone": "i"
+    },
+    {
+      "key": "d3",
+      "x": 46.6,
+      "y": 96,
+      "align": "middle",
+      "tone": "i"
+    },
+    {
+      "key": "d4",
+      "x": 65.4,
+      "y": 96,
+      "align": "middle",
+      "tone": "i"
+    },
+    {
+      "key": "d5",
+      "x": 84.2,
+      "y": 96,
+      "align": "middle",
+      "tone": "i"
+    },
+    {
+      "key": "bxBlastomere",
+      "x": 56.2,
+      "y": 13,
+      "align": "middle",
+      "tone": "r"
+    },
+    {
+      "key": "bxTe",
+      "x": 94.2,
+      "y": 13,
+      "align": "middle",
+      "tone": "r"
+    }
+  ]
+}
