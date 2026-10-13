@@ -22,6 +22,7 @@ export interface Ref {
 }
 
 export const REFS: Ref[] = [
+  { id: 'mikhailova2022', cite: 'Mikhailova et al., 2022', authors: 'Mikhailova AG, Mikhailova AA, Ushakova K, et al.', year: 2022, title: 'A mitochondria-specific mutational signature of aging: increased rate of A > G substitutions on the heavy strand', source: 'Nucleic Acids Res 50(18):10264–10277', doi: '10.1093/nar/gkac779', pmid: '36130228', verified: 'pubmed' },
   { id: 'iliushchenko2025', cite: 'Iliushchenko et al., 2025', authors: 'Iliushchenko D, Efimenko B, Mikhailova AG, et al.', year: 2025, title: 'Deciphering the Foundations of Mitochondrial Mutational Spectra: Replication-Driven and Damage-Induced Signatures Across Chordate Classes', source: 'Mol Biol Evol 42(2):msae261', doi: '10.1093/molbev/msae261', pmid: '39903101', verified: 'pubmed' },
   { id: 'anderson1981', cite: 'Anderson et al., 1981', authors: 'Anderson S, Bankier AT, Barrell BG, et al.', year: 1981, title: 'Sequence and organization of the human mitochondrial genome', source: 'Nature 290:457–465', doi: '10.1038/290457a0', pmid: '7219534', verified: 'pubmed' },
   { id: 'andrews1999', cite: 'Andrews et al., 1999', authors: 'Andrews RM, Kubacka I, Chinnery PF, et al.', year: 1999, title: 'Reanalysis and revision of the Cambridge reference sequence for human mitochondrial DNA', source: 'Nat Genet 23:147', doi: '10.1038/13779', pmid: '10508508', verified: 'pubmed' },
