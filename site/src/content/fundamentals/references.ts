@@ -22,6 +22,7 @@ export interface Ref {
 }
 
 export const REFS: Ref[] = [
+  { id: 'iliushchenko2025', cite: 'Iliushchenko et al., 2025', authors: 'Iliushchenko D, Efimenko B, Mikhailova AG, et al.', year: 2025, title: 'Deciphering the Foundations of Mitochondrial Mutational Spectra: Replication-Driven and Damage-Induced Signatures Across Chordate Classes', source: 'Mol Biol Evol 42(2):msae261', doi: '10.1093/molbev/msae261', pmid: '39903101', verified: 'pubmed' },
   { id: 'anderson1981', cite: 'Anderson et al., 1981', authors: 'Anderson S, Bankier AT, Barrell BG, et al.', year: 1981, title: 'Sequence and organization of the human mitochondrial genome', source: 'Nature 290:457–465', doi: '10.1038/290457a0', pmid: '7219534', verified: 'pubmed' },
   { id: 'andrews1999', cite: 'Andrews et al., 1999', authors: 'Andrews RM, Kubacka I, Chinnery PF, et al.', year: 1999, title: 'Reanalysis and revision of the Cambridge reference sequence for human mitochondrial DNA', source: 'Nat Genet 23:147', doi: '10.1038/13779', pmid: '10508508', verified: 'pubmed' },
   { id: 'chinnery2000', cite: 'Chinnery et al., 2000', authors: 'Chinnery PF, Thorburn DR, Samuels DC, et al.', year: 2000, title: 'The inheritance of mitochondrial DNA heteroplasmy: random drift, selection or both?', source: 'Trends Genet 16:500–505', doi: '10.1016/S0168-9525(00)02120-X', pmid: '11074292', verified: 'pubmed' },
