@@ -133,7 +133,7 @@ export default function Fig5() {
           marker: { symbol: p.q === 'not_detected' || p.emb_q === 'not_detected' ? `${SYMBOL[g]}-open` : SYMBOL[g], size: p.id === selected ? 14 : 10, color: variantColor(p.variant, th), line: { width: p.id === selected ? 2.5 : 1, color: p.id === selected ? th.accent : th.surface } },
         })
       }
-      ann.push({ x: g, y: -18, text: `n = ${rows.length}${bothND ? `<br>${t('fig5.bothND', { n: bothND })}` : ''}`, showarrow: false, font: { size: 12, color: th.muted } })
+      ann.push({ x: g, y: -15, text: `n = ${rows.length}${bothND ? `<br>${t('fig5.bothND', { n: bothND })}` : ''}`, showarrow: false, font: { size: 12, color: th.muted } })
     })
     return {
       data,
