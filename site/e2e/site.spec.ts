@@ -65,7 +65,7 @@ test('heteroplasmy landscape shows reference fractions', async ({ page }) => {
   await expect(svg).toBeVisible({ timeout: 20_000 })
   const text = (await page.locator('.chart-frame').innerText()).replace(/\s+/g, '')
   // на русской странице — десятичная запятая
-  for (const s of ['0,47 (41/87)', '0,60 (52/87)', '0,21 (6/28)', '0,92 (24/26)', '0,05 (1/21)', '0,56 (5/9)']) expect(text).toContain(s.replace(' ', ''))
+  for (const s of ['0,47 (41/88)', '0,60 (53/88)', '0,21 (6/28)', '0,92 (24/26)', '0,05 (1/20)', '0,56 (5/9)']) expect(text).toContain(s.replace(' ', ''))
 })
 
 // Расхождения Tofilo 2026 с ESM 2 исправлены слоем корректировок; карточка эмбриона больше не выводит список

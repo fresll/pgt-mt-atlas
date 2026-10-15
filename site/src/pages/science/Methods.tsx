@@ -16,8 +16,7 @@ export default function Methods() {
     concordance_records: ['записи по фракциям бластоцист', 'blastocyst fraction records'],
     cleavage_embryos: ['эмбрионы стадии дробления (два бластомера)', 'cleavage-stage embryos (two blastomeres)'],
     offspring_records: ['записи «эмбрион → потомство»', 'embryo → offspring records'],
-    offspring_children: ['дети в записях «эмбрион → потомство»', 'children in embryo → offspring records'],
-    offspring_children_exact_pair: ['дети с точной парой «перенесённый эмбрион — ткань»', 'children with an exact transferred-embryo–tissue pair'],
+    offspring_children_exact_pair: ['плоды и дети с точной парой «перенесённый эмбрион — ткань»', 'fetuses and children with an exact transferred-embryo–tissue pair'],
     publications: ['публикации', 'publications'],
   }
   const ROLE: Record<string, [string, string]> = {
@@ -43,6 +42,7 @@ export default function Methods() {
           : 'Publications do not always report values for every embryo of a cycle, so the dataset does not equal the full number of embryos in the cycles. A clinical success rate of PGT-mt cannot be calculated from cases pooled across publications.'}
       </p>
 
+      <p>{t('data.countSummary', { records: atlas.fig5.length, pairs: atlas.stats.fig5.n_pairs, children: atlas.stats.fig5.n_children, pubs: atlas.publications.length, embryoPubs: new Set(atlas.fig3.map(o => o.pub)).size })}</p>
       <h2>{ru ? 'Объём данных' : 'Dataset size'}</h2>
       <div className="table-wrap">
         <table className="data" data-testid="release-counts">

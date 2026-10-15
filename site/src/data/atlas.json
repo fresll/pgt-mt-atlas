@@ -1,6 +1,6 @@
 {
  "meta": {
-  "dataset_version": "2026-10-11",
+  "dataset_version": "2026-10-15",
   "source_file": "data/Сопроводительная информация.xlsx",
   "source_sha256": "6ef93fd0109935521f571040c5c9f282a1c055310aafa7e733ff6f26ed73ecea",
   "generator": "etl/atlas_etl/build.py",
@@ -187,8 +187,8 @@
   },
   "derivation": {
    "as_reported_in_dataset": {
-    "ru": "Как в наборе данных (правило вывода не записано)",
-    "en": "As in the dataset (no derivation rule recorded)"
+    "ru": "Способ получения не указан",
+    "en": "Derivation not recorded"
    },
    "mean_of_blastomeres": {
     "ru": "Среднее двух бластомеров",
@@ -239,7 +239,7 @@
    "data_access_note": null,
    "verified": {
     "date": "2026-10-11",
-    "by": "PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 16155197"
+    "by": "DOI сверен с PubMed (PMID 16155197)"
    },
    "doi_exception": null,
    "supplementary": null,
@@ -272,7 +272,7 @@
     "en": "Conference abstract; no full text or PubMed record. Values taken from the reviews by Castelluccio 2025 and Smeets 2023."
    },
    "verified": null,
-   "doi_exception": "DOI нет: тезисы конференции. DOI не подбирался; наблюдения сохраняются со ссылкой на вторичные обзоры (раздел 7 задания: исключение зарегистрировано 2026-10-11).",
+   "doi_exception": "DOI отсутствует (тезисы конференции); значения взяты из обзоров Castelluccio 2025 и Smeets 2023.",
    "supplementary": null,
    "roles": [
     {
@@ -301,7 +301,7 @@
    "data_access_note": null,
    "verified": {
     "date": "2026-10-11",
-    "by": "PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 23339111"
+    "by": "DOI сверен с PubMed (PMID 23339111)"
    },
    "doi_exception": null,
    "supplementary": null,
@@ -328,7 +328,7 @@
    "data_access_note": null,
    "verified": {
     "date": "2026-10-11",
-    "by": "PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 40673696"
+    "by": "DOI сверен с PubMed (PMID 40673696)"
    },
    "doi_exception": null,
    "supplementary": null,
@@ -359,7 +359,7 @@
    "data_access_note": null,
    "verified": {
     "date": "2026-10-11",
-    "by": "PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 21120938"
+    "by": "DOI сверен с PubMed (PMID 21120938)"
    },
    "doi_exception": null,
    "supplementary": null,
@@ -390,7 +390,7 @@
    "data_access_note": null,
    "verified": {
     "date": "2026-10-11",
-    "by": "PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 22921075"
+    "by": "DOI сверен с PubMed (PMID 22921075)"
    },
    "doi_exception": null,
    "supplementary": null,
@@ -425,7 +425,7 @@
    "data_access_note": null,
    "verified": {
     "date": "2026-10-11",
-    "by": "PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 25159128"
+    "by": "DOI сверен с PubMed (PMID 25159128)"
    },
    "doi_exception": null,
    "supplementary": null,
@@ -457,7 +457,7 @@
    "verified": {
     "date": "2026-10-10",
     "by": "PubMed (PMID 42649365) — название, журнал, дата публикации и DOI совпадают с рукописью [27]",
-    "note": "Страница Springer (link.springer.com) недоступна из окружения сборки (сетевая политика), поэтому проверка выполнена по записи PubMed и по ESM 1/ESM 2, предоставленным авторами. Файл references/Tofilo et al 2026 PGTmt 14487.pdf — ранняя рукопись (Fertil Steril), не опубликованная версия."
+    "note": "DOI и библиография сверены с PubMed, PMID 42649365; значения фракций — с опубликованными ESM 1 и ESM 2."
    },
    "doi_exception": null,
    "supplementary": [
@@ -503,7 +503,7 @@
    "data_access_note": null,
    "verified": {
     "date": "2026-10-11",
-    "by": "PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 28122886"
+    "by": "DOI сверен с PubMed (PMID 28122886)"
    },
    "doi_exception": null,
    "supplementary": null,
@@ -530,7 +530,7 @@
    "data_access_note": null,
    "verified": {
     "date": "2026-10-11",
-    "by": "PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 34802141"
+    "by": "DOI сверен с PubMed (PMID 34802141)"
    },
    "doi_exception": null,
    "supplementary": null,
@@ -565,7 +565,7 @@
    "data_access_note": null,
    "verified": {
     "date": "2026-10-11",
-    "by": "PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 40164591"
+    "by": "DOI сверен с PubMed (PMID 40164591)"
    },
    "doi_exception": null,
    "supplementary": null,
@@ -600,7 +600,7 @@
    "data_access_note": null,
    "verified": {
     "date": "2026-10-11",
-    "by": "PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 42821212"
+    "by": "DOI сверен с PubMed (PMID 42821212)"
    },
    "doi_exception": null,
    "supplementary": null,
@@ -635,7 +635,7 @@
    "data_access_note": null,
    "verified": {
     "date": "2026-10-11",
-    "by": "PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 24856294"
+    "by": "DOI сверен с PubMed (PMID 24856294)"
    },
    "doi_exception": null,
    "supplementary": null,
@@ -662,7 +662,7 @@
    "data_access_note": null,
    "verified": {
     "date": "2026-10-11",
-    "by": "PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 24856293"
+    "by": "DOI сверен с PubMed (PMID 24856293)"
    },
    "doi_exception": null,
    "supplementary": null,
@@ -685,7 +685,7 @@
    "data_access_note": null,
    "verified": {
     "date": "2026-10-11",
-    "by": "PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 33745725",
+    "by": "DOI сверен с PubMed (PMID 33745725)",
     "note": "Внутреннее расхождение источника: в абстракте и введении вариант пациентки C назван m.10191T>G, в результатах, подписи к рисунку и обсуждении — m.10191T>C (5 мест). Набор следует основному тексту (m.10191T>C); значения не менялись. Требует решения куратора."
    },
    "doi_exception": null,
@@ -725,7 +725,7 @@
    "data_access_note": null,
    "verified": {
     "date": "2026-10-11",
-    "by": "PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 39223156"
+    "by": "DOI сверен с PubMed (PMID 39223156)"
    },
    "doi_exception": null,
    "supplementary": null,
@@ -748,7 +748,7 @@
    "data_access_note": null,
    "verified": {
     "date": "2026-10-11",
-    "by": "PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 40174913"
+    "by": "DOI сверен с PubMed (PMID 40174913)"
    },
    "doi_exception": null,
    "supplementary": null,
@@ -775,7 +775,7 @@
    "data_access_note": null,
    "verified": {
     "date": "2026-10-11",
-    "by": "PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 17342424"
+    "by": "DOI сверен с PubMed (PMID 17342424)"
    },
    "doi_exception": null,
    "supplementary": null,
@@ -798,7 +798,7 @@
    "data_access_note": null,
    "verified": {
     "date": "2026-10-11",
-    "by": "PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 37202317"
+    "by": "DOI сверен с PubMed (PMID 37202317)"
    },
    "doi_exception": null,
    "supplementary": null,
@@ -821,7 +821,7 @@
    "data_access_note": null,
    "verified": {
     "date": "2026-10-11",
-    "by": "PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 37439868"
+    "by": "DOI сверен с PubMed (PMID 37439868)"
    },
    "doi_exception": null,
    "supplementary": null,
@@ -844,7 +844,7 @@
    "data_access_note": null,
    "verified": {
     "date": "2026-10-11",
-    "by": "PubMed — DOI из списка литературы обзора однозначно сопоставлен с PMID 22456975"
+    "by": "DOI сверен с PubMed (PMID 22456975)"
    },
    "doi_exception": null,
    "supplementary": null,
@@ -905,7 +905,7 @@
    "class": "pathogenic",
    "status": "stated_in_source",
    "publication": "tofilo2026",
-   "locator": "Рукопись Tofilo et al. (references/Tofilo et al 2026 PGTmt 14487.pdf), с. 1: «carrying the pathogenic mtDNA variant m.14487T>C». В абстракте опубликованной версии (PubMed 42649365) класс не назван; окончательный текст статьи в репозитории отсутствует.",
+   "locator": "Tofilo et al., 2026, основной текст, Introduction — pathogenic mtDNA variant m.14487T>C; doi:10.1007/s10815-026-04012-y, PMID 42649365.",
    "checked": "2026-10-11"
   },
   "m.3243A>G": {
@@ -951,8 +951,50 @@
    "checked": "2026-10-11"
   }
  },
+ "excluded_landscape": [
+  {
+   "carrier_id": null,
+   "id": "HL-ji2021-007",
+   "variant": "m.3697G>A",
+   "pub": "ji2021",
+   "value": 43.9,
+   "q": "exact",
+   "low": null,
+   "high": null,
+   "lod": null,
+   "stage": "arrested",
+   "stage_raw": "degenerated embryo",
+   "sample": "mixed_unspecified",
+   "material_raw": "sample",
+   "derivation": "as_reported_in_dataset",
+   "derivation_evidence": null,
+   "note": null,
+   "doi_in_sheet": "10.1007/s10815-021-02354-3",
+   "src": {
+    "sheet": "Рисунок 3",
+    "row": 97
+   },
+   "source_fingerprint": {
+    "pub": "ji2021",
+    "variant": "m.3697G>A",
+    "value": 43.9,
+    "low": null,
+    "high": null,
+    "stage_raw": "degenerated embryo",
+    "material_raw": "sample",
+    "note": null,
+    "doi_in_sheet": "10.1007/s10815-021-02354-3"
+   },
+   "correction_ids": [
+    "audit-HL-ji2021-007"
+   ],
+   "source_locator": "Ji 2021, Table 3, sample 2.5 (Degenerate); Results: 1 degenerate oocyte",
+   "reason": "Дегенерирующий ооцит; не эмбрион."
+  }
+ ],
  "fig3": [
   {
+   "carrier_id": null,
    "id": "HL-heindryckx2014-001",
    "variant": "m.3243A>G",
    "pub": "heindryckx2014",
@@ -976,6 +1018,7 @@
    "legacy_id": "f3-004"
   },
   {
+   "carrier_id": null,
    "id": "HL-heindryckx2014-002",
    "variant": "m.3243A>G",
    "pub": "heindryckx2014",
@@ -999,6 +1042,7 @@
    "legacy_id": "f3-005"
   },
   {
+   "carrier_id": null,
    "id": "HL-heindryckx2014-003",
    "variant": "m.3243A>G",
    "pub": "heindryckx2014",
@@ -1022,6 +1066,7 @@
    "legacy_id": "f3-006"
   },
   {
+   "carrier_id": null,
    "id": "HL-heindryckx2014-004",
    "variant": "m.3243A>G",
    "pub": "heindryckx2014",
@@ -1045,6 +1090,7 @@
    "legacy_id": "f3-007"
   },
   {
+   "carrier_id": null,
    "id": "HL-heindryckx2014-005",
    "variant": "m.3243A>G",
    "pub": "heindryckx2014",
@@ -1068,6 +1114,7 @@
    "legacy_id": "f3-008"
   },
   {
+   "carrier_id": null,
    "id": "HL-heindryckx2014-006",
    "variant": "m.3243A>G",
    "pub": "heindryckx2014",
@@ -1091,6 +1138,7 @@
    "legacy_id": "f3-009"
   },
   {
+   "carrier_id": null,
    "id": "HL-heindryckx2014-007",
    "variant": "m.3243A>G",
    "pub": "heindryckx2014",
@@ -1114,6 +1162,7 @@
    "legacy_id": "f3-010"
   },
   {
+   "carrier_id": null,
    "id": "HL-heindryckx2014-008",
    "variant": "m.3243A>G",
    "pub": "heindryckx2014",
@@ -1137,6 +1186,7 @@
    "legacy_id": "f3-011"
   },
   {
+   "carrier_id": null,
    "id": "HL-heindryckx2014-009",
    "variant": "m.3243A>G",
    "pub": "heindryckx2014",
@@ -1160,6 +1210,7 @@
    "legacy_id": "f3-012"
   },
   {
+   "carrier_id": null,
    "id": "HL-heindryckx2014-010",
    "variant": "m.3243A>G",
    "pub": "heindryckx2014",
@@ -1183,6 +1234,7 @@
    "legacy_id": "f3-013"
   },
   {
+   "carrier_id": null,
    "id": "HL-heindryckx2014-011",
    "variant": "m.3243A>G",
    "pub": "heindryckx2014",
@@ -1206,6 +1258,7 @@
    "legacy_id": "f3-014"
   },
   {
+   "carrier_id": null,
    "id": "HL-hyslop2025-001",
    "variant": "m.3243A>G",
    "pub": "hyslop2025",
@@ -1213,7 +1266,7 @@
    "q": "not_detected",
    "low": null,
    "high": null,
-   "lod": null,
+   "lod": 3,
    "stage": "unspecified",
    "stage_raw": "transferred embryo(s) linked to live birth",
    "sample": "blastomeres_unspecified",
@@ -1226,9 +1279,25 @@
     "sheet": "Рисунок 3",
     "row": 15
    },
+   "source_fingerprint": {
+    "pub": "hyslop2025",
+    "variant": "m.3243A>G",
+    "value": 0.0,
+    "low": null,
+    "high": null,
+    "stage_raw": "transferred embryo(s) linked to live birth",
+    "material_raw": "test blastomere(s)",
+    "note": null,
+    "doi_in_sheet": "10.1056/NEJMoa2415539"
+   },
+   "correction_ids": [
+    "audit-HL-hyslop2025-001"
+   ],
+   "source_locator": "Hyslop 2025, Table 1, footnote: below 3%",
    "legacy_id": "f3-015"
   },
   {
+   "carrier_id": null,
    "id": "HL-hyslop2025-002",
    "variant": "m.3243A>G",
    "pub": "hyslop2025",
@@ -1236,7 +1305,7 @@
    "q": "not_detected",
    "low": null,
    "high": null,
-   "lod": null,
+   "lod": 3,
    "stage": "unspecified",
    "stage_raw": "transferred embryo(s) linked to live birth",
    "sample": "blastomeres_unspecified",
@@ -1249,9 +1318,25 @@
     "sheet": "Рисунок 3",
     "row": 16
    },
+   "source_fingerprint": {
+    "pub": "hyslop2025",
+    "variant": "m.3243A>G",
+    "value": 0.0,
+    "low": null,
+    "high": null,
+    "stage_raw": "transferred embryo(s) linked to live birth",
+    "material_raw": "test blastomere(s)",
+    "note": null,
+    "doi_in_sheet": "10.1056/NEJMoa2415539"
+   },
+   "correction_ids": [
+    "audit-HL-hyslop2025-002"
+   ],
+   "source_locator": "Hyslop 2025, Table 1, footnote: below 3%",
    "legacy_id": "f3-016"
   },
   {
+   "carrier_id": null,
    "id": "HL-monnot2011-001",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
@@ -1259,7 +1344,7 @@
    "q": "not_detected",
    "low": null,
    "high": null,
-   "lod": null,
+   "lod": 2,
    "stage": "unspecified",
    "stage_raw": "cleavage/blastocyst-stage analyzed embryo",
    "sample": "mixed_unspecified",
@@ -1272,9 +1357,25 @@
     "sheet": "Рисунок 3",
     "row": 17
    },
+   "source_fingerprint": {
+    "pub": "monnot2011",
+    "variant": "m.3243A>G",
+    "value": 0.0,
+    "low": null,
+    "high": null,
+    "stage_raw": "cleavage/blastocyst-stage analyzed embryo",
+    "material_raw": "blastomeres and/or whole embryo fractions",
+    "note": null,
+    "doi_in_sheet": "10.1002/humu.21417"
+   },
+   "correction_ids": [
+    "audit-HL-monnot2011-001"
+   ],
+   "source_locator": "Monnot 2011, Methods, p. 3: detection threshold: 2%",
    "legacy_id": "f3-017"
   },
   {
+   "carrier_id": null,
    "id": "HL-monnot2011-002",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
@@ -1282,7 +1383,7 @@
    "q": "not_detected",
    "low": null,
    "high": null,
-   "lod": null,
+   "lod": 2,
    "stage": "unspecified",
    "stage_raw": "cleavage/blastocyst-stage analyzed embryo",
    "sample": "mixed_unspecified",
@@ -1295,9 +1396,25 @@
     "sheet": "Рисунок 3",
     "row": 18
    },
+   "source_fingerprint": {
+    "pub": "monnot2011",
+    "variant": "m.3243A>G",
+    "value": 0.0,
+    "low": null,
+    "high": null,
+    "stage_raw": "cleavage/blastocyst-stage analyzed embryo",
+    "material_raw": "blastomeres and/or whole embryo fractions",
+    "note": null,
+    "doi_in_sheet": "10.1002/humu.21417"
+   },
+   "correction_ids": [
+    "audit-HL-monnot2011-002"
+   ],
+   "source_locator": "Monnot 2011, Methods, p. 3: detection threshold: 2%",
    "legacy_id": "f3-018"
   },
   {
+   "carrier_id": null,
    "id": "HL-monnot2011-003",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
@@ -1305,7 +1422,7 @@
    "q": "not_detected",
    "low": null,
    "high": null,
-   "lod": null,
+   "lod": 2,
    "stage": "unspecified",
    "stage_raw": "cleavage/blastocyst-stage analyzed embryo",
    "sample": "mixed_unspecified",
@@ -1318,9 +1435,25 @@
     "sheet": "Рисунок 3",
     "row": 19
    },
+   "source_fingerprint": {
+    "pub": "monnot2011",
+    "variant": "m.3243A>G",
+    "value": 0.0,
+    "low": null,
+    "high": null,
+    "stage_raw": "cleavage/blastocyst-stage analyzed embryo",
+    "material_raw": "blastomeres and/or whole embryo fractions",
+    "note": null,
+    "doi_in_sheet": "10.1002/humu.21417"
+   },
+   "correction_ids": [
+    "audit-HL-monnot2011-003"
+   ],
+   "source_locator": "Monnot 2011, Methods, p. 3: detection threshold: 2%",
    "legacy_id": "f3-019"
   },
   {
+   "carrier_id": null,
    "id": "HL-monnot2011-004",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
@@ -1328,7 +1461,7 @@
    "q": "not_detected",
    "low": null,
    "high": null,
-   "lod": null,
+   "lod": 2,
    "stage": "unspecified",
    "stage_raw": "cleavage/blastocyst-stage analyzed embryo",
    "sample": "mixed_unspecified",
@@ -1341,9 +1474,25 @@
     "sheet": "Рисунок 3",
     "row": 20
    },
+   "source_fingerprint": {
+    "pub": "monnot2011",
+    "variant": "m.3243A>G",
+    "value": 0.0,
+    "low": null,
+    "high": null,
+    "stage_raw": "cleavage/blastocyst-stage analyzed embryo",
+    "material_raw": "blastomeres and/or whole embryo fractions",
+    "note": null,
+    "doi_in_sheet": "10.1002/humu.21417"
+   },
+   "correction_ids": [
+    "audit-HL-monnot2011-004"
+   ],
+   "source_locator": "Monnot 2011, Methods, p. 3: detection threshold: 2%",
    "legacy_id": "f3-020"
   },
   {
+   "carrier_id": null,
    "id": "HL-monnot2011-005",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
@@ -1351,7 +1500,7 @@
    "q": "not_detected",
    "low": null,
    "high": null,
-   "lod": null,
+   "lod": 2,
    "stage": "unspecified",
    "stage_raw": "cleavage/blastocyst-stage analyzed embryo",
    "sample": "mixed_unspecified",
@@ -1364,9 +1513,25 @@
     "sheet": "Рисунок 3",
     "row": 21
    },
+   "source_fingerprint": {
+    "pub": "monnot2011",
+    "variant": "m.3243A>G",
+    "value": 0.0,
+    "low": null,
+    "high": null,
+    "stage_raw": "cleavage/blastocyst-stage analyzed embryo",
+    "material_raw": "blastomeres and/or whole embryo fractions",
+    "note": null,
+    "doi_in_sheet": "10.1002/humu.21417"
+   },
+   "correction_ids": [
+    "audit-HL-monnot2011-005"
+   ],
+   "source_locator": "Monnot 2011, Methods, p. 3: detection threshold: 2%",
    "legacy_id": "f3-021"
   },
   {
+   "carrier_id": null,
    "id": "HL-monnot2011-006",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
@@ -1374,7 +1539,7 @@
    "q": "not_detected",
    "low": null,
    "high": null,
-   "lod": null,
+   "lod": 2,
    "stage": "unspecified",
    "stage_raw": "cleavage/blastocyst-stage analyzed embryo",
    "sample": "mixed_unspecified",
@@ -1387,9 +1552,25 @@
     "sheet": "Рисунок 3",
     "row": 22
    },
+   "source_fingerprint": {
+    "pub": "monnot2011",
+    "variant": "m.3243A>G",
+    "value": 0.0,
+    "low": null,
+    "high": null,
+    "stage_raw": "cleavage/blastocyst-stage analyzed embryo",
+    "material_raw": "blastomeres and/or whole embryo fractions",
+    "note": null,
+    "doi_in_sheet": "10.1002/humu.21417"
+   },
+   "correction_ids": [
+    "audit-HL-monnot2011-006"
+   ],
+   "source_locator": "Monnot 2011, Methods, p. 3: detection threshold: 2%",
    "legacy_id": "f3-022"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-001",
    "variant": "m.3243A>G",
    "pub": "spath2021",
@@ -1413,6 +1594,7 @@
    "legacy_id": "f3-023"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-002",
    "variant": "m.3243A>G",
    "pub": "spath2021",
@@ -1421,7 +1603,7 @@
    "low": null,
    "high": null,
    "lod": null,
-   "stage": "unspecified",
+   "stage": "blastocyst",
    "stage_raw": "blastocyst/embryo sample",
    "sample": "te_biopsy",
    "material_raw": "TE biopsy",
@@ -1433,9 +1615,25 @@
     "sheet": "Рисунок 3",
     "row": 24
    },
+   "source_fingerprint": {
+    "pub": "spath2021",
+    "variant": "m.3243A>G",
+    "value": 0.0,
+    "low": null,
+    "high": null,
+    "stage_raw": "blastocyst/embryo sample",
+    "material_raw": "TE biopsy",
+    "note": null,
+    "doi_in_sheet": "10.1016/j.fertnstert.2021.01.026"
+   },
+   "correction_ids": [
+    "audit-HL-spath2021-002"
+   ],
+   "source_locator": "Spath 2021, Results of Clinical Application, pp. 323–324; Supplemental Table 3",
    "legacy_id": "f3-024"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-003",
    "variant": "m.3243A>G",
    "pub": "spath2021",
@@ -1444,7 +1642,7 @@
    "low": null,
    "high": null,
    "lod": null,
-   "stage": "unspecified",
+   "stage": "blastocyst",
    "stage_raw": "blastocyst/embryo sample",
    "sample": "te_biopsy",
    "material_raw": "TE biopsy",
@@ -1456,9 +1654,25 @@
     "sheet": "Рисунок 3",
     "row": 25
    },
+   "source_fingerprint": {
+    "pub": "spath2021",
+    "variant": "m.3243A>G",
+    "value": 0.0,
+    "low": null,
+    "high": null,
+    "stage_raw": "blastocyst/embryo sample",
+    "material_raw": "TE biopsy",
+    "note": null,
+    "doi_in_sheet": "10.1016/j.fertnstert.2021.01.026"
+   },
+   "correction_ids": [
+    "audit-HL-spath2021-003"
+   ],
+   "source_locator": "Spath 2021, Results of Clinical Application, pp. 323–324; Supplemental Table 3",
    "legacy_id": "f3-025"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-004",
    "variant": "m.3243A>G",
    "pub": "spath2021",
@@ -1467,7 +1681,7 @@
    "low": null,
    "high": null,
    "lod": null,
-   "stage": "unspecified",
+   "stage": "blastocyst",
    "stage_raw": "blastocyst/embryo sample",
    "sample": "te_biopsy",
    "material_raw": "TE biopsy",
@@ -1479,9 +1693,25 @@
     "sheet": "Рисунок 3",
     "row": 26
    },
+   "source_fingerprint": {
+    "pub": "spath2021",
+    "variant": "m.3243A>G",
+    "value": 0.0,
+    "low": null,
+    "high": null,
+    "stage_raw": "blastocyst/embryo sample",
+    "material_raw": "TE biopsy",
+    "note": null,
+    "doi_in_sheet": "10.1016/j.fertnstert.2021.01.026"
+   },
+   "correction_ids": [
+    "audit-HL-spath2021-004"
+   ],
+   "source_locator": "Spath 2021, Results of Clinical Application, pp. 323–324; Supplemental Table 3",
    "legacy_id": "f3-026"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-005",
    "variant": "m.3243A>G",
    "pub": "spath2021",
@@ -1490,7 +1720,7 @@
    "low": null,
    "high": null,
    "lod": null,
-   "stage": "unspecified",
+   "stage": "blastocyst",
    "stage_raw": "blastocyst/embryo sample",
    "sample": "te_biopsy",
    "material_raw": "TE biopsy",
@@ -1502,9 +1732,25 @@
     "sheet": "Рисунок 3",
     "row": 27
    },
+   "source_fingerprint": {
+    "pub": "spath2021",
+    "variant": "m.3243A>G",
+    "value": 0.0,
+    "low": null,
+    "high": null,
+    "stage_raw": "blastocyst/embryo sample",
+    "material_raw": "TE biopsy",
+    "note": null,
+    "doi_in_sheet": "10.1016/j.fertnstert.2021.01.026"
+   },
+   "correction_ids": [
+    "audit-HL-spath2021-005"
+   ],
+   "source_locator": "Spath 2021, Results of Clinical Application, pp. 323–324; Supplemental Table 3",
    "legacy_id": "f3-027"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-006",
    "variant": "m.3243A>G",
    "pub": "spath2021",
@@ -1528,6 +1774,7 @@
    "legacy_id": "f3-028"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-007",
    "variant": "m.3243A>G",
    "pub": "spath2021",
@@ -1536,7 +1783,7 @@
    "low": null,
    "high": null,
    "lod": null,
-   "stage": "unspecified",
+   "stage": "blastocyst",
    "stage_raw": "blastocyst/embryo sample",
    "sample": "te_biopsy",
    "material_raw": "TE biopsy",
@@ -1548,9 +1795,25 @@
     "sheet": "Рисунок 3",
     "row": 29
    },
+   "source_fingerprint": {
+    "pub": "spath2021",
+    "variant": "m.3243A>G",
+    "value": 0.0,
+    "low": null,
+    "high": null,
+    "stage_raw": "blastocyst/embryo sample",
+    "material_raw": "TE biopsy",
+    "note": null,
+    "doi_in_sheet": "10.1016/j.fertnstert.2021.01.026"
+   },
+   "correction_ids": [
+    "audit-HL-spath2021-007"
+   ],
+   "source_locator": "Spath 2021, Results of Clinical Application, pp. 323–324; Supplemental Table 3",
    "legacy_id": "f3-029"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-008",
    "variant": "m.3243A>G",
    "pub": "spath2021",
@@ -1574,6 +1837,7 @@
    "legacy_id": "f3-030"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-009",
    "variant": "m.3243A>G",
    "pub": "spath2021",
@@ -1597,6 +1861,7 @@
    "legacy_id": "f3-031"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-010",
    "variant": "m.3243A>G",
    "pub": "spath2021",
@@ -1620,6 +1885,7 @@
    "legacy_id": "f3-032"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-011",
    "variant": "m.3243A>G",
    "pub": "spath2021",
@@ -1643,6 +1909,7 @@
    "legacy_id": "f3-033"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-012",
    "variant": "m.3243A>G",
    "pub": "spath2021",
@@ -1651,7 +1918,7 @@
    "low": null,
    "high": null,
    "lod": null,
-   "stage": "unspecified",
+   "stage": "blastocyst",
    "stage_raw": "blastocyst/embryo sample",
    "sample": "te_biopsy",
    "material_raw": "TE biopsy",
@@ -1663,9 +1930,25 @@
     "sheet": "Рисунок 3",
     "row": 34
    },
+   "source_fingerprint": {
+    "pub": "spath2021",
+    "variant": "m.3243A>G",
+    "value": 0.0,
+    "low": null,
+    "high": null,
+    "stage_raw": "blastocyst/embryo sample",
+    "material_raw": "TE biopsy",
+    "note": null,
+    "doi_in_sheet": "10.1016/j.fertnstert.2021.01.026"
+   },
+   "correction_ids": [
+    "audit-HL-spath2021-012"
+   ],
+   "source_locator": "Spath 2021, Results of Clinical Application, pp. 323–324; Supplemental Table 3",
    "legacy_id": "f3-034"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-013",
    "variant": "m.3243A>G",
    "pub": "spath2021",
@@ -1674,7 +1957,7 @@
    "low": null,
    "high": null,
    "lod": null,
-   "stage": "unspecified",
+   "stage": "blastocyst",
    "stage_raw": "blastocyst/embryo sample",
    "sample": "te_biopsy",
    "material_raw": "TE biopsy",
@@ -1686,9 +1969,25 @@
     "sheet": "Рисунок 3",
     "row": 35
    },
+   "source_fingerprint": {
+    "pub": "spath2021",
+    "variant": "m.3243A>G",
+    "value": 3.1,
+    "low": null,
+    "high": null,
+    "stage_raw": "blastocyst/embryo sample",
+    "material_raw": "TE biopsy",
+    "note": null,
+    "doi_in_sheet": "10.1016/j.fertnstert.2021.01.026"
+   },
+   "correction_ids": [
+    "audit-HL-spath2021-013"
+   ],
+   "source_locator": "Spath 2021, Results of Clinical Application, pp. 323–324; Supplemental Table 3",
    "legacy_id": "f3-035"
   },
   {
+   "carrier_id": null,
    "id": "HL-monnot2011-007",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
@@ -1712,6 +2011,7 @@
    "legacy_id": "f3-036"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-014",
    "variant": "m.3243A>G",
    "pub": "spath2021",
@@ -1735,6 +2035,7 @@
    "legacy_id": "f3-037"
   },
   {
+   "carrier_id": null,
    "id": "HL-treff2012-001",
    "variant": "m.3243A>G",
    "pub": "treff2012",
@@ -1758,6 +2059,7 @@
    "legacy_id": "f3-038"
   },
   {
+   "carrier_id": null,
    "id": "HL-monnot2011-008",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
@@ -1781,6 +2083,7 @@
    "legacy_id": "f3-039"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-015",
    "variant": "m.3243A>G",
    "pub": "spath2021",
@@ -1789,7 +2092,7 @@
    "low": null,
    "high": null,
    "lod": null,
-   "stage": "unspecified",
+   "stage": "blastocyst",
    "stage_raw": "blastocyst/embryo sample",
    "sample": "te_biopsy",
    "material_raw": "TE biopsy",
@@ -1801,9 +2104,25 @@
     "sheet": "Рисунок 3",
     "row": 40
    },
+   "source_fingerprint": {
+    "pub": "spath2021",
+    "variant": "m.3243A>G",
+    "value": 11.5,
+    "low": null,
+    "high": null,
+    "stage_raw": "blastocyst/embryo sample",
+    "material_raw": "TE biopsy",
+    "note": null,
+    "doi_in_sheet": "10.1016/j.fertnstert.2021.01.026"
+   },
+   "correction_ids": [
+    "audit-HL-spath2021-015"
+   ],
+   "source_locator": "Spath 2021, Results of Clinical Application, pp. 323–324; Supplemental Table 3",
    "legacy_id": "f3-040"
   },
   {
+   "carrier_id": null,
    "id": "HL-treff2012-002",
    "variant": "m.3243A>G",
    "pub": "treff2012",
@@ -1827,6 +2146,7 @@
    "legacy_id": "f3-041"
   },
   {
+   "carrier_id": null,
    "id": "HL-monnot2011-009",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
@@ -1850,6 +2170,7 @@
    "legacy_id": "f3-042"
   },
   {
+   "carrier_id": null,
    "id": "HL-monnot2011-010",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
@@ -1862,17 +2183,33 @@
    "stage_raw": "cleavage/blastocyst-stage analyzed embryo",
    "sample": "mixed_unspecified",
    "material_raw": "blastomeres and/or whole embryo fractions",
-   "derivation": "as_reported_in_dataset",
-   "derivation_evidence": null,
+   "derivation": "mean_of_blastomeres",
+   "derivation_evidence": "Среднее двух бластомеров: 13% и 15%.",
    "note": null,
    "doi_in_sheet": "10.1002/humu.21417",
    "src": {
     "sheet": "Рисунок 3",
     "row": 43
    },
+   "source_fingerprint": {
+    "pub": "monnot2011",
+    "variant": "m.3243A>G",
+    "value": 14.0,
+    "low": null,
+    "high": null,
+    "stage_raw": "cleavage/blastocyst-stage analyzed embryo",
+    "material_raw": "blastomeres and/or whole embryo fractions",
+    "note": null,
+    "doi_in_sheet": "10.1002/humu.21417"
+   },
+   "correction_ids": [
+    "audit-HL-monnot2011-010"
+   ],
+   "source_locator": "Monnot 2011, Table 1, embryo with 13/13 and 15%; mean (13+15)/2 = 14%",
    "legacy_id": "f3-043"
   },
   {
+   "carrier_id": null,
    "id": "HL-monnot2011-011",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
@@ -1896,6 +2233,7 @@
    "legacy_id": "f3-044"
   },
   {
+   "carrier_id": null,
    "id": "HL-monnot2011-012",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
@@ -1919,6 +2257,7 @@
    "legacy_id": "f3-045"
   },
   {
+   "carrier_id": null,
    "id": "HL-monnot2011-013",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
@@ -1942,29 +2281,7 @@
    "legacy_id": "f3-046"
   },
   {
-   "id": "HL-hyslop2025-003",
-   "variant": "m.3243A>G",
-   "pub": "hyslop2025",
-   "value": 16.5,
-   "q": "exact",
-   "low": null,
-   "high": null,
-   "lod": null,
-   "stage": "unspecified",
-   "stage_raw": "transferred embryo(s) linked to live birth",
-   "sample": "blastomeres_unspecified",
-   "material_raw": "test blastomere(s)",
-   "derivation": "as_reported_in_dataset",
-   "derivation_evidence": null,
-   "note": null,
-   "doi_in_sheet": "10.1056/NEJMoa2415539",
-   "src": {
-    "sheet": "Рисунок 3",
-    "row": 47
-   },
-   "legacy_id": "f3-047"
-  },
-  {
+   "carrier_id": null,
    "id": "HL-monnot2011-014",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
@@ -1988,6 +2305,7 @@
    "legacy_id": "f3-048"
   },
   {
+   "carrier_id": null,
    "id": "HL-monnot2011-015",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
@@ -2011,6 +2329,7 @@
    "legacy_id": "f3-049"
   },
   {
+   "carrier_id": null,
    "id": "HL-monnot2011-016",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
@@ -2034,6 +2353,7 @@
    "legacy_id": "f3-050"
   },
   {
+   "carrier_id": null,
    "id": "HL-monnot2011-017",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
@@ -2057,6 +2377,7 @@
    "legacy_id": "f3-051"
   },
   {
+   "carrier_id": null,
    "id": "HL-treff2012-003",
    "variant": "m.3243A>G",
    "pub": "treff2012",
@@ -2080,6 +2401,7 @@
    "legacy_id": "f3-052"
   },
   {
+   "carrier_id": null,
    "id": "HL-treff2012-004",
    "variant": "m.3243A>G",
    "pub": "treff2012",
@@ -2103,6 +2425,7 @@
    "legacy_id": "f3-053"
   },
   {
+   "carrier_id": null,
    "id": "HL-treff2012-005",
    "variant": "m.3243A>G",
    "pub": "treff2012",
@@ -2126,6 +2449,7 @@
    "legacy_id": "f3-054"
   },
   {
+   "carrier_id": null,
    "id": "HL-monnot2011-018",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
@@ -2149,6 +2473,7 @@
    "legacy_id": "f3-055"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-016",
    "variant": "m.3243A>G",
    "pub": "spath2021",
@@ -2157,7 +2482,7 @@
    "low": null,
    "high": null,
    "lod": null,
-   "stage": "unspecified",
+   "stage": "blastocyst",
    "stage_raw": "blastocyst/embryo sample",
    "sample": "te_biopsy",
    "material_raw": "TE biopsy",
@@ -2169,9 +2494,25 @@
     "sheet": "Рисунок 3",
     "row": 56
    },
+   "source_fingerprint": {
+    "pub": "spath2021",
+    "variant": "m.3243A>G",
+    "value": 29.2,
+    "low": null,
+    "high": null,
+    "stage_raw": "blastocyst/embryo sample",
+    "material_raw": "TE biopsy",
+    "note": null,
+    "doi_in_sheet": "10.1016/j.fertnstert.2021.01.026"
+   },
+   "correction_ids": [
+    "audit-HL-spath2021-016"
+   ],
+   "source_locator": "Spath 2021, Results of Clinical Application, pp. 323–324; Supplemental Table 3",
    "legacy_id": "f3-056"
   },
   {
+   "carrier_id": null,
    "id": "HL-monnot2011-019",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
@@ -2195,6 +2536,7 @@
    "legacy_id": "f3-057"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-017",
    "variant": "m.3243A>G",
    "pub": "spath2021",
@@ -2218,6 +2560,7 @@
    "legacy_id": "f3-058"
   },
   {
+   "carrier_id": null,
    "id": "HL-monnot2011-020",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
@@ -2241,6 +2584,7 @@
    "legacy_id": "f3-059"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-018",
    "variant": "m.3243A>G",
    "pub": "spath2021",
@@ -2264,6 +2608,7 @@
    "legacy_id": "f3-060"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-019",
    "variant": "m.3243A>G",
    "pub": "spath2021",
@@ -2287,6 +2632,7 @@
    "legacy_id": "f3-061"
   },
   {
+   "carrier_id": null,
    "id": "HL-treff2012-006",
    "variant": "m.3243A>G",
    "pub": "treff2012",
@@ -2310,6 +2656,7 @@
    "legacy_id": "f3-062"
   },
   {
+   "carrier_id": null,
    "id": "HL-monnot2011-021",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
@@ -2333,6 +2680,7 @@
    "legacy_id": "f3-063"
   },
   {
+   "carrier_id": null,
    "id": "HL-monnot2011-022",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
@@ -2356,6 +2704,7 @@
    "legacy_id": "f3-064"
   },
   {
+   "carrier_id": null,
    "id": "HL-monnot2011-023",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
@@ -2379,6 +2728,7 @@
    "legacy_id": "f3-065"
   },
   {
+   "carrier_id": null,
    "id": "HL-monnot2011-024",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
@@ -2402,6 +2752,7 @@
    "legacy_id": "f3-066"
   },
   {
+   "carrier_id": null,
    "id": "HL-monnot2011-025",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
@@ -2425,6 +2776,7 @@
    "legacy_id": "f3-067"
   },
   {
+   "carrier_id": null,
    "id": "HL-monnot2011-026",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
@@ -2448,6 +2800,7 @@
    "legacy_id": "f3-068"
   },
   {
+   "carrier_id": null,
    "id": "HL-monnot2011-027",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
@@ -2471,6 +2824,7 @@
    "legacy_id": "f3-069"
   },
   {
+   "carrier_id": null,
    "id": "HL-monnot2011-028",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
@@ -2494,6 +2848,7 @@
    "legacy_id": "f3-070"
   },
   {
+   "carrier_id": null,
    "id": "HL-monnot2011-029",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
@@ -2517,6 +2872,7 @@
    "legacy_id": "f3-071"
   },
   {
+   "carrier_id": null,
    "id": "HL-monnot2011-030",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
@@ -2540,6 +2896,7 @@
    "legacy_id": "f3-072"
   },
   {
+   "carrier_id": null,
    "id": "HL-treff2012-007",
    "variant": "m.3243A>G",
    "pub": "treff2012",
@@ -2563,6 +2920,7 @@
    "legacy_id": "f3-073"
   },
   {
+   "carrier_id": null,
    "id": "HL-monnot2011-031",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
@@ -2586,6 +2944,7 @@
    "legacy_id": "f3-074"
   },
   {
+   "carrier_id": null,
    "id": "HL-monnot2011-032",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
@@ -2609,6 +2968,7 @@
    "legacy_id": "f3-075"
   },
   {
+   "carrier_id": null,
    "id": "HL-treff2012-008",
    "variant": "m.3243A>G",
    "pub": "treff2012",
@@ -2632,6 +2992,7 @@
    "legacy_id": "f3-076"
   },
   {
+   "carrier_id": null,
    "id": "HL-monnot2011-033",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
@@ -2655,6 +3016,7 @@
    "legacy_id": "f3-077"
   },
   {
+   "carrier_id": null,
    "id": "HL-monnot2011-034",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
@@ -2678,6 +3040,7 @@
    "legacy_id": "f3-078"
   },
   {
+   "carrier_id": null,
    "id": "HL-monnot2011-035",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
@@ -2701,6 +3064,7 @@
    "legacy_id": "f3-079"
   },
   {
+   "carrier_id": null,
    "id": "HL-treff2012-009",
    "variant": "m.3243A>G",
    "pub": "treff2012",
@@ -2724,6 +3088,7 @@
    "legacy_id": "f3-080"
   },
   {
+   "carrier_id": null,
    "id": "HL-monnot2011-036",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
@@ -2747,6 +3112,7 @@
    "legacy_id": "f3-081"
   },
   {
+   "carrier_id": null,
    "id": "HL-treff2012-010",
    "variant": "m.3243A>G",
    "pub": "treff2012",
@@ -2770,6 +3136,7 @@
    "legacy_id": "f3-082"
   },
   {
+   "carrier_id": null,
    "id": "HL-monnot2011-037",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
@@ -2793,6 +3160,7 @@
    "legacy_id": "f3-083"
   },
   {
+   "carrier_id": null,
    "id": "HL-monnot2011-038",
    "variant": "m.3243A>G",
    "pub": "monnot2011",
@@ -2816,6 +3184,7 @@
    "legacy_id": "f3-084"
   },
   {
+   "carrier_id": null,
    "id": "HL-treff2012-011",
    "variant": "m.3243A>G",
    "pub": "treff2012",
@@ -2839,6 +3208,7 @@
    "legacy_id": "f3-085"
   },
   {
+   "carrier_id": null,
    "id": "HL-treff2012-012",
    "variant": "m.3243A>G",
    "pub": "treff2012",
@@ -2862,6 +3232,7 @@
    "legacy_id": "f3-086"
   },
   {
+   "carrier_id": null,
    "id": "HL-treff2012-013",
    "variant": "m.3243A>G",
    "pub": "treff2012",
@@ -2885,6 +3256,7 @@
    "legacy_id": "f3-087"
   },
   {
+   "carrier_id": null,
    "id": "HL-treff2012-014",
    "variant": "m.3243A>G",
    "pub": "treff2012",
@@ -2908,6 +3280,7 @@
    "legacy_id": "f3-088"
   },
   {
+   "carrier_id": null,
    "id": "HL-treff2012-015",
    "variant": "m.3243A>G",
    "pub": "treff2012",
@@ -2931,6 +3304,7 @@
    "legacy_id": "f3-089"
   },
   {
+   "carrier_id": null,
    "id": "HL-treff2012-016",
    "variant": "m.3243A>G",
    "pub": "treff2012",
@@ -2954,6 +3328,7 @@
    "legacy_id": "f3-090"
   },
   {
+   "carrier_id": "ji2021-carrier-1",
    "id": "HL-ji2021-001",
    "variant": "m.3697G>A",
    "pub": "ji2021",
@@ -2962,9 +3337,9 @@
    "low": null,
    "high": null,
    "lod": null,
-   "stage": "unspecified",
+   "stage": "blastocyst",
    "stage_raw": "embryo sample",
-   "sample": "mixed_unspecified",
+   "sample": "te_biopsy",
    "material_raw": "TE/whole embryo sample",
    "derivation": "as_reported_in_dataset",
    "derivation_evidence": null,
@@ -2974,9 +3349,25 @@
     "sheet": "Рисунок 3",
     "row": 91
    },
+   "source_fingerprint": {
+    "pub": "ji2021",
+    "variant": "m.3697G>A",
+    "value": 15.2,
+    "low": null,
+    "high": null,
+    "stage_raw": "embryo sample",
+    "material_raw": "TE/whole embryo sample",
+    "note": null,
+    "doi_in_sheet": "10.1007/s10815-021-02354-3"
+   },
+   "correction_ids": [
+    "audit-HL-ji2021-001"
+   ],
+   "source_locator": "Ji 2021, Table 3, TE-biopsy column",
    "legacy_id": "f3-091"
   },
   {
+   "carrier_id": "ji2021-carrier-1",
    "id": "HL-ji2021-002",
    "variant": "m.3697G>A",
    "pub": "ji2021",
@@ -2997,9 +3388,25 @@
     "sheet": "Рисунок 3",
     "row": 92
    },
+   "source_fingerprint": {
+    "pub": "ji2021",
+    "variant": "m.3697G>A",
+    "value": 23.5,
+    "low": null,
+    "high": null,
+    "stage_raw": "arrested embryo",
+    "material_raw": "whole/biopsy sample",
+    "note": null,
+    "doi_in_sheet": "10.1007/s10815-021-02354-3"
+   },
+   "correction_ids": [
+    "carrier-HL-ji2021-002"
+   ],
+   "source_locator": "Ji 2021, clinical case description pp. 3252–3253 and Table 3, one woman/two cycles",
    "legacy_id": "f3-092"
   },
   {
+   "carrier_id": "ji2021-carrier-1",
    "id": "HL-ji2021-003",
    "variant": "m.3697G>A",
    "pub": "ji2021",
@@ -3020,9 +3427,25 @@
     "sheet": "Рисунок 3",
     "row": 93
    },
+   "source_fingerprint": {
+    "pub": "ji2021",
+    "variant": "m.3697G>A",
+    "value": 29.4,
+    "low": null,
+    "high": null,
+    "stage_raw": "Day5/6 4BC",
+    "material_raw": "TE biopsy",
+    "note": null,
+    "doi_in_sheet": "10.1007/s10815-021-02354-3"
+   },
+   "correction_ids": [
+    "carrier-HL-ji2021-003"
+   ],
+   "source_locator": "Ji 2021, clinical case description pp. 3252–3253 and Table 3, one woman/two cycles",
    "legacy_id": "f3-093"
   },
   {
+   "carrier_id": "ji2021-carrier-1",
    "id": "HL-ji2021-004",
    "variant": "m.3697G>A",
    "pub": "ji2021",
@@ -3043,9 +3466,25 @@
     "sheet": "Рисунок 3",
     "row": 94
    },
+   "source_fingerprint": {
+    "pub": "ji2021",
+    "variant": "m.3697G>A",
+    "value": 31.7,
+    "low": null,
+    "high": null,
+    "stage_raw": "Day5 4AB",
+    "material_raw": "TE biopsy",
+    "note": null,
+    "doi_in_sheet": "10.1007/s10815-021-02354-3"
+   },
+   "correction_ids": [
+    "carrier-HL-ji2021-004"
+   ],
+   "source_locator": "Ji 2021, clinical case description pp. 3252–3253 and Table 3, one woman/two cycles",
    "legacy_id": "f3-094"
   },
   {
+   "carrier_id": "ji2021-carrier-1",
    "id": "HL-ji2021-005",
    "variant": "m.3697G>A",
    "pub": "ji2021",
@@ -3054,9 +3493,9 @@
    "low": null,
    "high": null,
    "lod": null,
-   "stage": "unspecified",
+   "stage": "blastocyst",
    "stage_raw": "embryo sample",
-   "sample": "mixed_unspecified",
+   "sample": "te_biopsy",
    "material_raw": "TE/whole embryo sample",
    "derivation": "as_reported_in_dataset",
    "derivation_evidence": null,
@@ -3066,9 +3505,25 @@
     "sheet": "Рисунок 3",
     "row": 95
    },
+   "source_fingerprint": {
+    "pub": "ji2021",
+    "variant": "m.3697G>A",
+    "value": 34.3,
+    "low": null,
+    "high": null,
+    "stage_raw": "embryo sample",
+    "material_raw": "TE/whole embryo sample",
+    "note": null,
+    "doi_in_sheet": "10.1007/s10815-021-02354-3"
+   },
+   "correction_ids": [
+    "audit-HL-ji2021-005"
+   ],
+   "source_locator": "Ji 2021, Table 3, TE-biopsy column",
    "legacy_id": "f3-095"
   },
   {
+   "carrier_id": "ji2021-carrier-1",
    "id": "HL-ji2021-006",
    "variant": "m.3697G>A",
    "pub": "ji2021",
@@ -3083,38 +3538,32 @@
    "material_raw": "six blastomeres",
    "derivation": "as_reported_in_dataset",
    "derivation_evidence": null,
-   "note": null,
+   "note": "1PN-эмбрион, не кандидат на перенос.",
    "doi_in_sheet": "10.1007/s10815-021-02354-3",
    "src": {
     "sheet": "Рисунок 3",
     "row": 96
    },
+   "source_fingerprint": {
+    "pub": "ji2021",
+    "variant": "m.3697G>A",
+    "value": 36.48,
+    "low": null,
+    "high": null,
+    "stage_raw": "1PN/arrested; 6 blastomeres",
+    "material_raw": "six blastomeres",
+    "note": null,
+    "doi_in_sheet": "10.1007/s10815-021-02354-3"
+   },
+   "correction_ids": [
+    "audit-HL-ji2021-006"
+   ],
+   "source_locator": "Ji 2021, Table 3, sample 2.3 (1PN), six blastomeres",
+   "non_candidate": "1PN",
    "legacy_id": "f3-096"
   },
   {
-   "id": "HL-ji2021-007",
-   "variant": "m.3697G>A",
-   "pub": "ji2021",
-   "value": 43.9,
-   "q": "exact",
-   "low": null,
-   "high": null,
-   "lod": null,
-   "stage": "arrested",
-   "stage_raw": "degenerated embryo",
-   "sample": "mixed_unspecified",
-   "material_raw": "sample",
-   "derivation": "as_reported_in_dataset",
-   "derivation_evidence": null,
-   "note": null,
-   "doi_in_sheet": "10.1007/s10815-021-02354-3",
-   "src": {
-    "sheet": "Рисунок 3",
-    "row": 97
-   },
-   "legacy_id": "f3-097"
-  },
-  {
+   "carrier_id": "ji2021-carrier-1",
    "id": "HL-ji2021-008",
    "variant": "m.3697G>A",
    "pub": "ji2021",
@@ -3123,9 +3572,9 @@
    "low": null,
    "high": null,
    "lod": null,
-   "stage": "unspecified",
+   "stage": "blastocyst",
    "stage_raw": "embryo sample",
-   "sample": "mixed_unspecified",
+   "sample": "te_biopsy",
    "material_raw": "TE/whole embryo sample",
    "derivation": "as_reported_in_dataset",
    "derivation_evidence": null,
@@ -3135,9 +3584,25 @@
     "sheet": "Рисунок 3",
     "row": 98
    },
+   "source_fingerprint": {
+    "pub": "ji2021",
+    "variant": "m.3697G>A",
+    "value": 46.7,
+    "low": null,
+    "high": null,
+    "stage_raw": "embryo sample",
+    "material_raw": "TE/whole embryo sample",
+    "note": null,
+    "doi_in_sheet": "10.1007/s10815-021-02354-3"
+   },
+   "correction_ids": [
+    "audit-HL-ji2021-008"
+   ],
+   "source_locator": "Ji 2021, Table 3, TE-biopsy column",
    "legacy_id": "f3-098"
   },
   {
+   "carrier_id": "ji2021-carrier-1",
    "id": "HL-ji2021-009",
    "variant": "m.3697G>A",
    "pub": "ji2021",
@@ -3146,9 +3611,9 @@
    "low": null,
    "high": null,
    "lod": null,
-   "stage": "unspecified",
+   "stage": "blastocyst",
    "stage_raw": "embryo sample",
-   "sample": "mixed_unspecified",
+   "sample": "te_biopsy",
    "material_raw": "TE/whole embryo sample",
    "derivation": "as_reported_in_dataset",
    "derivation_evidence": null,
@@ -3158,9 +3623,25 @@
     "sheet": "Рисунок 3",
     "row": 99
    },
+   "source_fingerprint": {
+    "pub": "ji2021",
+    "variant": "m.3697G>A",
+    "value": 47.3,
+    "low": null,
+    "high": null,
+    "stage_raw": "embryo sample",
+    "material_raw": "TE/whole embryo sample",
+    "note": null,
+    "doi_in_sheet": "10.1007/s10815-021-02354-3"
+   },
+   "correction_ids": [
+    "audit-HL-ji2021-009"
+   ],
+   "source_locator": "Ji 2021, Table 3, TE-biopsy column",
    "legacy_id": "f3-099"
   },
   {
+   "carrier_id": "ji2021-carrier-1",
    "id": "HL-ji2021-010",
    "variant": "m.3697G>A",
    "pub": "ji2021",
@@ -3181,9 +3662,25 @@
     "sheet": "Рисунок 3",
     "row": 100
    },
+   "source_fingerprint": {
+    "pub": "ji2021",
+    "variant": "m.3697G>A",
+    "value": 53.9,
+    "low": null,
+    "high": null,
+    "stage_raw": "Day5 5BB",
+    "material_raw": "TE biopsy",
+    "note": null,
+    "doi_in_sheet": "10.1007/s10815-021-02354-3"
+   },
+   "correction_ids": [
+    "carrier-HL-ji2021-010"
+   ],
+   "source_locator": "Ji 2021, clinical case description pp. 3252–3253 and Table 3, one woman/two cycles",
    "legacy_id": "f3-100"
   },
   {
+   "carrier_id": "ji2021-carrier-1",
    "id": "HL-ji2021-011",
    "variant": "m.3697G>A",
    "pub": "ji2021",
@@ -3204,9 +3701,25 @@
     "sheet": "Рисунок 3",
     "row": 101
    },
+   "source_fingerprint": {
+    "pub": "ji2021",
+    "variant": "m.3697G>A",
+    "value": 58.9,
+    "low": null,
+    "high": null,
+    "stage_raw": "arrested embryo",
+    "material_raw": "whole/biopsy sample",
+    "note": null,
+    "doi_in_sheet": "10.1007/s10815-021-02354-3"
+   },
+   "correction_ids": [
+    "carrier-HL-ji2021-011"
+   ],
+   "source_locator": "Ji 2021, clinical case description pp. 3252–3253 and Table 3, one woman/two cycles",
    "legacy_id": "f3-101"
   },
   {
+   "carrier_id": "ji2021-carrier-1",
    "id": "HL-ji2021-012",
    "variant": "m.3697G>A",
    "pub": "ji2021",
@@ -3227,9 +3740,25 @@
     "sheet": "Рисунок 3",
     "row": 102
    },
+   "source_fingerprint": {
+    "pub": "ji2021",
+    "variant": "m.3697G>A",
+    "value": 67.0,
+    "low": null,
+    "high": null,
+    "stage_raw": "Day5 5BB",
+    "material_raw": "TE biopsy",
+    "note": null,
+    "doi_in_sheet": "10.1007/s10815-021-02354-3"
+   },
+   "correction_ids": [
+    "carrier-HL-ji2021-012"
+   ],
+   "source_locator": "Ji 2021, clinical case description pp. 3252–3253 and Table 3, one woman/two cycles",
    "legacy_id": "f3-102"
   },
   {
+   "carrier_id": "ji2021-carrier-1",
    "id": "HL-ji2021-013",
    "variant": "m.3697G>A",
    "pub": "ji2021",
@@ -3250,9 +3779,25 @@
     "sheet": "Рисунок 3",
     "row": 103
    },
+   "source_fingerprint": {
+    "pub": "ji2021",
+    "variant": "m.3697G>A",
+    "value": 70.9,
+    "low": null,
+    "high": null,
+    "stage_raw": "Day5 4BB",
+    "material_raw": "TE biopsy",
+    "note": null,
+    "doi_in_sheet": "10.1007/s10815-021-02354-3"
+   },
+   "correction_ids": [
+    "carrier-HL-ji2021-013"
+   ],
+   "source_locator": "Ji 2021, clinical case description pp. 3252–3253 and Table 3, one woman/two cycles",
    "legacy_id": "f3-103"
   },
   {
+   "carrier_id": "ji2021-carrier-1",
    "id": "HL-ji2021-014",
    "variant": "m.3697G>A",
    "pub": "ji2021",
@@ -3261,9 +3806,9 @@
    "low": null,
    "high": null,
    "lod": null,
-   "stage": "unspecified",
+   "stage": "blastocyst",
    "stage_raw": "embryo sample",
-   "sample": "mixed_unspecified",
+   "sample": "te_biopsy",
    "material_raw": "TE/whole embryo sample",
    "derivation": "as_reported_in_dataset",
    "derivation_evidence": null,
@@ -3273,9 +3818,25 @@
     "sheet": "Рисунок 3",
     "row": 104
    },
+   "source_fingerprint": {
+    "pub": "ji2021",
+    "variant": "m.3697G>A",
+    "value": 85.3,
+    "low": null,
+    "high": null,
+    "stage_raw": "embryo sample",
+    "material_raw": "TE/whole embryo sample",
+    "note": null,
+    "doi_in_sheet": "10.1007/s10815-021-02354-3"
+   },
+   "correction_ids": [
+    "audit-HL-ji2021-014"
+   ],
+   "source_locator": "Ji 2021, Table 3, TE-biopsy column",
    "legacy_id": "f3-104"
   },
   {
+   "carrier_id": "ji2021-carrier-1",
    "id": "HL-ji2021-015",
    "variant": "m.3697G>A",
    "pub": "ji2021",
@@ -3296,9 +3857,25 @@
     "sheet": "Рисунок 3",
     "row": 105
    },
+   "source_fingerprint": {
+    "pub": "ji2021",
+    "variant": "m.3697G>A",
+    "value": 98.7,
+    "low": null,
+    "high": null,
+    "stage_raw": "Day5 4CB",
+    "material_raw": "TE biopsy",
+    "note": null,
+    "doi_in_sheet": "10.1007/s10815-021-02354-3"
+   },
+   "correction_ids": [
+    "carrier-HL-ji2021-015"
+   ],
+   "source_locator": "Ji 2021, clinical case description pp. 3252–3253 and Table 3, one woman/two cycles",
    "legacy_id": "f3-105"
   },
   {
+   "carrier_id": "ji2021-carrier-1",
    "id": "HL-ji2021-016",
    "variant": "m.3697G>A",
    "pub": "ji2021",
@@ -3319,9 +3896,25 @@
     "sheet": "Рисунок 3",
     "row": 106
    },
+   "source_fingerprint": {
+    "pub": "ji2021",
+    "variant": "m.3697G>A",
+    "value": 99.0,
+    "low": null,
+    "high": null,
+    "stage_raw": "Day5 4BB",
+    "material_raw": "TE biopsy",
+    "note": null,
+    "doi_in_sheet": "10.1007/s10815-021-02354-3"
+   },
+   "correction_ids": [
+    "carrier-HL-ji2021-016"
+   ],
+   "source_locator": "Ji 2021, clinical case description pp. 3252–3253 and Table 3, one woman/two cycles",
    "legacy_id": "f3-106"
   },
   {
+   "carrier_id": "ji2021-carrier-1",
    "id": "HL-ji2021-017",
    "variant": "m.3697G>A",
    "pub": "ji2021",
@@ -3342,9 +3935,25 @@
     "sheet": "Рисунок 3",
     "row": 107
    },
+   "source_fingerprint": {
+    "pub": "ji2021",
+    "variant": "m.3697G>A",
+    "value": 99.3,
+    "low": null,
+    "high": null,
+    "stage_raw": "arrested embryo",
+    "material_raw": "whole/biopsy sample",
+    "note": null,
+    "doi_in_sheet": "10.1007/s10815-021-02354-3"
+   },
+   "correction_ids": [
+    "carrier-HL-ji2021-017"
+   ],
+   "source_locator": "Ji 2021, clinical case description pp. 3252–3253 and Table 3, one woman/two cycles",
    "legacy_id": "f3-107"
   },
   {
+   "carrier_id": "ji2021-carrier-1",
    "id": "HL-ji2021-018",
    "variant": "m.3697G>A",
    "pub": "ji2021",
@@ -3365,9 +3974,25 @@
     "sheet": "Рисунок 3",
     "row": 108
    },
+   "source_fingerprint": {
+    "pub": "ji2021",
+    "variant": "m.3697G>A",
+    "value": 99.4,
+    "low": null,
+    "high": null,
+    "stage_raw": "Day5/6 4BB",
+    "material_raw": "TE biopsy",
+    "note": null,
+    "doi_in_sheet": "10.1007/s10815-021-02354-3"
+   },
+   "correction_ids": [
+    "carrier-HL-ji2021-018"
+   ],
+   "source_locator": "Ji 2021, clinical case description pp. 3252–3253 and Table 3, one woman/two cycles",
    "legacy_id": "f3-108"
   },
   {
+   "carrier_id": "ji2021-carrier-1",
    "id": "HL-ji2021-019",
    "variant": "m.3697G>A",
    "pub": "ji2021",
@@ -3388,9 +4013,25 @@
     "sheet": "Рисунок 3",
     "row": 109
    },
+   "source_fingerprint": {
+    "pub": "ji2021",
+    "variant": "m.3697G>A",
+    "value": 99.7,
+    "low": null,
+    "high": null,
+    "stage_raw": "Day5/6 4BC",
+    "material_raw": "TE biopsy",
+    "note": null,
+    "doi_in_sheet": "10.1007/s10815-021-02354-3"
+   },
+   "correction_ids": [
+    "carrier-HL-ji2021-019"
+   ],
+   "source_locator": "Ji 2021, clinical case description pp. 3252–3253 and Table 3, one woman/two cycles",
    "legacy_id": "f3-109"
   },
   {
+   "carrier_id": "ji2021-carrier-1",
    "id": "HL-ji2021-020",
    "variant": "m.3697G>A",
    "pub": "ji2021",
@@ -3399,9 +4040,9 @@
    "low": null,
    "high": null,
    "lod": null,
-   "stage": "unspecified",
+   "stage": "blastocyst",
    "stage_raw": "embryo sample",
-   "sample": "mixed_unspecified",
+   "sample": "te_biopsy",
    "material_raw": "TE/whole embryo sample",
    "derivation": "as_reported_in_dataset",
    "derivation_evidence": null,
@@ -3411,9 +4052,25 @@
     "sheet": "Рисунок 3",
     "row": 110
    },
+   "source_fingerprint": {
+    "pub": "ji2021",
+    "variant": "m.3697G>A",
+    "value": 100.0,
+    "low": null,
+    "high": null,
+    "stage_raw": "embryo sample",
+    "material_raw": "TE/whole embryo sample",
+    "note": null,
+    "doi_in_sheet": "10.1007/s10815-021-02354-3"
+   },
+   "correction_ids": [
+    "audit-HL-ji2021-020"
+   ],
+   "source_locator": "Ji 2021, Table 3, TE-biopsy column",
    "legacy_id": "f3-110"
   },
   {
+   "carrier_id": "ji2021-carrier-1",
    "id": "HL-ji2021-021",
    "variant": "m.3697G>A",
    "pub": "ji2021",
@@ -3434,9 +4091,25 @@
     "sheet": "Рисунок 3",
     "row": 111
    },
+   "source_fingerprint": {
+    "pub": "ji2021",
+    "variant": "m.3697G>A",
+    "value": 100.0,
+    "low": null,
+    "high": null,
+    "stage_raw": "10-cell embryo; 6 blastomeres",
+    "material_raw": "six blastomeres",
+    "note": null,
+    "doi_in_sheet": "10.1007/s10815-021-02354-3"
+   },
+   "correction_ids": [
+    "carrier-HL-ji2021-021"
+   ],
+   "source_locator": "Ji 2021, clinical case description pp. 3252–3253 and Table 3, one woman/two cycles",
    "legacy_id": "f3-111"
   },
   {
+   "carrier_id": null,
    "id": "HL-sallevelt2017-001",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
@@ -3460,6 +4133,7 @@
    "legacy_id": "f3-112"
   },
   {
+   "carrier_id": null,
    "id": "HL-sallevelt2017-002",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
@@ -3474,15 +4148,32 @@
    "material_raw": "multiple blastomeres, reanalysis",
    "derivation": "as_reported_in_dataset",
    "derivation_evidence": null,
-   "note": null,
+   "note": "3PN-эмбрион, не кандидат на перенос.",
    "doi_in_sheet": "10.1093/humrep/dew356",
    "src": {
     "sheet": "Рисунок 3",
     "row": 113
    },
+   "source_fingerprint": {
+    "pub": "sallevelt2017",
+    "variant": "m.14487T>C",
+    "value": 8.0,
+    "low": null,
+    "high": null,
+    "stage_raw": "Day 3 cleavage embryo, 3PN",
+    "material_raw": "multiple blastomeres, reanalysis",
+    "note": null,
+    "doi_in_sheet": "10.1093/humrep/dew356"
+   },
+   "correction_ids": [
+    "audit-HL-sallevelt2017-002"
+   ],
+   "source_locator": "Sallevelt 2017, pp. 700–701; Supplementary Table SI (3PN embryo)",
+   "non_candidate": "3PN",
    "legacy_id": "f3-113"
   },
   {
+   "carrier_id": "tofilo2026-carrier-1",
    "id": "HL-tofilo2026-001",
    "variant": "m.14487T>C",
    "pub": "tofilo2026",
@@ -3503,9 +4194,25 @@
     "sheet": "Рисунок 3",
     "row": 114
    },
+   "source_fingerprint": {
+    "pub": "tofilo2026",
+    "variant": "m.14487T>C",
+    "value": 11.4,
+    "low": null,
+    "high": null,
+    "stage_raw": "Day 5/6 blastocyst",
+    "material_raw": "TE biopsy; later TE/ICM fractions for donated embryos",
+    "note": null,
+    "doi_in_sheet": null
+   },
+   "correction_ids": [
+    "carrier-HL-tofilo2026-001"
+   ],
+   "source_locator": "Tofilo 2026, main text, clinical case and Results, six blastocysts from one carrier",
    "legacy_id": "f3-114"
   },
   {
+   "carrier_id": "tofilo2026-carrier-1",
    "id": "HL-tofilo2026-002",
    "variant": "m.14487T>C",
    "pub": "tofilo2026",
@@ -3526,9 +4233,25 @@
     "sheet": "Рисунок 3",
     "row": 115
    },
+   "source_fingerprint": {
+    "pub": "tofilo2026",
+    "variant": "m.14487T>C",
+    "value": 12.0,
+    "low": null,
+    "high": null,
+    "stage_raw": "Day 5/6 blastocyst",
+    "material_raw": "TE biopsy; later TE/ICM fractions for donated embryos",
+    "note": null,
+    "doi_in_sheet": null
+   },
+   "correction_ids": [
+    "carrier-HL-tofilo2026-002"
+   ],
+   "source_locator": "Tofilo 2026, main text, clinical case and Results, six blastocysts from one carrier",
    "legacy_id": "f3-115"
   },
   {
+   "carrier_id": null,
    "id": "HL-sallevelt2017-003",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
@@ -3552,6 +4275,7 @@
    "legacy_id": "f3-116"
   },
   {
+   "carrier_id": "tofilo2026-carrier-1",
    "id": "HL-tofilo2026-003",
    "variant": "m.14487T>C",
    "pub": "tofilo2026",
@@ -3572,9 +4296,25 @@
     "sheet": "Рисунок 3",
     "row": 117
    },
+   "source_fingerprint": {
+    "pub": "tofilo2026",
+    "variant": "m.14487T>C",
+    "value": 13.5,
+    "low": null,
+    "high": null,
+    "stage_raw": "Day 5/6 blastocyst",
+    "material_raw": "TE biopsy; later TE/ICM fractions for donated embryos",
+    "note": null,
+    "doi_in_sheet": null
+   },
+   "correction_ids": [
+    "carrier-HL-tofilo2026-003"
+   ],
+   "source_locator": "Tofilo 2026, main text, clinical case and Results, six blastocysts from one carrier",
    "legacy_id": "f3-117"
   },
   {
+   "carrier_id": null,
    "id": "HL-sallevelt2017-004",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
@@ -3598,6 +4338,7 @@
    "legacy_id": "f3-118"
   },
   {
+   "carrier_id": null,
    "id": "HL-sallevelt2017-005",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
@@ -3621,6 +4362,7 @@
    "legacy_id": "f3-119"
   },
   {
+   "carrier_id": null,
    "id": "HL-sallevelt2017-006",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
@@ -3644,6 +4386,7 @@
    "legacy_id": "f3-120"
   },
   {
+   "carrier_id": null,
    "id": "HL-sallevelt2017-007",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
@@ -3667,6 +4410,7 @@
    "legacy_id": "f3-121"
   },
   {
+   "carrier_id": null,
    "id": "HL-sallevelt2017-008",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
@@ -3690,6 +4434,7 @@
    "legacy_id": "f3-122"
   },
   {
+   "carrier_id": null,
    "id": "HL-sallevelt2017-009",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
@@ -3713,6 +4458,7 @@
    "legacy_id": "f3-123"
   },
   {
+   "carrier_id": null,
    "id": "HL-sallevelt2017-010",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
@@ -3736,6 +4482,7 @@
    "legacy_id": "f3-124"
   },
   {
+   "carrier_id": null,
    "id": "HL-sallevelt2017-011",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
@@ -3759,6 +4506,7 @@
    "legacy_id": "f3-125"
   },
   {
+   "carrier_id": "tofilo2026-carrier-1",
    "id": "HL-tofilo2026-004",
    "variant": "m.14487T>C",
    "pub": "tofilo2026",
@@ -3779,9 +4527,25 @@
     "sheet": "Рисунок 3",
     "row": 126
    },
+   "source_fingerprint": {
+    "pub": "tofilo2026",
+    "variant": "m.14487T>C",
+    "value": 73.2,
+    "low": null,
+    "high": null,
+    "stage_raw": "Day 5/6 blastocyst",
+    "material_raw": "TE biopsy; later TE/ICM fractions for donated embryos",
+    "note": null,
+    "doi_in_sheet": null
+   },
+   "correction_ids": [
+    "carrier-HL-tofilo2026-004"
+   ],
+   "source_locator": "Tofilo 2026, main text, clinical case and Results, six blastocysts from one carrier",
    "legacy_id": "f3-126"
   },
   {
+   "carrier_id": null,
    "id": "HL-sallevelt2017-012",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
@@ -3805,6 +4569,7 @@
    "legacy_id": "f3-127"
   },
   {
+   "carrier_id": null,
    "id": "HL-sallevelt2017-013",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
@@ -3828,6 +4593,7 @@
    "legacy_id": "f3-128"
   },
   {
+   "carrier_id": null,
    "id": "HL-sallevelt2017-014",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
@@ -3851,6 +4617,7 @@
    "legacy_id": "f3-129"
   },
   {
+   "carrier_id": "tofilo2026-carrier-1",
    "id": "HL-tofilo2026-005",
    "variant": "m.14487T>C",
    "pub": "tofilo2026",
@@ -3871,9 +4638,25 @@
     "sheet": "Рисунок 3",
     "row": 130
    },
+   "source_fingerprint": {
+    "pub": "tofilo2026",
+    "variant": "m.14487T>C",
+    "value": 92.3,
+    "low": null,
+    "high": null,
+    "stage_raw": "Day 5/6 blastocyst",
+    "material_raw": "TE biopsy; later TE/ICM fractions for donated embryos",
+    "note": null,
+    "doi_in_sheet": null
+   },
+   "correction_ids": [
+    "carrier-HL-tofilo2026-005"
+   ],
+   "source_locator": "Tofilo 2026, main text, clinical case and Results, six blastocysts from one carrier",
    "legacy_id": "f3-130"
   },
   {
+   "carrier_id": null,
    "id": "HL-sallevelt2017-015",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
@@ -3897,6 +4680,7 @@
    "legacy_id": "f3-131"
   },
   {
+   "carrier_id": null,
    "id": "HL-sallevelt2017-016",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
@@ -3920,6 +4704,7 @@
    "legacy_id": "f3-132"
   },
   {
+   "carrier_id": null,
    "id": "HL-sallevelt2017-017",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
@@ -3943,6 +4728,7 @@
    "legacy_id": "f3-133"
   },
   {
+   "carrier_id": null,
    "id": "HL-sallevelt2017-018",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
@@ -3966,6 +4752,7 @@
    "legacy_id": "f3-134"
   },
   {
+   "carrier_id": null,
    "id": "HL-sallevelt2017-019",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
@@ -3989,6 +4776,7 @@
    "legacy_id": "f3-135"
   },
   {
+   "carrier_id": null,
    "id": "HL-sallevelt2017-020",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
@@ -4012,6 +4800,7 @@
    "legacy_id": "f3-136"
   },
   {
+   "carrier_id": null,
    "id": "HL-sallevelt2017-021",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
@@ -4035,6 +4824,7 @@
    "legacy_id": "f3-137"
   },
   {
+   "carrier_id": "tofilo2026-carrier-1",
    "id": "HL-tofilo2026-006",
    "variant": "m.14487T>C",
    "pub": "tofilo2026",
@@ -4055,9 +4845,25 @@
     "sheet": "Рисунок 3",
     "row": 138
    },
+   "source_fingerprint": {
+    "pub": "tofilo2026",
+    "variant": "m.14487T>C",
+    "value": 99.6,
+    "low": null,
+    "high": null,
+    "stage_raw": "Day 5/6 blastocyst",
+    "material_raw": "TE biopsy; later TE/ICM fractions for donated embryos",
+    "note": null,
+    "doi_in_sheet": null
+   },
+   "correction_ids": [
+    "carrier-HL-tofilo2026-006"
+   ],
+   "source_locator": "Tofilo 2026, main text, clinical case and Results, six blastocysts from one carrier",
    "legacy_id": "f3-138"
   },
   {
+   "carrier_id": null,
    "id": "HL-sallevelt2017-022",
    "variant": "m.14487T>C",
    "pub": "sallevelt2017",
@@ -4081,6 +4887,7 @@
    "legacy_id": "f3-139"
   },
   {
+   "carrier_id": null,
    "id": "HL-mizuguchi2025-001",
    "variant": "m.10197G>A",
    "pub": "mizuguchi2025",
@@ -4104,6 +4911,7 @@
    "legacy_id": "f3-140"
   },
   {
+   "carrier_id": null,
    "id": "HL-mizuguchi2025-002",
    "variant": "m.10197G>A",
    "pub": "mizuguchi2025",
@@ -4127,6 +4935,7 @@
    "legacy_id": "f3-141"
   },
   {
+   "carrier_id": null,
    "id": "HL-mizuguchi2025-003",
    "variant": "m.10197G>A",
    "pub": "mizuguchi2025",
@@ -4150,6 +4959,7 @@
    "legacy_id": "f3-142"
   },
   {
+   "carrier_id": null,
    "id": "HL-mizuguchi2025-004",
    "variant": "m.10197G>A",
    "pub": "mizuguchi2025",
@@ -4173,6 +4983,7 @@
    "legacy_id": "f3-143"
   },
   {
+   "carrier_id": null,
    "id": "HL-mizuguchi2025-005",
    "variant": "m.10197G>A",
    "pub": "mizuguchi2025",
@@ -4196,6 +5007,7 @@
    "legacy_id": "f3-144"
   },
   {
+   "carrier_id": null,
    "id": "HL-mizuguchi2025-006",
    "variant": "m.10197G>A",
    "pub": "mizuguchi2025",
@@ -4219,6 +5031,7 @@
    "legacy_id": "f3-145"
   },
   {
+   "carrier_id": null,
    "id": "HL-mizuguchi2025-007",
    "variant": "m.10197G>A",
    "pub": "mizuguchi2025",
@@ -4242,6 +5055,7 @@
    "legacy_id": "f3-146"
   },
   {
+   "carrier_id": null,
    "id": "HL-mizuguchi2025-008",
    "variant": "m.10197G>A",
    "pub": "mizuguchi2025",
@@ -4265,6 +5079,7 @@
    "legacy_id": "f3-147"
   },
   {
+   "carrier_id": null,
    "id": "HL-mizuguchi2025-009",
    "variant": "m.10197G>A",
    "pub": "mizuguchi2025",
@@ -4288,6 +5103,7 @@
    "legacy_id": "f3-148"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-020",
    "variant": "m.10191T>C",
    "pub": "spath2021",
@@ -4311,6 +5127,7 @@
    "legacy_id": "f3-149"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-021",
    "variant": "m.10191T>C",
    "pub": "spath2021",
@@ -4334,6 +5151,7 @@
    "legacy_id": "f3-150"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-022",
    "variant": "m.10191T>C",
    "pub": "spath2021",
@@ -4357,6 +5175,7 @@
    "legacy_id": "f3-151"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-023",
    "variant": "m.10191T>C",
    "pub": "spath2021",
@@ -4380,6 +5199,7 @@
    "legacy_id": "f3-152"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-024",
    "variant": "m.10191T>C",
    "pub": "spath2021",
@@ -4403,6 +5223,7 @@
    "legacy_id": "f3-153"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-025",
    "variant": "m.10191T>C",
    "pub": "spath2021",
@@ -4426,6 +5247,7 @@
    "legacy_id": "f3-154"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-026",
    "variant": "m.10191T>C",
    "pub": "spath2021",
@@ -4449,6 +5271,7 @@
    "legacy_id": "f3-155"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-027",
    "variant": "m.10191T>C",
    "pub": "spath2021",
@@ -4472,6 +5295,7 @@
    "legacy_id": "f3-156"
   },
   {
+   "carrier_id": null,
    "id": "HL-hyslop2025-004",
    "variant": "m.8993T>G",
    "pub": "hyslop2025",
@@ -4479,7 +5303,7 @@
    "q": "not_detected",
    "low": null,
    "high": null,
-   "lod": null,
+   "lod": 3,
    "stage": "unspecified",
    "stage_raw": "transferred embryo(s) linked to live birth",
    "sample": "blastomeres_unspecified",
@@ -4492,9 +5316,25 @@
     "sheet": "Рисунок 3",
     "row": 157
    },
+   "source_fingerprint": {
+    "pub": "hyslop2025",
+    "variant": "m.8993T>G",
+    "value": 0.0,
+    "low": null,
+    "high": null,
+    "stage_raw": "transferred embryo(s) linked to live birth",
+    "material_raw": "test blastomere(s)",
+    "note": null,
+    "doi_in_sheet": "10.1056/NEJMoa2415539"
+   },
+   "correction_ids": [
+    "audit-HL-hyslop2025-004"
+   ],
+   "source_locator": "Hyslop 2025, Table 1, footnote: below 3%",
    "legacy_id": "f3-157"
   },
   {
+   "carrier_id": null,
    "id": "HL-hyslop2025-005",
    "variant": "m.8993T>G",
    "pub": "hyslop2025",
@@ -4502,7 +5342,7 @@
    "q": "not_detected",
    "low": null,
    "high": null,
-   "lod": null,
+   "lod": 3,
    "stage": "unspecified",
    "stage_raw": "transferred embryo(s) linked to live birth",
    "sample": "blastomeres_unspecified",
@@ -4515,9 +5355,25 @@
     "sheet": "Рисунок 3",
     "row": 158
    },
+   "source_fingerprint": {
+    "pub": "hyslop2025",
+    "variant": "m.8993T>G",
+    "value": 0.0,
+    "low": null,
+    "high": null,
+    "stage_raw": "transferred embryo(s) linked to live birth",
+    "material_raw": "test blastomere(s)",
+    "note": null,
+    "doi_in_sheet": "10.1056/NEJMoa2415539"
+   },
+   "correction_ids": [
+    "audit-HL-hyslop2025-005"
+   ],
+   "source_locator": "Hyslop 2025, Table 1, footnote: below 3%",
    "legacy_id": "f3-158"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-028",
    "variant": "m.8993T>G",
    "pub": "spath2021",
@@ -4541,6 +5397,7 @@
    "legacy_id": "f3-159"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-029",
    "variant": "m.8993T>G",
    "pub": "spath2021",
@@ -4564,6 +5421,7 @@
    "legacy_id": "f3-160"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-030",
    "variant": "m.8993T>G",
    "pub": "spath2021",
@@ -4587,6 +5445,7 @@
    "legacy_id": "f3-161"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-031",
    "variant": "m.8993T>G",
    "pub": "spath2021",
@@ -4610,6 +5469,7 @@
    "legacy_id": "f3-162"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-032",
    "variant": "m.8993T>G",
    "pub": "spath2021",
@@ -4633,6 +5493,7 @@
    "legacy_id": "f3-163"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-033",
    "variant": "m.8993T>G",
    "pub": "spath2021",
@@ -4656,6 +5517,7 @@
    "legacy_id": "f3-164"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-034",
    "variant": "m.8993T>G",
    "pub": "spath2021",
@@ -4679,6 +5541,7 @@
    "legacy_id": "f3-165"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-035",
    "variant": "m.8993T>G",
    "pub": "spath2021",
@@ -4702,6 +5565,7 @@
    "legacy_id": "f3-166"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-036",
    "variant": "m.8993T>G",
    "pub": "spath2021",
@@ -4725,6 +5589,7 @@
    "legacy_id": "f3-167"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-037",
    "variant": "m.8993T>G",
    "pub": "spath2021",
@@ -4748,6 +5613,7 @@
    "legacy_id": "f3-168"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-038",
    "variant": "m.8993T>G",
    "pub": "spath2021",
@@ -4771,6 +5637,7 @@
    "legacy_id": "f3-169"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-039",
    "variant": "m.8993T>G",
    "pub": "spath2021",
@@ -4794,6 +5661,7 @@
    "legacy_id": "f3-170"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-040",
    "variant": "m.8993T>G",
    "pub": "spath2021",
@@ -4817,6 +5685,7 @@
    "legacy_id": "f3-171"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-041",
    "variant": "m.8993T>G",
    "pub": "spath2021",
@@ -4840,6 +5709,7 @@
    "legacy_id": "f3-172"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-042",
    "variant": "m.8993T>G",
    "pub": "spath2021",
@@ -4863,6 +5733,7 @@
    "legacy_id": "f3-173"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-043",
    "variant": "m.8993T>G",
    "pub": "spath2021",
@@ -4886,6 +5757,7 @@
    "legacy_id": "f3-174"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-044",
    "variant": "m.8993T>G",
    "pub": "spath2021",
@@ -4909,6 +5781,7 @@
    "legacy_id": "f3-175"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-045",
    "variant": "m.8993T>G",
    "pub": "spath2021",
@@ -4932,6 +5805,7 @@
    "legacy_id": "f3-176"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-046",
    "variant": "m.8993T>G",
    "pub": "spath2021",
@@ -4955,6 +5829,7 @@
    "legacy_id": "f3-177"
   },
   {
+   "carrier_id": null,
    "id": "HL-steffann2006-001",
    "variant": "m.8993T>G",
    "pub": "steffann2006",
@@ -4978,6 +5853,7 @@
    "legacy_id": "f3-178"
   },
   {
+   "carrier_id": null,
    "id": "HL-steffann2006-002",
    "variant": "m.8993T>G",
    "pub": "steffann2006",
@@ -5001,6 +5877,7 @@
    "legacy_id": "f3-179"
   },
   {
+   "carrier_id": null,
    "id": "HL-thorburn2009-001",
    "variant": "m.8993T>G",
    "pub": "thorburn2009",
@@ -5024,6 +5901,7 @@
    "legacy_id": "f3-180"
   },
   {
+   "carrier_id": null,
    "id": "HL-spath2021-047",
    "variant": "m.8993T>G",
    "pub": "spath2021",
@@ -5047,6 +5925,7 @@
    "legacy_id": "f3-181"
   },
   {
+   "carrier_id": null,
    "id": "HL-steffann2006-003",
    "variant": "m.8993T>G",
    "pub": "steffann2006",
@@ -5070,6 +5949,7 @@
    "legacy_id": "f3-182"
   },
   {
+   "carrier_id": "hu2026-carrier-1",
    "id": "HL-hu2026-001",
    "variant": "m.3250T>C",
    "pub": "hu2026",
@@ -5090,9 +5970,25 @@
     "sheet": "Рисунок 3",
     "row": 183
    },
+   "source_fingerprint": {
+    "pub": "hu2026",
+    "variant": "m.3250T>C",
+    "value": 17.8,
+    "low": null,
+    "high": null,
+    "stage_raw": "Day 7 blastocyst (E1, aneuploid)",
+    "material_raw": "TE biopsy (3–5 cells)",
+    "note": null,
+    "doi_in_sheet": "10.1007/s10815-026-04041-7"
+   },
+   "correction_ids": [
+    "carrier-HL-hu2026-001"
+   ],
+   "source_locator": "Hu 2026, clinical case description and embryo-results table, single carrier",
    "legacy_id": "f3-183"
   },
   {
+   "carrier_id": "hu2026-carrier-1",
    "id": "HL-hu2026-002",
    "variant": "m.3250T>C",
    "pub": "hu2026",
@@ -5113,9 +6009,25 @@
     "sheet": "Рисунок 3",
     "row": 184
    },
+   "source_fingerprint": {
+    "pub": "hu2026",
+    "variant": "m.3250T>C",
+    "value": 0.0,
+    "low": null,
+    "high": null,
+    "stage_raw": "Day 5 arrested embryo (E2)",
+    "material_raw": "whole embryo",
+    "note": "0 = ниже порога 1,0%",
+    "doi_in_sheet": "10.1007/s10815-026-04041-7"
+   },
+   "correction_ids": [
+    "carrier-HL-hu2026-002"
+   ],
+   "source_locator": "Hu 2026, clinical case description and embryo-results table, single carrier",
    "legacy_id": "f3-184"
   },
   {
+   "carrier_id": "hu2026-carrier-1",
    "id": "HL-hu2026-003",
    "variant": "m.3250T>C",
    "pub": "hu2026",
@@ -5136,9 +6048,25 @@
     "sheet": "Рисунок 3",
     "row": 185
    },
+   "source_fingerprint": {
+    "pub": "hu2026",
+    "variant": "m.3250T>C",
+    "value": 0.0,
+    "low": null,
+    "high": null,
+    "stage_raw": "Day 7 blastocyst (E3, euploid)",
+    "material_raw": "TE biopsy (3–5 cells)",
+    "note": "0 = ниже порога 1,0%",
+    "doi_in_sheet": "10.1007/s10815-026-04041-7"
+   },
+   "correction_ids": [
+    "carrier-HL-hu2026-003"
+   ],
+   "source_locator": "Hu 2026, clinical case description and embryo-results table, single carrier",
    "legacy_id": "f3-185"
   },
   {
+   "carrier_id": "hu2026-carrier-1",
    "id": "HL-hu2026-004",
    "variant": "m.3250T>C",
    "pub": "hu2026",
@@ -5159,9 +6087,25 @@
     "sheet": "Рисунок 3",
     "row": 186
    },
+   "source_fingerprint": {
+    "pub": "hu2026",
+    "variant": "m.3250T>C",
+    "value": 0.0,
+    "low": null,
+    "high": null,
+    "stage_raw": "Day 6 blastocyst (E4, aneuploid)",
+    "material_raw": "TE biopsy (3–5 cells)",
+    "note": "0 = ниже порога 1,0%",
+    "doi_in_sheet": "10.1007/s10815-026-04041-7"
+   },
+   "correction_ids": [
+    "carrier-HL-hu2026-004"
+   ],
+   "source_locator": "Hu 2026, clinical case description and embryo-results table, single carrier",
    "legacy_id": "f3-186"
   },
   {
+   "carrier_id": "hu2026-carrier-1",
    "id": "HL-hu2026-005",
    "variant": "m.3250T>C",
    "pub": "hu2026",
@@ -5182,9 +6126,25 @@
     "sheet": "Рисунок 3",
     "row": 187
    },
+   "source_fingerprint": {
+    "pub": "hu2026",
+    "variant": "m.3250T>C",
+    "value": 0.0,
+    "low": null,
+    "high": null,
+    "stage_raw": "Day 7 blastocyst (E5, mosaic)",
+    "material_raw": "TE biopsy (3–5 cells)",
+    "note": "0 = ниже порога 1,0%",
+    "doi_in_sheet": "10.1007/s10815-026-04041-7"
+   },
+   "correction_ids": [
+    "carrier-HL-hu2026-005"
+   ],
+   "source_locator": "Hu 2026, clinical case description and embryo-results table, single carrier",
    "legacy_id": "f3-187"
   },
   {
+   "carrier_id": "hu2026-carrier-1",
    "id": "HL-hu2026-006",
    "variant": "m.3250T>C",
    "pub": "hu2026",
@@ -5205,9 +6165,25 @@
     "sheet": "Рисунок 3",
     "row": 188
    },
+   "source_fingerprint": {
+    "pub": "hu2026",
+    "variant": "m.3250T>C",
+    "value": 1.8,
+    "low": null,
+    "high": null,
+    "stage_raw": "Day 6 blastocyst (E6, euploid, transferred)",
+    "material_raw": "TE biopsy (3–5 cells)",
+    "note": null,
+    "doi_in_sheet": "10.1007/s10815-026-04041-7"
+   },
+   "correction_ids": [
+    "carrier-HL-hu2026-006"
+   ],
+   "source_locator": "Hu 2026, clinical case description and embryo-results table, single carrier",
    "legacy_id": "f3-188"
   },
   {
+   "carrier_id": "hu2026-carrier-1",
    "id": "HL-hu2026-007",
    "variant": "m.3250T>C",
    "pub": "hu2026",
@@ -5228,9 +6204,25 @@
     "sheet": "Рисунок 3",
     "row": 189
    },
+   "source_fingerprint": {
+    "pub": "hu2026",
+    "variant": "m.3250T>C",
+    "value": 0.0,
+    "low": null,
+    "high": null,
+    "stage_raw": "Day 5 arrested embryo (E7)",
+    "material_raw": "whole embryo",
+    "note": "0 = ниже порога 1,0%",
+    "doi_in_sheet": "10.1007/s10815-026-04041-7"
+   },
+   "correction_ids": [
+    "carrier-HL-hu2026-007"
+   ],
+   "source_locator": "Hu 2026, clinical case description and embryo-results table, single carrier",
    "legacy_id": "f3-189"
   },
   {
+   "carrier_id": "hu2026-carrier-1",
    "id": "HL-hu2026-008",
    "variant": "m.3250T>C",
    "pub": "hu2026",
@@ -5251,7 +6243,102 @@
     "sheet": "Рисунок 3",
     "row": 190
    },
+   "source_fingerprint": {
+    "pub": "hu2026",
+    "variant": "m.3250T>C",
+    "value": 8.1,
+    "low": null,
+    "high": null,
+    "stage_raw": "Day 6 blastocyst (E8, euploid)",
+    "material_raw": "TE biopsy (3–5 cells)",
+    "note": null,
+    "doi_in_sheet": "10.1007/s10815-026-04041-7"
+   },
+   "correction_ids": [
+    "carrier-HL-hu2026-008"
+   ],
+   "source_locator": "Hu 2026, clinical case description and embryo-results table, single carrier",
    "legacy_id": "f3-190"
+  },
+  {
+   "carrier_id": null,
+   "id": "HL-hyslop2025-006",
+   "variant": "m.3243A>G",
+   "pub": "hyslop2025",
+   "value": 9,
+   "q": "exact",
+   "low": null,
+   "high": null,
+   "lod": null,
+   "stage": "unspecified",
+   "stage_raw": "transferred embryo(s) linked to live birth",
+   "sample": "blastomeres_unspecified",
+   "material_raw": "test blastomere(s)",
+   "derivation": "as_reported_in_dataset",
+   "derivation_evidence": null,
+   "note": "Двойной перенос; двойня. Соответствие эмбрионов детям не установлено.",
+   "doi_in_sheet": "10.1056/NEJMoa2415539",
+   "src": {
+    "sheet": "Рисунок 3",
+    "row": 47
+   },
+   "source_fingerprint": {
+    "pub": "hyslop2025",
+    "variant": "m.3243A>G",
+    "value": 9,
+    "low": null,
+    "high": null,
+    "stage_raw": "transferred embryo(s) linked to live birth",
+    "material_raw": "test blastomere(s)",
+    "note": null,
+    "doi_in_sheet": "10.1056/NEJMoa2415539"
+   },
+   "correction_ids": [
+    "audit-HL-hyslop2025-003"
+   ],
+   "source_locator": "Hyslop 2025, Table 1, m.3243A>G row: 9 and 24; footnote ‖",
+   "parent_id": "HL-hyslop2025-003",
+   "legacy_id": "f3-047"
+  },
+  {
+   "carrier_id": null,
+   "id": "HL-hyslop2025-007",
+   "variant": "m.3243A>G",
+   "pub": "hyslop2025",
+   "value": 24,
+   "q": "exact",
+   "low": null,
+   "high": null,
+   "lod": null,
+   "stage": "unspecified",
+   "stage_raw": "transferred embryo(s) linked to live birth",
+   "sample": "blastomeres_unspecified",
+   "material_raw": "test blastomere(s)",
+   "derivation": "as_reported_in_dataset",
+   "derivation_evidence": null,
+   "note": "Двойной перенос; двойня. Соответствие эмбрионов детям не установлено.",
+   "doi_in_sheet": "10.1056/NEJMoa2415539",
+   "src": {
+    "sheet": "Рисунок 3",
+    "row": 47
+   },
+   "source_fingerprint": {
+    "pub": "hyslop2025",
+    "variant": "m.3243A>G",
+    "value": 24,
+    "low": null,
+    "high": null,
+    "stage_raw": "transferred embryo(s) linked to live birth",
+    "material_raw": "test blastomere(s)",
+    "note": null,
+    "doi_in_sheet": "10.1056/NEJMoa2415539"
+   },
+   "correction_ids": [
+    "audit-HL-hyslop2025-003"
+   ],
+   "source_locator": "Hyslop 2025, Table 1, m.3243A>G row: 9 and 24; footnote ‖",
+   "parent_id": "HL-hyslop2025-003",
+   "legacy_id": "f3-047-b"
   }
  ],
  "fig3_blocks": [
@@ -7169,7 +8256,7 @@
    "tissue": "buccal",
    "tissue_raw": "буккальный эпителий",
    "age": "1 мес",
-   "method": "количественный анализ, разработанный в [24]",
+   "method": "количественный анализ, разработанный в Treff et al., 2012",
    "in_figure": true,
    "on_plot_raw": "да",
    "src": {
@@ -7181,7 +8268,9 @@
    "emb_raw": null,
    "value": 15.0,
    "q": "exact",
-   "value_raw": null
+   "value_raw": null,
+   "source_locator": "Treff 2012, Methods; Atlas worksheet «Рисунок 5», row 10",
+   "correction_id": "method-C5a"
   },
   {
    "id": "C6a",
@@ -7617,7 +8706,7 @@
   {
    "row": 4,
    "variant": "m.8993T>G",
-   "phenotype": "NARP/Leigh",
+   "phenotype": null,
    "pool_range": "0–94/100% (2 эмбриона без выявляемой мутации; 1 эмбрион ~94–100%)",
    "transferred": "0%; 0% / мутация не детектировалась",
    "offspring": "амниотическая жидкость: не детектировалась; пуповинная кровь: не детектировалась",
@@ -7630,12 +8719,14 @@
    "src": {
     "sheet": "Таблица 1",
     "row": 4
-   }
+   },
+   "source_locator": "Published case; Atlas source worksheet «Таблица 1», row 4; numeric values retained except source-verified audit D-1/D-4",
+   "correction_id": "audit-case-4"
   },
   {
    "row": 5,
    "variant": "m.8993T>G",
-   "phenotype": "NARP/Leigh",
+   "phenotype": null,
    "pool_range": "н/д; указан только перенесённый эмбрион",
    "transferred": "2,5%",
    "offspring": "пуповинная кровь: 4%",
@@ -7648,12 +8739,14 @@
    "src": {
     "sheet": "Таблица 1",
     "row": 5
-   }
+   },
+   "source_locator": "Published case; Atlas source worksheet «Таблица 1», row 5; numeric values retained except source-verified audit D-1/D-4",
+   "correction_id": "audit-case-5"
   },
   {
    "row": 6,
    "variant": "m.8993T>G",
-   "phenotype": "NARP/Leigh",
+   "phenotype": null,
    "pool_range": "0–100%: вариант выявлен в 3 из 20 эмбрионов (30, 88 и 100%), в остальных 17 не выявлен",
    "transferred": "0%; 0%; 0% (три перенесённых эмбриона в двух циклах)",
    "offspring": "пуповинная кровь: 0%",
@@ -7666,12 +8759,14 @@
    "src": {
     "sheet": "Таблица 1",
     "row": 6
-   }
+   },
+   "source_locator": "Published case; Atlas source worksheet «Таблица 1», row 6; numeric values retained except source-verified audit D-1/D-4",
+   "correction_id": "audit-case-6"
   },
   {
    "row": 7,
    "variant": "m.3243A>G",
-   "phenotype": "MELAS / MIDD; агрегированная подгруппа из 3 женщин",
+   "phenotype": null,
    "pool_range": "эмбрионы дробления: 1–70% (по трём носительницам 1–65%, 2–58% и 5–70%); ооциты: 37–67%; зиготы: 0–66%",
    "transferred": "4 перенесённых эмбриона трём пациенткам; точные значения по женщине не извлечены",
    "offspring": "беременность не наступила",
@@ -7684,12 +8779,14 @@
    "src": {
     "sheet": "Таблица 1",
     "row": 7
-   }
+   },
+   "source_locator": "Published case; Atlas source worksheet «Таблица 1», row 7; numeric values retained except source-verified audit D-1/D-4",
+   "correction_id": "audit-case-7"
   },
   {
    "row": 8,
    "variant": "m.3243A>G",
-   "phenotype": "MELAS",
+   "phenotype": null,
    "pool_range": "18–50%",
    "transferred": "переноса не было / не указан",
    "offspring": "не применимо",
@@ -7702,12 +8799,14 @@
    "src": {
     "sheet": "Таблица 1",
     "row": 8
-   }
+   },
+   "source_locator": "Published case; Atlas source worksheet «Таблица 1», row 8; numeric values retained except source-verified audit D-1/D-4",
+   "correction_id": "audit-case-8"
   },
   {
    "row": 9,
    "variant": "m.3243A>G",
-   "phenotype": "MELAS",
+   "phenotype": null,
    "pool_range": "0–75%",
    "transferred": "5/5% и 13/16% (два бластомера в каждом из двух перенесённых эмбрионов)",
    "offspring": "амниотическая жидкость: 4±0%; плацента: 15±5%; пуповинная кровь: 5±1%",
@@ -7720,15 +8819,17 @@
    "src": {
     "sheet": "Таблица 1",
     "row": 9
-   }
+   },
+   "source_locator": "Published case; Atlas source worksheet «Таблица 1», row 9; numeric values retained except source-verified audit D-1/D-4",
+   "correction_id": "audit-case-9"
   },
   {
    "row": 10,
    "variant": "m.3243A>G",
-   "phenotype": "MELAS / MIDD",
-   "pool_range": "7–91% по эмбриональным значениям; бластоцисты: 12–40%",
+   "phenotype": null,
+   "pool_range": "7–91% по эмбриональным значениям; бластоцисты: 12–90%",
    "transferred": "12%",
-   "offspring": "буккальный эпителий: 15% в возрасте 1 мес (метод, разработанный в [24]); в коммерческой лаборатории в том же исследовании вариант в буккальном мазке и осадке мочи не детектировался, в крови в 5 и 12 мес — менее 10% [24]. При независимом повторном анализе того же ребёнка методом ARMS-qPCR в возрасте 6 нед и 18 мес получено 47% и 46% в крови и 52% и 42% в моче [39]",
+   "offspring": "буккальный эпителий: 15% в возрасте 1 мес (Treff et al., 2012); в коммерческой лаборатории в том же исследовании вариант в буккальном мазке и осадке мочи не детектировался, в крови в 5 и 12 мес — менее 10% (Treff et al., 2012). При независимом повторном анализе того же ребёнка методом ARMS-qPCR в возрасте 6 нед и 18 мес получено 47% и 46% в крови и 52% и 42% в моче (Mitalipov et al., 2014)",
    "reference_raw": "Treff et al., 2012; https://doi.org/10.1016/j.fertnstert.2012.07.1119 | Mitalipov et al., 2014; https://doi.org/10.1016/j.celrep.2014.05.004",
    "pubs": [
     "treff2012",
@@ -7739,12 +8840,14 @@
    "src": {
     "sheet": "Таблица 1",
     "row": 10
-   }
+   },
+   "source_locator": "Published case; Atlas source worksheet «Таблица 1», row 10; numeric values retained except source-verified audit D-1/D-4",
+   "correction_id": "audit-case-10"
   },
   {
    "row": 11,
    "variant": "m.3243A>G",
-   "phenotype": "MELAS",
+   "phenotype": null,
    "pool_range": "0–62% (средние по 11 бластоцистам; максимум отдельного биоптата 65,5%)",
    "transferred": "0%; 0% / две бластоцисты без детектируемой мутации",
    "offspring": "буккальный мазок: 0%; кровь: 0%; моча: 0%",
@@ -7757,12 +8860,14 @@
    "src": {
     "sheet": "Таблица 1",
     "row": 11
-   }
+   },
+   "source_locator": "Published case; Atlas source worksheet «Таблица 1», row 11; numeric values retained except source-verified audit D-1/D-4",
+   "correction_id": "audit-case-11"
   },
   {
    "row": 12,
    "variant": "m.8344A>G",
-   "phenotype": "MERRF",
+   "phenotype": null,
    "pool_range": "н/д; перенесённые эмбрионы 53% и 59%",
    "transferred": "53%; 59%",
    "offspring": "при рождении: 63% (ткань в доступной сводке не уточнена)",
@@ -7775,15 +8880,17 @@
    "src": {
     "sheet": "Таблица 1",
     "row": 12
-   }
+   },
+   "source_locator": "Published case; Atlas source worksheet «Таблица 1», row 12; numeric values retained except source-verified audit D-1/D-4",
+   "correction_id": "audit-case-12"
   },
   {
    "row": 13,
    "variant": "m.14487T>C",
-   "phenotype": "Leigh-синдром",
+   "phenotype": null,
    "pool_range": "примерно 5,75–100%; цикл 1 преимущественно ~50–98%; цикл 2 ~6–100%",
    "transferred": "5,4 и 6,1% в 12-клеточном эмбрионе; 12,2 и 12,3% в 13-клеточном (два бластомера в каждом из двух перенесённых эмбрионов)",
-   "offspring": "пуповинная кровь: около 5%; пренатальная диагностика отклонена",
+   "offspring": "пуповинная кровь: около 5%",
    "reference_raw": "Sallevelt et al., 2017; https://doi.org/10.1093/humrep/dew356",
    "pubs": [
     "sallevelt2017"
@@ -7793,12 +8900,14 @@
    "src": {
     "sheet": "Таблица 1",
     "row": 13
-   }
+   },
+   "source_locator": "Published case; Atlas source worksheet «Таблица 1», row 13; numeric values retained except source-verified audit D-1/D-4",
+   "correction_id": "audit-case-13"
   },
   {
    "row": 14,
    "variant": "m.14487T>C",
-   "phenotype": "Leigh-синдром",
+   "phenotype": null,
    "pool_range": "ТЭ: 11,4–99,6% (11,4; 12,0; 13,5; 73,2; 92,3; 99,6)",
    "transferred": "переноса не было",
    "offspring": "не применимо",
@@ -7811,14 +8920,16 @@
    "src": {
     "sheet": "Таблица 1",
     "row": 14
-   }
+   },
+   "source_locator": "Published case; Atlas source worksheet «Таблица 1», row 14; numeric values retained except source-verified audit D-1/D-4",
+   "correction_id": "audit-case-14"
   },
   {
    "row": 15,
    "variant": "m.3697G>A",
-   "phenotype": "Leigh-синдром",
+   "phenotype": null,
    "pool_range": "15,2–100%",
-   "transferred": "31,7% (мозаичный эмбрион; биохимическая беременность); 53,9% (эуплоидный эмбрион; беременность с прерыванием)",
+   "transferred": "31,7%; 53,9%; живорождения нет",
    "offspring": "амниотическая жидкость: 49,7%; ткани плода: 47,7±1,8%",
    "reference_raw": "Ji et al., 2021; https://doi.org/10.1007/s10815-021-02354-3",
    "pubs": [
@@ -7829,12 +8940,14 @@
    "src": {
     "sheet": "Таблица 1",
     "row": 15
-   }
+   },
+   "source_locator": "Published case; Atlas source worksheet «Таблица 1», row 15; numeric values retained except source-verified audit D-1/D-4",
+   "correction_id": "audit-case-15"
   },
   {
    "row": 16,
    "variant": "m.8993T>G",
-   "phenotype": "NARP/Leigh",
+   "phenotype": null,
    "pool_range": "0–88,7% по извлечённым значениям",
    "transferred": "переноса не было (бластоциста без детектируемой мутации была анеуплоидной)",
    "offspring": "не применимо",
@@ -7847,12 +8960,14 @@
    "src": {
     "sheet": "Таблица 1",
     "row": 16
-   }
+   },
+   "source_locator": "Published case; Atlas source worksheet «Таблица 1», row 16; numeric values retained except source-verified audit D-1/D-4",
+   "correction_id": "audit-case-16"
   },
   {
    "row": 17,
    "variant": "m.8993T>G",
-   "phenotype": "NARP/Leigh / больной ребёнок в анамнезе",
+   "phenotype": null,
    "pool_range": "0% / мутация не выявлена во всех исследованных ооцитах/эмбрионах",
    "transferred": "0% / мутация не детектировалась",
    "offspring": "пуповинная кровь: не детектировалась; буккальный мазок: не детектировалась",
@@ -7865,15 +8980,17 @@
    "src": {
     "sheet": "Таблица 1",
     "row": 17
-   }
+   },
+   "source_locator": "Published case; Atlas source worksheet «Таблица 1», row 17; numeric values retained except source-verified audit D-1/D-4",
+   "correction_id": "audit-case-17"
   },
   {
    "row": 18,
    "variant": "m.10191T>C",
-   "phenotype": "Leigh-синдром",
+   "phenotype": null,
    "pool_range": "0% / m.10191T>C не выявлена в исследованном репродуктивном материале",
    "transferred": "0%; 0% / два эуплоидных эмбриона без мутации перенесены в разных циклах; живорождения после ПГТ не было",
-   "offspring": "после ПГТ: живорождения нет; естественная беременность позднее: CVS 0%",
+   "offspring": "после ПГТ: живорождения нет",
    "reference_raw": "Spath et al., 2021; https://doi.org/10.1016/j.fertnstert.2021.01.026",
    "pubs": [
     "spath2021"
@@ -7883,15 +9000,17 @@
    "src": {
     "sheet": "Таблица 1",
     "row": 18
-   }
+   },
+   "source_locator": "Published case; Atlas source worksheet «Таблица 1», row 18; numeric values retained except source-verified audit D-1/D-4",
+   "correction_id": "audit-case-18"
   },
   {
    "row": 19,
    "variant": "m.3243A>G",
-   "phenotype": "митохондриальная миопатия с птозом/офтальмоплегией",
+   "phenotype": null,
    "pool_range": "0–38,0% по эмбрионам (для остановившихся эмбрионов — среднее двух половин; максимум отдельной половины 39,6%); бластоциста/ТЭ 3,1–29,2%",
    "transferred": "0%; 0% / два эуплоидных эмбриона без мутации",
-   "offspring": "живорождения нет; обе беременности прервались на 8-й неделе",
+   "offspring": "живорождения нет",
    "reference_raw": "Spath et al., 2021; https://doi.org/10.1016/j.fertnstert.2021.01.026",
    "pubs": [
     "spath2021"
@@ -7901,12 +9020,14 @@
    "src": {
     "sheet": "Таблица 1",
     "row": 19
-   }
+   },
+   "source_locator": "Published case; Atlas source worksheet «Таблица 1», row 19; numeric values retained except source-verified audit D-1/D-4",
+   "correction_id": "audit-case-19"
   },
   {
    "row": 20,
    "variant": "m.10197G>A",
-   "phenotype": "Leigh-энцефалопатия",
+   "phenotype": null,
    "pool_range": "1–96,5% (5/9 эмбрионов <5%; 2/9 >95%; два промежуточных — 26–45% и 84–88%)",
    "transferred": "<5%; <5% / двойной перенос двух эмбрионов с очень низкой нагрузкой; точный уровень имплантировавшегося эмбриона не установлен",
    "offspring": "амниотическая жидкость на 15-й неделе: вариант не выявлен; сигнал 0,17% был ниже уровня контрольного образца 0,28%, с оговоркой авторов об ограничениях пиросеквенирования при очень низкой нагрузке",
@@ -7919,15 +9040,17 @@
    "src": {
     "sheet": "Таблица 1",
     "row": 20
-   }
+   },
+   "source_locator": "Published case; Atlas source worksheet «Таблица 1», row 20; numeric values retained except source-verified audit D-1/D-4",
+   "correction_id": "audit-case-20"
   },
   {
    "row": 21,
    "variant": "m.3243A>G",
-   "phenotype": "митохондриальный симптомокомплекс / PGT live-birth subset",
-   "pool_range": "0–16,5% для live-birth-linked значений",
-   "transferred": "0%; 0%; 16,5%",
-   "offspring": "кровь детей в общей PGT-подгруппе: от неопределяемого уровня до 7%; не mutation-specific",
+   "phenotype": null,
+   "pool_range": "0–24% для значений, связанных с живорождением",
+   "transferred": "0%; 0%; 9% и 24% (двойной перенос, двойня)",
+   "offspring": "кровь детей в общей подгруппе ПГТ: от неопределяемого уровня до 7%; без разбивки по вариантам",
    "reference_raw": "Hyslop et al., 2025; https://doi.org/10.1056/NEJMoa2415539",
    "pubs": [
     "hyslop2025"
@@ -7937,15 +9060,17 @@
    "src": {
     "sheet": "Таблица 1",
     "row": 21
-   }
+   },
+   "source_locator": "Published case; Atlas source worksheet «Таблица 1», row 21; numeric values retained except source-verified audit D-1/D-4",
+   "correction_id": "audit-case-21"
   },
   {
    "row": 22,
    "variant": "m.8993T>G",
-   "phenotype": "NARP/Leigh / PGT live-birth subset",
+   "phenotype": null,
    "pool_range": "0%",
    "transferred": "0%; 0%; 0% (три перенесённых эмбриона в двух циклах)",
-   "offspring": "кровь детей в общей PGT-подгруппе: от неопределяемого уровня до 7%; не mutation-specific",
+   "offspring": "кровь детей в общей подгруппе ПГТ: от неопределяемого уровня до 7%; без разбивки по вариантам",
    "reference_raw": "Hyslop et al., 2025; https://doi.org/10.1056/NEJMoa2415539",
    "pubs": [
     "hyslop2025"
@@ -7955,15 +9080,17 @@
    "src": {
     "sheet": "Таблица 1",
     "row": 22
-   }
+   },
+   "source_locator": "Published case; Atlas source worksheet «Таблица 1», row 22; numeric values retained except source-verified audit D-1/D-4",
+   "correction_id": "audit-case-22"
   },
   {
    "row": 23,
    "variant": "m.8993T>C",
-   "phenotype": "NARP/Leigh / PGT live-birth subset",
+   "phenotype": null,
    "pool_range": "0%",
    "transferred": "0%",
-   "offspring": "кровь детей в общей PGT-подгруппе: от неопределяемого уровня до 7%; не mutation-specific",
+   "offspring": "кровь детей в общей подгруппе ПГТ: от неопределяемого уровня до 7%; без разбивки по вариантам",
    "reference_raw": "Hyslop et al., 2025; https://doi.org/10.1056/NEJMoa2415539",
    "pubs": [
     "hyslop2025"
@@ -7973,15 +9100,17 @@
    "src": {
     "sheet": "Таблица 1",
     "row": 23
-   }
+   },
+   "source_locator": "Published case; Atlas source worksheet «Таблица 1», row 23; numeric values retained except source-verified audit D-1/D-4",
+   "correction_id": "audit-case-23"
   },
   {
    "row": 24,
    "variant": "m.10158T>C",
-   "phenotype": "митохондриальный симптомокомплекс / PGT live-birth subset",
+   "phenotype": null,
    "pool_range": "0%",
    "transferred": "0%; 0%; 0% (три перенесённых эмбриона в двух циклах)",
-   "offspring": "кровь детей в общей PGT-подгруппе: от неопределяемого уровня до 7%; не mutation-specific",
+   "offspring": "кровь детей в общей подгруппе ПГТ: от неопределяемого уровня до 7%; без разбивки по вариантам",
    "reference_raw": "Hyslop et al., 2025; https://doi.org/10.1056/NEJMoa2415539",
    "pubs": [
     "hyslop2025"
@@ -7991,15 +9120,17 @@
    "src": {
     "sheet": "Таблица 1",
     "row": 24
-   }
+   },
+   "source_locator": "Published case; Atlas source worksheet «Таблица 1», row 24; numeric values retained except source-verified audit D-1/D-4",
+   "correction_id": "audit-case-24"
   },
   {
    "row": 25,
    "variant": "m.13094T>C",
-   "phenotype": "митохондриальный симптомокомплекс / PGT live-birth subset",
+   "phenotype": null,
    "pool_range": "0%",
    "transferred": "0%",
-   "offspring": "кровь детей в общей PGT-подгруппе: от неопределяемого уровня до 7%; не mutation-specific",
+   "offspring": "кровь детей в общей подгруппе ПГТ: от неопределяемого уровня до 7%; без разбивки по вариантам",
    "reference_raw": "Hyslop et al., 2025; https://doi.org/10.1056/NEJMoa2415539",
    "pubs": [
     "hyslop2025"
@@ -8009,15 +9140,17 @@
    "src": {
     "sheet": "Таблица 1",
     "row": 25
-   }
+   },
+   "source_locator": "Published case; Atlas source worksheet «Таблица 1», row 25; numeric values retained except source-verified audit D-1/D-4",
+   "correction_id": "audit-case-25"
   },
   {
    "row": 26,
    "variant": "m.3688G>A",
-   "phenotype": "митохондриальный симптомокомплекс / PGT live-birth subset",
+   "phenotype": null,
    "pool_range": "2,5%",
    "transferred": "2,5%",
-   "offspring": "кровь детей в общей PGT-подгруппе: от неопределяемого уровня до 7%; не mutation-specific",
+   "offspring": "кровь детей в общей подгруппе ПГТ: от неопределяемого уровня до 7%; без разбивки по вариантам",
    "reference_raw": "Hyslop et al., 2025; https://doi.org/10.1056/NEJMoa2415539",
    "pubs": [
     "hyslop2025"
@@ -8027,12 +9160,14 @@
    "src": {
     "sheet": "Таблица 1",
     "row": 26
-   }
+   },
+   "source_locator": "Published case; Atlas source worksheet «Таблица 1», row 26; numeric values retained except source-verified audit D-1/D-4",
+   "correction_id": "audit-case-26"
   },
   {
    "row": 27,
    "variant": "m.8344A>G",
-   "phenotype": "MERRF / embryology series; no transfer",
+   "phenotype": null,
    "pool_range": "68–82% по фракциям ТЭ/ВКМ/оставшейся ТЭ",
    "transferred": "переноса не было",
    "offspring": "не применимо",
@@ -8045,12 +9180,14 @@
    "src": {
     "sheet": "Таблица 1",
     "row": 27
-   }
+   },
+   "source_locator": "Published case; Atlas source worksheet «Таблица 1», row 27; numeric values retained except source-verified audit D-1/D-4",
+   "correction_id": "audit-case-27"
   },
   {
    "row": 28,
    "variant": "m.8993T>C",
-   "phenotype": "NARP/Leigh / embryology series; no transfer",
+   "phenotype": null,
    "pool_range": "69–73%",
    "transferred": "переноса не было",
    "offspring": "не применимо",
@@ -8063,12 +9200,14 @@
    "src": {
     "sheet": "Таблица 1",
     "row": 28
-   }
+   },
+   "source_locator": "Published case; Atlas source worksheet «Таблица 1», row 28; numeric values retained except source-verified audit D-1/D-4",
+   "correction_id": "audit-case-28"
   },
   {
    "row": 29,
    "variant": "m.13094T>C",
-   "phenotype": "митохондриальный симптомокомплекс / embryology series; no transfer",
+   "phenotype": null,
    "pool_range": "71–92%",
    "transferred": "переноса не было",
    "offspring": "не применимо",
@@ -8081,12 +9220,14 @@
    "src": {
     "sheet": "Таблица 1",
     "row": 29
-   }
+   },
+   "source_locator": "Published case; Atlas source worksheet «Таблица 1», row 29; numeric values retained except source-verified audit D-1/D-4",
+   "correction_id": "audit-case-29"
   },
   {
    "row": 30,
    "variant": "m.8993T>G",
-   "phenotype": "NARP/Leigh / embryology series; no transfer",
+   "phenotype": null,
    "pool_range": "100%",
    "transferred": "переноса не было",
    "offspring": "не применимо",
@@ -8099,12 +9240,14 @@
    "src": {
     "sheet": "Таблица 1",
     "row": 30
-   }
+   },
+   "source_locator": "Published case; Atlas source worksheet «Таблица 1», row 30; numeric values retained except source-verified audit D-1/D-4",
+   "correction_id": "audit-case-30"
   },
   {
    "row": 31,
    "variant": "m.3243A>G",
-   "phenotype": "MELAS/MIDD / embryology series; no transfer",
+   "phenotype": null,
    "pool_range": "38% по извлечённому значению; полный диапазон в текущей сводке не верифицирован",
    "transferred": "переноса не было",
    "offspring": "не применимо",
@@ -8117,12 +9260,14 @@
    "src": {
     "sheet": "Таблица 1",
     "row": 31
-   }
+   },
+   "source_locator": "Published case; Atlas source worksheet «Таблица 1», row 31; numeric values retained except source-verified audit D-1/D-4",
+   "correction_id": "audit-case-31"
   },
   {
    "row": 32,
    "variant": "несколько вариантов",
-   "phenotype": "MELAS, MERRF, NARP, Leigh и родственные фенотипы",
+   "phenotype": null,
    "pool_range": "н/д по женщинам в текущей сводке",
    "transferred": "н/д; 5 беременностей, 3 живорождения после ПГТ-мт",
    "offspring": "н/д в доступной основной таблице",
@@ -8135,15 +9280,17 @@
    "src": {
     "sheet": "Таблица 1",
     "row": 32
-   }
+   },
+   "source_locator": "Published case; Atlas source worksheet «Таблица 1», row 32; numeric values retained except source-verified audit D-1/D-4",
+   "correction_id": "audit-case-32"
   },
   {
    "row": 33,
    "variant": "m.3250T>C",
-   "phenotype": "MT-TL1, вариант неопределённого клинического значения (описаны миопатия, кардиомиопатия); в семье — синдром Айкарди–Гутьер 3 (RNASEH2C); совмещённое ПГТ-М + ПГТ-мт + ПГТ-А",
-   "pool_range": "0–17,8%: 6 бластоцист (биоптат ТЭ, 3–5 клеток, д5–д7) — 17,8; 0; 0; 0; 1,8; 8,1%; 2 остановившихся эмбриона целиком — 0; 0%. Мать: кровь 20,2%, моча 21,7%, буккальный эпителий 27,9%",
-   "transferred": "1,8% (эуплоидная бластоциста, гетерозигота по c.194G>A RNASEH2C)",
-   "offspring": "амниотическая жидкость (18 нед): 1,5%; пуповинная кровь: 0%; кровь и буккальный эпителий в 2 года: 0%; здоровый мальчик",
+   "phenotype": null,
+   "pool_range": "0–17,8%: 6 бластоцист (биоптат ТЭ, 3–5 клеток, д5–д7) — 17,8; 0; 0; 0; 1,8; 8,1%; 2 остановившихся эмбриона целиком — 0; 0%.",
+   "transferred": "1,8% (эуплоидная бластоциста)",
+   "offspring": "амниотическая жидкость (18 нед): 1,5%; пуповинная кровь: 0%; кровь и буккальный эпителий в 2 года: 0%; живорождение",
    "reference_raw": "Hu et al., 2026; https://doi.org/10.1007/s10815-026-04041-7",
    "pubs": [
     "hu2026"
@@ -8153,7 +9300,9 @@
    "src": {
     "sheet": "Таблица 1",
     "row": 33
-   }
+   },
+   "source_locator": "Published case; Atlas source worksheet «Таблица 1», row 33; numeric values retained except source-verified audit D-1/D-4",
+   "correction_id": "audit-case-33"
   }
  ],
  "hu2026_within_embryo": {
@@ -8408,7 +9557,7 @@
    "role": "study_estimate",
    "publication": "hellebrekers2012",
    "locator": "Hum Reprod Update 2012;18(4):341–349, абстракт (PubMed 22456975), раздел Results",
-   "checked": "2026-10-11 по абстракту PubMed. Полного текста нет ни в репозитории, ни в PMC: состав выборки и исключения сверены только в объёме абстракта.",
+   "checked": "Сверено по аннотации PubMed, PMID 22456975, 11.10.2026.",
    "ru": "Расчётный ориентир систематического обзора: уровень мутации ≤18% в мышечной ткани связан с вероятностью ≥95% остаться непоражённым (159 точковых вариантов мтДНК; семейные данные 137 родословных; априорная доля поражённых 0,477). Для m.3243A>G вероятность остаться непоражённым ниже. Оценка получена не на эмбрионах и не является порогом для биоптата эмбриона.",
    "en": "Calculated estimate from a systematic review: a muscle mutation level of ≤18% is associated with a ≥95% chance of being unaffected (159 mtDNA point variants; familial data from 137 pedigrees; a priori probability of being affected 0.477). For m.3243A>G the chance of being unaffected is lower. The estimate was not derived from embryos and is not a threshold for an embryo biopsy."
   },
@@ -8420,8 +9569,8 @@
    ],
    "role": "literature_range",
    "publication": "ji2023",
-   "locator": "J Assist Reprod Genet 2023;40:2185–2196, с. 2190 (Results) и с. 2193 (Discussion); у авторов — ссылка [23]",
-   "checked": "2026-10-11 по PDF (references/Ji et al 2023 PGTmt risk and chance.pdf)",
+   "locator": "J Assist Reprod Genet 2023;40:2185–2196, с. 2190 (Results) и с. 2193 (Discussion)",
+   "checked": "Сверено по полному тексту, с. 2190, 2193, 11.10.2026.",
    "ru": "Диапазон симптоматического порога m.3243A>G, который Ji и соавт. приводят как общепринятый со ссылкой на литературу; собственный порог для m.3243A>G по своим данным авторы определить не смогли.",
    "en": "Range of the symptomatic threshold for m.3243A>G that Ji et al. cite as generally accepted from the literature; the authors could not determine a threshold for m.3243A>G from their own data."
   },
@@ -8431,7 +9580,7 @@
    "role": "programme_criterion",
    "publication": "hyslop2025",
    "locator": "N Engl J Med 2025, Methods (с. 3 PDF: «single blastomere was removed on day 3»; «less than 30% heteroplasmy») и с. 5 PDF",
-   "checked": "2026-10-11 по PDF (references/Hyslop et al 2025 MRT PGTmt.pdf)",
+   "checked": "Сверено по полному тексту, с. 3, 5, 11.10.2026.",
    "ru": "Рабочий критерий программы Newcastle: для переноса или витрификации преимущественно использовали эмбрионы с гетероплазмией менее 30%, измеренной в одном бластомере 3-го дня. Это критерий конкретной клинической программы, а не универсальная граница.",
    "en": "Working criterion of the Newcastle programme: embryos with less than 30% heteroplasmy, measured in a single day-3 blastomere, were preferentially used for transfer or vitrification. It is the criterion of one clinical programme, not a universal threshold."
   },
@@ -8475,8 +9624,8 @@
   "p_eupl_status": "scenario",
   "p_eupl_locator": "Volodyaev et al. 2025, F S Rev 6:100082, doi:10.1016/j.xfnr.2024.100082: с. 2, раздел «Incidence, parental origin, and age relation» (анеуплоидии целых хромосом 20–30% в 25–35 лет, почти линейный рост ≈6% в год после 35 лет, 80–90% в 42–44 года); с. 3, рис. 2 (доля эуплоидных бластоцист по возрасту, данные Franasiak et al.)",
   "p_eupl_note": {
-   "ru": "Сценарные значения. Точек 0,7 / 0,5 / 0,3 в источнике нет. Текст обзора даёт долю анеуплоидий целых хромосом 20–30% в 25–35 лет и рост около 6% в год после 35 лет; значение 0,7 для 30 лет с этим согласуется. Значения 0,5 для 35 лет и 0,3 для 40 лет из текстовых оценок напрямую не следуют; их соответствие рисунку 2 обзора и учёт мозаицизма и сегментных анеуплоидий требуют подтверждения автором модели.",
-   "en": "Scenario values. The source does not give the points 0.7 / 0.5 / 0.3. The review text gives 20–30% whole-chromosome aneuploidy at 25–35 years and an increase of about 6% per year after 35; 0.7 at age 30 agrees with this. The values 0.5 at 35 and 0.3 at 40 do not follow directly from the text estimates; their agreement with Figure 2 of the review and the handling of mosaicism and segmental aneuploidy need confirmation by the model author."
+   "ru": "e — сценарная доля эуплоидных бластоцист; ориентир — Volodyaev et al., 2025. Значения не привязаны к возрасту.",
+   "en": "e is the scenario euploid blastocyst share; reference — Volodyaev et al., 2025. Values are not assigned to ages."
   },
   "n_max": 8,
   "fig6_variants": [
@@ -8965,25 +10114,25 @@
    "n": 187,
    "by_variant": {
     "m.3243A>G": {
-     "n": 87,
+     "n": 88,
      "le18": {
       "k": 41,
-      "n": 87
+      "n": 88
      },
      "le30": {
-      "k": 52,
-      "n": 87
+      "k": 53,
+      "n": 88
      }
     },
     "m.3697G>A": {
-     "n": 21,
+     "n": 20,
      "le18": {
       "k": 1,
-      "n": 21
+      "n": 20
      },
      "le30": {
       "k": 3,
-      "n": 21
+      "n": 20
      }
     },
     "m.14487T>C": {
@@ -9047,7 +10196,7 @@
     "n": 187
    },
    "pooled_le30": {
-    "k": 108,
+    "k": 109,
     "n": 187
    }
   },
@@ -9066,6 +10215,9 @@
    "max_range_cleavage": 6.0
   },
   "fig5": {
+   "n_records": 24,
+   "n_low_children": 7,
+   "n_concordant_children": 6,
    "n_pairs": 22,
    "n_children": 8,
    "n_low_embryo": 20,
@@ -9086,7 +10238,7 @@
    {
     "variant": "m.3243A>G",
     "sheet_p_het": 0.47,
-    "exact": 0.47126436781609193
+    "exact": 0.4659090909090909
    },
    {
     "variant": "m.14487T>C",
@@ -9096,7 +10248,7 @@
    {
     "variant": "m.3697G>A",
     "sheet_p_het": 0.05,
-    "exact": 0.047619047619047616
+    "exact": 0.05
    }
   ],
   "fig4_source_xlsx": {

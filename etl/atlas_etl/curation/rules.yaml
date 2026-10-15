@@ -62,8 +62,7 @@ thresholds:
     publication: hellebrekers2012
     locator: 'Hum Reprod Update 2012;18(4):341–349, абстракт (PubMed 22456975), раздел Results'
     checked: >-
-      2026-10-11 по абстракту PubMed. Полного текста нет ни в репозитории, ни в PMC: состав выборки и исключения
-      сверены только в объёме абстракта.
+      Сверено по аннотации PubMed, PMID 22456975, 11.10.2026.
     ru: >-
       Расчётный ориентир систематического обзора: уровень мутации ≤18% в мышечной ткани связан с вероятностью ≥95%
       остаться непоражённым (159 точковых вариантов мтДНК; семейные данные 137 родословных; априорная доля поражённых
@@ -78,8 +77,8 @@ thresholds:
     range: [15, 30]
     role: literature_range
     publication: ji2023
-    locator: 'J Assist Reprod Genet 2023;40:2185–2196, с. 2190 (Results) и с. 2193 (Discussion); у авторов — ссылка [23]'
-    checked: 2026-10-11 по PDF (references/Ji et al 2023 PGTmt risk and chance.pdf)
+    locator: 'J Assist Reprod Genet 2023;40:2185–2196, с. 2190 (Results) и с. 2193 (Discussion)'
+    checked: Сверено по полному тексту, с. 2190, 2193, 11.10.2026.
     ru: >-
       Диапазон симптоматического порога m.3243A>G, который Ji и соавт. приводят как общепринятый со ссылкой на
       литературу; собственный порог для m.3243A>G по своим данным авторы определить не смогли.
@@ -91,7 +90,7 @@ thresholds:
     role: programme_criterion
     publication: hyslop2025
     locator: 'N Engl J Med 2025, Methods (с. 3 PDF: «single blastomere was removed on day 3»; «less than 30% heteroplasmy») и с. 5 PDF'
-    checked: 2026-10-11 по PDF (references/Hyslop et al 2025 MRT PGTmt.pdf)
+    checked: Сверено по полному тексту, с. 3, 5, 11.10.2026.
     ru: >-
       Рабочий критерий программы Newcastle: для переноса или витрификации преимущественно использовали эмбрионы с
       гетероплазмией менее 30%, измеренной в одном бластомере 3-го дня. Это критерий конкретной клинической
@@ -135,15 +134,6 @@ model:
     origin, and age relation» (анеуплоидии целых хромосом 20–30% в 25–35 лет, почти линейный рост ≈6% в год после
     35 лет, 80–90% в 42–44 года); с. 3, рис. 2 (доля эуплоидных бластоцист по возрасту, данные Franasiak et al.)
   p_eupl_note:
-    ru: >-
-      Сценарные значения. Точек 0,7 / 0,5 / 0,3 в источнике нет. Текст обзора даёт долю анеуплоидий целых хромосом
-      20–30% в 25–35 лет и рост около 6% в год после 35 лет; значение 0,7 для 30 лет с этим согласуется. Значения 0,5
-      для 35 лет и 0,3 для 40 лет из текстовых оценок напрямую не следуют; их соответствие рисунку 2 обзора и учёт
-      мозаицизма и сегментных анеуплоидий требуют подтверждения автором модели.
-    en: >-
-      Scenario values. The source does not give the points 0.7 / 0.5 / 0.3. The review text gives 20–30%
-      whole-chromosome aneuploidy at 25–35 years and an increase of about 6% per year after 35; 0.7 at age 30 agrees
-      with this. The values 0.5 at 35 and 0.3 at 40 do not follow directly from the text estimates; their agreement
-      with Figure 2 of the review and the handling of mosaicism and segmental aneuploidy need confirmation by the
-      model author.
+    ru: 'e — сценарная доля эуплоидных бластоцист; ориентир — Volodyaev et al., 2025. Значения не привязаны к возрасту.'
+    en: 'e is the scenario euploid blastocyst share; reference — Volodyaev et al., 2025. Values are not assigned to ages.'
   n_max: 8

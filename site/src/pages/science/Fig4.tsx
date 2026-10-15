@@ -139,14 +139,14 @@ export default function Fig4() {
       const m = median(c.items.map((i) => i.y))
       shapes.push({ type: 'line', x0: gx - 0.25, x1: gx + 0.25, y0: m, y1: m, line: { color: th.critical, width: 3 } })
       ann.push({ x: gx + 0.27, y: m, xanchor: 'left', text: fmt(m, lang, 1), showarrow: false, font: { color: th.critical, size: 12 } })
-      ann.push({ x: gx, y: -1.6, text: `n = ${c.items.length}`, showarrow: false, font: { size: 12, color: th.muted } })
+      ann.push({ x: gx, y: 10.3, text: `n = ${c.items.length}`, showarrow: false, font: { size: 12, color: th.muted } })
     })
     return {
       data,
       layout: {
         ...baseLayout(th), shapes, annotations: ann,
         xaxis: axis(th, { range: [-0.5, cols.length - 0.5], tickvals: cols.map((_, i) => i), ticktext: cols.map((c) => c.name.replace(', ', ',<br>')), tickangle: 0, showgrid: false, fixedrange: true, tickfont: { size: 12, color: th.ink2 } }),
-        yaxis: axis(th, { range: [-2.2, 11], title: { text: t('fig4.yC') }, zeroline: false }),
+        yaxis: axis(th, { range: [0, 11], title: { text: t('fig4.yC') }, zeroline: false }),
         margin: { l: 56, r: 12, t: 24, b: 70 },
       },
     }
@@ -183,7 +183,7 @@ export default function Fig4() {
         <div><h3>{t('fig4.b')}</h3><PlotlyChart ariaLabel={t('fig4.b')} height={400} data={panelB.data as never} layout={panelB.layout as never} onClick={pick} /></div>
         <div><h3>{t('fig4.c')}</h3><PlotlyChart ariaLabel={t('fig4.c')} height={400} data={panelC.data as never} layout={panelC.layout as never} onClick={pick} /></div>
       </div>
-      <p className="small muted">{t('common.clickHint')} {t('fig4.band5')}; {t('fig4.median')} — {lang === 'ru' ? 'красная черта' : 'red bar'}.</p>
+      <p className="small muted">{t('common.clickHint')} {t('fig4.band5')}. {t('fig4.fractionCounts')}; {t('fig4.median')} — {lang === 'ru' ? 'красная черта' : 'red bar'}.</p>
       <p className="small">
         {lang === 'ru'
           ? `Медиана размаха: ${fmt(s.median_range_pathogenic, lang)} п.п. (${s.n_pathogenic} патогенных бластоцист), ${fmt(s.median_range_hv2, lang)} п.п. (HV2), ${fmt(s.median_range_all, lang)} п.п. (все ${s.n_embryos}); стадия дробления — ${fmt(s.median_range_cleavage, lang)} п.п. (n = ${s.n_cleavage}).`

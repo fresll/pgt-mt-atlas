@@ -78,3 +78,1121 @@ corrections:
       ВКМ и оставшаяся ТЭ эмбриона 4 не разделялись; измерена объединённая фракция. Опубликованный абстракт
       (PubMed 42649365) называет такие образцы «combined TE + ICM».
     verified: {date: '2026-10-11', by: 'Claude (раунд 1 рецензии); научная приёмка — куратор'}
+
+landscape_corrections:
+- id: audit-HL-hyslop2025-003
+  target:
+    sheet: Рисунок 3
+    row: 47
+  expected:
+    pub: hyslop2025
+    value: 16.5
+  action: split
+  source:
+    publication: hyslop2025
+    locator: 'Hyslop 2025, Table 1, m.3243A>G row: 9 and 24; footnote ‖'
+  values:
+  - 9
+  - 24
+  original_id: HL-hyslop2025-003
+  note: Двойной перенос; двойня. Соответствие эмбрионов детям не установлено.
+- id: audit-HL-ji2021-007
+  target:
+    sheet: Рисунок 3
+    row: 97
+  expected:
+    pub: ji2021
+    value: 43.9
+  action: exclude
+  source:
+    publication: ji2021
+    locator: 'Ji 2021, Table 3, sample 2.5 (Degenerate); Results: 1 degenerate oocyte'
+  original_id: HL-ji2021-007
+  reason: Дегенерирующий ооцит; не эмбрион.
+- id: audit-HL-ji2021-001
+  target:
+    sheet: Рисунок 3
+    row: 91
+  expected:
+    stage: unspecified
+    sample: mixed_unspecified
+  action: update
+  source:
+    publication: ji2021
+    locator: Ji 2021, Table 3, TE-biopsy column
+  set:
+    stage: blastocyst
+    sample: te_biopsy
+    carrier_id: ji2021-carrier-1
+- id: audit-HL-ji2021-005
+  target:
+    sheet: Рисунок 3
+    row: 95
+  expected:
+    stage: unspecified
+    sample: mixed_unspecified
+  action: update
+  source:
+    publication: ji2021
+    locator: Ji 2021, Table 3, TE-biopsy column
+  set:
+    stage: blastocyst
+    sample: te_biopsy
+    carrier_id: ji2021-carrier-1
+- id: audit-HL-ji2021-008
+  target:
+    sheet: Рисунок 3
+    row: 98
+  expected:
+    stage: unspecified
+    sample: mixed_unspecified
+  action: update
+  source:
+    publication: ji2021
+    locator: Ji 2021, Table 3, TE-biopsy column
+  set:
+    stage: blastocyst
+    sample: te_biopsy
+    carrier_id: ji2021-carrier-1
+- id: audit-HL-ji2021-009
+  target:
+    sheet: Рисунок 3
+    row: 99
+  expected:
+    stage: unspecified
+    sample: mixed_unspecified
+  action: update
+  source:
+    publication: ji2021
+    locator: Ji 2021, Table 3, TE-biopsy column
+  set:
+    stage: blastocyst
+    sample: te_biopsy
+    carrier_id: ji2021-carrier-1
+- id: audit-HL-ji2021-014
+  target:
+    sheet: Рисунок 3
+    row: 104
+  expected:
+    stage: unspecified
+    sample: mixed_unspecified
+  action: update
+  source:
+    publication: ji2021
+    locator: Ji 2021, Table 3, TE-biopsy column
+  set:
+    stage: blastocyst
+    sample: te_biopsy
+    carrier_id: ji2021-carrier-1
+- id: audit-HL-ji2021-020
+  target:
+    sheet: Рисунок 3
+    row: 110
+  expected:
+    stage: unspecified
+    sample: mixed_unspecified
+  action: update
+  source:
+    publication: ji2021
+    locator: Ji 2021, Table 3, TE-biopsy column
+  set:
+    stage: blastocyst
+    sample: te_biopsy
+    carrier_id: ji2021-carrier-1
+- id: audit-HL-spath2021-002
+  target:
+    sheet: Рисунок 3
+    row: 24
+  expected:
+    stage: unspecified
+    sample: te_biopsy
+  action: update
+  source:
+    publication: spath2021
+    locator: Spath 2021, Results of Clinical Application, pp. 323–324; Supplemental Table 3
+  set:
+    stage: blastocyst
+- id: audit-HL-spath2021-003
+  target:
+    sheet: Рисунок 3
+    row: 25
+  expected:
+    stage: unspecified
+    sample: te_biopsy
+  action: update
+  source:
+    publication: spath2021
+    locator: Spath 2021, Results of Clinical Application, pp. 323–324; Supplemental Table 3
+  set:
+    stage: blastocyst
+- id: audit-HL-spath2021-004
+  target:
+    sheet: Рисунок 3
+    row: 26
+  expected:
+    stage: unspecified
+    sample: te_biopsy
+  action: update
+  source:
+    publication: spath2021
+    locator: Spath 2021, Results of Clinical Application, pp. 323–324; Supplemental Table 3
+  set:
+    stage: blastocyst
+- id: audit-HL-spath2021-005
+  target:
+    sheet: Рисунок 3
+    row: 27
+  expected:
+    stage: unspecified
+    sample: te_biopsy
+  action: update
+  source:
+    publication: spath2021
+    locator: Spath 2021, Results of Clinical Application, pp. 323–324; Supplemental Table 3
+  set:
+    stage: blastocyst
+- id: audit-HL-spath2021-007
+  target:
+    sheet: Рисунок 3
+    row: 29
+  expected:
+    stage: unspecified
+    sample: te_biopsy
+  action: update
+  source:
+    publication: spath2021
+    locator: Spath 2021, Results of Clinical Application, pp. 323–324; Supplemental Table 3
+  set:
+    stage: blastocyst
+- id: audit-HL-spath2021-012
+  target:
+    sheet: Рисунок 3
+    row: 34
+  expected:
+    stage: unspecified
+    sample: te_biopsy
+  action: update
+  source:
+    publication: spath2021
+    locator: Spath 2021, Results of Clinical Application, pp. 323–324; Supplemental Table 3
+  set:
+    stage: blastocyst
+- id: audit-HL-spath2021-013
+  target:
+    sheet: Рисунок 3
+    row: 35
+  expected:
+    stage: unspecified
+    sample: te_biopsy
+  action: update
+  source:
+    publication: spath2021
+    locator: Spath 2021, Results of Clinical Application, pp. 323–324; Supplemental Table 3
+  set:
+    stage: blastocyst
+- id: audit-HL-spath2021-015
+  target:
+    sheet: Рисунок 3
+    row: 40
+  expected:
+    stage: unspecified
+    sample: te_biopsy
+  action: update
+  source:
+    publication: spath2021
+    locator: Spath 2021, Results of Clinical Application, pp. 323–324; Supplemental Table 3
+  set:
+    stage: blastocyst
+- id: audit-HL-spath2021-016
+  target:
+    sheet: Рисунок 3
+    row: 56
+  expected:
+    stage: unspecified
+    sample: te_biopsy
+  action: update
+  source:
+    publication: spath2021
+    locator: Spath 2021, Results of Clinical Application, pp. 323–324; Supplemental Table 3
+  set:
+    stage: blastocyst
+- id: audit-HL-monnot2011-001
+  target:
+    sheet: Рисунок 3
+    row: 17
+  expected:
+    q: not_detected
+    lod: null
+  action: update
+  source:
+    publication: monnot2011
+    locator: 'Monnot 2011, Methods, p. 3: detection threshold: 2%'
+  set:
+    lod: 2
+- id: audit-HL-monnot2011-002
+  target:
+    sheet: Рисунок 3
+    row: 18
+  expected:
+    q: not_detected
+    lod: null
+  action: update
+  source:
+    publication: monnot2011
+    locator: 'Monnot 2011, Methods, p. 3: detection threshold: 2%'
+  set:
+    lod: 2
+- id: audit-HL-monnot2011-003
+  target:
+    sheet: Рисунок 3
+    row: 19
+  expected:
+    q: not_detected
+    lod: null
+  action: update
+  source:
+    publication: monnot2011
+    locator: 'Monnot 2011, Methods, p. 3: detection threshold: 2%'
+  set:
+    lod: 2
+- id: audit-HL-monnot2011-004
+  target:
+    sheet: Рисунок 3
+    row: 20
+  expected:
+    q: not_detected
+    lod: null
+  action: update
+  source:
+    publication: monnot2011
+    locator: 'Monnot 2011, Methods, p. 3: detection threshold: 2%'
+  set:
+    lod: 2
+- id: audit-HL-monnot2011-005
+  target:
+    sheet: Рисунок 3
+    row: 21
+  expected:
+    q: not_detected
+    lod: null
+  action: update
+  source:
+    publication: monnot2011
+    locator: 'Monnot 2011, Methods, p. 3: detection threshold: 2%'
+  set:
+    lod: 2
+- id: audit-HL-monnot2011-006
+  target:
+    sheet: Рисунок 3
+    row: 22
+  expected:
+    q: not_detected
+    lod: null
+  action: update
+  source:
+    publication: monnot2011
+    locator: 'Monnot 2011, Methods, p. 3: detection threshold: 2%'
+  set:
+    lod: 2
+- id: audit-HL-hyslop2025-001
+  target:
+    sheet: Рисунок 3
+    row: 15
+  expected:
+    q: not_detected
+    lod: null
+  action: update
+  source:
+    publication: hyslop2025
+    locator: 'Hyslop 2025, Table 1, footnote: below 3%'
+  set:
+    lod: 3
+- id: audit-HL-hyslop2025-002
+  target:
+    sheet: Рисунок 3
+    row: 16
+  expected:
+    q: not_detected
+    lod: null
+  action: update
+  source:
+    publication: hyslop2025
+    locator: 'Hyslop 2025, Table 1, footnote: below 3%'
+  set:
+    lod: 3
+- id: audit-HL-hyslop2025-004
+  target:
+    sheet: Рисунок 3
+    row: 157
+  expected:
+    q: not_detected
+    lod: null
+  action: update
+  source:
+    publication: hyslop2025
+    locator: 'Hyslop 2025, Table 1, footnote: below 3%'
+  set:
+    lod: 3
+- id: audit-HL-hyslop2025-005
+  target:
+    sheet: Рисунок 3
+    row: 158
+  expected:
+    q: not_detected
+    lod: null
+  action: update
+  source:
+    publication: hyslop2025
+    locator: 'Hyslop 2025, Table 1, footnote: below 3%'
+  set:
+    lod: 3
+- id: audit-HL-ji2021-006
+  target:
+    sheet: Рисунок 3
+    row: 96
+  expected:
+    pub: ji2021
+    value: 36.48
+  action: update
+  source:
+    publication: ji2021
+    locator: Ji 2021, Table 3, sample 2.3 (1PN), six blastomeres
+  set:
+    note: 1PN-эмбрион, не кандидат на перенос.
+    non_candidate: 1PN
+    carrier_id: ji2021-carrier-1
+- id: audit-HL-sallevelt2017-002
+  target:
+    sheet: Рисунок 3
+    row: 113
+  expected:
+    pub: sallevelt2017
+    value: 8.0
+  action: update
+  source:
+    publication: sallevelt2017
+    locator: Sallevelt 2017, pp. 700–701; Supplementary Table SI (3PN embryo)
+  set:
+    note: 3PN-эмбрион, не кандидат на перенос.
+    non_candidate: 3PN
+- id: audit-HL-monnot2011-010
+  target:
+    sheet: Рисунок 3
+    row: 43
+  expected:
+    pub: monnot2011
+    value: 14.0
+  action: update
+  source:
+    publication: monnot2011
+    locator: Monnot 2011, Table 1, embryo with 13/13 and 15%; mean (13+15)/2 = 14%
+  set:
+    derivation: mean_of_blastomeres
+    derivation_evidence: 'Среднее двух бластомеров: 13% и 15%.'
+- id: carrier-HL-ji2021-002
+  target:
+    sheet: Рисунок 3
+    row: 92
+  expected:
+    pub: ji2021
+    value: 23.5
+  action: update
+  set:
+    carrier_id: ji2021-carrier-1
+  source:
+    publication: ji2021
+    locator: Ji 2021, clinical case description pp. 3252–3253 and Table 3, one woman/two cycles
+- id: carrier-HL-ji2021-003
+  target:
+    sheet: Рисунок 3
+    row: 93
+  expected:
+    pub: ji2021
+    value: 29.4
+  action: update
+  set:
+    carrier_id: ji2021-carrier-1
+  source:
+    publication: ji2021
+    locator: Ji 2021, clinical case description pp. 3252–3253 and Table 3, one woman/two cycles
+- id: carrier-HL-ji2021-004
+  target:
+    sheet: Рисунок 3
+    row: 94
+  expected:
+    pub: ji2021
+    value: 31.7
+  action: update
+  set:
+    carrier_id: ji2021-carrier-1
+  source:
+    publication: ji2021
+    locator: Ji 2021, clinical case description pp. 3252–3253 and Table 3, one woman/two cycles
+- id: carrier-HL-ji2021-010
+  target:
+    sheet: Рисунок 3
+    row: 100
+  expected:
+    pub: ji2021
+    value: 53.9
+  action: update
+  set:
+    carrier_id: ji2021-carrier-1
+  source:
+    publication: ji2021
+    locator: Ji 2021, clinical case description pp. 3252–3253 and Table 3, one woman/two cycles
+- id: carrier-HL-ji2021-011
+  target:
+    sheet: Рисунок 3
+    row: 101
+  expected:
+    pub: ji2021
+    value: 58.9
+  action: update
+  set:
+    carrier_id: ji2021-carrier-1
+  source:
+    publication: ji2021
+    locator: Ji 2021, clinical case description pp. 3252–3253 and Table 3, one woman/two cycles
+- id: carrier-HL-ji2021-012
+  target:
+    sheet: Рисунок 3
+    row: 102
+  expected:
+    pub: ji2021
+    value: 67.0
+  action: update
+  set:
+    carrier_id: ji2021-carrier-1
+  source:
+    publication: ji2021
+    locator: Ji 2021, clinical case description pp. 3252–3253 and Table 3, one woman/two cycles
+- id: carrier-HL-ji2021-013
+  target:
+    sheet: Рисунок 3
+    row: 103
+  expected:
+    pub: ji2021
+    value: 70.9
+  action: update
+  set:
+    carrier_id: ji2021-carrier-1
+  source:
+    publication: ji2021
+    locator: Ji 2021, clinical case description pp. 3252–3253 and Table 3, one woman/two cycles
+- id: carrier-HL-ji2021-015
+  target:
+    sheet: Рисунок 3
+    row: 105
+  expected:
+    pub: ji2021
+    value: 98.7
+  action: update
+  set:
+    carrier_id: ji2021-carrier-1
+  source:
+    publication: ji2021
+    locator: Ji 2021, clinical case description pp. 3252–3253 and Table 3, one woman/two cycles
+- id: carrier-HL-ji2021-016
+  target:
+    sheet: Рисунок 3
+    row: 106
+  expected:
+    pub: ji2021
+    value: 99.0
+  action: update
+  set:
+    carrier_id: ji2021-carrier-1
+  source:
+    publication: ji2021
+    locator: Ji 2021, clinical case description pp. 3252–3253 and Table 3, one woman/two cycles
+- id: carrier-HL-ji2021-017
+  target:
+    sheet: Рисунок 3
+    row: 107
+  expected:
+    pub: ji2021
+    value: 99.3
+  action: update
+  set:
+    carrier_id: ji2021-carrier-1
+  source:
+    publication: ji2021
+    locator: Ji 2021, clinical case description pp. 3252–3253 and Table 3, one woman/two cycles
+- id: carrier-HL-ji2021-018
+  target:
+    sheet: Рисунок 3
+    row: 108
+  expected:
+    pub: ji2021
+    value: 99.4
+  action: update
+  set:
+    carrier_id: ji2021-carrier-1
+  source:
+    publication: ji2021
+    locator: Ji 2021, clinical case description pp. 3252–3253 and Table 3, one woman/two cycles
+- id: carrier-HL-ji2021-019
+  target:
+    sheet: Рисунок 3
+    row: 109
+  expected:
+    pub: ji2021
+    value: 99.7
+  action: update
+  set:
+    carrier_id: ji2021-carrier-1
+  source:
+    publication: ji2021
+    locator: Ji 2021, clinical case description pp. 3252–3253 and Table 3, one woman/two cycles
+- id: carrier-HL-ji2021-021
+  target:
+    sheet: Рисунок 3
+    row: 111
+  expected:
+    pub: ji2021
+    value: 100.0
+  action: update
+  set:
+    carrier_id: ji2021-carrier-1
+  source:
+    publication: ji2021
+    locator: Ji 2021, clinical case description pp. 3252–3253 and Table 3, one woman/two cycles
+- id: carrier-HL-hu2026-001
+  target:
+    sheet: Рисунок 3
+    row: 183
+  expected:
+    pub: hu2026
+    value: 17.8
+  action: update
+  set:
+    carrier_id: hu2026-carrier-1
+  source:
+    publication: hu2026
+    locator: Hu 2026, clinical case description and embryo-results table, single carrier
+- id: carrier-HL-hu2026-002
+  target:
+    sheet: Рисунок 3
+    row: 184
+  expected:
+    pub: hu2026
+    value: 0.0
+  action: update
+  set:
+    carrier_id: hu2026-carrier-1
+  source:
+    publication: hu2026
+    locator: Hu 2026, clinical case description and embryo-results table, single carrier
+- id: carrier-HL-hu2026-003
+  target:
+    sheet: Рисунок 3
+    row: 185
+  expected:
+    pub: hu2026
+    value: 0.0
+  action: update
+  set:
+    carrier_id: hu2026-carrier-1
+  source:
+    publication: hu2026
+    locator: Hu 2026, clinical case description and embryo-results table, single carrier
+- id: carrier-HL-hu2026-004
+  target:
+    sheet: Рисунок 3
+    row: 186
+  expected:
+    pub: hu2026
+    value: 0.0
+  action: update
+  set:
+    carrier_id: hu2026-carrier-1
+  source:
+    publication: hu2026
+    locator: Hu 2026, clinical case description and embryo-results table, single carrier
+- id: carrier-HL-hu2026-005
+  target:
+    sheet: Рисунок 3
+    row: 187
+  expected:
+    pub: hu2026
+    value: 0.0
+  action: update
+  set:
+    carrier_id: hu2026-carrier-1
+  source:
+    publication: hu2026
+    locator: Hu 2026, clinical case description and embryo-results table, single carrier
+- id: carrier-HL-hu2026-006
+  target:
+    sheet: Рисунок 3
+    row: 188
+  expected:
+    pub: hu2026
+    value: 1.8
+  action: update
+  set:
+    carrier_id: hu2026-carrier-1
+  source:
+    publication: hu2026
+    locator: Hu 2026, clinical case description and embryo-results table, single carrier
+- id: carrier-HL-hu2026-007
+  target:
+    sheet: Рисунок 3
+    row: 189
+  expected:
+    pub: hu2026
+    value: 0.0
+  action: update
+  set:
+    carrier_id: hu2026-carrier-1
+  source:
+    publication: hu2026
+    locator: Hu 2026, clinical case description and embryo-results table, single carrier
+- id: carrier-HL-hu2026-008
+  target:
+    sheet: Рисунок 3
+    row: 190
+  expected:
+    pub: hu2026
+    value: 8.1
+  action: update
+  set:
+    carrier_id: hu2026-carrier-1
+  source:
+    publication: hu2026
+    locator: Hu 2026, clinical case description and embryo-results table, single carrier
+- id: carrier-HL-tofilo2026-001
+  target:
+    sheet: Рисунок 3
+    row: 114
+  expected:
+    pub: tofilo2026
+    value: 11.4
+  action: update
+  set:
+    carrier_id: tofilo2026-carrier-1
+  source:
+    publication: tofilo2026
+    locator: Tofilo 2026, main text, clinical case and Results, six blastocysts from one carrier
+- id: carrier-HL-tofilo2026-002
+  target:
+    sheet: Рисунок 3
+    row: 115
+  expected:
+    pub: tofilo2026
+    value: 12.0
+  action: update
+  set:
+    carrier_id: tofilo2026-carrier-1
+  source:
+    publication: tofilo2026
+    locator: Tofilo 2026, main text, clinical case and Results, six blastocysts from one carrier
+- id: carrier-HL-tofilo2026-003
+  target:
+    sheet: Рисунок 3
+    row: 117
+  expected:
+    pub: tofilo2026
+    value: 13.5
+  action: update
+  set:
+    carrier_id: tofilo2026-carrier-1
+  source:
+    publication: tofilo2026
+    locator: Tofilo 2026, main text, clinical case and Results, six blastocysts from one carrier
+- id: carrier-HL-tofilo2026-004
+  target:
+    sheet: Рисунок 3
+    row: 126
+  expected:
+    pub: tofilo2026
+    value: 73.2
+  action: update
+  set:
+    carrier_id: tofilo2026-carrier-1
+  source:
+    publication: tofilo2026
+    locator: Tofilo 2026, main text, clinical case and Results, six blastocysts from one carrier
+- id: carrier-HL-tofilo2026-005
+  target:
+    sheet: Рисунок 3
+    row: 130
+  expected:
+    pub: tofilo2026
+    value: 92.3
+  action: update
+  set:
+    carrier_id: tofilo2026-carrier-1
+  source:
+    publication: tofilo2026
+    locator: Tofilo 2026, main text, clinical case and Results, six blastocysts from one carrier
+- id: carrier-HL-tofilo2026-006
+  target:
+    sheet: Рисунок 3
+    row: 138
+  expected:
+    pub: tofilo2026
+    value: 99.6
+  action: update
+  set:
+    carrier_id: tofilo2026-carrier-1
+  source:
+    publication: tofilo2026
+    locator: Tofilo 2026, main text, clinical case and Results, six blastocysts from one carrier
+case_corrections:
+- id: audit-case-4
+  row: 4
+  expected:
+    phenotype: NARP/Leigh
+  set:
+    phenotype: null
+  source:
+    publication: steffann2006
+    locator: Published case; Atlas source worksheet «Таблица 1», row 4; numeric values retained except source-verified audit
+      D-1/D-4
+- id: audit-case-5
+  row: 5
+  expected:
+    phenotype: NARP/Leigh
+  set:
+    phenotype: null
+  source:
+    publication: thorburn2009
+    locator: Published case; Atlas source worksheet «Таблица 1», row 5; numeric values retained except source-verified audit
+      D-1/D-4
+- id: audit-case-6
+  row: 6
+  expected:
+    phenotype: NARP/Leigh
+  set:
+    phenotype: null
+  source:
+    publication: sallevelt2013
+    locator: Published case; Atlas source worksheet «Таблица 1», row 6; numeric values retained except source-verified audit
+      D-1/D-4
+- id: audit-case-7
+  row: 7
+  expected:
+    phenotype: MELAS / MIDD; агрегированная подгруппа из 3 женщин
+  set:
+    phenotype: null
+  source:
+    publication: sallevelt2013
+    locator: Published case; Atlas source worksheet «Таблица 1», row 7; numeric values retained except source-verified audit
+      D-1/D-4
+- id: audit-case-8
+  row: 8
+  expected:
+    phenotype: MELAS
+  set:
+    phenotype: null
+  source:
+    publication: monnot2011
+    locator: Published case; Atlas source worksheet «Таблица 1», row 8; numeric values retained except source-verified audit
+      D-1/D-4
+- id: audit-case-9
+  row: 9
+  expected:
+    phenotype: MELAS
+  set:
+    phenotype: null
+  source:
+    publication: monnot2011
+    locator: Published case; Atlas source worksheet «Таблица 1», row 9; numeric values retained except source-verified audit
+      D-1/D-4
+- id: audit-case-10
+  row: 10
+  expected:
+    phenotype: MELAS / MIDD
+    offspring: 'буккальный эпителий: 15% в возрасте 1 мес (метод, разработанный в [24]); в коммерческой лаборатории в том
+      же исследовании вариант в буккальном мазке и осадке мочи не детектировался, в крови в 5 и 12 мес — менее 10% [24]. При
+      независимом повторном анализе того же ребёнка методом ARMS-qPCR в возрасте 6 нед и 18 мес получено 47% и 46% в крови
+      и 52% и 42% в моче [39]'
+    pool_range: '7–91% по эмбриональным значениям; бластоцисты: 12–40%'
+  set:
+    phenotype: null
+    offspring: 'буккальный эпителий: 15% в возрасте 1 мес (Treff et al., 2012); в коммерческой лаборатории в том же исследовании
+      вариант в буккальном мазке и осадке мочи не детектировался, в крови в 5 и 12 мес — менее 10% (Treff et al., 2012). При
+      независимом повторном анализе того же ребёнка методом ARMS-qPCR в возрасте 6 нед и 18 мес получено 47% и 46% в крови
+      и 52% и 42% в моче (Mitalipov et al., 2014)'
+    pool_range: '7–91% по эмбриональным значениям; бластоцисты: 12–90%'
+  source:
+    publication: treff2012
+    locator: Published case; Atlas source worksheet «Таблица 1», row 10; numeric values retained except source-verified audit
+      D-1/D-4
+- id: audit-case-11
+  row: 11
+  expected:
+    phenotype: MELAS
+  set:
+    phenotype: null
+  source:
+    publication: heindryckx2014
+    locator: Published case; Atlas source worksheet «Таблица 1», row 11; numeric values retained except source-verified audit
+      D-1/D-4
+- id: audit-case-12
+  row: 12
+  expected:
+    phenotype: MERRF
+  set:
+    phenotype: null
+  source:
+    publication: steffann2014
+    locator: Published case; Atlas source worksheet «Таблица 1», row 12; numeric values retained except source-verified audit
+      D-1/D-4
+- id: audit-case-13
+  row: 13
+  expected:
+    phenotype: Leigh-синдром
+    offspring: 'пуповинная кровь: около 5%; пренатальная диагностика отклонена'
+  set:
+    phenotype: null
+    offspring: 'пуповинная кровь: около 5%'
+  source:
+    publication: sallevelt2017
+    locator: Published case; Atlas source worksheet «Таблица 1», row 13; numeric values retained except source-verified audit
+      D-1/D-4
+- id: audit-case-14
+  row: 14
+  expected:
+    phenotype: Leigh-синдром
+  set:
+    phenotype: null
+  source:
+    publication: tofilo2026
+    locator: Published case; Atlas source worksheet «Таблица 1», row 14; numeric values retained except source-verified audit
+      D-1/D-4
+- id: audit-case-15
+  row: 15
+  expected:
+    phenotype: Leigh-синдром
+    transferred: 31,7% (мозаичный эмбрион; биохимическая беременность); 53,9% (эуплоидный эмбрион; беременность с прерыванием)
+  set:
+    phenotype: null
+    transferred: 31,7%; 53,9%; живорождения нет
+  source:
+    publication: ji2021
+    locator: Published case; Atlas source worksheet «Таблица 1», row 15; numeric values retained except source-verified audit
+      D-1/D-4
+- id: audit-case-16
+  row: 16
+  expected:
+    phenotype: NARP/Leigh
+  set:
+    phenotype: null
+  source:
+    publication: spath2021
+    locator: Published case; Atlas source worksheet «Таблица 1», row 16; numeric values retained except source-verified audit
+      D-1/D-4
+- id: audit-case-17
+  row: 17
+  expected:
+    phenotype: NARP/Leigh / больной ребёнок в анамнезе
+  set:
+    phenotype: null
+  source:
+    publication: spath2021
+    locator: Published case; Atlas source worksheet «Таблица 1», row 17; numeric values retained except source-verified audit
+      D-1/D-4
+- id: audit-case-18
+  row: 18
+  expected:
+    phenotype: Leigh-синдром
+    offspring: 'после ПГТ: живорождения нет; естественная беременность позднее: CVS 0%'
+  set:
+    phenotype: null
+    offspring: 'после ПГТ: живорождения нет'
+  source:
+    publication: spath2021
+    locator: Published case; Atlas source worksheet «Таблица 1», row 18; numeric values retained except source-verified audit
+      D-1/D-4
+- id: audit-case-19
+  row: 19
+  expected:
+    phenotype: митохондриальная миопатия с птозом/офтальмоплегией
+    offspring: живорождения нет; обе беременности прервались на 8-й неделе
+  set:
+    phenotype: null
+    offspring: живорождения нет
+  source:
+    publication: spath2021
+    locator: Published case; Atlas source worksheet «Таблица 1», row 19; numeric values retained except source-verified audit
+      D-1/D-4
+- id: audit-case-20
+  row: 20
+  expected:
+    phenotype: Leigh-энцефалопатия
+  set:
+    phenotype: null
+  source:
+    publication: mizuguchi2025
+    locator: Published case; Atlas source worksheet «Таблица 1», row 20; numeric values retained except source-verified audit
+      D-1/D-4
+- id: audit-case-21
+  row: 21
+  expected:
+    phenotype: митохондриальный симптомокомплекс / PGT live-birth subset
+    transferred: 0%; 0%; 16,5%
+    offspring: 'кровь детей в общей PGT-подгруппе: от неопределяемого уровня до 7%; не mutation-specific'
+    pool_range: 0–16,5% для live-birth-linked значений
+  set:
+    phenotype: null
+    transferred: 0%; 0%; 9% и 24% (двойной перенос, двойня)
+    offspring: 'кровь детей в общей подгруппе ПГТ: от неопределяемого уровня до 7%; без разбивки по вариантам'
+    pool_range: 0–24% для значений, связанных с живорождением
+  source:
+    publication: hyslop2025
+    locator: Published case; Atlas source worksheet «Таблица 1», row 21; numeric values retained except source-verified audit
+      D-1/D-4
+- id: audit-case-22
+  row: 22
+  expected:
+    phenotype: NARP/Leigh / PGT live-birth subset
+    offspring: 'кровь детей в общей PGT-подгруппе: от неопределяемого уровня до 7%; не mutation-specific'
+  set:
+    phenotype: null
+    offspring: 'кровь детей в общей подгруппе ПГТ: от неопределяемого уровня до 7%; без разбивки по вариантам'
+  source:
+    publication: hyslop2025
+    locator: Published case; Atlas source worksheet «Таблица 1», row 22; numeric values retained except source-verified audit
+      D-1/D-4
+- id: audit-case-23
+  row: 23
+  expected:
+    phenotype: NARP/Leigh / PGT live-birth subset
+    offspring: 'кровь детей в общей PGT-подгруппе: от неопределяемого уровня до 7%; не mutation-specific'
+  set:
+    phenotype: null
+    offspring: 'кровь детей в общей подгруппе ПГТ: от неопределяемого уровня до 7%; без разбивки по вариантам'
+  source:
+    publication: hyslop2025
+    locator: Published case; Atlas source worksheet «Таблица 1», row 23; numeric values retained except source-verified audit
+      D-1/D-4
+- id: audit-case-24
+  row: 24
+  expected:
+    phenotype: митохондриальный симптомокомплекс / PGT live-birth subset
+    offspring: 'кровь детей в общей PGT-подгруппе: от неопределяемого уровня до 7%; не mutation-specific'
+  set:
+    phenotype: null
+    offspring: 'кровь детей в общей подгруппе ПГТ: от неопределяемого уровня до 7%; без разбивки по вариантам'
+  source:
+    publication: hyslop2025
+    locator: Published case; Atlas source worksheet «Таблица 1», row 24; numeric values retained except source-verified audit
+      D-1/D-4
+- id: audit-case-25
+  row: 25
+  expected:
+    phenotype: митохондриальный симптомокомплекс / PGT live-birth subset
+    offspring: 'кровь детей в общей PGT-подгруппе: от неопределяемого уровня до 7%; не mutation-specific'
+  set:
+    phenotype: null
+    offspring: 'кровь детей в общей подгруппе ПГТ: от неопределяемого уровня до 7%; без разбивки по вариантам'
+  source:
+    publication: hyslop2025
+    locator: Published case; Atlas source worksheet «Таблица 1», row 25; numeric values retained except source-verified audit
+      D-1/D-4
+- id: audit-case-26
+  row: 26
+  expected:
+    phenotype: митохондриальный симптомокомплекс / PGT live-birth subset
+    offspring: 'кровь детей в общей PGT-подгруппе: от неопределяемого уровня до 7%; не mutation-specific'
+  set:
+    phenotype: null
+    offspring: 'кровь детей в общей подгруппе ПГТ: от неопределяемого уровня до 7%; без разбивки по вариантам'
+  source:
+    publication: hyslop2025
+    locator: Published case; Atlas source worksheet «Таблица 1», row 26; numeric values retained except source-verified audit
+      D-1/D-4
+- id: audit-case-27
+  row: 27
+  expected:
+    phenotype: MERRF / embryology series; no transfer
+  set:
+    phenotype: null
+  source:
+    publication: rubens2025
+    locator: Published case; Atlas source worksheet «Таблица 1», row 27; numeric values retained except source-verified audit
+      D-1/D-4
+- id: audit-case-28
+  row: 28
+  expected:
+    phenotype: NARP/Leigh / embryology series; no transfer
+  set:
+    phenotype: null
+  source:
+    publication: rubens2025
+    locator: Published case; Atlas source worksheet «Таблица 1», row 28; numeric values retained except source-verified audit
+      D-1/D-4
+- id: audit-case-29
+  row: 29
+  expected:
+    phenotype: митохондриальный симптомокомплекс / embryology series; no transfer
+  set:
+    phenotype: null
+  source:
+    publication: rubens2025
+    locator: Published case; Atlas source worksheet «Таблица 1», row 29; numeric values retained except source-verified audit
+      D-1/D-4
+- id: audit-case-30
+  row: 30
+  expected:
+    phenotype: NARP/Leigh / embryology series; no transfer
+  set:
+    phenotype: null
+  source:
+    publication: rubens2025
+    locator: Published case; Atlas source worksheet «Таблица 1», row 30; numeric values retained except source-verified audit
+      D-1/D-4
+- id: audit-case-31
+  row: 31
+  expected:
+    phenotype: MELAS/MIDD / embryology series; no transfer
+  set:
+    phenotype: null
+  source:
+    publication: rubens2025
+    locator: Published case; Atlas source worksheet «Таблица 1», row 31; numeric values retained except source-verified audit
+      D-1/D-4
+- id: audit-case-32
+  row: 32
+  expected:
+    phenotype: MELAS, MERRF, NARP, Leigh и родственные фенотипы
+  set:
+    phenotype: null
+  source:
+    publication: mayeur2023
+    locator: Published case; Atlas source worksheet «Таблица 1», row 32; numeric values retained except source-verified audit
+      D-1/D-4
+- id: audit-case-33
+  row: 33
+  expected:
+    phenotype: MT-TL1, вариант неопределённого клинического значения (описаны миопатия, кардиомиопатия); в семье — синдром
+      Айкарди–Гутьер 3 (RNASEH2C); совмещённое ПГТ-М + ПГТ-мт + ПГТ-А
+    transferred: 1,8% (эуплоидная бластоциста, гетерозигота по c.194G>A RNASEH2C)
+    offspring: 'амниотическая жидкость (18 нед): 1,5%; пуповинная кровь: 0%; кровь и буккальный эпителий в 2 года: 0%; здоровый
+      мальчик'
+    pool_range: '0–17,8%: 6 бластоцист (биоптат ТЭ, 3–5 клеток, д5–д7) — 17,8; 0; 0; 0; 1,8; 8,1%; 2 остановившихся эмбриона
+      целиком — 0; 0%. Мать: кровь 20,2%, моча 21,7%, буккальный эпителий 27,9%'
+  set:
+    phenotype: null
+    transferred: 1,8% (эуплоидная бластоциста)
+    offspring: 'амниотическая жидкость (18 нед): 1,5%; пуповинная кровь: 0%; кровь и буккальный эпителий в 2 года: 0%; живорождение'
+    pool_range: '0–17,8%: 6 бластоцист (биоптат ТЭ, 3–5 клеток, д5–д7) — 17,8; 0; 0; 0; 1,8; 8,1%; 2 остановившихся эмбриона
+      целиком — 0; 0%.'
+  source:
+    publication: hu2026
+    locator: Published case; Atlas source worksheet «Таблица 1», row 33; numeric values retained except source-verified audit
+      D-1/D-4
+
+offspring_corrections:
+- id: method-C5a
+  row: 10
+  expected:
+    method: количественный анализ, разработанный в [24]
+  set:
+    method: количественный анализ, разработанный в Treff et al., 2012
+  source:
+    publication: treff2012
+    locator: Treff 2012, Methods; Atlas worksheet «Рисунок 5», row 10

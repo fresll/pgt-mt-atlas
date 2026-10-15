@@ -12,7 +12,7 @@ export default function ScienceIndex() {
   const items: [string, string, string, string, boolean][] = [
     ['heteroplasmy-landscape/', t('fig3.title'), t('fig3.subtitle'), ru ? `${s.fig3.n} значений, 7 вариантов мтДНК` : `${s.fig3.n} values, 7 mtDNA variants`, false],
     ['embryo-concordance/', t('fig4.title'), t('fig4.subtitle'), ru ? `${s.fig4.n_embryos} бластоцист + ${s.fig4.n_cleavage} эмбрионов дробления` : `${s.fig4.n_embryos} blastocysts + ${s.fig4.n_cleavage} cleavage embryos`, false],
-    ['embryo-to-offspring/', t('fig5.title'), t('fig5.subtitle'), ru ? `${s.fig5.n_pairs} сопоставлений, ${s.fig5.n_children} детей` : `${s.fig5.n_pairs} comparisons, ${s.fig5.n_children} children`, false],
+    ['embryo-to-offspring/', t('fig5.title'), t('fig5.subtitle'), ru ? `${s.fig5.n_pairs} сопоставлений, ${s.fig5.n_children} плодов и детей` : `${s.fig5.n_pairs} comparisons, ${s.fig5.n_children} fetuses and children`, false],
     ['pgt-mt-pgt-a-model/', t('fig6.title'), t('fig6.subtitle'), ru ? 'сценарный расчёт' : 'scenario calculation', true],
   ]
   return (

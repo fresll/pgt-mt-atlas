@@ -21,7 +21,8 @@ const SYMBOL = ['circle', 'square', 'triangle-up'] as const
 const NOT_INCLUDED = [
   { pub: 'sallevelt2017', ru: 'm.14487T>C — перенесены два эмбриона с разными значениями; ребёнка нельзя однозначно связать ни с одним из них.', en: 'm.14487T>C — two embryos with different values were transferred; the child cannot be linked to either of them.' },
   { pub: 'steffann2014', ru: 'm.8344A>G — ткань, в которой измерена гетероплазмия при рождении, не указана.', en: 'm.8344A>G — the tissue measured at birth is not specified.' },
-  { pub: 'hyslop2025', ru: 'Программа Newcastle — постнатальные данные опубликованы только для подгруппы в целом, без индивидуальных пар.', en: 'Newcastle programme — postnatal data are published only for the subgroup as a whole, without individual pairs.' },
+  { pub: 'monnot2011', ru: 'Перенесены два эмбриона; ребёнка нельзя однозначно связать ни с одним из них.', en: 'Two embryos were transferred; the child cannot be linked to either one.' },
+  { pub: 'hyslop2025', ru: 'Table 1 содержит значения в тестовом бластомере и крови для 11 детей. Добавление пар одиночных переносов ожидает сверки куратором; двойной перенос не сопоставляется с отдельным ребёнком.', en: 'Table 1 reports test-blastomere and blood values for 11 children. Single-transfer pairs await curator verification; double transfers cannot be linked to individual children.' },
 ]
 
 // Цвет — вариант (не более 3 категориальных цветов на точечном графике; m.3697G>A — нейтральный тон, пространственно отделён)
@@ -35,7 +36,7 @@ const C5_POS: Record<string, [number, number]> = { C5b: [11, 0], C5c: [13, 0], C
 
 function position(p: OffspringPair): [number, number] {
   const k = LOW_ORDER.indexOf(p.id)
-  if (k >= 0) return [-15.5 + k * 2.1, p.value as number]
+  if (p.emb_q === 'not_detected') return [0.08 + Math.max(0, k) * 0.075, p.value as number]
   return C5_POS[p.id] ?? [p.emb as number, p.value as number]
 }
 
@@ -73,10 +74,10 @@ export default function Fig5() {
       const [x, y] = position(p)
       const censored = p.q === 'less_than'
       return {
-        type: 'scatter', mode: 'markers', x: [x], y: [y], customdata: [p.id], text: [hover(p) + (censored ? `<br><i>${t('badge.outsideArticle')}</i>` : '')],
+        type: 'scatter', mode: 'markers', x: [x], xaxis: p.emb_q === 'not_detected' ? 'x2' : 'x', y: [y], customdata: [p.id], text: [hover(p) + (censored ? `<br><i>${t('badge.outsideArticle')}</i>` : '')],
         hovertemplate: '%{text}<extra></extra>',
         marker: {
-          symbol: censored ? 'triangle-down-open' : SYMBOL[materialCat(p)],
+          symbol: censored ? 'triangle-down-open' : p.q === 'not_detected' ? `${SYMBOL[materialCat(p)]}-open` : SYMBOL[materialCat(p)],
           size: p.id === selected ? 14 : 10,
           color: variantColor(p.variant, th),
           line: { width: p.id === selected ? 2.5 : 1, color: p.id === selected ? th.accent : th.surface },
@@ -89,17 +90,18 @@ export default function Fig5() {
       layout: {
         ...baseLayout(th),
         shapes: [
-          { type: 'rect', x0: -17, x1: 66, y0: -3, y1: 5, fillcolor: th.grid, opacity: 0.45, line: { width: 0 }, layer: 'below' },
-          { type: 'line', x0: -3, y0: -3, x1: 66, y1: 66, line: { color: th.muted, dash: 'dash', width: 1 }, layer: 'below' },
+          { type: 'rect', x0: 0, x1: 66, y0: -3, y1: 5, fillcolor: th.grid, opacity: 0.45, line: { width: 0 }, layer: 'below' },
+          { type: 'line', x0: 0, y0: 0, x1: 66, y1: 66, line: { color: th.muted, dash: 'dash', width: 1 }, layer: 'below' },
           { type: 'line', x0: 12, x1: 12, y0: 0, y1: 52, line: { color: variantColor('m.3243A>G', th), width: 1.4 }, opacity: 0.7, layer: 'below' },
         ],
         annotations: [
           lab(13.6, 52, 'C5g'), lab(9.4, 47, 'C5e', 'right'), lab(14.4, 45.2, 'C5f'), lab(13.6, 42, 'C5h'),
           lab(10.3, 15, 'C5a', 'right'), lab(2.5, 7.4, 'C2', 'center'), lab(14.2, -1.6, 'C5b, C5c'),
-          lab(55.5, 50.3, 'C12a'), lab(55.5, 46.6, 'C12b'), lab(-16.3, -6.3, 'C14a–d, C1a, C1b, C3, C6a–c, C9a, C9b'),
+          lab(55.5, 50.3, 'C12a'), lab(55.5, 46.6, 'C12b'), { x: 0.08, xref: 'paper', y: -0.10, yref: 'paper', text: t('fig5.ndBand'), showarrow: false, font: { size: 13 } },
           ...(showExcluded ? [lab(13.6, 10, 'C5d (<10%)')] : []),
         ],
-        xaxis: axis(th, { range: [-17, 66], tickvals: [0, 10, 20, 30, 40, 50, 60], title: { text: t('fig5.xA') }, zeroline: false }),
+        xaxis: axis(th, { domain: [0.22, 1], range: [0, 66], tickvals: [0, 10, 20, 30, 40, 50, 60], title: { text: t('fig5.xA') }, zeroline: false }),
+        xaxis2: { domain: [0, 0.17], range: [0, 1], showticklabels: false, showgrid: false, zeroline: false, fixedrange: true },
         yaxis: axis(th, { range: [-9, 66], title: { text: t('fig5.yA') }, zeroline: false }),
       },
     }
@@ -123,7 +125,7 @@ export default function Fig5() {
         data.push({
           type: 'scatter', mode: 'markers', x: [x], y: [d], customdata: [p.id], text: [`${hover(p)}<br>Δ = ${fmt(d, lang, 2)} ${t('common.pp')}`],
           hovertemplate: '%{text}<extra></extra>',
-          marker: { symbol: SYMBOL[g], size: p.id === selected ? 14 : 10, color: variantColor(p.variant, th), line: { width: p.id === selected ? 2.5 : 1, color: p.id === selected ? th.accent : th.surface } },
+          marker: { symbol: p.q === 'not_detected' || p.emb_q === 'not_detected' ? `${SYMBOL[g]}-open` : SYMBOL[g], size: p.id === selected ? 14 : 10, color: variantColor(p.variant, th), line: { width: p.id === selected ? 2.5 : 1, color: p.id === selected ? th.accent : th.surface } },
         })
       }
       ann.push({ x: g, y: -18, text: `n = ${rows.length}`, showarrow: false, font: { size: 12, color: th.muted } })
@@ -184,11 +186,9 @@ export default function Fig5() {
         <div><h3>{lang === 'ru' ? 'А' : 'A'}</h3><PlotlyChart ariaLabel={t('fig5.subtitle')} height={460} data={panelA.data as never} layout={panelA.layout as never} onClick={pick} /></div>
         <div><h3>{lang === 'ru' ? 'Б' : 'B'}</h3><PlotlyChart ariaLabel={t('fig5.yB')} height={460} data={panelB.data as never} layout={panelB.layout as never} onClick={pick} /></div>
       </div>
-      <p className="small muted">{t('common.clickHint')} {t('fig5.lowSpread')}</p>
+      <p className="small muted">{t('common.clickHint')} {t('fig5.lowSpread')} {t('fig5.deltaBound')}</p>
       <p className="small"><strong>{t('fig5.dependency', { pairs: s.n_pairs, children: s.n_children, ...topChild })}</strong>{' '}
-        {lang === 'ru'
-          ? `Из ${s.n_low_embryo} сопоставлений с низкой гетероплазмией эмбриона ${s.n_concordant_low} сопровождались низкой или неопределяемой гетероплазмией в ткани; все расхождения (${s.discordant_ids.join(', ')}) — повторный анализ одного ребёнка другим методом.`
-          : `Of ${s.n_low_embryo} comparisons with low embryo heteroplasmy, ${s.n_concordant_low} showed low or undetectable tissue heteroplasmy; all discordant values (${s.discordant_ids.join(', ')}) come from re-analysis of one child by another method.`}
+        {t('fig5.childSummary', { low: s.n_low_children, all: s.n_children, concordant: s.n_concordant_children })}
       </p>
       {sel && (
         <Detail
@@ -224,7 +224,7 @@ export default function Fig5() {
       </ul>
 
       <details className="table-details">
-        <summary>{t('common.showTable')} (n = {atlas.fig5.length})</summary>
+        <summary>{t('common.showTable')} ({t('fig5.recordSummary', { records: atlas.fig5.length, pairs: s.n_pairs, children: s.n_children })})</summary>
         <DataTable
           rows={atlas.fig5}
           rowKey={(p) => p.id}

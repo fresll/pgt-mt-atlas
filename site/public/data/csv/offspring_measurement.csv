@@ -5,7 +5,7 @@ C1a,C1,steffann2006,m.8993T>G,0.0,not_detected,,prenatal,amniotic_fluid,амни
 C1b,C1,steffann2006,m.8993T>G,0.0,not_detected,,postnatal,cord_blood,пуповинная кровь,0.0,not_detected,,,,0.0,Рисунок 5,7
 C2,C2,thorburn2009,m.8993T>G,2.5,exact,,postnatal,cord_blood,пуповинная кровь,4.0,exact,,,,1.5,Рисунок 5,8
 C3,C3,sallevelt2013,m.8993T>G,0.0,not_detected,,postnatal,cord_blood,пуповинная кровь,0.0,not_detected,,,,0.0,Рисунок 5,9
-C5a,C5,treff2012,m.3243A>G,12.0,exact,,postnatal,buccal,буккальный эпителий,15.0,exact,,1 мес,"количественный анализ, разработанный в [24]",3.0,Рисунок 5,10
+C5a,C5,treff2012,m.3243A>G,12.0,exact,,postnatal,buccal,буккальный эпителий,15.0,exact,,1 мес,"количественный анализ, разработанный в Treff et al., 2012",3.0,Рисунок 5,10
 C6a,C6,heindryckx2014,m.3243A>G,0.0,not_detected,,postnatal,buccal,буккальный мазок,0.0,not_detected,,,,0.0,Рисунок 5,11
 C6b,C6,heindryckx2014,m.3243A>G,0.0,not_detected,,postnatal,blood,кровь,0.0,not_detected,,,,0.0,Рисунок 5,12
 C6c,C6,heindryckx2014,m.3243A>G,0.0,not_detected,,postnatal,urine,моча,0.0,not_detected,,,,0.0,Рисунок 5,13

@@ -39,7 +39,7 @@ labels:
     less_than:    {ru: Меньше указанного значения, en: Below the stated value}
     interval:     {ru: Опубликован только интервал, en: Only an interval was published}
   derivation:
-    as_reported_in_dataset:  {ru: Как в наборе данных (правило вывода не записано), en: As in the dataset (no derivation rule recorded)}
+    as_reported_in_dataset:  {ru: Способ получения не указан, en: Derivation not recorded}
     mean_of_blastomeres:     {ru: Среднее двух бластомеров, en: Mean of two blastomeres}
     mean_of_halves:          {ru: Среднее двух половин эмбриона, en: Mean of two embryo halves}
     mean_of_biopsies:        {ru: Среднее нескольких биоптатов, en: Mean of several biopsies}

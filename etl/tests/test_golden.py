@@ -17,8 +17,8 @@ def test_fig3_counts(atlas):
     s = atlas['stats']['fig3']
     assert s['n'] == 187
     expected = {  # вариант: (n, ≤18%, ≤30%)
-        'm.3243A>G': (87, 41, 52), 'm.14487T>C': (28, 6, 8), 'm.8993T>G': (26, 24, 24),
-        'm.3697G>A': (21, 1, 3), 'm.10197G>A': (9, 5, 5), 'm.10191T>C': (8, 8, 8), 'm.3250T>C': (8, 8, 8),
+        'm.3243A>G': (88, 41, 53), 'm.14487T>C': (28, 6, 8), 'm.8993T>G': (26, 24, 24),
+        'm.3697G>A': (20, 1, 3), 'm.10197G>A': (9, 5, 5), 'm.10191T>C': (8, 8, 8), 'm.3250T>C': (8, 8, 8),
     }
     got = {v: (x['n'], x['le18']['k'], x['le30']['k']) for v, x in s['by_variant'].items()}
     assert got == expected
@@ -223,7 +223,8 @@ def test_baseline_release_is_reproduced(atlas):
     meta = atlas['meta']
     assert meta['baseline']['version'] == '2026-10-10'
     assert meta['baseline']['counts']['landscape_values'] == 187
-    assert meta['current_counts'] == meta['baseline']['counts']
+    assert meta['current_counts']['landscape_values'] == 187
+    assert meta['current_counts']['offspring_children_exact_pair'] == 8
 
 
 # --- раздел 7: основания классификации, роли источников; A4–A5: модель и ориентиры
@@ -259,3 +260,33 @@ def test_model_p_eupl_is_labelled_scenario(atlas):
     assert [x['value'] for x in m['p_eupl']] == [0.7, 0.5, 0.3]  # параметры не менялись
     assert m['p_eupl_status'] == 'scenario'
     assert 'xfnr.2024.100082' in m['p_eupl_locator']
+
+
+def test_audit_split_exclusion_and_detection_limits(atlas):
+    values = {o['id']: o for o in atlas['fig3']}
+    assert 'HL-hyslop2025-003' not in values and 'HL-ji2021-007' not in values
+    assert [values[f'HL-hyslop2025-{n:03d}']['value'] for n in (6, 7)] == [9, 24]
+    assert all(values[f'HL-hyslop2025-{n:03d}']['parent_id'] == 'HL-hyslop2025-003' for n in (6, 7))
+    excluded = atlas['excluded_landscape']
+    assert len(excluded) == 1 and excluded[0]['value'] == 43.9
+    assert 'ооцит' in excluded[0]['reason']
+    assert sum(o['q'] == 'not_detected' and o['lod'] is None for o in values.values()) == 43
+    assert values['HL-monnot2011-010']['derivation'] == 'mean_of_blastomeres'
+
+
+def test_audit_child_denominators_and_privacy(atlas):
+    s = atlas['stats']['fig5']
+    assert (s['n_records'], s['n_pairs'], s['n_children'], s['n_low_children'], s['n_concordant_children']) == (24, 22, 8, 7, 6)
+    assert all(r['phenotype'] is None for r in atlas['table1'])
+    text = ' '.join((r.get(k) or '') for r in atlas['table1'] for k in ('transferred', 'offspring', 'pool_range'))
+    for private in ('RNASEH2C', 'Айкарди', 'здоровый мальчик', 'диагностика отклонена', 'прервались на'):
+        assert private not in text
+
+
+def test_landscape_correction_guard(atlas):
+    import copy
+    records = copy.deepcopy(atlas['fig3'])
+    correction = {'id': 'invalid', 'target': records[0]['src'], 'source': {'publication': records[0]['pub'], 'locator': 'Table 1'},
+                  'expected': {'value': -1}, 'action': 'update', 'set': {'value': 0}}
+    with pytest.raises(b.EtlError, match='Исходник изменился'):
+        b.apply_landscape_corrections(records, [correction])

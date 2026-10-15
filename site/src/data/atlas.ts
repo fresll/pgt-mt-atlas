@@ -47,6 +47,9 @@ export interface Correction {
 }
 
 export interface EmbryoObservation {
+  source_locator?: string
+  non_candidate?: string
+  carrier_id?: string | null
   /** стабильный идентификатор (не зависит от строки xlsx) */
   id: string
   /** прежний идентификатор по строке xlsx — алиас для старых ссылок */
@@ -213,7 +216,10 @@ export interface Atlas {
     fig4: Record<string, number>
     /** те же статистики по исходной таблице, до слоя корректировок */
     fig4_source_xlsx: Record<string, number>
-    fig5: { n_pairs: number; n_children: number; n_low_embryo: number; n_concordant_low: number; discordant_ids: string[] }
+    fig5: { n_pairs: number; n_children: number; n_records: number
+    n_low_children: number
+    n_concordant_children: number
+    n_low_embryo: number; n_concordant_low: number; discordant_ids: string[] }
   }
 }
 

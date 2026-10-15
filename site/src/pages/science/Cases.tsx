@@ -22,10 +22,9 @@ export default function Cases() {
         rows={atlas.table1}
         rowKey={(r) => String(r.row)}
         csvName="pgt-mt-atlas_table1.csv"
-        csvRow={(r) => ({ variant: r.variant, phenotype: r.phenotype, pool_range: r.pool_range, transferred: r.transferred, offspring: r.offspring, publications: r.pubs.join('; '), data_type: r.data_type, value_origin: r.value_origin, sheet_row: r.row })}
+        csvRow={(r) => ({ variant: r.variant, pool_range: r.pool_range, transferred: r.transferred, offspring: r.offspring, publications: r.pubs.join('; '), data_type: r.data_type, value_origin: r.value_origin, sheet_row: r.row })}
         columns={[
           { key: 'v', header: t('common.variant'), render: (r) => <strong>{r.variant}</strong>, sort: (r) => r.variant },
-          { key: 'ph', header: 'Phenotype / фенотип', render: (r) => <span lang="ru">{r.phenotype}</span> },
           { key: 'pool', header: t('cases.range'), render: (r) => <span lang="ru">{r.pool_range}</span> },
           { key: 'tr', header: t('cases.transferred'), render: (r) => <span lang="ru">{r.transferred}</span> },
           { key: 'off', header: t('cases.offspring'), render: (r) => <span lang="ru">{r.offspring}</span> },
