@@ -9,6 +9,7 @@ import { summarizeInput, type Boundary } from '../../model/observations'
 import { jointBounds, scenarioProbability } from '../../model/scenario'
 import { axis, baseLayout, useChartTheme } from '../../lib/theme'
 import { PageTitle } from '../../components/Layout'
+import modelVersion from '../../../public/model-version.json'
 
 type Cut = 'both' | '18' | '30'
 
@@ -87,6 +88,7 @@ export default function Fig6() {
     <PageTitle title={t('fig6.title')} />
     <h1>{t('fig6.title')}</h1>
     <p className="subtitle">{t('fig6.subtitle')}</p>
+    <p className="small muted" data-testid="model-version" data-model-version={modelVersion.model_version}>{t('fig6.versionLabel', { v: modelVersion.model_version })}</p>
     <div className="callout model" role="note"><strong>◆ </strong>{t('fig6.banner')}</div>
     <h2>{t('fig6.meaningTitle')}</h2>
     <p data-testid="model-meaning">{t('fig6.meaning')}</p>

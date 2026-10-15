@@ -226,6 +226,7 @@ const en: FundamentalsContent = {
       lead: 'PGT-mt is not a single test but a sequence of clinical and laboratory steps. The full pathway is outlined below; the specific methods and criteria are determined by validation in each laboratory.',
       essentials: [
         { t: 'p', x: 'Technically, PGT-mt is close to PGT-M: in both, an embryo biopsy is used to study the DNA sequence. But the logic differs. PGT-M determines whether an embryo has inherited a nuclear-gene variant; PGT-mt assesses the mtDNA heteroplasmy level. The result of PGT-mt is therefore a percentage, and embryos are ranked by mutant load [@smeets2023].' },
+        { t: 'flow', caption: 'Five stages of the pathway; numbers refer to the steps below.', phases: [['Family', [1, 2]], ['ART cycle', [3, 4]], ['Laboratory', [5, 6, 7]], ['Decision', [8, 9]], ['Pregnancy and child', [10]]] },
         { t: 'steps', items: [
           ['Identifying the pathogenic variant in the family', 'Diagnosis in the proband, confirmation that the variant is pathogenic, and measurement of heteroplasmy in the carrier’s tissues [@mavraki2023].'],
           ['Genetic counselling', 'Discussion of all reproductive options — prenatal diagnosis, PGT-mt, donor oocytes, mitochondrial donation where it is permitted — and of the expected chances [@smeets2023; @castelluccio2025].'],
@@ -298,6 +299,16 @@ const en: FundamentalsContent = {
         { t: 'p', x: 'These are answers to different questions, obtained from different tissues, methods and outcomes. Neither is a universal clinical threshold.' },
         { t: 'h', x: 'Chromosomes matter too' },
         { t: 'p', x: 'An embryo for transfer must have both a low mutant mtDNA load and a euploid chromosome complement. The aneuploidy rate rises with the woman’s age [@volodyaev2025], so PGT-mt is best interpreted together with PGT-A [@spath2021].' },
+        { t: 'h', x: 'Reading a report: a teaching example' },
+        { t: 'p', x: 'A hypothetical cycle made up for illustration: the numbers are not taken from publications. Before the cycle the programme and the family agreed on a cut-off for this variant — 15% in this example; PGT-A was performed on the same trophectoderm biopsy.' },
+        { t: 'table', label: 'Teaching example · hypothetical values', head: ['Embryo', 'Heteroplasmy in the biopsy', 'PGT-A', 'How it is read'], rows: [
+          ['1', '3%', 'euploid', 'below the cut-off — first candidate for transfer'],
+          ['2', 'not detected (below the method’s limit of detection, 2%)', 'aneuploid', 'not transferred because of the chromosomes; “not detected” does not mean 0%'],
+          ['3', '11%', 'euploid', 'below the cut-off — second candidate'],
+          ['4', '38%', 'euploid', 'above the agreed cut-off — usually not transferred'],
+          ['5', '6%', 'mosaic', 'the decision is discussed separately with the clinical geneticist'],
+        ] },
+        { t: 'p', x: 'The final order of candidates is discussed with the clinical geneticist and the embryologist. Even after transfer of embryo 1, prenatal diagnosis is discussed: the biopsy is a few trophectoderm cells, not the whole embryo (chapter 4).' },
         { t: 'h', x: 'The data are few and biased' },
         { t: 'p', x: 'Published PGT-mt experience consists mainly of single families, small series and a few specialised programmes [@castelluccio2025; @hyslop2025]. Successful cycles are published more often than unsuccessful ones, and there are no data to correct for this publication bias. Every fully reported cycle — including cycles with no suitable embryo — is therefore valuable for science.' },
         { t: 'key', x: 'PGT-mt allows embryos to be ranked by degree of risk, but it is not an absolute guarantee of the birth of a healthy child and does not establish a universal safe heteroplasmy threshold.' },

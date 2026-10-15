@@ -4,7 +4,7 @@ import { PlotlyChart } from '../../components/PlotlyChart'
 import { Detail, ObservedBadge, PubRef } from '../../components/ui'
 import { atlas, label, pubById, type OffspringPair } from '../../data/atlas'
 import { useLang, useT } from '../../i18n'
-import { fmt } from '../../lib/format'
+import { fmt, plural } from '../../lib/format'
 import { pairValueText } from '../../lib/obs'
 import { axis, baseLayout, useChartTheme, type ChartTheme } from '../../lib/theme'
 import { PageTitle } from '../../components/Layout'
@@ -156,6 +156,14 @@ export default function Fig5() {
       <h1>{t('fig5.title')}</h1>
       <p className="subtitle">{t('fig5.subtitle')}</p>
       <p className="lead">{t('fig5.lead')}</p>
+      <p className="key-finding" data-testid="key-finding">
+        <strong>{t('common.main')}.</strong>{' '}
+        {t('fig5.main', {
+          pairs: `${s.n_pairs} ${plural(s.n_pairs, lang, t('fig5.pairForms', { returnObjects: true }) as unknown as [string, string, string])}`,
+          children: s.n_children,
+          disc: t(new Set(s.discordant_ids.map((id) => id.replace(/[a-z]+$/, ''))).size === 1 ? 'fig5.discOne' : 'fig5.discMany', { ids: s.discordant_ids.join(', ') }),
+        })}
+      </p>
       <div className="controls">
         <label>
           <input type="checkbox" checked={showExcluded} onChange={(e) => setShowExcluded(e.target.checked)} /> {t('fig5.showExcluded')}

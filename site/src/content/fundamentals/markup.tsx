@@ -23,6 +23,10 @@ export function blockStrings(b: Block): string[] {
     case 'steps':
     case 'def':
       return b.items.flat()
+    case 'flow':
+      return [b.caption, ...b.phases.map(([title]) => title)]
+    case 'table':
+      return [b.label, ...b.head, ...b.rows.flat()]
     default:
       return [b.x]
   }
@@ -133,6 +137,46 @@ export function Blocks({ blocks, lang }: { blocks: Block[]; lang: Lang }): React
           <p key={i} className="fd-key">
             <Inline s={b.x} lang={lang} />
           </p>
+        )
+      case 'flow': {
+        const steps = blocks.find((x): x is Extract<Block, { t: 'steps' }> => x.t === 'steps')
+        return (
+          <figure key={i} className="fd-flow">
+            <ol>
+              {b.phases.map(([title, nums], k) => (
+                <li key={k}>
+                  <strong>{title}</strong>
+                  <ul>
+                    {nums.map((n) => (
+                      <li key={n}>
+                        <span className="fd-flow-no">{String(n).padStart(2, '0')}</span> {steps?.items[n - 1]?.[0]}
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ol>
+            <figcaption>{b.caption}</figcaption>
+          </figure>
+        )
+      }
+      case 'table':
+        return (
+          <figure key={i} className="fd-table">
+            <p className="fd-table-label">{b.label}</p>
+            <div className="table-wrap">
+              <table className="data">
+                <thead>
+                  <tr>{b.head.map((h, k) => <th key={k} scope="col">{h}</th>)}</tr>
+                </thead>
+                <tbody>
+                  {b.rows.map((r, k) => (
+                    <tr key={k}>{r.map((c, j) => <td key={j}><Inline s={c} lang={lang} /></td>)}</tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </figure>
         )
       case 'caution':
         return (

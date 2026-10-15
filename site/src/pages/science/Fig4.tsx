@@ -164,6 +164,10 @@ export default function Fig4() {
       <h1>{t('fig4.title')}</h1>
       <p className="subtitle">{t('fig4.subtitle')}</p>
       <p className="lead">{t('fig4.lead', { n: s.n_embryos, c: s.n_cleavage })}</p>
+      <p className="key-finding" data-testid="key-finding">
+        <strong>{t('common.main')}.</strong>{' '}
+        {t('fig4.main', { all: fmt(s.median_range_all, lang), pat: fmt(s.median_range_pathogenic, lang), max: fmt(s.max_range_pathogenic, lang), share: Math.round(s.share_le5_pathogenic * 100) })}
+      </p>
       <div className="controls">
         <label>
           <input type="checkbox" checked={showHv2} onChange={(e) => setShowHv2(e.target.checked)} /> {t('fig4.showHv2')}

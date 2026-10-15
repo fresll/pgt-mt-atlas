@@ -1,6 +1,6 @@
 import { expect, test } from './fixtures'
 
-// Версия модели публикуется в model-version.json; отдельная строка с датой модели на странице снята (64f6686).
+// Версия модели публикуется в model-version.json и выводится на странице модели одной строкой (только номер версии).
 test('current release is identified and fits desktop and mobile', async ({ page, request }) => {
   const release = await request.get('model-version.json')
   expect(release.ok()).toBeTruthy()
@@ -10,6 +10,7 @@ test('current release is identified and fits desktop and mobile', async ({ page,
   for (const width of [1440, 390]) {
     await page.setViewportSize({ width, height: 1000 })
     await page.goto('ru/science/pgt-mt-pgt-a-model/')
+    await expect(page.getByTestId('model-version')).toHaveAttribute('data-model-version', '2026-10-12')
     await expect(page.locator('.chart-frame .js-plotly-plot')).toHaveCount(3, { timeout: 20000 })
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBeTruthy()
     const fontSize = await page.evaluate(() => getComputedStyle(document.body).fontSize)

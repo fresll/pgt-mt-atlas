@@ -115,7 +115,7 @@ function Footer({ lang }: { lang: Lang }) {
           <p>
             <Link to={`/${lang}/ilya-mazunin/`}>{t('site.curated')}</Link>
           </p>
-          <p className="muted">{t('footer.updated', { date: formatDate(atlas.meta.dataset_version, lang) })}</p>
+          <p className="muted">{t('footer.updated', { date: formatDate(atlas.meta.dataset_version, lang), version: atlas.meta.dataset_version })}</p>
         </div>
         <nav aria-label={t('footer.linksLabel')}>
           <ul>

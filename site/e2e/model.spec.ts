@@ -1,7 +1,7 @@
 import { expect, test } from './fixtures'
 
 // Версия модели (2026-10-12) проверяется по model-version.json в current-release.spec.ts:
-// строка data-testid="model-version" со страницы снята (64f6686).
+// строка data-testid="model-version" на странице содержит только номер версии.
 test('scenarios preserve the baseline and expose dependence, strict thresholds and zero yield', async ({ page }) => {
   await page.goto('ru/science/pgt-mt-pgt-a-model/')
   const row = page.getByTestId('model-table').locator('[data-variant="m.3243A>G"]')

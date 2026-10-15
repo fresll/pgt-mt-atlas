@@ -22,3 +22,10 @@ export function pct(x: number | null | undefined, lang: Lang, digits = 1): strin
 export function frac(k: number, n: number, lang: Lang): string {
   return `${fmtFixed(n ? k / n : 0, lang, 2)} (${k}/${n})`
 }
+
+/** Форма слова для числа: RU — [1, 2–4, 5+] (Intl.PluralRules), EN — [1, остальные]. */
+export function plural(n: number, lang: Lang, forms: [string, string, string]): string {
+  if (lang !== 'ru') return n === 1 ? forms[0] : forms[2]
+  const c = new Intl.PluralRules('ru-RU').select(n)
+  return c === 'one' ? forms[0] : c === 'few' ? forms[1] : forms[2]
+}

@@ -109,7 +109,7 @@ test('curator page shows the portrait and the homepage keeps the biography link 
 test('an English section address keeps the section', async ({ page }) => {
   await page.goto('en/science/embryo-concordance/')
   await expect(page).toHaveURL(/\/ru\/science\/embryo-concordance\/?$/)
-  await expect(page.locator('h1')).toHaveText('Согласованность внутри эмбриона')
+  await expect(page.locator('h1')).toHaveText('Совпадение фракций эмбриона')
 })
 
 // Страница куратора сокращена до биографии и избранных публикаций (64f6686).

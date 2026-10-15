@@ -145,10 +145,11 @@ test('reference lines carry their role and are not universal thresholds (A5)', a
 
 test('every source states its role; classification has a basis (section 7)', async ({ page }) => {
   await page.goto('ru/science/sources/')
-  const cards = page.locator('li.card')
-  const n = await cards.count()
+  // компактная таблица: строка на публикацию, роль и примечания — в раскрываемой ячейке
+  const rows = page.locator('table.sources-table tbody tr')
+  const n = await rows.count()
   expect(n).toBeGreaterThan(20)
-  await expect(page.locator('li.card [data-roles]')).toHaveCount(n)
+  await expect(page.locator('table.sources-table tbody tr [data-roles]')).toHaveCount(n)
   await expect(page.locator('#hellebrekers2012 [data-roles]')).toHaveAttribute('data-roles', 'threshold')
   await expect(page.locator('#thorburn2009')).toContainText('Исключение по DOI')
   await page.goto('ru/science/methods/')

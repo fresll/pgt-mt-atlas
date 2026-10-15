@@ -154,6 +154,16 @@ export default function Fig3() {
       <h1>{t('fig3.title')}</h1>
       <p className="subtitle">{t('fig3.subtitle')}</p>
       <p className="lead">{t('fig3.lead')}</p>
+      <p className="key-finding" data-testid="key-finding">
+        <strong>{t('common.main')}.</strong>{' '}
+        {t('fig3.main', {
+          list: Object.entries(atlas.stats.fig3.by_variant)
+            .filter(([, v]) => v.n >= 20)
+            .sort((a, b) => b[1].le18.k / b[1].le18.n - a[1].le18.k / a[1].le18.n)
+            .map(([variant, v]) => `${variant} — ${v.le18.k} ${lang === 'ru' ? 'из' : 'of'} ${v.le18.n}`)
+            .join('; '),
+        })}
+      </p>
 
       <div className="controls">
         <span>

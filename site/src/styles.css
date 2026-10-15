@@ -1099,3 +1099,48 @@ body:has(.pt-page) { background: var(--sk-paper); }
   body, body:has(.pt-page) { background: #fff; }
   .layout-science, .fd-layout { display: block; }
 }
+
+/* «Главное» — вывод над графиком */
+.key-finding { font-family: var(--font-text); font-size: calc(1.08rem * var(--text-scale)); line-height: 1.6; color: var(--sk-ink); border-left: 2px solid var(--sk-red); padding: 2px 0 2px 16px; margin: 14px 0 18px; max-width: 70ch; }
+.key-finding strong { font-family: var(--font); font-weight: 600; }
+
+/* Глава 5: схема этапов пути ПГТ-мт */
+.fd-flow { margin: 1.2rem 0 1.6rem; font-family: var(--font); }
+.fd-flow > ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
+.fd-flow > ol > li { position: relative; border: 1.4px solid var(--sk-ink); border-radius: 3px 2px 4px 2px; padding: 10px 12px 12px; background: var(--sk-paper); }
+.fd-flow > ol > li + li::before { content: '→'; position: absolute; left: -15px; top: 14px; color: var(--sk-red); font-size: 1rem; }
+.fd-flow strong { display: block; font-family: var(--font-display); font-size: calc(1.15rem * var(--text-scale)); color: var(--sk-ink); line-height: 1.15; margin-bottom: 6px; }
+.fd-flow ul { list-style: none; margin: 0; padding: 0; font-size: calc(0.82rem * var(--text-scale)); line-height: 1.35; color: var(--sk-ink-2); }
+.fd-flow ul li { margin: 0 0 4px; }
+.fd-flow-no { font-family: var(--font-hand); color: var(--sk-red); font-size: 1.15em; }
+.fd-flow figcaption { margin-top: 8px; font-family: var(--font-hand); color: var(--sk-red); font-size: calc(1.15rem * var(--text-scale)); }
+@media (max-width: 980px) {
+  .fd-flow > ol { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .fd-flow > ol > li + li::before { content: '↓'; left: 14px; top: -18px; }
+  .fd-flow ul { font-size: 15px; }
+}
+/* Глава 6: учебный пример заключения */
+.fd-table { margin: 1rem 0 1.4rem; }
+.fd-table-label { font-family: var(--font-hand); color: var(--sk-red); font-size: calc(1.2rem * var(--text-scale)); margin: 0 0 6px !important; }
+.fd-table table.data { font-family: var(--font); }
+.fd-table table.data tbody tr { cursor: default; }
+
+/* «Источники»: компактная таблица */
+.sources-table td { vertical-align: top; }
+.sources-table details summary { cursor: pointer; }
+.sources-table details[open] summary { margin-bottom: 6px; }
+.sources-table details p { margin: 4px 0; max-width: 60ch; }
+.sources-table tbody tr { cursor: default; }
+.sources-ids { font-size: 0.9em; overflow-wrap: anywhere; min-width: 12em; }
+.sources-table tr:target td { background: var(--observed-bg); }
+
+.sources-table td:first-child { min-width: 16em; width: 34%; }
+@media (max-width: 760px) {
+  /* телефон: строка таблицы — карточка с подписями полей */
+  .sources-table thead { display: none; }
+  .sources-table, .sources-table tbody, .sources-table tr, .sources-table td { display: block; width: 100%; }
+  .sources-table tr { border-bottom: 1px solid var(--sk-rule); padding: 8px 0; }
+  .sources-table td { border: 0; padding: 3px 12px; text-align: left !important; min-width: 0; }
+  .sources-table td[data-label]::before { content: attr(data-label) ': '; color: var(--sk-muted); font-size: 13px; }
+  .sources-table tbody tr:nth-child(even) td { background: transparent; }
+}

@@ -16,6 +16,10 @@ export type Block =
   | { t: 'def'; items: [string, string][] }
   | { t: 'key'; x: string }
   | { t: 'caution'; x: string }
+  /** схема-поток: фазы со ссылками на номера шагов ближайшего блока steps (1…N) */
+  | { t: 'flow'; caption: string; phases: [string, number[]][] }
+  /** таблица; label — пометка над таблицей (например, «условные значения») */
+  | { t: 'table'; label: string; head: string[]; rows: string[][] }
 
 export interface DataLink {
   to: string
