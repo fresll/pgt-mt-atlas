@@ -342,6 +342,17 @@ def read_fig5_notes(ws) -> list[dict]:
     return notes
 
 
+def apply_offspring_note_corrections(notes, corrections, stats):
+    for correction in corrections:
+        matches = [n for n in notes if n['row'] == correction['row']]
+        if len(matches) != 1 or matches[0]['text'] != correction['expected']:
+            raise EtlError(f"{correction['id']}: source note changed")
+        if not correction['source'].get('publication') or not correction['source'].get('locator'):
+            raise EtlError('Missing offspring-note provenance')
+        matches[0].update(text=correction['text'].format(**stats), correction_id=correction['id'], source=correction['source'])
+    return notes
+
+
 def read_table1(ws, pubs: Pubs) -> list[dict]:
     out = []
     for i, r in rows(ws, 4):
@@ -625,6 +636,8 @@ def derive_stats(fig3, fig4, cleav, fig5, fig6_sheet, rules) -> dict:
                  'max_range_cleavage': max(c['range'] for c in cleav)},
         'fig5': {'n_records': len(fig5), 'n_low_children': len(low_children),
                  'n_concordant_children': len(low_children - discordant_children),
+                 'n_both_nd_pairs': sum(p['q'] == p['emb_q'] == 'not_detected' for p in plotted),
+                 'n_both_nd_children': len({p['child'] for p in plotted if p['q'] == p['emb_q'] == 'not_detected'}),
                  'n_pairs': len(plotted), 'n_children': len({p['child'] for p in plotted}),
                  'n_low_embryo': len(low), 'n_concordant_low': len(conc),
                  'discordant_ids': [p['id'] for p in low if p not in conc]},
@@ -844,7 +857,7 @@ def build(allow_new_ids: bool = False) -> dict:
         'fig4': fig4,
         'cleavage': cleav,
         'fig5': fig5,
-        'fig5_notes': [{'text': 'Индивидуальные пары: повторные ткани и сроки одного ребёнка зависимы. Hyslop 2025, Table 1: добавлены восемь одиночных переносов; двойные переносы не сопоставлены с детьми.'}],
+        'fig5_notes': apply_offspring_note_corrections(read_fig5_notes(wb['Рисунок 5']), correction_layer['offspring_note_corrections'], stats['fig5']),
         'table1': table1,
         'hu2026_within_embryo': read_hu16(wb['Hu 2026 (16 проб эмбриона)']),
         'tajima2007_excluded': read_tajima(wb['Tajima 2007 (не используется)'], pubs),

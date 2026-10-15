@@ -24,6 +24,7 @@ export default function ScienceIndex() {
           ? 'Четыре научных раздела атласа. Каждый график открывается в базовом виде; дополнительные фильтры помечены «расширенный вид». Каждая точка ведёт к первичной публикации и строке исходной таблицы.'
           : 'Four scientific sections of the Atlas. Every chart opens in its reference view; extra filters are labelled “extended view”. Every point leads to the primary publication and the row of the source workbook.'}
       </p>
+      <p className="small">{t('fig5.bothNDChildren', { children: s.fig5.n_both_nd_children, pairs: s.fig5.n_both_nd_pairs })}</p>
       <div className="cards section-cards">
         {items.map(([to, title, subtitle, sub, model], i) => (
           <div className="card" key={to}>

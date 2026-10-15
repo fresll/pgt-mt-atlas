@@ -295,6 +295,9 @@ def test_landscape_correction_guard(atlas):
 def test_round2_single_transfer_pairs_and_provenance(atlas):
     added = [p for p in atlas['fig5'] if p['pub'] == 'hyslop2025']
     assert len(added) == 8
+    assert atlas['stats']['fig5']['n_both_nd_pairs'] == 16
+    assert atlas['stats']['fig5']['n_both_nd_children'] == 12
+    assert all(p['emb_sample'] == 'single_blastomere' and p['emb_day'] == 3 for p in added)
     assert len({p['carrier_id'] for p in added}) == 6
     assert all(p['emb_q'] == p['q'] == 'not_detected' and p['lod'] == p['emb_lod'] == 3 for p in added)
     assert len([p for p in atlas['fig5'] if p['in_figure'] and p['q'] == p['emb_q'] == 'not_detected']) == 16

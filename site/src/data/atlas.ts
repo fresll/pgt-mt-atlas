@@ -107,6 +107,9 @@ export interface OffspringPair {
   carrier_id?: string
   lod?: number
   emb_lod?: number
+  emb_stage?: string
+  emb_sample?: string
+  emb_day?: number
   id: string
   child: string
   pub: string
@@ -223,6 +226,8 @@ export interface Atlas {
     fig5: { n_pairs: number; n_children: number; n_records: number
     n_low_children: number
     n_concordant_children: number
+    n_both_nd_pairs: number
+    n_both_nd_children: number
     n_low_embryo: number; n_concordant_low: number; discordant_ids: string[] }
   }
 }

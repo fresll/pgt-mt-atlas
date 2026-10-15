@@ -1259,13 +1259,13 @@ offspring_additions:
   variant: m.10158T>C
   phase: postnatal
   tissue: blood
-  tissue_raw: blood
-  age: null
-  method: pyrosequencing
+  tissue_raw: кровь новорождённого (пятно крови)
+  age: новорождённый
+  method: пиросеквенирование
   in_figure: true
   on_plot_raw: да
   src:
-    sheet: Hyslop 2025 Table 1
+    sheet: 'curation/corrections.yaml: offspring_additions'
     row: 1
   emb: 0
   emb_q: not_detected
@@ -1276,23 +1276,27 @@ offspring_additions:
   lod: 3
   emb_lod: 3
   carrier_id: hyslop2025-10158
-  source_locator: Hyslop 2025, Table 1, PGT, m.10158T>C; single transfer; child 1; not detected <3% in blastomere and blood
+  source_locator: Hyslop et al., 2025, Table 1, PGT, m.10158T>C / Child 1; <3% in day-3 test blastomere and newborn blood
+    spot
   source:
     publication: hyslop2025
-    locator: Table 1, PGT; single-transfer rows; footnote <3%
+    locator: Hyslop et al., 2025, Table 1, PGT, m.10158T>C / Child 1; <3% in day-3 test blastomere and newborn blood spot
+  emb_stage: cleavage
+  emb_sample: single_blastomere
+  emb_day: 3
 - id: C16
   child: C16
   pub: hyslop2025
   variant: m.10158T>C
   phase: postnatal
   tissue: blood
-  tissue_raw: blood
-  age: null
-  method: pyrosequencing
+  tissue_raw: кровь новорождённого (пятно крови)
+  age: новорождённый
+  method: пиросеквенирование
   in_figure: true
   on_plot_raw: да
   src:
-    sheet: Hyslop 2025 Table 1
+    sheet: 'curation/corrections.yaml: offspring_additions'
     row: 2
   emb: 0
   emb_q: not_detected
@@ -1303,23 +1307,27 @@ offspring_additions:
   lod: 3
   emb_lod: 3
   carrier_id: hyslop2025-10158
-  source_locator: Hyslop 2025, Table 1, PGT, m.10158T>C; single transfer; child 2; not detected <3% in blastomere and blood
+  source_locator: Hyslop et al., 2025, Table 1, PGT, m.10158T>C / Child 2; <3% in day-3 test blastomere and newborn blood
+    spot
   source:
     publication: hyslop2025
-    locator: Table 1, PGT; single-transfer rows; footnote <3%
+    locator: Hyslop et al., 2025, Table 1, PGT, m.10158T>C / Child 2; <3% in day-3 test blastomere and newborn blood spot
+  emb_stage: cleavage
+  emb_sample: single_blastomere
+  emb_day: 3
 - id: C17
   child: C17
   pub: hyslop2025
   variant: m.13094T>C
   phase: postnatal
   tissue: blood
-  tissue_raw: blood
-  age: null
-  method: pyrosequencing
+  tissue_raw: кровь новорождённого (пятно крови)
+  age: новорождённый
+  method: пиросеквенирование
   in_figure: true
   on_plot_raw: да
   src:
-    sheet: Hyslop 2025 Table 1
+    sheet: 'curation/corrections.yaml: offspring_additions'
     row: 3
   emb: 0
   emb_q: not_detected
@@ -1330,23 +1338,28 @@ offspring_additions:
   lod: 3
   emb_lod: 3
   carrier_id: hyslop2025-13094
-  source_locator: Hyslop 2025, Table 1, PGT, m.13094T>C; single transfer; child 3; not detected <3% in blastomere and blood
+  source_locator: Hyslop et al., 2025, Table 1, PGT, m.13094T>C / single-transfer row; <3% in day-3 test blastomere and newborn
+    blood spot
   source:
     publication: hyslop2025
-    locator: Table 1, PGT; single-transfer rows; footnote <3%
+    locator: Hyslop et al., 2025, Table 1, PGT, m.13094T>C / single-transfer row; <3% in day-3 test blastomere and newborn
+      blood spot
+  emb_stage: cleavage
+  emb_sample: single_blastomere
+  emb_day: 3
 - id: C18
   child: C18
   pub: hyslop2025
   variant: m.3243A>G
   phase: postnatal
   tissue: blood
-  tissue_raw: blood
-  age: null
-  method: pyrosequencing
+  tissue_raw: кровь новорождённого (пятно крови)
+  age: новорождённый
+  method: пиросеквенирование
   in_figure: true
   on_plot_raw: да
   src:
-    sheet: Hyslop 2025 Table 1
+    sheet: 'curation/corrections.yaml: offspring_additions'
     row: 4
   emb: 0
   emb_q: not_detected
@@ -1357,23 +1370,28 @@ offspring_additions:
   lod: 3
   emb_lod: 3
   carrier_id: hyslop2025-3243-23-a
-  source_locator: Hyslop 2025, Table 1, PGT, m.3243A>G; single transfer; child 4; not detected <3% in blastomere and blood
+  source_locator: Hyslop et al., 2025, Table 1, PGT, m.3243A>G / single-transfer row 1; maternal urine 23%; separate carrier;
+    <3% in day-3 test blastomere and newborn blood spot
   source:
     publication: hyslop2025
-    locator: Table 1, PGT; single-transfer rows; footnote <3%
+    locator: Hyslop et al., 2025, Table 1, PGT, m.3243A>G / single-transfer row 1; maternal urine 23%; separate carrier; <3%
+      in day-3 test blastomere and newborn blood spot
+  emb_stage: cleavage
+  emb_sample: single_blastomere
+  emb_day: 3
 - id: C19
   child: C19
   pub: hyslop2025
   variant: m.3243A>G
   phase: postnatal
   tissue: blood
-  tissue_raw: blood
-  age: null
-  method: pyrosequencing
+  tissue_raw: кровь новорождённого (пятно крови)
+  age: новорождённый
+  method: пиросеквенирование
   in_figure: true
   on_plot_raw: да
   src:
-    sheet: Hyslop 2025 Table 1
+    sheet: 'curation/corrections.yaml: offspring_additions'
     row: 5
   emb: 0
   emb_q: not_detected
@@ -1384,23 +1402,28 @@ offspring_additions:
   lod: 3
   emb_lod: 3
   carrier_id: hyslop2025-3243-23-b
-  source_locator: Hyslop 2025, Table 1, PGT, m.3243A>G; single transfer; child 5; not detected <3% in blastomere and blood
+  source_locator: Hyslop et al., 2025, Table 1, PGT, m.3243A>G / single-transfer row 2; maternal urine 23%; separate carrier;
+    <3% in day-3 test blastomere and newborn blood spot
   source:
     publication: hyslop2025
-    locator: Table 1, PGT; single-transfer rows; footnote <3%
+    locator: Hyslop et al., 2025, Table 1, PGT, m.3243A>G / single-transfer row 2; maternal urine 23%; separate carrier; <3%
+      in day-3 test blastomere and newborn blood spot
+  emb_stage: cleavage
+  emb_sample: single_blastomere
+  emb_day: 3
 - id: C20
   child: C20
   pub: hyslop2025
   variant: m.8993T>G
   phase: postnatal
   tissue: blood
-  tissue_raw: blood
-  age: null
-  method: pyrosequencing
+  tissue_raw: кровь новорождённого (пятно крови)
+  age: новорождённый
+  method: пиросеквенирование
   in_figure: true
   on_plot_raw: да
   src:
-    sheet: Hyslop 2025 Table 1
+    sheet: 'curation/corrections.yaml: offspring_additions'
     row: 6
   emb: 0
   emb_q: not_detected
@@ -1411,23 +1434,26 @@ offspring_additions:
   lod: 3
   emb_lod: 3
   carrier_id: hyslop2025-8993TG
-  source_locator: Hyslop 2025, Table 1, PGT, m.8993T>G; single transfer; child 6; not detected <3% in blastomere and blood
+  source_locator: Hyslop et al., 2025, Table 1, PGT, m.8993T>G / Child 1; <3% in day-3 test blastomere and newborn blood spot
   source:
     publication: hyslop2025
-    locator: Table 1, PGT; single-transfer rows; footnote <3%
+    locator: Hyslop et al., 2025, Table 1, PGT, m.8993T>G / Child 1; <3% in day-3 test blastomere and newborn blood spot
+  emb_stage: cleavage
+  emb_sample: single_blastomere
+  emb_day: 3
 - id: C21
   child: C21
   pub: hyslop2025
   variant: m.8993T>G
   phase: postnatal
   tissue: blood
-  tissue_raw: blood
-  age: null
-  method: pyrosequencing
+  tissue_raw: кровь новорождённого (пятно крови)
+  age: новорождённый
+  method: пиросеквенирование
   in_figure: true
   on_plot_raw: да
   src:
-    sheet: Hyslop 2025 Table 1
+    sheet: 'curation/corrections.yaml: offspring_additions'
     row: 7
   emb: 0
   emb_q: not_detected
@@ -1438,23 +1464,26 @@ offspring_additions:
   lod: 3
   emb_lod: 3
   carrier_id: hyslop2025-8993TG
-  source_locator: Hyslop 2025, Table 1, PGT, m.8993T>G; single transfer; child 7; not detected <3% in blastomere and blood
+  source_locator: Hyslop et al., 2025, Table 1, PGT, m.8993T>G / Child 2; <3% in day-3 test blastomere and newborn blood spot
   source:
     publication: hyslop2025
-    locator: Table 1, PGT; single-transfer rows; footnote <3%
+    locator: Hyslop et al., 2025, Table 1, PGT, m.8993T>G / Child 2; <3% in day-3 test blastomere and newborn blood spot
+  emb_stage: cleavage
+  emb_sample: single_blastomere
+  emb_day: 3
 - id: C22
   child: C22
   pub: hyslop2025
   variant: m.8993T>C
   phase: postnatal
   tissue: blood
-  tissue_raw: blood
-  age: null
-  method: pyrosequencing
+  tissue_raw: кровь новорождённого (пятно крови)
+  age: новорождённый
+  method: пиросеквенирование
   in_figure: true
   on_plot_raw: да
   src:
-    sheet: Hyslop 2025 Table 1
+    sheet: 'curation/corrections.yaml: offspring_additions'
     row: 8
   emb: 0
   emb_q: not_detected
@@ -1465,7 +1494,58 @@ offspring_additions:
   lod: 3
   emb_lod: 3
   carrier_id: hyslop2025-8993TC
-  source_locator: Hyslop 2025, Table 1, PGT, m.8993T>C; single transfer; child 8; not detected <3% in blastomere and blood
+  source_locator: Hyslop et al., 2025, Table 1, PGT, m.8993T>C / single-transfer row; <3% in day-3 test blastomere and newborn
+    blood spot
   source:
     publication: hyslop2025
-    locator: Table 1, PGT; single-transfer rows; footnote <3%
+    locator: Hyslop et al., 2025, Table 1, PGT, m.8993T>C / single-transfer row; <3% in day-3 test blastomere and newborn
+      blood spot
+  emb_stage: cleavage
+  emb_sample: single_blastomere
+  emb_day: 3
+offspring_note_corrections:
+- id: audit-offspring-note-29
+  row: 29
+  expected: 'Критерии включения в рис. 5:'
+  text: 'Критерии включения в сопоставление эмбриона и потомства:'
+  source:
+    publication: hyslop2025
+    locator: Original clinical case; Atlas inclusion criteria
+- id: audit-offspring-note-31
+  row: 31
+  expected: 'Случай m.14487T>C [27] не включён: перенесены два эмбриона с различающимися измеренными значениями, и ребёнка
+    нельзя однозначно связать ни с одним из них.'
+  text: 'Случай m.14487T>C (Sallevelt et al., 2017) не включён: перенесены два эмбриона с различающимися измеренными значениями,
+    и ребёнка нельзя однозначно связать ни с одним из них.'
+  source:
+    publication: sallevelt2017
+    locator: Original clinical case; Atlas inclusion criteria
+- id: audit-offspring-note-32
+  row: 32
+  expected: 'Случай m.10197G>A [29] не включён в количественный анализ точных пар: два перенесённых эмбриона имели значения
+    <5%, точный уровень имплантировавшегося эмбриона неизвестен, а сигнал амниотической жидкости 0,17% был ниже контроля 0,28%
+    и ограничений метода. Наблюдение сохранено ниже как качественное.'
+  text: 'Случай m.10197G>A (Mizuguchi et al., 2025) не включён в количественный анализ точных пар: два перенесённых эмбриона
+    имели значения <5%, точный уровень имплантировавшегося эмбриона неизвестен, а сигнал амниотической жидкости 0,17% был
+    ниже контроля 0,28% и ограничений метода. Наблюдение сохранено ниже как качественное.'
+  source:
+    publication: mizuguchi2025
+    locator: Original clinical case; Atlas inclusion criteria
+- id: audit-offspring-note-33
+  row: 33
+  expected: 'Агрегированные постнатальные данные Newcastle-программы [21] не включены: индивидуальные пары «эмбрион–ребёнок»
+    для отдельных вариантов не опубликованы.'
+  text: 'Hyslop et al., 2025: в количественный набор включены 8 детей после переноса одного эмбриона (Table 1); двойня и ребёнок
+    после переноса двух эмбрионов не включены — связь с конкретным эмбрионом в источнике неизвестна.'
+  source:
+    publication: hyslop2025
+    locator: Table 1, PGT; p. 8, Results (ND single transfers)
+- id: audit-offspring-note-35
+  row: 35
+  expected: 'Итог количественного набора: 8 клинических случаев; 23 записи в сопроводительном наборе; 22 нанесённые точные
+    числовые пары; 1 дополнительная цензурированная серия <10%; C13 — отдельный исключённый качественный случай.'
+  text: 'Итог количественного набора: {n_pairs} сопоставлений у {n_children} плодов и детей; обе стороны «не выявлено» в {n_both_nd_pairs}
+    парах у {n_both_nd_children} плодов и детей.'
+  source:
+    publication: hyslop2025
+    locator: Table 1, PGT; p. 8, Results (ND single transfers)

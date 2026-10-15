@@ -171,6 +171,7 @@ export default function Fig5() {
           disc: t(new Set(s.discordant_ids.map((id) => id.replace(/[a-z]+$/, ''))).size === 1 ? 'fig5.discOne' : 'fig5.discMany', { ids: s.discordant_ids.join(', ') }),
         })}
       </p>
+      <p className="small">{t('fig5.bothNDChildren', { children: atlas.stats.fig5.n_both_nd_children, pairs: atlas.stats.fig5.n_both_nd_pairs })}</p>
       <div className="controls">
         <label>
           <input type="checkbox" checked={showExcluded} onChange={(e) => setShowExcluded(e.target.checked)} /> {t('fig5.showExcluded')}
@@ -208,6 +209,8 @@ export default function Fig5() {
             [t('common.value'), pairValueText(sel.value, sel.q, sel.value_raw, lang, t)],
             [t('common.age'), sel.age],
             [t('common.method'), sel.method],
+            [t('data.locator'), sel.source_locator],
+            [lang === 'ru' ? 'Проба эмбриона' : 'Embryo sample', sel.emb_sample === 'single_blastomere' ? (lang === 'ru' ? 'Один бластомер, 3-й день' : 'One day-3 blastomere') : '—'],
             [lang === 'ru' ? 'В базовом виде графика' : 'In the reference view', sel.in_figure ? (lang === 'ru' ? 'да' : 'yes') : `${lang === 'ru' ? 'нет' : 'no'} — «${sel.on_plot_raw}»`],
             [t('common.provenance'), t('common.sheetRow', { sheet: sel.src.sheet, row: sel.src.row })],
           ]}

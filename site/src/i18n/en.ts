@@ -137,7 +137,7 @@ const en: Dict = {
     lead: 'PGT-mt Atlas is an evolving database covering the fundamentals of mtDNA inheritance and technologies that prevent the transmission of pathogenic mtDNA variants associated with mitochondrial diseases.',
     k1: 'embryo heteroplasmy values',
     k2: 'blastocysts with paired TE / ICM fractions',
-    k3: 'comparisons in {{children}} fetuses and children',
+    k3: 'comparisons in {{children}} fetuses and children; both results ND in {{ndChildren}} children',
     sciTitle: 'For specialists',
     sciText: 'Interactive data sections, a table of values with the provenance of every number, sources, methods and limitations.',
     patTitle: 'For patients',
@@ -223,6 +223,7 @@ const en: Dict = {
     verifyNote: 'Tofilo et al., 2026: the embryo 6 values (ICM, remaining TE) and the fraction category of embryos 3 and 4 (combined ICM+TE fraction) follow the published ESM 2; the original values of the supplementary workbook are shown in the embryo card. In this study the “ICM” fraction is the ICM together with adherent TE cells (“ICM+”).',
   },
   fig5: {
+    bothNDChildren: 'Both results are ND in {{children}} fetuses and children ({{pairs}} pairs); these are not exact zero measurements.',
     bothND: 'ND → ND: {{n}} pairs',
     recordSummary: '{{records}} records, {{pairs}} exact pairs in {{children}} fetuses and children',
     childSummary: 'Embryo heteroplasmy is low for {{low}} of {{all}} fetuses and children; {{concordant}} of these have low or undetected values in every tissue. Laboratories disagree for one child (C5).',
