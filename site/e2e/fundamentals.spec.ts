@@ -102,7 +102,7 @@ test('Bottleneck Simulator is labelled as a model and responds to N and redraw',
   const before = await w.locator('.fd-summary').innerText()
   await w.locator('input[type=range]').nth(1).fill('6') // N = 500
   await expect(w.locator('.fd-summary')).not.toHaveText(before)
-  await expect(w.locator('.fd-summary')).toContainText('2.0 п.п.')
+  await expect(w.locator('.fd-summary')).toContainText('2,0 п. п.')
   const s2 = await w.locator('.fd-summary').innerText()
   await w.getByRole('button', { name: /Новая случайная выборка/ }).click()
   await expect(w.locator('.fd-summary')).not.toHaveText(s2)

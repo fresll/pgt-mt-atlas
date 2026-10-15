@@ -1,7 +1,7 @@
 import { DataTable } from '../../components/DataTable'
 import { ObservedBadge, PubRef } from '../../components/ui'
 import { atlas } from '../../data/atlas'
-import { useLang, useT } from '../../i18n'
+import { useT } from '../../i18n'
 import { PageTitle } from '../../components/Layout'
 
 export default function Cases() {
@@ -13,9 +13,7 @@ export default function Cases() {
       <h1>{t('cases.title')}</h1>
       <p className="lead">{t('cases.lead')}</p>
       <p className="callout small">
-        {useLang() === 'ru'
-          ? 'Первоисточник каждого случая указан в столбце «Источник»: авторы, публикация и DOI.'
-          : 'The primary source for each case is listed in the Source column: authors, publication and DOI.'}
+        {t('interfaceCopy.Cases.copy1')}
       </p>
       <DataTable
         maxHeight={900}

@@ -181,14 +181,12 @@ export default function Fig5() {
         <span>- - {t('fig5.identity')}</span>
       </div>
       <div className="grid-2">
-        <div><h3>{lang === 'ru' ? 'А' : 'A'}</h3><PlotlyChart ariaLabel={t('fig5.subtitle')} height={460} data={panelA.data as never} layout={panelA.layout as never} onClick={pick} /></div>
-        <div><h3>{lang === 'ru' ? 'Б' : 'B'}</h3><PlotlyChart ariaLabel={t('fig5.yB')} height={460} data={panelB.data as never} layout={panelB.layout as never} onClick={pick} /></div>
+        <div><h3>{t('interfaceCopy.Fig5.copy1')}</h3><PlotlyChart ariaLabel={t('fig5.subtitle')} height={460} data={panelA.data as never} layout={panelA.layout as never} onClick={pick} /></div>
+        <div><h3>{t('interfaceCopy.Fig5.copy2')}</h3><PlotlyChart ariaLabel={t('fig5.yB')} height={460} data={panelB.data as never} layout={panelB.layout as never} onClick={pick} /></div>
       </div>
       <p className="small muted">{t('common.clickHint')} {t('fig5.lowSpread')}</p>
       <p className="small"><strong>{t('fig5.dependency', { pairs: s.n_pairs, children: s.n_children, ...topChild })}</strong>{' '}
-        {lang === 'ru'
-          ? `Из ${s.n_low_embryo} сопоставлений с низкой гетероплазмией эмбриона ${s.n_concordant_low} сопровождались низкой или неопределяемой гетероплазмией в ткани; все расхождения (${s.discordant_ids.join(', ')}) — повторный анализ одного ребёнка другим методом.`
-          : `Of ${s.n_low_embryo} comparisons with low embryo heteroplasmy, ${s.n_concordant_low} showed low or undetectable tissue heteroplasmy; all discordant values (${s.discordant_ids.join(', ')}) come from re-analysis of one child by another method.`}
+        {t('interfaceCopy.Fig5.copy3', { v0: s.n_low_embryo, v1: s.n_concordant_low, v2: s.discordant_ids.join(', ') })}
       </p>
       {sel && (
         <Detail
@@ -203,7 +201,7 @@ export default function Fig5() {
             [t('common.value'), pairValueText(sel.value, sel.q, sel.value_raw, lang, t)],
             [t('common.age'), sel.age],
             [t('common.method'), sel.method],
-            [lang === 'ru' ? 'В базовом виде графика' : 'In the reference view', sel.in_figure ? (lang === 'ru' ? 'да' : 'yes') : `${lang === 'ru' ? 'нет' : 'no'} — «${sel.on_plot_raw}»`],
+            [t('interfaceCopy.Fig5.copy4'), sel.in_figure ? (t('interfaceCopy.Fig5.copy5')) : `${t('interfaceCopy.Fig5.copy6')} — «${sel.on_plot_raw}»`],
             [t('common.provenance'), t('common.sheetRow', { sheet: sel.src.sheet, row: sel.src.row })],
           ]}
         />

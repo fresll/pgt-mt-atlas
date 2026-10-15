@@ -219,7 +219,11 @@ export interface Atlas {
 
 export const atlas = raw as unknown as Atlas
 
-export const pubById: Record<string, Publication> = Object.fromEntries(atlas.publications.map((p) => [p.id, p]))
+export const pubById: Record<string, Publication> = Object.fromEntries(atlas.publications.map((p) => [p.id, {
+  ...p,
+  short: p.doi === '10.1093/humrep/dew356' ? 'Sallevelt et al., 2017b' : p.short,
+  citation: p.id === 'treff2012' ? p.citation.replace('genetic diagnosis of', 'genetic diagnosis (PGD) of') : p.citation,
+}]))
 
 export function label(group: string, code: string, lang: Lang): string {
   return atlas.labels[group]?.[code]?.[lang] ?? code

@@ -3,7 +3,7 @@ import type { Dict } from './ru'
 const en: Dict = {
   site: {
     title: 'PGT-mt Atlas',
-    tagline: 'A database of pathogenic mitochondrial DNA (mtDNA) variants for which preimplantation genetic testing (PGT-mt) has been performed',
+    tagline: 'An open database of published mtDNA heteroplasmy values in embryos undergoing preimplantation genetic testing (PGT-mt), with a source for each value',
     curated: 'Created and curated by Ilya Mazunin',
     preview: 'Preview build. The site is not published; data and texts await the curator’s review.',
     skip: 'Skip to content',
@@ -134,9 +134,10 @@ const en: Dict = {
     sourceValue: 'in the supplementary workbook',
   },
   home: {
-    lead: 'PGT-mt Atlas is an evolving database covering the fundamentals of mtDNA inheritance and technologies that prevent the transmission of pathogenic mtDNA variants associated with mitochondrial diseases.',
+    trust: 'Data updated {{date}} · {{n}} {{values}} from {{publications}} {{pubWord}} · Created and curated by Ilya Mazunin, DSc',
+    lead: 'The Atlas collects published heteroplasmy values and explains how to interpret them.',
     k1: 'embryo heteroplasmy values',
-    k2: 'blastocysts with paired TE / ICM fractions',
+    k2: '{{word}} with a biopsy compared against other embryo parts ({{icm}} with the inner cell mass)',
     k3: 'embryo–tissue comparisons in {{children}} children',
     sciTitle: 'For specialists',
     sciText: 'Interactive data sections, a table of values with the provenance of every number, sources, methods and limitations.',
@@ -161,15 +162,15 @@ const en: Dict = {
     },
     aboutTitle: 'The database',
     aboutNote: 'what is inside',
-    k4: 'primary and reference publications with DOI and authorship',
+    k4: '{{word}} ({{doi}} with DOI)',
     sectionsTitle: 'Sections of the Atlas',
     sectionsNote: 'from biopsy to data',
     biopsyCaption: 'Trophectoderm biopsy: a few TE cells in which PGT-mt measures the proportion of mtDNA carrying a pathogenic variant.',
     dataLink: 'Full dataset',
     sourcesLink: 'Sources',
     methodsLink: 'Methods and limitations',
-    dataTitle: 'Published values following independent peer review',
-    dataText: 'A primary publication is provided for each pathogenic mtDNA variant whose transmission across generations has been prevented. Observed data and model calculations are explicitly identified.',
+    dataTitle: 'Published values: peer-reviewed journal articles and one conference abstract (marked)',
+    dataText: 'For each mtDNA variant for which PGT-mt has been performed, a primary publication is provided. Observed data and model calculations are explicitly identified.',
     mitoCaption: 'A mitochondrion with cristae and circular mtDNA molecules.',
     curatorBio: 'Doctor of Biological Sciences, geneticist',
     biography: 'Scientific biography',
@@ -681,6 +682,225 @@ const en: Dict = {
       },
     },
   },
+  patientContent: {
+  "intro": "This page explains in plain words what PGT-mt is — testing embryos for a mutation in mitochondrial DNA during IVF — what it can and cannot do. It will help you prepare for a conversation with a clinical geneticist but does not replace that consultation.",
+  "sections": [
+    {
+      "title": "What mitochondrial DNA is",
+      "paragraphs": [
+        "Mitochondria are the “power stations” of cells. They have their own small DNA (mtDNA), which a child inherits only from the mother.",
+        "Each cell contains hundreds or thousands of mtDNA copies. A pathogenic variant (mutation) is usually inherited from the mother and arises for the first time less often. Often it is present in only some copies. Disease depends on the variant and its proportion in different tissues. The proportion of altered copies is called the heteroplasmy level and is expressed as a percentage [@stewart2015; @smeets2023].",
+        "Whether disease develops depends on the proportion of altered copies and the organs involved. One woman’s proportion of altered mtDNA may differ in blood, urine, muscle and different egg cells [@burr2024].",
+        "PGT-mt helps only when a woman has a pathogenic mtDNA variant in a heteroplasmic state: her cells contain both altered and normal copies. If all copies are altered (homoplasmy), an embryo with a lower proportion cannot be selected. If disease is caused by a nuclear DNA gene, a different test (PGT-M) is needed. A male carrier does not pass the mtDNA variant to his children [@smeets2023]."
+      ]
+    },
+    {
+      "title": "How PGT-mt works",
+      "paragraphs": [
+        "During IVF, cells are sampled on day 3 or days 5–6: usually one blastomere (an early embryo cell) on day 3, or several trophectoderm cells (the outer layer that forms the placenta) on days 5–6. The proportion of altered mtDNA is measured in them [@hyslop2025; @rubens2025].",
+        "Embryos from one woman can differ in the proportion of altered mtDNA. Testing helps select the embryo with the lowest proportion if it is below a cut-off agreed in advance with the geneticist for your variant. If all embryos are above it, transfer is generally not recommended [@smeets2023; @hyslop2025].",
+        "Unfortunately, the exact outcome cannot be predicted before a cycle begins. Some patients will have more embryos with a low mutant mtDNA percentage, others fewer, and in some cycles there may be none."
+      ]
+    },
+    {
+      "title": "Why is the percentage not a diagnosis?",
+      "paragraphs": [
+        "The PGT-mt result compares embryos using an agreed cut-off for the proportion of altered mtDNA; it does not diagnose the future child [@smeets2023].",
+        "The test measures the proportion of altered mtDNA in only one or a few cells at one moment. The child’s health depends on its future distribution across tissues and organs [@burr2024].",
+        "There is no universal “safe” percentage in medicine. Numbers in scientific papers were obtained in different ways: 18% is an estimate based on mutation levels in the muscle of adult carriers, and 30% is a working embryo-selection criterion of one clinical programme. Thresholds differ between mtDNA variants, and no number guarantees a healthy child. See chapter 6 of the Fundamentals for details."
+      ]
+    },
+    {
+      "title": "PGT-mt and chromosome testing (PGT-A)",
+      "paragraphs": [
+        "The embryo’s chromosome number also matters for pregnancy and the child’s health. PGT-mt can be combined with PGT-A, a chromosome-number test, on the same sample. The doctor and family decide whether it is needed, taking the woman’s age into account [@spath2021].",
+        "With maternal age, the share of embryos with the correct chromosome number falls; this often limits selection more than mtDNA does [@volodyaev2025]."
+      ]
+    },
+    {
+      "title": "The risk is reduced, not removed",
+      "paragraphs": [
+        "According to published data, PGT-mt reduces the risk of passing on the disease but does not remove it completely.",
+        "After any PGT-mt transfer, even if altered mtDNA was not detected in the biopsy, discuss prenatal diagnosis with the doctor in advance. “Not detected” means below the method’s sensitivity, not “0%” [@mavraki2023; @steffann2021].",
+        "There may be no embryo entirely without altered mtDNA. Doctors then plan follow-up during pregnancy and after birth in advance [@smeets2023].",
+        "Your doctor can also help prepare an individual plan for monitoring your baby’s health and development after birth."
+      ]
+    },
+    {
+      "title": "What other options are there?",
+      "paragraphs": [
+        "PGT-mt is only one possible route. Modern medicine also considers other options:"
+      ],
+      "items": [
+        "Prenatal diagnosis — testing during an established pregnancy. Chorionic villi or amniotic fluid are examined; this assessment of the proportion is uninformative in homoplasmy [@smeets2023; @steffann2021].",
+        "Donor oocytes (egg cells) — using eggs from a healthy donor. The child will not be genetically related to the mother [@smeets2023].",
+        "Mitochondrial donation — transfer of the patient’s nuclear material into a donor oocyte or zygote with non-pathogenic mtDNA. Availability depends on the country’s legislation. A small amount of maternal mtDNA may accompany the nuclear material, so risk is reduced but not eliminated [@tytgat2021; @steffann2025]."
+      ],
+      "closingTitle": "How do you choose?",
+      "closing": "There is no single solution for everyone. The best next step depends on the specific mtDNA variant, family history, technical possibilities and availability of methods. The final decision is always individual, made in an open discussion with your fertility specialist and geneticist."
+    }
+  ],
+  "questions": {
+    "title": "What should you ask your clinical geneticist?",
+    "intro": "A list of questions can help you remember what to ask at your appointment:",
+    "groups": [
+      {
+        "title": "About your situation",
+        "items": [
+          "“Which pathogenic mtDNA variant has been identified in me, and what does modern medicine know about it?”",
+          "“What percentage of mutant mtDNA is in my own tissues (for example, blood or epithelial cells), and how does this affect the chance of transmission to egg cells?”"
+        ]
+      },
+      {
+        "title": "About PGT and embryo selection",
+        "items": [
+          "“Which cut-off for the proportion of altered mtDNA do you recommend for embryo selection in my case, and why?”",
+          "“Will PGT-mt be performed at the same time as PGT-A (testing for chromosome abnormalities)?”"
+        ]
+      },
+      {
+        "title": "About planning and risks",
+        "items": [
+          "“What are our next steps and alternatives if this cycle produces no embryo with a low mutant mtDNA percentage?”"
+        ]
+      },
+      {
+        "title": "About pregnancy and the child’s health",
+        "items": [
+          "“What special follow-up or prenatal diagnosis will be needed during pregnancy, and how will we monitor the child’s health after birth?”"
+        ]
+      }
+    ],
+    "closing": "You can save or print this list, bring it to your appointment and add notes during the discussion with your doctor."
+  },
+  "glossary": {
+    "title": "Glossary",
+    "items": [
+      [
+        "mtDNA",
+        "The small DNA genome of mitochondria."
+      ],
+      [
+        "Pathogenic variant",
+        "A DNA change that can cause disease."
+      ],
+      [
+        "Heteroplasmy",
+        "Coexistence of altered and normal mtDNA copies."
+      ],
+      [
+        "Homoplasmy",
+        "The same variant in all mtDNA copies."
+      ],
+      [
+        "Heteroplasmy level",
+        "The proportion of altered mtDNA, expressed as a percentage."
+      ],
+      [
+        "Biopsy",
+        "Cells sampled for testing."
+      ],
+      [
+        "Blastomere",
+        "A cell of an early embryo."
+      ],
+      [
+        "Trophectoderm",
+        "The outer blastocyst layer that forms the placenta."
+      ],
+      [
+        "Oocyte and zygote",
+        "An egg cell and the cell after fertilisation."
+      ],
+      [
+        "Nuclear material",
+        "DNA in the cell nucleus, distinct from mtDNA."
+      ]
+    ]
+  }
+},
+  interfaceCopy: {
+  "Methods": {
+    "copy1": "What was collected",
+    "copy2": "Heteroplasmy values were extracted from primary publications for the embryos whose individual values were published. Current version: {{v0}} values for the {{v1}} mtDNA variants included in the dataset; {{v2}} blastocysts with several fractions measured (TE biopsy, ICM, remaining TE or a combined ICM+TE fraction); post-implantation data for {{v3}} children whose transferred-embryo level is known. Values come from primary publications; reviews were used only where the original is unavailable, and this is flagged.",
+    "copy3": "Publications do not always report values for every embryo of a cycle, so the dataset does not equal the full number of embryos in the cycles. A clinical success rate of PGT-mt cannot be calculated from cases pooled across publications.",
+    "copy4": "Dataset size",
+    "copy5": "Measure",
+    "copy6": "Count",
+    "copy7": "How values are represented",
+    "copy8": "“0” means the variant was not detected by the method used, not a proven molecular zero. The detection limit is shown only when the source states it.",
+    "copy9": "If only an interval was published, its bounds are stored; no midpoint is imputed.",
+    "copy10": "Every value carries how it was obtained. A label is set only if the rule is recorded in the supplementary workbook:",
+    "copy11": "Heteroplasmy Landscape values",
+    "copy12": "Every point leads back to its row in the supplementary workbook and to the publication (DOI).",
+    "copy13": "Reference lines on the charts",
+    "copy14": "Checked",
+    "copy15": "None of these numbers defines a safe threshold for an individual embryo. The three numbers used in practice (18, 15–30 and 30%) answer different questions and come from different tissues, methods and outcomes.",
+    "copy16": "Limitations",
+    "copy17": "The dataset is descriptive and does not allow a meta-analysis: studies differ in biopsy stage, measurement methods and detection limits.",
+    "copy18": "Successful cycles are published more often than unsuccessful ones; there are no data to correct for this bias.",
+    "copy19": "Embryos are not independent observations: many come from one patient in one cycle; variants are unevenly represented. A pooled share is not an individual risk.",
+    "copy20": "In embryo–child comparisons several measurements belong to the same child (different tissues, ages, methods, laboratories).",
+    "copy21": "The PGT-mt × PGT-A Model is a scenario calculation: it ignores within-family correlation and gives no individual prediction.",
+    "copy22": "Variant classification",
+    "copy23": "The variant class is taken from the supplementary workbook; Atlas introduces no classifier of its own, including one based on heteroplasmy level. For every variant the statement of the primary publication on which the class rests and the date of the check are given. The variants were not checked against MITOMAP or ClinVar in this review.",
+    "copy24": "Variant",
+    "copy25": "Class",
+    "copy26": "Basis",
+    "copy27": "What to report about a PGT-mt cycle",
+    "copy28": "Patient and cycle: age; family history; carrier tissue heteroplasmy; number of oocytes; fertilisation and embryo development.",
+    "copy29": "Embryo: biopsy day; morphology; PGT-A result; heteroplasmy in every sample — for every embryo, including those not transferred.",
+    "copy30": "Method: whole-genome amplification; target region; linearity; detection limit; controls.",
+    "copy31": "Outcome: prenatal diagnosis and postnatal follow-up with tissue, age and method."
+  },
+  "Cases": {
+    "copy1": "The primary source for each case is listed in the Source column: authors, publication and DOI."
+  },
+  "Fig4": {
+    "copy1": "path.",
+    "copy2": "red bar",
+    "copy3": "Median range: {{v0}} pp ({{v1}} pathogenic blastocysts), {{v2}} pp (HV2), {{v3}} pp (all {{v4}}); cleavage stage — {{v5}} pp (n = {{v6}}).",
+    "copy4": "Range",
+    "copy5": "Blastomeres",
+    "copy6": "Range, pp",
+    "copy7": "Cells",
+    "copy8": "Depth, ×"
+  },
+  "Fig5": {
+    "copy1": "A",
+    "copy2": "B",
+    "copy3": "Of {{v0}} comparisons with low embryo heteroplasmy, {{v1}} showed low or undetectable tissue heteroplasmy; all discordant values ({{v2}}) come from re-analysis of one child by another method.",
+    "copy4": "In the reference view",
+    "copy5": "yes",
+    "copy6": "no"
+  },
+  "ScienceIndex": {
+    "copy1": "{{v0}} values, 7 mtDNA variants",
+    "copy2": "{{v0}} blastocysts + {{v1}} cleavage embryos",
+    "copy3": "{{v0}} comparisons, {{v1}} children",
+    "copy4": "scenario calculation",
+    "copy5": "Four scientific sections of the Atlas. Every chart opens in its reference view; extra filters are labelled “extended view”. Every point leads to the primary publication and the row of the source workbook."
+  }
+},
+  methodLabels: {
+  "countLabels": {
+    "landscape_values": "embryo heteroplasmy values",
+    "landscape_variants": "mtDNA variants in the heteroplasmy landscape",
+    "concordance_blastocysts": "blastocysts with several fractions measured",
+    "concordance_records": "blastocyst fraction records",
+    "cleavage_embryos": "cleavage-stage embryos (two blastomeres)",
+    "offspring_records": "embryo → offspring records",
+    "offspring_children": "children in embryo → offspring records",
+    "offspring_children_exact_pair": "children with an exact transferred-embryo–tissue pair",
+    "publications": "publications"
+  },
+  "thresholdRoles": {
+    "study_estimate": "risk estimate from a specific study",
+    "programme_criterion": "working criterion of a clinical programme",
+    "literature_range": "range cited in the literature",
+    "chart_convention": "chart convention"
+  }
+},
   notFound: 'Page not found',
 }
 

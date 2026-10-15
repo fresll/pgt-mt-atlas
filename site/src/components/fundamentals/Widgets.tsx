@@ -2,6 +2,7 @@ import { useMemo, useState, type CSSProperties, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { Inline } from '../../content/fundamentals/markup'
 import type { WidgetId } from '../../content/fundamentals/types'
+import { fmtFixed } from '../../lib/format'
 import { useLang, useT } from '../../i18n'
 import geometry from '../../illustrations/fundamentals.json'
 import labels from '../../illustrations/labels.json'
@@ -158,7 +159,7 @@ function BottleneckSimulator() {
   const values = useMemo(() => simulateOocytes(h0 / 100, N, count, 7919 * draw), [h0, N, count, draw])
   const s = summarize(values)
   const pc = (v: number) => String(Math.round(v * 100))
-  const sd = (theoreticalSd(h0 / 100, N) * 100).toFixed(1)
+  const sd = fmtFixed(theoreticalSd(h0 / 100, N) * 100, lang, 1)
   // точечный график: столбики по 2.5%
   const W = 640, x0 = 28, x1 = 616, base = 214, top = 18
   const dots = stackDots(values, 0.025)

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { PubStatus, Seg } from '../../components/ui'
-import { atlas, doiUrl, type Publication } from '../../data/atlas'
+import { atlas, doiUrl, pubById, type Publication } from '../../data/atlas'
 import { fmt } from '../../lib/format'
 import { useLang, useT } from '../../i18n'
 import { PageTitle } from '../../components/Layout'
@@ -12,7 +12,7 @@ export default function Sources() {
     atlas.fig3.filter((o) => o.pub === id).length + atlas.fig4.filter((o) => o.pub === id).length +
     atlas.cleavage.filter((o) => o.pub === id).length * 2 + atlas.fig5.filter((o) => o.pub === id).length
   const year = (s: string) => Number(s.match(/\d{4}/)?.[0] ?? 0)
-  const pubs = [...atlas.publications].sort((a, b) => year(a.short) - year(b.short) || a.short.localeCompare(b.short))
+  const pubs = atlas.publications.map((p) => pubById[p.id]).sort((a, b) => year(a.short) - year(b.short) || a.short.localeCompare(b.short))
   // роль публикации на сайте: вычисляется ETL по фактическому использованию (одна запись на публикацию)
   const roleText = (r: Publication['roles'][number]) => {
     if (r.role === 'observations') return t('sources.roles.observations', { section: t(`sources.sections.${r.section}`) })
