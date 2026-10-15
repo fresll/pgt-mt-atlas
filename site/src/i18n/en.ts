@@ -274,7 +274,7 @@ const en: Dict = {
     a4: 'H describes pooled published records with different stages and methods; E is a scenario share of euploid blastocysts.',
     tableTitle: 'P(≥1) for all variants in the dataset',
     smallN: 'small n — the share is unstable',
-    dashed: 'dashed — 30% cut-off (where it differs from 18%)',
+    dashed: 'thin long dashes — 30% cut-off (where different from 18%); main-line patterns distinguish variants',
     nMax: 'N up to',
     boundary: 'Boundary rule',
     rhoLabel: 'Embryo dependence, ρ',
