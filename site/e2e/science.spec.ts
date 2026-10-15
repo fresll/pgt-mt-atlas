@@ -129,7 +129,7 @@ test('dataset size: current counts on Methods and Data; former IDs resolve (B2)'
 test('scenario model states what P(≥1) means and labels p_eupl as scenario values (A4)', async ({ page }) => {
   await page.goto('ru/science/pgt-mt-pgt-a-model/')
   await expect(page.getByTestId('model-meaning')).toContainText('не вероятность беременности, рождения ребёнка или рождения здорового ребёнка')
-  await expect(page.getByTestId('p-eupl')).toContainText('сценарное значение')
+  await expect(page.getByTestId('p-eupl')).toContainText('сценарная доля')
   await expect(page.getByTestId('p-eupl')).toContainText('xfnr.2024.100082')
 })
 
