@@ -8,6 +8,7 @@ import { useLang, useT } from '../../i18n'
 import { fmt, frac } from '../../lib/format'
 import { obsValueText } from '../../lib/obs'
 import { axis, baseLayout, useChartTheme } from '../../lib/theme'
+import { PageTitle } from '../../components/Layout'
 
 const STAGES = ['cleavage', 'morula', 'blastocyst', 'arrested', 'unspecified']
 
@@ -99,7 +100,7 @@ export default function Fig3() {
               (pt.count > 1 ? `<br><i>${t('fig3.groupClick')}</i>` : `<br><span style="font-size:11px">${o.id}</span>`),
           )
           if (pt.count > 1)
-            annotations.push({ x: pt.x + 0.12, y: pt.y, text: `×${pt.count}`, showarrow: false, xanchor: 'left', font: { size: 11, color: th.ink2 } })
+            annotations.push({ x: pt.x + 0.12, y: pt.y, text: `×${pt.count}`, showarrow: false, xanchor: 'left', font: { size: 12, color: th.ink2 } })
         }
         for (const o of c.obs.filter((o) => o.q === 'interval')) {
           const xx = c.x + 0.28
@@ -116,7 +117,7 @@ export default function Fig3() {
       const lines = thresholds.map((th0) => `≤${fmt(th0, lang)}%: ${frac(fractionAtOrBelow(all, th0).k, all.length, lang).replace(' (', '<br>(')}`)
       if (!explore && fractionAtOrBelow(all, 18).k === fractionAtOrBelow(all, 30).k) lines.pop()
       annotations.push({ x: (b.x0 + b.x1) / 2, y: 136, text: `<b>${b.variant}</b>`, showarrow: false, font: { size: 13, color: th.ink } })
-      annotations.push({ x: (b.x0 + b.x1) / 2, y: 131, yanchor: 'top', text: lines.join('<br>'), showarrow: false, font: { size: 11, color: th.ink2 } })
+      annotations.push({ x: (b.x0 + b.x1) / 2, y: 131, yanchor: 'top', text: lines.join('<br>'), showarrow: false, font: { size: 12, color: th.ink2 } })
     }
     const band = (y0: number, y1: number, color: string) => ({ type: 'rect', x0: 0, x1: xmax, y0, y1, fillcolor: color, line: { width: 0 }, layer: 'below' })
     const hline = (y: number, color: string, dash: string, width = 1.2) => ({ type: 'line', x0: 0, x1: xmax, y0: y, y1: y, line: { color, dash, width }, layer: 'below' })
@@ -134,7 +135,7 @@ export default function Fig3() {
       layout: {
         ...baseLayout(th),
         margin: { l: 64, r: 12, t: 12, b: 84 },
-        xaxis: axis(th, { range: [0, xmax], tickvals: ticks.map((x) => x.v), ticktext: ticks.map((x) => x.t), tickangle: 0, showgrid: false, zeroline: false, tickfont: { size: 10, color: th.ink2 }, fixedrange: true }),
+        xaxis: axis(th, { range: [0, xmax], tickvals: ticks.map((x) => x.v), ticktext: ticks.map((x) => x.t), tickangle: 0, showgrid: false, zeroline: false, tickfont: { size: 12, color: th.ink2 }, fixedrange: true }),
         yaxis: axis(th, { range: [-4, 140], tickvals: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100], title: { text: t('fig3.yAxis'), font: { color: th.ink2 } }, showgrid: false, zeroline: false }),
         shapes: [...bg, ...shapes],
         annotations,
@@ -149,6 +150,7 @@ export default function Fig3() {
       <p>
         <ObservedBadge /> {explore && <span className="badge warn">{t('badge.outsideArticle')}</span>}
       </p>
+      <PageTitle title={t('fig3.title')} />
       <h1>{t('fig3.title')}</h1>
       <p className="subtitle">{t('fig3.subtitle')}</p>
       <p className="lead">{t('fig3.lead')}</p>
@@ -185,6 +187,7 @@ export default function Fig3() {
         </label>
       </div>
 
+      <p className="scroll-hint">{t('common.scrollHint')}</p>
       <div style={{ overflowX: 'auto' }}>
         <div style={{ minWidth: 960 }}>
           <PlotlyChart

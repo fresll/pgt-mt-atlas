@@ -35,7 +35,7 @@
   --accent-strong: var(--sk-ink);
   --on-accent: #ffffff;
   --s1: #1f3fb4;
-  --s2: #d28a56;
+  --s2: #b8662a;
   --s3: #137f80;
   --s4: #8e5c8a;
   --flag: #c9772f;
@@ -52,9 +52,10 @@
   --hero-bg: var(--sk-ink-2);
   --hero-ink: #ffffff;
   --hero-muted: #b9c6d3;
-  --radius: 12px;
-  --radius-sm: 8px;
-  --shadow: 0 1px 2px rgba(24, 42, 64, 0.06), 0 4px 16px rgba(24, 42, 64, 0.06);
+  /* Scientific Sketchbook: прямоугольники «пером», без теней */
+  --radius: 3px;
+  --radius-sm: 2px;
+  --shadow: none;
   /* Шрифтовая система: интерфейс и данные — IBM Plex Sans; заголовки — Cormorant Garamond;
      научный текст — Source Serif 4; рукописные подписи к рисункам — Caveat. Все с кириллицей. */
   --font: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -148,7 +149,7 @@
   --hero-bg: #13263b;
   --hero-ink: #f7f8f4;
   --hero-muted: #a9b9c8;
-  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow: none;
 }
 
 * { box-sizing: border-box; }
@@ -256,9 +257,23 @@ button.ghost:hover, .btn-link:hover { border-color: var(--accent); color: var(--
 header.site .btn-link, header.site button.ghost { color: var(--sk-ink); border: 0; border-radius: 0; padding: 4px 6px; }
 header.site .btn-link { border-bottom: 1px solid var(--sk-rule); font-size: calc(0.86rem * var(--text-scale)); letter-spacing: 0.02em; }
 header.site .btn-link:hover, header.site button.ghost:hover { color: var(--sk-red); border-color: var(--sk-red); }
+.menu-toggle {
+  display: none;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid var(--sk-rule);
+  border-radius: 999px;
+  padding: 6px 14px;
+  color: var(--sk-ink);
+  font: inherit;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+.menu-toggle:hover { color: var(--sk-red); border-color: var(--sk-red); }
 /* Меню не помещается в одну строку с логотипом — переходит на вторую строку целиком и переносится по словам,
    без горизонтальной прокрутки и обрезания пунктов. */
-@media (max-width: 1500px) {
+@media (max-width: 1180px) {
   .header-inner { padding-top: 8px; gap: 0 24px; }
   nav.primary { order: 3; flex-basis: 100%; }
   nav.primary a { padding: 4px 0 10px; }
@@ -272,11 +287,24 @@ header.site .btn-link:hover, header.site button.ghost:hover { color: var(--sk-re
   nav.primary { gap: 0 16px; }
   nav.primary a { padding: 5px 0 11px; }
   nav.primary a.active::after { bottom: 4px; }
+  /* Телефон: меню свёрнуто в кнопку; без JavaScript (data-menu="static") остаётся раскрытым. */
+  .header-inner { min-height: 56px; padding-top: 0; flex-wrap: wrap; }
+  .menu-toggle { display: inline-flex; order: 2; margin-left: auto; }
+  nav.primary { order: 4; }
+  .header-inner { flex-wrap: wrap; column-gap: 8px; }
+  .header-tools { order: 3; margin-left: 0; }
+  .brand { flex: 0 1 auto; min-width: 0; }
+  header.site[data-menu='closed'] nav.primary { display: none; }
+  header.site[data-menu='open'] nav.primary { display: flex; flex-direction: column; gap: 0; padding: 4px 0 12px; }
+  header.site[data-menu='open'] nav.primary a { padding: 10px 0; border-top: 1px solid var(--sk-rule); font-size: 1.05rem; }
+  header.site[data-menu='open'] nav.primary a.active::after { display: none; }
+  header.site[data-menu='open'] nav.primary a.active { color: var(--sk-red); }
 }
+
 
 /* ——— Научный раздел ——— */
 .layout-science { display: grid; grid-template-columns: 236px minmax(0, 1fr); gap: 36px; }
-nav.side { position: sticky; top: 84px; align-self: start; padding-top: 28px; }
+nav.side { position: sticky; top: calc(var(--header-h, 70px) + 12px); align-self: start; padding-top: 28px; }
 nav.side ul { list-style: none; margin: 0; padding: 0; border-left: 1px solid var(--border); }
 nav.side a { display: block; padding: 6px 12px; margin-left: -1px; border-left: 2px solid transparent; color: var(--ink-2); text-decoration: none; font-size: calc(0.93rem * var(--text-scale)); }
 nav.side a:hover { color: var(--ink); }
@@ -388,6 +416,7 @@ body:has(.sk-home) main { padding-top: 0; }
 .sk-title-rule { width: min(92%, 3.9 * var(--sk-h1)); height: clamp(14px, 0.13 * var(--sk-h1), 20px); margin: 10px 0 clamp(22px, 2vw, 36px) -4px; }
 .sk-subtitle { font-family: var(--font-text); font-size: calc(clamp(1.08rem, 0.975rem + 0.44vw, 1.5rem) * var(--text-scale)); line-height: 1.55; color: var(--sk-ink-2); max-width: 32em; margin: 0 0 30px; }
 .sk-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 26px; }
+.sk-hero-more { margin: 18px 0 0; }
 /* кнопка — прямоугольник пером, как рамки на схемах */
 .sk-btn {
   display: inline-flex;
@@ -448,7 +477,7 @@ body:has(.sk-home) main { padding-top: 0; }
   padding: clamp(40px, 6vw, 112px) 0;
   border-top: 1px solid var(--sk-rule);
 }
-.sk-margin { position: sticky; top: 96px; align-self: start; }
+.sk-margin { position: sticky; top: calc(var(--header-h, 70px) + 24px); align-self: start; }
 .sk-note { font-family: var(--font-hand); font-size: calc(clamp(1.25rem, 1.1rem + 0.35vw, 1.6rem) * var(--text-scale)); line-height: 1.1; color: var(--sk-red); margin: 6px 0 0; }
 .sk-lead { font-family: var(--font-text); font-size: calc(clamp(1.08rem, 1rem + 0.33vw, 1.4rem) * var(--text-scale)); line-height: 1.65; color: var(--sk-ink-2); max-width: 36em; margin: 0 0 1.4rem; }
 
@@ -467,13 +496,13 @@ body:has(.sk-home) main { padding-top: 0; }
 .sk-kind { font-size: calc(0.74rem * var(--text-scale)); letter-spacing: 0.1em; text-transform: uppercase; color: var(--sk-muted); display: inline-flex; align-items: center; gap: 8px; }
 .sk-kind::before { content: ''; width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid var(--sk-ink); background: var(--sk-ink); }
 .sk-kind.model::before { background: transparent; border-style: dashed; }
-.sk-side-figure { margin: 0; position: sticky; top: 96px; }
+.sk-side-figure { margin: 0; position: sticky; top: calc(var(--header-h, 70px) + 24px); }
 
 .sk-data { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: center; }
 .sk-data-figure { margin: 0; }
 .sk-data h2 { margin-bottom: 18px; }
 
-.sk-audiences { grid-template-columns: 1fr 1fr; }
+.sk-audiences { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .sk-audiences > div + div { border-left: 1px solid var(--sk-rule); padding-left: clamp(20px, 4vw, 64px); }
 .sk-audiences h2 { font-size: clamp(1.6rem, 1.4rem + 0.84vw, 2.4rem); margin-bottom: 10px; }
 .sk-audiences h2 a { text-decoration: none; }
@@ -494,7 +523,7 @@ body:has(.sk-home) main { padding-top: 0; }
   .sk-hero { grid-template-columns: 1fr; min-height: 0; }
   .sk-section, .sk-data { grid-template-columns: 1fr; }
   /* два коротких столбца и строка куратора сохраняют свою сетку до телефонной ширины */
-  .sk-audiences { grid-template-columns: 1fr 1fr; }
+  .sk-audiences { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .sk-curator { grid-template-columns: 96px minmax(0, 1fr); }
   .sk-margin, .sk-side-figure { position: static; }
   .sk-sections-body { grid-template-columns: 1fr; }
@@ -641,6 +670,8 @@ body:has(.sk-curator-page) main { max-width: 1280px; }
 table.data { border-collapse: collapse; width: 100%; font-size: calc(0.875rem * var(--text-scale)); }
 table.data th, table.data td { padding: 7px 12px; border-bottom: 1px solid var(--grid); text-align: left; vertical-align: top; }
 table.data th { position: sticky; top: 0; background: var(--accent-strong); color: var(--on-accent); font-weight: 600; cursor: pointer; white-space: nowrap; }
+/* заголовки узких таблиц модели переносятся по словам, чтобы столбцы не уходили за край */
+[data-testid='model-table'] th, [data-testid='joint-bounds'] th, [data-testid='joint-evidence'] th { white-space: normal; min-width: 5.5em; }
 table.data td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
 table.data tbody tr:nth-child(even) td { background: color-mix(in srgb, var(--surface-2) 45%, var(--surface)); }
 table.data tr.sel td, table.data tbody tr.sel:nth-child(even) td { background: var(--observed-bg); }
@@ -651,6 +682,14 @@ details.table-details > summary { cursor: pointer; margin: 14px 0 8px; font-weig
 /* ——— Подвал ——— */
 footer.site { background: var(--sk-paper); color: var(--sk-muted); font-size: calc(0.86rem * var(--text-scale)); margin-top: 24px; border-top: 1px solid var(--sk-rule); }
 footer.site .inner { padding-top: 28px; padding-bottom: 36px; display: grid; gap: 6px; }
+footer.site .footer-grid { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 18px 48px; align-items: start; }
+footer.site p { margin: 0 0 6px; }
+footer.site .footer-title { font-family: var(--font-display); font-size: calc(1.3rem * var(--text-scale)); font-weight: 600; color: var(--sk-ink); }
+footer.site ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+footer.site .footer-disclaimer { grid-column: 1 / -1; padding-top: 12px; border-top: 1px dashed var(--sk-rule); color: var(--sk-muted); max-width: 60em; }
+@media (max-width: 620px) {
+  footer.site .footer-grid { grid-template-columns: minmax(0, 1fr); }
+}
 footer.site a { color: var(--sk-ink); }
 footer.site a:hover { color: var(--sk-red); }
 footer.site .curated { color: var(--sk-ink); font-family: var(--font-display); font-size: calc(1.15rem * var(--text-scale)); font-weight: 600; }
@@ -749,7 +788,7 @@ body:has(.fd-layout) { background: var(--sk-paper); }
 .fd-page { min-width: 0; padding-top: clamp(12px, 2vw, 28px); }
 
 /* оглавление на полях */
-.fd-toc { position: sticky; top: 84px; align-self: start; padding-top: 28px; font-size: calc(0.92rem * var(--text-scale)); max-height: calc(100vh - 100px); overflow-y: auto; }
+.fd-toc { position: sticky; top: calc(var(--header-h, 70px) + 12px); align-self: start; padding-top: 28px; font-size: calc(0.92rem * var(--text-scale)); max-height: calc(100vh - var(--header-h, 70px) - 24px); overflow-y: auto; }
 .fd-toc a { text-decoration: none; }
 .fd-toc-home { display: block; font-family: var(--font-display); font-size: calc(1.3rem * var(--text-scale)); font-weight: 600; color: var(--sk-ink); margin-bottom: 10px; }
 .fd-toc ol { list-style: none; margin: 0; padding: 0; border-left: 1px solid var(--sk-rule); }
@@ -780,7 +819,7 @@ body:has(.fd-layout) { background: var(--sk-paper); }
 .fd-disclaimer { margin: 28px 0 0; padding-top: 14px; border-top: 1px dashed var(--sk-rule); font-size: calc(0.9rem * var(--text-scale)); color: var(--sk-muted); max-width: 52em; }
 
 /* переключатель уровня изложения */
-.fd-level-switch { position: sticky; top: 69px; z-index: 5; display: flex; flex-wrap: wrap; align-items: stretch; gap: 0; margin: 0 0 8px; padding: 10px 0; background: var(--sk-paper); border-bottom: 1px solid var(--sk-rule); }
+.fd-level-switch { position: sticky; top: var(--header-h, 70px); z-index: 5; display: flex; flex-wrap: wrap; align-items: stretch; gap: 0; margin: 0 0 8px; padding: 10px 0; background: var(--sk-paper); border-bottom: 1px solid var(--sk-rule); }
 .fd-level-label { align-self: center; margin-right: 16px; font-size: calc(0.78rem * var(--text-scale)); letter-spacing: 0.12em; text-transform: uppercase; color: var(--sk-muted); }
 .fd-level-switch button { font: inherit; display: grid; text-align: left; gap: 0; padding: 4px 18px 6px; border: 0; border-bottom: 2px solid transparent; background: transparent; color: var(--sk-ink-2); cursor: pointer; font-family: var(--font-display); font-size: calc(1.25rem * var(--text-scale)); font-weight: 600; line-height: 1.15; }
 .fd-level-switch button small { font-family: var(--font); font-size: calc(0.74rem * var(--text-scale)); font-weight: 400; color: var(--sk-muted); }
@@ -959,4 +998,104 @@ body:has(.fd-layout) { background: var(--sk-paper); }
 @container (max-width: 840px) {
   .fd-section { grid-template-columns: minmax(0, 1fr); }
   .fd-section .sk-margin { position: static; }
+}
+
+/* Выпадающий список разделов вместо длинного бокового меню на узком экране */
+.section-select { display: none; }
+.section-select span { display: block; font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--sk-muted); margin-bottom: 4px; }
+.section-select select {
+  width: 100%;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--sk-ink);
+  background: var(--sk-paper);
+  border: 1px solid var(--sk-rule);
+  border-radius: 6px;
+  padding: 9px 12px;
+}
+@media (max-width: 860px) {
+  .layout-science > .section-select { display: block; padding-top: 8px; }
+  .layout-science > nav.side { display: none; }
+}
+@media (max-width: 1100px) {
+  .fd-layout > .section-select { display: block; padding: 8px 0 12px; border-bottom: 1px solid var(--sk-rule); }
+  .fd-layout > .fd-toc { display: none; }
+}
+.fd-layout.fd-layout-index { grid-template-columns: minmax(0, 1fr); }
+
+.scroll-hint { display: none; font-size: 0.9rem; color: var(--sk-muted); margin: 6px 0; }
+@media (max-width: 980px) { .scroll-hint { display: block; } }
+
+/* Телефон: служебные метки, таблицы и ссылки на источники не мельче 13–15 px */
+@media (max-width: 760px) {
+  .sk-kind, .sk-kicker, .badge, .fd-ref-status, .preview-bar, .fd-level-label { font-size: 13px; }
+  table.data { font-size: 15px; }
+  .fd-reflist, .fd-refs-checked { font-size: 15px; }
+  .fd-cite { font-size: 0.92em; }
+}
+
+/* Свёрнутые источники главы и детали шаблона */
+details.fd-refs > summary, details.sk-c-details > summary { cursor: pointer; list-style: none; }
+details.fd-refs > summary::-webkit-details-marker, details.sk-c-details > summary::-webkit-details-marker { display: none; }
+details.fd-refs > summary { margin: 18px 0 12px; }
+details.fd-refs > summary h2 { display: inline; font-size: calc(clamp(1.5rem, 1.25rem + 0.8vw, 2rem) * var(--text-scale)); margin: 0; }
+details.fd-refs > summary::after, details.sk-c-details > summary::after { content: ' ▾'; color: var(--sk-red); font-size: 0.9em; }
+details[open].fd-refs > summary::after, details[open].sk-c-details > summary::after { content: ' ▴'; }
+.fd-refs-count { font-family: var(--font); font-size: 0.6em; font-weight: 400; color: var(--sk-muted); }
+.fd-refs-checked { font-size: calc(0.9rem * var(--text-scale)); color: var(--sk-muted); margin: 10px 0; }
+details.sk-c-details { margin-top: 18px; border-top: 1px dashed var(--sk-rule); padding-top: 12px; }
+details.sk-c-details > summary { font-family: var(--font-display); font-size: calc(1.25rem * var(--text-scale)); font-weight: 600; color: var(--sk-ink); }
+
+/* Модель: на телефоне — один график сценария с переключателем */
+.panel-tabs { display: none; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+.panel-tabs button { font: inherit; font-size: 0.95rem; padding: 6px 12px; border: 1px solid var(--sk-rule); border-radius: 999px; background: var(--sk-paper); color: var(--sk-ink-2); cursor: pointer; }
+.panel-tabs button[aria-pressed='true'] { border-color: var(--sk-red); color: var(--sk-ink); font-weight: 600; }
+@media (max-width: 760px) {
+  .panel-tabs { display: flex; }
+  .model-panels > .is-inactive { display: none; }
+  .model-panels h3 { display: none; }
+}
+
+/* ——— Единое оформление Scientific Sketchbook для страниц данных, «Пациентам» и «О проекте» ——— */
+h3 { font-family: var(--font-display); font-size: calc(1.3rem * var(--text-scale)); font-weight: 600; color: var(--sk-ink); line-height: 1.25; }
+.badge { background: transparent !important; border: 1.3px solid currentColor; border-radius: 2px; font-family: var(--font); letter-spacing: 0.04em; }
+.badge.neutral { color: var(--sk-muted); }
+.callout { background: transparent; border: 0; border-left: 2px solid var(--sk-ink); border-radius: 0; padding: 4px 0 4px 18px; color: var(--sk-ink-2); }
+.callout.model { background: transparent; color: var(--model-ink); border-left-color: var(--copper); }
+.callout.warn { background: transparent; color: var(--warn-ink); border-left-color: var(--flag); }
+.card { background: var(--sk-paper); border: 1px solid var(--sk-rule); }
+.card:has(a.stretch):hover { border-color: var(--sk-ink); transform: none; }
+.card h3 { font-size: calc(1.4rem * var(--text-scale)); }
+.stat { background: transparent; border: 0; border-top: 1.5px solid var(--sk-ink); border-radius: 0; padding: 12px 0 0; }
+.stat .num { color: var(--sk-ink); }
+.chart-frame { background: var(--sk-paper); border-color: var(--sk-rule); }
+.table-wrap { border-color: var(--sk-rule); background: var(--sk-paper); }
+.controls { background: transparent; border: 0; border-top: 1px solid var(--sk-rule); border-bottom: 1px solid var(--sk-rule); border-radius: 0; padding: 10px 0; }
+.seg { border-radius: 2px; border-color: var(--sk-ink); }
+.detail { background: var(--sk-paper); border-left-color: var(--sk-ink); }
+.page h1, .prose h1 { color: var(--sk-ink); font-size: calc(clamp(2rem, 1.5rem + 2vw, 3rem) * var(--text-scale)); line-height: 1.08; }
+.page h2, .prose h2 { color: var(--sk-ink); }
+.page .subtitle { font-family: var(--font-text); font-style: italic; color: var(--sk-ink-2); font-weight: 400; }
+
+/* Страница «Пациентам и семьям» — вёрстка как у глав «Основ» */
+body:has(.pt-page) { background: var(--sk-paper); }
+.pt-page { color: var(--sk-ink-2); }
+.pt-page .fd-text h2 { font-family: var(--font-display); font-size: calc(clamp(1.6rem, 1.3rem + 1vw, 2.2rem) * var(--text-scale)); color: var(--sk-ink); line-height: 1.15; margin: 2.4rem 0 0.8rem; }
+.pt-page .fd-text section:first-child h2 { margin-top: 0.6rem; }
+.pt-page .fd-text ul { padding-left: 1.2em; }
+.pt-page .fd-text li { margin: 0 0 0.5rem; }
+.pt-toc { margin: 0 0 24px; padding: 12px 0; border-top: 1px solid var(--sk-rule); border-bottom: 1px solid var(--sk-rule); max-width: 42em; }
+.pt-toc ol { margin: 0; padding-left: 1.4em; columns: 2 18em; column-gap: 32px; }
+.pt-toc li { margin: 0 0 4px; break-inside: avoid; }
+.pt-toc a { color: var(--sk-ink); text-decoration: none; border-bottom: 1px solid var(--sk-rule); }
+.pt-toc a:hover { color: var(--sk-red); border-color: var(--sk-red); }
+.pt-page section { scroll-margin-top: calc(var(--header-h, 70px) + 16px); }
+.pt-questions { margin-top: 2.4rem; padding-top: 1rem; border-top: 1px dashed var(--sk-rule); }
+.pt-page .fd-key { margin-top: 2rem; }
+
+/* Печать: только содержание страницы, без шапки, меню и подвала */
+@media print {
+  header.site, footer.site, .preview-bar, .section-select, nav.side, .fd-toc, .no-print, .menu-toggle { display: none !important; }
+  body, body:has(.pt-page) { background: #fff; }
+  .layout-science, .fd-layout { display: block; }
 }

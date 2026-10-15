@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useEffect, useState } from 'react'
 import { PlotlyChart } from '../../components/PlotlyChart'
 import { ModelBadge, PubRef, Seg } from '../../components/ui'
 import { atlas, obsByVariant } from '../../data/atlas'
@@ -8,6 +8,7 @@ import { jointEvidence } from '../../model/evidence'
 import { summarizeInput, type Boundary } from '../../model/observations'
 import { jointBounds, scenarioProbability } from '../../model/scenario'
 import { axis, baseLayout, useChartTheme } from '../../lib/theme'
+import { PageTitle } from '../../components/Layout'
 
 type Cut = 'both' | '18' | '30'
 
@@ -26,6 +27,9 @@ export default function Fig6() {
   const [boundary, setBoundary] = useState<Boundary>('inclusive')
   const [rho, setRho] = useState(0)
   const [showRange, setShowRange] = useState(false)
+  // телефон: один график сценария за раз; при переключении Plotly пересчитывает ширину
+  const [panelIdx, setPanelIdx] = useState(0)
+  useEffect(() => { window.dispatchEvent(new Event('resize')) }, [panelIdx])
   const [nTable, setNTable] = useState(3)
   const m = atlas.model
   const byVar = useMemo(() => obsByVariant(), [])
@@ -60,7 +64,7 @@ export default function Fig6() {
           marker: { size: 6, color: x.color },
           hovertemplate: `${x.v}, ${symbol}${threshold}%<br>h = ${f.k}/${f.n}, e = ${pe}, ρ = ${rho}<br>N = %{x}: P = %{y:.3f}<extra></extra>`,
         })
-        if (threshold === 18 || cut === '30') annotations.push({ x: m.n_max + 0.1, y: probabilities.at(-1), xanchor: 'left', text: x.v, showarrow: false, font: { size: 10, color: th.ink2 } })
+        if (threshold === 18 || cut === '30') annotations.push({ x: m.n_max + 0.1, y: probabilities.at(-1), xanchor: 'left', text: x.v, showarrow: false, font: { size: 12, color: th.ink2 } })
       }
     }
     return { age, pe, data, layout: {
@@ -80,6 +84,7 @@ export default function Fig6() {
 
   return <article>
     <p><ModelBadge /></p>
+    <PageTitle title={t('fig6.title')} />
     <h1>{t('fig6.title')}</h1>
     <p className="subtitle">{t('fig6.subtitle')}</p>
     <div className="callout model" role="note"><strong>◆ </strong>{t('fig6.banner')}</div>
@@ -108,8 +113,13 @@ export default function Fig6() {
       }).join(' / ')}</span>)}
       {cut === 'both' && <span>{t('fig6.dashed')}</span>}
     </div>
-    <div className="grid-3">
-      {panels.map((p) => <div key={p.age}>
+    <div className="panel-tabs" role="group" aria-label={t('fig6.panelTabs')}>
+      {panels.map((p, i) => <button key={p.age} type="button" aria-pressed={i === panelIdx} onClick={() => setPanelIdx(i)}>
+        {t('fig6.panel', { age: p.age, p: fmt(p.pe, lang) })}
+      </button>)}
+    </div>
+    <div className="grid-3 model-panels">
+      {panels.map((p, i) => <div key={p.age} className={i === panelIdx ? 'is-active' : 'is-inactive'}>
         <h3>{t('fig6.panel', { age: p.age, p: fmt(p.pe, lang) })}</h3>
         <PlotlyChart ariaLabel={t('fig6.panel', { age: p.age, p: p.pe })} height={360} data={p.data as never} layout={p.layout as never} />
       </div>)}

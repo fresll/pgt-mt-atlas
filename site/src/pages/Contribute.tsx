@@ -7,6 +7,7 @@ import { useLang, useT } from '../i18n'
 import labels from '../illustrations/labels.json'
 import { CURATOR_CONTACT, EVIDENCE_TIERS, SUBJECT_PREFIX, SUBMISSION_STATUSES, UNPUBLISHED_CHECKS, mailtoHref } from '../lib/contribute'
 import { asset } from '../lib/base'
+import { PageTitle } from '../components/Layout'
 
 // Раздел Contribute Data / Поделиться данными. Сайт ничего не принимает и не хранит:
 // страница объясняет принципы, даёт шаблон и канал связи с куратором (когда он выбран).
@@ -32,6 +33,7 @@ export default function Contribute() {
       <section className="sk-hero sk-c-hero">
         <div>
           <p className="sk-kicker">{t('contribute.kicker')}</p>
+          <PageTitle title={t('contribute.title')} />
           <h1>{t('contribute.title')}</h1>
           <HandRule className="sk-title-rule" />
           <p className="sk-subtitle">{t('contribute.lead')}</p>
@@ -56,16 +58,8 @@ export default function Contribute() {
           <p className="sk-lead">{t('contribute.why.p1')}</p>
           <p>{t('contribute.why.p2')}</p>
           <p className="sk-c-emph">{t('contribute.why.p3')}</p>
-        </div>
-      </section>
-
-      <section className="sk-section" aria-labelledby="c-cycles">
-        <header className="sk-margin">
-          <h2 id="c-cycles">{t('contribute.cycles.title')}</h2>
-          <p className="sk-note">{t('contribute.cycles.note')}</p>
-        </header>
-        <div className="sk-c-text">
-          <p className="sk-lead">{t('contribute.cycles.lead')}</p>
+          <h3 id="c-cycles">{t('contribute.cycles.title')}</h3>
+          <p>{t('contribute.cycles.lead')}</p>
           <ol className="sk-chain">
             {list('contribute.cycles.steps').map((s) => (
               <li key={s}>{s}</li>
@@ -119,9 +113,11 @@ export default function Contribute() {
         <div className="sk-c-text">
           <p className="sk-lead">{t('contribute.template.lead')}</p>
           <div className="sk-actions">
-            <Download primary />
+            <Download />
             <span className="sk-c-meta">{meta}</span>
           </div>
+          <details className="sk-c-details">
+          <summary>{t('contribute.template.detailsTitle')}</summary>
           <h3>{t('contribute.template.sheetsTitle')}</h3>
           <table className="sk-c-table">
             <tbody>
@@ -154,6 +150,7 @@ export default function Contribute() {
               <p>{t('contribute.template.privacy')}</p>
             </div>
           </div>
+          </details>
         </div>
       </section>
 

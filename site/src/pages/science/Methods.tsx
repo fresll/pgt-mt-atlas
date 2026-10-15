@@ -2,6 +2,7 @@ import { PubRef } from '../../components/ui'
 import { atlas, label, pubById } from '../../data/atlas'
 import { useLang, useT } from '../../i18n'
 import { fmt } from '../../lib/format'
+import { PageTitle } from '../../components/Layout'
 
 export default function Methods() {
   const t = useT()
@@ -27,6 +28,7 @@ export default function Methods() {
   }
   return (
     <article className="prose">
+      <PageTitle title={t('methods.title')} />
       <h1>{t('methods.title')}</h1>
 
       <h2>{ru ? 'Что собрано' : 'What was collected'}</h2>

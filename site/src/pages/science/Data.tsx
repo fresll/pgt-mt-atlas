@@ -6,6 +6,7 @@ import { useLang, useT } from '../../i18n'
 import { obsValueText } from '../../lib/obs'
 import { asset } from '../../lib/base'
 import { ObservationDetail } from './Fig3'
+import { PageTitle } from '../../components/Layout'
 
 const CSV = ['publication', 'variant', 'embryo', 'sample', 'measurement', 'offspring_measurement', 'figure_membership', 'verification']
 
@@ -43,6 +44,7 @@ export default function Data() {
   return (
     <article>
       <p><ObservedBadge /></p>
+      <PageTitle title={t('data.title')} />
       <h1>{t('data.title')}</h1>
       <p className="lead">{t('data.lead')}</p>
       <p className="small" data-release="current">{t('data.release', { n: c.landscape_values })}</p>

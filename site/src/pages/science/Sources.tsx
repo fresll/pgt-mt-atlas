@@ -2,6 +2,7 @@ import { PubStatus } from '../../components/ui'
 import { atlas, doiUrl, type Publication } from '../../data/atlas'
 import { fmt } from '../../lib/format'
 import { useLang, useT } from '../../i18n'
+import { PageTitle } from '../../components/Layout'
 
 export default function Sources() {
   const t = useT()
@@ -22,6 +23,7 @@ export default function Sources() {
   }
   return (
     <article>
+      <PageTitle title={t('sources.title')} />
       <h1>{t('sources.title')}</h1>
       <p className="lead">{t('sources.lead')}</p>
       <ol className="prose" style={{ listStyle: 'none', paddingLeft: 0 }}>

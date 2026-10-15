@@ -22,7 +22,7 @@ export interface ChartTheme {
 // когда токены недоступны (статическая генерация): чернила #34406E, синий #1F3FB4, красный #D42A2F.
 const LIGHT: ChartTheme = {
   ink: '#34406e', ink2: '#4a5582', muted: '#5f6787', grid: '#e4e8f5', surface: '#ffffff',
-  s1: '#1f3fb4', s2: '#d28a56', s3: '#137f80', s4: '#8e5c8a',
+  s1: '#1f3fb4', s2: '#b8662a', s3: '#137f80', s4: '#8e5c8a',
   bandGreen: '#e3f1eb', bandBlue: '#e3eaf3', bandRed: '#f7e7dc', accent: '#1f3fb4', critical: '#d42a2f', warn: '#c9772f',
 }
 
@@ -62,8 +62,8 @@ export function baseLayout(th: ChartTheme) {
   return {
     paper_bgcolor: th.surface,
     plot_bgcolor: th.surface,
-    font: { family: 'Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif', color: th.ink2, size: 13 },
-    hoverlabel: { bgcolor: th.surface, bordercolor: th.grid, font: { color: th.ink, size: 13 } },
+    font: { family: "'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif", color: th.ink2, size: 14 },
+    hoverlabel: { bgcolor: th.surface, bordercolor: th.grid, font: { color: th.ink, size: 14 } },
     margin: { l: 64, r: 16, t: 24, b: 56 },
     showlegend: false,
   }
@@ -75,8 +75,8 @@ export function axis(th: ChartTheme, extra: Record<string, unknown> = {}) {
     zerolinecolor: th.grid,
     linecolor: th.muted,
     tickcolor: th.muted,
-    tickfont: { color: th.ink2 },
-    title: { font: { color: th.ink2, size: 13 } },
+    tickfont: { color: th.ink2, size: 13 },
+    title: { font: { color: th.ink2, size: 14 } },
     ...extra,
   }
 }

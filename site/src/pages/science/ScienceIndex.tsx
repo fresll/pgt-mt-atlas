@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { ModelBadge, ObservedBadge } from '../../components/ui'
 import { atlas } from '../../data/atlas'
 import { useLang, useT } from '../../i18n'
+import { PageTitle } from '../../components/Layout'
 
 export default function ScienceIndex() {
   const t = useT()
@@ -16,6 +17,7 @@ export default function ScienceIndex() {
   ]
   return (
     <article>
+      <PageTitle title={t('nav.science')} />
       <h1>{t('nav.science')}</h1>
       <p className="lead">
         {ru

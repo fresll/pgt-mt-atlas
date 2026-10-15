@@ -1,19 +1,26 @@
 import { Link } from 'react-router-dom'
 import { Photo } from '../components/Photo'
 import { useLang, useT } from '../i18n'
+import { PageTitle } from '../components/Layout'
+import { HandRule } from '../components/Sketch'
 
 export default function About() {
   const t = useT()
   const lang = useLang()
   const ru = lang === 'ru'
   return (
-    <article className="prose">
+    <article className="pt-page">
+      <PageTitle title={t('about.title')} />
+      <header className="fd-head">
       <h1>{t('about.title')}</h1>
-      <p className="lead">
+      <HandRule className="sk-title-rule" />
+      <p className="fd-lead">
         {ru
           ? 'Атлас ПГТ-мт — самостоятельная, постоянно обновляемая международная база научных данных о гетероплазмии митохондриальной ДНК при преимплантационном генетическом тестировании (ПГТ-мт).'
           : 'PGT-mt Atlas is an independent, continuously updated international scientific database of mitochondrial DNA heteroplasmy in preimplantation genetic testing (PGT-mt).'}
       </p>
+      </header>
+      <div className="fd-text">
       <p>
         {ru
           ? 'Атлас собирает опубликованные индивидуальные значения гетероплазмии для каждого описанного эмбриона и сопоставления «эмбрион — потомство», хранит происхождение каждого значения и открыто показывает ограничения данных. Атлас не является приложением к какой-либо отдельной публикации и развивается по мере выхода новых исследований.'
@@ -51,6 +58,7 @@ export default function About() {
       </p>
       <h2>{ru ? 'Важно' : 'Important'}</h2>
       <p>{t('home.caveat')}</p>
+      </div>
     </article>
   )
 }

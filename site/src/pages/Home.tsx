@@ -33,10 +33,16 @@ export default function Home() {
           <HandRule className="sk-title-rule" />
           <p className="sk-subtitle">{t('site.tagline')}</p>
           <div className="sk-actions">
-            <Link className="sk-btn" to={`${sci}data/`}>
-              {t('home.explore')} <span aria-hidden="true">→</span>
+            <Link className="sk-btn" to={`/${lang}/patients/`}>
+              {t('home.ctaPatients')} <span aria-hidden="true">→</span>
+            </Link>
+            <Link className="sk-btn" to={sci}>
+              {t('home.ctaSpecialists')} <span aria-hidden="true">→</span>
             </Link>
           </div>
+          <p className="sk-hero-more">
+            <Link className="sk-link" to={`/${lang}/fundamentals/`}>{t('home.ctaFundamentals')}</Link>
+          </p>
         </div>
         <figure className="sk-hero-figure" role="img" aria-label={t('home.figCaption')}>
           <div className="sk-plate">
@@ -53,6 +59,27 @@ export default function Home() {
             ))}
           </div>
         </figure>
+      </section>
+
+      <section className="sk-section sk-audiences">
+        <div>
+          <h2>
+            <Link to={`/${lang}/patients/`}>{t('home.patTitle')}</Link>
+          </h2>
+          <p>{t('home.patText')}</p>
+        </div>
+        <div>
+          <h2>
+            <Link to={`/${lang}/fundamentals/`}>{t('home.fundTitle')}</Link>
+          </h2>
+          <p>{t('home.fundText')}</p>
+        </div>
+        <div>
+          <h2>
+            <Link to={sci}>{t('home.sciTitle')}</Link>
+          </h2>
+          <p>{t('home.sciText')}</p>
+        </div>
       </section>
 
       <section className="sk-section sk-about" aria-labelledby="sk-about">
@@ -116,20 +143,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="sk-section sk-audiences">
-        <div>
-          <h2>
-            <Link to={sci}>{t('home.sciTitle')}</Link>
-          </h2>
-          <p>{t('home.sciText')}</p>
-        </div>
-        <div>
-          <h2>
-            <Link to={`/${lang}/patients/`}>{t('home.patTitle')}</Link>
-          </h2>
-          <p>{t('home.patText')}</p>
-        </div>
-      </section>
 
       <section className="sk-section sk-curator">
         <Photo path="img/ilya-mazunin.jpg" alt={t('curator.title')} width={96} height={120} />

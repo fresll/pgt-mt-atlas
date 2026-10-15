@@ -2,12 +2,14 @@ import { DataTable } from '../../components/DataTable'
 import { ObservedBadge, PubRef } from '../../components/ui'
 import { atlas } from '../../data/atlas'
 import { useLang, useT } from '../../i18n'
+import { PageTitle } from '../../components/Layout'
 
 export default function Cases() {
   const t = useT()
   return (
     <article>
       <p><ObservedBadge /></p>
+      <PageTitle title={t('cases.title')} />
       <h1>{t('cases.title')}</h1>
       <p className="lead">{t('cases.lead')}</p>
       <p className="callout small">

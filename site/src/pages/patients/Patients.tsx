@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom'
 import { Badge } from '../../components/ui'
+import { HandRule } from '../../components/Sketch'
+import { FUNDAMENTALS } from '../../content/fundamentals'
 import { useLang, useT } from '../../i18n'
+import { PageTitle } from '../../components/Layout'
 
 // ЧЕРНОВИК пациентского раздела. Публикация — только после проверки медицинским генетиком (вопрос В8).
 // Тексты опираются на данные атласа и первичные публикации и не содержат утверждений сверх них.
@@ -24,7 +27,7 @@ type PatientText = {
 
 const TEXT: Record<'ru' | 'en', PatientText> = {
   ru: {
-    intro: 'В настоящем разделе рассмотрим, что такое преимплантационное тестирование патогенных вариантов митохондриальной ДНК (ПГТ-мт), когда оно может помочь, а когда нет. И сразу отметим, что текст далее ни в коем случае не заменяет консультацию врача-генетика, но лишь призван сориентировать в терминах и протоколах.',
+    intro: 'Здесь простыми словами объясняется, что такое ПГТ-мт — проверка эмбрионов на мутацию в митохондриальной ДНК во время ЭКО, — чем она может помочь и чего не может. Текст поможет подготовиться к разговору с врачом-генетиком, но не заменяет консультацию.',
     sections: [
       {
         title: 'Что такое митохондриальная ДНК',
@@ -47,7 +50,7 @@ const TEXT: Record<'ru' | 'en', PatientText> = {
         paragraphs: [
           'Результат ПГТ-мт нужен для того, чтобы сравнить эмбрионы между собой и выбрать эмбрион с наименьшей мутационной нагрузкой на перенос в полость матки, а не для постановки диагноза будущему ребёнку.',
           'Анализ показывает уровень мутантной мтДНК только в нескольких клетках и только в конкретный момент времени. Но развитие малыша — это сложный процесс, и для его здоровья важно, как этот показатель распределится по всем тканям и органам в будущем.',
-          'В медицине не существует универсального «безопасного» процента. Пороги, о которых можно прочесть в научных статьях (например, 18% или 30%), исследователи использовали для решения отдельных научных задач — они не являются строгой нормой для конкретного эмбриона.',
+          'В медицине не существует универсального «безопасного» процента. Числа из научных статей получены по-разному: 18% — расчётная оценка по уровню мутации в мышцах взрослых носителей, 30% — рабочий критерий отбора эмбрионов в одной клинической программе. Для разных вариантов мтДНК границы разные, и ни одно число не гарантирует здоровье ребёнка. Подробнее — в главе 6 «Основ ПГТ-мт».',
         ],
       },
       {
@@ -110,7 +113,7 @@ const TEXT: Record<'ru' | 'en', PatientText> = {
     },
   },
   en: {
-    intro: 'This section explains what preimplantation testing for pathogenic mitochondrial DNA variants (PGT-mt) is, when it can help and when it cannot. The text does not replace a consultation with a clinical geneticist; its purpose is to help you understand the terminology and procedures.',
+    intro: 'This page explains in plain words what PGT-mt is — testing embryos for a mutation in mitochondrial DNA during IVF — what it can and cannot do. It will help you prepare for a conversation with a clinical geneticist but does not replace that consultation.',
     sections: [
       {
         title: 'What mitochondrial DNA is',
@@ -133,7 +136,7 @@ const TEXT: Record<'ru' | 'en', PatientText> = {
         paragraphs: [
           'The PGT-mt result is used to compare embryos and choose one with the lowest mutant load for transfer into the uterus, rather than to diagnose the future child.',
           'The test shows the mutant mtDNA level in only a few cells at one particular moment. A baby’s development is a complex process, and future health depends on how this measure is distributed across tissues and organs.',
-          'There is no universal “safe” percentage in medicine. Thresholds mentioned in scientific papers (for example, 18% or 30%) were used to address specific research questions; they are not a strict norm for an individual embryo.',
+          'There is no universal “safe” percentage in medicine. Numbers in scientific papers were obtained in different ways: 18% is an estimate based on mutation levels in the muscle of adult carriers, and 30% is a working embryo-selection criterion of one clinical programme. Thresholds differ between mtDNA variants, and no number guarantees a healthy child. See chapter 6 of the Fundamentals for details.',
         ],
       },
       {
@@ -201,34 +204,59 @@ export default function Patients() {
   const t = useT()
   const lang = useLang()
   const c = TEXT[lang]
+  const fd = `/${lang}/fundamentals/`
+  const chapters = FUNDAMENTALS[lang].chapters
+  const ids = c.sections.map((_, i) => `p-${i + 1}`)
   return (
-    <article className="prose">
-      <p><Badge kind="warn">{t('badge.draft')}</Badge></p>
-      <h1>{t('patients.title')}</h1>
-      <p className="lead">{c.intro}</p>
-      {c.sections.map((section) => (
-        <section key={section.title}>
-          <h2>{section.title}</h2>
-          {section.paragraphs.map((p) => <p key={p}>{p}</p>)}
-          {section.items && <ul>{section.items.map((item) => <li key={item}>{item}</li>)}</ul>}
-          {section.closingTitle && <h3>{section.closingTitle}</h3>}
-          {section.closing && <p>{section.closing}</p>}
-        </section>
-      ))}
-      <section>
-        <h2>{c.questions.title}</h2>
-        <p>{c.questions.intro}</p>
-        {c.questions.groups.map((group) => (
-          <div key={group.title}>
-            <h3>{group.title}</h3>
-            <ul>{group.items.map((question) => <li key={question}>{question}</li>)}</ul>
-          </div>
+    <article className="pt-page">
+      <PageTitle title={t('patients.title')} />
+      <header className="fd-head">
+        <p className="sk-kicker"><Badge kind="warn">{t('badge.draft')}</Badge></p>
+        <h1>{t('patients.title')}</h1>
+        <HandRule className="sk-title-rule" />
+        <p className="fd-lead">{c.intro}</p>
+      </header>
+      <nav className="pt-toc" aria-label={t('patients.tocLabel')}>
+        <ol>
+          {c.sections.map((section, i) => (
+            <li key={section.title}><a href={`#${ids[i]}`}>{section.title}</a></li>
+          ))}
+          <li><a href="#p-questions">{c.questions.title}</a></li>
+        </ol>
+      </nav>
+      <div className="fd-text">
+        {c.sections.map((section, i) => (
+          <section key={section.title} id={ids[i]}>
+            <h2>{section.title}</h2>
+            {section.paragraphs.map((p) => <p key={p}>{p}</p>)}
+            {section.items && <ul>{section.items.map((item) => <li key={item}>{item}</li>)}</ul>}
+            {section.closingTitle && <h3>{section.closingTitle}</h3>}
+            {section.closing && <p>{section.closing}</p>}
+          </section>
         ))}
-        <p>{c.questions.closing}</p>
-      </section>
-      <div className="callout">
-        {lang === 'ru' ? 'Информация не заменяет консультацию врача-генетика. ' : 'This information does not replace a consultation with a clinical geneticist. '}
-        <Link to={`/${lang}/science/`}>{lang === 'ru' ? 'Подробнее для специалистов →' : 'More for specialists →'}</Link>
+        <section id="p-questions" className="pt-questions">
+          <h2>{c.questions.title}</h2>
+          <p>{c.questions.intro}</p>
+          {c.questions.groups.map((group) => (
+            <div key={group.title}>
+              <h3>{group.title}</h3>
+              <ul>{group.items.map((question) => <li key={question}>{question}</li>)}</ul>
+            </div>
+          ))}
+          <p>{c.questions.closing}</p>
+          <p className="no-print">
+            <button className="sk-btn" type="button" onClick={() => window.print()}>{t('patients.print')}</button>
+          </p>
+        </section>
+        <aside className="fd-key no-print">
+          {t('patients.more')}{' '}
+          {[0, 2, 5].map((i, k) => (
+            <span key={chapters[i].slug}>
+              {k > 0 ? ' · ' : ''}
+              <Link to={`${fd}${chapters[i].slug}/`}>{t('fundamentals.chapter', { n: i + 1 })}. {chapters[i].title}</Link>
+            </span>
+          ))}
+        </aside>
       </div>
     </article>
   )

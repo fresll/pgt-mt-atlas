@@ -7,6 +7,7 @@ import { useLang, useT } from '../../i18n'
 import { fmt } from '../../lib/format'
 import { pairValueText } from '../../lib/obs'
 import { axis, baseLayout, useChartTheme, type ChartTheme } from '../../lib/theme'
+import { PageTitle } from '../../components/Layout'
 
 // Форма маркера — категория материала (правило Рисунок_5.py::shape)
 export function materialCat(p: OffspringPair): 0 | 1 | 2 {
@@ -82,7 +83,7 @@ export default function Fig5() {
         },
       }
     })
-    const lab = (x: number, y: number, text: string, xanchor = 'left') => ({ x, y, text, xanchor, showarrow: false, font: { size: 11, color: th.ink2 } })
+    const lab = (x: number, y: number, text: string, xanchor = 'left') => ({ x, y, text, xanchor, showarrow: false, font: { size: 12, color: th.ink2 } })
     return {
       data,
       layout: {
@@ -125,7 +126,7 @@ export default function Fig5() {
           marker: { symbol: SYMBOL[g], size: p.id === selected ? 14 : 10, color: variantColor(p.variant, th), line: { width: p.id === selected ? 2.5 : 1, color: p.id === selected ? th.accent : th.surface } },
         })
       }
-      ann.push({ x: g, y: -18, text: `n = ${rows.length}`, showarrow: false, font: { size: 11, color: th.muted } })
+      ann.push({ x: g, y: -18, text: `n = ${rows.length}`, showarrow: false, font: { size: 12, color: th.muted } })
     })
     return {
       data,
@@ -151,6 +152,7 @@ export default function Fig5() {
   return (
     <article>
       <p><ObservedBadge /></p>
+      <PageTitle title={t('fig5.title')} />
       <h1>{t('fig5.title')}</h1>
       <p className="subtitle">{t('fig5.subtitle')}</p>
       <p className="lead">{t('fig5.lead')}</p>

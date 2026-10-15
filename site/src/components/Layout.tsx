@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
+import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { Head } from 'vite-react-ssg'
-import type { Lang } from '../data/atlas'
+import { atlas, type Lang } from '../data/atlas'
 import { LangProvider, useT } from '../i18n'
 import { Illustration } from './Sketch'
 
@@ -45,13 +45,29 @@ export function switchLangPath(pathname: string, lang: Lang, other: Lang, search
   return `/${other}${rest}${search}${hash}`
 }
 
+/** Высота липкой шапки в CSS-переменной --header-h: по ней выравниваются липкие оглавления и переключатели. */
+function useHeaderHeight(ref: React.RefObject<HTMLElement | null>) {
+  useEffect(() => {
+    const el = ref.current
+    if (!el || typeof ResizeObserver === 'undefined') return
+    const set = () => document.documentElement.style.setProperty('--header-h', `${Math.round(el.getBoundingClientRect().height)}px`)
+    set()
+    const ro = new ResizeObserver(set)
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [ref])
+}
+
 function Header({ lang }: { lang: Lang }) {
   const t = useT()
   const { pathname } = useLocation()
-  const rest = pathname.replace(new RegExp(`^.*?/${lang}(?=/|$)`), '')
-  const inScience = /\/science(\/|$)/.test(rest) && !/\/science\/data(\/|$)/.test(rest)
+  const ref = useRef<HTMLElement>(null)
+  // Без JavaScript меню всегда раскрыто; после загрузки на телефоне оно сворачивается в кнопку «Меню».
+  const [menu, setMenu] = useState<'static' | 'closed' | 'open'>('static')
+  useHeaderHeight(ref)
+  useEffect(() => setMenu('closed'), [pathname])
   return (
-    <header className="site">
+    <header className="site" ref={ref} data-menu={menu}>
       <div className="header-inner">
         <Link className="brand" to={`/${lang}/`}>
           <Illustration name="mark" className="brand-mark" />
@@ -59,12 +75,19 @@ function Header({ lang }: { lang: Lang }) {
             {t('site.title')}
           </span>
         </Link>
-        <nav className="primary" aria-label={t('nav.primaryLabel')}>
-          <NavLink to={`/${lang}/fundamentals/`}>{t('nav.fundamentals')}</NavLink>
+        <button
+          className="menu-toggle"
+          type="button"
+          aria-expanded={menu === 'open'}
+          aria-controls="primary-nav"
+          onClick={() => setMenu(menu === 'open' ? 'closed' : 'open')}
+        >
+          <span aria-hidden="true">{menu === 'open' ? '×' : '☰'}</span> {t(menu === 'open' ? 'nav.menuClose' : 'nav.menu')}
+        </button>
+        <nav className="primary" id="primary-nav" aria-label={t('nav.primaryLabel')}>
           <NavLink to={`/${lang}/patients/`}>{t('nav.patients')}</NavLink>
-          <NavLink to={`/${lang}/science/`} className={() => (inScience ? 'active' : '')}>{t('nav.science')}</NavLink>
-          <NavLink to={`/${lang}/science/data/`}>{t('nav.data')}</NavLink>
-          <NavLink to={`/${lang}/contribute/`}>{t('nav.contribute')}</NavLink>
+          <NavLink to={`/${lang}/fundamentals/`}>{t('nav.fundamentals')}</NavLink>
+          <NavLink to={`/${lang}/science/`}>{t('nav.science')}</NavLink>
           <NavLink to={`/${lang}/about/`}>{t('nav.about')}</NavLink>
         </nav>
         <div className="header-tools">
@@ -75,13 +98,53 @@ function Header({ lang }: { lang: Lang }) {
   )
 }
 
-function Footer() {
+function formatDate(iso: string, lang: Lang): string {
+  const d = new Date(`${iso}T00:00:00Z`)
+  return Number.isNaN(d.getTime())
+    ? iso
+    : d.toLocaleDateString(lang === 'ru' ? 'ru-RU' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })
+}
+
+function Footer({ lang }: { lang: Lang }) {
+  const t = useT()
   return (
     <footer className="site">
-      <div className="inner">
-        <p className="muted">Атлас ПГТ-мт</p>
+      <div className="inner footer-grid">
+        <div>
+          <p className="footer-title">{t('site.title')}</p>
+          <p>
+            <Link to={`/${lang}/ilya-mazunin/`}>{t('site.curated')}</Link>
+          </p>
+          <p className="muted">{t('footer.updated', { date: formatDate(atlas.meta.dataset_version, lang) })}</p>
+        </div>
+        <nav aria-label={t('footer.linksLabel')}>
+          <ul>
+            <li><Link to={`/${lang}/about/`}>{t('nav.about')}</Link></li>
+            <li><Link to={`/${lang}/science/methods/`}>{t('nav.methods')}</Link></li>
+            <li><Link to={`/${lang}/science/sources/`}>{t('nav.sources')}</Link></li>
+            <li><Link to={`/${lang}/contribute/`}>{t('footer.contribute')}</Link></li>
+          </ul>
+        </nav>
+        <p className="footer-disclaimer">{t('footer.disclaimer')}</p>
       </div>
     </footer>
+  )
+}
+
+/** На узком экране длинное боковое меню раздела заменяется выпадающим списком. */
+export function SectionSelect({ label, items, current }: { label: string; items: [string, string][]; current: string }) {
+  const navigate = useNavigate()
+  return (
+    <label className="section-select">
+      <span>{label}</span>
+      <select value={current} onChange={(e) => navigate(e.target.value)}>
+        {items.map(([to, title]) => (
+          <option key={to} value={to}>
+            {title}
+          </option>
+        ))}
+      </select>
+    </label>
   )
 }
 
@@ -137,31 +200,47 @@ function ShellInner({ lang }: { lang: Lang }) {
       <main id="content">
         <Outlet />
       </main>
-      <Footer />
+      <Footer lang={lang} />
     </>
+  )
+}
+
+/** Заголовок вкладки браузера для отдельной страницы: «Раздел — Атлас ПГТ-мт». */
+export function PageTitle({ title, description }: { title: string; description?: string }) {
+  const t = useT()
+  return (
+    <Head>
+      <title>{`${title} — ${t('site.title')}`}</title>
+      {description ? <meta name="description" content={description} /> : null}
+    </Head>
   )
 }
 
 export function ScienceLayout({ lang }: { lang: Lang }) {
   const t = useT()
+  const { pathname } = useLocation()
   const items: [string, string][] = [
-    ['', 'nav.science'],
-    ['data/', 'nav.data'],
+    ['', 'nav.scienceIndex'],
     ['heteroplasmy-landscape/', 'nav.fig3'],
     ['embryo-concordance/', 'nav.fig4'],
     ['embryo-to-offspring/', 'nav.fig5'],
     ['pgt-mt-pgt-a-model/', 'nav.fig6'],
     ['cases/', 'nav.cases'],
+    ['data/', 'nav.data'],
     ['sources/', 'nav.sources'],
     ['methods/', 'nav.methods'],
   ]
+  const root = `/${lang}/science/`
+  const rest = pathname.replace(/^.*?\/science\//, '')
+  const current = `${root}${items.find(([p]) => p !== '' && rest.startsWith(p))?.[0] ?? ''}`
   return (
     <div className="layout-science">
+      <SectionSelect label={t('nav.sectionSelect')} items={items.map(([p, k]) => [`${root}${p}`, t(k)])} current={current} />
       <nav className="side" aria-label={t('nav.scienceLabel')}>
         <ul>
           {items.map(([p, k]) => (
             <li key={p}>
-              <NavLink to={`/${lang}/science/${p}`} end={p === ''}>
+              <NavLink to={`${root}${p}`} end={p === ''}>
                 {t(k)}
               </NavLink>
             </li>

@@ -6,6 +6,7 @@ import { atlas, fig4Embryos, hasVerificationIssue, label, median, pubById, range
 import { useLang, useT } from '../../i18n'
 import { fmt, pct } from '../../lib/format'
 import { axis, baseLayout, useChartTheme, type ChartTheme } from '../../lib/theme'
+import { PageTitle } from '../../components/Layout'
 
 // combined_te_icm — объединённая фракция ВКМ+ТЭ, когда ВКМ и оставшуюся ТЭ не удалось разделить (Tofilo 2026, эмбрионы 3 и 4)
 const FR = ['te_biopsy', 'icm', 'remaining_te', 'combined_te_icm'] as const
@@ -68,7 +69,7 @@ export default function Fig4() {
       layout: {
         ...baseLayout(th),
         shapes: [{ type: 'rect', x0: -0.3, x1: 3.3, y0: 18, y1: 30, fillcolor: th.bandBlue, line: { width: 0 }, layer: 'below' }],
-        xaxis: axis(th, { range: [-0.3, 3.3], tickvals: [0, 1, 2, 3], ticktext: FR.map((f) => (f === 'combined_te_icm' ? t('fig4.combShort') : frLabel(f).replace(' ', '<br>'))), tickangle: 0, showgrid: false, fixedrange: true, tickfont: { size: 10, color: th.ink2 } }),
+        xaxis: axis(th, { range: [-0.3, 3.3], tickvals: [0, 1, 2, 3], ticktext: FR.map((f) => (f === 'combined_te_icm' ? t('fig4.combShort') : frLabel(f).replace(' ', '<br>'))), tickangle: 0, showgrid: false, fixedrange: true, tickfont: { size: 12, color: th.ink2 } }),
         yaxis: axis(th, { range: [-3, 103], title: { text: t('fig4.yA') } }),
       },
     }
@@ -94,7 +95,7 @@ export default function Fig4() {
           hovertemplate: '%{text}<extra></extra>', marker: markerFor(e.cls, hasVerificationIssue(e.embryo), e.embryo === selected, th),
         })
       }
-      ann.push({ x: gx, y: -11, text: `n = ${rows.length}`, showarrow: false, font: { size: 11, color: th.muted } })
+      ann.push({ x: gx, y: -11, text: `n = ${rows.length}`, showarrow: false, font: { size: 12, color: th.muted } })
     })
     return {
       data,
@@ -106,11 +107,11 @@ export default function Fig4() {
         ],
         annotations: [
           ...ann,
-          { x: 0.5, y: -0.2, xref: 'x', yref: 'paper', text: t('fig4.remMinusBx').replace(' − ', '<br>− '), showarrow: false, font: { size: 10, color: th.ink2 } },
-          { x: 2.5, y: -0.2, xref: 'x', yref: 'paper', text: t('fig4.icmMinusBx').replace(' − ', '<br>− '), showarrow: false, font: { size: 10, color: th.ink2 } },
-          ...(groups.length > 4 ? [{ x: 4, y: -0.2, xref: 'x', yref: 'paper', text: t('fig4.combMinusBx').replace(' − ', '<br>− '), showarrow: false, font: { size: 10, color: th.ink2 } }] : []),
+          { x: 0.5, y: -0.2, xref: 'x', yref: 'paper', text: t('fig4.remMinusBx').replace(' − ', '<br>− '), showarrow: false, font: { size: 12, color: th.ink2 } },
+          { x: 2.5, y: -0.2, xref: 'x', yref: 'paper', text: t('fig4.icmMinusBx').replace(' − ', '<br>− '), showarrow: false, font: { size: 12, color: th.ink2 } },
+          ...(groups.length > 4 ? [{ x: 4, y: -0.2, xref: 'x', yref: 'paper', text: t('fig4.combMinusBx').replace(' − ', '<br>− '), showarrow: false, font: { size: 12, color: th.ink2 } }] : []),
         ],
-        xaxis: axis(th, { range: [-0.5, xMax], tickvals: groups.map((_, i) => i), ticktext: groups.map((g) => (g.hv2 ? 'HV2' : lang === 'ru' ? 'патог.' : 'path.')), tickangle: 0, showgrid: false, fixedrange: true, tickfont: { size: 11, color: th.ink2 } }),
+        xaxis: axis(th, { range: [-0.5, xMax], tickvals: groups.map((_, i) => i), ticktext: groups.map((g) => (g.hv2 ? 'HV2' : lang === 'ru' ? 'патог.' : 'path.')), tickangle: 0, showgrid: false, fixedrange: true, tickfont: { size: 12, color: th.ink2 } }),
         yaxis: axis(th, { range: [-12.5, 12.5], title: { text: t('fig4.yB') }, zeroline: false }),
         margin: { l: 64, r: 12, t: 24, b: 78 },
       },
@@ -138,13 +139,13 @@ export default function Fig4() {
       const m = median(c.items.map((i) => i.y))
       shapes.push({ type: 'line', x0: gx - 0.25, x1: gx + 0.25, y0: m, y1: m, line: { color: th.critical, width: 3 } })
       ann.push({ x: gx + 0.27, y: m, xanchor: 'left', text: fmt(m, lang, 1), showarrow: false, font: { color: th.critical, size: 12 } })
-      ann.push({ x: gx, y: -1.6, text: `n = ${c.items.length}`, showarrow: false, font: { size: 11, color: th.muted } })
+      ann.push({ x: gx, y: -1.6, text: `n = ${c.items.length}`, showarrow: false, font: { size: 12, color: th.muted } })
     })
     return {
       data,
       layout: {
         ...baseLayout(th), shapes, annotations: ann,
-        xaxis: axis(th, { range: [-0.5, cols.length - 0.5], tickvals: cols.map((_, i) => i), ticktext: cols.map((c) => c.name.replace(', ', ',<br>')), tickangle: 0, showgrid: false, fixedrange: true, tickfont: { size: 10, color: th.ink2 } }),
+        xaxis: axis(th, { range: [-0.5, cols.length - 0.5], tickvals: cols.map((_, i) => i), ticktext: cols.map((c) => c.name.replace(', ', ',<br>')), tickangle: 0, showgrid: false, fixedrange: true, tickfont: { size: 12, color: th.ink2 } }),
         yaxis: axis(th, { range: [-2.2, 11], title: { text: t('fig4.yC') }, zeroline: false }),
         margin: { l: 56, r: 12, t: 24, b: 70 },
       },
@@ -159,6 +160,7 @@ export default function Fig4() {
   return (
     <article>
       <p><ObservedBadge /></p>
+      <PageTitle title={t('fig4.title')} />
       <h1>{t('fig4.title')}</h1>
       <p className="subtitle">{t('fig4.subtitle')}</p>
       <p className="lead">{t('fig4.lead', { n: s.n_embryos, c: s.n_cleavage })}</p>

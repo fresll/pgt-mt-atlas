@@ -3,6 +3,7 @@ import { Photo } from '../components/Photo'
 import { doiUrl } from '../data/atlas'
 import { creator, topicLabel, type Pub } from '../data/creator'
 import { useLang, useT } from '../i18n'
+import { PageTitle } from '../components/Layout'
 
 function Section({ id, title, note, children }: { id: string; title: string; note: string; children: ReactNode }) {
   return (
@@ -29,6 +30,7 @@ export default function Curator() {
         <Photo className="portrait" path={c.photo.src} alt={t('curator.photoAlt')} width={c.photo.w} height={c.photo.h} loading="eager" />
         <div>
           <p className="sk-kicker">{t('curator.role')}</p>
+          <PageTitle title={t('curator.title')} />
           <h1>{t('curator.title')}</h1>
           <p className="cv-degree">{c.degree[lang]}</p>
           <ul className="cv-headline">

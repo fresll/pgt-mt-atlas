@@ -1,12 +1,13 @@
 import { useEffect, useState, type ComponentType, type ReactNode } from 'react'
 import type { PlotParams } from 'react-plotly.js'
-import { useT } from '../i18n'
+import { useLang, useT } from '../i18n'
 
 let cached: ComponentType<PlotParams> | null = null
 
 /** Plotly только в браузере: при статической генерации показывается заглушка, а данные доступны в таблице. */
 export function PlotlyChart({ ariaLabel, height = 420, ...props }: Omit<PlotParams, 'style'> & { ariaLabel: string; height?: number; children?: ReactNode }) {
   const t = useT()
+  const lang = useLang()
   const [Plot, setPlot] = useState<ComponentType<PlotParams> | null>(cached)
   const [failed, setFailed] = useState(false)
   useEffect(() => {
@@ -29,6 +30,8 @@ export function PlotlyChart({ ariaLabel, height = 420, ...props }: Omit<PlotPara
       {Plot ? (
         <Plot
           {...props}
+          // десятичная запятая и неразрывный пробел в числах на русской странице
+          layout={{ ...(props.layout ?? {}), separators: lang === 'ru' ? ', ' : '.,' }}
           style={{ width: '100%', height }}
           useResizeHandler
           config={{

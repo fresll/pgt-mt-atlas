@@ -67,7 +67,7 @@ const en: FundamentalsContent = {
       slug: 'heteroplasmy-and-threshold-effects',
       title: 'Heteroplasmy and Threshold Effects',
       short: 'Measuring heteroplasmy, tissue variability, thresholds and analytical error',
-      lead: 'A heteroplasmy level is a number that depends on the tissue, the time point and the method of measurement. The link between that number and health is non-linear and differs between variants, which is why there is no universal safe level.',
+      lead: 'A heteroplasmy level is a number that depends on the tissue, the time point and the method of measurement. The link between that number and health is non-linear and differs between variants.',
       essentials: [
         { t: 'h', x: 'What exactly is measured' },
         { t: 'p', x: 'Heteroplasmy is the percentage of mtDNA molecules carrying a variant at a given position, in a given sample, measured by a given method. All three qualifiers matter. In one person, values in blood, urine, buccal cells and muscle can differ [@stewart2015; @burr2024], and two methods can return different numbers for the same tissue [@treff2012; @mitalipov2014].' },
@@ -84,7 +84,7 @@ const en: FundamentalsContent = {
         { t: 'p', x: 'The links between these levels are loose. The same heteroplasmy in blood can accompany diseases of different severity, because what matters clinically is the load in the affected tissues — brain, muscle, heart, retina — which are usually not accessible for testing [@gorman2016; @burr2024].' },
         { t: 'h', x: 'There is no universal safe level' },
         { t: 'p', x: 'The numbers that appear in the PGT-mt literature — for example 18% and 30% — answer different questions and come from different data [@hellebrekers2012; @hyslop2025]. None of them guarantees that a child will be healthy, and none transfers automatically to every variant. Chapter 6 discusses these reference points in detail.' },
-        { t: 'key', x: 'There is no universal safe heteroplasmy level. The heteroplasmy threshold used to select an embryo for transfer into the uterine cavity is chosen and justified for a specific variant; it is not applied as a fixed standard.' },
+        { t: 'key', x: 'The heteroplasmy threshold used to select an embryo for transfer into the uterine cavity is chosen and justified for a specific variant; it is not applied as a fixed standard.' },
       ],
       advanced: [
         { t: 'h', x: 'Formal definition and measurement artefacts' },
@@ -97,7 +97,7 @@ const en: FundamentalsContent = {
         { t: 'h', x: 'Measurement methods and analytical error' },
         { t: 'p', x: 'Heteroplasmy is quantified by PCR with restriction analysis, pyrosequencing, allele-specific quantitative PCR (ARMS-qPCR), droplet digital PCR (ddPCR), and targeted or whole-genome sequencing [@rubens2025; @mizuguchi2025; @mitalipov2014; @tytgat2021; @spath2021; @janssen2024]. The methods differ in limit of detection, linearity across the full 0–100% range, reproducibility and susceptibility to amplification bias. Their performance is established by validation in a specific laboratory, not by the name of the technology [@mavraki2023].' },
         { t: 'p', x: 'Method error is comparable to the differences that have to be interpreted. Tajima and colleagues reported an error of −5 to +6 percentage points for their method [@tajima2007]. The most instructive published case concerns m.3243A>G: after transfer of a blastocyst with 12%, the child had 15% in buccal cells at one month, a commercial laboratory reported less than 10% in blood, and an independent re-analysis by ARMS-qPCR gave 46–47% in blood [@treff2012; @mitalipov2014]. The case was debated in correspondence between research groups [@mitalipov2014; @steffann2014]. It shows that values obtained by different methods and laboratories cannot be compared directly without cross-validation.' },
-        { t: 'key', x: 'A heteroplasmy value is incomplete without the sample, the method and the limit of detection. There is no universal safe level: the threshold depends on the variant, the tissue and the question the number is meant to answer.' },
+        { t: 'key', x: 'A heteroplasmy value is incomplete without the sample, the method and the limit of detection. The threshold depends on the variant, the tissue and the question the number is meant to answer.' },
       ],
       widgets: ['threshold'],
       data: [
@@ -234,7 +234,7 @@ const en: FundamentalsContent = {
           ['Sample preparation', 'Cell lysis; analysis directly or after whole-genome amplification (WGA) if the same sample is needed for PGT-A and other tests [@spath2021].'],
           ['Quantifying heteroplasmy', 'Targeted PCR with restriction analysis, pyrosequencing, ARMS-qPCR, ddPCR, targeted or whole-genome sequencing — depending on the laboratory’s validation.'],
           ['Quality control', 'To verify the accuracy of the method, artificially prepared DNA mixtures with precisely defined proportions of wild-type and mutant DNA (for example, 1%, 5%, 10%, etc.) are used. These allow a calibration curve to be constructed and confirmation that the instrument correctly measures the true mutant proportion across the full range [@mavraki2023].'],
-          ['Joint assessment with PGT-A', 'An embryo for transfer must have both a low mutant load and a euploid chromosome complement [@spath2021; @hanson2021].'],
+          ['Joint assessment with PGT-A', 'If PGT-A is performed, the embryo is assessed for both mutant load and chromosome complement; see chapter 6 [@spath2021; @hanson2021].'],
           ['Interpretation and the transfer decision', 'Ranking of embryos and discussion with the family; the cut-off is chosen and justified for the specific variant (Chapter 6).'],
           ['Prenatal diagnosis and follow-up', 'After transfer of an embryo with detectable heteroplasmy, prenatal diagnosis and postnatal follow-up are discussed [@steffann2021; @rubens2025].'],
         ] },

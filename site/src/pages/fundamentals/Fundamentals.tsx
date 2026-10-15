@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react'
-import { Link, NavLink, Outlet } from 'react-router-dom'
+import { useEffect, useRef, useState } from 'react'
+import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { Head } from 'vite-react-ssg'
+import { SectionSelect } from '../../components/Layout'
 import { HandRule } from '../../components/Sketch'
 import { WIDGET_KEYS, Widget } from '../../components/fundamentals/Widgets'
 import type { Lang } from '../../data/atlas'
@@ -17,9 +18,29 @@ const base = (lang: Lang) => `/${lang}/fundamentals/`
 
 export function FundamentalsLayout({ lang }: { lang: Lang }) {
   const t = useT()
+  const { pathname } = useLocation()
   const chapters = FUNDAMENTALS[lang].chapters
+  // На странице-оглавлении боковое меню повторяет основное содержание — его там нет.
+  const isIndex = /\/fundamentals\/?$/.test(pathname)
+  const options: [string, string][] = [
+    [base(lang), t('fundamentals.title')],
+    ...chapters.map((c, i): [string, string] => [`${base(lang)}${c.slug}/`, `${i + 1}. ${c.title}`]),
+    [`${base(lang)}references/`, t('fundamentals.bibliography')],
+  ]
+  const rest = pathname.replace(/^.*?\/fundamentals\//, '')
+  const current = options.find(([to]) => to !== base(lang) && rest && to.endsWith(`/fundamentals/${rest.replace(/\/?$/, '/')}`))?.[0] ?? base(lang)
+  if (isIndex) {
+    return (
+      <div className="fd-layout fd-layout-index">
+        <div className="fd-page">
+          <Outlet />
+        </div>
+      </div>
+    )
+  }
   return (
     <div className="fd-layout">
+      <SectionSelect label={t('nav.chapterSelect')} items={options} current={current} />
       <nav className="fd-toc" aria-label={t('fundamentals.tocTitle')}>
         <NavLink className="fd-toc-home" to={base(lang)} end>
           {t('fundamentals.title')}
@@ -87,9 +108,6 @@ export function FundamentalsIndex() {
               <div>
                 <Link to={`${base(lang)}${c.slug}/`}>{c.title}</Link>
                 <p>{c.short}</p>
-                <span className="fd-levels-hint">
-                  {t('fundamentals.essentials')} · {t('fundamentals.advanced')}
-                </span>
               </div>
             </li>
           ))}
@@ -142,7 +160,7 @@ function RefItem({ r, chapters }: { r: Ref; chapters?: number[] }) {
         doi:{r.doi}
       </a>
       {r.pmid && <span className="muted"> · PMID {r.pmid}</span>}{' '}
-      <span className={`fd-ref-status ${r.verified}`}>{t(`fundamentals.refStatus.${r.verified}`)}</span>
+      {r.verified !== 'pubmed' && <span className={`fd-ref-status ${r.verified}`}>{t(`fundamentals.refStatus.${r.verified}`)}</span>}
       {chapters && chapters.length > 0 && (
         <span className="fd-ref-used">
           {' '}
@@ -225,6 +243,19 @@ export function ChapterPage({ slug }: { slug: string }) {
       /* ignore */
     }
   }
+  // Список источников свёрнут; переход по ссылке-цитате [Автор, год] раскрывает его.
+  const refsRef = useRef<HTMLDetailsElement>(null)
+  useEffect(() => {
+    const open = () => {
+      if (window.location.hash.startsWith('#ref-') && refsRef.current) {
+        refsRef.current.open = true
+        document.getElementById(decodeURIComponent(window.location.hash.slice(1)))?.scrollIntoView()
+      }
+    }
+    open()
+    window.addEventListener('hashchange', open)
+    return () => window.removeEventListener('hashchange', open)
+  }, [slug])
   const prev = chapters[i - 1], next = chapters[i + 1]
   return (
     <article className="fd-chapter">
@@ -243,7 +274,6 @@ export function ChapterPage({ slug }: { slug: string }) {
         {(['essentials', 'advanced'] as Level[]).map((l) => (
           <button key={l} type="button" aria-pressed={level === l} onClick={() => choose(l)}>
             {t(`fundamentals.${l}`)}
-            <small>{t(`fundamentals.${l}Hint`)}</small>
           </button>
         ))}
       </div>
@@ -262,7 +292,7 @@ export function ChapterPage({ slug }: { slug: string }) {
       {c.widgets.length > 0 && (
         <section className="fd-figures" aria-labelledby={`${slug}-figures`}>
           <h2 id={`${slug}-figures`}>
-            {t('fundamentals.figures')} <span className="sk-note">{t('fundamentals.figuresNote')}</span>
+            {t('fundamentals.figures')}
           </h2>
           {c.widgets.map((w) => (
             <Widget key={w} id={w} />
@@ -272,7 +302,7 @@ export function ChapterPage({ slug }: { slug: string }) {
 
       <section className="fd-data" aria-labelledby={`${slug}-data`}>
         <h2 id={`${slug}-data`}>
-          {t('fundamentals.toData')} <span className="sk-note">{t('fundamentals.toDataNote')}</span>
+          {t('fundamentals.toData')}
         </h2>
         <ul>
           {c.data.map((d) => (
@@ -284,10 +314,13 @@ export function ChapterPage({ slug }: { slug: string }) {
         </ul>
       </section>
 
-      <section className="fd-refs" aria-labelledby={`${slug}-refs`}>
-        <h2 id={`${slug}-refs`}>
-          {t('fundamentals.refs')} <span className="sk-note">{t('fundamentals.refsNote')}</span>
-        </h2>
+      <details className="fd-refs" ref={refsRef}>
+        <summary>
+          <h2 id={`${slug}-refs`}>
+            {t('fundamentals.refs')} <span className="fd-refs-count">({refs.length})</span>
+          </h2>
+        </summary>
+        <p className="fd-refs-checked">{t('fundamentals.refsChecked')}</p>
         <ol className="fd-reflist">
           {refs.map((id) => (
             <RefItem key={id} r={refById[id]} />
@@ -298,9 +331,7 @@ export function ChapterPage({ slug }: { slug: string }) {
           <Link className="sk-link" to={`${base(lang)}references/`}>{t('fundamentals.bibliography')} →</Link>
         </p>
         )}
-      </section>
-
-      <p className="fd-disclaimer">{t('fundamentals.disclaimer')}</p>
+      </details>
 
       <nav className="fd-pager" aria-label={t('fundamentals.chapters')}>
         {prev ? (
