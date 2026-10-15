@@ -264,7 +264,7 @@ export default function Fig3() {
           selected={selected}
           onSelect={(o) => setSelected(o.id)}
           csvName="pgt-mt-atlas_heteroplasmy-landscape.csv"
-          csvRow={(o) => ({ id: o.id, variant: o.variant, value_pct: o.value, qualifier: o.q, low: o.low, high: o.high, publication: o.pub, doi: pubById[o.pub]?.doi, stage: o.stage, stage_raw: o.stage_raw, sample_type: o.sample, material_raw: o.material_raw, derivation: o.derivation, sheet: o.src.sheet, row: o.src.row })}
+          csvRow={(o) => ({ id: o.id, variant: o.variant, value_pct: o.value, qualifier: o.q, low: o.low, high: o.high, publication: o.pub, doi: pubById[o.pub]?.doi, pmid: pubById[o.pub]?.pmid, source_locator: o.source_locator, stage: o.stage, stage_raw: o.stage_raw, sample_type: o.sample, material_raw: o.material_raw, derivation: o.derivation, sheet: o.src.sheet, row: o.src.row })}
           columns={[
             { key: 'id', header: 'ID', render: (o) => o.id, sort: (o) => o.id },
             { key: 'variant', header: t('common.variant'), render: (o) => o.variant, sort: (o) => o.variant },

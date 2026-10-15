@@ -25,7 +25,7 @@ test('scenarios preserve the baseline and expose dependence, strict thresholds a
 test('the model page identifies conditional uncertainty and primary-series evidence', async ({ page }) => {
   await page.goto('ru/science/pgt-mt-pgt-a-model/')
   await expect(page.getByTestId('model-input-summary')).toContainText('187')
-  await expect(page.getByTestId('model-without-3pn')).toContainText('5/27')
+  await expect(page.getByTestId('model-without-3pn')).toContainText('5/25')
   await expect(page.getByTestId('model-input-summary')).toContainText('43')
   await expect(page.getByTestId('joint-evidence').locator('tbody tr')).toHaveCount(3)
   await expect(page.getByTestId('joint-evidence')).toContainText('0/15')

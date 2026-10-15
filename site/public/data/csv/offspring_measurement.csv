@@ -1,25 +1,33 @@
-pair_id,child_id,publication_id,variant_id,embryo_value_pct,embryo_qualifier,embryo_raw,phase,tissue,tissue_raw,value_pct,qualifier,value_raw,age_raw,method_raw,delta_pp,src_sheet,src_row
-C12a,C12,ji2021,m.3697G>A,53.9,exact,,prenatal,amniotic_fluid,амниотическая жидкость,49.7,exact,,,,-4.2,Рисунок 5,4
-C12b,C12,ji2021,m.3697G>A,53.9,exact,,prenatal,fetal_tissue,ткани плода (среднее),47.7,exact,,,,-6.2,Рисунок 5,5
-C1a,C1,steffann2006,m.8993T>G,0.0,not_detected,,prenatal,amniotic_fluid,амниотическая жидкость,0.0,not_detected,,,,0.0,Рисунок 5,6
-C1b,C1,steffann2006,m.8993T>G,0.0,not_detected,,postnatal,cord_blood,пуповинная кровь,0.0,not_detected,,,,0.0,Рисунок 5,7
-C2,C2,thorburn2009,m.8993T>G,2.5,exact,,postnatal,cord_blood,пуповинная кровь,4.0,exact,,,,1.5,Рисунок 5,8
-C3,C3,sallevelt2013,m.8993T>G,0.0,not_detected,,postnatal,cord_blood,пуповинная кровь,0.0,not_detected,,,,0.0,Рисунок 5,9
-C5a,C5,treff2012,m.3243A>G,12.0,exact,,postnatal,buccal,буккальный эпителий,15.0,exact,,1 мес,"количественный анализ, разработанный в Treff et al., 2012",3.0,Рисунок 5,10
-C6a,C6,heindryckx2014,m.3243A>G,0.0,not_detected,,postnatal,buccal,буккальный мазок,0.0,not_detected,,,,0.0,Рисунок 5,11
-C6b,C6,heindryckx2014,m.3243A>G,0.0,not_detected,,postnatal,blood,кровь,0.0,not_detected,,,,0.0,Рисунок 5,12
-C6c,C6,heindryckx2014,m.3243A>G,0.0,not_detected,,postnatal,urine,моча,0.0,not_detected,,,,0.0,Рисунок 5,13
-C9a,C9,spath2021,m.8993T>G,0.0,not_detected,,postnatal,cord_blood,пуповинная кровь,0.0,not_detected,,,,0.0,Рисунок 5,14
-C9b,C9,spath2021,m.8993T>G,0.0,not_detected,,postnatal,buccal,буккальный мазок,0.0,not_detected,,,,0.0,Рисунок 5,15
-C5b,C5,treff2012,m.3243A>G,12.0,exact,,postnatal,buccal,буккальный мазок (коммерческая лаборатория),0.0,not_detected,,5 и 12 мес (серия исследований; отдельные ткани к конкретному сроку не привязаны),"коммерческий анализ, метод не указан",-12.0,Рисунок 5,16
-C5c,C5,treff2012,m.3243A>G,12.0,exact,,postnatal,urine,осадок мочи (коммерческая лаборатория),0.0,not_detected,,5 и 12 мес (серия исследований; отдельные ткани к конкретному сроку не привязаны),"коммерческий анализ, метод не указан",-12.0,Рисунок 5,17
-C5d,C5,treff2012,m.3243A>G,12.0,exact,,postnatal,blood,кровь (менее 10%; цензурированное значение),10.0,less_than,кровь (менее 10%; цензурированное значение),5 и 12 мес,"коммерческий анализ, метод не указан",,Рисунок 5,18
-C5e,C5,mitalipov2014,m.3243A>G,12.0,exact,,postnatal,blood,кровь,47.0,exact,,6 нед,"ARMS-qPCR, CLIA-лаборатория",35.0,Рисунок 5,19
-C5f,C5,mitalipov2014,m.3243A>G,12.0,exact,,postnatal,blood,кровь,46.0,exact,,18 мес,"ARMS-qPCR, CLIA-лаборатория",34.0,Рисунок 5,20
-C5g,C5,mitalipov2014,m.3243A>G,12.0,exact,,postnatal,urine,моча,52.0,exact,,6 нед,"ARMS-qPCR, CLIA-лаборатория",40.0,Рисунок 5,21
-C5h,C5,mitalipov2014,m.3243A>G,12.0,exact,,postnatal,urine,моча,42.0,exact,,18 мес,"ARMS-qPCR, CLIA-лаборатория",30.0,Рисунок 5,22
-C14a,C14,hu2026,m.3250T>C,1.8,exact,,prenatal,amniotic_fluid,амниотическая жидкость,1.5,exact,,18 нед гестации,"таргетная ПЦР + NGS (Illumina), порог 1,0%",-0.3,Рисунок 5,23
-C14b,C14,hu2026,m.3250T>C,1.8,exact,,postnatal,cord_blood,пуповинная кровь,0.0,not_detected,,при рождении,"таргетная ПЦР + NGS (Illumina), порог 1,0%",-1.8,Рисунок 5,24
-C14c,C14,hu2026,m.3250T>C,1.8,exact,,postnatal,blood,кровь,0.0,not_detected,,2 года,"таргетная ПЦР + NGS (Illumina), порог 1,0%",-1.8,Рисунок 5,25
-C14d,C14,hu2026,m.3250T>C,1.8,exact,,postnatal,buccal,буккальный эпителий,0.0,not_detected,,2 года,"таргетная ПЦР + NGS (Illumina), порог 1,0%",-1.8,Рисунок 5,26
-C13,C13,mizuguchi2025,m.10197G>A,,less_than,<5% у каждого из двух перенесённых эмбрионов; точное значение имплантировавшегося неизвестно,prenatal,amniotic_fluid,"амниотическая жидкость, 15 нед",,qualitative,"вариант не выявлен; сигнал 0,17% ниже контрольного образца 0,28%",15 нед гестации,пиросеквенирование; авторы оговорили ограничения при очень низкой нагрузке,,Рисунок 5,38
+pair_id,child_id,publication_id,variant_id,embryo_value_pct,embryo_qualifier,embryo_raw,phase,tissue,tissue_raw,value_pct,qualifier,value_raw,age_raw,method_raw,delta_pp,delta_qualifier,pmid,source_locator,carrier_id,lod_pct,embryo_lod_pct,src_sheet,src_row
+C12a,C12,ji2021,m.3697G>A,53.9,exact,,prenatal,amniotic_fluid,амниотическая жидкость,49.7,exact,,,,-4.2,exact,34802141,Table 3,,,,Рисунок 5,4
+C12b,C12,ji2021,m.3697G>A,53.9,exact,,prenatal,fetal_tissue,ткани плода (среднее),47.7,exact,,,,-6.2,exact,34802141,Table 3,,,,Рисунок 5,5
+C1a,C1,steffann2006,m.8993T>G,0.0,not_detected,,prenatal,amniotic_fluid,амниотическая жидкость,0.0,not_detected,,,,,both_not_detected,16155197,Table 1 / Fig. 1,,,,Рисунок 5,6
+C1b,C1,steffann2006,m.8993T>G,0.0,not_detected,,postnatal,cord_blood,пуповинная кровь,0.0,not_detected,,,,,both_not_detected,16155197,Table 1 / Fig. 1,,,,Рисунок 5,7
+C2,C2,thorburn2009,m.8993T>G,2.5,exact,,postnatal,cord_blood,пуповинная кровь,4.0,exact,,,,1.5,exact,,Conference abstract; values via Castelluccio 2025 / Smeets 2023 (primary full text unavailable),,,,Рисунок 5,8
+C3,C3,sallevelt2013,m.8993T>G,0.0,not_detected,,postnatal,cord_blood,пуповинная кровь,0.0,not_detected,,,,,both_not_detected,23339111,Tables 1–2,,,,Рисунок 5,9
+C5a,C5,treff2012,m.3243A>G,12.0,exact,,postnatal,buccal,буккальный эпителий,15.0,exact,,1 мес,"количественный анализ, разработанный в Treff et al., 2012",3.0,exact,22921075,"Table 1; Treff 2012, Methods; Atlas worksheet «Рисунок 5», row 10",,,,Рисунок 5,10
+C6a,C6,heindryckx2014,m.3243A>G,0.0,not_detected,,postnatal,buccal,буккальный мазок,0.0,not_detected,,,,,both_not_detected,25159128,Table 1,,,,Рисунок 5,11
+C6b,C6,heindryckx2014,m.3243A>G,0.0,not_detected,,postnatal,blood,кровь,0.0,not_detected,,,,,both_not_detected,25159128,Table 1,,,,Рисунок 5,12
+C6c,C6,heindryckx2014,m.3243A>G,0.0,not_detected,,postnatal,urine,моча,0.0,not_detected,,,,,both_not_detected,25159128,Table 1,,,,Рисунок 5,13
+C9a,C9,spath2021,m.8993T>G,0.0,not_detected,,postnatal,cord_blood,пуповинная кровь,0.0,not_detected,,,,,both_not_detected,33745725,"Supplemental Table 3; p. 1526, Results of Clinical Application",,,,Рисунок 5,14
+C9b,C9,spath2021,m.8993T>G,0.0,not_detected,,postnatal,buccal,буккальный мазок,0.0,not_detected,,,,,both_not_detected,33745725,"Supplemental Table 3; p. 1526, Results of Clinical Application",,,,Рисунок 5,15
+C5b,C5,treff2012,m.3243A>G,12.0,exact,,postnatal,buccal,буккальный мазок (коммерческая лаборатория),0.0,not_detected,,5 и 12 мес (серия исследований; отдельные ткани к конкретному сроку не привязаны),"коммерческий анализ, метод не указан",-12.0,lower_bound,22921075,Table 1,,,,Рисунок 5,16
+C5c,C5,treff2012,m.3243A>G,12.0,exact,,postnatal,urine,осадок мочи (коммерческая лаборатория),0.0,not_detected,,5 и 12 мес (серия исследований; отдельные ткани к конкретному сроку не привязаны),"коммерческий анализ, метод не указан",-12.0,lower_bound,22921075,Table 1,,,,Рисунок 5,17
+C5d,C5,treff2012,m.3243A>G,12.0,exact,,postnatal,blood,кровь (менее 10%; цензурированное значение),10.0,less_than,кровь (менее 10%; цензурированное значение),5 и 12 мес,"коммерческий анализ, метод не указан",,,22921075,Table 1,,,,Рисунок 5,18
+C5e,C5,mitalipov2014,m.3243A>G,12.0,exact,,postnatal,blood,кровь,47.0,exact,,6 нед,"ARMS-qPCR, CLIA-лаборатория",35.0,exact,24856294,,,,,Рисунок 5,19
+C5f,C5,mitalipov2014,m.3243A>G,12.0,exact,,postnatal,blood,кровь,46.0,exact,,18 мес,"ARMS-qPCR, CLIA-лаборатория",34.0,exact,24856294,,,,,Рисунок 5,20
+C5g,C5,mitalipov2014,m.3243A>G,12.0,exact,,postnatal,urine,моча,52.0,exact,,6 нед,"ARMS-qPCR, CLIA-лаборатория",40.0,exact,24856294,,,,,Рисунок 5,21
+C5h,C5,mitalipov2014,m.3243A>G,12.0,exact,,postnatal,urine,моча,42.0,exact,,18 мес,"ARMS-qPCR, CLIA-лаборатория",30.0,exact,24856294,,,,,Рисунок 5,22
+C14a,C14,hu2026,m.3250T>C,1.8,exact,,prenatal,amniotic_fluid,амниотическая жидкость,1.5,exact,,18 нед гестации,"таргетная ПЦР + NGS (Illumina), порог 1,0%",-0.3,exact,42821212,Supplementary Table S1,,,,Рисунок 5,23
+C14b,C14,hu2026,m.3250T>C,1.8,exact,,postnatal,cord_blood,пуповинная кровь,0.0,not_detected,,при рождении,"таргетная ПЦР + NGS (Illumina), порог 1,0%",-1.8,lower_bound,42821212,Supplementary Table S1,,,,Рисунок 5,24
+C14c,C14,hu2026,m.3250T>C,1.8,exact,,postnatal,blood,кровь,0.0,not_detected,,2 года,"таргетная ПЦР + NGS (Illumina), порог 1,0%",-1.8,lower_bound,42821212,Supplementary Table S1,,,,Рисунок 5,25
+C14d,C14,hu2026,m.3250T>C,1.8,exact,,postnatal,buccal,буккальный эпителий,0.0,not_detected,,2 года,"таргетная ПЦР + NGS (Illumina), порог 1,0%",-1.8,lower_bound,42821212,Supplementary Table S1,,,,Рисунок 5,26
+C13,C13,mizuguchi2025,m.10197G>A,,less_than,<5% у каждого из двух перенесённых эмбрионов; точное значение имплантировавшегося неизвестно,prenatal,amniotic_fluid,"амниотическая жидкость, 15 нед",,qualitative,"вариант не выявлен; сигнал 0,17% ниже контрольного образца 0,28%",15 нед гестации,пиросеквенирование; авторы оговорили ограничения при очень низкой нагрузке,,,40164591,Fig. 2A,,,,Рисунок 5,38
+C15,C15,hyslop2025,m.10158T>C,0,not_detected,,postnatal,blood,blood,0,not_detected,,,pyrosequencing,,both_not_detected,40673696,"Table 1, PGT; Hyslop 2025, Table 1, PGT, m.10158T>C; single transfer; child 1; not detected <3% in blastomere and blood",hyslop2025-10158,3,3,Hyslop 2025 Table 1,1
+C16,C16,hyslop2025,m.10158T>C,0,not_detected,,postnatal,blood,blood,0,not_detected,,,pyrosequencing,,both_not_detected,40673696,"Table 1, PGT; Hyslop 2025, Table 1, PGT, m.10158T>C; single transfer; child 2; not detected <3% in blastomere and blood",hyslop2025-10158,3,3,Hyslop 2025 Table 1,2
+C17,C17,hyslop2025,m.13094T>C,0,not_detected,,postnatal,blood,blood,0,not_detected,,,pyrosequencing,,both_not_detected,40673696,"Table 1, PGT; Hyslop 2025, Table 1, PGT, m.13094T>C; single transfer; child 3; not detected <3% in blastomere and blood",hyslop2025-13094,3,3,Hyslop 2025 Table 1,3
+C18,C18,hyslop2025,m.3243A>G,0,not_detected,,postnatal,blood,blood,0,not_detected,,,pyrosequencing,,both_not_detected,40673696,"Table 1, PGT; Hyslop 2025, Table 1, PGT, m.3243A>G; single transfer; child 4; not detected <3% in blastomere and blood",hyslop2025-3243-23-a,3,3,Hyslop 2025 Table 1,4
+C19,C19,hyslop2025,m.3243A>G,0,not_detected,,postnatal,blood,blood,0,not_detected,,,pyrosequencing,,both_not_detected,40673696,"Table 1, PGT; Hyslop 2025, Table 1, PGT, m.3243A>G; single transfer; child 5; not detected <3% in blastomere and blood",hyslop2025-3243-23-b,3,3,Hyslop 2025 Table 1,5
+C20,C20,hyslop2025,m.8993T>G,0,not_detected,,postnatal,blood,blood,0,not_detected,,,pyrosequencing,,both_not_detected,40673696,"Table 1, PGT; Hyslop 2025, Table 1, PGT, m.8993T>G; single transfer; child 6; not detected <3% in blastomere and blood",hyslop2025-8993TG,3,3,Hyslop 2025 Table 1,6
+C21,C21,hyslop2025,m.8993T>G,0,not_detected,,postnatal,blood,blood,0,not_detected,,,pyrosequencing,,both_not_detected,40673696,"Table 1, PGT; Hyslop 2025, Table 1, PGT, m.8993T>G; single transfer; child 7; not detected <3% in blastomere and blood",hyslop2025-8993TG,3,3,Hyslop 2025 Table 1,7
+C22,C22,hyslop2025,m.8993T>C,0,not_detected,,postnatal,blood,blood,0,not_detected,,,pyrosequencing,,both_not_detected,40673696,"Table 1, PGT; Hyslop 2025, Table 1, PGT, m.8993T>C; single transfer; child 8; not detected <3% in blastomere and blood",hyslop2025-8993TC,3,3,Hyslop 2025 Table 1,8

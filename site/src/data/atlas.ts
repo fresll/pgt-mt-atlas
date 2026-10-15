@@ -103,6 +103,10 @@ export interface CleavagePair {
 }
 
 export interface OffspringPair {
+  source_locator?: string
+  carrier_id?: string
+  lod?: number
+  emb_lod?: number
   id: string
   child: string
   pub: string

@@ -134,6 +134,15 @@ model:
     origin, and age relation» (анеуплоидии целых хромосом 20–30% в 25–35 лет, почти линейный рост ≈6% в год после
     35 лет, 80–90% в 42–44 года); с. 3, рис. 2 (доля эуплоидных бластоцист по возрасту, данные Franasiak et al.)
   p_eupl_note:
-    ru: 'e — сценарная доля эуплоидных бластоцист; ориентир — Volodyaev et al., 2025. Значения не привязаны к возрасту.'
-    en: 'e is the scenario euploid blastocyst share; reference — Volodyaev et al., 2025. Values are not assigned to ages.'
+    ru: >-
+      Сценарные значения. Точек 0,7 / 0,5 / 0,3 в источнике нет. Текст обзора даёт долю анеуплоидий целых хромосом
+      20–30% в 25–35 лет и рост около 6% в год после 35 лет; значение 0,7 для 30 лет с этим согласуется. Значения 0,5
+      для 35 лет и 0,3 для 40 лет из текстовых оценок напрямую не следуют; их соответствие рисунку 2 обзора и учёт
+      мозаицизма и сегментных анеуплоидий требуют подтверждения автором модели.
+    en: >-
+      Scenario values. The source does not give the points 0.7 / 0.5 / 0.3. The review text gives 20–30%
+      whole-chromosome aneuploidy at 25–35 years and an increase of about 6% per year after 35; 0.7 at age 30 agrees
+      with this. The values 0.5 at 35 and 0.3 at 40 do not follow directly from the text estimates; their agreement
+      with Figure 2 of the review and the handling of mosaicism and segmental aneuploidy need confirmation by the
+      model author.
   n_max: 8

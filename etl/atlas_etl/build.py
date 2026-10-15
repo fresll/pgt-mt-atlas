@@ -77,7 +77,7 @@ def load_publications() -> Pubs:
             'id': p['id'],
             'review_ref_no': p['review_ref_no'],
             'short': p['short'],
-            'citation': ref['citation'],
+            'citation': p.get('citation_override', ref['citation']),
             'doi': ref['doi'],
             'pmid': p.get('pmid'),
             'pub_status': p['pub_status'],
@@ -206,6 +206,8 @@ def apply_landscape_corrections(records, corrections):
         if len(matches) != 1:
             raise EtlError(f"{c['id']}: expected one source row")
         r = matches[0]
+        if c['source']['publication'] not in r.get('pubs', [r.get('pub')]):
+            raise EtlError(f"{c['id']}: source publication mismatch")
         if any(r.get(k) != v for k, v in c['expected'].items()):
             raise EtlError(f"{c['id']}: Исходник изменился")
         r.setdefault('source_fingerprint', fingerprint('fig3', r))
@@ -230,9 +232,11 @@ def apply_landscape_corrections(records, corrections):
 def apply_case_corrections(records, corrections):
     for c in corrections:
         matches = [r for r in records if r.get('row', r['src']['row']) == c['row']]
-        if len(matches) != 1 or not c['source'].get('locator'):
+        if len(matches) != 1 or not c['source'].get('locator') or not c['source'].get('publication'):
             raise EtlError(f"{c['id']}: invalid case correction")
         r = matches[0]
+        if c['source']['publication'] not in r.get('pubs', [r.get('pub')]):
+            raise EtlError(f"{c['id']}: source publication mismatch")
         if any(r.get(k) != v for k, v in c['expected'].items()):
             raise EtlError(f"{c['id']}: Исходник изменился")
         r.update(c['set'])
@@ -311,7 +315,7 @@ def read_fig5(ws, pubs: Pubs, vocab: Vocab) -> list[dict]:
         rec = {
             'id': cid, 'child': re.match(r'C\d+', str(child)).group(0), 'pub': pub, 'variant': variant,
             'phase': vocab.phase(phase), 'tissue': vocab.tissue(tissue_raw), 'tissue_raw': tissue_raw,
-            'age': age, 'method': method, 'in_figure': on_plot == 'да', 'on_plot_raw': on_plot,
+            'age': age, 'method': method, 'in_figure': on_plot == 'да', 'on_plot_raw': on_plot.replace('exact-pair plot', 'набора точных пар'),
             'src': {'sheet': 'Рисунок 5', 'row': i},
         }
         if isinstance(emb, (int, float)):
@@ -689,7 +693,7 @@ def current_counts(fig3, fig4, cleav, fig5, used_pubs) -> dict:
 # ---------------------------------------------------------------- нормализованные таблицы (CSV)
 
 def normalized_tables(pubs, fig3, fig4, cleav, fig5, vocab):
-    publication = [{k: p[k] for k in ('id', 'review_ref_no', 'short', 'doi', 'pmid', 'pub_status',
+    publication = [{k: p[k] for k in ('id', 'short', 'doi', 'pmid', 'pub_status',
                                       'published_date', 'citation')} for p in pubs.by_id.values()]
     variants = sorted({m['variant'] for m in fig3} | {f['variant'] for f in fig4} | {p['variant'] for p in fig5})
     vc = load_yaml('curation/variant_classification.yaml')
@@ -748,7 +752,10 @@ def normalized_tables(pubs, fig3, fig4, cleav, fig5, vocab):
             'embryo_value_pct': p['emb'], 'embryo_qualifier': p['emb_q'], 'embryo_raw': p['emb_raw'],
             'phase': p['phase'], 'tissue': p['tissue'], 'tissue_raw': p['tissue_raw'], 'value_pct': p['value'],
             'qualifier': p['q'], 'value_raw': p['value_raw'], 'age_raw': p['age'], 'method_raw': p['method'],
-            'delta_pp': round(p['value'] - p['emb'], 10) if p['in_figure'] else None,
+            'delta_pp': round(p['value'] - p['emb'], 10) if p['in_figure'] and not (p['q'] == p['emb_q'] == 'not_detected') else None,
+            'delta_qualifier': ('both_not_detected' if p['q'] == p['emb_q'] == 'not_detected' else 'lower_bound' if p['q'] == 'not_detected' else 'upper_bound' if p['emb_q'] == 'not_detected' else 'exact') if p['in_figure'] else None,
+            'pmid': pubs.by_id[p['pub']]['pmid'], 'source_locator': p.get('source_locator'),
+            'carrier_id': p.get('carrier_id'), 'lod_pct': p.get('lod'), 'embryo_lod_pct': p.get('emb_lod'),
             'src_sheet': p['src']['sheet'], 'src_row': p['src']['row']})
         membership.append({'analysis': 'offspring', 'record_id': p['id'], 'included': p['in_figure'],
                            'exclusion_reason': None if p['in_figure'] else p['on_plot_raw']})
@@ -781,8 +788,23 @@ def build(allow_new_ids: bool = False) -> dict:
     cleav = read_cleavage(wb['Бластомеры (дробление)'], pubs, rules)
     fig5 = read_fig5(wb['Рисунок 5'], pubs, vocab)
     apply_case_corrections(fig5, correction_layer['offspring_corrections'])
+    for record in correction_layer['offspring_additions']:
+        if record['source']['publication'] != record['pub'] or not record['source']['locator']:
+            raise EtlError('Invalid offspring augmentation provenance')
+        if any(p['id'] == record['id'] for p in fig5):
+            raise EtlError('Duplicate offspring ID')
+        fig5.append(record)
+    locators = load_yaml('curation/provenance.yaml')['locators']
+    for record in [*fig3, *fig4, *fig5]:
+        primary = locators.get(record['pub'])
+        if primary:
+            record['source_locator'] = primary + (('; embryo ' + record['embryo']) if 'embryo' in record else '') + ('; ' + record['source_locator'] if record.get('source_locator') else '')
     registry, new_ids = assign_ids({'fig3': fig3, 'fig4': fig4, 'cleavage': cleav}, load_registry(), allow_new_ids,
                                    dt.date.today().isoformat())
+    for record in fig3:
+        embryo = load_yaml('curation/provenance.yaml')['record_embryos'].get(record['id'])
+        if embryo:
+            record['source_locator'] += '; embryo / sample: ' + embryo
     table1 = read_table1(wb['Таблица 1'], pubs)
     apply_case_corrections(table1, correction_layer['case_corrections'])
     fig6_sheet = read_fig6_sheet(wb['Рисунок 6'])
@@ -822,7 +844,7 @@ def build(allow_new_ids: bool = False) -> dict:
         'fig4': fig4,
         'cleavage': cleav,
         'fig5': fig5,
-        'fig5_notes': read_fig5_notes(wb['Рисунок 5']),
+        'fig5_notes': [{'text': 'Индивидуальные пары: повторные ткани и сроки одного ребёнка зависимы. Hyslop 2025, Table 1: добавлены восемь одиночных переносов; двойные переносы не сопоставлены с детьми.'}],
         'table1': table1,
         'hu2026_within_embryo': read_hu16(wb['Hu 2026 (16 проб эмбриона)']),
         'tajima2007_excluded': read_tajima(wb['Tajima 2007 (не используется)'], pubs),

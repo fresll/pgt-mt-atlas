@@ -223,9 +223,10 @@ const en: Dict = {
     verifyNote: 'Tofilo et al., 2026: the embryo 6 values (ICM, remaining TE) and the fraction category of embryos 3 and 4 (combined ICM+TE fraction) follow the published ESM 2; the original values of the supplementary workbook are shown in the embryo card. In this study the “ICM” fraction is the ICM together with adherent TE cells (“ICM+”).',
   },
   fig5: {
+    bothND: 'ND → ND: {{n}} pairs',
     recordSummary: '{{records}} records, {{pairs}} exact pairs in {{children}} fetuses and children',
     childSummary: 'Embryo heteroplasmy is low for {{low}} of {{all}} fetuses and children; {{concordant}} of these have low or undetected values in every tissue. Laboratories disagree for one child (C5).',
-    deltaBound: 'In panel B, hollow markers use a conditional zero for undetected values: embryo ND makes Δ an upper estimate; tissue-only ND makes it a lower estimate. The detection limit may be unspecified.',
+    deltaBound: 'Tissue-only ND gives a lower Δ bound (open marker and upward arrow); embryo-only ND gives an upper bound. ND → ND pairs are counted below the group and are not plotted at Δ = 0.',
     ndBand: 'ND (no numeric axis)',
     title: 'Embryo, fetus and child',
     subtitle: 'Heteroplasmy in the transferred embryo and in fetal or child tissues',

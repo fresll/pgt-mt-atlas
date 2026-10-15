@@ -45,7 +45,7 @@ def test_fig4(atlas):
 
 def test_fig5(atlas):
     s = atlas['stats']['fig5']
-    assert (s['n_pairs'], s['n_children'], s['n_low_embryo'], s['n_concordant_low']) == (22, 8, 20, 16)
+    assert (s['n_pairs'], s['n_children'], s['n_low_embryo'], s['n_concordant_low']) == (30, 16, 28, 24)
     assert s['discordant_ids'] == ['C5e', 'C5f', 'C5g', 'C5h']
     excluded = {p['id']: p['q'] for p in atlas['fig5'] if not p['in_figure']}
     assert excluded == {'C5d': 'less_than', 'C13': 'qualitative'}
@@ -222,9 +222,9 @@ def test_legacy_ids_are_kept_as_aliases(atlas):
 def test_baseline_release_is_reproduced(atlas):
     meta = atlas['meta']
     assert meta['baseline']['version'] == '2026-10-10'
-    assert meta['baseline']['counts']['landscape_values'] == 187
-    assert meta['current_counts']['landscape_values'] == 187
-    assert meta['current_counts']['offspring_children_exact_pair'] == 8
+    # Historical release is immutable; every approved current counter is pinned.
+    assert meta['baseline']['counts'] == {'landscape_values': 187, 'landscape_variants': 7, 'concordance_blastocysts': 40, 'concordance_records': 91, 'cleavage_embryos': 22, 'offspring_records': 24, 'offspring_children': 9, 'offspring_children_exact_pair': 8, 'publications': 22}
+    assert meta['current_counts'] == {'landscape_values': 187, 'landscape_variants': 7, 'concordance_blastocysts': 40, 'concordance_records': 91, 'cleavage_embryos': 22, 'offspring_records': 32, 'offspring_children': 17, 'offspring_children_exact_pair': 16, 'publications': 22}
 
 
 # --- раздел 7: основания классификации, роли источников; A4–A5: модель и ориентиры
@@ -271,12 +271,12 @@ def test_audit_split_exclusion_and_detection_limits(atlas):
     assert len(excluded) == 1 and excluded[0]['value'] == 43.9
     assert 'ооцит' in excluded[0]['reason']
     assert sum(o['q'] == 'not_detected' and o['lod'] is None for o in values.values()) == 43
-    assert values['HL-monnot2011-010']['derivation'] == 'mean_of_blastomeres'
+    assert values['HL-monnot2011-010']['derivation'] == 'mean_blastomeres_and_te'
 
 
 def test_audit_child_denominators_and_privacy(atlas):
     s = atlas['stats']['fig5']
-    assert (s['n_records'], s['n_pairs'], s['n_children'], s['n_low_children'], s['n_concordant_children']) == (24, 22, 8, 7, 6)
+    assert (s['n_records'], s['n_pairs'], s['n_children'], s['n_low_children'], s['n_concordant_children']) == (32, 30, 16, 15, 14)
     assert all(r['phenotype'] is None for r in atlas['table1'])
     text = ' '.join((r.get(k) or '') for r in atlas['table1'] for k in ('transferred', 'offspring', 'pool_range'))
     for private in ('RNASEH2C', 'Айкарди', 'здоровый мальчик', 'диагностика отклонена', 'прервались на'):
@@ -290,3 +290,23 @@ def test_landscape_correction_guard(atlas):
                   'expected': {'value': -1}, 'action': 'update', 'set': {'value': 0}}
     with pytest.raises(b.EtlError, match='Исходник изменился'):
         b.apply_landscape_corrections(records, [correction])
+
+
+def test_round2_single_transfer_pairs_and_provenance(atlas):
+    added = [p for p in atlas['fig5'] if p['pub'] == 'hyslop2025']
+    assert len(added) == 8
+    assert len({p['carrier_id'] for p in added}) == 6
+    assert all(p['emb_q'] == p['q'] == 'not_detected' and p['lod'] == p['emb_lod'] == 3 for p in added)
+    assert len([p for p in atlas['fig5'] if p['in_figure'] and p['q'] == p['emb_q'] == 'not_detected']) == 16
+    assert sum(o.get('non_candidate') == '3PN' for o in atlas['fig3']) == 3
+    assert all(p.get('source_locator') for p in atlas['fig3'])
+    records = [{'id':'guard', 'pub':'treff2012', 'src':{'row':1}, 'value':12}]
+    with pytest.raises(b.EtlError, match='publication mismatch'):
+        b.apply_case_corrections(records, [{'id':'wrong-pub','row':1,'expected':{'value':12},'set':{'value':13},'source':{'publication':'hyslop2025','locator':'Table 1'}}])
+
+
+def test_round2_censored_deltas_are_not_exported_as_exact_zero(atlas):
+    records = b.normalized_tables(b.load_publications(), atlas['fig3'], atlas['fig4'], atlas['cleavage'], atlas['fig5'], b.Vocab())['offspring_measurement']
+    both_nd = [p for p in records if p['delta_qualifier'] == 'both_not_detected']
+    assert len(both_nd) == 16 and all(p['delta_pp'] is None for p in both_nd)
+    assert all(p['delta_pp'] is not None for p in records if p['delta_qualifier'] in ('lower_bound', 'upper_bound', 'exact'))

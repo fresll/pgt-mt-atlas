@@ -1,84 +1,88 @@
-# Слой корректировок набора данных (A3, раунд 1 рецензии).
-#
-# Исходный xlsx (data/Сопроводительная информация.xlsx) НЕ изменяется: это зафиксированная историческая версия.
-# ETL читает значение из xlsx, затем применяет корректировку отсюда и сохраняет исходное значение рядом
-# (value_source / fraction_source) с идентификатором корректировки. Перед применением проверяется, что в xlsx
-# по-прежнему стоит значение `from`; если исходник изменился, сборка останавливается.
-#
-# Основание каждой записи — опубликованный окончательный источник с точным локатором. Значения не подбираются
-# под ожидаемый результат: все зависимые статистики пересчитываются ETL из исправленного набора.
-
 corrections:
-  - id: corr-tofilo2026-e6-icm
-    target: {sheet: Рисунок 4, row: 81, embryo: Tofilo_6, fraction: icm}
-    field: value
-    from: 11.4
-    to: 11.3
-    unit: '% гетероплазмии m.14487T>C (доля прочтений C)'
-    category_note: >-
-      В ESM 2 строка называется «ICM»; по методам статьи (ESM 1, подпись к Supplementary Figure S2) это фракция
-      «ICM+» — ВКМ вместе с прилегающими клетками полярной и муральной ТЭ.
-    source:
-      publication: tofilo2026
-      document: 'ESM 2 (Supplementary Table S2), Tofilo et al. 2026, J Assist Reprod Genet, doi:10.1007/s10815-026-04012-y'
-      file: references/10815_2026_4012_MOESM2_ESM.xlsx
-      locator: 'лист «Supplementary Table S2», строка 22 (Embryo 6, ICM), столбец I «Heteroplasmy (%)» = 11.3'
-    evidence: >-
-      В той же строке ESM 2: покрытие 485, прочтений C 55 → 55/485 = 11.34 %, что округляется до 11.3, а не до 11.4.
-      Опубликованный абстракт (PubMed 42649365) значений фракций эмбриона 6 не приводит.
-    verified: {date: '2026-10-11', by: 'Claude (раунд 1 рецензии); научная приёмка — куратор'}
-
-  - id: corr-tofilo2026-e6-remaining-te
-    target: {sheet: Рисунок 4, row: 82, embryo: Tofilo_6, fraction: remaining_te}
-    field: value
-    from: 11.9
-    to: 11.7
-    unit: '% гетероплазмии m.14487T>C (доля прочтений C)'
-    source:
-      publication: tofilo2026
-      document: 'ESM 2 (Supplementary Table S2), Tofilo et al. 2026, J Assist Reprod Genet, doi:10.1007/s10815-026-04012-y'
-      file: references/10815_2026_4012_MOESM2_ESM.xlsx
-      locator: 'лист «Supplementary Table S2», строка 21 (Embryo 6, TE), столбец I «Heteroplasmy (%)» = 11.7'
-    evidence: >-
-      В той же строке ESM 2: покрытие 2045, прочтений C 240 → 240/2045 = 11.74 %, что округляется до 11.7, а не до 11.9.
-    verified: {date: '2026-10-11', by: 'Claude (раунд 1 рецензии); научная приёмка — куратор'}
-
-  - id: corr-tofilo2026-e3-fraction
-    target: {sheet: Рисунок 4, row: 74, embryo: Tofilo_3, fraction: remaining_te}
-    field: fraction
-    from: remaining_te
-    to: combined_te_icm
-    unit: категория фракции (значение 13.5 % не меняется)
-    source:
-      publication: tofilo2026
-      document: 'ESM 2 (Supplementary Table S2) и ESM 1 (Supplementary Figures S1–S2), Tofilo et al. 2026, doi:10.1007/s10815-026-04012-y'
-      file: references/10815_2026_4012_MOESM2_ESM.xlsx; references/10815_2026_4012_MOESM1_ESM.docx
-      locator: >-
-        ESM 2, строка 11: «Embryo 3 — ICM+ / TE+ICM fraction — 13.5»; ESM 1: «embryo 3, TE rest + ICM»,
-        «Embryo 3, TE+ICM, after dissection»
-    evidence: >-
-      ВКМ и оставшаяся ТЭ эмбриона 3 не разделялись; измерена объединённая фракция. Опубликованный абстракт
-      (PubMed 42649365) называет такие образцы «combined TE + ICM».
-    verified: {date: '2026-10-11', by: 'Claude (раунд 1 рецензии); научная приёмка — куратор'}
-
-  - id: corr-tofilo2026-e4-fraction
-    target: {sheet: Рисунок 4, row: 76, embryo: Tofilo_4, fraction: remaining_te}
-    field: fraction
-    from: remaining_te
-    to: combined_te_icm
-    unit: категория фракции (значение 90 % не меняется)
-    source:
-      publication: tofilo2026
-      document: 'ESM 2 (Supplementary Table S2) и ESM 1 (Supplementary Figures S1–S2), Tofilo et al. 2026, doi:10.1007/s10815-026-04012-y'
-      file: references/10815_2026_4012_MOESM2_ESM.xlsx; references/10815_2026_4012_MOESM1_ESM.docx
-      locator: >-
-        ESM 2, строка 14: «Embryo 4 — ICM+ / TE+ICM fraction — 90»; ESM 1: «embryo 4, TE rest + ICM»,
-        «Embryo 4, TE+ICM, after dissection»
-    evidence: >-
-      ВКМ и оставшаяся ТЭ эмбриона 4 не разделялись; измерена объединённая фракция. Опубликованный абстракт
-      (PubMed 42649365) называет такие образцы «combined TE + ICM».
-    verified: {date: '2026-10-11', by: 'Claude (раунд 1 рецензии); научная приёмка — куратор'}
-
+- id: corr-tofilo2026-e6-icm
+  target:
+    sheet: Рисунок 4
+    row: 81
+    embryo: Tofilo_6
+    fraction: icm
+  field: value
+  from: 11.4
+  to: 11.3
+  unit: '% гетероплазмии m.14487T>C (доля прочтений C)'
+  category_note: В ESM 2 строка называется «ICM»; по методам статьи (ESM 1, подпись к Supplementary Figure S2) это фракция
+    «ICM+» — ВКМ вместе с прилегающими клетками полярной и муральной ТЭ.
+  source:
+    publication: tofilo2026
+    document: ESM 2 (Supplementary Table S2), Tofilo et al. 2026, J Assist Reprod Genet, doi:10.1007/s10815-026-04012-y
+    file: references/10815_2026_4012_MOESM2_ESM.xlsx
+    locator: лист «Supplementary Table S2», строка 22 (Embryo 6, ICM), столбец I «Heteroplasmy (%)» = 11.3
+  evidence: 'В той же строке ESM 2: покрытие 485, прочтений C 55 → 55/485 = 11.34 %, что округляется до 11.3, а не до 11.4.
+    Опубликованный абстракт (PubMed 42649365) значений фракций эмбриона 6 не приводит.'
+  verified:
+    date: '2026-10-11'
+    by: Claude (раунд 1 рецензии); научная приёмка — куратор
+- id: corr-tofilo2026-e6-remaining-te
+  target:
+    sheet: Рисунок 4
+    row: 82
+    embryo: Tofilo_6
+    fraction: remaining_te
+  field: value
+  from: 11.9
+  to: 11.7
+  unit: '% гетероплазмии m.14487T>C (доля прочтений C)'
+  source:
+    publication: tofilo2026
+    document: ESM 2 (Supplementary Table S2), Tofilo et al. 2026, J Assist Reprod Genet, doi:10.1007/s10815-026-04012-y
+    file: references/10815_2026_4012_MOESM2_ESM.xlsx
+    locator: лист «Supplementary Table S2», строка 21 (Embryo 6, TE), столбец I «Heteroplasmy (%)» = 11.7
+  evidence: 'В той же строке ESM 2: покрытие 2045, прочтений C 240 → 240/2045 = 11.74 %, что округляется до 11.7, а не до
+    11.9.'
+  verified:
+    date: '2026-10-11'
+    by: Claude (раунд 1 рецензии); научная приёмка — куратор
+- id: corr-tofilo2026-e3-fraction
+  target:
+    sheet: Рисунок 4
+    row: 74
+    embryo: Tofilo_3
+    fraction: remaining_te
+  field: fraction
+  from: remaining_te
+  to: combined_te_icm
+  unit: категория фракции (значение 13.5 % не меняется)
+  source:
+    publication: tofilo2026
+    document: ESM 2 (Supplementary Table S2) и ESM 1 (Supplementary Figures S1–S2), Tofilo et al. 2026, doi:10.1007/s10815-026-04012-y
+    file: references/10815_2026_4012_MOESM2_ESM.xlsx; references/10815_2026_4012_MOESM1_ESM.docx
+    locator: 'ESM 2, строка 11: «Embryo 3 — ICM+ / TE+ICM fraction — 13.5»; ESM 1: «embryo 3, TE rest + ICM», «Embryo 3, TE+ICM,
+      after dissection»'
+  evidence: ВКМ и оставшаяся ТЭ эмбриона 3 не разделялись; измерена объединённая фракция. Опубликованный абстракт (PubMed
+    42649365) называет такие образцы «combined TE + ICM».
+  verified:
+    date: '2026-10-11'
+    by: Claude (раунд 1 рецензии); научная приёмка — куратор
+- id: corr-tofilo2026-e4-fraction
+  target:
+    sheet: Рисунок 4
+    row: 76
+    embryo: Tofilo_4
+    fraction: remaining_te
+  field: fraction
+  from: remaining_te
+  to: combined_te_icm
+  unit: категория фракции (значение 90 % не меняется)
+  source:
+    publication: tofilo2026
+    document: ESM 2 (Supplementary Table S2) и ESM 1 (Supplementary Figures S1–S2), Tofilo et al. 2026, doi:10.1007/s10815-026-04012-y
+    file: references/10815_2026_4012_MOESM2_ESM.xlsx; references/10815_2026_4012_MOESM1_ESM.docx
+    locator: 'ESM 2, строка 14: «Embryo 4 — ICM+ / TE+ICM fraction — 90»; ESM 1: «embryo 4, TE rest + ICM», «Embryo 4, TE+ICM,
+      after dissection»'
+  evidence: ВКМ и оставшаяся ТЭ эмбриона 4 не разделялись; измерена объединённая фракция. Опубликованный абстракт (PubMed
+    42649365) называет такие образцы «combined TE + ICM».
+  verified:
+    date: '2026-10-11'
+    by: Claude (раунд 1 рецензии); научная приёмка — куратор
 landscape_corrections:
 - id: audit-HL-hyslop2025-003
   target:
@@ -209,7 +213,8 @@ landscape_corrections:
   action: update
   source:
     publication: spath2021
-    locator: Spath 2021, Results of Clinical Application, pp. 323–324; Supplemental Table 3
+    locator: Spath 2021, Results of Clinical Application, p. 1526, Results of Clinical Application; Supplemental Table 3;
+      Supplemental Table 3
   set:
     stage: blastocyst
 - id: audit-HL-spath2021-003
@@ -222,7 +227,8 @@ landscape_corrections:
   action: update
   source:
     publication: spath2021
-    locator: Spath 2021, Results of Clinical Application, pp. 323–324; Supplemental Table 3
+    locator: Spath 2021, Results of Clinical Application, p. 1526, Results of Clinical Application; Supplemental Table 3;
+      Supplemental Table 3
   set:
     stage: blastocyst
 - id: audit-HL-spath2021-004
@@ -235,7 +241,8 @@ landscape_corrections:
   action: update
   source:
     publication: spath2021
-    locator: Spath 2021, Results of Clinical Application, pp. 323–324; Supplemental Table 3
+    locator: Spath 2021, Results of Clinical Application, p. 1526, Results of Clinical Application; Supplemental Table 3;
+      Supplemental Table 3
   set:
     stage: blastocyst
 - id: audit-HL-spath2021-005
@@ -248,7 +255,8 @@ landscape_corrections:
   action: update
   source:
     publication: spath2021
-    locator: Spath 2021, Results of Clinical Application, pp. 323–324; Supplemental Table 3
+    locator: Spath 2021, Results of Clinical Application, p. 1526, Results of Clinical Application; Supplemental Table 3;
+      Supplemental Table 3
   set:
     stage: blastocyst
 - id: audit-HL-spath2021-007
@@ -261,7 +269,8 @@ landscape_corrections:
   action: update
   source:
     publication: spath2021
-    locator: Spath 2021, Results of Clinical Application, pp. 323–324; Supplemental Table 3
+    locator: Spath 2021, Results of Clinical Application, p. 1526, Results of Clinical Application; Supplemental Table 3;
+      Supplemental Table 3
   set:
     stage: blastocyst
 - id: audit-HL-spath2021-012
@@ -274,7 +283,8 @@ landscape_corrections:
   action: update
   source:
     publication: spath2021
-    locator: Spath 2021, Results of Clinical Application, pp. 323–324; Supplemental Table 3
+    locator: Spath 2021, Results of Clinical Application, p. 1526, Results of Clinical Application; Supplemental Table 3;
+      Supplemental Table 3
   set:
     stage: blastocyst
 - id: audit-HL-spath2021-013
@@ -287,7 +297,8 @@ landscape_corrections:
   action: update
   source:
     publication: spath2021
-    locator: Spath 2021, Results of Clinical Application, pp. 323–324; Supplemental Table 3
+    locator: Spath 2021, Results of Clinical Application, p. 1526, Results of Clinical Application; Supplemental Table 3;
+      Supplemental Table 3
   set:
     stage: blastocyst
 - id: audit-HL-spath2021-015
@@ -300,7 +311,8 @@ landscape_corrections:
   action: update
   source:
     publication: spath2021
-    locator: Spath 2021, Results of Clinical Application, pp. 323–324; Supplemental Table 3
+    locator: Spath 2021, Results of Clinical Application, p. 1526, Results of Clinical Application; Supplemental Table 3;
+      Supplemental Table 3
   set:
     stage: blastocyst
 - id: audit-HL-spath2021-016
@@ -313,7 +325,8 @@ landscape_corrections:
   action: update
   source:
     publication: spath2021
-    locator: Spath 2021, Results of Clinical Application, pp. 323–324; Supplemental Table 3
+    locator: Spath 2021, Results of Clinical Application, p. 1526, Results of Clinical Application; Supplemental Table 3;
+      Supplemental Table 3
   set:
     stage: blastocyst
 - id: audit-HL-monnot2011-001
@@ -326,7 +339,8 @@ landscape_corrections:
   action: update
   source:
     publication: monnot2011
-    locator: 'Monnot 2011, Methods, p. 3: detection threshold: 2%'
+    locator: 'Monnot 2011, Results, Analysis in Day 3 to Day 5 Embryos, p. 118; Table 3, footnote a: detection threshold:
+      2%'
   set:
     lod: 2
 - id: audit-HL-monnot2011-002
@@ -339,7 +353,8 @@ landscape_corrections:
   action: update
   source:
     publication: monnot2011
-    locator: 'Monnot 2011, Methods, p. 3: detection threshold: 2%'
+    locator: 'Monnot 2011, Results, Analysis in Day 3 to Day 5 Embryos, p. 118; Table 3, footnote a: detection threshold:
+      2%'
   set:
     lod: 2
 - id: audit-HL-monnot2011-003
@@ -352,7 +367,8 @@ landscape_corrections:
   action: update
   source:
     publication: monnot2011
-    locator: 'Monnot 2011, Methods, p. 3: detection threshold: 2%'
+    locator: 'Monnot 2011, Results, Analysis in Day 3 to Day 5 Embryos, p. 118; Table 3, footnote a: detection threshold:
+      2%'
   set:
     lod: 2
 - id: audit-HL-monnot2011-004
@@ -365,7 +381,8 @@ landscape_corrections:
   action: update
   source:
     publication: monnot2011
-    locator: 'Monnot 2011, Methods, p. 3: detection threshold: 2%'
+    locator: 'Monnot 2011, Results, Analysis in Day 3 to Day 5 Embryos, p. 118; Table 3, footnote a: detection threshold:
+      2%'
   set:
     lod: 2
 - id: audit-HL-monnot2011-005
@@ -378,7 +395,8 @@ landscape_corrections:
   action: update
   source:
     publication: monnot2011
-    locator: 'Monnot 2011, Methods, p. 3: detection threshold: 2%'
+    locator: 'Monnot 2011, Results, Analysis in Day 3 to Day 5 Embryos, p. 118; Table 3, footnote a: detection threshold:
+      2%'
   set:
     lod: 2
 - id: audit-HL-monnot2011-006
@@ -391,7 +409,8 @@ landscape_corrections:
   action: update
   source:
     publication: monnot2011
-    locator: 'Monnot 2011, Methods, p. 3: detection threshold: 2%'
+    locator: 'Monnot 2011, Results, Analysis in Day 3 to Day 5 Embryos, p. 118; Table 3, footnote a: detection threshold:
+      2%'
   set:
     lod: 2
 - id: audit-HL-hyslop2025-001
@@ -471,7 +490,7 @@ landscape_corrections:
   action: update
   source:
     publication: sallevelt2017
-    locator: Sallevelt 2017, pp. 700–701; Supplementary Table SI (3PN embryo)
+    locator: Sallevelt 2017, Fig. 2; Supplementary Table SI, cycle 2 embryo 13 (3PN)
   set:
     note: 3PN-эмбрион, не кандидат на перенос.
     non_candidate: 3PN
@@ -485,10 +504,10 @@ landscape_corrections:
   action: update
   source:
     publication: monnot2011
-    locator: Monnot 2011, Table 1, embryo with 13/13 and 15%; mean (13+15)/2 = 14%
+    locator: 'Monnot 2011, Table 3, patient 2, embryo 10: blastomeres 13/13%, TE 15%'
   set:
-    derivation: mean_of_blastomeres
-    derivation_evidence: 'Среднее двух бластомеров: 13% и 15%.'
+    derivation: mean_blastomeres_and_te
+    derivation_evidence: 'Среднее бластомеров (13%) и ТЭ (15%): (13+15)/2 = 14%.'
 - id: carrier-HL-ji2021-002
   target:
     sheet: Рисунок 3
@@ -840,6 +859,34 @@ landscape_corrections:
   source:
     publication: tofilo2026
     locator: Tofilo 2026, main text, clinical case and Results, six blastocysts from one carrier
+- id: audit-3PN-006
+  target:
+    sheet: Рисунок 3
+    row: 120
+  expected:
+    pub: sallevelt2017
+    value: 43.6
+  action: update
+  source:
+    publication: sallevelt2017
+    locator: Sallevelt 2017, Fig. 2 / Supplementary Table SI; 3PN embryo (Atlas ID HL-sallevelt2017-006)
+  set:
+    non_candidate: 3PN
+    note: 3PN-эмбрион, не кандидат на перенос.
+- id: audit-3PN-022
+  target:
+    sheet: Рисунок 3
+    row: 139
+  expected:
+    pub: sallevelt2017
+    value: 100.0
+  action: update
+  source:
+    publication: sallevelt2017
+    locator: Sallevelt 2017, Fig. 2 / Supplementary Table SI; 3PN embryo (Atlas ID HL-sallevelt2017-022)
+  set:
+    non_candidate: 3PN
+    note: 3PN-эмбрион, не кандидат на перенос.
 case_corrections:
 - id: audit-case-4
   row: 4
@@ -919,8 +966,7 @@ case_corrections:
     pool_range: '7–91% по эмбриональным значениям; бластоцисты: 12–90%'
   source:
     publication: treff2012
-    locator: Published case; Atlas source worksheet «Таблица 1», row 10; numeric values retained except source-verified audit
-      D-1/D-4
+    locator: Treff 2012, Table 1; Mitalipov 2014, clinical follow-up
 - id: audit-case-11
   row: 11
   expected:
@@ -1002,7 +1048,7 @@ case_corrections:
     offspring: 'после ПГТ: живорождения нет; естественная беременность позднее: CVS 0%'
   set:
     phenotype: null
-    offspring: 'после ПГТ: живорождения нет'
+    offspring: 'после ПГТ: живорождения нет; последующая естественная беременность: биопсия хориона — 0%'
   source:
     publication: spath2021
     locator: Published case; Atlas source worksheet «Таблица 1», row 18; numeric values retained except source-verified audit
@@ -1039,12 +1085,14 @@ case_corrections:
   set:
     phenotype: null
     transferred: 0%; 0%; 9% и 24% (двойной перенос, двойня)
-    offspring: 'кровь детей в общей подгруппе ПГТ: от неопределяемого уровня до 7%; без разбивки по вариантам'
+    offspring: 'два одиночных переноса: кровь — вариант не выявлен (<3%); двойня: twin 1 — не исследована, twin 2 — 7%; соответствие
+      эмбрионов детям не установлено'
     pool_range: 0–24% для значений, связанных с живорождением
+    value_origin: Table 1 первоисточника; отдельные значения перенесённых эмбрионов.
+    data_type: Опубликованные одиночные и двойные переносы; индивидуальное сопоставление только при одиночном переносе.
   source:
     publication: hyslop2025
-    locator: Published case; Atlas source worksheet «Таблица 1», row 21; numeric values retained except source-verified audit
-      D-1/D-4
+    locator: Hyslop 2025, Table 1, PGT, m.3243A>G
 - id: audit-case-22
   row: 22
   expected:
@@ -1052,11 +1100,13 @@ case_corrections:
     offspring: 'кровь детей в общей PGT-подгруппе: от неопределяемого уровня до 7%; не mutation-specific'
   set:
     phenotype: null
-    offspring: 'кровь детей в общей подгруппе ПГТ: от неопределяемого уровня до 7%; без разбивки по вариантам'
+    offspring: 'кровь: вариант не выявлен (<3%)'
+    value_origin: Table 1 первоисточника; отдельные значения перенесённых эмбрионов.
+    data_type: Опубликованные одиночные и двойные переносы; индивидуальное сопоставление только при одиночном переносе.
+    transferred: вариант не выявлен (<3%)
   source:
     publication: hyslop2025
-    locator: Published case; Atlas source worksheet «Таблица 1», row 22; numeric values retained except source-verified audit
-      D-1/D-4
+    locator: Hyslop 2025, Table 1, PGT, m.8993T>G
 - id: audit-case-23
   row: 23
   expected:
@@ -1064,11 +1114,12 @@ case_corrections:
     offspring: 'кровь детей в общей PGT-подгруппе: от неопределяемого уровня до 7%; не mutation-specific'
   set:
     phenotype: null
-    offspring: 'кровь детей в общей подгруппе ПГТ: от неопределяемого уровня до 7%; без разбивки по вариантам'
+    offspring: 'кровь: вариант не выявлен (<3%)'
+    value_origin: Table 1 первоисточника; отдельные значения перенесённых эмбрионов.
+    data_type: Опубликованные одиночные и двойные переносы; индивидуальное сопоставление только при одиночном переносе.
   source:
     publication: hyslop2025
-    locator: Published case; Atlas source worksheet «Таблица 1», row 23; numeric values retained except source-verified audit
-      D-1/D-4
+    locator: Hyslop 2025, Table 1, PGT, m.8993T>C
 - id: audit-case-24
   row: 24
   expected:
@@ -1076,11 +1127,13 @@ case_corrections:
     offspring: 'кровь детей в общей PGT-подгруппе: от неопределяемого уровня до 7%; не mutation-specific'
   set:
     phenotype: null
-    offspring: 'кровь детей в общей подгруппе ПГТ: от неопределяемого уровня до 7%; без разбивки по вариантам'
+    offspring: 'кровь: вариант не выявлен (<3%)'
+    value_origin: Table 1 первоисточника; отдельные значения перенесённых эмбрионов.
+    data_type: Опубликованные одиночные и двойные переносы; индивидуальное сопоставление только при одиночном переносе.
+    transferred: вариант не выявлен (<3%)
   source:
     publication: hyslop2025
-    locator: Published case; Atlas source worksheet «Таблица 1», row 24; numeric values retained except source-verified audit
-      D-1/D-4
+    locator: Hyslop 2025, Table 1, PGT, m.10158T>C
 - id: audit-case-25
   row: 25
   expected:
@@ -1088,11 +1141,12 @@ case_corrections:
     offspring: 'кровь детей в общей PGT-подгруппе: от неопределяемого уровня до 7%; не mutation-specific'
   set:
     phenotype: null
-    offspring: 'кровь детей в общей подгруппе ПГТ: от неопределяемого уровня до 7%; без разбивки по вариантам'
+    offspring: 'кровь: вариант не выявлен (<3%)'
+    value_origin: Table 1 первоисточника; отдельные значения перенесённых эмбрионов.
+    data_type: Опубликованные одиночные и двойные переносы; индивидуальное сопоставление только при одиночном переносе.
   source:
     publication: hyslop2025
-    locator: Published case; Atlas source worksheet «Таблица 1», row 25; numeric values retained except source-verified audit
-      D-1/D-4
+    locator: Hyslop 2025, Table 1, PGT, m.13094T>C
 - id: audit-case-26
   row: 26
   expected:
@@ -1100,11 +1154,14 @@ case_corrections:
     offspring: 'кровь детей в общей PGT-подгруппе: от неопределяемого уровня до 7%; не mutation-specific'
   set:
     phenotype: null
-    offspring: 'кровь детей в общей подгруппе ПГТ: от неопределяемого уровня до 7%; без разбивки по вариантам'
+    offspring: 'кровь: 7%; соответствие перенесённого эмбриона ребёнку не установлено'
+    value_origin: Table 1 первоисточника; отдельные значения перенесённых эмбрионов.
+    data_type: Опубликованные одиночные и двойные переносы; индивидуальное сопоставление только при одиночном переносе.
+    pool_range: вариант не выявлен (<3%) и 5%
+    transferred: вариант не выявлен (<3%) и 5% (двойной перенос)
   source:
     publication: hyslop2025
-    locator: Published case; Atlas source worksheet «Таблица 1», row 26; numeric values retained except source-verified audit
-      D-1/D-4
+    locator: Hyslop 2025, Table 1, PGT, m.3688G>A
 - id: audit-case-27
   row: 27
   expected:
@@ -1180,12 +1237,11 @@ case_corrections:
     transferred: 1,8% (эуплоидная бластоциста)
     offspring: 'амниотическая жидкость (18 нед): 1,5%; пуповинная кровь: 0%; кровь и буккальный эпителий в 2 года: 0%; живорождение'
     pool_range: '0–17,8%: 6 бластоцист (биоптат ТЭ, 3–5 клеток, д5–д7) — 17,8; 0; 0; 0; 1,8; 8,1%; 2 остановившихся эмбриона
-      целиком — 0; 0%.'
+      целиком — 0; 0%. Мать: кровь 20,2%, моча 21,7%, буккальный эпителий 27,9%.'
   source:
     publication: hu2026
     locator: Published case; Atlas source worksheet «Таблица 1», row 33; numeric values retained except source-verified audit
       D-1/D-4
-
 offspring_corrections:
 - id: method-C5a
   row: 10
@@ -1196,3 +1252,220 @@ offspring_corrections:
   source:
     publication: treff2012
     locator: Treff 2012, Methods; Atlas worksheet «Рисунок 5», row 10
+offspring_additions:
+- id: C15
+  child: C15
+  pub: hyslop2025
+  variant: m.10158T>C
+  phase: postnatal
+  tissue: blood
+  tissue_raw: blood
+  age: null
+  method: pyrosequencing
+  in_figure: true
+  on_plot_raw: да
+  src:
+    sheet: Hyslop 2025 Table 1
+    row: 1
+  emb: 0
+  emb_q: not_detected
+  emb_raw: null
+  value: 0
+  q: not_detected
+  value_raw: null
+  lod: 3
+  emb_lod: 3
+  carrier_id: hyslop2025-10158
+  source_locator: Hyslop 2025, Table 1, PGT, m.10158T>C; single transfer; child 1; not detected <3% in blastomere and blood
+  source:
+    publication: hyslop2025
+    locator: Table 1, PGT; single-transfer rows; footnote <3%
+- id: C16
+  child: C16
+  pub: hyslop2025
+  variant: m.10158T>C
+  phase: postnatal
+  tissue: blood
+  tissue_raw: blood
+  age: null
+  method: pyrosequencing
+  in_figure: true
+  on_plot_raw: да
+  src:
+    sheet: Hyslop 2025 Table 1
+    row: 2
+  emb: 0
+  emb_q: not_detected
+  emb_raw: null
+  value: 0
+  q: not_detected
+  value_raw: null
+  lod: 3
+  emb_lod: 3
+  carrier_id: hyslop2025-10158
+  source_locator: Hyslop 2025, Table 1, PGT, m.10158T>C; single transfer; child 2; not detected <3% in blastomere and blood
+  source:
+    publication: hyslop2025
+    locator: Table 1, PGT; single-transfer rows; footnote <3%
+- id: C17
+  child: C17
+  pub: hyslop2025
+  variant: m.13094T>C
+  phase: postnatal
+  tissue: blood
+  tissue_raw: blood
+  age: null
+  method: pyrosequencing
+  in_figure: true
+  on_plot_raw: да
+  src:
+    sheet: Hyslop 2025 Table 1
+    row: 3
+  emb: 0
+  emb_q: not_detected
+  emb_raw: null
+  value: 0
+  q: not_detected
+  value_raw: null
+  lod: 3
+  emb_lod: 3
+  carrier_id: hyslop2025-13094
+  source_locator: Hyslop 2025, Table 1, PGT, m.13094T>C; single transfer; child 3; not detected <3% in blastomere and blood
+  source:
+    publication: hyslop2025
+    locator: Table 1, PGT; single-transfer rows; footnote <3%
+- id: C18
+  child: C18
+  pub: hyslop2025
+  variant: m.3243A>G
+  phase: postnatal
+  tissue: blood
+  tissue_raw: blood
+  age: null
+  method: pyrosequencing
+  in_figure: true
+  on_plot_raw: да
+  src:
+    sheet: Hyslop 2025 Table 1
+    row: 4
+  emb: 0
+  emb_q: not_detected
+  emb_raw: null
+  value: 0
+  q: not_detected
+  value_raw: null
+  lod: 3
+  emb_lod: 3
+  carrier_id: hyslop2025-3243-23-a
+  source_locator: Hyslop 2025, Table 1, PGT, m.3243A>G; single transfer; child 4; not detected <3% in blastomere and blood
+  source:
+    publication: hyslop2025
+    locator: Table 1, PGT; single-transfer rows; footnote <3%
+- id: C19
+  child: C19
+  pub: hyslop2025
+  variant: m.3243A>G
+  phase: postnatal
+  tissue: blood
+  tissue_raw: blood
+  age: null
+  method: pyrosequencing
+  in_figure: true
+  on_plot_raw: да
+  src:
+    sheet: Hyslop 2025 Table 1
+    row: 5
+  emb: 0
+  emb_q: not_detected
+  emb_raw: null
+  value: 0
+  q: not_detected
+  value_raw: null
+  lod: 3
+  emb_lod: 3
+  carrier_id: hyslop2025-3243-23-b
+  source_locator: Hyslop 2025, Table 1, PGT, m.3243A>G; single transfer; child 5; not detected <3% in blastomere and blood
+  source:
+    publication: hyslop2025
+    locator: Table 1, PGT; single-transfer rows; footnote <3%
+- id: C20
+  child: C20
+  pub: hyslop2025
+  variant: m.8993T>G
+  phase: postnatal
+  tissue: blood
+  tissue_raw: blood
+  age: null
+  method: pyrosequencing
+  in_figure: true
+  on_plot_raw: да
+  src:
+    sheet: Hyslop 2025 Table 1
+    row: 6
+  emb: 0
+  emb_q: not_detected
+  emb_raw: null
+  value: 0
+  q: not_detected
+  value_raw: null
+  lod: 3
+  emb_lod: 3
+  carrier_id: hyslop2025-8993TG
+  source_locator: Hyslop 2025, Table 1, PGT, m.8993T>G; single transfer; child 6; not detected <3% in blastomere and blood
+  source:
+    publication: hyslop2025
+    locator: Table 1, PGT; single-transfer rows; footnote <3%
+- id: C21
+  child: C21
+  pub: hyslop2025
+  variant: m.8993T>G
+  phase: postnatal
+  tissue: blood
+  tissue_raw: blood
+  age: null
+  method: pyrosequencing
+  in_figure: true
+  on_plot_raw: да
+  src:
+    sheet: Hyslop 2025 Table 1
+    row: 7
+  emb: 0
+  emb_q: not_detected
+  emb_raw: null
+  value: 0
+  q: not_detected
+  value_raw: null
+  lod: 3
+  emb_lod: 3
+  carrier_id: hyslop2025-8993TG
+  source_locator: Hyslop 2025, Table 1, PGT, m.8993T>G; single transfer; child 7; not detected <3% in blastomere and blood
+  source:
+    publication: hyslop2025
+    locator: Table 1, PGT; single-transfer rows; footnote <3%
+- id: C22
+  child: C22
+  pub: hyslop2025
+  variant: m.8993T>C
+  phase: postnatal
+  tissue: blood
+  tissue_raw: blood
+  age: null
+  method: pyrosequencing
+  in_figure: true
+  on_plot_raw: да
+  src:
+    sheet: Hyslop 2025 Table 1
+    row: 8
+  emb: 0
+  emb_q: not_detected
+  emb_raw: null
+  value: 0
+  q: not_detected
+  value_raw: null
+  lod: 3
+  emb_lod: 3
+  carrier_id: hyslop2025-8993TC
+  source_locator: Hyslop 2025, Table 1, PGT, m.8993T>C; single transfer; child 8; not detected <3% in blastomere and blood
+  source:
+    publication: hyslop2025
+    locator: Table 1, PGT; single-transfer rows; footnote <3%
