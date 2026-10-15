@@ -1,3 +1,4 @@
+import { PageContents } from '../../components/PageContents'
 import { useMemo, useEffect, useState } from 'react'
 import { PlotlyChart } from '../../components/PlotlyChart'
 import { ModelBadge, PubRef, Seg } from '../../components/ui'
@@ -87,6 +88,7 @@ export default function Fig6() {
     <p><ModelBadge /></p>
     <PageTitle title={t('fig6.title')} />
     <h1>{t('fig6.title')}</h1>
+      <PageContents />
     <p className="subtitle">{t('fig6.subtitle')}</p>
     <p className="small muted" data-testid="model-version" data-model-version={modelVersion.model_version}>{t('fig6.versionLabel', { v: modelVersion.model_version })}</p>
     <div className="callout model" role="note"><strong>◆ </strong>{t('fig6.banner')}</div>

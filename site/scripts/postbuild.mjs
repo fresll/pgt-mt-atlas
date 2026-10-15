@@ -5,7 +5,7 @@
 //  2. Адрес страницы без завершающего слеша (/ru/about) до загрузки ресурсов заменяется на /ru/about/:
 //     иначе серверы без перенаправления (vite preview и др.) отдают чужой HTML и гидратация падает (React #418).
 //  3. 404.html для GitHub Pages: неизвестный путь → выбор языка.
-import { readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
+import { rmSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
 import { join, relative, sep } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -34,12 +34,28 @@ function* htmlFiles(dir) {
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
+  const launch = process.env.ATLAS_PUBLIC_LAUNCH === '1'
+  let canonicalBase
+  if (launch) {
+    canonicalBase = new URL(process.env.ATLAS_CANONICAL_BASE || '')
+    if (canonicalBase.protocol !== 'https:' || canonicalBase.search || canonicalBase.hash) throw new Error('ATLAS_CANONICAL_BASE must be an https URL with the deployment base path')
+    if (!canonicalBase.pathname.endsWith('/')) canonicalBase.pathname += '/'
+  }
+  const sitemap = []
+  // A later preview build must not retain launch artifacts from a previous build.
+  for (const name of ['sitemap.xml', 'robots.txt']) rmSync(join(dist, name), { force: true })
   let n = 0
   for (const file of htmlFiles(dist)) {
     const depth = relative(dist, file).split(sep).length - 1
     const html = readFileSync(file, 'utf8')
     let out = relativizeHtml(html, depth)
     const route = relative(dist, file).split(sep).join('/')
+    if (launch && route.startsWith('ru/')) {
+      const canonical = new URL(route.replace(/index\.html$/, ''), canonicalBase).href
+      out = out.replace(/<meta name="robots" content="noindex, nofollow"\s*\/?>/g, '<meta name="robots" content="index, follow">')
+      out = out.replace('</head>', `<link rel="canonical" href="${canonical}"></head>`)
+      sitemap.push(canonical)
+    }
     if (route.startsWith('en/')) {
       const destination = '../'.repeat(depth) + route.replace(/^en\//, 'ru/').replace(/index\.html$/, '')
       out = out.replace('<head>', `<head><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0; url=${destination}"><script>location.replace(location.pathname.replace(/\\/en(?=\\/|$)/,'/ru')+location.search+location.hash)</script>`)
@@ -49,6 +65,10 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
     n++
   }
   console.log(`relative links: ${n} pages`)
+  if (launch) {
+    writeFileSync(join(dist, 'sitemap.xml'), '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + sitemap.map(url => `<url><loc>${url.replaceAll('&', '&amp;')}</loc></url>`).join('') + '</urlset>')
+    writeFileSync(join(dist, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${new URL('sitemap.xml', canonicalBase).href}\n`)
+  }
 
   writeFileSync(
     join(dist, '404.html'),

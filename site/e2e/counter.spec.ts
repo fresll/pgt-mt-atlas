@@ -32,6 +32,24 @@ test('the counter is loaded from the stub (no network) and client-side navigatio
   await expect(page.locator('header.site')).toHaveAttribute('data-menu', 'closed')
   await page.locator('nav.primary').getByRole('link', { name: 'Основы ПГТ-мт' }).click()
   await expect(page).toHaveURL(/\/ru\/fundamentals\/$/)
-  await expect.poll(() => page.evaluate(() => (window as unknown as { __gcPaths?: string[] }).__gcPaths)).toEqual(['/ru/fundamentals/'])
+  await expect.poll(() => page.evaluate(() => (window as unknown as { __gcPaths?: string[] }).__gcPaths)).toEqual(['/pgt-mt-atlas/ru/', '/pgt-mt-atlas/ru/fundamentals/'])
   expect(requested).toEqual([COUNTER_SCRIPT])
+})
+
+test('root redirect counts only the destination and retains the hosting base', async ({ page }) => {
+  await page.route('https://gc.zgo.at/**', route => route.fulfill({ contentType: 'text/javascript', body: 'window.goatcounter={count:v=>(window.__gcPaths=window.__gcPaths||[]).push(v.path)}' }))
+  await page.goto('')
+  await expect(page).toHaveURL(/\/pgt-mt-atlas\/ru\/$/)
+  await expect.poll(() => page.evaluate(() => (window as unknown as { __gcPaths?: string[] }).__gcPaths)).toEqual(['/pgt-mt-atlas/ru/'])
+})
+
+test('long pages provide working section anchors', async ({ page }) => {
+  for (const path of ['ru/science/methods/', 'ru/science/pgt-mt-pgt-a-model/', 'ru/contribute/']) {
+    await page.goto(path)
+    const toc = page.getByRole('navigation', { name: 'На этой странице' })
+    await expect(toc.locator('li')).not.toHaveCount(0)
+    const href = await toc.locator('li a').first().getAttribute('href')
+    expect(href).toMatch(/^#.+/)
+    await expect(page.locator(href!)).toHaveCount(1)
+  }
 })

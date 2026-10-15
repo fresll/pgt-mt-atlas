@@ -1,3 +1,4 @@
+import { PageContents } from '../../components/PageContents'
 import { PubRef } from '../../components/ui'
 import { atlas, label, pubById } from '../../data/atlas'
 import { useLang, useT } from '../../i18n'
@@ -30,6 +31,7 @@ export default function Methods() {
     <article className="prose">
       <PageTitle title={t('methods.title')} />
       <h1>{t('methods.title')}</h1>
+      <PageContents />
 
       <h2>{ru ? 'Что собрано' : 'What was collected'}</h2>
       <p>

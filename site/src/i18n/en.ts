@@ -1,6 +1,7 @@
 import type { Dict } from './ru'
 
 const en: Dict = {
+  pageContents: { label: 'On this page', top: 'Back to top' },
   site: {
     title: 'PGT-mt Atlas',
     tagline: 'A database of pathogenic mitochondrial DNA (mtDNA) variants for which preimplantation genetic testing (PGT-mt) has been performed',

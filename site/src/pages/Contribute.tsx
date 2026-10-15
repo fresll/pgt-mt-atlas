@@ -1,3 +1,4 @@
+import { PageContents } from '../components/PageContents'
 import type { CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
 import { EmailCopy } from '../components/EmailContact'
@@ -35,6 +36,7 @@ export default function Contribute() {
           <p className="sk-kicker">{t('contribute.kicker')}</p>
           <PageTitle title={t('contribute.title')} />
           <h1>{t('contribute.title')}</h1>
+      <PageContents />
           <HandRule className="sk-title-rule" />
           <p className="sk-subtitle">{t('contribute.lead')}</p>
           <div className="sk-actions">
