@@ -1,3 +1,4 @@
+import { SITE_BASE } from '../lib/base'
 import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { Head } from 'vite-react-ssg'
@@ -161,14 +162,20 @@ export function SectionSelect({ label, items, current }: { label: string; items:
 /** GoatCounter считает только первую загрузку; переходы внутри SPA отправляются вручную. */
 function PageviewCounter() {
   const { pathname } = useLocation()
-  const first = useRef(true)
   useEffect(() => {
-    if (first.current) {
-      first.current = false
-      return
+    if (import.meta.env.VITE_ATLAS_PRIVATE_PREVIEW === '1') return
+    const path = SITE_BASE.replace(/\/$/, '') + pathname
+    let cancelled = false
+    let attempt = 0
+    let timer: ReturnType<typeof setTimeout> | undefined
+    const count = () => {
+      if (cancelled) return
+      const gc = (window as unknown as { goatcounter?: { count?: (v: { path: string }) => void } }).goatcounter
+      if (gc?.count) gc.count({ path })
+      else if (++attempt < 40) timer = setTimeout(count, 250)
     }
-    const gc = (window as unknown as { goatcounter?: { count?: (v: { path: string }) => void } }).goatcounter
-    gc?.count?.({ path: pathname })
+    count()
+    return () => { cancelled = true; if (timer) clearTimeout(timer) }
   }, [pathname])
   return null
 }

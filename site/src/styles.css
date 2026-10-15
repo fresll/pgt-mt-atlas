@@ -1144,3 +1144,8 @@ body:has(.pt-page) { background: var(--sk-paper); }
   .sources-table td[data-label]::before { content: attr(data-label) ': '; color: var(--sk-muted); font-size: 13px; }
   .sources-table tbody tr:nth-child(even) td { background: transparent; }
 }
+
+/* Audit T-8/T-9: service labels and anchors, without changing the text scale. */
+.page-contents { border-left: 2px solid var(--sk-ink); padding: 12px 18px; margin: 24px 0; }
+.page-contents ul { margin: 8px 0; }
+article h2[id], article section[id] { scroll-margin-top: calc(var(--header-h, 94px) + 20px); }

@@ -1,3 +1,4 @@
+import { BackToTop, PageContents } from '../components/PageContents'
 import type { CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
 import { EmailCopy } from '../components/EmailContact'
@@ -37,6 +38,7 @@ export default function Contribute() {
           <h1>{t('contribute.title')}</h1>
           <HandRule className="sk-title-rule" />
           <p className="sk-subtitle">{t('contribute.lead')}</p>
+          <PageContents items={[{ id: 'c-why', text: t('contribute.why.title') }, { id: 'c-interest', text: t('contribute.interest.title') }, { id: 'c-how', text: t('contribute.how.title') }, { id: 'c-template', text: t('contribute.template.title') }, { id: 'c-review', text: t('contribute.review.title') }, { id: 'c-credit', text: t('contribute.credit.title') }, { id: 'c-contact', text: t('contribute.contact.title') }]} />
           <div className="sk-actions">
             <Download primary />
             <a className="sk-link" href="#contact">{t('contribute.contactLink')}</a>
@@ -276,6 +278,7 @@ export default function Contribute() {
           </div>
         </div>
       </section>
+    <BackToTop />
     </article>
   )
 }
