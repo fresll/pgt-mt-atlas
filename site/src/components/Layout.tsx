@@ -163,6 +163,7 @@ export function SectionSelect({ label, items, current }: { label: string; items:
 function PageviewCounter() {
   const { pathname } = useLocation()
   useEffect(() => {
+    if (import.meta.env.VITE_ATLAS_PRIVATE_PREVIEW === '1') return
     const path = SITE_BASE.replace(/\/$/, '') + pathname
     let cancelled = false
     let attempt = 0

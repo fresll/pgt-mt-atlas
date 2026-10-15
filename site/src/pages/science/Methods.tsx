@@ -1,4 +1,4 @@
-import { PageContents } from '../../components/PageContents'
+import { BackToTop, PageContents } from '../../components/PageContents'
 import { PubRef } from '../../components/ui'
 import { atlas, label, pubById } from '../../data/atlas'
 import { useLang, useT } from '../../i18n'
@@ -31,9 +31,9 @@ export default function Methods() {
     <article className="prose">
       <PageTitle title={t('methods.title')} />
       <h1>{t('methods.title')}</h1>
-      <PageContents />
+      <PageContents items={[{ id: 'methods-1', text: ru ? 'Что собрано' : 'What was collected' }, { id: 'methods-2', text: ru ? 'Объём данных' : 'Dataset size' }, { id: 'methods-3', text: ru ? 'Как представлены значения' : 'How values are represented' }, { id: 'methods-4', text: ru ? 'Ориентиры на графиках' : 'Reference lines on the charts' }, { id: 'methods-5', text: ru ? 'Ограничения' : 'Limitations' }, { id: 'methods-6', text: ru ? 'Классификация вариантов' : 'Variant classification' }, { id: 'methods-7', text: ru ? 'Что публиковать о цикле ПГТ-мт' : 'What to report about a PGT-mt cycle' }]} />
 
-      <h2>{ru ? 'Что собрано' : 'What was collected'}</h2>
+      <h2 id="methods-1">{ru ? 'Что собрано' : 'What was collected'}</h2>
       <p>
         {ru
           ? `Значения гетероплазмии извлечены из первичных публикаций для эмбрионов, по которым опубликованы индивидуальные значения. В текущей версии: ${c.landscape_values} значений для ${c.landscape_variants} исследуемых вариантов мтДНК; ${c.concordance_blastocysts} бластоцист с измерениями нескольких фракций (биоптат ТЭ, ВКМ, оставшаяся ТЭ или объединённая фракция ВКМ+ТЭ); постимплантационные данные ${c.offspring_children_exact_pair} детей, для которых известен уровень в перенесённом эмбрионе. Значения берутся из первичных публикаций; обзоры использованы только там, где оригинал недоступен, и это отмечено.`
@@ -45,7 +45,7 @@ export default function Methods() {
           : 'Publications do not always report values for every embryo of a cycle, so the dataset does not equal the full number of embryos in the cycles. A clinical success rate of PGT-mt cannot be calculated from cases pooled across publications.'}
       </p>
 
-      <h2>{ru ? 'Объём данных' : 'Dataset size'}</h2>
+      <h2 id="methods-2">{ru ? 'Объём данных' : 'Dataset size'}</h2>
       <div className="table-wrap">
         <table className="data" data-testid="release-counts">
           <thead><tr><th>{ru ? 'Показатель' : 'Measure'}</th><th>{ru ? 'Количество' : 'Count'}</th></tr></thead>
@@ -57,7 +57,7 @@ export default function Methods() {
         </table>
       </div>
 
-      <h2>{ru ? 'Как представлены значения' : 'How values are represented'}</h2>
+      <h2 id="methods-3">{ru ? 'Как представлены значения' : 'How values are represented'}</h2>
       <ul>
         <li>{ru ? '«0» означает, что вариант не выявлен использованным методом, а не доказанный молекулярный ноль. Предел обнаружения показывается, только если он указан в источнике.' : '“0” means the variant was not detected by the method used, not a proven molecular zero. The detection limit is shown only when the source states it.'}</li>
         <li>{ru ? 'Если опубликован только интервал, хранятся его границы; середина не подставляется.' : 'If only an interval was published, its bounds are stored; no midpoint is imputed.'}</li>
@@ -72,7 +72,7 @@ export default function Methods() {
       </ul>
       <p>{ru ? 'Каждая точка на графиках ведёт к источнику значения и к публикации (DOI).' : 'Every point leads back to its row in the supplementary workbook and to the publication (DOI).'}</p>
 
-      <h2>{ru ? 'Ориентиры на графиках' : 'Reference lines on the charts'}</h2>
+      <h2 id="methods-4">{ru ? 'Ориентиры на графиках' : 'Reference lines on the charts'}</h2>
       <ul>
         {atlas.thresholds.map((th) => (
           <li key={th.id}>
@@ -85,7 +85,7 @@ export default function Methods() {
       </ul>
       <p className="callout">{ru ? 'Ни одно из этих чисел не задаёт безопасного порога для отдельного эмбриона. Три числа, которыми пользуются на практике (18, 15–30 и 30%), отвечают на разные вопросы и получены на разных тканях, методах и исходах.' : 'None of these numbers defines a safe threshold for an individual embryo. The three numbers used in practice (18, 15–30 and 30%) answer different questions and come from different tissues, methods and outcomes.'}</p>
 
-      <h2>{ru ? 'Ограничения' : 'Limitations'}</h2>
+      <h2 id="methods-5">{ru ? 'Ограничения' : 'Limitations'}</h2>
       <ul>
         <li>{ru ? 'Набор описательный и не позволяет провести мета-анализ: исследования различаются по стадии биопсии, методам измерения и пределам обнаружения.' : 'The dataset is descriptive and does not allow a meta-analysis: studies differ in biopsy stage, measurement methods and detection limits.'}</li>
         <li>{ru ? 'Удачные циклы публикуются чаще неудачных; данных для коррекции этого смещения нет.' : 'Successful cycles are published more often than unsuccessful ones; there are no data to correct for this bias.'}</li>
@@ -94,7 +94,7 @@ export default function Methods() {
         <li>{ru ? 'Совместная модель ПГТ-мт и ПГТ-А — сценарный расчёт: она не учитывает внутрисемейную корреляцию и не даёт индивидуального прогноза.' : 'The PGT-mt × PGT-A Model is a scenario calculation: it ignores within-family correlation and gives no individual prediction.'}</li>
       </ul>
 
-      <h2>{ru ? 'Классификация вариантов' : 'Variant classification'}</h2>
+      <h2 id="methods-6">{ru ? 'Классификация вариантов' : 'Variant classification'}</h2>
       <p>
         {ru
           ? 'Класс варианта указан по первичной публикации; Атлас не вводит собственный классификатор, в том числе по уровню гетероплазмии. Для каждого варианта указано, на каком утверждении первичной публикации основан класс, и дата проверки. Сверка с базами MITOMAP и ClinVar при этой проверке не выполнялась.'
@@ -115,7 +115,7 @@ export default function Methods() {
         </table>
       </div>
 
-      <h2>{ru ? 'Что публиковать о цикле ПГТ-мт' : 'What to report about a PGT-mt cycle'}</h2>
+      <h2 id="methods-7">{ru ? 'Что публиковать о цикле ПГТ-мт' : 'What to report about a PGT-mt cycle'}</h2>
       <ol>
         <li>{ru ? 'Пациентка и цикл: возраст; семейный анамнез; гетероплазмия в тканях носительницы; число ооцитов; оплодотворение и развитие эмбрионов.' : 'Patient and cycle: age; family history; carrier tissue heteroplasmy; number of oocytes; fertilisation and embryo development.'}</li>
         <li>{ru ? 'Эмбрион: день биопсии; морфология; результат ПГТ-А; гетероплазмия в каждом образце — по каждому эмбриону, включая не перенесённые.' : 'Embryo: biopsy day; morphology; PGT-A result; heteroplasmy in every sample — for every embryo, including those not transferred.'}</li>
@@ -123,6 +123,7 @@ export default function Methods() {
         <li>{ru ? 'Исход: пренатальная диагностика и постнатальное наблюдение с указанием ткани, возраста и метода.' : 'Outcome: prenatal diagnosis and postnatal follow-up with tissue, age and method.'}</li>
       </ol>
 
+    <BackToTop />
     </article>
   )
 }

@@ -34,7 +34,7 @@ function* htmlFiles(dir) {
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
-  const launch = process.env.ATLAS_PUBLIC_LAUNCH === '1'
+  const launch = process.env.ATLAS_PUBLIC_LAUNCH === '1' && process.env.VITE_ATLAS_PRIVATE_PREVIEW !== '1'
   let canonicalBase
   if (launch) {
     canonicalBase = new URL(process.env.ATLAS_CANONICAL_BASE || '')
