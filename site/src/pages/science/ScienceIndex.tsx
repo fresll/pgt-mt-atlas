@@ -1,28 +1,26 @@
 import { Link } from 'react-router-dom'
 import { ModelBadge, ObservedBadge } from '../../components/ui'
 import { atlas } from '../../data/atlas'
-import { useLang, useT } from '../../i18n'
+import { useCountWord, useLang, useT } from '../../i18n'
 import { PageTitle } from '../../components/Layout'
 
 export default function ScienceIndex() {
   const t = useT()
+  const word = useCountWord()
   const lang = useLang()
-  const ru = lang === 'ru'
   const s = atlas.stats
   const items: [string, string, string, string, boolean][] = [
-    ['heteroplasmy-landscape/', t('fig3.title'), t('fig3.subtitle'), ru ? `${s.fig3.n} значений, 7 вариантов мтДНК` : `${s.fig3.n} values, 7 mtDNA variants`, false],
-    ['embryo-concordance/', t('fig4.title'), t('fig4.subtitle'), ru ? `${s.fig4.n_embryos} бластоцист + ${s.fig4.n_cleavage} эмбрионов дробления` : `${s.fig4.n_embryos} blastocysts + ${s.fig4.n_cleavage} cleavage embryos`, false],
-    ['embryo-to-offspring/', t('fig5.title'), t('fig5.subtitle'), ru ? `${s.fig5.n_pairs} сопоставлений, ${s.fig5.n_children} детей` : `${s.fig5.n_pairs} comparisons, ${s.fig5.n_children} children`, false],
-    ['pgt-mt-pgt-a-model/', t('fig6.title'), t('fig6.subtitle'), ru ? 'сценарный расчёт' : 'scenario calculation', true],
+    ['heteroplasmy-landscape/', t('landscape.title'), t('landscape.subtitle'), t('interfaceCopy.ScienceIndex.landscapeSummary', { v0: s.fig3.n, values: word(s.fig3.n, 'value'), variants: atlas.meta.current_counts.landscape_variants, variantWord: word(atlas.meta.current_counts.landscape_variants, 'variant') }), false],
+    ['embryo-concordance/', t('concordance.title'), t('concordance.subtitle'), t('interfaceCopy.ScienceIndex.concordanceSummary', { v0: s.fig4.n_embryos, v1: s.fig4.n_cleavage, blastocysts: word(s.fig4.n_embryos, 'blastocyst'), embryos: word(s.fig4.n_cleavage, 'embryo') }), false],
+    ['embryo-to-offspring/', t('offspring.title'), t('offspring.subtitle'), t('interfaceCopy.ScienceIndex.offspringSummary', { v0: s.fig5.n_pairs, v1: s.fig5.n_children, comparisons: word(s.fig5.n_pairs, 'comparison') }), false],
+    ['pgt-mt-pgt-a-model/', t('model.title'), t('model.subtitle'), t('interfaceCopy.ScienceIndex.scenarioSummary'), true],
   ]
   return (
     <article>
       <PageTitle title={t('nav.science')} />
       <h1>{t('nav.science')}</h1>
       <p className="lead">
-        {ru
-          ? 'Четыре научных раздела атласа. Каждый график открывается в базовом виде; дополнительные фильтры помечены «расширенный вид». Каждая точка ведёт к первичной публикации и строке исходной таблицы.'
-          : 'Four scientific sections of the Atlas. Every chart opens in its reference view; extra filters are labelled “extended view”. Every point leads to the primary publication and the row of the source workbook.'}
+        {t('interfaceCopy.ScienceIndex.lead')}
       </p>
       <div className="cards section-cards">
         {items.map(([to, title, subtitle, sub, model], i) => (

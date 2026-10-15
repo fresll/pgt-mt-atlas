@@ -181,11 +181,11 @@ export interface Atlas {
   publications: Publication[]
   variant_classes: Record<string, VariantClass>
   corrections: Correction[]
-  fig3: EmbryoObservation[]
-  fig3_blocks: { variant: string; sources: string[] }[]
-  fig4: FractionObservation[]
+  landscape: EmbryoObservation[]
+  landscape_blocks: { variant: string; sources: string[] }[]
+  concordance: FractionObservation[]
   cleavage: CleavagePair[]
-  fig5: OffspringPair[]
+  offspring: OffspringPair[]
   fig5_notes: { row: number; text: string }[]
   table1: Table1Row[]
   hu2026_within_embryo: {
@@ -217,9 +217,11 @@ export interface Atlas {
   }
 }
 
-export const atlas = raw as unknown as Atlas
+// Adapt the legacy ETL wire schema at this boundary; public code uses semantic section names.
+const { fig3: landscape, fig3_blocks: landscape_blocks, fig4: concordance, fig5: offspring, ...dataset } = raw
+export const atlas = { ...dataset, landscape, landscape_blocks, concordance, offspring } as unknown as Atlas
 
-export const pubById: Record<string, Publication> = Object.fromEntries(atlas.publications.map((p) => [p.id, p]))
+export const pubById: Record<string, Publication> = Object.fromEntries(atlas.publications.map(p => [p.id, p]))
 
 export function label(group: string, code: string, lang: Lang): string {
   return atlas.labels[group]?.[code]?.[lang] ?? code
@@ -239,7 +241,7 @@ export function fractionAtOrBelow(obs: EmbryoObservation[], threshold: number): 
   return { k: obs.filter((o) => atOrBelow(o, threshold)).length, n: obs.length }
 }
 
-export function obsByVariant(obs: EmbryoObservation[] = atlas.fig3): Map<string, EmbryoObservation[]> {
+export function obsByVariant(obs: EmbryoObservation[] = atlas.landscape): Map<string, EmbryoObservation[]> {
   const m = new Map<string, EmbryoObservation[]>()
   for (const o of obs) {
     if (!m.has(o.variant)) m.set(o.variant, [])
@@ -260,13 +262,13 @@ export function hasVerificationIssue(embryo: string): boolean {
 
 /** Записи эмбриона, исправленные слоем корректировок. */
 export function correctionsFor(embryo: string): Correction[] {
-  const ids = new Set(atlas.fig4.filter((f) => f.embryo === embryo).flatMap((f) => f.corrections ?? []))
+  const ids = new Set(atlas.concordance.filter((f) => f.embryo === embryo).flatMap((f) => f.corrections ?? []))
   return atlas.corrections.filter((c) => ids.has(c.id))
 }
 
 /** Поиск наблюдения по стабильному или прежнему (строковому) идентификатору. */
 export function findObservation(id: string): EmbryoObservation | undefined {
-  return atlas.fig3.find((o) => o.id === id || o.legacy_id === id)
+  return atlas.landscape.find((o) => o.id === id || o.legacy_id === id)
 }
 
 export function median(xs: number[]): number {
@@ -278,7 +280,7 @@ export function median(xs: number[]): number {
 /** Встраиваемые эмбрионы рис. 4: фракция → значение. */
 export function fig4Embryos(): { embryo: string; pub: string; variant: string; cls: string; fr: Partial<Record<FractionObservation['fraction'], number>> }[] {
   const m = new Map<string, { embryo: string; pub: string; variant: string; cls: string; fr: Partial<Record<FractionObservation['fraction'], number>> }>()
-  for (const f of atlas.fig4) {
+  for (const f of atlas.concordance) {
     if (!m.has(f.embryo)) m.set(f.embryo, { embryo: f.embryo, pub: f.pub, variant: f.variant, cls: f.cls, fr: {} })
     m.get(f.embryo)!.fr[f.fraction] = f.value
   }

@@ -31,6 +31,6 @@ test('the model page identifies conditional uncertainty and primary-series evide
   await expect(page.getByTestId('sallevelt-note')).toContainText('2/23–6/23')
   await expect(page.getByTestId('model-table').locator('[data-variant="m.3250T>C"]')).toContainText('VUS')
   await page.getByRole('checkbox', { name: 'Показать чувствительность к условному интервалу h' }).check()
-  await expect(page.getByTestId('interval-note')).toContainText('Wilson')
+  await expect(page.getByTestId('interval-note')).toContainText('Уилсона')
   await expect(page.locator('.chart-frame .js-plotly-plot')).toHaveCount(3, { timeout: 20_000 })
 })

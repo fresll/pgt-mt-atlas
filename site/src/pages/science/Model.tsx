@@ -20,7 +20,7 @@ function bandColor(color: string): string {
   return `rgba(${[0, 2, 4].map((i) => parseInt(hex.slice(i, i + 2), 16)).join(',')},0.14)`
 }
 
-export default function Fig6() {
+export default function Model() {
   const t = useT()
   const lang = useLang()
   const th = useChartTheme()
@@ -70,98 +70,98 @@ export default function Fig6() {
     }
     return { age, pe, data, layout: {
       ...baseLayout(th), margin: { l: 56, r: 78, t: 16, b: 52 }, annotations,
-      xaxis: axis(th, { range: [0.7, m.n_max + 0.3], dtick: 1, title: { text: t('fig6.xAxis') }, fixedrange: true }),
-      yaxis: axis(th, { range: [0, 1.03], title: { text: t('fig6.yAxis') }, fixedrange: true, tickformat: '.1f' }),
+      xaxis: axis(th, { range: [0.7, m.n_max + 0.3], dtick: 1, title: { text: t('model.xAxis') }, fixedrange: true }),
+      yaxis: axis(th, { range: [0, 1.03], title: { text: t('model.yAxis') }, fixedrange: true, tickformat: '.1f' }),
     } }
   }), [cut, m, rho, showRange, symbol, t, th, variants])
 
-  const overall = summarizeInput(atlas.fig3, 18, boundary)
+  const overall = summarizeInput(atlas.landscape, 18, boundary)
   const allVariants = [...byVar.keys()]
   const inputCell = (f: ReturnType<typeof summarizeInput>) => <>
     {f.fraction === null ? '—' : `${fmtFixed(f.fraction, lang)} (${f.k}/${f.n})`}
-    {f.wilson && <div className="small muted">{t('fig6.iid95')}: {fmtFixed(f.wilson.low, lang)}–{fmtFixed(f.wilson.high, lang)}</div>}
-    {f.crossingIntervals > 0 && <div className="small">{t('fig6.crossing', { n: f.crossingIntervals })}</div>}
+    {f.wilson && <div className="small muted">{t('model.iid95')}: {fmtFixed(f.wilson.low, lang)}–{fmtFixed(f.wilson.high, lang)}</div>}
+    {f.crossingIntervals > 0 && <div className="small">{t('model.crossing', { n: f.crossingIntervals })}</div>}
   </>
 
   return <article>
     <p><ModelBadge /></p>
-    <PageTitle title={t('fig6.title')} />
-    <h1>{t('fig6.title')}</h1>
-    <p className="subtitle">{t('fig6.subtitle')}</p>
-    <p className="small muted" data-testid="model-version" data-model-version={modelVersion.model_version}>{t('fig6.versionLabel', { v: modelVersion.model_version })}</p>
-    <div className="callout model" role="note"><strong>◆ </strong>{t('fig6.banner')}</div>
-    <h2>{t('fig6.meaningTitle')}</h2>
-    <p data-testid="model-meaning">{t('fig6.meaning')}</p>
-    <p data-testid="model-input-summary">{t('fig6.inputSummary', { n: overall.n, sources: overall.sources, blastocysts: overall.blastocysts, unspecified: overall.unspecifiedStage, nd: overall.ndWithoutLod })}</p>
+    <PageTitle title={t('model.title')} />
+    <h1>{t('model.title')}</h1>
+    <p className="subtitle">{t('model.subtitle')}</p>
+    <p className="small muted" data-testid="model-version" data-model-version={modelVersion.model_version}>{t('model.versionLabel', { v: modelVersion.model_version })}</p>
+    <div className="callout model" role="note"><strong>◆ </strong>{t('model.banner')}</div>
+    <h2>{t('model.meaningTitle')}</h2>
+    <p data-testid="model-meaning">{t('model.meaning')}</p>
+    <p data-testid="model-input-summary">{t('model.inputSummary', { n: overall.n, sources: overall.sources, blastocysts: overall.blastocysts, unspecified: overall.unspecifiedStage, nd: overall.ndWithoutLod })}</p>
 
     <div className="controls">
       <span>{t('common.threshold')}: <Seg label={t('common.threshold')} value={cut} onChange={setCut} options={[
         { v: 'both', label: '18% + 30%' }, { v: '18', label: `${symbol}18%` }, { v: '30', label: `${symbol}30%` },
       ]} /></span>
-      <span>{t('fig6.boundary')}: <Seg label={t('fig6.boundary')} value={boundary} onChange={setBoundary} options={[
+      <span>{t('model.boundary')}: <Seg label={t('model.boundary')} value={boundary} onChange={setBoundary} options={[
         { v: 'inclusive', label: '≤' }, { v: 'strict', label: '<' },
       ]} /></span>
-      <label>{t('fig6.rhoLabel')} <select value={rho} onChange={(e) => setRho(Number(e.target.value))} aria-describedby="rho-help" data-testid="model-rho">
-        {[0, 0.05, 0.1, 0.2, 0.4].map((value) => <option key={value} value={value}>{fmt(value, lang, 2)}{value === 0 ? ` — ${t('fig6.independent')}` : ''}</option>)}
+      <label>{t('model.rhoLabel')} <select value={rho} onChange={(e) => setRho(Number(e.target.value))} aria-describedby="rho-help" data-testid="model-rho">
+        {[0, 0.05, 0.1, 0.2, 0.4].map((value) => <option key={value} value={value}>{fmt(value, lang, 2)}{value === 0 ? ` — ${t('model.independent')}` : ''}</option>)}
       </select></label>
-      <label><input type="checkbox" checked={showRange} onChange={(e) => setShowRange(e.target.checked)} /> {t('fig6.showRange')}</label>
+      <label><input type="checkbox" checked={showRange} onChange={(e) => setShowRange(e.target.checked)} /> {t('model.showRange')}</label>
     </div>
-    <p className="small" id="rho-help" data-testid="rho-note">{t('fig6.rhoNote')}</p>
-    {showRange && <div className="callout small" data-testid="interval-note">{t('fig6.intervalNote')}</div>}
+    <p className="small" id="rho-help" data-testid="rho-note">{t('model.rhoNote')}</p>
+    {showRange && <div className="callout small" data-testid="interval-note">{t('model.intervalNote')}</div>}
     <div className="legend-row">
       {variants.map((x) => <span key={x.v}><span className="sw" style={{ background: x.color }} />{x.v}: {cuts.map((threshold) => {
         const f = threshold === 18 ? x.f18 : x.f30
         return `${symbol}${threshold}%: ${f.k}/${f.n}`
       }).join(' / ')}</span>)}
-      {cut === 'both' && <span>{t('fig6.dashed')}</span>}
+      {cut === 'both' && <span>{t('model.dashed')}</span>}
     </div>
-    <div className="panel-tabs" role="group" aria-label={t('fig6.panelTabs')}>
+    <div className="panel-tabs" role="group" aria-label={t('model.panelTabs')}>
       {panels.map((p, i) => <button key={p.age} type="button" aria-pressed={i === panelIdx} onClick={() => setPanelIdx(i)}>
-        {t('fig6.panel', { age: p.age, p: fmt(p.pe, lang) })}
+        {t('model.panel', { age: p.age, p: fmt(p.pe, lang) })}
       </button>)}
     </div>
     <div className="grid-3 model-panels">
       {panels.map((p, i) => <div key={p.age} className={i === panelIdx ? 'is-active' : 'is-inactive'}>
-        <h3>{t('fig6.panel', { age: p.age, p: fmt(p.pe, lang) })}</h3>
-        <PlotlyChart ariaLabel={t('fig6.panel', { age: p.age, p: p.pe })} height={360} data={p.data as never} layout={p.layout as never} />
+        <h3>{t('model.panel', { age: p.age, p: fmt(p.pe, lang) })}</h3>
+        <PlotlyChart ariaLabel={t('model.panel', { age: p.age, p: p.pe })} height={360} data={p.data as never} layout={p.layout as never} />
       </div>)}
     </div>
     <ul className="small">
-      <li>{t('fig6.pHet')}</li>
-      <li data-testid="p-eupl">{t('fig6.pEupl')}. {m.p_eupl_note[lang]} {t('fig6.pEuplSource')}: <PubRef id={m.p_eupl_publication} />{m.p_eupl_locator && <span className="muted"> — {m.p_eupl_locator}</span>}</li>
+      <li>{t('model.pHet')}</li>
+      <li data-testid="p-eupl">{t('model.pEupl')}. {m.p_eupl_note[lang]} {t('model.pEuplSource')}: <PubRef id={m.p_eupl_publication} />{m.p_eupl_locator && <span className="muted"> — {m.p_eupl_locator}</span>}</li>
     </ul>
 
-    <h2>{t('fig6.tableTitle')}</h2>
-    <div className="controls"><label>{t('fig6.tableN')} <input type="number" min={0} max={m.n_max} value={nTable} data-testid="model-n" onChange={(e) => {
+    <h2>{t('model.tableTitle')}</h2>
+    <div className="controls"><label>{t('model.tableN')} <input type="number" min={0} max={m.n_max} value={nTable} data-testid="model-n" onChange={(e) => {
       const value = Number(e.target.value)
       if (Number.isFinite(value)) setNTable(Math.min(m.n_max, Math.max(0, Math.round(value))))
     }} /></label></div>
-    <p className="small" data-testid="input-interval-note">{t('fig6.inputIntervalNote')}</p>
+    <p className="small" data-testid="input-interval-note">{t('model.inputIntervalNote')}</p>
     <div className="table-wrap"><table className="data" data-testid="model-table">
-      <thead><tr><th>{t('common.variant')}</th><th>h {symbol}18%</th><th>h {symbol}30%</th><th>{t('fig6.sampleComposition')}</th>{m.p_eupl.map((a) => <th key={a.age}>{t('fig6.tableAge', { age: a.age })}, e = {fmt(a.value, lang)}</th>)}</tr></thead>
+      <thead><tr><th>{t('common.variant')}</th><th>h {symbol}18%</th><th>h {symbol}30%</th><th>{t('model.sampleComposition')}</th>{m.p_eupl.map((a) => <th key={a.age}>{t('model.tableAge', { age: a.age })}, e = {fmt(a.value, lang)}</th>)}</tr></thead>
       <tbody>{allVariants.map((v) => {
         const obs = byVar.get(v)!
         const f18 = summarizeInput(obs, 18, boundary)
         const f30 = summarizeInput(obs, 30, boundary)
         return <tr key={v} data-variant={v}>
-          <td>{v}{atlas.variant_classes[v]?.class === 'uncertain_significance' && <div className="badge warn">{t('fig6.vus')}</div>}{obs.length < 10 && <div className="muted small">{t('fig6.smallN')}</div>}</td>
+          <td>{v}{atlas.variant_classes[v]?.class === 'uncertain_significance' && <div className="badge warn">{t('model.vus')}</div>}{obs.length < 10 && <div className="muted small">{t('model.smallN')}</div>}</td>
           <td className="num">{inputCell(f18)}</td><td className="num">{inputCell(f30)}</td>
-          <td className="small">{t('fig6.sourceCount', { n: f18.sources })}<br />{t('fig6.stageCount', { b: f18.blastocysts, u: f18.unspecifiedStage })}{f18.ndWithoutLod > 0 && <><br />{t('fig6.ndCount', { n: f18.ndWithoutLod })}</>}</td>
+          <td className="small">{t('model.sourceCount', { n: f18.sources })}<br />{t('model.stageCount', { b: f18.blastocysts, u: f18.unspecifiedStage })}{f18.ndWithoutLod > 0 && <><br />{t('model.ndCount', { n: f18.ndWithoutLod })}</>}</td>
           {m.p_eupl.map((a) => <td key={a.age} className="num">{cuts.map((threshold) => <div key={threshold} data-cut={threshold}>{symbol}{threshold}%: <span data-probability>{fmtFixed(scenarioProbability((threshold === 18 ? f18 : f30).fraction!, a.value, nTable, rho), lang)}</span></div>)}</td>)}
         </tr>
       })}</tbody>
     </table></div>
 
-    <h2>{t('fig6.formula')}</h2>
+    <h2>{t('model.formula')}</h2>
     <p><span className="formula">q = h × e</span> · <span className="formula">P(≥1) = 1 − (1 − q)^N</span></p>
-    <p>{t('fig6.dependentFormula')}</p>
+    <p>{t('model.dependentFormula')}</p>
     <p className="formula">Q ~ Beta(α, β); α = q(1/ρ − 1), β = (1 − q)(1/ρ − 1)<br />P(≥1) = 1 − B(α, β + N) / B(α, β)</p>
-    <h3>{t('fig6.assumptions')}</h3>
-    <ul className="prose">{['a1', 'a2', 'a3', 'a4'].map((key) => <li key={key}>{t(`fig6.${key}`)}</li>)}</ul>
-    <p className="small muted">{t('fig6.improvement')}</p>
+    <h3>{t('model.assumptions')}</h3>
+    <ul className="prose">{['a1', 'a2', 'a3', 'a4'].map((key) => <li key={key}>{t(`model.${key}`)}</li>)}</ul>
+    <p className="small muted">{t('model.improvement')}</p>
 
-    <h2>{t('fig6.boundsTitle')}</h2>
-    <p>{t('fig6.boundsNote')}</p>
+    <h2>{t('model.boundsTitle')}</h2>
+    <p>{t('model.boundsNote')}</p>
     <p className="formula">max(0, h + e − 1) ≤ q ≤ min(h, e)</p>
     <div className="table-wrap"><table className="data" data-testid="joint-bounds">
       <thead><tr><th>{t('common.variant')}</th><th>{t('common.threshold')}</th>{m.p_eupl.map((a) => <th key={a.age}>e = {fmt(a.value, lang)}</th>)}</tr></thead>
@@ -174,12 +174,12 @@ export default function Fig6() {
       }))}</tbody>
     </table></div>
 
-    <h2>{t('fig6.evidenceTitle')}</h2>
-    <p>{t('fig6.evidenceNote')}</p>
+    <h2>{t('model.evidenceTitle')}</h2>
+    <p>{t('model.evidenceNote')}</p>
     <div className="table-wrap"><table className="data" data-testid="joint-evidence">
-      <thead><tr><th>{t('common.source')}</th><th>{t('common.variant')}</th><th>H≤18%</th><th>{t('fig6.confirmedEuploid')}</th><th>{t('fig6.jointPass')}</th></tr></thead>
-      <tbody>{jointEvidence.map((r) => <tr key={r.key}><td><PubRef id={r.publication} /><div className="small">{r.locator}</div><div className="small">{t(`fig6.evidence.${r.key}`)}</div></td><td>{r.variant}</td><td className="num">{r.h}/{r.n}</td><td className="num">{r.confirmedEuploid}/{r.n}</td><td className="num">{r.joint}/{r.n}</td></tr>)}</tbody>
+      <thead><tr><th>{t('common.source')}</th><th>{t('common.variant')}</th><th>H≤18%</th><th>{t('model.confirmedEuploid')}</th><th>{t('model.jointPass')}</th></tr></thead>
+      <tbody>{jointEvidence.map((r) => <tr key={r.key}><td><PubRef id={r.publication} /><div className="small">{r.locator}</div><div className="small">{t(`model.evidence.${r.key}`)}</div></td><td>{r.variant}</td><td className="num">{r.h}/{r.n}</td><td className="num">{r.confirmedEuploid}/{r.n}</td><td className="num">{r.joint}/{r.n}</td></tr>)}</tbody>
     </table></div>
-    <p className="small" data-testid="sallevelt-note">{t('fig6.salleveltNote')} <PubRef id="sallevelt2017" /> — pp. 700–701; Supplementary Table SI.</p>
+    <p className="small" data-testid="sallevelt-note">{t('model.salleveltNote')} <PubRef id="sallevelt2017" /> — pp. 700–701; Supplementary Table SI.</p>
   </article>
 }
