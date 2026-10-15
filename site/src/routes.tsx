@@ -13,10 +13,10 @@ import Patients from './pages/patients/Patients'
 import RootRedirect from './pages/RootRedirect'
 import Cases from './pages/science/Cases'
 import Data from './pages/science/Data'
-import Fig3 from './pages/science/Fig3'
-import Fig4 from './pages/science/Fig4'
-import Fig5 from './pages/science/Fig5'
-import Fig6 from './pages/science/Fig6'
+import Landscape from './pages/science/Landscape'
+import Concordance from './pages/science/Concordance'
+import Offspring from './pages/science/Offspring'
+import Model from './pages/science/Model'
 import Methods from './pages/science/Methods'
 import ScienceIndex from './pages/science/ScienceIndex'
 import Sources from './pages/science/Sources'
@@ -33,10 +33,10 @@ function langRoutes(lang: Lang): RouteRecord {
         children: [
           { index: true, element: <ScienceIndex /> },
           { path: 'data', element: <Data /> },
-          { path: 'heteroplasmy-landscape', element: <Fig3 /> },
-          { path: 'embryo-concordance', element: <Fig4 /> },
-          { path: 'embryo-to-offspring', element: <Fig5 /> },
-          { path: 'pgt-mt-pgt-a-model', element: <Fig6 /> },
+          { path: 'heteroplasmy-landscape', element: <Landscape /> },
+          { path: 'embryo-concordance', element: <Concordance /> },
+          { path: 'embryo-to-offspring', element: <Offspring /> },
+          { path: 'pgt-mt-pgt-a-model', element: <Model /> },
           { path: 'cases', element: <Cases /> },
           { path: 'sources', element: <Sources /> },
           { path: 'methods', element: <Methods /> },

@@ -156,7 +156,7 @@ function RefItem({ r, chapters }: { r: Ref; chapters?: number[] }) {
   const list = FUNDAMENTALS[lang].chapters
   return (
     <li id={`ref-${r.id}`}>
-      <span className="fd-ref-authors">{r.authors}</span> ({r.year}). {r.title}. <em>{r.source}</em>.{' '}
+      <span className="fd-ref-authors">{r.authors}</span> ({r.yearLabel ?? r.year}). {r.title}. <em>{r.source}</em>.{' '}
       <a href={doiHref(r.doi)} target="_blank" rel="noreferrer">
         doi:{r.doi}
       </a>

@@ -31,9 +31,9 @@ describe('neutral name of the seven-variant group (A1)', () => {
   })
 
   it('keeps m.3250T>C in the dataset with its individual VUS classification', () => {
-    const vus = atlas.fig3.filter((m) => m.variant === 'm.3250T>C')
+    const vus = atlas.landscape.filter((m) => m.variant === 'm.3250T>C')
     expect(vus).toHaveLength(8)
-    expect(new Set(atlas.fig3.map((m) => m.variant)).size).toBe(7)
+    expect(new Set(atlas.landscape.map((m) => m.variant)).size).toBe(7)
     const csv = readFileSync(join(SRC, '..', 'public', 'data', 'csv', 'variant.csv'), 'utf8')
     expect(csv).toMatch(/^m\.3250T>C,uncertain_significance,stated_in_source,hu2026,/m)
     expect(csv).toMatch(/^m\.3243A>G,pathogenic,/m)

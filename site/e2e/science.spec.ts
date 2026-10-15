@@ -84,7 +84,7 @@ test('×n point opens every observation of the group; table and filters stay con
 test('Tofilo 2026 corrections follow ESM 2 and keep the source value (A3)', async ({ page }) => {
   await page.goto('ru/science/embryo-concordance/')
   // зависимые статистики пересчитаны из исправленного набора (по исходной таблице было бы 2,1 п.п.)
-  await expect(page.locator('article')).toContainText('Медиана размаха: 2,2 п.п. (21 патогенных бластоцист)')
+  await expect(page.locator('article')).toContainText('Медиана размаха: 2,2 п. п. (21 бластоциста с патогенным вариантом)')
   await page.locator('summary', { hasText: 'Таблица данных' }).click()
   await page.locator('table.data tbody tr', { hasText: 'Tofilo_6' }).click()
   const card = page.locator('.detail')

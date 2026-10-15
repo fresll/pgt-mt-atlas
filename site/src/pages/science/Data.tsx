@@ -5,7 +5,7 @@ import { atlas, findObservation, label, pubById } from '../../data/atlas'
 import { useLang, useT } from '../../i18n'
 import { obsValueText } from '../../lib/obs'
 import { asset } from '../../lib/base'
-import { ObservationDetail } from './Fig3'
+import { ObservationDetail } from './Landscape'
 import { PageTitle } from '../../components/Layout'
 
 const CSV = ['publication', 'variant', 'embryo', 'sample', 'measurement', 'offspring_measurement', 'figure_membership', 'verification']
@@ -17,8 +17,8 @@ export default function Data() {
   const [pub, setPub] = useState('')
   const [selected, setSelected] = useState<string | null>(null)
   const [query, setQuery] = useState('')
-  const variants = [...new Set(atlas.fig3.map((o) => o.variant))]
-  const pubs = [...new Set(atlas.fig3.map((o) => o.pub))]
+  const variants = [...new Set(atlas.landscape.map((o) => o.variant))]
+  const pubs = [...new Set(atlas.landscape.map((o) => o.pub))]
   // ?id=<стабильный или прежний ID>: ссылки на наблюдения переживают смену нумерации строк исходной таблицы
   useEffect(() => {
     const id = new URLSearchParams(window.location.search).get('id')
@@ -31,7 +31,7 @@ export default function Data() {
   const q = query.trim().toLowerCase()
   const rows = useMemo(
     () =>
-      atlas.fig3.filter(
+      atlas.landscape.filter(
         (o) =>
           (!variant || o.variant === variant) &&
           (!pub || o.pub === pub) &&

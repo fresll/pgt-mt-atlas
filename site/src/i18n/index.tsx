@@ -1,3 +1,4 @@
+import { plural } from '../lib/format'
 import { createInstance, type i18n as I18n } from 'i18next'
 import { createContext, useContext, type ReactNode } from 'react'
 import { I18nextProvider, initReactI18next, useTranslation } from 'react-i18next'
@@ -40,4 +41,10 @@ export function useLang(): Lang {
 export function useT() {
   const { t } = useTranslation()
   return t
+}
+
+export function useCountWord() {
+  const t = useT()
+  const lang = useLang()
+  return (n: number, key: string) => plural(n, lang, t(`countWords.${key}`, { returnObjects: true }) as unknown as [string, string, string])
 }

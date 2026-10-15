@@ -1,7 +1,7 @@
 import { DataTable } from '../../components/DataTable'
 import { ObservedBadge, PubRef } from '../../components/ui'
 import { atlas } from '../../data/atlas'
-import { useLang, useT } from '../../i18n'
+import { useT } from '../../i18n'
 import { PageTitle } from '../../components/Layout'
 
 export default function Cases() {
@@ -13,9 +13,7 @@ export default function Cases() {
       <h1>{t('cases.title')}</h1>
       <p className="lead">{t('cases.lead')}</p>
       <p className="callout small">
-        {useLang() === 'ru'
-          ? 'Первоисточник каждого случая указан в столбце «Источник»: авторы, публикация и DOI.'
-          : 'The primary source for each case is listed in the Source column: authors, publication and DOI.'}
+        {t('interfaceCopy.Cases.primaryAttribution')}
       </p>
       <DataTable
         maxHeight={900}
@@ -25,7 +23,7 @@ export default function Cases() {
         csvRow={(r) => ({ variant: r.variant, phenotype: r.phenotype, pool_range: r.pool_range, transferred: r.transferred, offspring: r.offspring, publications: r.pubs.join('; '), data_type: r.data_type, value_origin: r.value_origin, sheet_row: r.row })}
         columns={[
           { key: 'v', header: t('common.variant'), render: (r) => <strong>{r.variant}</strong>, sort: (r) => r.variant },
-          { key: 'ph', header: 'Phenotype / фенотип', render: (r) => <span lang="ru">{r.phenotype}</span> },
+          { key: 'ph', header: t('cases.phenotype'), render: (r) => <span lang="ru">{r.phenotype}</span> },
           { key: 'pool', header: t('cases.range'), render: (r) => <span lang="ru">{r.pool_range}</span> },
           { key: 'tr', header: t('cases.transferred'), render: (r) => <span lang="ru">{r.transferred}</span> },
           { key: 'off', header: t('cases.offspring'), render: (r) => <span lang="ru">{r.offspring}</span> },
