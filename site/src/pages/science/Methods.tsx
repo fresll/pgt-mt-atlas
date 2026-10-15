@@ -1,3 +1,4 @@
+import { BackToTop, PageContents } from '../../components/PageContents'
 import { PubRef } from '../../components/ui'
 import { atlas, label, pubById } from '../../data/atlas'
 import { useCountWord, useLang, useT } from '../../i18n'
@@ -15,8 +16,9 @@ export default function Methods() {
     <article className="prose">
       <PageTitle title={t('methods.title')} />
       <h1>{t('methods.title')}</h1>
+      <PageContents items={[{ id: 'methods-1', text: t('interfaceCopy.Methods.collectedTitle') }, { id: 'methods-2', text: t('interfaceCopy.Methods.sizeTitle') }, { id: 'methods-3', text: t('interfaceCopy.Methods.representationTitle') }, { id: 'methods-4', text: t('interfaceCopy.Methods.guidesTitle') }, { id: 'methods-5', text: t('interfaceCopy.Methods.limitationsTitle') }, { id: 'methods-6', text: t('interfaceCopy.Methods.classificationTitle') }, { id: 'methods-7', text: t('interfaceCopy.Methods.reportingTitle') }]} />
 
-      <h2>{t('interfaceCopy.Methods.collectedTitle')}</h2>
+      <h2 id="methods-1">{t('interfaceCopy.Methods.collectedTitle')}</h2>
       <p>
         {t('interfaceCopy.Methods.datasetSummary', { v0: c.landscape_values, v1: c.landscape_variants, v2: c.concordance_blastocysts, v3: c.offspring_children_exact_pair, values: word(c.landscape_values, 'value'), variants: word(c.landscape_variants, 'variant'), blastocysts: word(c.concordance_blastocysts, 'blastocyst') })}
       </p>
@@ -25,7 +27,7 @@ export default function Methods() {
       </p>
 
       <p>{t('data.countSummary', { records: atlas.offspring.length, pairs: atlas.stats.fig5.n_pairs, children: atlas.stats.fig5.n_children, pubs: atlas.publications.length, embryoPubs: new Set(atlas.landscape.map(o => o.pub)).size })}</p>
-      <h2>{t('interfaceCopy.Methods.sizeTitle')}</h2>
+      <h2 id="methods-2">{t('interfaceCopy.Methods.sizeTitle')}</h2>
       <div className="table-wrap">
         <table className="data" data-testid="release-counts">
           <thead><tr><th>{t('interfaceCopy.Methods.measure')}</th><th>{t('interfaceCopy.Methods.count')}</th></tr></thead>
@@ -37,7 +39,7 @@ export default function Methods() {
         </table>
       </div>
 
-      <h2>{t('interfaceCopy.Methods.representationTitle')}</h2>
+      <h2 id="methods-3">{t('interfaceCopy.Methods.representationTitle')}</h2>
       <ul>
         <li>{t('interfaceCopy.Methods.undetectedMeaning')}</li>
         <li>{t('interfaceCopy.Methods.intervalMeaning')}</li>
@@ -52,7 +54,7 @@ export default function Methods() {
       </ul>
       <p>{t('interfaceCopy.Methods.pointProvenance')}</p>
 
-      <h2>{t('interfaceCopy.Methods.guidesTitle')}</h2>
+      <h2 id="methods-4">{t('interfaceCopy.Methods.guidesTitle')}</h2>
       <ul>
         {atlas.thresholds.filter(t => t.role !== 'chart_convention').map((th) => (
           <li key={th.id}>
@@ -65,7 +67,7 @@ export default function Methods() {
       </ul>
       <p className="callout">{t('interfaceCopy.Methods.guideCaveat')}</p>
 
-      <h2>{t('interfaceCopy.Methods.limitationsTitle')}</h2>
+      <h2 id="methods-5">{t('interfaceCopy.Methods.limitationsTitle')}</h2>
       <ul>
         <li>{t('interfaceCopy.Methods.heterogeneousStudies')}</li>
         <li>{t('interfaceCopy.Methods.publicationBias')}</li>
@@ -74,7 +76,7 @@ export default function Methods() {
         <li>{t('interfaceCopy.Methods.scenarioModel')}</li>
       </ul>
 
-      <h2>{t('interfaceCopy.Methods.classificationTitle')}</h2>
+      <h2 id="methods-6">{t('interfaceCopy.Methods.classificationTitle')}</h2>
       <p>
         {t('interfaceCopy.Methods.classificationMeaning')}
       </p>
@@ -93,7 +95,7 @@ export default function Methods() {
         </table>
       </div>
 
-      <h2>{t('interfaceCopy.Methods.reportingTitle')}</h2>
+      <h2 id="methods-7">{t('interfaceCopy.Methods.reportingTitle')}</h2>
       <ol>
         <li>{t('interfaceCopy.Methods.reportPatient')}</li>
         <li>{t('interfaceCopy.Methods.reportEmbryo')}</li>
@@ -101,6 +103,7 @@ export default function Methods() {
         <li>{t('interfaceCopy.Methods.reportOutcome')}</li>
       </ol>
 
+    <BackToTop />
     </article>
   )
 }

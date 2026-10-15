@@ -1030,7 +1030,11 @@ const en: Dict = {
       "chart_convention": "chart convention"
     }
   },
-  "notFound": "Page not found"
+  "notFound": "Page not found",
+  "pageContents": {
+    "label": "On this page",
+    "top": "Back to top"
+  }
 }
 
 export default en

@@ -140,7 +140,7 @@ export default function Landscape() {
         xaxis: axis(th, { range: [0, xmax], tickvals: ticks.map((x) => x.v), ticktext: ticks.map((x) => x.t), tickangle: 0, showgrid: false, zeroline: false, tickfont: { size: 12, color: th.ink2 }, fixedrange: true }),
         yaxis: axis(th, { range: [-4, 140], tickvals: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100], title: { text: t('landscape.yAxis'), font: { color: th.ink2 } }, showgrid: false, zeroline: false }),
         shapes: [...bg, ...shapes],
-        annotations: [...annotations, ...(!explore ? [{ x: 0.02, xref: 'paper', y: 18, text: t('fig3.guide18'), showarrow: false, yanchor: 'bottom', xanchor: 'left', font: { size: 12 } }, { x: 0.02, xref: 'paper', y: 30, text: t('fig3.guide30'), showarrow: false, yanchor: 'bottom', xanchor: 'left', font: { size: 12 } }] : [])],
+        annotations: [...annotations, ...(!explore ? [{ x: 0.02, xref: 'paper', y: 18, text: t('landscape.guide18'), showarrow: false, yanchor: 'bottom', xanchor: 'left', font: { size: 12 } }, { x: 0.02, xref: 'paper', y: 30, text: t('landscape.guide30'), showarrow: false, yanchor: 'bottom', xanchor: 'left', font: { size: 12 } }] : [])],
         hovermode: 'closest',
       },
     }

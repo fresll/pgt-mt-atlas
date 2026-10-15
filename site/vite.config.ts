@@ -31,7 +31,13 @@ function pagesLikePreview(): Plugin {
 // Публикация отключена до явного решения авторов (docs/implementation_plan.md, раздел 7).
 export default defineConfig({
   base,
-  plugins: [react(), pagesLikePreview()],
+  plugins: [react(), pagesLikePreview(), {
+    name: 'private-preview-without-analytics',
+    transformIndexHtml(html: string) {
+      return process.env.VITE_ATLAS_PRIVATE_PREVIEW === '1'
+        ? html.replace(/<script[^>]*data-goatcounter[\s\S]*?<\/script>/g, '') : html
+    },
+  }],
   // Ссылки из JS (предзагрузка чанков Plotly) и CSS (шрифты) строятся относительно самого файла,
   // а не от зашитого base: собранный сайт не ломается, если открыт по другому пути.
   // В HTML base заменяется на относительный путь в scripts/postbuild.mjs.

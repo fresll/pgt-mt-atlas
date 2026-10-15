@@ -1,3 +1,4 @@
+import { BackToTop, PageContents } from '../../components/PageContents'
 import { useMemo, useEffect, useState } from 'react'
 import { PlotlyChart } from '../../components/PlotlyChart'
 import { ModelBadge, PubRef, Seg } from '../../components/ui'
@@ -93,7 +94,8 @@ export default function Model() {
     <p className="subtitle">{t('model.subtitle')}</p>
     <p className="small muted" data-testid="model-version" data-model-version={modelVersion.model_version}>{t('model.versionLabel', { v: modelVersion.model_version })}</p>
     <div className="callout model" role="note"><strong>◆ </strong>{t('model.banner')}</div>
-    <h2>{t('model.meaningTitle')}</h2>
+    <PageContents items={[{ id: 'model-1', text: t('model.meaningTitle') }, { id: 'model-2', text: t('model.tableTitle') }, { id: 'model-3', text: t('model.formula') }, { id: 'model-4', text: t('model.boundsTitle') }, { id: 'model-5', text: t('model.evidenceTitle') }]} />
+    <h2 id="model-1">{t('model.meaningTitle')}</h2>
     <p data-testid="model-meaning">{t('model.meaning')}</p>
     <p data-testid="model-input-summary">{t('model.inputSummary', { n: overall.n, sources: overall.sources, blastocysts: overall.blastocysts, unspecified: overall.unspecifiedStage, nd: overall.ndWithoutLod })}</p>
 
@@ -141,7 +143,7 @@ export default function Model() {
       <li data-testid="p-eupl">{t('model.pEupl')}. {t('model.scenarioNote')} {t('model.pEuplSource')}: <PubRef id={m.p_eupl_publication} />{m.p_eupl_locator && <span className="muted"> — {m.p_eupl_locator}</span>}</li>
     </ul>
 
-    <h2>{t('model.tableTitle')}</h2>
+    <h2 id="model-2">{t('model.tableTitle')}</h2>
     <div className="controls"><label>{t('model.tableN')} <input type="number" min={0} max={m.n_max} value={nTable} data-testid="model-n" onChange={(e) => {
       const value = Number(e.target.value)
       if (Number.isFinite(value)) setNTable(Math.min(m.n_max, Math.max(0, Math.round(value))))
@@ -162,7 +164,7 @@ export default function Model() {
       })}</tbody>
     </table></div>
 
-    <h2>{t('model.formula')}</h2>
+    <h2 id="model-3">{t('model.formula')}</h2>
     <p><span className="formula">q = H × E</span> · <span className="formula">P(≥1) = 1 − (1 − q)^N</span></p>
     <p>{t('model.dependentFormula')}</p>
     <p className="formula">Q ~ Beta(α, β); α = q(1/ρ − 1), β = (1 − q)(1/ρ − 1)<br />P(≥1) = 1 − B(α, β + N) / B(α, β)</p>
@@ -170,7 +172,7 @@ export default function Model() {
     <ul className="prose">{['a1', 'a2', 'a3', 'a4'].map((key) => <li key={key}>{t(`model.${key}`)}</li>)}</ul>
     <p className="small muted">{t('model.improvement')}</p>
 
-    <h2>{t('model.boundsTitle')}</h2>
+    <h2 id="model-4">{t('model.boundsTitle')}</h2>
     <p>{t('model.boundsNote')}</p>
     <p className="formula">max(0, H + E − 1) ≤ q ≤ min(H, E)</p>
     <div className="table-wrap"><table className="data" data-testid="joint-bounds">
@@ -184,12 +186,13 @@ export default function Model() {
       }))}</tbody>
     </table></div>
 
-    <h2>{t('model.evidenceTitle')}</h2>
+    <h2 id="model-5">{t('model.evidenceTitle')}</h2>
     <p>{t('model.evidenceNote')}</p>
     <div className="table-wrap"><table className="data" data-testid="joint-evidence">
       <thead><tr><th>{t('common.source')}</th><th>{t('common.variant')}</th><th>H≤18%</th><th>{t('model.confirmedEuploid')}</th><th>{t('model.jointPass')}</th></tr></thead>
       <tbody>{jointEvidence.map((r) => <tr key={r.key}><td><PubRef id={r.publication} /><div className="small">{r.locator}</div><div className="small">{t(`model.evidence.${r.key}`)}</div></td><td>{r.variant}</td><td className="num">{r.h}/{r.n}</td><td className="num">{r.confirmedEuploid}/{r.n}</td><td className="num">{r.joint}/{r.n}</td></tr>)}</tbody>
     </table></div>
     <p className="small" data-testid="sallevelt-note">{t('model.salleveltNote')} <PubRef id="sallevelt2017" /> — pp. 700–701; Supplementary Table SI.</p>
-  </article>
+  <BackToTop />
+    </article>
 }

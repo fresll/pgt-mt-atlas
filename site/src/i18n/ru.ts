@@ -1028,7 +1028,11 @@ const ru = {
       "chart_convention": "условное обозначение графика"
     }
   },
-  "notFound": "Страница не найдена"
+  "notFound": "Страница не найдена",
+  "pageContents": {
+    "label": "На этой странице",
+    "top": "Наверх"
+  }
 }
 
 export default ru
