@@ -42,7 +42,6 @@ emb-HL-monnot2011-010-s1,emb-HL-monnot2011-010,mixed_unspecified,blastomeres and
 emb-HL-monnot2011-011-s1,emb-HL-monnot2011-011,mixed_unspecified,blastomeres and/or whole embryo fractions
 emb-HL-monnot2011-012-s1,emb-HL-monnot2011-012,mixed_unspecified,blastomeres and/or whole embryo fractions
 emb-HL-monnot2011-013-s1,emb-HL-monnot2011-013,mixed_unspecified,blastomeres and/or whole embryo fractions
-emb-HL-hyslop2025-003-s1,emb-HL-hyslop2025-003,blastomeres_unspecified,test blastomere(s)
 emb-HL-monnot2011-014-s1,emb-HL-monnot2011-014,multiple_blastomeres,multiple blastomeres
 emb-HL-monnot2011-015-s1,emb-HL-monnot2011-015,multiple_blastomeres,multiple blastomeres
 emb-HL-monnot2011-016-s1,emb-HL-monnot2011-016,mixed_unspecified,blastomeres and/or whole embryo fractions
@@ -86,26 +85,25 @@ emb-HL-treff2012-013-s1,emb-HL-treff2012-013,mixed_unspecified,multiple blastome
 emb-HL-treff2012-014-s1,emb-HL-treff2012-014,te_icm_multiple,TE biopsy / multiple TE+ICM biopsies
 emb-HL-treff2012-015-s1,emb-HL-treff2012-015,te_icm_multiple,TE biopsy / multiple TE+ICM biopsies
 emb-HL-treff2012-016-s1,emb-HL-treff2012-016,whole_embryo,whole embryo
-emb-HL-ji2021-001-s1,emb-HL-ji2021-001,mixed_unspecified,TE/whole embryo sample
+emb-HL-ji2021-001-s1,emb-HL-ji2021-001,te_biopsy,TE/whole embryo sample
 emb-HL-ji2021-002-s1,emb-HL-ji2021-002,mixed_unspecified,whole/biopsy sample
 emb-HL-ji2021-003-s1,emb-HL-ji2021-003,te_biopsy,TE biopsy
 emb-HL-ji2021-004-s1,emb-HL-ji2021-004,te_biopsy,TE biopsy
-emb-HL-ji2021-005-s1,emb-HL-ji2021-005,mixed_unspecified,TE/whole embryo sample
+emb-HL-ji2021-005-s1,emb-HL-ji2021-005,te_biopsy,TE/whole embryo sample
 emb-HL-ji2021-006-s1,emb-HL-ji2021-006,multiple_blastomeres,six blastomeres
-emb-HL-ji2021-007-s1,emb-HL-ji2021-007,mixed_unspecified,sample
-emb-HL-ji2021-008-s1,emb-HL-ji2021-008,mixed_unspecified,TE/whole embryo sample
-emb-HL-ji2021-009-s1,emb-HL-ji2021-009,mixed_unspecified,TE/whole embryo sample
+emb-HL-ji2021-008-s1,emb-HL-ji2021-008,te_biopsy,TE/whole embryo sample
+emb-HL-ji2021-009-s1,emb-HL-ji2021-009,te_biopsy,TE/whole embryo sample
 emb-HL-ji2021-010-s1,emb-HL-ji2021-010,te_biopsy,TE biopsy
 emb-HL-ji2021-011-s1,emb-HL-ji2021-011,mixed_unspecified,whole/biopsy sample
 emb-HL-ji2021-012-s1,emb-HL-ji2021-012,te_biopsy,TE biopsy
 emb-HL-ji2021-013-s1,emb-HL-ji2021-013,te_biopsy,TE biopsy
-emb-HL-ji2021-014-s1,emb-HL-ji2021-014,mixed_unspecified,TE/whole embryo sample
+emb-HL-ji2021-014-s1,emb-HL-ji2021-014,te_biopsy,TE/whole embryo sample
 emb-HL-ji2021-015-s1,emb-HL-ji2021-015,te_biopsy,TE biopsy
 emb-HL-ji2021-016-s1,emb-HL-ji2021-016,te_biopsy,TE biopsy
 emb-HL-ji2021-017-s1,emb-HL-ji2021-017,mixed_unspecified,whole/biopsy sample
 emb-HL-ji2021-018-s1,emb-HL-ji2021-018,te_biopsy,TE biopsy
 emb-HL-ji2021-019-s1,emb-HL-ji2021-019,te_biopsy,TE biopsy
-emb-HL-ji2021-020-s1,emb-HL-ji2021-020,mixed_unspecified,TE/whole embryo sample
+emb-HL-ji2021-020-s1,emb-HL-ji2021-020,te_biopsy,TE/whole embryo sample
 emb-HL-ji2021-021-s1,emb-HL-ji2021-021,multiple_blastomeres,six blastomeres
 emb-HL-sallevelt2017-001-s1,emb-HL-sallevelt2017-001,single_blastomeres,"single blastomeres, diagnostic analysis"
 emb-HL-sallevelt2017-002-s1,emb-HL-sallevelt2017-002,multiple_blastomeres,"multiple blastomeres, reanalysis"
@@ -186,6 +184,8 @@ emb-HL-hu2026-005-s1,emb-HL-hu2026-005,te_biopsy,TE biopsy (3–5 cells)
 emb-HL-hu2026-006-s1,emb-HL-hu2026-006,te_biopsy,TE biopsy (3–5 cells)
 emb-HL-hu2026-007-s1,emb-HL-hu2026-007,whole_embryo,whole embryo
 emb-HL-hu2026-008-s1,emb-HL-hu2026-008,te_biopsy,TE biopsy (3–5 cells)
+emb-HL-hyslop2025-006-s1,emb-HL-hyslop2025-006,blastomeres_unspecified,test blastomere(s)
+emb-HL-hyslop2025-007-s1,emb-HL-hyslop2025-007,blastomeres_unspecified,test blastomere(s)
 emb-Janssen2024_F20_E45-te_biopsy,emb-Janssen2024_F20_E45,te_biopsy,Биоптат ТЭ
 emb-Janssen2024_F20_E45-remaining_te,emb-Janssen2024_F20_E45,remaining_te,Оставшаяся ТЭ
 emb-Janssen2024_F20_E46-te_biopsy,emb-Janssen2024_F20_E46,te_biopsy,Биоптат ТЭ

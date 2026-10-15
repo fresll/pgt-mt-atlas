@@ -22,6 +22,7 @@ export default function ScienceIndex() {
       <p className="lead">
         {t('interfaceCopy.ScienceIndex.lead')}
       </p>
+      <p className="small">{t('offspring.bothNDChildren', { children: s.fig5.n_both_nd_children, pairs: s.fig5.n_both_nd_pairs })}</p>
       <div className="cards section-cards">
         {items.map(([to, title, subtitle, sub, model], i) => (
           <div className="card" key={to}>

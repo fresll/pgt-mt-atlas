@@ -62,8 +62,7 @@ thresholds:
     publication: hellebrekers2012
     locator: 'Hum Reprod Update 2012;18(4):341–349, абстракт (PubMed 22456975), раздел Results'
     checked: >-
-      2026-10-11 по абстракту PubMed. Полного текста нет ни в репозитории, ни в PMC: состав выборки и исключения
-      сверены только в объёме абстракта.
+      Сверено по аннотации PubMed, PMID 22456975, 11.10.2026.
     ru: >-
       Расчётный ориентир систематического обзора: уровень мутации ≤18% в мышечной ткани связан с вероятностью ≥95%
       остаться непоражённым (159 точковых вариантов мтДНК; семейные данные 137 родословных; априорная доля поражённых
@@ -78,8 +77,8 @@ thresholds:
     range: [15, 30]
     role: literature_range
     publication: ji2023
-    locator: 'J Assist Reprod Genet 2023;40:2185–2196, с. 2190 (Results) и с. 2193 (Discussion); у авторов — ссылка [23]'
-    checked: 2026-10-11 по PDF (references/Ji et al 2023 PGTmt risk and chance.pdf)
+    locator: 'J Assist Reprod Genet 2023;40:2185–2196, с. 2190 (Results) и с. 2193 (Discussion)'
+    checked: Сверено по полному тексту, с. 2190, 2193, 11.10.2026.
     ru: >-
       Диапазон симптоматического порога m.3243A>G, который Ji и соавт. приводят как общепринятый со ссылкой на
       литературу; собственный порог для m.3243A>G по своим данным авторы определить не смогли.
@@ -91,7 +90,7 @@ thresholds:
     role: programme_criterion
     publication: hyslop2025
     locator: 'N Engl J Med 2025, Methods (с. 3 PDF: «single blastomere was removed on day 3»; «less than 30% heteroplasmy») и с. 5 PDF'
-    checked: 2026-10-11 по PDF (references/Hyslop et al 2025 MRT PGTmt.pdf)
+    checked: Сверено по полному тексту, с. 3, 5, 11.10.2026.
     ru: >-
       Рабочий критерий программы Newcastle: для переноса или витрификации преимущественно использовали эмбрионы с
       гетероплазмией менее 30%, измеренной в одном бластомере 3-го дня. Это критерий конкретной клинической

@@ -76,6 +76,7 @@ export default function Model() {
   }), [cut, m, rho, showRange, symbol, t, th, variants])
 
   const overall = summarizeInput(atlas.landscape, 18, boundary)
+  const without3PN = summarizeInput(atlas.landscape.filter(o => o.variant === 'm.14487T>C' && o.non_candidate !== '3PN'), 18, boundary)
   const allVariants = [...byVar.keys()]
   const inputCell = (f: ReturnType<typeof summarizeInput>) => <>
     {f.fraction === null ? '—' : `${fmtFixed(f.fraction, lang)} (${f.k}/${f.n})`}
@@ -94,6 +95,7 @@ export default function Model() {
     <p data-testid="model-meaning">{t('model.meaning')}</p>
     <p data-testid="model-input-summary">{t('model.inputSummary', { n: overall.n, sources: overall.sources, blastocysts: overall.blastocysts, unspecified: overall.unspecifiedStage, nd: overall.ndWithoutLod })}</p>
 
+    <p data-testid="model-without-3pn">{t('model.without3pn', { k: without3PN.k, n: without3PN.n, sign: symbol })}</p>
     <div className="controls">
       <span>{t('common.threshold')}: <Seg label={t('common.threshold')} value={cut} onChange={setCut} options={[
         { v: 'both', label: '18% + 30%' }, { v: '18', label: `${symbol}18%` }, { v: '30', label: `${symbol}30%` },

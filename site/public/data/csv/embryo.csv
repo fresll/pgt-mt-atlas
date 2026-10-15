@@ -19,30 +19,29 @@ emb-HL-monnot2011-004,monnot2011,m.3243A>G,unspecified,cleavage/blastocyst-stage
 emb-HL-monnot2011-005,monnot2011,m.3243A>G,unspecified,cleavage/blastocyst-stage analyzed embryo
 emb-HL-monnot2011-006,monnot2011,m.3243A>G,unspecified,cleavage/blastocyst-stage analyzed embryo
 emb-HL-spath2021-001,spath2021,m.3243A>G,unspecified,blastocyst/embryo sample
-emb-HL-spath2021-002,spath2021,m.3243A>G,unspecified,blastocyst/embryo sample
-emb-HL-spath2021-003,spath2021,m.3243A>G,unspecified,blastocyst/embryo sample
-emb-HL-spath2021-004,spath2021,m.3243A>G,unspecified,blastocyst/embryo sample
-emb-HL-spath2021-005,spath2021,m.3243A>G,unspecified,blastocyst/embryo sample
+emb-HL-spath2021-002,spath2021,m.3243A>G,blastocyst,blastocyst/embryo sample
+emb-HL-spath2021-003,spath2021,m.3243A>G,blastocyst,blastocyst/embryo sample
+emb-HL-spath2021-004,spath2021,m.3243A>G,blastocyst,blastocyst/embryo sample
+emb-HL-spath2021-005,spath2021,m.3243A>G,blastocyst,blastocyst/embryo sample
 emb-HL-spath2021-006,spath2021,m.3243A>G,unspecified,blastocyst/embryo sample
-emb-HL-spath2021-007,spath2021,m.3243A>G,unspecified,blastocyst/embryo sample
+emb-HL-spath2021-007,spath2021,m.3243A>G,blastocyst,blastocyst/embryo sample
 emb-HL-spath2021-008,spath2021,m.3243A>G,unspecified,blastocyst/embryo sample
 emb-HL-spath2021-009,spath2021,m.3243A>G,unspecified,blastocyst/embryo sample
 emb-HL-spath2021-010,spath2021,m.3243A>G,unspecified,blastocyst/embryo sample
 emb-HL-spath2021-011,spath2021,m.3243A>G,unspecified,blastocyst/embryo sample
-emb-HL-spath2021-012,spath2021,m.3243A>G,unspecified,blastocyst/embryo sample
-emb-HL-spath2021-013,spath2021,m.3243A>G,unspecified,blastocyst/embryo sample
+emb-HL-spath2021-012,spath2021,m.3243A>G,blastocyst,blastocyst/embryo sample
+emb-HL-spath2021-013,spath2021,m.3243A>G,blastocyst,blastocyst/embryo sample
 emb-HL-monnot2011-007,monnot2011,m.3243A>G,unspecified,cleavage/blastocyst-stage analyzed embryo
 emb-HL-spath2021-014,spath2021,m.3243A>G,unspecified,blastocyst/embryo sample
 emb-HL-treff2012-001,treff2012,m.3243A>G,cleavage,cleavage stage
 emb-HL-monnot2011-008,monnot2011,m.3243A>G,unspecified,cleavage/blastocyst-stage analyzed embryo
-emb-HL-spath2021-015,spath2021,m.3243A>G,unspecified,blastocyst/embryo sample
+emb-HL-spath2021-015,spath2021,m.3243A>G,blastocyst,blastocyst/embryo sample
 emb-HL-treff2012-002,treff2012,m.3243A>G,blastocyst,blastocyst
 emb-HL-monnot2011-009,monnot2011,m.3243A>G,unspecified,cleavage/blastocyst-stage analyzed embryo
 emb-HL-monnot2011-010,monnot2011,m.3243A>G,unspecified,cleavage/blastocyst-stage analyzed embryo
 emb-HL-monnot2011-011,monnot2011,m.3243A>G,unspecified,cleavage/blastocyst-stage analyzed embryo
 emb-HL-monnot2011-012,monnot2011,m.3243A>G,unspecified,cleavage/blastocyst-stage analyzed embryo
 emb-HL-monnot2011-013,monnot2011,m.3243A>G,unspecified,cleavage/blastocyst-stage analyzed embryo
-emb-HL-hyslop2025-003,hyslop2025,m.3243A>G,unspecified,transferred embryo(s) linked to live birth
 emb-HL-monnot2011-014,monnot2011,m.3243A>G,cleavage,cleavage-stage embryo
 emb-HL-monnot2011-015,monnot2011,m.3243A>G,cleavage,cleavage-stage embryo
 emb-HL-monnot2011-016,monnot2011,m.3243A>G,unspecified,cleavage/blastocyst-stage analyzed embryo
@@ -51,7 +50,7 @@ emb-HL-treff2012-003,treff2012,m.3243A>G,blastocyst,blastocyst
 emb-HL-treff2012-004,treff2012,m.3243A>G,cleavage,cleavage stage
 emb-HL-treff2012-005,treff2012,m.3243A>G,cleavage,cleavage stage
 emb-HL-monnot2011-018,monnot2011,m.3243A>G,unspecified,cleavage/blastocyst-stage analyzed embryo
-emb-HL-spath2021-016,spath2021,m.3243A>G,unspecified,blastocyst/embryo sample
+emb-HL-spath2021-016,spath2021,m.3243A>G,blastocyst,blastocyst/embryo sample
 emb-HL-monnot2011-019,monnot2011,m.3243A>G,unspecified,cleavage/blastocyst-stage analyzed embryo
 emb-HL-spath2021-017,spath2021,m.3243A>G,unspecified,blastocyst/embryo sample
 emb-HL-monnot2011-020,monnot2011,m.3243A>G,unspecified,cleavage/blastocyst-stage analyzed embryo
@@ -86,26 +85,25 @@ emb-HL-treff2012-013,treff2012,m.3243A>G,cleavage,cleavage stage
 emb-HL-treff2012-014,treff2012,m.3243A>G,blastocyst,blastocyst
 emb-HL-treff2012-015,treff2012,m.3243A>G,blastocyst,blastocyst
 emb-HL-treff2012-016,treff2012,m.3243A>G,morula,morula
-emb-HL-ji2021-001,ji2021,m.3697G>A,unspecified,embryo sample
+emb-HL-ji2021-001,ji2021,m.3697G>A,blastocyst,embryo sample
 emb-HL-ji2021-002,ji2021,m.3697G>A,arrested,arrested embryo
 emb-HL-ji2021-003,ji2021,m.3697G>A,blastocyst,Day5/6 4BC
 emb-HL-ji2021-004,ji2021,m.3697G>A,blastocyst,Day5 4AB
-emb-HL-ji2021-005,ji2021,m.3697G>A,unspecified,embryo sample
+emb-HL-ji2021-005,ji2021,m.3697G>A,blastocyst,embryo sample
 emb-HL-ji2021-006,ji2021,m.3697G>A,arrested,1PN/arrested; 6 blastomeres
-emb-HL-ji2021-007,ji2021,m.3697G>A,arrested,degenerated embryo
-emb-HL-ji2021-008,ji2021,m.3697G>A,unspecified,embryo sample
-emb-HL-ji2021-009,ji2021,m.3697G>A,unspecified,embryo sample
+emb-HL-ji2021-008,ji2021,m.3697G>A,blastocyst,embryo sample
+emb-HL-ji2021-009,ji2021,m.3697G>A,blastocyst,embryo sample
 emb-HL-ji2021-010,ji2021,m.3697G>A,blastocyst,Day5 5BB
 emb-HL-ji2021-011,ji2021,m.3697G>A,arrested,arrested embryo
 emb-HL-ji2021-012,ji2021,m.3697G>A,blastocyst,Day5 5BB
 emb-HL-ji2021-013,ji2021,m.3697G>A,blastocyst,Day5 4BB
-emb-HL-ji2021-014,ji2021,m.3697G>A,unspecified,embryo sample
+emb-HL-ji2021-014,ji2021,m.3697G>A,blastocyst,embryo sample
 emb-HL-ji2021-015,ji2021,m.3697G>A,blastocyst,Day5 4CB
 emb-HL-ji2021-016,ji2021,m.3697G>A,blastocyst,Day5 4BB
 emb-HL-ji2021-017,ji2021,m.3697G>A,arrested,arrested embryo
 emb-HL-ji2021-018,ji2021,m.3697G>A,blastocyst,Day5/6 4BB
 emb-HL-ji2021-019,ji2021,m.3697G>A,blastocyst,Day5/6 4BC
-emb-HL-ji2021-020,ji2021,m.3697G>A,unspecified,embryo sample
+emb-HL-ji2021-020,ji2021,m.3697G>A,blastocyst,embryo sample
 emb-HL-ji2021-021,ji2021,m.3697G>A,cleavage,10-cell embryo; 6 blastomeres
 emb-HL-sallevelt2017-001,sallevelt2017,m.14487T>C,cleavage,"Day 3 cleavage embryo, 2PN"
 emb-HL-sallevelt2017-002,sallevelt2017,m.14487T>C,cleavage,"Day 3 cleavage embryo, 3PN"
@@ -186,6 +184,8 @@ emb-HL-hu2026-005,hu2026,m.3250T>C,blastocyst,"Day 7 blastocyst (E5, mosaic)"
 emb-HL-hu2026-006,hu2026,m.3250T>C,blastocyst,"Day 6 blastocyst (E6, euploid, transferred)"
 emb-HL-hu2026-007,hu2026,m.3250T>C,arrested,Day 5 arrested embryo (E7)
 emb-HL-hu2026-008,hu2026,m.3250T>C,blastocyst,"Day 6 blastocyst (E8, euploid)"
+emb-HL-hyslop2025-006,hyslop2025,m.3243A>G,unspecified,transferred embryo(s) linked to live birth
+emb-HL-hyslop2025-007,hyslop2025,m.3243A>G,unspecified,transferred embryo(s) linked to live birth
 emb-Janssen2024_F20_E45,janssen2024,m.3243A>G,blastocyst,
 emb-Janssen2024_F20_E46,janssen2024,m.3243A>G,blastocyst,
 emb-Janssen2024_F20_E47,janssen2024,m.3243A>G,blastocyst,

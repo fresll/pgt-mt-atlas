@@ -138,7 +138,7 @@ erDiagram
 | `age_raw`, `method_raw` | text \| null | |
 | `delta_pp` | вычисляемое | ткань − эмбрион; считается ETL |
 
-**`figure_membership`** — воспроизводимое описание выборок рисунков статьи.
+**`analysis_membership`** — воспроизводимое описание выборок рисунков статьи.
 
 | Поле | Тип | Примечание |
 |---|---|---|
@@ -154,7 +154,7 @@ erDiagram
 
 * `model_definition` — `formula` (`p_both = p_het × p_eupl`; `P = 1 − (1 − p_both)^N`), `assumptions[]` (независимость гетероплазмии и плоидности; независимость бластоцист; внутрисемейная корреляция не учтена), `not_individual_risk = true`.
 * `model_parameter` — `p_eupl` по возрасту (30 → 0,7; 35 → 0,5; 40 → 0,3), `publication_id = volodyaev2025`, `locator` (таблица или страница — вопрос В6).
-* `p_het` в базе **не хранится**: он вычисляется на лету из `measurement` + `figure_membership(fig3)` при выбранной границе. Так модель всегда согласована с наблюдениями.
+* `p_het` в базе **не хранится**: он вычисляется на лету из `measurement` + `analysis_membership(landscape)` при выбранной границе. Так модель всегда согласована с наблюдениями.
 
 **Служебные:** `vocab` (код, `label_ru`, `label_en`, определение) и `dataset_release` (версия, дата, коммит, SHA-256 исходного xlsx, счётчики, список изменений).
 
@@ -165,10 +165,10 @@ erDiagram
 | Лист | → Таблицы |
 |---|---|
 | Таблица 1 | `publication`, `case` (текстовые поля), `variant.phenotypes_raw` |
-| Рисунок 3 | `embryo`, `sample`, `measurement` (187), `figure_membership(fig3)` |
-| Рисунок 4 (А) | `embryo` (40), `sample` (фракции), `measurement` (91), `figure_membership(fig4A/B/C)`; лист панели Б — только для сверки |
-| Бластомеры (дробление) | `embryo` (22), `sample` ×2, `measurement` ×2, `figure_membership(fig4C)` |
-| Рисунок 5 | `offspring`, `offspring_measurement` (23 + C13), `figure_membership(fig5)` |
+| Рисунок 3 | `embryo`, `sample`, `measurement` (187), `analysis_membership(landscape)` |
+| Рисунок 4 (А) | `embryo` (40), `sample` (фракции), `measurement` (91), `analysis_membership(concordance)`; лист панели Б — только для сверки |
+| Бластомеры (дробление) | `embryo` (22), `sample` ×2, `measurement` ×2, `analysis_membership(cleavage-concordance)` |
+| Рисунок 5 | `offspring`, `offspring_measurement` (23 + C13), `analysis_membership(offspring)` |
 | Рисунок 6 | только для сверки; модель строится из `model_*` + рис. 3 |
 | Hu 2026 (16 проб) | `embryo` (1), `sample` (16), `measurement` (16), membership `text_only` |
 | Tajima 2007 | `measurement` с `included=false` и причиной из листа |

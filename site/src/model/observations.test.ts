@@ -16,12 +16,12 @@ describe('scenario input composition', () => {
 
   it('distinguishes strict <30 from inclusive <=30 for an exact boundary value', () => {
     const obs = obsByVariant().get('m.3243A>G')!
-    expect(summarizeInput(obs, 30).k).toBe(52)
-    expect(summarizeInput(obs, 30, 'strict').k).toBe(51)
+    expect(summarizeInput(obs, 30).k).toBe(53)
+    expect(summarizeInput(obs, 30, 'strict').k).toBe(52)
   })
 
   it('reports missing stages/LOD and crossing intervals without inventing classifications', () => {
-    expect(summarizeInput(atlas.landscape, 18)).toMatchObject({ n: 187, sources: 12, blastocysts: 64, unspecifiedStage: 71, ndWithoutLod: 53 })
+    expect(summarizeInput(atlas.landscape, 18)).toMatchObject({ n: 187, sources: 12, blastocysts: 79, unspecifiedStage: 57, ndWithoutLod: 43 })
     expect(summarizeInput(obsByVariant().get('m.10197G>A')!, 30)).toMatchObject({ k: 5, n: 9, crossingIntervals: 1 })
     expect(summarizeInput([], 18)).toMatchObject({ k: 0, n: 0, fraction: null, wilson: null })
     expect(() => summarizeInput([], NaN)).toThrow(RangeError)

@@ -24,6 +24,7 @@ export default function Methods() {
         {t('interfaceCopy.Methods.incompleteCycles')}
       </p>
 
+      <p>{t('data.countSummary', { records: atlas.offspring.length, pairs: atlas.stats.fig5.n_pairs, children: atlas.stats.fig5.n_children, pubs: atlas.publications.length, embryoPubs: new Set(atlas.landscape.map(o => o.pub)).size })}</p>
       <h2>{t('interfaceCopy.Methods.sizeTitle')}</h2>
       <div className="table-wrap">
         <table className="data" data-testid="release-counts">

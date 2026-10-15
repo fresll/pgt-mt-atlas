@@ -140,14 +140,14 @@ export default function Concordance() {
       const m = median(c.items.map((i) => i.y))
       shapes.push({ type: 'line', x0: gx - 0.25, x1: gx + 0.25, y0: m, y1: m, line: { color: th.critical, width: 3 } })
       ann.push({ x: gx + 0.27, y: m, xanchor: 'left', text: fmt(m, lang, 1), showarrow: false, font: { color: th.critical, size: 12 } })
-      ann.push({ x: gx, y: -1.6, text: `n = ${c.items.length}`, showarrow: false, font: { size: 12, color: th.muted } })
+      ann.push({ x: gx, y: 10.3, text: `n = ${c.items.length}`, showarrow: false, font: { size: 12, color: th.muted } })
     })
     return {
       data,
       layout: {
         ...baseLayout(th), shapes, annotations: ann,
         xaxis: axis(th, { range: [-0.5, cols.length - 0.5], tickvals: cols.map((_, i) => i), ticktext: cols.map((c) => c.name.replace(', ', ',<br>')), tickangle: 0, showgrid: false, fixedrange: true, tickfont: { size: 12, color: th.ink2 } }),
-        yaxis: axis(th, { range: [-2.2, 11], title: { text: t('concordance.yC') }, zeroline: false }),
+        yaxis: axis(th, { range: [0, 11], title: { text: t('concordance.yC') }, zeroline: false }),
         margin: { l: 56, r: 12, t: 24, b: 70 },
       },
     }
@@ -184,7 +184,7 @@ export default function Concordance() {
         <div><h3>{t('concordance.b')}</h3><PlotlyChart ariaLabel={t('concordance.b')} height={400} data={panelB.data as never} layout={panelB.layout as never} onClick={pick} /></div>
         <div><h3>{t('concordance.c')}</h3><PlotlyChart ariaLabel={t('concordance.c')} height={400} data={panelC.data as never} layout={panelC.layout as never} onClick={pick} /></div>
       </div>
-      <p className="small muted">{t('common.clickHint')} {t('concordance.band5')}; {t('concordance.median')} — {t('interfaceCopy.Concordance.medianBar')}.</p>
+      <p className="small muted">{t('common.clickHint')} {t('concordance.band5')}. {t('concordance.fractionCounts')}; {t('concordance.median')} — {t('interfaceCopy.Concordance.medianBar')}.</p>
       <p className="small">
         {t('interfaceCopy.Concordance.rangeSummary', { v0: fmt(s.median_range_pathogenic, lang), v1: s.n_pathogenic, v2: fmt(s.median_range_hv2, lang), v3: fmt(s.median_range_all, lang), v4: s.n_embryos, v5: fmt(s.median_range_cleavage, lang), v6: s.n_cleavage, pathogenic: word(s.n_pathogenic, 'pathogenic') })}
       </p>

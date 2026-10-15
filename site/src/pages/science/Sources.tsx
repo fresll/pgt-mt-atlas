@@ -43,6 +43,7 @@ export default function Sources() {
           ]}
         />
       </div>
+      <p className="small muted">{t('sources.verificationSummary')}</p>
       <div className="table-wrap">
         <table className="data sources-table">
           <thead>
@@ -69,7 +70,6 @@ export default function Sources() {
                     )}
                     {p.id !== 'tofilo2026' && p.data_access_note && <p className="small muted">{p.data_access_note[lang]}</p>}
                     {p.id !== 'tofilo2026' && p.doi_exception && <p className="small muted" lang="ru">{t('sources.doiException')}: {p.doi_exception}</p>}
-                    {p.id !== 'tofilo2026' && p.verified && <p className="small muted" lang="ru">{t('sources.verified')} {p.verified.date}: {p.verified.by}{p.verified.note ? ` ${p.verified.note}` : ''}</p>}
                     {p.id !== 'tofilo2026' && p.supplementary && <p className="small">{t('sources.supplementary')}: {p.supplementary.map((x) => x.label).join(', ')}</p>}
                   </details>
                 </td>
