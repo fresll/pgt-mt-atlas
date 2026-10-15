@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { Head } from 'vite-react-ssg'
 import type { Lang } from '../data/atlas'
@@ -85,6 +85,21 @@ function Footer() {
   )
 }
 
+/** GoatCounter считает только первую загрузку; переходы внутри SPA отправляются вручную. */
+function PageviewCounter() {
+  const { pathname } = useLocation()
+  const first = useRef(true)
+  useEffect(() => {
+    if (first.current) {
+      first.current = false
+      return
+    }
+    const gc = (window as unknown as { goatcounter?: { count?: (v: { path: string }) => void } }).goatcounter
+    gc?.count?.({ path: pathname })
+  }, [pathname])
+  return null
+}
+
 export function Shell({ lang }: { lang: Lang }) {
   useEffect(() => {
     document.documentElement.lang = lang
@@ -96,6 +111,7 @@ export function Shell({ lang }: { lang: Lang }) {
   }, [lang])
   return (
     <LangProvider lang={lang}>
+      <PageviewCounter />
       <ShellInner lang={lang} />
     </LangProvider>
   )
