@@ -210,7 +210,7 @@ export default function Fig5() {
             [t('common.age'), sel.age],
             [t('common.method'), sel.method],
             [t('data.locator'), sel.source_locator],
-            [lang === 'ru' ? 'Проба эмбриона' : 'Embryo sample', sel.emb_sample === 'single_blastomere' ? (lang === 'ru' ? 'Один бластомер, 3-й день' : 'One day-3 blastomere') : '—'],
+            [t('data.embryoSample'), sel.emb_sample === 'single_blastomere' ? t('data.day3Blastomere') : '—'],
             [lang === 'ru' ? 'В базовом виде графика' : 'In the reference view', sel.in_figure ? (lang === 'ru' ? 'да' : 'yes') : `${lang === 'ru' ? 'нет' : 'no'} — «${sel.on_plot_raw}»`],
             [t('common.provenance'), t('common.sheetRow', { sheet: sel.src.sheet, row: sel.src.row })],
           ]}
@@ -246,8 +246,8 @@ export default function Fig5() {
             { key: 'e', header: t('common.embryo'), render: (p) => pairValueText(p.emb, p.emb_q, p.emb_raw, lang, t), sort: (p) => p.emb, num: true },
             { key: 'ti', header: t('common.tissue'), render: (p) => label('tissue', p.tissue, lang), sort: (p) => p.tissue },
             { key: 'val', header: t('common.value'), render: (p) => pairValueText(p.value, p.q, p.value_raw, lang, t), sort: (p) => p.value, num: true },
-            { key: 'd', header: t('common.delta'), render: (p) => (p.in_figure ? (p.q === 'not_detected' && p.emb_q === 'not_detected' ? t('fig5.bothND', { n: 1 }) : `${p.q === 'not_detected' ? '≥ ' : p.emb_q === 'not_detected' ? '≤ ' : ''}${fmt((p.value as number) - (p.emb as number), lang, 2)}`) : '—'), sort: (p) => (p.in_figure ? (p.value as number) - (p.emb as number) : null), num: true },
-            { key: 'cluster', header: lang === 'ru' ? 'Кластер матери' : 'Maternal cluster', render: (p) => p.carrier_id ?? '—' },
+            { key: 'd', header: t('common.delta'), render: (p) => (p.in_figure ? (p.q === 'not_detected' && p.emb_q === 'not_detected' ? t('fig5.bothNDPair') : `${p.q === 'not_detected' ? '≥ ' : p.emb_q === 'not_detected' ? '≤ ' : ''}${fmt((p.value as number) - (p.emb as number), lang, 2)}`) : '—'), sort: (p) => (p.in_figure ? (p.value as number) - (p.emb as number) : null), num: true },
+            { key: 'cluster', header: t('data.maternalCluster'), render: (p) => p.carrier_id ?? '—' },
             { key: 'locator', header: t('data.locator'), render: (p) => p.source_locator ?? '—' },
             { key: 'p', header: t('common.source'), render: (p) => pubById[p.pub].short, sort: (p) => p.pub },
           ]}

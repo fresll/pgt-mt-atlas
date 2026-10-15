@@ -223,6 +223,7 @@ const en: Dict = {
     verifyNote: 'Tofilo et al., 2026: the embryo 6 values (ICM, remaining TE) and the fraction category of embryos 3 and 4 (combined ICM+TE fraction) follow the published ESM 2; the original values of the supplementary workbook are shown in the embryo card. In this study the “ICM” fraction is the ICM together with adherent TE cells (“ICM+”).',
   },
   fig5: {
+    bothNDPair: 'ND → ND',
     bothNDChildren: 'Both results are ND in {{children}} fetuses and children ({{pairs}} pairs); these are not exact zero measurements.',
     bothND: 'ND → ND: {{n}} pairs',
     recordSummary: '{{records}} records, {{pairs}} exact pairs in {{children}} fetuses and children',
@@ -307,6 +308,9 @@ const en: Dict = {
     salleveltNote: 'Sallevelt 2017: 3/22 numerical records below 18% include a low value in a 3PN embryo. Confirmed diagnostic yield for 2PN is 2/23. Four analyses are inconclusive due to a positive blank; accepting the other 19 classifications bounds the below-18% fraction at 2/23–6/23. These are incomplete-data bounds, not a confidence interval.',
   },
   data: {
+    maternalCluster: 'Maternal cluster',
+    embryoSample: 'Embryo sample',
+    day3Blastomere: 'One day-3 blastomere',
     atlasRow: 'Atlas source worksheet, row {{row}}',
     countSummary: '{{records}} records, including {{pairs}} exact pairs in {{children}} fetuses and children. {{pubs}} publications, including {{embryoPubs}} with embryo values.',
     locator: 'Source location',
