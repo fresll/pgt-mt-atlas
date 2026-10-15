@@ -1,4 +1,3 @@
-import { formatDate } from '../components/Layout'
 import type { CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
 import { HandRule, Illustration } from '../components/Sketch'
@@ -42,7 +41,6 @@ export default function Home() {
               {t('home.ctaSpecialists')} <span aria-hidden="true">→</span>
             </Link>
           </div>
-          <p className="small sk-hero-trust">{t('home.trust', { date: formatDate(atlas.meta.dataset_version, lang), n: s.fig3.n, publications: atlas.publications.length, values: plural(s.fig3.n, lang, lang === 'ru' ? ['значение', 'значения', 'значений'] : ['value', 'values', 'values']), pubWord: plural(atlas.publications.length, lang, lang === 'ru' ? ['публикации', 'публикаций', 'публикаций'] : ['publication', 'publications', 'publications']) })}</p>
         </div>
         <figure className="sk-hero-figure" role="img" aria-label={t('home.figCaption')}>
           <div className="sk-plate">

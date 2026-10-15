@@ -170,7 +170,6 @@ const en: Dict = {
     "sourceValue": "in the supplementary workbook"
   },
   "home": {
-    "trust": "Data updated {{date}} · {{n}} {{values}} from {{publications}} {{pubWord}} · Created and curated by Ilya Mazunin, DSc",
     "lead": "The Atlas presents published heteroplasmy levels and provides an interpretation of these values.",
     "k1": "embryo heteroplasmy values",
     "k2": "{{word}} with a biopsy compared against other embryo parts ({{icm}} with the inner cell mass)",
