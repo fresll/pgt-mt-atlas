@@ -131,6 +131,16 @@ function Footer({ lang }: { lang: Lang }) {
   )
 }
 
+/**
+ * Статические страницы генерируются по адресу без завершающего слеша, а в браузере адрес со слешем:
+ * гидратация не исправляет класс активного пункта. После загрузки меню перестраивается (новый key).
+ */
+export function useHydrated(): boolean {
+  const [hydrated, setHydrated] = useState(false)
+  useEffect(() => setHydrated(true), [])
+  return hydrated
+}
+
 /** На узком экране длинное боковое меню раздела заменяется выпадающим списком. */
 export function SectionSelect({ label, items, current }: { label: string; items: [string, string][]; current: string }) {
   const navigate = useNavigate()
@@ -230,13 +240,14 @@ export function ScienceLayout({ lang }: { lang: Lang }) {
     ['sources/', 'nav.sources'],
     ['methods/', 'nav.methods'],
   ]
+  const hydrated = useHydrated()
   const root = `/${lang}/science/`
-  const rest = pathname.replace(/^.*?\/science\//, '')
+  const rest = `${pathname.replace(/^.*?\/science\/?/, '')}/`.replace(/\/+$/, '/')
   const current = `${root}${items.find(([p]) => p !== '' && rest.startsWith(p))?.[0] ?? ''}`
   return (
     <div className="layout-science">
-      <SectionSelect label={t('nav.sectionSelect')} items={items.map(([p, k]) => [`${root}${p}`, t(k)])} current={current} />
-      <nav className="side" aria-label={t('nav.scienceLabel')}>
+      <SectionSelect key={`s-${hydrated}`} label={t('nav.sectionSelect')} items={items.map(([p, k]) => [`${root}${p}`, t(k)])} current={current} />
+      <nav className="side" key={`n-${hydrated}`} aria-label={t('nav.scienceLabel')}>
         <ul>
           {items.map(([p, k]) => (
             <li key={p}>

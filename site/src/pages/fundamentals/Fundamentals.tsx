@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { Head } from 'vite-react-ssg'
-import { SectionSelect } from '../../components/Layout'
+import { SectionSelect, useHydrated } from '../../components/Layout'
 import { HandRule } from '../../components/Sketch'
 import { WIDGET_KEYS, Widget } from '../../components/fundamentals/Widgets'
 import type { Lang } from '../../data/atlas'
@@ -22,6 +22,7 @@ export function FundamentalsLayout({ lang }: { lang: Lang }) {
   const chapters = FUNDAMENTALS[lang].chapters
   // На странице-оглавлении боковое меню повторяет основное содержание — его там нет.
   const isIndex = /\/fundamentals\/?$/.test(pathname)
+  const hydrated = useHydrated()
   const options: [string, string][] = [
     [base(lang), t('fundamentals.title')],
     ...chapters.map((c, i): [string, string] => [`${base(lang)}${c.slug}/`, `${i + 1}. ${c.title}`]),
@@ -40,8 +41,8 @@ export function FundamentalsLayout({ lang }: { lang: Lang }) {
   }
   return (
     <div className="fd-layout">
-      <SectionSelect label={t('nav.chapterSelect')} items={options} current={current} />
-      <nav className="fd-toc" aria-label={t('fundamentals.tocTitle')}>
+      <SectionSelect key={`s-${hydrated}`} label={t('nav.chapterSelect')} items={options} current={current} />
+      <nav className="fd-toc" key={`n-${hydrated}`} aria-label={t('fundamentals.tocTitle')}>
         <NavLink className="fd-toc-home" to={base(lang)} end>
           {t('fundamentals.title')}
         </NavLink>

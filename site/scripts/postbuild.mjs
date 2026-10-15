@@ -9,7 +9,8 @@ import { readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
 import { join, relative, sep } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-const base = process.env.ATLAS_BASE ?? '/'
+// по умолчанию тот же base, что в vite.config.ts (GitHub Pages); Sites собирается с ATLAS_BASE=/ явно
+const base = process.env.ATLAS_BASE ?? '/pgt-mt-atlas/'
 const dist = fileURLToPath(new URL('../dist/', import.meta.url))
 
 export const SLASH_SCRIPT =
