@@ -106,7 +106,7 @@ const ru = {
     age: 'Возраст',
     method: 'Метод',
     delta: 'Δ (ткань − эмбрион), п.п.',
-    pp: 'п.п.',
+    pp: 'п. п.',
     published: 'опубликовано',
     in_press: 'в печати',
     conference_abstract: 'тезисы конференции',
