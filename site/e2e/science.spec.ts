@@ -138,7 +138,7 @@ test('reference lines carry their role and are not universal thresholds (A5)', a
   const text = await page.locator('article').innerText()
   expect(text).toContain('оценка риска в конкретном исследовании')
   expect(text).toContain('рабочий критерий клинической программы')
-  expect(text).toMatch(/условное обозначение графика/)
+  expect(text).not.toMatch(/условное обозначение графика/)
   expect(text).toContain('одном бластомере 3-го дня')
   expect(text).toContain('Ни одно из этих чисел не задаёт безопасного порога для отдельного эмбриона')
 })
