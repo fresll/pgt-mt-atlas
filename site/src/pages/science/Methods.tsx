@@ -72,7 +72,7 @@ export default function Methods() {
 
       <h2>{ru ? 'Ориентиры на графиках' : 'Reference lines on the charts'}</h2>
       <ul>
-        {atlas.thresholds.map((th) => (
+        {atlas.thresholds.filter(t => t.role !== 'chart_convention').map((th) => (
           <li key={th.id}>
             <strong>{th.value !== undefined ? `${fmt(th.value, lang)}%` : `${th.range?.[0]}–${th.range?.[1]}%`}</strong> · <em>{ROLE[th.role]?.[ru ? 0 : 1]}</em> — {th[lang]}
             {th.publication && <> (<PubRef id={th.publication} />)</>}

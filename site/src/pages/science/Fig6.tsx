@@ -4,6 +4,7 @@ import { ModelBadge, PubRef, Seg } from '../../components/ui'
 import { atlas, obsByVariant } from '../../data/atlas'
 import { useLang, useT } from '../../i18n'
 import { fmt, fmtFixed } from '../../lib/format'
+import { publicationCarriers } from '../../model/carriers'
 import { jointEvidence } from '../../model/evidence'
 import { summarizeInput, type Boundary } from '../../model/observations'
 import { jointBounds, scenarioProbability } from '../../model/scenario'
@@ -41,7 +42,7 @@ export default function Fig6() {
     const colors = [th.model, th.model, th.model, th.model]
     return m.fig6_variants.map((v, i) => {
       const obs = byVar.get(v)!
-      return { v, f18: summarizeInput(obs, 18, boundary), f30: summarizeInput(obs, 30, boundary), color: colors[i], carriers: new Set(obs.map(o => o.carrier_id).filter(Boolean)).size, unknownCarriers: obs.some(o => !o.carrier_id) }
+      return { v, dash: ['solid', 'dash', 'dot', 'dashdot'][i], f18: summarizeInput(obs, 18, boundary), f30: summarizeInput(obs, 30, boundary), color: colors[i], carriers: new Set(obs.map(o => o.carrier_id).filter(Boolean)).size, unknownCarriers: obs.some(o => !o.carrier_id) }
     })
   }, [byVar, boundary, m, th])
 
@@ -63,7 +64,6 @@ export default function Fig6() {
           type: 'scatter', mode: 'lines', x: ns, y: probabilities,
           name: `${x.v}, ${symbol}${threshold}% — ${t('fig6.carriers', { n: x.unknownCarriers ? t('fig6.unknown') : x.carriers, records: f.n })}`,
           line: { color: x.color, width: threshold === 18 ? 2 : 1.4, dash: threshold === 30 ? 'longdash' : (['solid', 'dash', 'dot', 'dashdot'] as const)[variants.indexOf(x)] },
-          marker: { size: 6, color: x.color },
           hovertemplate: `${x.v}, ${symbol}${threshold}%<br>H = ${f.k}/${f.n}, E = ${fmt(pe, lang)}, ρ = ${fmt(rho, lang)}<br>N = %{x}: P = %{y:.3f}<extra></extra>`,
         })
         if (threshold === 18 || cut === '30') annotations.push({ x: m.n_max + 0.1, y: probabilities.at(-1), xanchor: 'left', text: x.v, showarrow: false, font: { size: 12, color: th.ink2 } })
@@ -76,6 +76,7 @@ export default function Fig6() {
     } }
   }), [cut, m, rho, showRange, symbol, t, th, variants, lang])
 
+  const example = summarizeInput(obsByVariant().get('m.3243A>G')!, 18)
   const overall = summarizeInput([...byVar.values()].flat(), 18, boundary)
   const allVariants = [...byVar.keys()]
   const inputCell = (f: ReturnType<typeof summarizeInput>) => <>
@@ -97,6 +98,7 @@ export default function Fig6() {
 
     <p>{t('fig6.symbols')}</p>
     <p>{t('fig6.carrierCaveat')}</p>
+    <details><summary>{t('fig6.publicationCarriers')}</summary><ul>{publicationCarriers.map(p => <li key={p.publication}><PubRef id={p.publication} />: {p.n}; {p.locator}</li>)}</ul></details>
     <div className="controls">
       <label><input type="checkbox" checked={teOnly} onChange={e => setTeOnly(e.target.checked)} data-testid="model-te-only" /> {t('fig6.teOnly')}</label>
       <span>{t('common.threshold')}: <Seg label={t('common.threshold')} value={cut} onChange={setCut} options={[
@@ -112,10 +114,10 @@ export default function Fig6() {
     </div>
     <p className="small" id="rho-help" data-testid="rho-note">{t('fig6.rhoNote')}</p>
     {showRange && <div className="callout small" data-testid="interval-note">{t('fig6.intervalNote')}</div>}
-    <p data-testid="model-correlation-example">{t('fig6.correlationExample')}</p>
+    <p data-testid="model-correlation-example">{t('fig6.correlationExample', { h: `${example.k}/${example.n}`, e: fmt(0.5, lang), p0: fmt(scenarioProbability(example.fraction!, 0.5, 6, 0), lang, 2), p2: fmt(scenarioProbability(example.fraction!, 0.5, 6, 0.2), lang, 2) })}</p>
     <div className="legend-row">
       <span>◆ {t('badge.model')}</span>
-      {variants.map((x) => <span key={x.v}><span className="sw" style={{ background: x.color }} />{x.v} — {t('fig6.carriers', { n: x.unknownCarriers ? t('fig6.unknown') : x.carriers, records: x.f18.n })}: {cuts.map((threshold) => {
+      {variants.map((x) => <span key={x.v}><svg width="32" height="10" aria-hidden="true"><line x1="0" x2="32" y1="5" y2="5" stroke={x.color} strokeWidth="2" strokeDasharray={({ solid: '', dash: '8 4', dot: '2 3', dashdot: '8 3 2 3' } as Record<string, string>)[x.dash]} /></svg>{x.v} — {t('fig6.carriers', { n: x.unknownCarriers ? t('fig6.unknown') : x.carriers, records: x.f18.n })}: {cuts.map((threshold) => {
         const f = threshold === 18 ? x.f18 : x.f30
         return `${symbol}${threshold}%: ${f.k}/${f.n}`
       }).join(' / ')}</span>)}
@@ -129,7 +131,7 @@ export default function Fig6() {
     <div className="grid-3 model-panels">
       {panels.map((p, i) => <div key={p.age} className={i === panelIdx ? 'is-active' : 'is-inactive'}>
         <h3>{t('fig6.panel', { age: p.age, p: fmt(p.pe, lang) })}</h3>
-        <PlotlyChart ariaLabel={t('fig6.panel', { age: p.age, p: p.pe })} height={360} data={p.data as never} layout={p.layout as never} />
+        <PlotlyChart ariaLabel={t('fig6.panel', { age: p.age, p: fmt(p.pe, lang) })} height={360} data={p.data as never} layout={p.layout as never} />
       </div>)}
     </div>
     <ul className="small">
