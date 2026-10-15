@@ -40,14 +40,12 @@ export default function Data() {
   )
   const sel = selected ? rows.find((o) => o.id === selected) : null
   const c = atlas.meta.current_counts
-  const base = atlas.meta.baseline
   return (
     <article>
       <p><ObservedBadge /></p>
       <h1>{t('data.title')}</h1>
       <p className="lead">{t('data.lead')}</p>
-      <p className="small muted">{t('data.version', { v: atlas.meta.dataset_version, file: atlas.meta.source_file, sha: atlas.meta.source_sha256.slice(0, 12) })}</p>
-      <p className="small" data-release="current">{t('data.release', { n: c.landscape_values, base: base.version, nBase: base.counts.landscape_values, changes: atlas.meta.changes.length })}</p>
+      <p className="small" data-release="current">{t('data.release', { n: c.landscape_values })}</p>
 
       <h2>{t('data.embryos')}</h2>
       <div className="controls">

@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { switchLangPath } from '../components/Layout'
+import { russianPath } from '../pages/RootRedirect'
 import { SLASH_SCRIPT, relativizeHtml } from '../../scripts/postbuild.mjs'
 
 describe('language switch keeps the page', () => {
@@ -33,5 +34,18 @@ describe('static HTML does not depend on the hosting path', () => {
   it('adds the trailing-slash normalisation before any resource is requested', () => {
     const out = relativizeHtml(html, 1, '/pgt-mt-atlas/')
     expect(out.indexOf(SLASH_SCRIPT)).toBe(out.indexOf('<head>') + '<head>'.length)
+  })
+})
+
+
+describe('temporarily Russian-only site', () => {
+  it('opens the Russian home regardless of the former language preference', () => {
+    expect(russianPath('/')).toBe('/ru/')
+    expect(russianPath('/en')).toBe('/ru/')
+  })
+
+  it('keeps the section, observation query and model anchor when redirecting English links', () => {
+    expect(russianPath('/en/science/data', '?id=HL-001', '#content')).toBe('/ru/science/data/?id=HL-001#content')
+    expect(russianPath('/en/fundamentals/how-pgt-mt-works/', '', '#advanced')).toBe('/ru/fundamentals/how-pgt-mt-works/#advanced')
   })
 })

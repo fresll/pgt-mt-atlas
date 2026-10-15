@@ -18,7 +18,7 @@ export default function Contribute() {
   const href = asset(template.file)
   const fileName = template.file.split('/').pop()
   const meta = t('contribute.templateMeta', { v: template.version, date: template.released })
-  const subject = SUBJECT_PREFIX + t('contribute.contact.subject')
+  const subject = (lang === 'ru' ? '[Атлас ПГТ-мт] ' : SUBJECT_PREFIX) + t('contribute.contact.subject')
   const email = CURATOR_CONTACT.email
 
   const Download = ({ primary = false }: { primary?: boolean }) => (

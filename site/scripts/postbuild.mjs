@@ -9,7 +9,7 @@ import { readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
 import { join, relative, sep } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-const base = process.env.ATLAS_BASE ?? '/pgt-mt-atlas/'
+const base = process.env.ATLAS_BASE ?? '/'
 const dist = fileURLToPath(new URL('../dist/', import.meta.url))
 
 export const SLASH_SCRIPT =
@@ -37,8 +37,13 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
   for (const file of htmlFiles(dist)) {
     const depth = relative(dist, file).split(sep).length - 1
     const html = readFileSync(file, 'utf8')
-    const out = relativizeHtml(html, depth)
-    if (out.includes(`"${base}`) || out.includes(`'${base}`)) throw new Error(`absolute base left in ${file}`)
+    let out = relativizeHtml(html, depth)
+    const route = relative(dist, file).split(sep).join('/')
+    if (route.startsWith('en/')) {
+      const destination = '../'.repeat(depth) + route.replace(/^en\//, 'ru/').replace(/index\.html$/, '')
+      out = out.replace('<head>', `<head><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0; url=${destination}"><script>location.replace(location.pathname.replace(/\\/en(?=\\/|$)/,'/ru')+location.search+location.hash)</script>`)
+    }
+    if (base !== "/" && (out.includes(`"${base}`) || out.includes(`'${base}`))) throw new Error(`absolute base left in ${file}`)
     writeFileSync(file, out)
     n++
   }
@@ -46,9 +51,9 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
 
   writeFileSync(
     join(dist, '404.html'),
-    `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>PGT-mt Atlas — not found</title></head>
-<body style="font-family:system-ui;padding:24px;background:#F7F8F4;color:#182A40"><h1>PGT-mt Atlas</h1><p>Page not found · Страница не найдена</p>
-<p><a href="${base}en/">English</a> · <a href="${base}ru/">Русский</a></p></body></html>\n`,
+    `<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Атлас ПГТ-мт — страница не найдена</title></head>
+<body style="font-family:system-ui;padding:24px;background:#F7F8F4;color:#182A40"><h1>Атлас ПГТ-мт</h1><p>Страница не найдена</p>
+<p><a href="${base}ru/">Русский</a></p></body></html>\n`,
   )
   console.log('404.html written')
 }

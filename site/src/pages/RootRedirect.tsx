@@ -1,24 +1,24 @@
 import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
-/** Корень сайта: выбор языка по браузеру (и ссылки для работы без JavaScript). */
+/** Английская версия временно закрыта; адрес раздела, query и hash сохраняются. */
+export function russianPath(pathname: string, search = '', hash = ''): string {
+  const path = pathname.replace(/^\/en(?=\/|$)/, '/ru')
+  const target = path === '/' ? '/ru/' : path
+  return `${target.endsWith('/') ? target : `${target}/`}${search}${hash}`
+}
+
 export default function RootRedirect() {
   const navigate = useNavigate()
+  const { pathname, search, hash } = useLocation()
+  const target = russianPath(pathname, search, hash)
   useEffect(() => {
-    let lang = 'en'
-    try {
-      lang = localStorage.getItem('atlas-lang') ?? (navigator.language.toLowerCase().startsWith('ru') ? 'ru' : 'en')
-    } catch {
-      lang = navigator.language.toLowerCase().startsWith('ru') ? 'ru' : 'en'
-    }
-    navigate(`/${lang === 'ru' ? 'ru' : 'en'}/`, { replace: true })
-  }, [navigate])
+    navigate(target, { replace: true })
+  }, [navigate, target])
   return (
-    <main style={{ padding: 24, fontFamily: 'system-ui' }}>
-      <h1>PGT-mt Atlas</h1>
-      <p>
-        <a href="en/">English</a> · <a href="ru/">Русский</a>
-      </p>
+    <main style={{ padding: 24, fontFamily: 'system-ui' }} lang="ru">
+      <h1>Атлас ПГТ-мт</h1>
+      <p><Link to={russianPath(pathname)}>Перейти к русской версии</Link></p>
     </main>
   )
 }

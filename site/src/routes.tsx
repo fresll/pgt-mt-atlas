@@ -24,7 +24,7 @@ import Sources from './pages/science/Sources'
 function langRoutes(lang: Lang): RouteRecord {
   return {
     path: `/${lang}`,
-    element: <Shell lang={lang} />,
+    element: lang === 'en' ? <RootRedirect /> : <Shell lang={lang} />,
     children: [
       { index: true, element: <Home /> },
       {

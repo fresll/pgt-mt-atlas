@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { Head } from 'vite-react-ssg'
-import { atlas, type Lang } from '../data/atlas'
+import type { Lang } from '../data/atlas'
 import { LangProvider, useT } from '../i18n'
 import { Illustration } from './Sketch'
 
@@ -47,12 +47,7 @@ export function switchLangPath(pathname: string, lang: Lang, other: Lang, search
 
 function Header({ lang }: { lang: Lang }) {
   const t = useT()
-  const { pathname, search, hash } = useLocation()
-  const other: Lang = lang === 'en' ? 'ru' : 'en'
-  // query и hash известны только в браузере: добавляются после гидратации, чтобы первый клиентский рендер
-  // совпадал со статическим HTML
-  const [hydrated, setHydrated] = useState(false)
-  useEffect(() => setHydrated(true), [])
+  const { pathname } = useLocation()
   const rest = pathname.replace(new RegExp(`^.*?/${lang}(?=/|$)`), '')
   const inScience = /\/science(\/|$)/.test(rest) && !/\/science\/data(\/|$)/.test(rest)
   return (
@@ -73,9 +68,6 @@ function Header({ lang }: { lang: Lang }) {
           <NavLink to={`/${lang}/about/`}>{t('nav.about')}</NavLink>
         </nav>
         <div className="header-tools">
-          <Link className="btn-link" to={switchLangPath(pathname, lang, other, hydrated ? search : '', hydrated ? hash : '')} hrefLang={other} lang={other}>
-            {t('nav.switchTo')}
-          </Link>
           <ThemeToggle />
         </div>
       </div>
@@ -87,7 +79,7 @@ function Footer() {
   return (
     <footer className="site">
       <div className="inner">
-        <p className="muted">v{atlas.meta.dataset_version}</p>
+        <p className="muted">Атлас ПГТ-мт</p>
       </div>
     </footer>
   )

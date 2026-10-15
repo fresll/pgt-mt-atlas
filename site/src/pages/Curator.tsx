@@ -1,25 +1,8 @@
 import type { ReactNode } from 'react'
-import { EmailCopy } from '../components/EmailContact'
 import { Photo } from '../components/Photo'
 import { doiUrl } from '../data/atlas'
-import { creator, topicLabel, type Item, type Pub } from '../data/creator'
+import { creator, topicLabel, type Pub } from '../data/creator'
 import { useLang, useT } from '../i18n'
-
-// Персональная страница создателя и куратора (Scientific Sketchbook). Содержание — src/data/creator.ts (по CV 2026).
-
-function Timeline({ items }: { items: Item[] }) {
-  const lang = useLang()
-  return (
-    <ol className="cv-timeline">
-      {items.map((it) => (
-        <li key={it.text.en}>
-          <span className="cv-years">{it.years}</span>
-          <span>{it.text[lang]}</span>
-        </li>
-      ))}
-    </ol>
-  )
-}
 
 function Section({ id, title, note, children }: { id: string; title: string; note: string; children: ReactNode }) {
   return (
@@ -34,22 +17,12 @@ function Section({ id, title, note, children }: { id: string; title: string; not
 }
 
 const TOPICS = Object.keys(topicLabel) as Pub['topic'][]
+const DEPARTMENT_URL = 'https://petrovsky.med.ru/education/distsipliny-kafedry6715/'
 
 export default function Curator() {
   const t = useT()
   const lang = useLang()
-  const other = lang === 'ru' ? 'en' : 'ru'
   const c = creator
-  const pending = <span className="muted">{t('curator.pending')}</span>
-  const toc: [string, string][] = [
-    ['bio', t('curator.bio')],
-    ['research', t('curator.research')],
-    ['career', t('curator.career')],
-    ['education', t('curator.education')],
-    ['projects', t('curator.projects')],
-    ['publications', t('curator.pubs')],
-    ['profiles', t('curator.profiles')],
-  ]
   return (
     <article className="sk-curator-page">
       <header className="curator-hero">
@@ -59,81 +32,34 @@ export default function Curator() {
           <h1>{t('curator.title')}</h1>
           <p className="cv-degree">{c.degree[lang]}</p>
           <ul className="cv-headline">
-            {c.headline.map((h) => (
-              <li key={h.en}>{h[lang]}</li>
-            ))}
+            {c.headline.map((h) => <li key={h.en}>{h[lang]}</li>)}
           </ul>
           <p className="sk-lead">{c.lead[lang]}</p>
-          <p className="small">
-            {t('curator.profilesLabel')}:{' '}
-            {c.profiles
-              .filter((p) => p.url)
-              .map((p, i) => (
-                <span key={p.key}>
-                  {i > 0 && ' · '}
-                  <a className="sk-link" href={p.url!} target="_blank" rel="noreferrer">{p.label}</a>
-                </span>
-              ))}
-          </p>
           <nav className="cv-toc" aria-label={t('curator.contents')}>
-            {toc.map(([id, label]) => (
-              <a key={id} className="sk-link" href={`#${id}`}>{label}</a>
-            ))}
+            <a className="sk-link" href="#bio">{t('curator.bio')}</a>
+            <a className="sk-link" href="#publications">{t('curator.pubs')}</a>
           </nav>
         </div>
       </header>
 
       <Section id="bio" title={t('curator.bio')} note={t('curator.bioNote')}>
         <div className="cv-prose">
-          {c.bio[lang].map((p) => (
-            <p key={p.slice(0, 40)}>{p}</p>
-          ))}
+          {c.bio[lang].map((p) => <p key={p.slice(0, 40)}>{p}</p>)}
+          <p>
+            {lang === 'ru' ? <>
+              Илья Олегович преподаёт ряд предметов в Медицинском университете Петровского, где заведует{' '}
+              <a href={DEPARTMENT_URL} target="_blank" rel="noreferrer">кафедрой биологии и генетики</a>.
+            </> : <>
+              Ilya Mazunin teaches several subjects at Petrovsky Medical University, where he heads the{' '}
+              <a href={DEPARTMENT_URL} target="_blank" rel="noreferrer">Department of Biology and Genetics</a>.
+            </>}
+          </p>
           <h3>{t('curator.projectRole')}</h3>
           <p>{c.role[lang]}</p>
-          <details className="small">
-            <summary>{t('curator.bioOther')}</summary>
-            <div lang={other}>
-              {c.bio[other].map((p) => (
-                <p key={p.slice(0, 40)}>{p}</p>
-              ))}
-            </div>
-          </details>
         </div>
       </Section>
 
-      <Section id="research" title={t('curator.research')} note={t('curator.researchNote')}>
-        <ol className="sk-index cv-research">
-          {c.research.map((r, i) => (
-            <li key={r.en}>
-              <span className="sk-no">{String(i + 1).padStart(2, '0')}</span>
-              <p>{r[lang]}</p>
-            </li>
-          ))}
-        </ol>
-      </Section>
-
-      <Section id="career" title={t('curator.career')} note={t('curator.careerNote')}>
-        <h3>{t('curator.current')}</h3>
-        <Timeline items={c.current} />
-        <h3>{t('curator.past')}</h3>
-        <Timeline items={c.past} />
-      </Section>
-
-      <Section id="education" title={t('curator.education')} note={t('curator.educationNote')}>
-        <Timeline items={c.education} />
-        <h3>{t('curator.teaching')}</h3>
-        <Timeline items={c.teaching} />
-      </Section>
-
-      <Section id="projects" title={t('curator.projects')} note={t('curator.projectsNote')}>
-        <h3>{t('curator.professional')}</h3>
-        <Timeline items={c.professional} />
-        <h3>{t('curator.ventures')}</h3>
-        <Timeline items={c.ventures} />
-      </Section>
-
       <Section id="publications" title={t('curator.pubs')} note={t('curator.pubsNote')}>
-        <p className="cv-muted small">{t('curator.pubsCount', c.cvCounts)}</p>
         {TOPICS.map((tp) => (
           <div key={tp} className="cv-topic">
             <h3>{topicLabel[tp][lang]}</h3>
@@ -145,67 +71,13 @@ export default function Curator() {
                   <li key={p.title} lang="en">
                     <span className="pub-authors">{p.authors}</span> <strong className="pub-title">{p.title}.</strong>{' '}
                     <em>{p.journal}</em>, {p.year}.{' '}
-                    {p.doi && (
-                      <a href={doiUrl(p.doi)} target="_blank" rel="noreferrer">doi:{p.doi}</a>
-                    )}
+                    {p.doi && <a href={doiUrl(p.doi)} target="_blank" rel="noreferrer">doi:{p.doi}</a>}
                   </li>
                 ))}
             </ol>
           </div>
         ))}
       </Section>
-
-      <Section id="profiles" title={t('curator.profiles')} note={t('curator.profilesNote')}>
-        <div className="cv-two">
-          <div>
-            <h3>{t('curator.researchProfiles')}</h3>
-            <ul className="cv-kv">
-              {c.profiles.map((p) => (
-                <li key={p.key}>
-                  <span className="cv-k">{p.label}</span>
-                  {p.url ? (
-                    <a href={p.url} target="_blank" rel="noreferrer">{p.url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}</a>
-                  ) : (
-                    pending
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h3>{t('curator.contact')}</h3>
-            <ul className="cv-kv">
-              <li>
-                <span className="cv-k">{t('curator.collaboration')}</span>
-                {c.contacts.collaboration ? (
-                  <span data-channel="email">
-                    <a href={contactHref(c.contacts.collaboration)}>{t('contribute.contact.write')}</a>
-                    <br />
-                    <EmailCopy email={c.contacts.collaboration} />
-                    <br />
-                    <span className="small cv-muted">{t('contact.noClient')}</span>
-                  </span>
-                ) : (
-                  pending
-                )}
-              </li>
-              <li>
-                <span className="cv-k">{t('curator.patients')}</span>
-                {c.contacts.patients ? <a href={contactHref(c.contacts.patients)}>{c.contacts.patients}</a> : pending}
-              </li>
-            </ul>
-            <p className="small cv-muted">{t('curator.noAdvice')}</p>
-          </div>
-        </div>
-      </Section>
-
-      <Section id="coi" title={t('curator.coi')} note={t('curator.coiNote')}>
-        <p className="cv-prose">{c.coi[lang]}</p>
-      </Section>
     </article>
   )
-}
-
-function contactHref(v: string): string {
-  return v.includes('@') && !v.startsWith('http') ? `mailto:${v}` : v
 }

@@ -19,32 +19,29 @@ export const creator = {
   /** Краткое представление (шапка страницы). */
   lead: {
     en: 'Geneticist, Doctor of Biological Sciences (DSc). For about two decades he has studied human mitochondrial DNA: its diversity, mutations, heteroplasmy and approaches to preventing the transmission of mitochondrial disease.',
-    ru: 'Генетик, доктор биологических наук. Около двадцати лет изучает митохондриальную ДНК человека: её разнообразие, мутации, гетероплазмию и подходы к предотвращению передачи митохондриальных заболеваний.',
+    ru: 'Генетик и молекулярный биолог, специализирующийся на изучении роли генома митохондрий в норме и при патологиях.',
   } as Bilingual,
 
   /** Роль в проекте. */
   role: {
     en: 'Ilya Mazunin created PGT-mt Atlas as an independent international resource that brings together published individual mtDNA heteroplasmy values from preimplantation genetic testing and shows the provenance of every value. He is solely responsible for the concept, data curation and development of the platform.',
-    ru: 'Илья Мазунин создал PGT-mt Atlas как самостоятельный международный ресурс, который собирает опубликованные индивидуальные значения гетероплазмии мтДНК при преимплантационном генетическом тестировании и показывает происхождение каждого значения. Он единолично отвечает за концепцию, курирование данных и развитие платформы.',
+    ru: 'Илья Мазунин создал Атлас ПГТ-мт как самостоятельный международный ресурс, который собирает опубликованные индивидуальные значения гетероплазмии мтДНК при преимплантационном генетическом тестировании и показывает происхождение каждого значения. Он единолично отвечает за концепцию, курирование данных и развитие платформы.',
   } as Bilingual,
 
   /** Основные академические должности (для шапки и карточки на главной). */
   headline: [
-    { en: 'Head of the Department of Biology and Genetics, Petrovsky Medical University, Moscow', ru: 'Заведующий кафедрой биологии и генетики, Медицинский университет Петровского, Москва' },
-    { en: 'Leading Research Scientist, Research Centre for Medical Genetics named after Academician N.P. Bochkov, Moscow', ru: 'Ведущий научный сотрудник, Медико-генетический научный центр имени академика Н.П. Бочкова, Москва' },
     { en: 'Senior Research Scientist, Skolkovo Institute of Science and Technology (Skoltech), Moscow', ru: 'Старший научный сотрудник, Сколковский институт науки и технологий, Москва' },
+    { en: 'Head of the Department of Biology and Genetics, Petrovsky Medical University, Moscow', ru: 'Заведующий кафедрой биологии и генетики, Медицинский университет Петровского, Москва' },
   ] as Bilingual[],
 
   bio: {
     en: [
-      'Ilya Mazunin is a geneticist who studies the human mitochondrial genome: its variation, its role in inherited disease and its transmission in human reproduction. He holds a Doctor of Biological Sciences degree in genetics (Research Centre for Medical Genetics, 2025) and a Candidate of Biological Sciences (PhD) degree in molecular genetics (Institute of Chemical Biology and Fundamental Medicine, Siberian Branch of the Russian Academy of Sciences, 2010).',
-      'His work spans tools for targeted manipulation of mitochondrial DNA — CRISPR-Cas9, Cas12a and prokaryotic Argonaute systems — as well as mtDNA heteroplasmy in human embryos and preimplantation genetic testing for mitochondrial DNA variants (PGT-mt). He heads the Department of Biology and Genetics at Petrovsky Medical University and holds research appointments at the Research Centre for Medical Genetics and Skoltech.',
-      'He created PGT-mt Atlas and curates its content and data.',
+      'Ilya Mazunin is a geneticist and molecular biologist specialising in the role of the mitochondrial genome in health and disease.',
+      'His work includes, but is not limited to, developing tools for mtDNA editing based on CRISPR-Cas9, CRISPR-Cas12a and prokaryotic Argonautes, as well as approaches to preventing the inheritance of pathogenic mtDNA variants, including PGT-mt and mitochondrial donation.',
     ],
     ru: [
-      'Илья Мазунин — генетик, изучающий митохондриальный геном человека: его изменчивость, роль в наследственных болезнях и передачу в репродукции человека. Доктор биологических наук по специальности «генетика» (Медико-генетический научный центр, 2025), кандидат биологических наук по специальности «молекулярная генетика» (Институт химической биологии и фундаментальной медицины СО РАН, 2010).',
-      'Его работы охватывают инструменты направленного воздействия на митохондриальную ДНК — системы CRISPR-Cas9, Cas12a и прокариотические белки-аргонавты, — а также гетероплазмию мтДНК в эмбрионах человека и преимплантационное генетическое тестирование вариантов митохондриальной ДНК (ПГТ-мт). Заведует кафедрой биологии и генетики Медицинского университета Петровского, работает в Медико-генетическом научном центре и Сколтехе.',
-      'Создатель PGT-mt Atlas и научный куратор его содержания и данных.',
+      'Илья Мазунин — генетик и молекулярный биолог, специализирующийся на изучении роли генома митохондрий в норме и при патологиях.',
+      'Работы Ильи Мазунина включают (но не ограничены) разработку инструментов для редактирования мтДНК на основе CRISPR-Cas9, CRISPR-Cas12a и прокариотических белков-аргонавтов, а также подходов к предотвращению наследования патогенных вариантов мтДНК, таких как ПГТ-мт и митохондриальная донация.',
     ],
   } as Record<'en' | 'ru', string[]>,
 
@@ -97,7 +94,7 @@ export const creator = {
   /** Раскрытие интересов. */
   coi: {
     en: 'CEO and founder of MODICUM LLC; co-founder of Florence Labs LLC and CellKinetica SARL (Switzerland). These companies develop genomic data analysis for embryos in assisted reproduction. The Atlas is a non-commercial scientific resource; it presents data from published sources only.',
-    ru: 'Генеральный директор и основатель ООО «МОДИКУМ»; сооснователь ООО «Флоренс Лабс» и CellKinetica SARL (Швейцария). Компании разрабатывают решения для анализа геномных данных эмбрионов в программах ВРТ. Atlas — некоммерческий научный ресурс; данные в нём представлены только по опубликованным источникам.',
+    ru: 'Генеральный директор и основатель ООО «МОДИКУМ»; сооснователь ООО «Флоренс Лабс» и CellKinetica SARL (Швейцария). Компании разрабатывают решения для анализа геномных данных эмбрионов в программах ВРТ. Атлас — некоммерческий научный ресурс; данные в нём представлены только по опубликованным источникам.',
   } as Bilingual,
 
   teaching: [

@@ -8,7 +8,6 @@ export default function Methods() {
   const lang = useLang()
   const ru = lang === 'ru'
   const c = atlas.meta.current_counts
-  const base = atlas.meta.baseline
   const COUNT_LABEL: Record<string, [string, string]> = {
     landscape_values: ['значения гетероплазмии эмбрионов', 'embryo heteroplasmy values'],
     landscape_variants: ['варианты мтДНК в распределении гетероплазмии', 'mtDNA variants in the heteroplasmy landscape'],
@@ -42,25 +41,17 @@ export default function Methods() {
           : 'Publications do not always report values for every embryo of a cycle, so the dataset does not equal the full number of embryos in the cycles. A clinical success rate of PGT-mt cannot be calculated from cases pooled across publications.'}
       </p>
 
-      <h2>{ru ? 'Версии набора' : 'Dataset versions'}</h2>
-      <p>
-        {ru
-          ? `Atlas обновляется: число наблюдений меняется по мере добавления публикаций и корректировок. Исходная зафиксированная версия — ${base.version} (${base.label.ru}); её счётчики воспроизводятся эталонными тестами по исходной таблице. Каждая запись имеет стабильный идентификатор (HL-…, EC-…, CL-…), не зависящий от номера строки исходной таблицы; прежние идентификаторы (f3-…, f4-…, cl-…) сохранены как алиасы и находятся поиском на странице «Данные».`
-          : `Atlas is updated: the number of observations changes as publications and corrections are added. The initial frozen version is ${base.version} (${base.label.en}); its counts are reproduced by golden tests from the original workbook. Every record has a stable identifier (HL-…, EC-…, CL-…) that does not depend on the row number of the source workbook; former identifiers (f3-…, f4-…, cl-…) are kept as aliases and can be found with the search on the Data page.`}
-      </p>
+      <h2>{ru ? 'Объём данных' : 'Dataset size'}</h2>
       <div className="table-wrap">
         <table className="data" data-testid="release-counts">
-          <thead><tr><th></th><th>{ru ? 'Исходная версия' : 'Initial version'} {base.version}</th><th>{ru ? 'Текущая версия' : 'Current version'}</th></tr></thead>
+          <thead><tr><th>{ru ? 'Показатель' : 'Measure'}</th><th>{ru ? 'Количество' : 'Count'}</th></tr></thead>
           <tbody>
-            {Object.keys(base.counts).map((k) => (
-              <tr key={k}><td>{COUNT_LABEL[k]?.[ru ? 0 : 1] ?? k}</td><td className="num">{base.counts[k]}</td><td className="num">{c[k]}</td></tr>
+            {Object.keys(COUNT_LABEL).map((k) => (
+              <tr key={k}><td>{COUNT_LABEL[k][ru ? 0 : 1]}</td><td className="num">{c[k]}</td></tr>
             ))}
           </tbody>
         </table>
       </div>
-      <ul>
-        {atlas.meta.changes.map((ch, i) => <li key={i}>{ch.date}: {ch[lang]}</li>)}
-      </ul>
 
       <h2>{ru ? 'Как представлены значения' : 'How values are represented'}</h2>
       <ul>
@@ -75,7 +66,7 @@ export default function Methods() {
           </li>
         ))}
       </ul>
-      <p>{ru ? 'Каждая точка на графиках ведёт к строке сопроводительной таблицы и к публикации (DOI).' : 'Every point leads back to its row in the supplementary workbook and to the publication (DOI).'}</p>
+      <p>{ru ? 'Каждая точка на графиках ведёт к источнику значения и к публикации (DOI).' : 'Every point leads back to its row in the supplementary workbook and to the publication (DOI).'}</p>
 
       <h2>{ru ? 'Ориентиры на графиках' : 'Reference lines on the charts'}</h2>
       <ul>
@@ -99,40 +90,10 @@ export default function Methods() {
         <li>{ru ? 'Совместная модель ПГТ-мт и ПГТ-А — сценарный расчёт: она не учитывает внутрисемейную корреляцию и не даёт индивидуального прогноза.' : 'The PGT-mt × PGT-A Model is a scenario calculation: it ignores within-family correlation and gives no individual prediction.'}</li>
       </ul>
 
-      <h2>{ru ? 'Сверка с опубликованными материалами и корректировки' : 'Checks against published material and corrections'}</h2>
-      <p>
-        {ru
-          ? 'Значения Tofilo et al., 2026 при каждой сборке сверяются с опубликованным ESM 2; без этого файла сборка останавливается. Сверка выявила два расхождения значения (эмбрион 6) и два расхождения категории фракции (эмбрионы 3 и 4: в ESM 2 — объединённая фракция ВКМ+ТЭ). Они исправлены прозрачным слоем корректировок: исходная таблица не изменяется, исходное значение хранится рядом с исправленным, у каждой корректировки указан источник и точное место в нём. Зависимые статистики пересчитаны из исправленного набора.'
-          : 'Values from Tofilo et al., 2026 are checked against the published ESM 2 on every build; without this file the build stops. The check found two value differences (embryo 6) and two fraction-category differences (embryos 3 and 4: ESM 2 reports a combined ICM+TE fraction). They are corrected by a transparent correction layer: the source workbook is not changed, the original value is stored next to the corrected one, and every correction names its source and exact location. Dependent statistics are recalculated from the corrected dataset.'}
-      </p>
-      <div className="table-wrap">
-        <table className="data" data-testid="corrections">
-          <thead><tr><th>{ru ? 'Запись' : 'Record'}</th><th>{ru ? 'Было (исходная таблица)' : 'Was (source workbook)'}</th><th>{ru ? 'Стало' : 'Now'}</th><th>{ru ? 'Источник и место' : 'Source and location'}</th></tr></thead>
-          <tbody>
-            {atlas.corrections.map((x) => {
-              const show = (v: number | string) => (x.field === 'fraction' ? label('fraction', String(v), lang) : `${fmt(Number(v), lang)}%`)
-              return (
-                <tr key={x.id}>
-                  <td>{x.target.embryo} · {label('fraction', x.target.fraction, lang)}</td>
-                  <td className="num">{show(x.from)}</td>
-                  <td className="num"><strong>{show(x.to)}</strong></td>
-                  <td className="small" lang="ru">{x.source.document}; {x.source.locator}</td>
-                </tr>
-              )
-            })}
-          </tbody>
-        </table>
-      </div>
-      <p className="small">
-        {ru
-          ? `Медиана размаха внутри эмбриона для патогенных бластоцист: ${fmt(atlas.stats.fig4.median_range_pathogenic, lang)} п.п. после корректировок (по исходной таблице — ${fmt(atlas.stats.fig4_source_xlsx.median_range_pathogenic, lang)} п.п.).`
-          : `Median within-embryo range for pathogenic blastocysts: ${fmt(atlas.stats.fig4.median_range_pathogenic, lang)} pp after corrections (${fmt(atlas.stats.fig4_source_xlsx.median_range_pathogenic, lang)} pp from the source workbook).`}
-      </p>
-
       <h2>{ru ? 'Классификация вариантов' : 'Variant classification'}</h2>
       <p>
         {ru
-          ? 'Класс варианта взят из сопроводительной таблицы; Atlas не вводит собственный классификатор, в том числе по уровню гетероплазмии. Для каждого варианта указано, на каком утверждении первичной публикации основан класс, и дата проверки. Сверка с базами MITOMAP и ClinVar при этой проверке не выполнялась.'
+          ? 'Класс варианта указан по первичной публикации; Атлас не вводит собственный классификатор, в том числе по уровню гетероплазмии. Для каждого варианта указано, на каком утверждении первичной публикации основан класс, и дата проверки. Сверка с базами MITOMAP и ClinVar при этой проверке не выполнялась.'
           : 'The variant class is taken from the supplementary workbook; Atlas introduces no classifier of its own, including one based on heteroplasmy level. For every variant the statement of the primary publication on which the class rests and the date of the check are given. The variants were not checked against MITOMAP or ClinVar in this review.'}
       </p>
       <div className="table-wrap">
@@ -158,11 +119,6 @@ export default function Methods() {
         <li>{ru ? 'Исход: пренатальная диагностика и постнатальное наблюдение с указанием ткани, возраста и метода.' : 'Outcome: prenatal diagnosis and postnatal follow-up with tissue, age and method.'}</li>
       </ol>
 
-      <h2>{ru ? 'Воспроизводимость' : 'Reproducibility'}</h2>
-      <p className="small">
-        {ru ? 'Набор генерируется скриптом' : 'The dataset is generated by'} <code>{atlas.meta.generator}</code> {ru ? 'из' : 'from'} <code>{atlas.meta.source_file}</code> (SHA-256 <code>{atlas.meta.source_sha256}</code>).{' '}
-        {ru ? 'Эталонные тесты проверяют, что все контрольные числа набора воспроизводятся при каждой сборке.' : 'Golden tests check that every reference number of the dataset is reproduced on each build.'}
-      </p>
     </article>
   )
 }

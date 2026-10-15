@@ -1,8 +1,8 @@
 import { useMemo, useState } from 'react'
 import { DataTable } from '../../components/DataTable'
 import { PlotlyChart } from '../../components/PlotlyChart'
-import { CorrectionList, Detail, ObservedBadge, PubRef, VerificationList } from '../../components/ui'
-import { atlas, fig4Embryos, hasVerificationIssue, label, median, pubById, rangeOf, verificationFor } from '../../data/atlas'
+import { Detail, ObservedBadge, PubRef } from '../../components/ui'
+import { atlas, fig4Embryos, hasVerificationIssue, label, median, pubById, rangeOf } from '../../data/atlas'
 import { useLang, useT } from '../../i18n'
 import { fmt, pct } from '../../lib/format'
 import { axis, baseLayout, useChartTheme, type ChartTheme } from '../../lib/theme'
@@ -183,7 +183,6 @@ export default function Fig4() {
           ? `Медиана размаха: ${fmt(s.median_range_pathogenic, lang)} п.п. (${s.n_pathogenic} патогенных бластоцист), ${fmt(s.median_range_hv2, lang)} п.п. (HV2), ${fmt(s.median_range_all, lang)} п.п. (все ${s.n_embryos}); стадия дробления — ${fmt(s.median_range_cleavage, lang)} п.п. (n = ${s.n_cleavage}).`
           : `Median range: ${fmt(s.median_range_pathogenic, lang)} pp (${s.n_pathogenic} pathogenic blastocysts), ${fmt(s.median_range_hv2, lang)} pp (HV2), ${fmt(s.median_range_all, lang)} pp (all ${s.n_embryos}); cleavage stage — ${fmt(s.median_range_cleavage, lang)} pp (n = ${s.n_cleavage}).`}
       </p>
-      <div className="callout warn small">{t('fig4.verifyNote')}</div>
 
       {selEmb && (
         <Detail
@@ -197,8 +196,6 @@ export default function Fig4() {
             [t('common.provenance'), atlas.fig4.filter((f) => f.embryo === selEmb.embryo).map((f) => t('common.sheetRow', { sheet: f.src.sheet, row: f.src.row })).join('; ')],
           ]}
         >
-          <CorrectionList embryo={selEmb.embryo} />
-          <VerificationList items={verificationFor(selEmb.embryo)} />
         </Detail>
       )}
       {selCleav && (

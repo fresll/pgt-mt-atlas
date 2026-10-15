@@ -10,10 +10,10 @@ export default function Cases() {
       <p><ObservedBadge /></p>
       <h1>{t('cases.title')}</h1>
       <p className="lead">{t('cases.lead')}</p>
-      <p className="callout warn small">
+      <p className="callout small">
         {useLang() === 'ru'
-          ? 'Номера в квадратных скобках внутри ячеек взяты из исходной таблицы как есть и не соответствуют списку источников атласа. Источник каждой строки указан в столбце «Источник».'
-          : 'Numbers in square brackets inside cells are quoted from the source workbook as is and do not correspond to the Atlas source list. The source of each row is given in the “Source” column.'}
+          ? 'Первоисточник каждого случая указан в столбце «Источник»: авторы, публикация и DOI.'
+          : 'The primary source for each case is listed in the Source column: authors, publication and DOI.'}
       </p>
       <DataTable
         maxHeight={900}
