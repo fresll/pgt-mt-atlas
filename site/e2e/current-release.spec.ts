@@ -33,7 +33,7 @@ test('current release is identified and fits desktop and mobile', async ({ page,
       await expect(panels.nth(0)).toBeHidden()
     }
     await page.getByTestId('model-rho').selectOption('0.1')
-    await page.getByRole('checkbox').check()
+    await page.getByRole('checkbox', { name: 'Показать чувствительность к условному интервалу H' }).check()
     await expect(page.getByTestId('interval-note')).toBeVisible()
     expect(errors).toEqual([])
   }

@@ -72,7 +72,7 @@ export default function Methods() {
 
       <h2>{ru ? 'Ориентиры на графиках' : 'Reference lines on the charts'}</h2>
       <ul>
-        {atlas.thresholds.map((th) => (
+        {atlas.thresholds.filter(t => t.role !== 'chart_convention').map((th) => (
           <li key={th.id}>
             <strong>{th.value !== undefined ? `${fmt(th.value, lang)}%` : `${th.range?.[0]}–${th.range?.[1]}%`}</strong> · <em>{ROLE[th.role]?.[ru ? 0 : 1]}</em> — {th[lang]}
             {th.publication && <> (<PubRef id={th.publication} />)</>}
@@ -89,7 +89,7 @@ export default function Methods() {
         <li>{ru ? 'Удачные циклы публикуются чаще неудачных; данных для коррекции этого смещения нет.' : 'Successful cycles are published more often than unsuccessful ones; there are no data to correct for this bias.'}</li>
         <li>{ru ? 'Эмбрионы не являются независимыми наблюдениями: многие получены от одной пациентки в одном цикле; варианты представлены неравномерно. Объединённая доля не является индивидуальным риском.' : 'Embryos are not independent observations: many come from one patient in one cycle; variants are unevenly represented. A pooled share is not an individual risk.'}</li>
         <li>{ru ? 'В сопоставлениях «эмбрион — ребёнок» часть измерений относится к одному ребёнку (разные ткани, сроки, методы, лаборатории).' : 'In embryo–child comparisons several measurements belong to the same child (different tissues, ages, methods, laboratories).'}</li>
-        <li>{ru ? 'Совместная модель ПГТ-мт и ПГТ-А — сценарный расчёт: она не учитывает внутрисемейную корреляцию и не даёт индивидуального прогноза.' : 'The PGT-mt × PGT-A Model is a scenario calculation: it ignores within-family correlation and gives no individual prediction.'}</li>
+        <li>{ru ? 'Совместная модель ПГТ-мт и ПГТ-А — сценарный расчёт: зависимость эмбрионов одной семьи задаётся сценарным ρ (по умолчанию 0) и по данным не оценена; индивидуального прогноза нет.' : 'The PGT-mt × PGT-A Model is a scenario calculation: within-family dependence is set by a scenario ρ (default 0), not estimated from data; it gives no individual prediction.'}</li>
       </ul>
 
       <h2>{ru ? 'Классификация вариантов' : 'Variant classification'}</h2>

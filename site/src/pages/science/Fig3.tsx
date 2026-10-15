@@ -123,7 +123,7 @@ export default function Fig3() {
     const hline = (y: number, color: string, dash: string, width = 1.2) => ({ type: 'line', x0: 0, x1: xmax, y0: y, y1: y, line: { color, dash, width }, layer: 'below' })
     const bg = explore
       ? [hline(threshold, th.accent, 'solid', 1.6)]
-      : [band(0, 18, th.bandGreen), band(18, 30, th.bandBlue), band(70, 100, th.bandRed), hline(18, th.muted, 'dash'), hline(70, th.muted, 'dash'), hline(30, th.s1, 'dash'), hline(1, th.critical, 'dot')]
+      : [band(0, 18, th.grid), band(18, 30, th.bandBlue), hline(18, th.muted, 'dash'), hline(30, th.muted, 'dash')]
     const marker = { size: 8, line: { width: 1, color: th.surface } }
     const data = [
       { type: 'scatter', mode: 'markers', x: filled.x, y: filled.y, customdata: filled.ids, text: filled.text, hovertemplate: '%{text}<extra></extra>', marker: { ...marker, color: th.ink } },
@@ -138,7 +138,7 @@ export default function Fig3() {
         xaxis: axis(th, { range: [0, xmax], tickvals: ticks.map((x) => x.v), ticktext: ticks.map((x) => x.t), tickangle: 0, showgrid: false, zeroline: false, tickfont: { size: 12, color: th.ink2 }, fixedrange: true }),
         yaxis: axis(th, { range: [-4, 140], tickvals: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100], title: { text: t('fig3.yAxis'), font: { color: th.ink2 } }, showgrid: false, zeroline: false }),
         shapes: [...bg, ...shapes],
-        annotations,
+        annotations: [...annotations, ...(!explore ? [{ x: 0.02, xref: 'paper', y: 18, text: t('fig3.guide18'), showarrow: false, yanchor: 'bottom', xanchor: 'left', font: { size: 12 } }, { x: 0.02, xref: 'paper', y: 30, text: t('fig3.guide30'), showarrow: false, yanchor: 'bottom', xanchor: 'left', font: { size: 12 } }] : [])],
         hovermode: 'closest',
       },
     }

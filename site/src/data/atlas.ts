@@ -47,6 +47,7 @@ export interface Correction {
 }
 
 export interface EmbryoObservation {
+  carrier_id?: string | null
   /** стабильный идентификатор (не зависит от строки xlsx) */
   id: string
   /** прежний идентификатор по строке xlsx — алиас для старых ссылок */

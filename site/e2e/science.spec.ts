@@ -129,7 +129,7 @@ test('dataset size: current counts on Methods and Data; former IDs resolve (B2)'
 test('scenario model states what P(≥1) means and labels p_eupl as scenario values (A4)', async ({ page }) => {
   await page.goto('ru/science/pgt-mt-pgt-a-model/')
   await expect(page.getByTestId('model-meaning')).toContainText('не вероятность беременности, рождения ребёнка или рождения здорового ребёнка')
-  await expect(page.getByTestId('p-eupl')).toContainText('сценарное значение')
+  await expect(page.getByTestId('p-eupl')).toContainText('сценарная доля')
   await expect(page.getByTestId('p-eupl')).toContainText('xfnr.2024.100082')
 })
 
@@ -138,7 +138,7 @@ test('reference lines carry their role and are not universal thresholds (A5)', a
   const text = await page.locator('article').innerText()
   expect(text).toContain('оценка риска в конкретном исследовании')
   expect(text).toContain('рабочий критерий клинической программы')
-  expect(text).toMatch(/условное обозначение графика/)
+  expect(text).not.toMatch(/условное обозначение графика/)
   expect(text).toContain('одном бластомере 3-го дня')
   expect(text).toContain('Ни одно из этих чисел не задаёт безопасного порога для отдельного эмбриона')
 })
