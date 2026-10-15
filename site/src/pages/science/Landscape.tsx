@@ -53,7 +53,7 @@ export function VariantClassText({ variant }: { variant: string }) {
   )
 }
 
-export default function Fig3() {
+export default function Landscape() {
   const t = useT()
   const lang = useLang()
   const th = useChartTheme()
@@ -67,8 +67,8 @@ export default function Fig3() {
   const [group, setGroup] = useState<string[] | null>(null)
 
   const explore = mode === 'explore'
-  const obs = useMemo(() => (explore ? atlas.fig3.filter((o) => stages.includes(o.stage)) : atlas.fig3), [explore, stages])
-  const { blocks, xmax } = useMemo(() => layoutBlocks(atlas.fig3_blocks, obs), [obs])
+  const obs = useMemo(() => (explore ? atlas.landscape.filter((o) => stages.includes(o.stage)) : atlas.landscape), [explore, stages])
+  const { blocks, xmax } = useMemo(() => layoutBlocks(atlas.landscape_blocks, obs), [obs])
   const thresholds = explore ? [threshold] : [18, 30]
   // выбор согласован с фильтрами: скрытое фильтром наблюдение не показывается, группа пересобирается при смене фильтра
   const sel = selected ? obs.find((o) => o.id === selected) ?? null : null
@@ -97,7 +97,7 @@ export default function Fig3() {
           target.text.push(
             `<b>${head}</b><br>${o.variant} · ${p.short}<br>${label('stage', o.stage, lang)} · ${label('sample_type', o.sample, lang)}` +
               (isDerived(o) ? `<br><i>${label('derivation', o.derivation, lang)}</i>` : '') +
-              (pt.count > 1 ? `<br><i>${t('fig3.groupClick')}</i>` : `<br><span style="font-size:11px">${o.id}</span>`),
+              (pt.count > 1 ? `<br><i>${t('landscape.groupClick')}</i>` : `<br><span style="font-size:11px">${o.id}</span>`),
           )
           if (pt.count > 1)
             annotations.push({ x: pt.x + 0.12, y: pt.y, text: `×${pt.count}`, showarrow: false, xanchor: 'left', font: { size: 12, color: th.ink2 } })
@@ -136,7 +136,7 @@ export default function Fig3() {
         ...baseLayout(th),
         margin: { l: 64, r: 12, t: 12, b: 84 },
         xaxis: axis(th, { range: [0, xmax], tickvals: ticks.map((x) => x.v), ticktext: ticks.map((x) => x.t), tickangle: 0, showgrid: false, zeroline: false, tickfont: { size: 12, color: th.ink2 }, fixedrange: true }),
-        yaxis: axis(th, { range: [-4, 140], tickvals: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100], title: { text: t('fig3.yAxis'), font: { color: th.ink2 } }, showgrid: false, zeroline: false }),
+        yaxis: axis(th, { range: [-4, 140], tickvals: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100], title: { text: t('landscape.yAxis'), font: { color: th.ink2 } }, showgrid: false, zeroline: false }),
         shapes: [...bg, ...shapes],
         annotations,
         hovermode: 'closest',
@@ -150,13 +150,13 @@ export default function Fig3() {
       <p>
         <ObservedBadge /> {explore && <span className="badge warn">{t('badge.outsideArticle')}</span>}
       </p>
-      <PageTitle title={t('fig3.title')} />
-      <h1>{t('fig3.title')}</h1>
-      <p className="subtitle">{t('fig3.subtitle')}</p>
-      <p className="lead">{t('fig3.lead')}</p>
+      <PageTitle title={t('landscape.title')} />
+      <h1>{t('landscape.title')}</h1>
+      <p className="subtitle">{t('landscape.subtitle')}</p>
+      <p className="lead">{t('landscape.lead')}</p>
       <p className="key-finding" data-testid="key-finding">
         <strong>{t('common.main')}.</strong>{' '}
-        {t('fig3.main', {
+        {t('landscape.main', {
           list: Object.entries(atlas.stats.fig3.by_variant)
             .filter(([, v]) => v.n >= 20)
             .sort((a, b) => b[1].le18.k / b[1].le18.n - a[1].le18.k / a[1].le18.n)
@@ -173,12 +173,12 @@ export default function Fig3() {
         {explore && (
           <>
             <label>
-              {t('fig3.customThreshold')}
+              {t('landscape.customThreshold')}
               <input type="number" min={0} max={100} step={1} value={threshold} onChange={(e) => setThreshold(Math.min(100, Math.max(0, Number(e.target.value))))} />
             </label>
             <fieldset style={{ border: 0, margin: 0, padding: 0, display: 'inline-flex', gap: 10, flexWrap: 'wrap' }}>
               <legend className="muted" style={{ float: 'left', marginRight: 6 }}>
-                {t('fig3.stageFilter')}:
+                {t('landscape.stageFilter')}:
               </legend>
               {STAGES.map((s) => (
                 <label key={s}>
@@ -190,10 +190,10 @@ export default function Fig3() {
           </>
         )}
         <label>
-          <input type="checkbox" checked={aggregate} onChange={(e) => setAggregate(e.target.checked)} /> {t('fig3.aggregate')}
+          <input type="checkbox" checked={aggregate} onChange={(e) => setAggregate(e.target.checked)} /> {t('landscape.aggregate')}
         </label>
         <label>
-          <input type="checkbox" checked={highlightDerived} onChange={(e) => setHighlightDerived(e.target.checked)} /> {t('fig3.highlightDerived')}
+          <input type="checkbox" checked={highlightDerived} onChange={(e) => setHighlightDerived(e.target.checked)} /> {t('landscape.highlightDerived')}
         </label>
       </div>
 
@@ -201,7 +201,7 @@ export default function Fig3() {
       <div style={{ overflowX: 'auto' }}>
         <div style={{ minWidth: 960 }}>
           <PlotlyChart
-            ariaLabel={t('fig3.title')}
+            ariaLabel={t('landscape.title')}
             height={600}
             data={plot.data as never}
             layout={plot.layout as never}
@@ -220,12 +220,12 @@ export default function Fig3() {
           />
         </div>
       </div>
-      <p className="small muted">{t('common.clickHint')} {highlightDerived && t('fig3.derivedLegend')}.</p>
+      <p className="small muted">{t('common.clickHint')} {highlightDerived && t('landscape.derivedLegend')}.</p>
       {groupObs && groupObs.length > 1 && (
-        <div className="detail obs-group" role="region" aria-label={t('fig3.groupTitle', { n: groupObs.length })} data-group-size={groupObs.length}>
-          <h3>{t('fig3.groupTitle', { n: groupObs.length })}</h3>
+        <div className="detail obs-group" role="region" aria-label={t('landscape.groupTitle', { n: groupObs.length })} data-group-size={groupObs.length}>
+          <h3>{t('landscape.groupTitle', { n: groupObs.length })}</h3>
           <p className="small">
-            {t('fig3.groupHint', { n: groupObs.length })} {obsValueText(groupObs[0], lang, t)} · {groupObs[0].variant} · {pubById[groupObs[0].pub].short}
+            {t('landscape.groupHint', { n: groupObs.length })} {obsValueText(groupObs[0], lang, t)} · {groupObs[0].variant} · {pubById[groupObs[0].pub].short}
           </p>
           <ul className="obs-group-list">
             {groupObs.map((o) => (
@@ -241,16 +241,16 @@ export default function Fig3() {
             ))}
           </ul>
           <p className="small">
-            {t('fig3.groupInTable')}{' '}
+            {t('landscape.groupInTable')}{' '}
             <button type="button" className="ghost" onClick={() => { setGroup(null); setSelected(null) }}>
-              {t('fig3.showAll')}
+              {t('landscape.showAll')}
             </button>
           </p>
         </div>
       )}
       {sel && <ObservationDetail o={sel} onClose={() => setSelected(null)} />}
-      <p className="small">{t('fig3.bands')}</p>
-      <p className="small">{t('fig3.intervalNote')}</p>
+      <p className="small">{t('landscape.bands')}</p>
+      <p className="small">{t('landscape.intervalNote')}</p>
 
       <details className="table-details" open={groupObs ? true : undefined}>
         <summary>

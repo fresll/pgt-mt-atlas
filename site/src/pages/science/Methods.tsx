@@ -44,7 +44,7 @@ export default function Methods() {
       <ul>
         {Object.keys(atlas.labels.derivation).map((d) => (
           <li key={d}>
-            <strong>{label('derivation', d, lang)}</strong> — {atlas.fig3.filter((o) => o.derivation === d).length} {t('interfaceCopy.Methods.copy11')}
+            <strong>{label('derivation', d, lang)}</strong> — {atlas.landscape.filter((o) => o.derivation === d).length} {t('interfaceCopy.Methods.copy11')}
           </li>
         ))}
       </ul>

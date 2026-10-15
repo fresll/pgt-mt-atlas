@@ -3,7 +3,7 @@ import { atlas } from '../data/atlas'
 import { layoutBlocks, placeColumn } from './fig3Layout'
 
 describe('Figure 3 layout', () => {
-  const { blocks, xmax } = layoutBlocks(atlas.fig3_blocks, atlas.fig3)
+  const { blocks, xmax } = layoutBlocks(atlas.landscape_blocks, atlas.landscape)
   it('covers all 187 observations exactly once', () => {
     const ids = blocks.flatMap((b) => b.columns.flatMap((c) => c.obs.map((o) => o.id)))
     expect(ids).toHaveLength(187)

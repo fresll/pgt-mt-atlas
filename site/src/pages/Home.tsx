@@ -13,14 +13,14 @@ export default function Home() {
   const s = atlas.stats
   const sci = `/${lang}/science/`
   const sections: [string, string, string, boolean][] = [
-    ['heteroplasmy-landscape/', 'fig3.title', 'fig3.subtitle', false],
-    ['embryo-concordance/', 'fig4.title', 'fig4.subtitle', false],
-    ['embryo-to-offspring/', 'fig5.title', 'fig5.subtitle', false],
-    ['pgt-mt-pgt-a-model/', 'fig6.title', 'fig6.subtitle', true],
+    ['heteroplasmy-landscape/', 'landscape.title', 'landscape.subtitle', false],
+    ['embryo-concordance/', 'concordance.title', 'concordance.subtitle', false],
+    ['embryo-to-offspring/', 'offspring.title', 'offspring.subtitle', false],
+    ['pgt-mt-pgt-a-model/', 'model.title', 'model.subtitle', true],
   ]
   const ledger: [number, string][] = [
     [s.fig3.n, t('home.k1')],
-    [s.fig4.n_embryos, t('home.k2', { icm: new Set(atlas.fig4.filter((f) => f.fraction === 'icm').map((f) => f.embryo)).size, word: plural(s.fig4.n_embryos, lang, lang === 'ru' ? ['бластоциста', 'бластоцисты', 'бластоцист'] : ['blastocyst', 'blastocysts', 'blastocysts']) })],
+    [s.fig4.n_embryos, t('home.k2', { icm: new Set(atlas.concordance.filter((f) => f.fraction === 'icm').map((f) => f.embryo)).size, word: plural(s.fig4.n_embryos, lang, lang === 'ru' ? ['бластоциста', 'бластоцисты', 'бластоцист'] : ['blastocyst', 'blastocysts', 'blastocysts']) })],
     [s.fig5.n_pairs, t('home.k3', { children: s.fig5.n_children })],
     [atlas.publications.length, t('home.k4', { doi: atlas.publications.filter((p) => p.doi).length, word: plural(atlas.publications.length, lang, lang === 'ru' ? ['публикация', 'публикации', 'публикаций'] : ['publication', 'publications', 'publications']) })],
   ]

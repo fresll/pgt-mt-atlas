@@ -42,21 +42,21 @@ function position(p: OffspringPair): [number, number] {
 /** Ребёнок с наибольшим числом сопоставлений на графике (сопоставления одного ребёнка не независимы). */
 function largestChildGroup(): { top: string; k: number } {
   const n = new Map<string, number>()
-  for (const p of atlas.fig5) if (p.in_figure) n.set(p.child, (n.get(p.child) ?? 0) + 1)
+  for (const p of atlas.offspring) if (p.in_figure) n.set(p.child, (n.get(p.child) ?? 0) + 1)
   const [top, k] = [...n.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))[0] ?? ['—', 0]
   return { top, k }
 }
 
-export default function Fig5() {
+export default function Offspring() {
   const topChild = largestChildGroup()
   const t = useT()
   const lang = useLang()
   const th = useChartTheme()
   const [showExcluded, setShowExcluded] = useState(false)
   const [selected, setSelected] = useState<string | null>(null)
-  const plotted = atlas.fig5.filter((p) => p.in_figure)
-  const excluded = atlas.fig5.filter((p) => !p.in_figure)
-  const catName = [t('fig5.prenatal'), t('fig5.blood'), t('fig5.otherPost')]
+  const plotted = atlas.offspring.filter((p) => p.in_figure)
+  const excluded = atlas.offspring.filter((p) => !p.in_figure)
+  const catName = [t('offspring.prenatal'), t('offspring.blood'), t('offspring.otherPost')]
   const hover = (p: OffspringPair) =>
     `<b>${p.id}</b> · ${t('common.child')} ${p.child}<br>${p.variant} · ${pubById[p.pub].short}<br>` +
     `${t('common.embryo')}: ${pairValueText(p.emb, p.emb_q, p.emb_raw, lang, t)}<br>` +
@@ -99,8 +99,8 @@ export default function Fig5() {
           lab(55.5, 50.3, 'C12a'), lab(55.5, 46.6, 'C12b'), lab(-16.3, -6.3, 'C14a–d, C1a, C1b, C3, C6a–c, C9a, C9b'),
           ...(showExcluded ? [lab(13.6, 10, 'C5d (<10%)')] : []),
         ],
-        xaxis: axis(th, { range: [-17, 66], tickvals: [0, 10, 20, 30, 40, 50, 60], title: { text: t('fig5.xA') }, zeroline: false }),
-        yaxis: axis(th, { range: [-9, 66], title: { text: t('fig5.yA') }, zeroline: false }),
+        xaxis: axis(th, { range: [-17, 66], tickvals: [0, 10, 20, 30, 40, 50, 60], title: { text: t('offspring.xA') }, zeroline: false }),
+        yaxis: axis(th, { range: [-9, 66], title: { text: t('offspring.yA') }, zeroline: false }),
       },
     }
   }, [plotted, excluded, showExcluded, selected, th, lang])
@@ -139,12 +139,12 @@ export default function Fig5() {
         annotations: ann,
         xaxis: axis(th, { range: [-0.6, 2.6], tickvals: [0, 1, 2], ticktext: catName.map((c) => c.replace(' / ', ' /<br>').replace(/ (материал|ткани|tissues|material)$/, '<br>$1')), tickangle: 0, showgrid: false, fixedrange: true }),
         margin: { l: 64, r: 16, t: 24, b: 70 },
-        yaxis: axis(th, { range: [-20, 44], title: { text: t('fig5.yB') }, zeroline: false }),
+        yaxis: axis(th, { range: [-20, 44], title: { text: t('offspring.yB') }, zeroline: false }),
       },
     }
   }, [plotted, selected, th, lang])
 
-  const sel = selected ? atlas.fig5.find((p) => p.id === selected) : null
+  const sel = selected ? atlas.offspring.find((p) => p.id === selected) : null
   const s = atlas.stats.fig5
   const variants = ['m.8993T>G', 'm.3243A>G', 'm.3250T>C', 'm.3697G>A']
   const swatch: Record<string, string> = { 'm.8993T>G': 'var(--s1)', 'm.3243A>G': 'var(--s2)', 'm.3250T>C': 'var(--s3)', 'm.3697G>A': 'var(--ink-2)' }
@@ -152,41 +152,41 @@ export default function Fig5() {
   return (
     <article>
       <p><ObservedBadge /></p>
-      <PageTitle title={t('fig5.title')} />
-      <h1>{t('fig5.title')}</h1>
-      <p className="subtitle">{t('fig5.subtitle')}</p>
-      <p className="lead">{t('fig5.lead')}</p>
+      <PageTitle title={t('offspring.title')} />
+      <h1>{t('offspring.title')}</h1>
+      <p className="subtitle">{t('offspring.subtitle')}</p>
+      <p className="lead">{t('offspring.lead')}</p>
       <p className="key-finding" data-testid="key-finding">
         <strong>{t('common.main')}.</strong>{' '}
-        {t('fig5.main', {
-          pairs: `${s.n_pairs} ${plural(s.n_pairs, lang, t('fig5.pairForms', { returnObjects: true }) as unknown as [string, string, string])}`,
+        {t('offspring.main', {
+          pairs: `${s.n_pairs} ${plural(s.n_pairs, lang, t('offspring.pairForms', { returnObjects: true }) as unknown as [string, string, string])}`,
           children: s.n_children,
-          disc: t(new Set(s.discordant_ids.map((id) => id.replace(/[a-z]+$/, ''))).size === 1 ? 'fig5.discOne' : 'fig5.discMany', { ids: s.discordant_ids.join(', ') }),
+          disc: t(new Set(s.discordant_ids.map((id) => id.replace(/[a-z]+$/, ''))).size === 1 ? 'offspring.discOne' : 'offspring.discMany', { ids: s.discordant_ids.join(', ') }),
         })}
       </p>
       <div className="controls">
         <label>
-          <input type="checkbox" checked={showExcluded} onChange={(e) => setShowExcluded(e.target.checked)} /> {t('fig5.showExcluded')}
+          <input type="checkbox" checked={showExcluded} onChange={(e) => setShowExcluded(e.target.checked)} /> {t('offspring.showExcluded')}
         </label>
         {showExcluded && <span className="badge warn">{t('badge.outsideArticle')}</span>}
       </div>
       <div className="legend-row">
-        <span>{t('fig5.colorByVariant')}</span>
+        <span>{t('offspring.colorByVariant')}</span>
         {variants.map((v) => (
           <span key={v}><span className="sw" style={{ background: swatch[v] }} />{v}</span>
         ))}
-        <span>● {t('fig5.prenatal')}</span>
-        <span>■ {t('fig5.blood')}</span>
-        <span>▲ {t('fig5.otherPost')}</span>
-        <span>- - {t('fig5.identity')}</span>
+        <span>● {t('offspring.prenatal')}</span>
+        <span>■ {t('offspring.blood')}</span>
+        <span>▲ {t('offspring.otherPost')}</span>
+        <span>- - {t('offspring.identity')}</span>
       </div>
       <div className="grid-2">
-        <div><h3>{t('interfaceCopy.Fig5.copy1')}</h3><PlotlyChart ariaLabel={t('fig5.subtitle')} height={460} data={panelA.data as never} layout={panelA.layout as never} onClick={pick} /></div>
-        <div><h3>{t('interfaceCopy.Fig5.copy2')}</h3><PlotlyChart ariaLabel={t('fig5.yB')} height={460} data={panelB.data as never} layout={panelB.layout as never} onClick={pick} /></div>
+        <div><h3>{t('interfaceCopy.Offspring.copy1')}</h3><PlotlyChart ariaLabel={t('offspring.subtitle')} height={460} data={panelA.data as never} layout={panelA.layout as never} onClick={pick} /></div>
+        <div><h3>{t('interfaceCopy.Offspring.copy2')}</h3><PlotlyChart ariaLabel={t('offspring.yB')} height={460} data={panelB.data as never} layout={panelB.layout as never} onClick={pick} /></div>
       </div>
-      <p className="small muted">{t('common.clickHint')} {t('fig5.lowSpread')}</p>
-      <p className="small"><strong>{t('fig5.dependency', { pairs: s.n_pairs, children: s.n_children, ...topChild })}</strong>{' '}
-        {t('interfaceCopy.Fig5.copy3', { v0: s.n_low_embryo, v1: s.n_concordant_low, v2: s.discordant_ids.join(', ') })}
+      <p className="small muted">{t('common.clickHint')} {t('offspring.lowSpread')}</p>
+      <p className="small"><strong>{t('offspring.dependency', { pairs: s.n_pairs, children: s.n_children, ...topChild })}</strong>{' '}
+        {t('interfaceCopy.Offspring.copy3', { v0: s.n_low_embryo, v1: s.n_concordant_low, v2: s.discordant_ids.join(', ') })}
       </p>
       {sel && (
         <Detail
@@ -201,13 +201,13 @@ export default function Fig5() {
             [t('common.value'), pairValueText(sel.value, sel.q, sel.value_raw, lang, t)],
             [t('common.age'), sel.age],
             [t('common.method'), sel.method],
-            [t('interfaceCopy.Fig5.copy4'), sel.in_figure ? (t('interfaceCopy.Fig5.copy5')) : `${t('interfaceCopy.Fig5.copy6')} — «${sel.on_plot_raw}»`],
+            [t('interfaceCopy.Offspring.copy4'), sel.in_figure ? (t('interfaceCopy.Offspring.copy5')) : `${t('interfaceCopy.Offspring.copy6')} — «${sel.on_plot_raw}»`],
             [t('common.provenance'), t('common.sheetRow', { sheet: sel.src.sheet, row: sel.src.row })],
           ]}
         />
       )}
 
-      <h2>{t('fig5.excludedTitle')}</h2>
+      <h2>{t('offspring.excludedTitle')}</h2>
       <ul className="small prose">
         {excluded.map((p) => (
           <li key={p.id}>
@@ -222,9 +222,9 @@ export default function Fig5() {
       </ul>
 
       <details className="table-details">
-        <summary>{t('common.showTable')} (n = {atlas.fig5.length})</summary>
+        <summary>{t('common.showTable')} (n = {atlas.offspring.length})</summary>
         <DataTable
-          rows={atlas.fig5}
+          rows={atlas.offspring}
           rowKey={(p) => p.id}
           selected={selected}
           onSelect={(p) => setSelected(p.id)}

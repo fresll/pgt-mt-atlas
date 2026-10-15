@@ -9,10 +9,10 @@ export default function ScienceIndex() {
   const lang = useLang()
   const s = atlas.stats
   const items: [string, string, string, string, boolean][] = [
-    ['heteroplasmy-landscape/', t('fig3.title'), t('fig3.subtitle'), t('interfaceCopy.ScienceIndex.copy1', { v0: s.fig3.n }), false],
-    ['embryo-concordance/', t('fig4.title'), t('fig4.subtitle'), t('interfaceCopy.ScienceIndex.copy2', { v0: s.fig4.n_embryos, v1: s.fig4.n_cleavage }), false],
-    ['embryo-to-offspring/', t('fig5.title'), t('fig5.subtitle'), t('interfaceCopy.ScienceIndex.copy3', { v0: s.fig5.n_pairs, v1: s.fig5.n_children }), false],
-    ['pgt-mt-pgt-a-model/', t('fig6.title'), t('fig6.subtitle'), t('interfaceCopy.ScienceIndex.copy4'), true],
+    ['heteroplasmy-landscape/', t('landscape.title'), t('landscape.subtitle'), t('interfaceCopy.ScienceIndex.copy1', { v0: s.fig3.n }), false],
+    ['embryo-concordance/', t('concordance.title'), t('concordance.subtitle'), t('interfaceCopy.ScienceIndex.copy2', { v0: s.fig4.n_embryos, v1: s.fig4.n_cleavage }), false],
+    ['embryo-to-offspring/', t('offspring.title'), t('offspring.subtitle'), t('interfaceCopy.ScienceIndex.copy3', { v0: s.fig5.n_pairs, v1: s.fig5.n_children }), false],
+    ['pgt-mt-pgt-a-model/', t('model.title'), t('model.subtitle'), t('interfaceCopy.ScienceIndex.copy4'), true],
   ]
   return (
     <article>

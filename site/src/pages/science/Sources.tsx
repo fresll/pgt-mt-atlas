@@ -9,8 +9,8 @@ export default function Sources() {
   const t = useT()
   const lang = useLang()
   const count = (id: string) =>
-    atlas.fig3.filter((o) => o.pub === id).length + atlas.fig4.filter((o) => o.pub === id).length +
-    atlas.cleavage.filter((o) => o.pub === id).length * 2 + atlas.fig5.filter((o) => o.pub === id).length
+    atlas.landscape.filter((o) => o.pub === id).length + atlas.concordance.filter((o) => o.pub === id).length +
+    atlas.cleavage.filter((o) => o.pub === id).length * 2 + atlas.offspring.filter((o) => o.pub === id).length
   const year = (s: string) => Number(s.match(/\d{4}/)?.[0] ?? 0)
   const pubs = atlas.publications.map((p) => pubById[p.id]).sort((a, b) => year(a.short) - year(b.short) || a.short.localeCompare(b.short))
   // роль публикации на сайте: вычисляется ETL по фактическому использованию (одна запись на публикацию)

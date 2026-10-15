@@ -17,10 +17,10 @@ const en: Dict = {
     about: 'About',
     curator: 'Ilya Mazunin',
     data: 'Table of values',
-    fig3: 'Heteroplasmy Landscape',
-    fig4: 'Embryo Concordance',
-    fig5: 'Embryo, fetus and child',
-    fig6: 'PGT-mt + PGT-A model',
+    landscape: 'Heteroplasmy Landscape',
+    concordance: 'Embryo Concordance',
+    offspring: 'Embryo, fetus and child',
+    model: 'PGT-mt + PGT-A model',
     cases: 'Published cases',
     sources: 'Sources',
     methods: 'Methods & limitations',
@@ -175,7 +175,7 @@ const en: Dict = {
     curatorBio: 'Doctor of Biological Sciences, geneticist',
     biography: 'Scientific biography',
   },
-  fig3: {
+  landscape: {
     title: 'Heteroplasmy Landscape',
     subtitle: 'mtDNA heteroplasmy in embryos by variant and source',
     lead: 'Each point is a published value for one embryo. Within a variant, columns separate the sources.',
@@ -195,7 +195,7 @@ const en: Dict = {
     main: 'The share of embryos with heteroplasmy at or below 18% differs widely between variants: {{list}}. The shares describe published series, not the probability for a particular family.',
     intervalNote: 'For two m.10197G>A embryos only intervals were published: they are drawn as bars, no midpoint is imputed; an interval counts as ≤ cut-off only if its upper bound is at or below it.',
   },
-  fig4: {
+  concordance: {
     title: 'Embryo Concordance',
     subtitle: 'How closely heteroplasmy agrees between fractions of one embryo',
     lead: 'The same blastocysts in panels A and B (n = {{n}}); panel C adds cleavage-stage embryos (two blastomeres; n = {{c}}).',
@@ -222,7 +222,7 @@ const en: Dict = {
     huText: 'A blastocyst with 17.8% m.3250T>C in the biopsy was split into 16 samples of 3–5 cells (the ICM was not isolated). Not plotted: the spread of small samples is not comparable with that of large fractions.',
     verifyNote: 'Tofilo et al., 2026: the embryo 6 values (ICM, remaining TE) and the fraction category of embryos 3 and 4 (combined ICM+TE fraction) follow the published ESM 2; the original values of the supplementary workbook are shown in the embryo card. In this study the “ICM” fraction is the ICM together with adherent TE cells (“ICM+”).',
   },
-  fig5: {
+  offspring: {
     title: 'Embryo, fetus and child',
     subtitle: 'Heteroplasmy in the transferred embryo and in fetal or child tissues',
     lead: 'Comparisons “transferred embryo — fetal or child tissue”. They are not independent: several tissues and time points of one child.',
@@ -243,7 +243,7 @@ const en: Dict = {
     excludedTitle: 'Not plotted',
     colorByVariant: 'Colour — mtDNA variant, shape — material, labels — case codes.',
   },
-  fig6: {
+  model: {
     versionLabel: 'Model version: {{v}}',
     title: 'PGT-mt × PGT-A Model',
     subtitle: 'Joint selection scenarios and sensitivity to assumptions',
@@ -856,7 +856,7 @@ const en: Dict = {
   "Cases": {
     "copy1": "The primary source for each case is listed in the Source column: authors, publication and DOI."
   },
-  "Fig4": {
+  "Concordance": {
     "copy1": "path.",
     "copy2": "red bar",
     "copy3": "Median range: {{v0}} pp ({{v1}} pathogenic blastocysts), {{v2}} pp (HV2), {{v3}} pp (all {{v4}}); cleavage stage — {{v5}} pp (n = {{v6}}).",
@@ -866,7 +866,7 @@ const en: Dict = {
     "copy7": "Cells",
     "copy8": "Depth, ×"
   },
-  "Fig5": {
+  "Offspring": {
     "copy1": "A",
     "copy2": "B",
     "copy3": "Of {{v0}} comparisons with low embryo heteroplasmy, {{v1}} showed low or undetectable tissue heteroplasmy; all discordant values ({{v2}}) come from re-analysis of one child by another method.",

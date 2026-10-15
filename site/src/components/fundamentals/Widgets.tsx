@@ -232,7 +232,7 @@ function BottleneckSimulator() {
             ))}
           </ul>
           <p>
-            <Link className="sk-link" to={`/${lang}/science/heteroplasmy-landscape/`}>{t('fig3.title')} →</Link>
+            <Link className="sk-link" to={`/${lang}/science/heteroplasmy-landscape/`}>{t('landscape.title')} →</Link>
           </p>
         </div>
       </div>

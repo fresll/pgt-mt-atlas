@@ -231,10 +231,10 @@ export function ScienceLayout({ lang }: { lang: Lang }) {
   const { pathname } = useLocation()
   const items: [string, string][] = [
     ['', 'nav.scienceIndex'],
-    ['heteroplasmy-landscape/', 'nav.fig3'],
-    ['embryo-concordance/', 'nav.fig4'],
-    ['embryo-to-offspring/', 'nav.fig5'],
-    ['pgt-mt-pgt-a-model/', 'nav.fig6'],
+    ['heteroplasmy-landscape/', 'nav.landscape'],
+    ['embryo-concordance/', 'nav.concordance'],
+    ['embryo-to-offspring/', 'nav.offspring'],
+    ['pgt-mt-pgt-a-model/', 'nav.model'],
     ['cases/', 'nav.cases'],
     ['data/', 'nav.data'],
     ['sources/', 'nav.sources'],
