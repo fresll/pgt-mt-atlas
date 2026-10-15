@@ -52,10 +52,6 @@ export default function About() {
         <li>{ru ? 'Только опубликованные источники: медицинские сведения и неопубликованные материалы автоматически не публикуются.' : 'Published sources only: medical information and unpublished material are never published automatically.'}</li>
       </ul>
 
-      <h2>{ru ? 'Как цитировать и лицензия' : 'How to cite and licence'}</h2>
-      <p className="callout warn">
-        {ru ? 'Формат цитирования и лицензия набора данных будут объявлены куратором. При использовании значений ссылайтесь также на первичные публикации.' : 'The citation format and dataset licence will be announced by the curator. When using the values, please also cite the primary publications.'}
-      </p>
       <h2>{ru ? 'Важно' : 'Important'}</h2>
       <p>{t('home.caveat')}</p>
       </div>

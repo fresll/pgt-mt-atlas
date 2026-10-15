@@ -100,10 +100,8 @@ test('curator page shows the portrait and the homepage keeps the biography link 
   await expect(page.locator('img.portrait')).toBeVisible()
   expect(await page.locator('img.portrait').evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0)
   await page.goto('ru/')
-  await expect(page.locator('.sk-curator')).toContainText('Создатель и куратор Атласа ПГТ-мт')
-  await expect(page.locator('.sk-curator a')).toHaveAttribute('href', /\/ru\/ilya-mazunin\//)
-  // блок куратора — последний раздел главной страницы
-  await expect(page.locator('article.sk-home > section').last()).toHaveClass(/sk-curator/)
+  await expect(page.locator('.sk-home .sk-curator')).toHaveCount(0)
+  await expect(page.locator('footer.site').getByRole('link', { name: 'Создатель и куратор — Илья Мазунин' })).toHaveAttribute('href', /\/ru\/ilya-mazunin\//)
 })
 
 test('an English section address keeps the section', async ({ page }) => {
@@ -117,11 +115,13 @@ test('curator page keeps the biography and selected publications', async ({ page
   await page.goto('ru/ilya-mazunin/')
   await expect(page.locator('.cv-toc a')).toHaveText(['Научная биография', 'Избранные публикации'])
   await expect(page.locator('#bio')).toContainText('Роль в проекте')
-  await expect(page.locator('#bio')).toContainText('единолично отвечает за концепцию, курирование данных и развитие платформы')
+  await expect(page.locator('#bio')).toContainText('Илья Мазунин всю научную жизнь специализируется на изучении генома митохондрий человека.')
+  await expect(page.locator('#bio')).not.toContainText('единолично отвечает')
   await expect(page.locator('#bio a[href="https://petrovsky.med.ru/education/distsipliny-kafedry6715/"]')).toHaveText('кафедрой биологии и генетики')
   await expect(page.locator('.cv-topic')).toHaveCount(4)
   await expect(page.locator('.pub-list li')).toHaveCount(15)
   await expect(page.locator('.pub-list a[href*="doi.org"]')).toHaveCount(15)
+  await expect(page.locator('.pub-list a[href="https://doi.org/10.1093/molbev/msae261"]')).toHaveCount(1)
 })
 
 test('contribute page: template download, review statuses and a working e-mail contact', async ({ page, request }) => {

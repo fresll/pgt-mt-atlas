@@ -2,7 +2,6 @@ import { formatDate } from '../components/Layout'
 import type { CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
 import { HandRule, Illustration } from '../components/Sketch'
-import { Photo } from '../components/Photo'
 import { plural } from '../lib/format'
 import { atlas } from '../data/atlas'
 import { useCountWord, useLang, useT } from '../i18n'
@@ -15,9 +14,9 @@ export default function Home() {
   const s = atlas.stats
   const sci = `/${lang}/science/`
   const sections: [string, string, string, boolean][] = [
-    ['heteroplasmy-landscape/', 'landscape.title', 'landscape.subtitle', false],
-    ['embryo-concordance/', 'concordance.title', 'concordance.subtitle', false],
-    ['embryo-to-offspring/', 'offspring.title', 'offspring.subtitle', false],
+    ['heteroplasmy-landscape/', 'home.landscapeTitle', 'landscape.subtitle', false],
+    ['embryo-concordance/', 'home.concordanceTitle', 'home.concordanceSubtitle', false],
+    ['embryo-to-offspring/', 'offspring.title', 'home.offspringSubtitle', false],
     ['pgt-mt-pgt-a-model/', 'model.title', 'model.subtitle', true],
   ]
   const ledger: [number, string][] = [
@@ -43,10 +42,7 @@ export default function Home() {
               {t('home.ctaSpecialists')} <span aria-hidden="true">→</span>
             </Link>
           </div>
-          <p className="small">{t('home.trust', { date: formatDate(atlas.meta.dataset_version, lang), n: s.fig3.n, publications: atlas.publications.length, values: plural(s.fig3.n, lang, lang === 'ru' ? ['значение', 'значения', 'значений'] : ['value', 'values', 'values']), pubWord: plural(atlas.publications.length, lang, lang === 'ru' ? ['публикации', 'публикаций', 'публикаций'] : ['publication', 'publications', 'publications']) })}</p>
-          <p className="sk-hero-more">
-            <Link className="sk-link" to={`/${lang}/fundamentals/`}>{t('home.ctaFundamentals')}</Link>
-          </p>
+          <p className="small sk-hero-trust">{t('home.trust', { date: formatDate(atlas.meta.dataset_version, lang), n: s.fig3.n, publications: atlas.publications.length, values: plural(s.fig3.n, lang, lang === 'ru' ? ['значение', 'значения', 'значений'] : ['value', 'values', 'values']), pubWord: plural(atlas.publications.length, lang, lang === 'ru' ? ['публикации', 'публикаций', 'публикаций'] : ['publication', 'publications', 'publications']) })}</p>
         </div>
         <figure className="sk-hero-figure" role="img" aria-label={t('home.figCaption')}>
           <div className="sk-plate">
@@ -146,18 +142,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-
-      <section className="sk-section sk-curator">
-        <Photo path="img/ilya-mazunin.jpg" alt={t('curator.title')} width={96} height={120} />
-        <div>
-          <p className="sk-note">{t('curator.role')}</p>
-          <p className="sk-curator-name">{t('curator.title')}</p>
-          <p>{t('home.curatorBio')}</p>
-          <Link className="sk-link" to={`/${lang}/ilya-mazunin/`}>{t('home.biography')}</Link>
-        </div>
-      </section>
-
     </article>
   )
 }

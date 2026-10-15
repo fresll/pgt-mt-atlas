@@ -74,7 +74,7 @@ const en: Dict = {
   },
   "footer": {
     "updated": "Data updated {{date}} · dataset version {{version}}",
-    "disclaimer": "The Atlas does not replace a consultation with a clinical geneticist and does not provide medical advice.",
+    "disclaimer": "PGT-mt Atlas does not replace a consultation with a clinical geneticist. The creator and curator of PGT-mt Atlas does not provide medical advice.",
     "contribute": "For researchers: contribute data",
     "linksLabel": "Site links"
   },
@@ -171,7 +171,7 @@ const en: Dict = {
   },
   "home": {
     "trust": "Data updated {{date}} · {{n}} {{values}} from {{publications}} {{pubWord}} · Created and curated by Ilya Mazunin, DSc",
-    "lead": "The Atlas collects published heteroplasmy values and explains how to interpret them.",
+    "lead": "The Atlas presents published heteroplasmy levels and provides an interpretation of these values.",
     "k1": "embryo heteroplasmy values",
     "k2": "{{word}} with a biopsy compared against other embryo parts ({{icm}} with the inner cell mass)",
     "k3": "{{word}} in {{children}} fetuses and children; both results ND in {{ndChildren}} children",
@@ -199,14 +199,18 @@ const en: Dict = {
     "aboutTitle": "The database",
     "aboutNote": "what is inside",
     "k4": "{{word}} ({{doi}} with DOI)",
+    "landscapeTitle": "Between different embryos",
+    "concordanceTitle": "Within individual embryos",
+    "concordanceSubtitle": "How closely heteroplasmy agrees between different parts of one embryo",
+    "offspringSubtitle": "Changes in heteroplasmy over time — from embryo to child",
     "sectionsTitle": "Sections of the Atlas",
     "sectionsNote": "from biopsy to data",
     "biopsyCaption": "Trophectoderm biopsy: a few TE cells in which PGT-mt measures the proportion of mtDNA carrying a pathogenic variant.",
     "dataLink": "Full dataset",
     "sourcesLink": "Sources",
     "methodsLink": "Methods and limitations",
-    "dataTitle": "Published values: peer-reviewed journal articles and one conference abstract (marked)",
-    "dataText": "For each mtDNA variant for which PGT-mt has been performed, a primary publication is provided. Observed data and model calculations are explicitly identified.",
+    "dataTitle": "Published values only",
+    "dataText": "Primary sources are provided for all data used in the Atlas. The mathematical model is also built on these sources.",
     "mitoCaption": "A mitochondrion with cristae and circular mtDNA molecules.",
     "curatorBio": "Doctor of Biological Sciences, geneticist",
     "biography": "Scientific biography"
@@ -812,46 +816,46 @@ const en: Dict = {
     }
   },
   "patientContent": {
-    "intro": "This page explains in plain words what PGT-mt is — testing embryos for a mutation in mitochondrial DNA during IVF — what it can and cannot do. It will help you prepare for a conversation with a clinical geneticist but does not replace that consultation.",
+    "intro": "This section explains what PGT-mt is and how this laboratory technology may help you. We also explicitly describe the limitations of PGT-mt and the predictions made using this technology. The text will help you prepare for a conversation with a clinical geneticist but will not replace that consultation.",
     "sections": [
       {
         "title": "What mitochondrial DNA is",
         "paragraphs": [
           "Mitochondria are the “power stations” of cells. They have their own small DNA (mtDNA), which a child inherits only from the mother.",
-          "Each cell contains hundreds or thousands of mtDNA copies. A pathogenic variant (mutation) is usually inherited from the mother and arises for the first time less often. Often it is present in only some copies. The proportion of altered copies is called the heteroplasmy level and is expressed as a percentage [@stewart2015; @smeets2023].",
-          "One woman’s proportion of altered mtDNA may differ in blood, urine, muscle and different egg cells [@burr2024].",
-          "PGT-mt helps only when a woman has a pathogenic mtDNA variant in a heteroplasmic state: her cells contain both altered and normal copies. If all copies are altered (homoplasmy), an embryo with a lower proportion cannot be selected. If disease is caused by a nuclear DNA gene, a different test (PGT-M) is needed. A male carrier does not pass the mtDNA variant to his children [@smeets2023]."
+          "Each cell contains hundreds or thousands of mtDNA copies. A pathogenic variant (mutation) is usually inherited from the mother and arises for the first time less often. Often it is present in only some copies. The proportion of altered copies is called the heteroplasmy level and is expressed as a percentage.",
+          "One woman’s proportion of altered mtDNA may differ in blood, urine, muscle and different egg cells.",
+          "PGT-mt helps only when a woman has a pathogenic mtDNA variant in a heteroplasmic state: her cells contain both altered and normal copies. If all copies are altered (homoplasmy), an embryo with a lower proportion cannot be selected. If disease is caused by a nuclear DNA gene, a different test (PGT-M) is needed. A male carrier does not pass the mtDNA variant to his children."
         ]
       },
       {
         "title": "How PGT-mt works",
         "paragraphs": [
-          "During IVF, cells are sampled on day 3 or days 5–6: usually one blastomere (an early embryo cell) on day 3, or several trophectoderm cells (the outer layer that forms the placenta) on days 5–6. The proportion of altered mtDNA is measured in them [@hyslop2025; @rubens2025].",
-          "Embryos from one woman can differ in the proportion of altered mtDNA. Testing helps select the embryo with the lowest proportion if it is below a cut-off agreed in advance with the geneticist for your variant. If all embryos are above it, transfer is generally not recommended [@smeets2023; @hyslop2025].",
+          "During IVF, cells are sampled on day 3 or days 5–6: usually one blastomere (an early embryo cell) on day 3, or several trophectoderm cells (the outer layer that forms the placenta) on days 5–6. The proportion of altered mtDNA is measured in them.",
+          "Embryos from one woman can differ in the proportion of altered mtDNA. Testing helps select the embryo with the lowest proportion if it is below a cut-off agreed in advance with the geneticist for your variant. If all embryos are above it, transfer is generally not recommended.",
           "Unfortunately, the exact outcome cannot be predicted before a cycle begins. Some patients will have more embryos with a low mutant mtDNA percentage, others fewer, and in some cycles there may be none."
         ]
       },
       {
         "title": "Why is the percentage not a diagnosis?",
         "paragraphs": [
-          "The PGT-mt result compares embryos using an agreed cut-off for the proportion of altered mtDNA; it does not diagnose the future child [@smeets2023].",
-          "The test measures the proportion of altered mtDNA in only one or a few cells at one moment. The child’s health depends on its future distribution across tissues and organs [@burr2024].",
+          "The PGT-mt result compares embryos using an agreed cut-off for the proportion of altered mtDNA; it does not diagnose the future child.",
+          "The test measures the proportion of altered mtDNA in only one or a few cells at one moment. The child’s health depends on its future distribution across tissues and organs.",
           "There is no universal “safe” percentage in medicine. Numbers in scientific papers were obtained in different ways: 18% is an estimate based on mutation levels in the muscle of adult carriers, and 30% is a working embryo-selection criterion of one clinical programme. Thresholds differ between mtDNA variants, and no number guarantees a healthy child. See chapter 6 of the Fundamentals for details."
         ]
       },
       {
         "title": "PGT-mt and chromosome testing (PGT-A)",
         "paragraphs": [
-          "The embryo’s chromosome number also matters for pregnancy and the child’s health. PGT-mt can be combined with PGT-A, a chromosome-number test, on the same sample. The doctor and family decide whether it is needed, taking the woman’s age into account [@spath2021].",
-          "With maternal age, the share of embryos with the correct chromosome number falls; this often limits selection more than mtDNA does [@volodyaev2025]."
+          "The embryo’s chromosome number also matters for pregnancy and the child’s health. PGT-mt can be combined with PGT-A, a chromosome-number test, on the same sample. The doctor and family decide whether it is needed, taking the woman’s age into account.",
+          "With maternal age, the share of embryos with the correct chromosome number falls; this often limits selection more than mtDNA does."
         ]
       },
       {
         "title": "The risk is reduced, not removed",
         "paragraphs": [
           "According to published data, PGT-mt reduces the risk of passing on the disease but does not remove it completely.",
-          "After any PGT-mt transfer, even if altered mtDNA was not detected in the biopsy, discuss prenatal diagnosis with the doctor in advance. “Not detected” means below the method’s sensitivity, not “0%” [@mavraki2023; @steffann2021].",
-          "There may be no embryo entirely without altered mtDNA. Doctors then plan follow-up during pregnancy and after birth in advance [@smeets2023].",
+          "After any PGT-mt transfer, even if altered mtDNA was not detected in the biopsy, discuss prenatal diagnosis with the doctor in advance. “Not detected” means below the method’s sensitivity, not “0%”.",
+          "There may be no embryo entirely without altered mtDNA. Doctors then plan follow-up during pregnancy and after birth in advance.",
           "Your doctor can also help prepare an individual plan for monitoring your child’s health and development after birth."
         ]
       },
@@ -861,9 +865,9 @@ const en: Dict = {
           "PGT-mt is only one possible route. Modern medicine also considers other options:"
         ],
         "items": [
-          "Prenatal diagnosis — testing during an established pregnancy. Chorionic villi or amniotic fluid are examined; this assessment of the proportion is uninformative in homoplasmy [@smeets2023; @steffann2021].",
-          "Donor oocytes (egg cells) — using eggs from a healthy donor. The child will not be genetically related to the mother [@smeets2023].",
-          "Mitochondrial donation — transfer of the patient’s nuclear material into a donor oocyte or zygote with non-pathogenic mtDNA. Availability depends on the country’s legislation. A small amount of maternal mtDNA may accompany the nuclear material, so risk is reduced but not eliminated [@tytgat2021; @steffann2025]."
+          "Prenatal diagnosis — testing during an established pregnancy. Chorionic villi or amniotic fluid are examined; this assessment of the proportion is uninformative in homoplasmy.",
+          "Donor oocytes (egg cells) — using eggs from a healthy donor. The child will not be genetically related to the mother.",
+          "Mitochondrial donation — transfer of the patient’s nuclear material into a donor oocyte or zygote with non-pathogenic mtDNA. Availability depends on the country’s legislation. A small amount of maternal mtDNA may accompany the nuclear material, so risk is reduced but not eliminated."
         ],
         "closingTitle": "How do you choose?",
         "closing": "There is no single solution for everyone. The best next step depends on the specific mtDNA variant, family history, technical possibilities and availability of methods. The final decision is always individual, made in an open discussion with your fertility specialist and geneticist."
@@ -903,7 +907,7 @@ const en: Dict = {
       "closing": "You can save or print this list, bring it to your appointment and add notes during the discussion with your doctor."
     },
     "glossary": {
-      "title": "Glossary",
+      "title": "Terms explained",
       "items": [
         [
           "mtDNA",

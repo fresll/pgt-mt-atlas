@@ -64,11 +64,10 @@ export default function Patients() {
           </section>
         ))}
         <Widget id="heteroplasmy" />
-        <Widget id="blastocyst" />
+        <Widget id="blastocyst" showReferences={false} />
         <section id="p-glossary">
           <h2>{c.glossary.title}</h2>
           <dl>{c.glossary.items.map(([term, definition]) => <div key={term}><dt><strong>{term}</strong></dt><dd>{definition}</dd></div>)}</dl>
-          <p><Inline s="[@stewart2015; @smeets2023; @rubens2025]" lang={lang} /></p>
         </section>
         <section id="p-questions" className="pt-questions">
           <h2>{c.questions.title}</h2>

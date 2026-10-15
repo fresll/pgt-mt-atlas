@@ -49,10 +49,10 @@ export default function Curator() {
           {c.bio[lang].map((p) => <p key={p.slice(0, 40)}>{p}</p>)}
           <p>
             {lang === 'ru' ? <>
-              Илья Олегович преподаёт ряд предметов в Медицинском университете Петровского, где заведует{' '}
+              Илья Олегович преподаёт в Медицинском университете Петровского, где заведует{' '}
               <a href={DEPARTMENT_URL} target="_blank" rel="noreferrer">кафедрой биологии и генетики</a>.
             </> : <>
-              Ilya Mazunin teaches several subjects at Petrovsky Medical University, where he heads the{' '}
+              Ilya Mazunin teaches at Petrovsky Medical University, where he heads the{' '}
               <a href={DEPARTMENT_URL} target="_blank" rel="noreferrer">Department of Biology and Genetics</a>.
             </>}
           </p>

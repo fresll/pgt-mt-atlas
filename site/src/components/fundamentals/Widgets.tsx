@@ -258,7 +258,7 @@ type Part = 'te' | 'icm' | 'bx'
 const PARTS: Part[] = ['te', 'icm', 'bx']
 const BX = geometry.blastocyst
 
-function BlastocystExplorer() {
+function BlastocystExplorer({ showReferences }: { showReferences: boolean }) {
   const t = useT()
   const lang = useLang()
   const [sel, setSel] = useState<Part>('te')
@@ -295,7 +295,7 @@ function BlastocystExplorer() {
               <div key={label}>
                 <dt>{t(`fundamentals.bx.${label}`)}</dt>
                 <dd>
-                  <Inline s={t(key)} lang={lang} />
+                  <Inline s={showReferences ? t(key) : t(key).replace(/\s*\[@[^\]]+\]/g, '')} lang={lang} />
                 </dd>
               </div>
             ))}
@@ -306,7 +306,7 @@ function BlastocystExplorer() {
   )
 }
 
-export function Widget({ id }: { id: WidgetId }) {
+export function Widget({ id, showReferences = true }: { id: WidgetId; showReferences?: boolean }) {
   switch (id) {
     case 'heteroplasmy':
       return <HeteroplasmyExplorer />
@@ -317,6 +317,6 @@ export function Widget({ id }: { id: WidgetId }) {
     case 'development':
       return <DevelopmentFigure />
     case 'blastocyst':
-      return <BlastocystExplorer />
+      return <BlastocystExplorer showReferences={showReferences} />
   }
 }

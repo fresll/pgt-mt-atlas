@@ -67,7 +67,7 @@ test('footer names the creator and curator, the data update date, the disclaimer
     const curator = footer.getByRole('link', { name: 'Создатель и куратор — Илья Мазунин' })
     await expect(curator, p).toHaveAttribute('href', /\/ru\/ilya-mazunin\/$/)
     await expect(footer, p).toContainText(`Данные обновлены ${date}`)
-    await expect(footer, p).toContainText('Атлас не заменяет консультацию врача-генетика и не оказывает медицинских консультаций.')
+    await expect(footer, p).toContainText('Атлас ПГТ-мт не заменяет консультацию врача-генетика. Создатель и куратор Атласа ПГТ-мт не оказывает медицинских консультаций.')
     await expect(footer.getByRole('navigation').getByRole('link'), p).toHaveText(['О проекте', 'Методы и ограничения', 'Источники', 'Исследователям: передать данные'])
   }
   await page.locator('footer.site').getByRole('link', { name: 'Создатель и куратор — Илья Мазунин' }).click()

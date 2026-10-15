@@ -1,5 +1,8 @@
-// Сведения о создателе и кураторе атласа. Источник — CV 2026 (profile/, в сборку не входит):
-// IlyaMazunin.DetailedCV.2026.pdf (EN) и ИльяМазунин.CV.2026.pdf (RU). Ничего сверх CV не добавлять.
+// Сведения о создателе и кураторе атласа. Источник — CV 2026 (profile/, в сборку не входит).
+// Биографический текст и замена публикации Iliushchenko 2025 утверждены куратором
+// в документе PTG-mt Atlas.docx от 15.10.2026.
+// Исходные CV:
+// IlyaMazunin.DetailedCV.2026.pdf (EN) и ИльяМазунин.CV.2026.pdf (RU). Остальные сведения сохранены по CV.
 // Содержание восстановлено из ветки atlas-preview (163fc61) и сверено с обоими CV 2026:
 // должности, предпринимательская деятельность, пособия (ISBN), 15 DOI и счётчики публикаций совпадают.
 // Расхождение между CV: для Tofilo et al., 2026 в EN CV указано «doi: in press», в RU CV и в наборе
@@ -24,8 +27,8 @@ export const creator = {
 
   /** Роль в проекте. */
   role: {
-    en: 'Ilya Mazunin created PGT-mt Atlas as an independent international resource that brings together published individual mtDNA heteroplasmy values from preimplantation genetic testing and shows the provenance of every value. He is solely responsible for the concept, data curation and development of the platform.',
-    ru: 'Илья Мазунин создал Атлас ПГТ-мт как самостоятельный международный ресурс, который собирает опубликованные индивидуальные значения гетероплазмии мтДНК при преимплантационном генетическом тестировании и показывает происхождение каждого значения. Он единолично отвечает за концепцию, курирование данных и развитие платформы.',
+    en: 'Ilya Mazunin created PGT-mt Atlas as an independent international resource that brings together published individual mtDNA heteroplasmy values from preimplantation genetic testing and shows the provenance of every value.',
+    ru: 'Илья Мазунин создал Атлас ПГТ-мт как самостоятельный международный ресурс, который собирает опубликованные индивидуальные значения гетероплазмии мтДНК при преимплантационном генетическом тестировании и показывает происхождение каждого значения.',
   } as Bilingual,
 
   /** Основные академические должности (для шапки и карточки на главной). */
@@ -36,11 +39,11 @@ export const creator = {
 
   bio: {
     en: [
-      'Ilya Mazunin is a geneticist and molecular biologist specialising in the role of the mitochondrial genome in health and disease.',
+      'Ilya Mazunin has devoted his scientific career to studying the human mitochondrial genome. Since his postgraduate studies, he has investigated pathogenic mtDNA variants associated with inherited diseases. Over the years, his research into the distribution of mtDNA mutations expanded to include their origins, technologies to prevent their inheritance, and methods for their gene therapy.',
       'His work includes, but is not limited to, developing tools for mtDNA editing based on CRISPR-Cas9, CRISPR-Cas12a and prokaryotic Argonautes, as well as approaches to preventing the inheritance of pathogenic mtDNA variants, including PGT-mt and mitochondrial donation.',
     ],
     ru: [
-      'Илья Мазунин — генетик и молекулярный биолог, специализирующийся на изучении роли генома митохондрий в норме и при патологиях.',
+      'Илья Мазунин всю научную жизнь специализируется на изучении генома митохондрий человека. Еще с аспирантуры изучал патогенные варианты мтДНК, связанные с различными наследственными болезнями. Спустя годы, изучение распространения мутаций в мтДНК дополнилось изучением природы их возникновения и разработкой как технологий предотвращения их наследования, так и методов их генной терапии.',
       'Работы Ильи Мазунина включают (но не ограничены) разработку инструментов для редактирования мтДНК на основе CRISPR-Cas9, CRISPR-Cas12a и прокариотических белков-аргонавтов, а также подходов к предотвращению наследования патогенных вариантов мтДНК, таких как ПГТ-мт и митохондриальная донация.',
     ],
   } as Record<'en' | 'ru', string[]>,
@@ -118,7 +121,7 @@ export const creator = {
     { topic: 'editing', year: 2022, authors: 'Shebanova R., Nikitchina N., Shebanov N., Mekler V., Kuznedelov K., Ulashchik E., Vasilev R., Sharko O., Shmanai V., Tarassov I., Severinov K., Entelis N., Mazunin I.', title: 'Efficient target cleavage by Type V Cas12a effector programmed with split CRISPR RNA', journal: 'Nucleic Acids Research', doi: '10.1093/nar/gkab1227' },
     { topic: 'mito', year: 2023, authors: 'Shamanskiy V., Mikhailova A.A., Tretiakov E.O., Ushakova K., Mikhailova A.G., Oreshkov S., Knorre D., Ri N., Overdevest J.B., Lukowski C-W., Gostimskaya I., Yurov V., Liuo S.W., Lin T-K., Kunz W., Reymond A., Mazunin I., Bazykin G.A., Fellay J., Tanaka M., Khrapko K., Gunbin K., Popadin K.', title: 'Secondary structure of the human mitochondrial genome affects formation of deletions', journal: 'BMC Biology', doi: '10.1186/s12915-023-01606-1' },
     { topic: 'mito', year: 2022, authors: 'Mikhaylova A.G., Mikhailova A.A., Ushakova K., Tretiakov E.O., Iliushchenko D., Shamansky V., Lobanova V., Kozenkov I., Efimenko B., Yurchenko A.A., Kozenkova E., Zdobnov E., Makeev V., Yurov V., Tanaka M., Gostimskaya I., Fleischmann Z., Annis S., Franco M., Wasko K., Denisov S., Kunz W., Knorre D., Mazunin I., Nikolaev S., Fellay J., Reymond A., Khrapko K., Gunbin K., Popadin K.', title: 'A mitochondria-specific mutational signature of aging: increased rate of A>G substitutions on a heavy strand', journal: 'Nucleic Acids Research', doi: '10.1093/nar/gkac779' },
-    { topic: 'mito', year: 2019, authors: 'Starikovskaya E.B., Shalaurova S.A., Dryomov S.V., Nazhmidenova A.M., Volodko N.V., Bychkov I.Y., Mazunin I.O., Sukernik R.I.', title: 'Mitochondrial DNA variation of Leber’s Hereditary Optic Neuropathy (LHON) in Western Siberia', journal: 'Cells', doi: '10.3390/cells8121574' },
+    { topic: 'mito', year: 2025, authors: 'Iliushchenko D., Efimenko B., Mikhailova A.G., Shamanskiy V., Saparbaev M.K., Matkarimov B.T., Mazunin I., Knorre D., Kunz W.S., Denisov S., Khrapko K., Fellay J., Gunbin K., Popadin K.', title: 'Deciphering the Foundations of Mitochondrial Mutational Spectra: Replication-Driven and Damage-Induced Signatures Across Chordate Classes', journal: 'Molecular Biology and Evolution', doi: '10.1093/molbev/msae261' },
   ] as Pub[],
 
   /** Публикаций в CV: оригинальных исследований и обзоров (подсчитано по EN CV 2026). */

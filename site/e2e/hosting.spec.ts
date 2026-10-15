@@ -41,7 +41,7 @@ for (const [host, root] of Object.entries(HOSTS)) {
         await expect(page.locator('html')).toHaveAttribute('lang', 'ru')
       }
       await open('')
-      await expectPhoto(page, '.sk-home img')
+      await expect(page.locator('.sk-home .sk-curator')).toHaveCount(0)
       await expectIllustration(page)
       await open('ilya-mazunin/')
       await expectPhoto(page, 'img.portrait')
@@ -166,13 +166,14 @@ test('English address keeps query and hash; after hydration client-side /en/ lin
   await expect(page.locator('.detail')).toContainText('f3-183')
 })
 
-test('pages fit phone and wide screens with visible photo and chart', async ({ page }) => {
+test('pages fit phone and wide screens with visible illustrations, portrait and charts', async ({ page }) => {
   for (const width of [390, 820, 1920]) {
     await page.setViewportSize({ width, height: 900 })
     for (const p of ['ru/', 'ru/ilya-mazunin/', 'ru/science/heteroplasmy-landscape/', 'ru/science/pgt-mt-pgt-a-model/']) {
       await page.goto(`http://localhost:4174/pgt-mt-atlas/${p}`)
       if (p.includes('science')) await expect(page.locator('.chart-frame .js-plotly-plot').first()).toBeVisible({ timeout: 20_000 })
-      else await expectPhoto(page, p.includes('ilya') ? 'img.portrait' : '.sk-home img')
+      else if (p.includes('ilya')) await expectPhoto(page, 'img.portrait')
+      else await expectIllustration(page)
       const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)
       expect(overflow, `${width} ${p}`).toBeLessThanOrEqual(0)
     }
