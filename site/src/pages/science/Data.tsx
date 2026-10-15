@@ -8,7 +8,7 @@ import { asset } from '../../lib/base'
 import { ObservationDetail } from './Fig3'
 import { PageTitle } from '../../components/Layout'
 
-const CSV = ['publication', 'variant', 'embryo', 'sample', 'measurement', 'offspring_measurement', 'figure_membership', 'verification']
+const CSV = ['publication', 'variant', 'embryo', 'sample', 'measurement', 'offspring_measurement', 'analysis_membership', 'verification']
 
 export default function Data() {
   const t = useT()
@@ -77,13 +77,16 @@ export default function Data() {
         selected={selected}
         onSelect={(o) => setSelected(o.id)}
         csvName="pgt-mt-atlas_embryos.csv"
-        csvRow={(o) => ({ id: o.id, legacy_id: o.legacy_id, variant: o.variant, value_pct: o.value, qualifier: o.q, low: o.low, high: o.high, lod_pct: o.lod, publication: o.pub, doi: pubById[o.pub]?.doi, pub_status: pubById[o.pub]?.pub_status, stage: o.stage, stage_raw: o.stage_raw, sample_type: o.sample, material_raw: o.material_raw, derivation: o.derivation, note: o.note, sheet: o.src.sheet, row: o.src.row })}
+        csvRow={(o) => ({ id: o.id, legacy_id: o.legacy_id, variant: o.variant, value_pct: o.value, qualifier: o.q, low: o.low, high: o.high, lod_pct: o.lod, publication: o.pub, pmid: pubById[o.pub]?.pmid, source_locator: o.source_locator, doi: pubById[o.pub]?.doi, pub_status: pubById[o.pub]?.pub_status, stage: o.stage, stage_raw: o.stage_raw, sample_type: o.sample, material_raw: o.material_raw, derivation: o.derivation, note: o.note, sheet: o.src.sheet, row: o.src.row })}
         columns={[
           { key: 'id', header: 'ID', render: (o) => o.id, sort: (o) => o.id },
           { key: 'v', header: t('common.variant'), render: (o) => o.variant, sort: (o) => o.variant },
           { key: 'val', header: t('common.value'), render: (o) => obsValueText(o, lang, t), sort: (o) => (o.q === 'interval' ? o.high : o.value), num: true },
           { key: 'p', header: t('common.source'), render: (o) => pubById[o.pub].short, sort: (o) => o.pub },
           { key: 'doi', header: 'DOI', render: (o) => pubById[o.pub].doi ?? '—', sort: (o) => pubById[o.pub].doi },
+          { key: 'pmid', header: 'PMID', render: (o) => pubById[o.pub].pmid ?? '—', sort: (o) => pubById[o.pub].pmid },
+          { key: 'atlasrow', header: t('data.atlasRow', { row: '' }), render: (o) => o.src.row },
+          { key: 'locator', header: t('data.locator'), render: (o) => o.source_locator ?? '—' },
           { key: 'st', header: t('common.stage'), render: (o) => label('stage', o.stage, lang), sort: (o) => o.stage },
           { key: 'sm', header: t('common.sample'), render: (o) => label('sample_type', o.sample, lang), sort: (o) => o.sample },
           { key: 'd', header: t('common.derivation'), render: (o) => label('derivation', o.derivation, lang), sort: (o) => o.derivation },

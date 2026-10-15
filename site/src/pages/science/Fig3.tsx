@@ -125,7 +125,9 @@ export default function Fig3() {
       ? [hline(threshold, th.accent, 'solid', 1.6)]
       : [band(0, 18, th.bandGreen), band(18, 30, th.bandBlue), band(70, 100, th.bandRed), hline(18, th.muted, 'dash'), hline(70, th.muted, 'dash'), hline(30, th.s1, 'dash'), hline(1, th.critical, 'dot')]
     const marker = { size: 8, line: { width: 1, color: th.surface } }
+    const special = obs.filter(o => o.non_candidate && o.value !== null)
     const data = [
+      ...special.map(o => ({ type: 'scatter', mode: 'markers', x: [blocks.flatMap(b => b.columns).find(c => c.obs.includes(o))?.x], y: [o.value], customdata: [o.id], text: [`${o.id}: ${o.non_candidate} — ${o.note}`], hovertemplate: '%{text}<extra></extra>', marker: { symbol: 'diamond-open', size: 14, color: th.ink, line: { width: 2 } } })),
       { type: 'scatter', mode: 'markers', x: filled.x, y: filled.y, customdata: filled.ids, text: filled.text, hovertemplate: '%{text}<extra></extra>', marker: { ...marker, color: th.ink } },
       { type: 'scatter', mode: 'markers', x: hollow.x, y: hollow.y, customdata: hollow.ids, text: hollow.text, hovertemplate: '%{text}<extra></extra>', marker: { size: 8, color: th.surface, line: { width: 1.6, color: th.ink } } },
       { type: 'scatter', mode: 'markers', x: hoverIv.x, y: hoverIv.y, customdata: hoverIv.ids, text: hoverIv.text, hovertemplate: '%{text}<extra></extra>', marker: { size: 14, opacity: 0 } },
@@ -262,7 +264,7 @@ export default function Fig3() {
           selected={selected}
           onSelect={(o) => setSelected(o.id)}
           csvName="pgt-mt-atlas_heteroplasmy-landscape.csv"
-          csvRow={(o) => ({ id: o.id, variant: o.variant, value_pct: o.value, qualifier: o.q, low: o.low, high: o.high, publication: o.pub, doi: pubById[o.pub]?.doi, stage: o.stage, stage_raw: o.stage_raw, sample_type: o.sample, material_raw: o.material_raw, derivation: o.derivation, sheet: o.src.sheet, row: o.src.row })}
+          csvRow={(o) => ({ id: o.id, variant: o.variant, value_pct: o.value, qualifier: o.q, low: o.low, high: o.high, publication: o.pub, doi: pubById[o.pub]?.doi, pmid: pubById[o.pub]?.pmid, source_locator: o.source_locator, stage: o.stage, stage_raw: o.stage_raw, sample_type: o.sample, material_raw: o.material_raw, derivation: o.derivation, sheet: o.src.sheet, row: o.src.row })}
           columns={[
             { key: 'id', header: 'ID', render: (o) => o.id, sort: (o) => o.id },
             { key: 'variant', header: t('common.variant'), render: (o) => o.variant, sort: (o) => o.variant },

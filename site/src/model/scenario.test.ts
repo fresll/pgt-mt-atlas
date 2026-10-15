@@ -3,11 +3,11 @@ import { atlas, fractionAtOrBelow, obsByVariant } from '../data/atlas'
 import { betaBinomialAtLeastOne, curve, independentAtLeastOne, jointBounds, pAtLeastOne, pBoth, scenarioProbability, wilson95 } from './scenario'
 
 describe('scenario model (Figure 6)', () => {
-  it('reproduces the manuscript example: m.3243A>G, age 35 → ≈24 / 55 / 80 % for N = 1 / 3 / 6', () => {
+  it('uses the corrected observed m.3243A>G share with E = 0.5 for N = 1 / 3 / 6', () => {
     const { k, n } = fractionAtOrBelow(obsByVariant().get('m.3243A>G')!, 18)
-    expect([k, n]).toEqual([41, 87])
+    expect([k, n]).toEqual([41, 88])
     const got = [1, 3, 6].map((N) => Math.round(pAtLeastOne(k / n, 0.5, N) * 100))
-    expect(got).toEqual([24, 55, 80])
+    expect(got).toEqual([23, 55, 80])
   })
 
   it('uses observed fractions that match the ETL statistics', () => {

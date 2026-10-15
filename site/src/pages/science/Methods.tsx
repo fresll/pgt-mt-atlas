@@ -16,8 +16,7 @@ export default function Methods() {
     concordance_records: ['записи по фракциям бластоцист', 'blastocyst fraction records'],
     cleavage_embryos: ['эмбрионы стадии дробления (два бластомера)', 'cleavage-stage embryos (two blastomeres)'],
     offspring_records: ['записи «эмбрион → потомство»', 'embryo → offspring records'],
-    offspring_children: ['дети в записях «эмбрион → потомство»', 'children in embryo → offspring records'],
-    offspring_children_exact_pair: ['дети с точной парой «перенесённый эмбрион — ткань»', 'children with an exact transferred-embryo–tissue pair'],
+    offspring_children_exact_pair: ['плоды и дети с точной парой «перенесённый эмбрион — ткань»', 'fetuses and children with an exact transferred-embryo–tissue pair'],
     publications: ['публикации', 'publications'],
   }
   const ROLE: Record<string, [string, string]> = {
@@ -34,8 +33,8 @@ export default function Methods() {
       <h2>{ru ? 'Что собрано' : 'What was collected'}</h2>
       <p>
         {ru
-          ? `Значения гетероплазмии извлечены из первичных публикаций для эмбрионов, по которым опубликованы индивидуальные значения. В текущей версии: ${c.landscape_values} значений для ${c.landscape_variants} исследуемых вариантов мтДНК; ${c.concordance_blastocysts} бластоцист с измерениями нескольких фракций (биоптат ТЭ, ВКМ, оставшаяся ТЭ или объединённая фракция ВКМ+ТЭ); постимплантационные данные ${c.offspring_children_exact_pair} детей, для которых известен уровень в перенесённом эмбрионе. Значения берутся из первичных публикаций; обзоры использованы только там, где оригинал недоступен, и это отмечено.`
-          : `Heteroplasmy values were extracted from primary publications for the embryos whose individual values were published. Current version: ${c.landscape_values} values for the ${c.landscape_variants} mtDNA variants included in the dataset; ${c.concordance_blastocysts} blastocysts with several fractions measured (TE biopsy, ICM, remaining TE or a combined ICM+TE fraction); post-implantation data for ${c.offspring_children_exact_pair} children whose transferred-embryo level is known. Values come from primary publications; reviews were used only where the original is unavailable, and this is flagged.`}
+          ? `Значения гетероплазмии извлечены из первичных публикаций для эмбрионов, по которым опубликованы индивидуальные значения. В текущей версии: ${c.landscape_values} значений для ${c.landscape_variants} исследуемых вариантов мтДНК; ${c.concordance_blastocysts} бластоцист с измерениями нескольких фракций (биоптат ТЭ, ВКМ, оставшаяся ТЭ или объединённая фракция ВКМ+ТЭ); постимплантационные данные ${c.offspring_children_exact_pair} плодов и детей, для которых известен уровень в перенесённом эмбрионе. Значения берутся из первичных публикаций; обзоры использованы только там, где оригинал недоступен, и это отмечено.`
+          : `Heteroplasmy values were extracted from primary publications for the embryos whose individual values were published. Current version: ${c.landscape_values} values for the ${c.landscape_variants} mtDNA variants included in the dataset; ${c.concordance_blastocysts} blastocysts with several fractions measured (TE biopsy, ICM, remaining TE or a combined ICM+TE fraction); post-implantation data for ${c.offspring_children_exact_pair} fetuses and children whose transferred-embryo level is known. Values come from primary publications; reviews were used only where the original is unavailable, and this is flagged.`}
       </p>
       <p>
         {ru
@@ -43,6 +42,7 @@ export default function Methods() {
           : 'Publications do not always report values for every embryo of a cycle, so the dataset does not equal the full number of embryos in the cycles. A clinical success rate of PGT-mt cannot be calculated from cases pooled across publications.'}
       </p>
 
+      <p>{t('data.countSummary', { records: atlas.fig5.length, pairs: atlas.stats.fig5.n_pairs, children: atlas.stats.fig5.n_children, pubs: atlas.publications.length, embryoPubs: new Set(atlas.fig3.map(o => o.pub)).size })}</p>
       <h2>{ru ? 'Объём данных' : 'Dataset size'}</h2>
       <div className="table-wrap">
         <table className="data" data-testid="release-counts">

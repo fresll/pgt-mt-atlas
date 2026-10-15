@@ -20,7 +20,7 @@ export default function Home() {
   const ledger: [number, string][] = [
     [s.fig3.n, t('home.k1')],
     [s.fig4.n_embryos, t('home.k2')],
-    [s.fig5.n_pairs, t('home.k3', { children: s.fig5.n_children })],
+    [s.fig5.n_pairs, t('home.k3', { children: s.fig5.n_children, ndChildren: s.fig5.n_both_nd_children })],
     [atlas.publications.length, t('home.k4')],
   ]
   return (

@@ -1,0 +1,136 @@
+locators:
+  treff2012: Table 1
+  spath2021: Supplemental Table 3; p. 1526, Results of Clinical Application
+  monnot2011: Table 3
+  heindryckx2014: Table 1
+  hyslop2025: Table 1, PGT
+  mizuguchi2025: Fig. 2A
+  ji2021: Table 3
+  tofilo2026: ESM 2, Supplementary Table S2
+  sallevelt2017: Fig. 2 / Supplementary Table SI
+  sallevelt2013: Tables 1–2
+  rubens2025: Supplementary Table S1
+  hu2026: Supplementary Table S1
+  steffann2006: Table 1 / Fig. 1
+  thorburn2009: Conference abstract; values via Castelluccio 2025 / Smeets 2023 (primary full text unavailable)
+record_embryos:
+  HL-ji2021-001: '2.11'
+  HL-ji2021-002: '1.10'
+  HL-ji2021-003: '1.6'
+  HL-ji2021-004: '1.2'
+  HL-ji2021-005: '2.4'
+  HL-ji2021-006: 2.3 (mean of six blastomeres)
+  HL-ji2021-008: '2.6'
+  HL-ji2021-009: '2.7'
+  HL-ji2021-010: '2.1'
+  HL-ji2021-011: '1.7'
+  HL-ji2021-012: '2.2'
+  HL-ji2021-013: '1.1'
+  HL-ji2021-014: '2.8'
+  HL-ji2021-015: '1.4'
+  HL-ji2021-016: '1.5'
+  HL-ji2021-017: '1.8'
+  HL-ji2021-018: '1.11'
+  HL-ji2021-019: '1.3'
+  HL-ji2021-020: 2.9 (six blastomeres) / 2.10 (TE); identity within equal values unresolved
+  HL-ji2021-021: 2.9 (six blastomeres) / 2.10 (TE); identity within equal values unresolved
+  HL-tofilo2026-001: '1'
+  HL-tofilo2026-002: '3'
+  HL-tofilo2026-003: '6'
+  HL-tofilo2026-004: '5'
+  HL-tofilo2026-005: '4'
+  HL-tofilo2026-006: '2'
+  HL-heindryckx2014-001: 3 / 11 (identity within ND records unresolved)
+  HL-heindryckx2014-002: '1'
+  HL-heindryckx2014-003: '2'
+  HL-heindryckx2014-004: 3 / 11 (identity within ND records unresolved)
+  HL-heindryckx2014-005: '4'
+  HL-heindryckx2014-006: '5'
+  HL-heindryckx2014-007: '6'
+  HL-heindryckx2014-008: '7'
+  HL-heindryckx2014-009: '8'
+  HL-heindryckx2014-010: '9'
+  HL-heindryckx2014-011: '10'
+  HL-treff2012-001: cleavage sample 1
+  HL-treff2012-002: blastocyst sample 8
+  HL-treff2012-005: cleavage sample 5
+  HL-treff2012-006: blastocyst sample 6
+  HL-treff2012-007: cleavage sample 4
+  HL-treff2012-008: morula sample 1
+  HL-treff2012-009: cleavage sample 3
+  HL-treff2012-010: blastocyst sample 7
+  HL-treff2012-011: blastocyst sample 2
+  HL-treff2012-012: blastocyst sample 5
+  HL-treff2012-013: cleavage sample 2
+  HL-treff2012-014: blastocyst sample 4
+  HL-treff2012-015: blastocyst sample 3
+  HL-treff2012-016: morula sample 2
+  HL-treff2012-003: blastocyst sample 1
+  HL-treff2012-004: cleavage sample 6
+  HL-spath2021-013: D9
+  HL-spath2021-014: D19 (mean halves 4.6/6.8)
+  HL-spath2021-015: D3
+  HL-spath2021-016: D1
+  HL-spath2021-017: D2 (mean halves 37.0/35.6)
+  HL-spath2021-018: D8 (mean halves 37.1/36.9)
+  HL-spath2021-019: D17 (mean halves 39.6/36.4)
+  HL-sallevelt2017-001: cycle 2 embryo 1
+  HL-sallevelt2017-002: cycle 2 embryo 13 (3PN)
+  HL-sallevelt2017-003: cycle 2 embryo 7
+  HL-sallevelt2017-004: cycle 2 embryo 9
+  HL-sallevelt2017-005: cycle 2 embryo 11
+  HL-sallevelt2017-006: cycle 2 embryo 14 (3PN)
+  HL-sallevelt2017-007: cycle 1 embryo 4
+  HL-sallevelt2017-008: cycle 1 embryo 8
+  HL-sallevelt2017-009: cycle 1 embryo 7
+  HL-sallevelt2017-010: cycle 2 embryo 10
+  HL-sallevelt2017-011: cycle 2 embryo 6
+  HL-sallevelt2017-012: cycle 2 embryo 2
+  HL-sallevelt2017-013: cycle 1 embryo 5
+  HL-sallevelt2017-014: cycle 1 embryo 3
+  HL-sallevelt2017-015: cycle 1 embryo 6
+  HL-sallevelt2017-016: cycle 1 embryo 2
+  HL-sallevelt2017-017: cycle 2 embryo 4
+  HL-sallevelt2017-018: cycle 2 embryo 3
+  HL-sallevelt2017-019: cycle 1 embryo 1
+  HL-sallevelt2017-020: cycle 2 embryo 5
+  HL-sallevelt2017-021: cycle 2 embryo 8
+  HL-sallevelt2017-022: cycle 2 embryo 12 (3PN)
+  HL-monnot2011-001: patient 2 embryos 1–6
+  HL-monnot2011-002: patient 2 embryos 1–6
+  HL-monnot2011-003: patient 2 embryos 1–6
+  HL-monnot2011-004: patient 2 embryos 1–6
+  HL-monnot2011-005: patient 2 embryos 1–6
+  HL-monnot2011-006: patient 2 embryos 1–6
+  HL-monnot2011-007: patient 2 embryo 7
+  HL-monnot2011-008: patient 2 embryo 8
+  HL-monnot2011-009: patient 2 embryo 9
+  HL-monnot2011-010: patient 2 embryo 10
+  HL-monnot2011-011: patient 2 embryo 11
+  HL-monnot2011-012: patient 2 embryo 12
+  HL-monnot2011-013: patient 2 embryo 13
+  HL-monnot2011-014: patient 1 embryo 1
+  HL-monnot2011-015: patient 1 embryo 2 / patient 2 embryos 14–15
+  HL-monnot2011-016: patient 1 embryo 2 / patient 2 embryos 14–15
+  HL-monnot2011-017: patient 1 embryo 2 / patient 2 embryos 14–15
+  HL-monnot2011-018: patient 2 embryo 16
+  HL-monnot2011-019: patient 2 embryo 17
+  HL-monnot2011-020: patient 2 embryo 18
+  HL-monnot2011-021: patient 2 embryos 19–20
+  HL-monnot2011-022: patient 2 embryos 19–20
+  HL-monnot2011-023: patient 2 embryo 21
+  HL-monnot2011-024: patient 2 embryo 22
+  HL-monnot2011-025: patient 2 embryo 23
+  HL-monnot2011-026: patient 1 embryo 3 / patient 2 embryos 24–27
+  HL-monnot2011-027: patient 1 embryo 3 / patient 2 embryos 24–27
+  HL-monnot2011-028: patient 1 embryo 3 / patient 2 embryos 24–27
+  HL-monnot2011-029: patient 1 embryo 3 / patient 2 embryos 24–27
+  HL-monnot2011-030: patient 1 embryo 3 / patient 2 embryos 24–27
+  HL-monnot2011-031: patient 2 embryo 28
+  HL-monnot2011-032: patient 2 embryo 29
+  HL-monnot2011-033: patient 2 embryo 30
+  HL-monnot2011-034: patient 2 embryo 31
+  HL-monnot2011-035: patient 2 embryo 32
+  HL-monnot2011-036: patient 2 embryo 33
+  HL-monnot2011-037: patient 2 embryo 34
+  HL-monnot2011-038: patient 2 embryo 35

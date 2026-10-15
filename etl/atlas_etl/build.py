@@ -77,7 +77,7 @@ def load_publications() -> Pubs:
             'id': p['id'],
             'review_ref_no': p['review_ref_no'],
             'short': p['short'],
-            'citation': ref['citation'],
+            'citation': p.get('citation_override', ref['citation']),
             'doi': ref['doi'],
             'pmid': p.get('pmid'),
             'pub_status': p['pub_status'],
@@ -174,6 +174,7 @@ def read_fig3(ws, pubs: Pubs, vocab: Vocab, rules) -> list[dict]:
                 derivation, evidence = d['derivation'], d['evidence']
         lod = lods.get(pub)
         out.append({
+            'carrier_id': None,
             'id': None,
             'variant': variant,
             'pub': pub,
@@ -193,6 +194,54 @@ def read_fig3(ws, pubs: Pubs, vocab: Vocab, rules) -> list[dict]:
             'src': {'sheet': 'Рисунок 3', 'row': i},
         })
     return out
+
+
+def apply_landscape_corrections(records, corrections):
+    """Validate source fingerprints before applying independently sourced curation."""
+    excluded = []
+    for c in corrections:
+        if not c['source'].get('locator') or not c['source'].get('publication'):
+            raise EtlError(f"{c['id']}: missing primary-source attribution")
+        matches = [r for r in records if r['src'] == c['target']]
+        if len(matches) != 1:
+            raise EtlError(f"{c['id']}: expected one source row")
+        r = matches[0]
+        if c['source']['publication'] not in r.get('pubs', [r.get('pub')]):
+            raise EtlError(f"{c['id']}: source publication mismatch")
+        if any(r.get(k) != v for k, v in c['expected'].items()):
+            raise EtlError(f"{c['id']}: Исходник изменился")
+        r.setdefault('source_fingerprint', fingerprint('fig3', r))
+        r.setdefault('correction_ids', []).append(c['id'])
+        r['source_locator'] = c['source']['locator']
+        if c['action'] == 'split':
+            records.remove(r)
+            for value in c['values']:
+                item = {**r, 'value': value, 'source_fingerprint': {**r['source_fingerprint'], 'value': value},
+                        'parent_id': c['original_id'], 'note': c['note'], 'derivation': 'as_reported_in_dataset'}
+                records.append(item)
+        elif c['action'] == 'exclude':
+            records.remove(r)
+            excluded.append({**r, 'id': c['original_id'], 'reason': c['reason']})
+        elif c['action'] == 'update':
+            r.update(c['set'])
+        else:
+            raise EtlError(f"{c['id']}: unknown correction action")
+    return excluded
+
+
+def apply_case_corrections(records, corrections):
+    for c in corrections:
+        matches = [r for r in records if r.get('row', r['src']['row']) == c['row']]
+        if len(matches) != 1 or not c['source'].get('locator') or not c['source'].get('publication'):
+            raise EtlError(f"{c['id']}: invalid case correction")
+        r = matches[0]
+        if c['source']['publication'] not in r.get('pubs', [r.get('pub')]):
+            raise EtlError(f"{c['id']}: source publication mismatch")
+        if any(r.get(k) != v for k, v in c['expected'].items()):
+            raise EtlError(f"{c['id']}: Исходник изменился")
+        r.update(c['set'])
+        r['source_locator'] = c['source']['locator']
+        r['correction_id'] = c['id']
 
 
 def read_fig4(ws, pubs: Pubs, vocab: Vocab) -> list[dict]:
@@ -266,7 +315,7 @@ def read_fig5(ws, pubs: Pubs, vocab: Vocab) -> list[dict]:
         rec = {
             'id': cid, 'child': re.match(r'C\d+', str(child)).group(0), 'pub': pub, 'variant': variant,
             'phase': vocab.phase(phase), 'tissue': vocab.tissue(tissue_raw), 'tissue_raw': tissue_raw,
-            'age': age, 'method': method, 'in_figure': on_plot == 'да', 'on_plot_raw': on_plot,
+            'age': age, 'method': method, 'in_figure': on_plot == 'да', 'on_plot_raw': on_plot.replace('exact-pair plot', 'набора точных пар'),
             'src': {'sheet': 'Рисунок 5', 'row': i},
         }
         if isinstance(emb, (int, float)):
@@ -290,6 +339,17 @@ def read_fig5_notes(ws) -> list[dict]:
     for i, r in rows(ws, 29, ws.max_row):
         if isinstance(r[0], str) and not re.fullmatch(r'C\d+[a-z]?', r[0]) and r[0] != 'Case ID':
             notes.append({'row': i, 'text': r[0]})
+    return notes
+
+
+def apply_offspring_note_corrections(notes, corrections, stats):
+    for correction in corrections:
+        matches = [n for n in notes if n['row'] == correction['row']]
+        if len(matches) != 1 or matches[0]['text'] != correction['expected']:
+            raise EtlError(f"{correction['id']}: source note changed")
+        if not correction['source'].get('publication') or not correction['source'].get('locator'):
+            raise EtlError('Missing offspring-note provenance')
+        matches[0].update(text=correction['text'].format(**stats), correction_id=correction['id'], source=correction['source'])
     return notes
 
 
@@ -458,6 +518,8 @@ ID_KINDS = {
 
 
 def fingerprint(kind: str, rec: dict) -> dict:
+    if 'source_fingerprint' in rec:
+        return rec['source_fingerprint']
     fields = ID_KINDS[kind][1]
     src = {**rec, 'value': rec.get('value_source', rec.get('value'))}
     return {k: src.get(k) for k in fields}
@@ -555,6 +617,8 @@ def derive_stats(fig3, fig4, cleav, fig5, fig6_sheet, rules) -> dict:
     plotted = [p for p in fig5 if p['in_figure']]
     low = [p for p in plotted if p['emb'] <= 18]
     conc = [p for p in low if p['value'] <= 18]
+    low_children = {p['child'] for p in low}
+    discordant_children = {p['child'] for p in low if p not in conc}
     # сверка листа «Рисунок 6» (округлённые p_гет) с долями из набора
     fig6_check = []
     for r in fig6_sheet:
@@ -570,7 +634,11 @@ def derive_stats(fig3, fig4, cleav, fig5, fig6_sheet, rules) -> dict:
                  'share_le5_all': sum(x <= 5 for x in rng.values()) / len(rng),
                  'n_cleavage': len(cleav), 'median_range_cleavage': statistics.median(c['range'] for c in cleav),
                  'max_range_cleavage': max(c['range'] for c in cleav)},
-        'fig5': {'n_pairs': len(plotted), 'n_children': len({p['child'] for p in plotted}),
+        'fig5': {'n_records': len(fig5), 'n_low_children': len(low_children),
+                 'n_concordant_children': len(low_children - discordant_children),
+                 'n_both_nd_pairs': sum(p['q'] == p['emb_q'] == 'not_detected' for p in plotted),
+                 'n_both_nd_children': len({p['child'] for p in plotted if p['q'] == p['emb_q'] == 'not_detected'}),
+                 'n_pairs': len(plotted), 'n_children': len({p['child'] for p in plotted}),
                  'n_low_embryo': len(low), 'n_concordant_low': len(conc),
                  'discordant_ids': [p['id'] for p in low if p not in conc]},
         'fig6_sheet_check': fig6_check,
@@ -638,7 +706,7 @@ def current_counts(fig3, fig4, cleav, fig5, used_pubs) -> dict:
 # ---------------------------------------------------------------- нормализованные таблицы (CSV)
 
 def normalized_tables(pubs, fig3, fig4, cleav, fig5, vocab):
-    publication = [{k: p[k] for k in ('id', 'review_ref_no', 'short', 'doi', 'pmid', 'pub_status',
+    publication = [{k: p[k] for k in ('id', 'short', 'doi', 'pmid', 'pub_status',
                                       'published_date', 'citation')} for p in pubs.by_id.values()]
     variants = sorted({m['variant'] for m in fig3} | {f['variant'] for f in fig4} | {p['variant'] for p in fig5})
     vc = load_yaml('curation/variant_classification.yaml')
@@ -655,8 +723,9 @@ def normalized_tables(pubs, fig3, fig4, cleav, fig5, vocab):
         measurement.append({'measurement_id': m['id'], 'legacy_id': m['legacy_id'], 'sample_id': sid, 'value_pct': m['value'], 'qualifier': m['q'],
                             'value_low_pct': m['low'], 'value_high_pct': m['high'], 'lod_pct': m['lod'],
                             'derivation': m['derivation'], 'note_raw': m['note'],
+                            'source_locator': m.get('source_locator'), 'carrier_id': m.get('carrier_id'),
                             'src_sheet': m['src']['sheet'], 'src_row': m['src']['row']})
-        membership.append({'figure': 'fig3', 'record_id': m['id'], 'included': True, 'exclusion_reason': None})
+        membership.append({'analysis': 'landscape', 'record_id': m['id'], 'included': True, 'exclusion_reason': None})
     seen = set()
     for f in fig4:
         eid = 'emb-' + f['embryo']
@@ -674,7 +743,7 @@ def normalized_tables(pubs, fig3, fig4, cleav, fig5, vocab):
                             'fraction_source': f.get('fraction_source', f['fraction']),
                             'correction_ids': ';'.join(f.get('corrections', [])) or None,
                             'src_sheet': f['src']['sheet'], 'src_row': f['src']['row']})
-        membership.append({'figure': 'fig4', 'record_id': mid, 'included': True, 'exclusion_reason': None})
+        membership.append({'analysis': 'concordance', 'record_id': mid, 'included': True, 'exclusion_reason': None})
     for c in cleav:
         eid = 'emb-' + c['embryo']
         embryo.append({'embryo_id': eid, 'publication_id': c['pub'], 'variant_id': c['variant'],
@@ -688,7 +757,7 @@ def normalized_tables(pubs, fig3, fig4, cleav, fig5, vocab):
                                 'value_high_pct': None, 'lod_pct': c['lod'] if c[k] == 0 else None,
                                 'derivation': 'as_reported_in_dataset', 'note_raw': None,
                                 'src_sheet': c['src']['sheet'], 'src_row': c['src']['row']})
-            membership.append({'figure': 'fig4C', 'record_id': mid, 'included': True, 'exclusion_reason': None})
+            membership.append({'analysis': 'cleavage-concordance', 'record_id': mid, 'included': True, 'exclusion_reason': None})
     offspring_measurement = []
     for p in fig5:
         offspring_measurement.append({
@@ -696,13 +765,16 @@ def normalized_tables(pubs, fig3, fig4, cleav, fig5, vocab):
             'embryo_value_pct': p['emb'], 'embryo_qualifier': p['emb_q'], 'embryo_raw': p['emb_raw'],
             'phase': p['phase'], 'tissue': p['tissue'], 'tissue_raw': p['tissue_raw'], 'value_pct': p['value'],
             'qualifier': p['q'], 'value_raw': p['value_raw'], 'age_raw': p['age'], 'method_raw': p['method'],
-            'delta_pp': round(p['value'] - p['emb'], 10) if p['in_figure'] else None,
+            'delta_pp': round(p['value'] - p['emb'], 10) if p['in_figure'] and not (p['q'] == p['emb_q'] == 'not_detected') else None,
+            'delta_qualifier': ('both_not_detected' if p['q'] == p['emb_q'] == 'not_detected' else 'lower_bound' if p['q'] == 'not_detected' else 'upper_bound' if p['emb_q'] == 'not_detected' else 'exact') if p['in_figure'] else None,
+            'pmid': pubs.by_id[p['pub']]['pmid'], 'source_locator': p.get('source_locator'),
+            'carrier_id': p.get('carrier_id'), 'lod_pct': p.get('lod'), 'embryo_lod_pct': p.get('emb_lod'),
             'src_sheet': p['src']['sheet'], 'src_row': p['src']['row']})
-        membership.append({'figure': 'fig5', 'record_id': p['id'], 'included': p['in_figure'],
+        membership.append({'analysis': 'offspring', 'record_id': p['id'], 'included': p['in_figure'],
                            'exclusion_reason': None if p['in_figure'] else p['on_plot_raw']})
     return {'publication': publication, 'variant': variant, 'embryo': embryo, 'sample': sample,
             'measurement': measurement, 'offspring_measurement': offspring_measurement,
-            'figure_membership': membership}
+            'analysis_membership': membership}
 
 
 def write_csv(path: Path, records: list[dict]):
@@ -723,12 +795,31 @@ def build(allow_new_ids: bool = False) -> dict:
     wb = openpyxl.load_workbook(SOURCE_XLSX, data_only=True)
     fig3 = read_fig3(wb['Рисунок 3'], pubs, vocab, rules)
     fig4 = read_fig4(wb['Рисунок 4'], pubs, vocab)
-    corrections = apply_corrections(fig4, load_yaml('curation/corrections.yaml')['corrections'])
+    correction_layer = load_yaml('curation/corrections.yaml')
+    corrections = apply_corrections(fig4, correction_layer['corrections'])
+    excluded_landscape = apply_landscape_corrections(fig3, correction_layer['landscape_corrections'])
     cleav = read_cleavage(wb['Бластомеры (дробление)'], pubs, rules)
     fig5 = read_fig5(wb['Рисунок 5'], pubs, vocab)
+    apply_case_corrections(fig5, correction_layer['offspring_corrections'])
+    for record in correction_layer['offspring_additions']:
+        if record['source']['publication'] != record['pub'] or not record['source']['locator']:
+            raise EtlError('Invalid offspring augmentation provenance')
+        if any(p['id'] == record['id'] for p in fig5):
+            raise EtlError('Duplicate offspring ID')
+        fig5.append(record)
+    locators = load_yaml('curation/provenance.yaml')['locators']
+    for record in [*fig3, *fig4, *fig5]:
+        primary = locators.get(record['pub'])
+        if primary:
+            record['source_locator'] = primary + (('; embryo ' + record['embryo']) if 'embryo' in record else '') + ('; ' + record['source_locator'] if record.get('source_locator') else '')
     registry, new_ids = assign_ids({'fig3': fig3, 'fig4': fig4, 'cleavage': cleav}, load_registry(), allow_new_ids,
                                    dt.date.today().isoformat())
+    for record in fig3:
+        embryo = load_yaml('curation/provenance.yaml')['record_embryos'].get(record['id'])
+        if embryo:
+            record['source_locator'] += '; embryo / sample: ' + embryo
     table1 = read_table1(wb['Таблица 1'], pubs)
+    apply_case_corrections(table1, correction_layer['case_corrections'])
     fig6_sheet = read_fig6_sheet(wb['Рисунок 6'])
     stats = derive_stats(fig3, fig4, cleav, fig5, fig6_sheet[:4], rules)
     # те же статистики по исходной (xlsx) версии — для журнала зависимых пересчётов
@@ -760,12 +851,13 @@ def build(allow_new_ids: bool = False) -> dict:
         'labels': vocab.labels,
         'publications': [{**p, 'roles': roles.get(p['id'], [])} for p in pubs.by_id.values() if p['id'] in used],
         'variant_classes': classes,
+        'excluded_landscape': excluded_landscape,
         'fig3': fig3,
         'fig3_blocks': rules['fig3_blocks'],
         'fig4': fig4,
         'cleavage': cleav,
         'fig5': fig5,
-        'fig5_notes': read_fig5_notes(wb['Рисунок 5']),
+        'fig5_notes': apply_offspring_note_corrections(read_fig5_notes(wb['Рисунок 5']), correction_layer['offspring_note_corrections'], stats['fig5']),
         'table1': table1,
         'hu2026_within_embryo': read_hu16(wb['Hu 2026 (16 проб эмбриона)']),
         'tajima2007_excluded': read_tajima(wb['Tajima 2007 (не используется)'], pubs),
