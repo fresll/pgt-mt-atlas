@@ -62,7 +62,7 @@ export default function Fig6() {
         data.push({
           type: 'scatter', mode: 'lines', x: ns, y: probabilities,
           name: `${x.v}, ${symbol}${threshold}% — ${t('fig6.carriers', { n: x.unknownCarriers ? t('fig6.unknown') : x.carriers, records: f.n })}`,
-          line: { color: x.color, width: threshold === 18 ? 2 : 1.4, dash: (['solid', 'dash', 'dot', 'dashdot'] as const)[variants.indexOf(x)] },
+          line: { color: x.color, width: threshold === 18 ? 2 : 1.4, dash: threshold === 30 ? 'longdash' : (['solid', 'dash', 'dot', 'dashdot'] as const)[variants.indexOf(x)] },
           marker: { size: 6, color: x.color },
           hovertemplate: `${x.v}, ${symbol}${threshold}%<br>H = ${f.k}/${f.n}, E = ${fmt(pe, lang)}, ρ = ${fmt(rho, lang)}<br>N = %{x}: P = %{y:.3f}<extra></extra>`,
         })
