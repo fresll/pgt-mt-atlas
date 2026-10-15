@@ -3,7 +3,7 @@ import { DataTable } from '../../components/DataTable'
 import { PlotlyChart } from '../../components/PlotlyChart'
 import { Detail, ObservedBadge, PubRef } from '../../components/ui'
 import { atlas, label, pubById, type OffspringPair } from '../../data/atlas'
-import { useLang, useT } from '../../i18n'
+import { useCountWord, useLang, useT } from '../../i18n'
 import { fmt, plural } from '../../lib/format'
 import { pairValueText } from '../../lib/obs'
 import { axis, baseLayout, useChartTheme, type ChartTheme } from '../../lib/theme'
@@ -50,6 +50,7 @@ function largestChildGroup(): { top: string; k: number } {
 export default function Offspring() {
   const topChild = largestChildGroup()
   const t = useT()
+  const word = useCountWord()
   const lang = useLang()
   const th = useChartTheme()
   const [showExcluded, setShowExcluded] = useState(false)
@@ -181,12 +182,12 @@ export default function Offspring() {
         <span>- - {t('offspring.identity')}</span>
       </div>
       <div className="grid-2">
-        <div><h3>{t('interfaceCopy.Offspring.copy1')}</h3><PlotlyChart ariaLabel={t('offspring.subtitle')} height={460} data={panelA.data as never} layout={panelA.layout as never} onClick={pick} /></div>
-        <div><h3>{t('interfaceCopy.Offspring.copy2')}</h3><PlotlyChart ariaLabel={t('offspring.yB')} height={460} data={panelB.data as never} layout={panelB.layout as never} onClick={pick} /></div>
+        <div><h3>{t('interfaceCopy.Offspring.panelA')}</h3><PlotlyChart ariaLabel={t('offspring.subtitle')} height={460} data={panelA.data as never} layout={panelA.layout as never} onClick={pick} /></div>
+        <div><h3>{t('interfaceCopy.Offspring.panelB')}</h3><PlotlyChart ariaLabel={t('offspring.yB')} height={460} data={panelB.data as never} layout={panelB.layout as never} onClick={pick} /></div>
       </div>
       <p className="small muted">{t('common.clickHint')} {t('offspring.lowSpread')}</p>
       <p className="small"><strong>{t('offspring.dependency', { pairs: s.n_pairs, children: s.n_children, ...topChild })}</strong>{' '}
-        {t('interfaceCopy.Offspring.copy3', { v0: s.n_low_embryo, v1: s.n_concordant_low, v2: s.discordant_ids.join(', ') })}
+        {t('interfaceCopy.Offspring.comparisonSummary', { v0: s.n_low_embryo, v1: s.n_concordant_low, v2: s.discordant_ids.join(', '), comparisons: word(s.n_low_embryo, 'comparison') })}
       </p>
       {sel && (
         <Detail
@@ -201,7 +202,7 @@ export default function Offspring() {
             [t('common.value'), pairValueText(sel.value, sel.q, sel.value_raw, lang, t)],
             [t('common.age'), sel.age],
             [t('common.method'), sel.method],
-            [t('interfaceCopy.Offspring.copy4'), sel.in_figure ? (t('interfaceCopy.Offspring.copy5')) : `${t('interfaceCopy.Offspring.copy6')} — «${sel.on_plot_raw}»`],
+            [t('interfaceCopy.Offspring.referenceView'), sel.in_figure ? (t('interfaceCopy.Offspring.yes')) : `${t('interfaceCopy.Offspring.no')} — «${sel.on_plot_raw}»`],
             [t('common.provenance'), t('common.sheetRow', { sheet: sel.src.sheet, row: sel.src.row })],
           ]}
         />

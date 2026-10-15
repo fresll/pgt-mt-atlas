@@ -1,6 +1,7 @@
 import type { Dict } from './ru'
 
 const en: Dict = {
+  countWords: {"value": ["value", "values", "values"], "variant": ["variant", "variants", "variants"], "blastocyst": ["blastocyst", "blastocysts", "blastocysts"], "embryo": ["embryo", "embryos", "embryos"], "comparison": ["comparison", "comparisons", "comparisons"], "pathogenic": ["blastocyst with a pathogenic variant", "blastocysts with a pathogenic variant", "blastocysts with a pathogenic variant"]},
   site: {
     title: 'PGT-mt Atlas',
     tagline: 'An open database of published mtDNA heteroplasmy values in embryos undergoing preimplantation genetic testing (PGT-mt), with a source for each value',
@@ -138,7 +139,7 @@ const en: Dict = {
     lead: 'The Atlas collects published heteroplasmy values and explains how to interpret them.',
     k1: 'embryo heteroplasmy values',
     k2: '{{word}} with a biopsy compared against other embryo parts ({{icm}} with the inner cell mass)',
-    k3: 'embryo–tissue comparisons in {{children}} children',
+    k3: '{{word}} in {{children}} fetuses and children',
     sciTitle: 'For specialists',
     sciText: 'Interactive data sections, a table of values with the provenance of every number, sources, methods and limitations.',
     patTitle: 'For patients',
@@ -312,6 +313,7 @@ const en: Dict = {
     version: 'Dataset version {{v}}; source file {{file}} (SHA-256 {{sha}}…)',
   },
   cases: {
+    phenotype: 'Phenotype',
     title: 'Cases',
     lead: 'Each row is a published case or series. Values are quoted verbatim from the supplementary workbook (in Russian).',
     range: 'Range in the embryo pool',
@@ -689,8 +691,8 @@ const en: Dict = {
       "title": "What mitochondrial DNA is",
       "paragraphs": [
         "Mitochondria are the “power stations” of cells. They have their own small DNA (mtDNA), which a child inherits only from the mother.",
-        "Each cell contains hundreds or thousands of mtDNA copies. A pathogenic variant (mutation) is usually inherited from the mother and arises for the first time less often. Often it is present in only some copies. Disease depends on the variant and its proportion in different tissues. The proportion of altered copies is called the heteroplasmy level and is expressed as a percentage [@stewart2015; @smeets2023].",
-        "Whether disease develops depends on the proportion of altered copies and the organs involved. One woman’s proportion of altered mtDNA may differ in blood, urine, muscle and different egg cells [@burr2024].",
+        "Each cell contains hundreds or thousands of mtDNA copies. A pathogenic variant (mutation) is usually inherited from the mother and arises for the first time less often. Often it is present in only some copies. The proportion of altered copies is called the heteroplasmy level and is expressed as a percentage [@stewart2015; @smeets2023].",
+        "One woman’s proportion of altered mtDNA may differ in blood, urine, muscle and different egg cells [@burr2024].",
         "PGT-mt helps only when a woman has a pathogenic mtDNA variant in a heteroplasmic state: her cells contain both altered and normal copies. If all copies are altered (homoplasmy), an embryo with a lower proportion cannot be selected. If disease is caused by a nuclear DNA gene, a different test (PGT-M) is needed. A male carrier does not pass the mtDNA variant to his children [@smeets2023]."
       ]
     },
@@ -723,7 +725,7 @@ const en: Dict = {
         "According to published data, PGT-mt reduces the risk of passing on the disease but does not remove it completely.",
         "After any PGT-mt transfer, even if altered mtDNA was not detected in the biopsy, discuss prenatal diagnosis with the doctor in advance. “Not detected” means below the method’s sensitivity, not “0%” [@mavraki2023; @steffann2021].",
         "There may be no embryo entirely without altered mtDNA. Doctors then plan follow-up during pregnancy and after birth in advance [@smeets2023].",
-        "Your doctor can also help prepare an individual plan for monitoring your baby’s health and development after birth."
+        "Your doctor can also help prepare an individual plan for monitoring your child’s health and development after birth."
       ]
     },
     {
@@ -821,67 +823,68 @@ const en: Dict = {
 },
   interfaceCopy: {
   "Methods": {
-    "copy1": "What was collected",
-    "copy2": "Heteroplasmy values were extracted from primary publications for the embryos whose individual values were published. Current version: {{v0}} values for the {{v1}} mtDNA variants included in the dataset; {{v2}} blastocysts with several fractions measured (TE biopsy, ICM, remaining TE or a combined ICM+TE fraction); post-implantation data for {{v3}} children whose transferred-embryo level is known. Values come from primary publications; reviews were used only where the original is unavailable, and this is flagged.",
-    "copy3": "Publications do not always report values for every embryo of a cycle, so the dataset does not equal the full number of embryos in the cycles. A clinical success rate of PGT-mt cannot be calculated from cases pooled across publications.",
-    "copy4": "Dataset size",
-    "copy5": "Measure",
-    "copy6": "Count",
-    "copy7": "How values are represented",
-    "copy8": "“0” means the variant was not detected by the method used, not a proven molecular zero. The detection limit is shown only when the source states it.",
-    "copy9": "If only an interval was published, its bounds are stored; no midpoint is imputed.",
-    "copy10": "Every value carries how it was obtained. A label is set only if the rule is recorded in the supplementary workbook:",
-    "copy11": "Heteroplasmy Landscape values",
-    "copy12": "Every point leads back to its row in the supplementary workbook and to the publication (DOI).",
-    "copy13": "Reference lines on the charts",
-    "copy14": "Checked",
-    "copy15": "None of these numbers defines a safe threshold for an individual embryo. The three numbers used in practice (18, 15–30 and 30%) answer different questions and come from different tissues, methods and outcomes.",
-    "copy16": "Limitations",
-    "copy17": "The dataset is descriptive and does not allow a meta-analysis: studies differ in biopsy stage, measurement methods and detection limits.",
-    "copy18": "Successful cycles are published more often than unsuccessful ones; there are no data to correct for this bias.",
-    "copy19": "Embryos are not independent observations: many come from one patient in one cycle; variants are unevenly represented. A pooled share is not an individual risk.",
-    "copy20": "In embryo–child comparisons several measurements belong to the same child (different tissues, ages, methods, laboratories).",
-    "copy21": "The PGT-mt × PGT-A Model is a scenario calculation: it ignores within-family correlation and gives no individual prediction.",
-    "copy22": "Variant classification",
-    "copy23": "The variant class is taken from the supplementary workbook; Atlas introduces no classifier of its own, including one based on heteroplasmy level. For every variant the statement of the primary publication on which the class rests and the date of the check are given. The variants were not checked against MITOMAP or ClinVar in this review.",
-    "copy24": "Variant",
-    "copy25": "Class",
-    "copy26": "Basis",
-    "copy27": "What to report about a PGT-mt cycle",
-    "copy28": "Patient and cycle: age; family history; carrier tissue heteroplasmy; number of oocytes; fertilisation and embryo development.",
-    "copy29": "Embryo: biopsy day; morphology; PGT-A result; heteroplasmy in every sample — for every embryo, including those not transferred.",
-    "copy30": "Method: whole-genome amplification; target region; linearity; detection limit; controls.",
-    "copy31": "Outcome: prenatal diagnosis and postnatal follow-up with tissue, age and method."
+    "collectedTitle": "What was collected",
+    "datasetSummary": "Heteroplasmy values were extracted from primary publications for the embryos whose individual values were published. Current version: {{v0}} values for the {{v1}} mtDNA variants included in the dataset; {{v2}} blastocysts with several fractions measured (TE biopsy, ICM, remaining TE or a combined ICM+TE fraction); post-implantation data for {{v3}} children whose transferred-embryo level is known. Values come from primary publications; reviews were used only where the original is unavailable, and this is flagged.",
+    "incompleteCycles": "Publications do not always report values for every embryo of a cycle, so the dataset does not equal the full number of embryos in the cycles. A clinical success rate of PGT-mt cannot be calculated from cases pooled across publications.",
+    "sizeTitle": "Dataset size",
+    "measure": "Measure",
+    "count": "Count",
+    "representationTitle": "How values are represented",
+    "undetectedMeaning": "“0” means the variant was not detected by the method used, not a proven molecular zero. The detection limit is shown only when the source states it.",
+    "intervalMeaning": "If only an interval was published, its bounds are stored; no midpoint is imputed.",
+    "derivationMeaning": "Every value carries how it was obtained. A label is set only if the rule is recorded in the supplementary workbook:",
+    "landscapeValues": "Heteroplasmy Landscape values",
+    "pointProvenance": "Every point leads back to its row in the supplementary workbook and to the publication (DOI).",
+    "guidesTitle": "Reference lines on the charts",
+    "checked": "Checked",
+    "guideCaveat": "None of these numbers defines a safe threshold for an individual embryo. The three numbers used in practice (18, 15–30 and 30%) answer different questions and come from different tissues, methods and outcomes.",
+    "limitationsTitle": "Limitations",
+    "heterogeneousStudies": "The dataset is descriptive and does not allow a meta-analysis: studies differ in biopsy stage, measurement methods and detection limits.",
+    "publicationBias": "Successful cycles are published more often than unsuccessful ones; there are no data to correct for this bias.",
+    "dependentEmbryos": "Embryos are not independent observations: many come from one patient in one cycle; variants are unevenly represented. A pooled share is not an individual risk.",
+    "dependentChildSamples": "In embryo–child comparisons several measurements belong to the same child (different tissues, ages, methods, laboratories).",
+    "scenarioModel": "The PGT-mt × PGT-A Model is a scenario calculation: it ignores within-family correlation and gives no individual prediction.",
+    "classificationTitle": "Variant classification",
+    "classificationMeaning": "The variant class is taken from the supplementary workbook; Atlas introduces no classifier of its own, including one based on heteroplasmy level. For every variant the statement of the primary publication on which the class rests and the date of the check are given. The variants were not checked against MITOMAP or ClinVar in this review.",
+    "variant": "Variant",
+    "variantClass": "Class",
+    "basis": "Basis",
+    "reportingTitle": "What to report about a PGT-mt cycle",
+    "reportPatient": "Patient and cycle: age; family history; carrier tissue heteroplasmy; number of oocytes; fertilisation and embryo development.",
+    "reportEmbryo": "Embryo: biopsy day; morphology; PGT-A result; heteroplasmy in every sample — for every embryo, including those not transferred.",
+    "reportMethod": "Method: whole-genome amplification; target region; linearity; detection limit; controls.",
+    "reportOutcome": "Outcome: prenatal diagnosis and postnatal follow-up with tissue, age and method."
   },
   "Cases": {
-    "copy1": "The primary source for each case is listed in the Source column: authors, publication and DOI."
+    "primaryAttribution": "The primary source for each case is listed in the Source column: authors, publication and DOI."
   },
   "Concordance": {
-    "copy1": "path.",
-    "copy2": "red bar",
-    "copy3": "Median range: {{v0}} pp ({{v1}} pathogenic blastocysts), {{v2}} pp (HV2), {{v3}} pp (all {{v4}}); cleavage stage — {{v5}} pp (n = {{v6}}).",
-    "copy4": "Range",
-    "copy5": "Blastomeres",
-    "copy6": "Range, pp",
-    "copy7": "Cells",
-    "copy8": "Depth, ×"
+    "pathogenicShort": "path.",
+    "medianBar": "red bar",
+    "rangeSummary": "Median range: {{v0}} pp ({{v1}} pathogenic blastocysts), {{v2}} pp (HV2), {{v3}} pp (all {{v4}}); cleavage stage — {{v5}} pp (n = {{v6}}).",
+    "range": "Range",
+    "blastomeres": "Blastomeres",
+    "rangePp": "Range, pp",
+    "cells": "Cells",
+    "coverage": "Depth, ×"
   },
   "Offspring": {
-    "copy1": "A",
-    "copy2": "B",
-    "copy3": "Of {{v0}} comparisons with low embryo heteroplasmy, {{v1}} showed low or undetectable tissue heteroplasmy; all discordant values ({{v2}}) come from re-analysis of one child by another method.",
-    "copy4": "In the reference view",
-    "copy5": "yes",
-    "copy6": "no"
+    "panelA": "A",
+    "panelB": "B",
+    "comparisonSummary": "Of {{v0}} comparisons with low embryo heteroplasmy, {{v1}} showed low or undetectable tissue heteroplasmy; all discordant values ({{v2}}) come from re-analysis of one child by another method.",
+    "referenceView": "In the reference view",
+    "yes": "yes",
+    "no": "no"
   },
   "ScienceIndex": {
-    "copy1": "{{v0}} values, 7 mtDNA variants",
-    "copy2": "{{v0}} blastocysts + {{v1}} cleavage embryos",
-    "copy3": "{{v0}} comparisons, {{v1}} children",
-    "copy4": "scenario calculation",
-    "copy5": "Four scientific sections of the Atlas. Every chart opens in its reference view; extra filters are labelled “extended view”. Every point leads to the primary publication and the row of the source workbook."
+    "landscapeSummary": "{{v0}} {{values}}, {{variants}} {{variantWord}} mtDNA",
+    "concordanceSummary": "{{v0}} {{blastocysts}} + {{v1}} cleavage {{embryos}}",
+    "offspringSummary": "{{v0}} {{comparisons}}, {{v1}} fetuses and children",
+    "scenarioSummary": "scenario calculation",
+    "lead": "Four scientific sections of the Atlas. Every chart opens in its reference view; extra filters are labelled “extended view”. Every point leads to the primary publication and the row of the source workbook."
   }
 },
+
   methodLabels: {
   "countLabels": {
     "landscape_values": "embryo heteroplasmy values",

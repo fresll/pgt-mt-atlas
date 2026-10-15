@@ -1,25 +1,26 @@
 import { Link } from 'react-router-dom'
 import { ModelBadge, ObservedBadge } from '../../components/ui'
 import { atlas } from '../../data/atlas'
-import { useLang, useT } from '../../i18n'
+import { useCountWord, useLang, useT } from '../../i18n'
 import { PageTitle } from '../../components/Layout'
 
 export default function ScienceIndex() {
   const t = useT()
+  const word = useCountWord()
   const lang = useLang()
   const s = atlas.stats
   const items: [string, string, string, string, boolean][] = [
-    ['heteroplasmy-landscape/', t('landscape.title'), t('landscape.subtitle'), t('interfaceCopy.ScienceIndex.copy1', { v0: s.fig3.n }), false],
-    ['embryo-concordance/', t('concordance.title'), t('concordance.subtitle'), t('interfaceCopy.ScienceIndex.copy2', { v0: s.fig4.n_embryos, v1: s.fig4.n_cleavage }), false],
-    ['embryo-to-offspring/', t('offspring.title'), t('offspring.subtitle'), t('interfaceCopy.ScienceIndex.copy3', { v0: s.fig5.n_pairs, v1: s.fig5.n_children }), false],
-    ['pgt-mt-pgt-a-model/', t('model.title'), t('model.subtitle'), t('interfaceCopy.ScienceIndex.copy4'), true],
+    ['heteroplasmy-landscape/', t('landscape.title'), t('landscape.subtitle'), t('interfaceCopy.ScienceIndex.landscapeSummary', { v0: s.fig3.n, values: word(s.fig3.n, 'value'), variants: atlas.meta.current_counts.landscape_variants, variantWord: word(atlas.meta.current_counts.landscape_variants, 'variant') }), false],
+    ['embryo-concordance/', t('concordance.title'), t('concordance.subtitle'), t('interfaceCopy.ScienceIndex.concordanceSummary', { v0: s.fig4.n_embryos, v1: s.fig4.n_cleavage, blastocysts: word(s.fig4.n_embryos, 'blastocyst'), embryos: word(s.fig4.n_cleavage, 'embryo') }), false],
+    ['embryo-to-offspring/', t('offspring.title'), t('offspring.subtitle'), t('interfaceCopy.ScienceIndex.offspringSummary', { v0: s.fig5.n_pairs, v1: s.fig5.n_children, comparisons: word(s.fig5.n_pairs, 'comparison') }), false],
+    ['pgt-mt-pgt-a-model/', t('model.title'), t('model.subtitle'), t('interfaceCopy.ScienceIndex.scenarioSummary'), true],
   ]
   return (
     <article>
       <PageTitle title={t('nav.science')} />
       <h1>{t('nav.science')}</h1>
       <p className="lead">
-        {t('interfaceCopy.ScienceIndex.copy5')}
+        {t('interfaceCopy.ScienceIndex.lead')}
       </p>
       <div className="cards section-cards">
         {items.map(([to, title, subtitle, sub, model], i) => (

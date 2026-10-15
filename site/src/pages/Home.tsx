@@ -1,14 +1,16 @@
+import { formatDate } from '../components/Layout'
 import type { CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
 import { HandRule, Illustration } from '../components/Sketch'
 import { Photo } from '../components/Photo'
 import { plural } from '../lib/format'
 import { atlas } from '../data/atlas'
-import { useLang, useT } from '../i18n'
+import { useCountWord, useLang, useT } from '../i18n'
 import labels from '../illustrations/labels.json'
 
 export default function Home() {
   const t = useT()
+  const word = useCountWord()
   const lang = useLang()
   const s = atlas.stats
   const sci = `/${lang}/science/`
@@ -21,7 +23,7 @@ export default function Home() {
   const ledger: [number, string][] = [
     [s.fig3.n, t('home.k1')],
     [s.fig4.n_embryos, t('home.k2', { icm: new Set(atlas.concordance.filter((f) => f.fraction === 'icm').map((f) => f.embryo)).size, word: plural(s.fig4.n_embryos, lang, lang === 'ru' ? ['бластоциста', 'бластоцисты', 'бластоцист'] : ['blastocyst', 'blastocysts', 'blastocysts']) })],
-    [s.fig5.n_pairs, t('home.k3', { children: s.fig5.n_children })],
+    [s.fig5.n_pairs, t('home.k3', { children: s.fig5.n_children, word: word(s.fig5.n_pairs, 'comparison') })],
     [atlas.publications.length, t('home.k4', { doi: atlas.publications.filter((p) => p.doi).length, word: plural(atlas.publications.length, lang, lang === 'ru' ? ['публикация', 'публикации', 'публикаций'] : ['publication', 'publications', 'publications']) })],
   ]
   return (
@@ -41,7 +43,7 @@ export default function Home() {
               {t('home.ctaSpecialists')} <span aria-hidden="true">→</span>
             </Link>
           </div>
-          <p className="small">{t('home.trust', { date: new Date(atlas.meta.dataset_version).toLocaleDateString(lang === 'ru' ? 'ru-RU' : 'en-GB'), n: s.fig3.n, publications: atlas.publications.length, values: plural(s.fig3.n, lang, lang === 'ru' ? ['значение', 'значения', 'значений'] : ['value', 'values', 'values']), pubWord: plural(atlas.publications.length, lang, lang === 'ru' ? ['публикации', 'публикаций', 'публикаций'] : ['publication', 'publications', 'publications']) })}</p>
+          <p className="small">{t('home.trust', { date: formatDate(atlas.meta.dataset_version, lang), n: s.fig3.n, publications: atlas.publications.length, values: plural(s.fig3.n, lang, lang === 'ru' ? ['значение', 'значения', 'значений'] : ['value', 'values', 'values']), pubWord: plural(atlas.publications.length, lang, lang === 'ru' ? ['публикации', 'публикаций', 'публикаций'] : ['publication', 'publications', 'publications']) })}</p>
           <p className="sk-hero-more">
             <Link className="sk-link" to={`/${lang}/fundamentals/`}>{t('home.ctaFundamentals')}</Link>
           </p>

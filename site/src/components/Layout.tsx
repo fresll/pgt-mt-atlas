@@ -98,7 +98,7 @@ function Header({ lang }: { lang: Lang }) {
   )
 }
 
-function formatDate(iso: string, lang: Lang): string {
+export function formatDate(iso: string, lang: Lang): string {
   const d = new Date(`${iso}T00:00:00Z`)
   return Number.isNaN(d.getTime())
     ? iso
