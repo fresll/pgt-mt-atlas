@@ -249,8 +249,7 @@ def test_thresholds_are_not_universal(atlas):
     th = {t['id']: t for t in atlas['thresholds']}
     assert th['t18']['role'] == 'study_estimate' and 'мышеч' in th['t18']['ru']
     assert th['t30']['role'] == 'programme_criterion' and 'Newcastle' in th['t30']['ru']
-    for k in ('lod1', 'high70'):
-        assert th[k]['role'] == 'chart_convention' and th[k]['publication'] is None
+    assert not any(t['role'] == 'chart_convention' for t in th.values())
     for t in th.values():
         assert t['checked']
 

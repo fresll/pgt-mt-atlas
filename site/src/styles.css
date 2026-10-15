@@ -1144,3 +1144,7 @@ body:has(.pt-page) { background: var(--sk-paper); }
   .sources-table td[data-label]::before { content: attr(data-label) ': '; color: var(--sk-muted); font-size: 13px; }
   .sources-table tbody tr:nth-child(even) td { background: transparent; }
 }
+
+/* Keep the longer scenario selector inside the mobile controls. */
+.model-page .controls label { flex-wrap: wrap; min-width: 0; max-width: 100%; }
+.model-page .controls select { min-width: 0; max-width: 100%; }

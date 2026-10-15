@@ -1,148 +1,123 @@
-# Правила, перенесённые из скриптов рисунков (figures/originals/Исходники рисунков/*.py)
-# и из пояснений сопроводительной таблицы. Каждое правило вывода значения ссылается на ячейку xlsx,
-# где оно записано. Без такой ссылки значение получает derivation = as_reported_in_dataset.
-
 derivation_rules:
-  - publication: sallevelt2017
-    material_raw: 'single blastomeres, diagnostic analysis'
-    derivation: mean_of_blastomeres
-    evidence: "«Таблица 1»!H13: «расчёт по первоисточнику: среднее пары бластомеров»"
-  - publication: spath2021
-    variant: m.3243A>G
-    material_raw: 'half embryo'
-    derivation: mean_of_halves
-    evidence: "«Таблица 1»!H19: «значения по эмбрионам пересчитаны как среднее двух половин»"
-  - publication: heindryckx2014
-    derivation: mean_of_biopsies
-    evidence: "«Таблица 1»!H11: «средние значения по 11 бластоцистам»"
-  - publication: mizuguchi2025
-    derivation: digitized_from_figure
-    evidence: "«Таблица 1»!H20: «рис. 2A первоисточника: значения сняты с графика»"
-  - publication: thorburn2009
-    derivation: via_secondary_review
-    evidence: "«Таблица 1»!H5: значения по сводкам Castelluccio 2025 и Smeets 2023"
-
-# Пределы обнаружения, записанные в таблице (не выводятся по умолчанию)
+- publication: sallevelt2017
+  material_raw: single blastomeres, diagnostic analysis
+  derivation: mean_of_blastomeres
+  evidence: '«Таблица 1»!H13: «расчёт по первоисточнику: среднее пары бластомеров»'
+- publication: spath2021
+  variant: m.3243A>G
+  material_raw: half embryo
+  derivation: mean_of_halves
+  evidence: '«Таблица 1»!H19: «значения по эмбрионам пересчитаны как среднее двух половин»'
+- publication: heindryckx2014
+  derivation: mean_of_biopsies
+  evidence: '«Таблица 1»!H11: «средние значения по 11 бластоцистам»'
+- publication: mizuguchi2025
+  derivation: digitized_from_figure
+  evidence: '«Таблица 1»!H20: «рис. 2A первоисточника: значения сняты с графика»'
+- publication: thorburn2009
+  derivation: via_secondary_review
+  evidence: '«Таблица 1»!H5: значения по сводкам Castelluccio 2025 и Smeets 2023'
 lod_rules:
-  - publication: hu2026
-    lod_pct: 1.0
-    evidence: "«Рисунок 3»!I184 и «Таблица 1»!H33: «0 = ниже порога 1,0%»"
-  - publication: monnot2011
-    sheet: Бластомеры (дробление)
-    lod_pct: 2.0
-    evidence: "«Бластомеры (дробление)»!A2: «Порог детекции метода в первоисточнике — 2%»"
-
-# Рисунок 3: порядок блоков (вариантов) и столбцов (источников) — из Рисунок_3.py::BLOCKS
+- publication: hu2026
+  lod_pct: 1.0
+  evidence: '«Рисунок 3»!I184 и «Таблица 1»!H33: «0 = ниже порога 1,0%»'
+- publication: monnot2011
+  sheet: Бластомеры (дробление)
+  lod_pct: 2.0
+  evidence: '«Бластомеры (дробление)»!A2: «Порог детекции метода в первоисточнике — 2%»'
 fig3_blocks:
-  - variant: m.3243A>G
-    sources: [monnot2011, spath2021, treff2012, heindryckx2014, hyslop2025]
-  - variant: m.14487T>C
-    sources: [sallevelt2017, tofilo2026]
-  - variant: m.8993T>G
-    sources: [spath2021, steffann2006, hyslop2025, thorburn2009]
-  - variant: m.3697G>A
-    sources: [ji2021]
-  - variant: m.10197G>A
-    sources: [mizuguchi2025]
-  - variant: m.10191T>C
-    sources: [spath2021]
-  - variant: m.3250T>C
-    sources: [hu2026]
-
-# Рисунок 6: варианты, показанные в статье (Рисунок_6.py::VARIANTS)
-fig6_variants: [m.8993T>G, m.3243A>G, m.14487T>C, m.3697G>A]
-
-# Ориентиры (не клинические пороги). Для каждого: роль (role), источник, точный локатор и что проверено.
-# role: study_estimate — оценка риска в конкретном исследовании; programme_criterion — рабочий критерий клинической
-# программы; literature_range — диапазон, приводимый в литературе; chart_convention — условная линия/зона графика.
+- variant: m.3243A>G
+  sources:
+  - monnot2011
+  - spath2021
+  - treff2012
+  - heindryckx2014
+  - hyslop2025
+- variant: m.14487T>C
+  sources:
+  - sallevelt2017
+  - tofilo2026
+- variant: m.8993T>G
+  sources:
+  - spath2021
+  - steffann2006
+  - hyslop2025
+  - thorburn2009
+- variant: m.3697G>A
+  sources:
+  - ji2021
+- variant: m.10197G>A
+  sources:
+  - mizuguchi2025
+- variant: m.10191T>C
+  sources:
+  - spath2021
+- variant: m.3250T>C
+  sources:
+  - hu2026
+fig6_variants:
+- m.8993T>G
+- m.3243A>G
+- m.14487T>C
+- m.3697G>A
 thresholds:
-  - id: t18
-    value: 18
-    role: study_estimate
-    publication: hellebrekers2012
-    locator: 'Hum Reprod Update 2012;18(4):341–349, абстракт (PubMed 22456975), раздел Results'
-    checked: >-
-      Сверено по аннотации PubMed, PMID 22456975, 11.10.2026.
-    ru: >-
-      Расчётный ориентир систематического обзора: уровень мутации ≤18% в мышечной ткани связан с вероятностью ≥95%
-      остаться непоражённым (159 точковых вариантов мтДНК; семейные данные 137 родословных; априорная доля поражённых
-      0,477). Для m.3243A>G вероятность остаться непоражённым ниже. Оценка получена не на эмбрионах и не является
-      порогом для биоптата эмбриона.
-    en: >-
-      Calculated estimate from a systematic review: a muscle mutation level of ≤18% is associated with a ≥95% chance
-      of being unaffected (159 mtDNA point variants; familial data from 137 pedigrees; a priori probability of being
-      affected 0.477). For m.3243A>G the chance of being unaffected is lower. The estimate was not derived from
-      embryos and is not a threshold for an embryo biopsy.
-  - id: t15_30
-    range: [15, 30]
-    role: literature_range
-    publication: ji2023
-    locator: 'J Assist Reprod Genet 2023;40:2185–2196, с. 2190 (Results) и с. 2193 (Discussion)'
-    checked: Сверено по полному тексту, с. 2190, 2193, 11.10.2026.
-    ru: >-
-      Диапазон симптоматического порога m.3243A>G, который Ji и соавт. приводят как общепринятый со ссылкой на
-      литературу; собственный порог для m.3243A>G по своим данным авторы определить не смогли.
-    en: >-
-      Range of the symptomatic threshold for m.3243A>G that Ji et al. cite as generally accepted from the literature;
-      the authors could not determine a threshold for m.3243A>G from their own data.
-  - id: t30
-    value: 30
-    role: programme_criterion
-    publication: hyslop2025
-    locator: 'N Engl J Med 2025, Methods (с. 3 PDF: «single blastomere was removed on day 3»; «less than 30% heteroplasmy») и с. 5 PDF'
-    checked: Сверено по полному тексту, с. 3, 5, 11.10.2026.
-    ru: >-
-      Рабочий критерий программы Newcastle: для переноса или витрификации преимущественно использовали эмбрионы с
-      гетероплазмией менее 30%, измеренной в одном бластомере 3-го дня. Это критерий конкретной клинической
-      программы, а не универсальная граница.
-    en: >-
-      Working criterion of the Newcastle programme: embryos with less than 30% heteroplasmy, measured in a single
-      day-3 blastomere, were preferentially used for transfer or vitrification. It is the criterion of one clinical
-      programme, not a universal threshold.
-  - id: lod1
-    value: 1
-    role: chart_convention
-    publication: null
-    locator: null
-    checked: 2026-10-11 — опубликованного источника для значения 1% нет
-    ru: >-
-      Условная линия 1% на графике «Распределение гетероплазмии». Это не предел обнаружения конкретного метода:
-      пределы обнаружения у методов разные и указаны в записях наблюдений там, где они известны.
-    en: >-
-      Nominal 1% line on the Heteroplasmy Landscape chart. It is not the detection limit of any particular method:
-      detection limits differ between methods and are given in the observation records where known.
-  - id: high70
-    value: 70
-    role: chart_convention
-    publication: null
-    locator: null
-    checked: 2026-10-11 — опубликованного источника для значения 70% нет
-    ru: Условная зона ≥70% на графике «Распределение гетероплазмии» для наглядности; не клиническая граница.
-    en: Nominal ≥70% zone on the Heteroplasmy Landscape chart, for orientation only; not a clinical threshold.
-
-# Параметры модели рисунка 6 (лист «Рисунок 6» и подпись к рис. 6)
+- id: t18
+  value: 18
+  role: study_estimate
+  publication: hellebrekers2012
+  locator: Hum Reprod Update 2012;18(4):341–349, абстракт (PubMed 22456975), раздел Results
+  checked: '2026-10-11 по абстракту PubMed. Полного текста нет ни в репозитории, ни в PMC: состав выборки и исключения сверены
+    только в объёме абстракта.'
+  ru: 'Расчётный ориентир систематического обзора: уровень мутации ≤18% в мышечной ткани связан с вероятностью ≥95% остаться
+    непоражённым (159 точковых вариантов мтДНК; семейные данные 137 родословных; априорная доля поражённых 0,477). Для m.3243A>G
+    вероятность остаться непоражённым ниже. Оценка получена не на эмбрионах и не является порогом для биоптата эмбриона.'
+  en: 'Calculated estimate from a systematic review: a muscle mutation level of ≤18% is associated with a ≥95% chance of being
+    unaffected (159 mtDNA point variants; familial data from 137 pedigrees; a priori probability of being affected 0.477).
+    For m.3243A>G the chance of being unaffected is lower. The estimate was not derived from embryos and is not a threshold
+    for an embryo biopsy.'
+- id: t15_30
+  range:
+  - 15
+  - 30
+  role: literature_range
+  publication: ji2023
+  locator: J Assist Reprod Genet 2023;40:2185–2196, с. 2190 (Results) и с. 2193 (Discussion); у авторов — ссылка [23]
+  checked: 2026-10-11 по PDF (references/Ji et al 2023 PGTmt risk and chance.pdf)
+  ru: Диапазон симптоматического порога m.3243A>G, который Ji и соавт. приводят как общепринятый со ссылкой на литературу;
+    собственный порог для m.3243A>G по своим данным авторы определить не смогли.
+  en: Range of the symptomatic threshold for m.3243A>G that Ji et al. cite as generally accepted from the literature; the
+    authors could not determine a threshold for m.3243A>G from their own data.
+- id: t30
+  value: 30
+  role: programme_criterion
+  publication: hyslop2025
+  locator: 'N Engl J Med 2025, Methods (с. 3 PDF: «single blastomere was removed on day 3»; «less than 30% heteroplasmy»)
+    и с. 5 PDF'
+  checked: 2026-10-11 по PDF (references/Hyslop et al 2025 MRT PGTmt.pdf)
+  ru: 'Рабочий критерий программы Newcastle: для переноса или витрификации преимущественно использовали эмбрионы с гетероплазмией
+    менее 30%, измеренной в одном бластомере 3-го дня. Это критерий конкретной клинической программы, а не универсальная граница.'
+  en: 'Working criterion of the Newcastle programme: embryos with less than 30% heteroplasmy, measured in a single day-3 blastomere,
+    were preferentially used for transfer or vitrification. It is the criterion of one clinical programme, not a universal
+    threshold.'
 model:
   p_eupl:
-    - {age: 30, value: 0.7}
-    - {age: 35, value: 0.5}
-    - {age: 40, value: 0.3}
+  - age: 30
+    value: 0.7
+  - age: 35
+    value: 0.5
+  - age: 40
+    value: 0.3
   p_eupl_publication: volodyaev2025
-  # Сценарные значения (решение автора модели). Непосредственно в источнике точек 0,7 / 0,5 / 0,3 нет.
   p_eupl_status: scenario
-  p_eupl_locator: >-
-    Volodyaev et al. 2025, F S Rev 6:100082, doi:10.1016/j.xfnr.2024.100082: с. 2, раздел «Incidence, parental
-    origin, and age relation» (анеуплоидии целых хромосом 20–30% в 25–35 лет, почти линейный рост ≈6% в год после
-    35 лет, 80–90% в 42–44 года); с. 3, рис. 2 (доля эуплоидных бластоцист по возрасту, данные Franasiak et al.)
+  p_eupl_locator: 'Volodyaev et al. 2025, F S Rev 6:100082, doi:10.1016/j.xfnr.2024.100082: с. 2, раздел «Incidence, parental
+    origin, and age relation» (анеуплоидии целых хромосом 20–30% в 25–35 лет, почти линейный рост ≈6% в год после 35 лет,
+    80–90% в 42–44 года); с. 3, рис. 2 (доля эуплоидных бластоцист по возрасту, данные Franasiak et al.); значения E — сценарные,
+    с точками рисунка не сопоставлены'
   p_eupl_note:
-    ru: >-
-      Сценарные значения. Точек 0,7 / 0,5 / 0,3 в источнике нет. Текст обзора даёт долю анеуплоидий целых хромосом
-      20–30% в 25–35 лет и рост около 6% в год после 35 лет; значение 0,7 для 30 лет с этим согласуется. Значения 0,5
-      для 35 лет и 0,3 для 40 лет из текстовых оценок напрямую не следуют; их соответствие рисунку 2 обзора и учёт
-      мозаицизма и сегментных анеуплоидий требуют подтверждения автором модели.
-    en: >-
-      Scenario values. The source does not give the points 0.7 / 0.5 / 0.3. The review text gives 20–30%
-      whole-chromosome aneuploidy at 25–35 years and an increase of about 6% per year after 35; 0.7 at age 30 agrees
-      with this. The values 0.5 at 35 and 0.3 at 40 do not follow directly from the text estimates; their agreement
-      with Figure 2 of the review and the handling of mosaicism and segmental aneuploidy need confirmation by the
-      model author.
+    ru: 'Сценарные значения E = 0,7 / 0,5 / 0,3. Volodyaev et al. 2025: анеуплоидии целых хромосом 20–30% в 25–35 лет, рост
+      около 6% в год после 35, 80–90% в 42–44 года; рис. 2 показывает возрастную зависимость эуплоидии. Сценарии не привязаны
+      к возрасту и не сопоставлены с точками рисунка.'
+    en: 'Scenario E values 0.7 / 0.5 / 0.3. Volodyaev et al. 2025: whole-chromosome aneuploidy 20–30% at 25–35 years, about
+      6% annual increase after 35, 80–90% at 42–44; Figure 2 shows age-related euploidy. These scenarios are not assigned
+      to ages or matched to figure points.'
   n_max: 8

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 
 export interface ChartTheme {
+  model: string
   ink: string
   ink2: string
   muted: string
@@ -21,7 +22,7 @@ export interface ChartTheme {
 // Цвета графиков берутся из CSS-токенов Scientific Sketchbook (styles.css); здесь — значения светлой темы на случай,
 // когда токены недоступны (статическая генерация): чернила #34406E, синий #1F3FB4, красный #D42A2F.
 const LIGHT: ChartTheme = {
-  ink: '#34406e', ink2: '#4a5582', muted: '#5f6787', grid: '#e4e8f5', surface: '#ffffff',
+  model: '#85441a', ink: '#34406e', ink2: '#4a5582', muted: '#5f6787', grid: '#e4e8f5', surface: '#ffffff',
   s1: '#1f3fb4', s2: '#b8662a', s3: '#137f80', s4: '#8e5c8a',
   bandGreen: '#e3f1eb', bandBlue: '#e3eaf3', bandRed: '#f7e7dc', accent: '#1f3fb4', critical: '#d42a2f', warn: '#c9772f',
 }
@@ -31,7 +32,7 @@ function read(): ChartTheme {
   const cs = getComputedStyle(document.documentElement)
   const v = (name: string, fb: string) => cs.getPropertyValue(name).trim() || fb
   return {
-    ink: v('--ink', LIGHT.ink), ink2: v('--ink-2', LIGHT.ink2), muted: v('--muted', LIGHT.muted),
+    model: v('--model-ink', LIGHT.model), ink: v('--ink', LIGHT.ink), ink2: v('--ink-2', LIGHT.ink2), muted: v('--muted', LIGHT.muted),
     grid: v('--grid', LIGHT.grid), surface: v('--surface', LIGHT.surface),
     s1: v('--s1', LIGHT.s1), s2: v('--s2', LIGHT.s2), s3: v('--s3', LIGHT.s3), s4: v('--s4', LIGHT.s4),
     bandGreen: v('--band-green', LIGHT.bandGreen), bandBlue: v('--band-blue', LIGHT.bandBlue),
