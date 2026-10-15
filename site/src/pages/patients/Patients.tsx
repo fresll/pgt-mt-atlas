@@ -37,7 +37,7 @@ const TEXT: Record<'ru' | 'en', PatientText> = {
       {
         title: 'Как работает ПГТ-мт',
         paragraphs: [
-          'Во время программы ЭКО на 3-й или 5–6-й день развития у эмбриона аккуратно берут клетки на анализ: на 3-й день — обычно один бластомер, на 5–6-й — несколько клеток трофэктодермы. Специалисты исследуют в них уровень мутантной митохондриальной ДНК (мтДНК) — генетического материала, который отвечает за работу «энергетических станций» клеток.',
+          'Во время программы ЭКО на 3-й или 5–6-й день развития у эмбриона аккуратно берут клетки на анализ: на 3-й день — обычно один бластомер, на 5–6-й — несколько клеток трофэктодермы. Специалисты исследуют в них уровень мутантной мтДНК.',
           'Эмбрионы одной женщины могут заметно отличаться друг от друга по этому показателю. Анализ ПГТ-мт помогает эмбриологам и репродуктологам выбрать для переноса эмбрион с наименьшей долей изменённой мтДНК.',
           'К сожалению, точно спрогнозировать результат до начала цикла невозможно. У каких-то пациенток эмбрионов с низким процентом мутантной мтДНК будет больше, у каких-то — меньше, а в некоторых циклах таких эмбрионов может не оказаться вовсе.',
         ],
@@ -123,7 +123,7 @@ const TEXT: Record<'ru' | 'en', PatientText> = {
       {
         title: 'How PGT-mt works',
         paragraphs: [
-          'During IVF, cells are carefully taken from an embryo for testing on day 3 or day 5–6 of development: usually one blastomere on day 3, or several trophectoderm cells on day 5–6. Specialists measure the level of mutant mitochondrial DNA (mtDNA), the genetic material involved in the work of the cells’ “power stations”.',
+          'During IVF, cells are carefully taken from an embryo for testing on day 3 or day 5–6 of development: usually one blastomere on day 3, or several trophectoderm cells on day 5–6. Specialists measure the level of mutant mtDNA.',
           'Embryos of the same woman can differ noticeably in this measure. PGT-mt helps embryologists and fertility specialists choose an embryo with the lowest proportion of changed mtDNA for transfer.',
           'Unfortunately, the exact outcome cannot be predicted before a cycle begins. Some patients will have more embryos with a low mutant mtDNA percentage, others fewer, and in some cycles there may be none.',
         ],
