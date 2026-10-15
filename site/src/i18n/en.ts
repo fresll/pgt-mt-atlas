@@ -248,6 +248,7 @@ const en: Dict = {
     colorByVariant: 'Colour — mtDNA variant, shape — material, labels — case codes.',
   },
   fig6: {
+    without3pn: 'Additional denominator for m.14487T>C excluding the 3PN embryo: {{sign}}18% — {{k}}/{{n}}. The main dataset retains all published embryo values; a 3PN embryo is not a transfer candidate.',
     versionLabel: 'Model version: {{v}}',
     title: 'PGT-mt × PGT-A Model',
     subtitle: 'Joint selection scenarios and sensitivity to assumptions',
