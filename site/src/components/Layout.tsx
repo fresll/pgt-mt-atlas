@@ -238,9 +238,6 @@ function ShellInner({ lang }: { lang: Lang }) {
       <a className="skip" href="#content">
         {t('site.skip')}
       </a>
-      <div className="preview-bar" role="note">
-        {t('site.preview')}
-      </div>
       <Header lang={lang} />
       <main id="content">
         <Outlet />
