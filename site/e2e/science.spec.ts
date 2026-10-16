@@ -93,9 +93,9 @@ test('Tofilo 2026 corrections follow ESM 2 and keep the source value (A3)', asyn
   await expect(card.locator('dl')).toContainText('11,7%')
   await expect(card.locator('dl')).not.toContainText('11,4%')
   await expect(card).toContainText('лист «Рисунок 4», строка 81')
-  // категория фракции эмбрионов 3 и 4 приведена к ESM 2: объединённая фракция ВКМ+ТЭ
+  // категория части эмбрионов 3 и 4 приведена к ESM 2: объединённая часть ВКМ+ТЭ
   await page.locator('table.data tbody tr', { hasText: 'Tofilo_3' }).click()
-  await expect(page.locator('.detail')).toContainText('ВКМ+ТЭ (объединённая фракция)')
+  await expect(page.locator('.detail')).toContainText('ВКМ+ТЭ (объединённая часть)')
 
   const measurements = await csvFromDataPage(page, 'measurement')
   const corrected = measurements.filter((m) => m.correction_ids)

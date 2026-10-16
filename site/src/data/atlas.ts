@@ -292,7 +292,7 @@ export function median(xs: number[]): number {
   return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2
 }
 
-/** Встраиваемые эмбрионы рис. 4: фракция → значение. */
+/** Встраиваемые эмбрионы рис. 4: часть → значение. */
 export function fig4Embryos(): { embryo: string; pub: string; variant: string; cls: string; fr: Partial<Record<FractionObservation['fraction'], number>> }[] {
   const m = new Map<string, { embryo: string; pub: string; variant: string; cls: string; fr: Partial<Record<FractionObservation['fraction'], number>> }>()
   for (const f of atlas.concordance) {

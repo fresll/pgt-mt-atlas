@@ -8,7 +8,7 @@ import { fmt, pct } from '../../lib/format'
 import { axis, baseLayout, useChartTheme, type ChartTheme } from '../../lib/theme'
 import { PageTitle } from '../../components/Layout'
 
-// combined_te_icm — объединённая фракция ВКМ+ТЭ, когда ВКМ и оставшуюся ТЭ не удалось разделить (Tofilo 2026, эмбрионы 3 и 4)
+// combined_te_icm — объединённая часть ВКМ+ТЭ, когда ВКМ и оставшуюся ТЭ не удалось разделить (Tofilo 2026, эмбрионы 3 и 4)
 const FR = ['te_biopsy', 'icm', 'remaining_te', 'combined_te_icm'] as const
 
 /** Простое детерминированное разнесение совпадающих значений по горизонтали. */
@@ -79,7 +79,7 @@ export default function Concordance() {
   const panelB = useMemo(() => {
     const groups: { frac: 'remaining_te' | 'icm' | 'combined_te_icm'; hv2: boolean }[] = [
       { frac: 'remaining_te', hv2: false }, { frac: 'remaining_te', hv2: true }, { frac: 'icm', hv2: false }, { frac: 'icm', hv2: true },
-      // объединённая фракция есть только у патогенных бластоцист (Tofilo 2026)
+      // объединённая часть есть только у патогенных бластоцист (Tofilo 2026)
       ...(embryos.some((e) => e.fr.combined_te_icm !== undefined) ? [{ frac: 'combined_te_icm' as const, hv2: false }] : []),
     ]
     const xMax = groups.length - 0.5

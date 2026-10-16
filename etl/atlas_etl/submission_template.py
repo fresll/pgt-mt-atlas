@@ -267,8 +267,8 @@ SHEETS: list[Sheet] = [
     ),
     Sheet(
         'Samples_Measurements', 'Samples and Measurements', 'Образцы и измерения',
-        'One row per measurement: carrier tissues, oocytes, polar bodies, embryo fractions, prenatal and postnatal samples. Replicates are separate rows.',
-        'Одна строка на измерение: ткани носительницы, ооциты, полярные тельца, фракции эмбриона, пренатальные и постнатальные образцы. Повторы — отдельными строками.',
+        'One row per measurement: carrier tissues, oocytes, polar bodies, embryo parts, prenatal and postnatal samples. Replicates are separate rows.',
+        'Одна строка на измерение: ткани носительницы, ооциты, полярные тельца, части эмбриона, пренатальные и постнатальные образцы. Повторы — отдельными строками.',
         [
             F('measurement_id', 'Measurement ID', 'ID измерения', 'Unique code of this measurement.', 'Уникальный код измерения.', 'id', 'R', example='M0001'),
             F('sample_id', 'Sample ID', 'ID образца', 'Code of the physical sample; repeated measurements of one sample share it.', 'Код физического образца; повторные измерения одного образца имеют общий код.', 'id', 'R', example='S0001'),

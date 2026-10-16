@@ -34,7 +34,7 @@
      "corr-tofilo2026-e3-fraction",
      "corr-tofilo2026-e4-fraction"
     ],
-    "ru": "Tofilo et al. 2026: значения эмбриона 6 (ВКМ, оставшаяся ТЭ) и категория фракции эмбрионов 3 и 4 приведены к опубликованному ESM 2 (curation/corrections.yaml). Медиана размаха для патогенных бластоцист пересчитана.",
+    "ru": "Tofilo et al. 2026: значения эмбриона 6 (ВКМ, оставшаяся ТЭ) и категория части эмбрионов 3 и 4 приведены к опубликованному ESM 2 (curation/corrections.yaml). Медиана размаха для патогенных бластоцист пересчитана.",
     "en": "Tofilo et al. 2026: embryo 6 values (ICM, remaining TE) and the fraction category of embryos 3 and 4 follow the published ESM 2 (curation/corrections.yaml). The median range for pathogenic blastocysts was recalculated."
    },
    {
@@ -127,8 +127,8 @@
     "en": "Remaining TE"
    },
    "combined_te_icm": {
-    "ru": "ВКМ+ТЭ (объединённая фракция)",
-    "en": "ICM+TE (combined fraction)"
+    "ru": "ВКМ+ТЭ (объединённая часть)",
+    "en": "ICM+TE (combined part)"
    }
   },
   "tissue": {
@@ -477,19 +477,19 @@
    "verified": {
     "date": "2026-10-10",
     "by": "PubMed (PMID 42649365) — название, журнал, дата публикации и DOI совпадают с записью PubMed",
-    "note": "DOI и библиография сверены с PubMed, PMID 42649365; значения фракций — с опубликованными ESM 1 и ESM 2."
+    "note": "DOI и библиография сверены с PubMed, PMID 42649365; значения частей — с опубликованными ESM 1 и ESM 2."
    },
    "doi_exception": null,
    "supplementary": [
     {
      "file": "references/10815_2026_4012_MOESM1_ESM.docx",
      "label": "ESM 1",
-     "content": "Table S1 (праймеры), Fig. S1 (графики ПГТ-А), Fig. S2 (фото фракций), Fig. S3–S4, код анализа"
+     "content": "Table S1 (праймеры), Fig. S1 (графики ПГТ-А), Fig. S2 (фото частей), Fig. S3–S4, код анализа"
     },
     {
      "file": "references/10815_2026_4012_MOESM2_ESM.xlsx",
      "label": "ESM 2",
-     "content": "Supplementary Table S2 — покрытие, число прочтений и гетероплазмия по фракциям 6 эмбрионов"
+     "content": "Supplementary Table S2 — покрытие, число прочтений и гетероплазмия по частям 6 эмбрионов"
     }
    ],
    "roles": [
@@ -9761,7 +9761,7 @@
    "row": 27,
    "variant": "m.8344A>G",
    "phenotype": null,
-   "pool_range": "68–82% по фракциям ТЭ/ВКМ/оставшейся ТЭ",
+   "pool_range": "68–82% по частям ТЭ/ВКМ/оставшейся ТЭ",
    "transferred": "переноса не было",
    "offspring": "не применимо",
    "reference_raw": "Rubens et al., 2025; https://doi.org/10.1093/humrep/deaf050",
@@ -9902,7 +9902,7 @@
   "pub": "hu2026",
   "variant": "m.3250T>C",
   "biopsy_value": 17.8,
-  "description": "Анеуплоидная бластоциста E1 (биоптат ТЭ 17,8%) разобрана на клетки и разделена на 16 проб по 3–5 клеток; в 11 пробах ВКМ не удалось отделить от ТЭ (смешанные ТЭ/ВКМ), 5 проб — только ТЭ. После MDA-амплификации — таргетная ПЦР и NGS. Среднее 18,2 ± 1,7% (95% ДИ 17,3–19,1%; CV 9,7%), размах 14,7–21,9% (7,2 п.п.). В рис. 4 не включено: ВКМ отдельно не выделена, а разброс 16 малых проб не сопоставим с разбросом 2–3 крупных фракций. Используется в тексте (раздел об однородности внутри эмбриона).",
+  "description": "Анеуплоидная бластоциста E1 (биоптат ТЭ 17,8%) разобрана на клетки и разделена на 16 проб по 3–5 клеток; в 11 пробах ВКМ не удалось отделить от ТЭ (смешанные ТЭ/ВКМ), 5 проб — только ТЭ. После MDA-амплификации — таргетная ПЦР и NGS. Среднее 18,2 ± 1,7% (95% ДИ 17,3–19,1%; CV 9,7%), размах 14,7–21,9% (7,2 п.п.). В рис. 4 не включено: ВКМ отдельно не выделена, а разброс 16 малых проб не сопоставим с разбросом 2–3 крупных частей. Используется в тексте (раздел об однородности внутри эмбриона).",
   "samples": [
    {
     "sample": 1,
@@ -10354,7 +10354,7 @@
    "dataset_fraction": "remaining_te",
    "dataset_value": 13.5,
    "status": "fraction_label_mismatch",
-   "comment_ru": "Значение совпадает, но в ESM 2 это объединённая фракция «ICM+ / TE+ICM», а в наборе данных — «Оставшаяся ТЭ».",
+   "comment_ru": "Значение совпадает, но в ESM 2 это объединённая часть «ICM+ / TE+ICM», а в наборе данных — «Оставшаяся ТЭ».",
    "comment_en": "Value matches, but ESM 2 labels the fraction as combined “ICM+ / TE+ICM”, whereas the dataset labels it “Remaining TE”.",
    "resolution": "corrected",
    "correction_ids": [
@@ -10404,7 +10404,7 @@
    "dataset_fraction": "remaining_te",
    "dataset_value": 90.0,
    "status": "fraction_label_mismatch",
-   "comment_ru": "Значение совпадает, но в ESM 2 это объединённая фракция «ICM+ / TE+ICM», а в наборе данных — «Оставшаяся ТЭ».",
+   "comment_ru": "Значение совпадает, но в ESM 2 это объединённая часть «ICM+ / TE+ICM», а в наборе данных — «Оставшаяся ТЭ».",
    "comment_en": "Value matches, but ESM 2 labels the fraction as combined “ICM+ / TE+ICM”, whereas the dataset labels it “Remaining TE”.",
    "resolution": "corrected",
    "correction_ids": [
@@ -10596,14 +10596,14 @@
    "from": 11.4,
    "to": 11.3,
    "unit": "% гетероплазмии m.14487T>C (доля прочтений C)",
-   "category_note": "В ESM 2 строка называется «ICM»; по методам статьи (ESM 1, подпись к Supplementary Figure S2) это фракция «ICM+» — ВКМ вместе с прилегающими клетками полярной и муральной ТЭ.",
+   "category_note": "В ESM 2 строка называется «ICM»; по методам статьи (ESM 1, подпись к Supplementary Figure S2) это часть «ICM+» — ВКМ вместе с прилегающими клетками полярной и муральной ТЭ.",
    "source": {
     "publication": "tofilo2026",
     "document": "ESM 2 (Supplementary Table S2), Tofilo et al. 2026, J Assist Reprod Genet, doi:10.1007/s10815-026-04012-y",
     "file": "references/10815_2026_4012_MOESM2_ESM.xlsx",
     "locator": "лист «Supplementary Table S2», строка 22 (Embryo 6, ICM), столбец I «Heteroplasmy (%)» = 11.3"
    },
-   "evidence": "В той же строке ESM 2: покрытие 485, прочтений C 55 → 55/485 = 11.34 %, что округляется до 11.3, а не до 11.4. Опубликованный абстракт (PubMed 42649365) значений фракций эмбриона 6 не приводит.",
+   "evidence": "В той же строке ESM 2: покрытие 485, прочтений C 55 → 55/485 = 11.34 %, что округляется до 11.3, а не до 11.4. Опубликованный абстракт (PubMed 42649365) значений частей эмбриона 6 не приводит.",
    "verified": {
     "date": "2026-10-11",
     "by": "Claude (раунд 1 рецензии); научная приёмка — куратор"
@@ -10644,14 +10644,14 @@
    "field": "fraction",
    "from": "remaining_te",
    "to": "combined_te_icm",
-   "unit": "категория фракции (значение 13.5 % не меняется)",
+   "unit": "категория части (значение 13.5 % не меняется)",
    "source": {
     "publication": "tofilo2026",
     "document": "ESM 2 (Supplementary Table S2) и ESM 1 (Supplementary Figures S1–S2), Tofilo et al. 2026, doi:10.1007/s10815-026-04012-y",
     "file": "references/10815_2026_4012_MOESM2_ESM.xlsx; references/10815_2026_4012_MOESM1_ESM.docx",
     "locator": "ESM 2, строка 11: «Embryo 3 — ICM+ / TE+ICM fraction — 13.5»; ESM 1: «embryo 3, TE rest + ICM», «Embryo 3, TE+ICM, after dissection»"
    },
-   "evidence": "ВКМ и оставшаяся ТЭ эмбриона 3 не разделялись; измерена объединённая фракция. Опубликованный абстракт (PubMed 42649365) называет такие образцы «combined TE + ICM».",
+   "evidence": "ВКМ и оставшаяся ТЭ эмбриона 3 не разделялись; измерена объединённая часть. Опубликованный абстракт (PubMed 42649365) называет такие образцы «combined TE + ICM».",
    "verified": {
     "date": "2026-10-11",
     "by": "Claude (раунд 1 рецензии); научная приёмка — куратор"
@@ -10668,14 +10668,14 @@
    "field": "fraction",
    "from": "remaining_te",
    "to": "combined_te_icm",
-   "unit": "категория фракции (значение 90 % не меняется)",
+   "unit": "категория части (значение 90 % не меняется)",
    "source": {
     "publication": "tofilo2026",
     "document": "ESM 2 (Supplementary Table S2) и ESM 1 (Supplementary Figures S1–S2), Tofilo et al. 2026, doi:10.1007/s10815-026-04012-y",
     "file": "references/10815_2026_4012_MOESM2_ESM.xlsx; references/10815_2026_4012_MOESM1_ESM.docx",
     "locator": "ESM 2, строка 14: «Embryo 4 — ICM+ / TE+ICM fraction — 90»; ESM 1: «embryo 4, TE rest + ICM», «Embryo 4, TE+ICM, after dissection»"
    },
-   "evidence": "ВКМ и оставшаяся ТЭ эмбриона 4 не разделялись; измерена объединённая фракция. Опубликованный абстракт (PubMed 42649365) называет такие образцы «combined TE + ICM».",
+   "evidence": "ВКМ и оставшаяся ТЭ эмбриона 4 не разделялись; измерена объединённая часть. Опубликованный абстракт (PubMed 42649365) называет такие образцы «combined TE + ICM».",
    "verified": {
     "date": "2026-10-11",
     "by": "Claude (раунд 1 рецензии); научная приёмка — куратор"

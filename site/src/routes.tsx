@@ -47,7 +47,7 @@ function langRoutes(lang: Lang): RouteRecord {
         element: <FundamentalsLayout lang={lang} />,
         children: [
           { index: true, element: <FundamentalsIndex /> },
-          ...CHAPTER_SLUGS.map((slug) => ({ path: slug, element: <ChapterPage slug={slug} /> })),
+          ...CHAPTER_SLUGS.map((slug) => ({ path: slug, element: <ChapterPage key={slug} slug={slug} /> })),
           { path: 'references', element: <FundamentalsReferences /> },
         ],
       },

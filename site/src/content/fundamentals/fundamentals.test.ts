@@ -15,6 +15,12 @@ const words = (s: string) => s.replace(/\[@[^\]]+\]/g, '').replace(/\[\[([^|\]]+
 const flat = (v: unknown): string[] => (typeof v === 'string' ? [v] : Array.isArray(v) ? v.flatMap(flat) : v && typeof v === 'object' ? Object.values(v).flatMap(flat) : [])
 
 describe('Fundamentals content', () => {
+  it('uses the curator-approved terminology without changing citation structure', () => {
+    const text = ru.chapters.flatMap(chapterStrings).join('\n') + flat(ruDict).join('\n')
+    expect(text).not.toMatch(/яйцеклет|фракц|бипарент/iu)
+    expect(text).toContain('наследовании от обоих родителей')
+    expect(text).toContain('WGA (Whole-genome amplification)')
+  })
   it('has six chapters with the same permanent slugs in both languages', () => {
     expect(ru.chapters).toHaveLength(6)
     expect(en.chapters.map((c) => c.slug)).toEqual(ru.chapters.map((c) => c.slug))

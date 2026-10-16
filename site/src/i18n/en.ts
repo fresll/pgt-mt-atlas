@@ -50,7 +50,7 @@ const en: Dict = {
     "curator": "Ilya Mazunin",
     "data": "Table of values",
     "landscape": "Heteroplasmy Landscape",
-    "concordance": "Embryo Concordance",
+    "concordance": "Concordance between embryo parts",
     "offspring": "Embryo, fetus and child",
     "model": "PGT-mt + PGT-A model",
     "cases": "Published cases",
@@ -136,6 +136,7 @@ const en: Dict = {
     "mode": "Mode",
     "threshold": "Cut-off",
     "reset": "Reset",
+    "resetChartView": "Return to the original view",
     "embryo": "Embryo",
     "child": "Child",
     "tissue": "Tissue",
@@ -159,7 +160,7 @@ const en: Dict = {
     "title": "Check against the published supplementary material",
     "match": "matches ESM",
     "value_mismatch": "differs from ESM",
-    "fraction_label_mismatch": "different fraction type in ESM",
+    "fraction_label_mismatch": "different part type in ESM",
     "not_in_dataset": "not in the dataset",
     "missing_in_dataset": "missing from the dataset",
     "mismatch": "mismatch",
@@ -225,7 +226,7 @@ const en: Dict = {
     "highlightDerived": "Highlight derived values",
     "stageFilter": "Stage",
     "customThreshold": "Custom cut-off, %",
-    "bands": "Neutral bands: 18% is a muscle-based estimate (Hellebrekers et al., 2012), not a threshold for an embryo biopsy; Newcastle: predominantly <30% (Hyslop et al., 2025). Shares use ≤ the boundary. These are not universal clinical boundaries.",
+    "bands": "Background: up to 18% pale green, 18–30% pale blue, 30–100% pale red. 18% is a muscle-based estimate (Hellebrekers et al., 2012), not a threshold for an embryo biopsy; Newcastle: predominantly <30% (Hyslop et al., 2025). Shares use ≤ the boundary. These are not universal clinical boundaries.",
     "groupTitle": "Coinciding values: {{n}} observations",
     "groupHint": "The ×{{n}} point combines identical values from one source. Choose an observation:",
     "groupInTable": "The table below shows only the observations of this group.",
@@ -237,13 +238,13 @@ const en: Dict = {
     "guide30": "30% criterion (Newcastle)"
   },
   "concordance": {
-    "fractionCounts": "Ranges over three fractions (11 embryos) and two (29) are not directly comparable",
-    "title": "Embryo Concordance",
-    "subtitle": "How closely heteroplasmy agrees between fractions of one embryo",
+    "fractionCounts": "Ranges over three parts (11 embryos) and two (29) are not directly comparable",
+    "title": "Concordance between embryo parts",
+    "subtitle": "How closely heteroplasmy agrees between parts of one embryo",
     "lead": "The same blastocysts are shown in panels A and B (n = {{n}}); panel C adds {{c}} cleavage embryos from one m.3243A>G carrier (Monnot et al., 2011; two blastomeres each).",
-    "main": "Fractions of one blastocyst usually have similar heteroplasmy: the median range is {{all}} pp, {{pat}} pp for pathogenic variants (maximum {{max}} pp); in {{share}}% of blastocysts with pathogenic variants the range is 5 pp or less.",
-    "a": "A. Fractions of one embryo",
-    "b": "B. Difference “fraction − TE biopsy”",
+    "main": "Parts of one blastocyst usually have similar heteroplasmy: the median range is {{all}} pp, {{pat}} pp for pathogenic variants (maximum {{max}} pp); in {{share}}% of blastocysts with pathogenic variants the range is 5 pp or less.",
+    "a": "A. Parts of one embryo",
+    "b": "B. Difference “analysed part − clinical biopsy”",
     "c": "C. Within-embryo range",
     "yA": "Heteroplasmy, %",
     "yB": "Δ heteroplasmy, pp",
@@ -261,8 +262,8 @@ const en: Dict = {
     "combMinusBx": "ICM+TE − biopsy",
     "combShort": "ICM+TE<br>(combined)",
     "hu": "Additional data: 16 samples of one blastocyst (Hu et al., 2026)",
-    "huText": "A blastocyst with 17.8% m.3250T>C in the biopsy was split into 16 samples of 3–5 cells (the ICM was not isolated). Not plotted: the spread of small samples is not comparable with that of large fractions.",
-    "verifyNote": "Tofilo et al., 2026: the embryo 6 values (ICM, remaining TE) and the fraction category of embryos 3 and 4 (combined ICM+TE fraction) follow the published ESM 2; the original values of the supplementary workbook are shown in the embryo card. In this study the “ICM” fraction is the ICM together with adherent TE cells (“ICM+”)."
+    "huText": "A blastocyst with 17.8% m.3250T>C in the biopsy was split into 16 samples of 3–5 cells (the ICM was not isolated). Not plotted: the spread of small samples is not comparable with that of large embryo parts.",
+    "verifyNote": "Tofilo et al., 2026: the embryo 6 values (ICM, remaining TE) and the part category of embryos 3 and 4 (combined ICM+TE part) follow the published ESM 2; the original values of the supplementary workbook are shown in the embryo card. In this study the “ICM” part is the ICM together with adherent TE cells (“ICM+”)."
   },
   "offspring": {
     "bothNDPair": "ND → ND",
@@ -822,7 +823,7 @@ const en: Dict = {
         "paragraphs": [
           "Mitochondria are the “power stations” of cells. They have their own small DNA (mtDNA), which a child inherits only from the mother.",
           "Each cell contains hundreds or thousands of mtDNA copies. A pathogenic variant (mutation) is usually inherited from the mother and arises for the first time less often. Often it is present in only some copies. The proportion of altered copies is called the heteroplasmy level and is expressed as a percentage.",
-          "One woman’s proportion of altered mtDNA may differ in blood, urine, muscle and different egg cells.",
+          "One woman’s proportion of altered mtDNA may differ in blood, urine, muscle and different oocytes.",
           "PGT-mt helps only when a woman has a pathogenic mtDNA variant in a heteroplasmic state: her cells contain both altered and normal copies. If all copies are altered (homoplasmy), an embryo with a lower proportion cannot be selected. If disease is caused by a nuclear DNA gene, a different test (PGT-M) is needed. A male carrier does not pass the mtDNA variant to his children."
         ]
       },
@@ -865,7 +866,7 @@ const en: Dict = {
         ],
         "items": [
           "Prenatal diagnosis — testing during an established pregnancy. Chorionic villi or amniotic fluid are examined; this assessment of the proportion is uninformative in homoplasmy.",
-          "Donor oocytes (egg cells) — using eggs from a healthy donor. The child will not be genetically related to the mother.",
+          "Donor oocytes — using oocytes from a healthy donor. The child will not be genetically related to the mother.",
           "Mitochondrial donation — transfer of the patient’s nuclear material into a donor oocyte or zygote with non-pathogenic mtDNA. Availability depends on the country’s legislation. A small amount of maternal mtDNA may accompany the nuclear material, so risk is reduced but not eliminated."
         ],
         "closingTitle": "How do you choose?",
@@ -880,7 +881,7 @@ const en: Dict = {
           "title": "About your situation",
           "items": [
             "“Which pathogenic mtDNA variant has been identified in me, and what does modern medicine know about it?”",
-            "“What percentage of mutant mtDNA is in my own tissues (for example, blood or epithelial cells), and how does this affect the chance of transmission to egg cells?”"
+            "“What percentage of mutant mtDNA is in my own tissues (for example, blood or epithelial cells), and how does this affect the chance of transmission to oocytes?”"
           ]
         },
         {
@@ -942,7 +943,7 @@ const en: Dict = {
         ],
         [
           "Oocyte and zygote",
-          "An egg cell and the cell after fertilisation."
+          "An oocyte and the cell after fertilisation."
         ],
         [
           "Nuclear material",
@@ -954,7 +955,7 @@ const en: Dict = {
   "interfaceCopy": {
     "Methods": {
       "collectedTitle": "What was collected",
-      "datasetSummary": "Heteroplasmy values were extracted from primary publications for the embryos whose individual values were published. Current version: {{v0}} values for the {{v1}} mtDNA variants included in the dataset; {{v2}} blastocysts with several fractions measured (TE biopsy, ICM, remaining TE or a combined ICM+TE fraction); post-implantation data for {{v3}} children whose transferred-embryo level is known. Values come from primary publications; reviews were used only where the original is unavailable, and this is flagged.",
+      "datasetSummary": "Heteroplasmy values were extracted from primary publications for the embryos whose individual values were published. Current version: {{v0}} values for the {{v1}} mtDNA variants included in the dataset; {{v2}} blastocysts with several parts measured (TE biopsy, ICM, remaining TE or a combined ICM+TE part); post-implantation data for {{v3}} children whose transferred-embryo level is known. Values come from primary publications; reviews were used only where the original is unavailable, and this is flagged.",
       "incompleteCycles": "Publications do not always report values for every embryo of a cycle, so the dataset does not equal the full number of embryos in the cycles. A clinical success rate of PGT-mt cannot be calculated from cases pooled across publications.",
       "sizeTitle": "Dataset size",
       "measure": "Measure",
@@ -1018,8 +1019,8 @@ const en: Dict = {
     "countLabels": {
       "landscape_values": "embryo heteroplasmy values",
       "landscape_variants": "mtDNA variants in the heteroplasmy landscape",
-      "concordance_blastocysts": "blastocysts with several fractions measured",
-      "concordance_records": "blastocyst fraction records",
+      "concordance_blastocysts": "blastocysts with several parts measured",
+      "concordance_records": "blastocyst part records",
       "cleavage_embryos": "cleavage-stage embryos (two blastomeres)",
       "offspring_records": "embryo → offspring records",
       "offspring_children": "children in embryo → offspring records",

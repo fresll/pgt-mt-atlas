@@ -24,7 +24,7 @@ export interface ChartTheme {
 const LIGHT: ChartTheme = {
   model: '#85441a', ink: '#34406e', ink2: '#4a5582', muted: '#5f6787', grid: '#e4e8f5', surface: '#ffffff',
   s1: '#1f3fb4', s2: '#b8662a', s3: '#137f80', s4: '#8e5c8a',
-  bandGreen: '#e3f1eb', bandBlue: '#e3eaf3', bandRed: '#f7e7dc', accent: '#1f3fb4', critical: '#d42a2f', warn: '#c9772f',
+  bandGreen: '#e3f1eb', bandBlue: '#e3eaf3', bandRed: '#f8e5e7', accent: '#1f3fb4', critical: '#d42a2f', warn: '#c9772f',
 }
 
 function read(): ChartTheme {

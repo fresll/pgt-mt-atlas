@@ -186,11 +186,13 @@ function BottleneckSimulator() {
         </label>
         <div className="fd-choice" role="group" aria-label={t('fundamentals.bn.count')}>
           <span>{t('fundamentals.bn.count')}</span>
-          {COUNT_OPTIONS.map((c) => (
-            <button key={c} type="button" aria-pressed={c === count} onClick={() => setCount(c)}>
-              {c}
-            </button>
-          ))}
+          <span className="fd-count-options">
+            {COUNT_OPTIONS.map((c) => (
+              <button key={c} type="button" aria-pressed={c === count} onClick={() => setCount(c)}>
+                {c}
+              </button>
+            ))}
+          </span>
         </div>
         <button type="button" className="fd-redraw" onClick={() => setDraw((d) => d + 1)}>
           ↻ {t('fundamentals.bn.redraw')}

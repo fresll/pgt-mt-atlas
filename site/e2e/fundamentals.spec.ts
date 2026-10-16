@@ -43,7 +43,7 @@ test('a citation in the text opens the collapsed chapter sources at its entry', 
   await expect(page.locator(target).locator('a[href^="https://doi.org/10."]')).toBeVisible()
 })
 
-test('reading level switch shows Advanced and is remembered across chapters and after the English address redirect', async ({ page }) => {
+test('each chapter opens on Essentials, including after the English address redirect', async ({ page }) => {
   await page.goto(`ru/${CH('mitochondrial-genetic-bottleneck')}`)
   await expect(async () => {
     await page.getByRole('button', { name: 'Углублённо', exact: true }).click()
@@ -51,17 +51,17 @@ test('reading level switch shows Advanced and is remembered across chapters and 
   }).toPass()
   await expect(page.locator('.fd-advanced')).toBeVisible()
   await expect(page.locator('.fd-advanced')).toContainText('распределением Кимуры')
-  // следующая глава открывается на выбранном уровне
+  // следующая глава всегда открывается на «Основном»
   await page.locator('.fd-pager .next').click()
   await expect(page).toHaveURL(/\/ru\/fundamentals\/embryo-development-and-biopsy\/?$/)
-  await expect(page.locator('.fd-advanced')).toBeVisible()
-  await expect(page.locator('.fd-essentials')).toBeHidden()
-  // прежняя английская ссылка ведёт на ту же русскую главу, выбранный уровень сохраняется
+  await expect(page.locator('.fd-advanced')).toBeHidden()
+  await expect(page.locator('.fd-essentials')).toBeVisible()
+  // прежняя английская ссылка также открывает «Основное»
   await page.goto(`en/${CH('mitochondrial-genetic-bottleneck')}`)
   await expect(page).toHaveURL(/\/ru\/fundamentals\/mitochondrial-genetic-bottleneck\/?$/)
-  await expect(page.locator('.fd-advanced')).toBeVisible()
-  await expect(page.locator('.fd-advanced')).toContainText('распределением Кимуры')
-  await expect(page.getByRole('button', { name: 'Углублённо', exact: true })).toHaveAttribute('aria-pressed', 'true')
+  await expect(page.locator('.fd-advanced')).toBeHidden()
+  await expect(page.locator('.fd-essentials')).toBeVisible()
+  await expect(page.getByRole('button', { name: 'Основное', exact: true })).toHaveAttribute('aria-pressed', 'true')
 })
 
 test('chapter pager links neighbouring chapters', async ({ page }) => {

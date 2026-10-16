@@ -180,6 +180,33 @@ function PageviewCounter() {
   return null
 }
 
+/** Новые страницы открываются сверху; явные ссылки на рисунки и источники сохраняют якорь. */
+function PageScroll() {
+  const { pathname, hash } = useLocation()
+  useEffect(() => {
+    let frame: number
+    const scroll = () => {
+      // Уровень главы меняет её высоту: якорь рассчитывается после показа «Основного».
+      if (document.querySelector('.fd-levels[data-level="all"]')) {
+        frame = requestAnimationFrame(scroll)
+        return
+      }
+      if (!hash) {
+        window.scrollTo(0, 0)
+        return
+      }
+      try {
+        document.getElementById(decodeURIComponent(hash.slice(1)))?.scrollIntoView()
+      } catch {
+        // Некорректный якорь не должен мешать открытию страницы.
+      }
+    }
+    frame = requestAnimationFrame(scroll)
+    return () => cancelAnimationFrame(frame)
+  }, [pathname, hash])
+  return null
+}
+
 export function Shell({ lang }: { lang: Lang }) {
   useEffect(() => {
     document.documentElement.lang = lang
@@ -192,6 +219,7 @@ export function Shell({ lang }: { lang: Lang }) {
   return (
     <LangProvider lang={lang}>
       <PageviewCounter />
+      <PageScroll />
       <ShellInner lang={lang} />
     </LangProvider>
   )

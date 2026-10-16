@@ -213,7 +213,6 @@ export function FundamentalsReferences() {
 }
 
 type Level = 'essentials' | 'advanced'
-const LEVEL_KEY = 'atlas-fundamentals-level'
 
 export function ChapterPage({ slug }: { slug: string }) {
   const t = useT()
@@ -225,24 +224,10 @@ export function ChapterPage({ slug }: { slug: string }) {
   // до гидратации (и без JavaScript) показаны оба уровня; затем — выбранный
   const [level, setLevel] = useState<Level | null>(null)
   useEffect(() => {
-    let saved: Level = 'essentials'
-    try {
-      const v = localStorage.getItem(LEVEL_KEY)
-      if (v === 'advanced' || v === 'essentials') saved = v
-    } catch {
-      /* хранилище недоступно */
-    }
-    if (window.location.hash === '#advanced') saved = 'advanced'
-    if (window.location.hash === '#essentials') saved = 'essentials'
-    setLevel(saved)
+    setLevel('essentials')
   }, [slug])
   const choose = (l: Level) => {
     setLevel(l)
-    try {
-      localStorage.setItem(LEVEL_KEY, l)
-    } catch {
-      /* ignore */
-    }
   }
   // Список источников свёрнут; переход по ссылке-цитате [Автор, год] раскрывает его.
   const refsRef = useRef<HTMLDetailsElement>(null)

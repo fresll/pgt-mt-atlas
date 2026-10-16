@@ -22,6 +22,7 @@ from pathlib import Path
 
 import openpyxl
 import yaml
+from .display_terms import embryo_part_terms
 
 ROOT = Path(__file__).resolve().parents[2]
 SOURCE_XLSX = ROOT / 'data' / 'Сопроводительная информация.xlsx'
@@ -869,7 +870,7 @@ def build(allow_new_ids: bool = False) -> dict:
         'stats': stats,
     }
     atlas['_registry'], atlas['_new_ids'] = registry, new_ids
-    return atlas
+    return embryo_part_terms(atlas)
 
 
 def check_manifest(digest: str):

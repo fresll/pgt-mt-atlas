@@ -34,8 +34,8 @@
       "name": "Samples_Measurements",
       "title_en": "Samples and Measurements",
       "title_ru": "Образцы и измерения",
-      "purpose_en": "One row per measurement: carrier tissues, oocytes, polar bodies, embryo fractions, prenatal and postnatal samples. Replicates are separate rows.",
-      "purpose_ru": "Одна строка на измерение: ткани носительницы, ооциты, полярные тельца, фракции эмбриона, пренатальные и постнатальные образцы. Повторы — отдельными строками.",
+      "purpose_en": "One row per measurement: carrier tissues, oocytes, polar bodies, embryo parts, prenatal and postnatal samples. Replicates are separate rows.",
+      "purpose_ru": "Одна строка на измерение: ткани носительницы, ооциты, полярные тельца, части эмбриона, пренатальные и постнатальные образцы. Повторы — отдельными строками.",
       "n_fields": 24,
       "n_required": 9
     },

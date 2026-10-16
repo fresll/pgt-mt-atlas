@@ -1,4 +1,4 @@
-import { useEffect, useState, type ComponentType, type ReactNode } from 'react'
+import { useEffect, useMemo, useState, type ComponentType, type ReactNode } from 'react'
 import type { PlotParams } from 'react-plotly.js'
 import { useLang, useT } from '../i18n'
 
@@ -10,6 +10,12 @@ export function PlotlyChart({ ariaLabel, height = 420, ...props }: Omit<PlotPara
   const lang = useLang()
   const [Plot, setPlot] = useState<ComponentType<PlotParams> | null>(cached)
   const [failed, setFailed] = useState(false)
+  const [view, setView] = useState(0)
+  // Plotly меняет layout при масштабировании. Копия сохраняет исходные диапазоны для сброса.
+  const layout = useMemo(() => ({
+    ...structuredClone(props.layout ?? {}),
+    separators: lang === 'ru' ? ', ' : '.,',
+  }), [props.layout, lang, view])
   useEffect(() => {
     if (cached) return
     let alive = true
@@ -27,11 +33,17 @@ export function PlotlyChart({ ariaLabel, height = 420, ...props }: Omit<PlotPara
   }, [])
   return (
     <div className="chart-frame" role="figure" aria-label={ariaLabel}>
+      <div className="chart-actions">
+        <button type="button" className="ghost" disabled={!Plot} onClick={() => setView((v) => v + 1)}>
+          {t('common.resetChartView')}
+        </button>
+      </div>
       {Plot ? (
         <Plot
+          key={view}
           {...props}
           // десятичная запятая и неразрывный пробел в числах на русской странице
-          layout={{ ...(props.layout ?? {}), separators: lang === 'ru' ? ', ' : '.,' }}
+          layout={layout}
           style={{ width: '100%', height }}
           useResizeHandler
           config={{

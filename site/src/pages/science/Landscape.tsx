@@ -123,7 +123,7 @@ export default function Landscape() {
     const hline = (y: number, color: string, dash: string, width = 1.2) => ({ type: 'line', x0: 0, x1: xmax, y0: y, y1: y, line: { color, dash, width }, layer: 'below' })
     const bg = explore
       ? [hline(threshold, th.accent, 'solid', 1.6)]
-      : [band(0, 18, th.grid), band(18, 30, th.bandBlue), hline(18, th.muted, 'dash'), hline(30, th.muted, 'dash')]
+      : [band(0, 18, th.bandGreen), band(18, 30, th.bandBlue), band(30, 100, th.bandRed), hline(18, th.muted, 'dash'), hline(30, th.muted, 'dash')]
     const marker = { size: 8, line: { width: 1, color: th.surface } }
     const special = obs.filter(o => o.non_candidate && o.value !== null)
     const data = [
