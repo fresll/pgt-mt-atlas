@@ -13,9 +13,9 @@ export default function Home() {
   const s = atlas.stats
   const sci = `/${lang}/science/`
   const sections: [string, string, string, boolean][] = [
-    ['heteroplasmy-landscape/', 'home.landscapeTitle', 'landscape.subtitle', false],
-    ['embryo-concordance/', 'home.concordanceTitle', 'home.concordanceSubtitle', false],
-    ['embryo-to-offspring/', 'offspring.title', 'home.offspringSubtitle', false],
+    ['heteroplasmy-landscape/', 'landscape.title', 'landscape.subtitle', false],
+    ['embryo-concordance/', 'concordance.title', 'concordance.subtitle', false],
+    ['embryo-to-offspring/', 'offspring.title', 'offspring.subtitle', false],
     ['pgt-mt-pgt-a-model/', 'model.title', 'model.subtitle', true],
   ]
   const ledger: [number, string][] = [

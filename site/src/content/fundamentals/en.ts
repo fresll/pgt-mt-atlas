@@ -57,7 +57,7 @@ const en: FundamentalsContent = {
       ],
       widgets: ['heteroplasmy'],
       data: [
-        { to: 'science/heteroplasmy-landscape/', label: 'Heteroplasmy Landscape', text: 'Published embryo heteroplasmy values for the seven mtDNA variants included in the dataset: the distribution of values in real cycles.' },
+        { to: 'science/heteroplasmy-landscape/', label: 'Between different embryos', text: 'Published embryo heteroplasmy values for the seven mtDNA variants included in the dataset: the distribution of values in real cycles.' },
         { to: 'science/sources/', label: 'Sources', text: 'The primary publications behind the Atlas values, with authorship and DOI.' },
       ],
     },
@@ -147,7 +147,7 @@ const en: FundamentalsContent = {
         { t: 'h', x: 'Differences between oocytes of one woman' },
         { t: 'p', x: 'A mother’s somatic heteroplasmy level cannot predict the heteroplasmy level in a particular oocyte. In the study by Spath and colleagues, women with detectable somatic heteroplasmy had a higher proportion of embryos carrying the variant, yet they still produced embryos without detectable variant; m.8993T>G showed skewed segregation [@spath2021]. Hellebrekers and colleagues noted that most carriers of point variants will have some oocytes with loads below the 18% reference point [@hellebrekers2012].' },
         { t: 'h', x: 'Variant-specific distributions in embryos' },
-        { t: 'p', x: 'The published embryo values compiled in the [[Heteroplasmy Landscape|science/heteroplasmy-landscape/]] section show mostly extreme values for m.8993T>G and a substantial share of intermediate values for m.3243A>G. These distributions are observed data from individual families and cycles; they are not population probabilities and do not account for differences between families.' },
+        { t: 'p', x: 'The published embryo values compiled in the [[Between different embryos|science/heteroplasmy-landscape/]] section show mostly extreme values for m.8993T>G and a substantial share of intermediate values for m.3243A>G. These distributions are observed data from individual families and cycles; they are not population probabilities and do not account for differences between families.' },
         { t: 'h', x: 'What this means for the possibilities of PGT-mt' },
         { t: 'ul', items: [
           'Whether PGT-mt is feasible depends on the spread of heteroplasmy among a particular patient’s embryos, not on the average for a specific pathogenic mtDNA variant.',
@@ -158,7 +158,7 @@ const en: FundamentalsContent = {
       ],
       widgets: ['bottleneck'],
       data: [
-        { to: 'science/heteroplasmy-landscape/', label: 'Heteroplasmy Landscape', text: 'Observed embryo heteroplasmy distributions for each variant — real published values, unlike the model above.' },
+        { to: 'science/heteroplasmy-landscape/', label: 'Between different embryos', text: 'Observed embryo heteroplasmy distributions for each variant — real published values, unlike the model above.' },
         { to: 'science/pgt-mt-pgt-a-model/', label: 'PGT-mt × PGT-A Model', text: 'A scenario calculation: how many blastocysts are needed to obtain, with a given probability, at least one euploid blastocyst with low heteroplasmy.' },
       ],
     },
@@ -341,7 +341,7 @@ const en: FundamentalsContent = {
       ],
       widgets: [],
       data: [
-        { to: 'science/heteroplasmy-landscape/', label: 'Heteroplasmy Landscape', text: 'The ≤18% and 18–30% bands and the 30% line on real embryo values: where the choice of cut-off changes the decision.' },
+        { to: 'science/heteroplasmy-landscape/', label: 'Between different embryos', text: 'The ≤18% and 18–30% bands and the 30% line on real embryo values: where the choice of cut-off changes the decision.' },
         { to: 'science/embryo-to-offspring/', label: 'Embryo-to-Offspring', text: 'All published comparisons of a transferred embryo with fetal or child tissue, with tissue and method.' },
         { to: 'science/pgt-mt-pgt-a-model/', label: 'PGT-mt × PGT-A Model', text: 'A scenario calculation with its assumptions stated explicitly.' },
         { to: 'science/data/', label: 'Data', text: 'The full set of observations with the source of every value.' },

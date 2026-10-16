@@ -108,7 +108,7 @@ test.describe('without JavaScript', () => {
   test('an English address still opens the Russian page (meta refresh)', async ({ page }) => {
     await page.goto('http://localhost:4174/pgt-mt-atlas/en/science/embryo-concordance/')
     await expect(page).toHaveURL('http://localhost:4174/pgt-mt-atlas/ru/science/embryo-concordance/')
-    await expect(page.locator('h1')).toHaveText('Совпадение частей эмбриона')
+    await expect(page.locator('h1')).toHaveText('Внутри индивидуальных эмбрионов')
   })
 })
 
@@ -129,7 +129,7 @@ test('user path: home → specialists → chart → old English link → reload 
   // прежняя английская ссылка открывает тот же раздел на русском и сохраняет query и hash
   await page.goto(`${root}en/science/embryo-concordance/?from=en#content`)
   await expect(page).toHaveURL(`${root}ru/science/embryo-concordance/?from=en#content`)
-  await expect(page.locator('h1')).toHaveText('Совпадение частей эмбриона')
+  await expect(page.locator('h1')).toHaveText('Внутри индивидуальных эмбрионов')
   await expect(page.locator('.chart-frame .js-plotly-plot')).toHaveCount(3, { timeout: 20_000 })
   await page.reload()
   await expect(page.locator('.chart-frame .js-plotly-plot')).toHaveCount(3, { timeout: 20_000 })
