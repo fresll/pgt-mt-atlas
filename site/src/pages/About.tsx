@@ -16,8 +16,8 @@ export default function About() {
       <HandRule className="sk-title-rule" />
       <p className="fd-lead">
         {ru
-          ? 'Атлас ПГТ-мт — самостоятельная, постоянно обновляемая международная база научных данных о гетероплазмии митохондриальной ДНК при преимплантационном генетическом тестировании (ПГТ-мт).'
-          : 'PGT-mt Atlas is an independent, continuously updated international scientific database of mitochondrial DNA heteroplasmy in preimplantation genetic testing (PGT-mt).'}
+          ? 'Атлас ПГТ-мт — постоянно обновляемая международная база научных данных о гетероплазмии митохондриальной ДНК при преимплантационном генетическом тестировании (ПГТ-мт).'
+          : 'PGT-mt Atlas is a continuously updated international scientific database of mitochondrial DNA heteroplasmy in preimplantation genetic testing (PGT-mt).'}
       </p>
       </header>
       <div className="fd-text">
