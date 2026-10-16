@@ -43,6 +43,26 @@ test('a citation in the text opens the collapsed chapter sources at its entry', 
   await expect(page.locator(target).locator('a[href^="https://doi.org/10."]')).toBeVisible()
 })
 
+test('malformed reference anchors preserve the chapter on direct entry and hash changes', async ({ page }) => {
+  const errors: string[] = []
+  page.on('pageerror', (error) => errors.push(error.message))
+  await page.goto(`ru/${CH('mtdna-and-maternal-inheritance')}#ref-%E0%A4%A`)
+  await expect(page.locator('.fd-levels')).toHaveAttribute('data-level', 'essentials')
+  await expect(page.locator('.fd-essentials')).toBeVisible()
+  await expect(page.locator('details.fd-refs')).not.toHaveAttribute('open')
+  await page.evaluate(() => new Promise<void>((resolve) => {
+    window.addEventListener('hashchange', () => requestAnimationFrame(() => resolve()), { once: true })
+    window.location.hash = '#ref-%'
+  }))
+  await expect(page.locator('.fd-essentials')).toBeVisible()
+  const citation = page.locator('.fd-essentials .fd-cite a').first()
+  const target = (await citation.getAttribute('href'))!
+  await citation.click()
+  await expect(page.locator('details.fd-refs')).toHaveAttribute('open', '')
+  await expect(page.locator(target)).toBeVisible()
+  expect(errors).toEqual([])
+})
+
 test('each chapter opens on Essentials, including after the English address redirect', async ({ page }) => {
   await page.goto(`ru/${CH('mitochondrial-genetic-bottleneck')}`)
   await expect(async () => {

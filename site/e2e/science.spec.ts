@@ -108,6 +108,27 @@ test('Tofilo 2026 corrections follow ESM 2 and keep the source value (A3)', asyn
   expect(e3).toMatchObject({ sample_id: 'emb-Tofilo_3-combined_te_icm', fraction_source: 'remaining_te', value_pct: '13.5', value_source_pct: '13.5' })
 })
 
+test('visible concordance CSV includes the combined ICM+TE column and values', async ({ page }) => {
+  await page.goto('ru/science/embryo-concordance/')
+  await expect(page.locator('header.site')).toHaveAttribute('data-menu', 'closed')
+  const table = page.locator('details.table-details').first()
+  await table.locator('summary').click()
+  await expect(table.locator('th', { hasText: 'ВКМ+ТЭ (объединённая часть)' })).toBeVisible()
+  const [download] = await Promise.all([
+    page.waitForEvent('download'),
+    table.getByRole('button', { name: 'Скачать видимые строки (CSV)' }).click(),
+  ])
+  expect(download.suggestedFilename()).toBe('pgt-mt-atlas_embryo-concordance.csv')
+  const chunks: Buffer[] = []
+  for await (const chunk of await download.createReadStream()) chunks.push(chunk)
+  const rows = parseCsv(Buffer.concat(chunks).toString('utf8'))
+  expect(rows).toHaveLength(await table.locator('tbody tr').count())
+  expect(Object.keys(rows[0])).toContain('combined_te_icm')
+  expect(rows.find((row) => row.embryo === 'Tofilo_3')).toMatchObject({ combined_te_icm: '13.5', icm: '', remaining_te: '' })
+  expect(rows.find((row) => row.embryo === 'Tofilo_4')).toMatchObject({ combined_te_icm: '90', icm: '', remaining_te: '' })
+  expect(rows.find((row) => row.embryo === 'Tofilo_6')).toMatchObject({ combined_te_icm: '', icm: '11.3', remaining_te: '11.7' })
+})
+
 // Сравнение с исходной зафиксированной версией 2026-10-10 со страниц снято (64f6686): «Методы» показывают
 // объём текущего набора, «Таблица значений» — число значений; прежние ID по-прежнему находятся.
 test('dataset size: current counts on Methods and Data; former IDs resolve (B2)', async ({ page }) => {

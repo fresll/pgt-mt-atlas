@@ -234,8 +234,15 @@ export function ChapterPage({ slug }: { slug: string }) {
   useEffect(() => {
     const open = () => {
       if (window.location.hash.startsWith('#ref-') && refsRef.current) {
+        let id: string
+        try {
+          id = decodeURIComponent(window.location.hash.slice(1))
+        } catch {
+          // Некорректный якорь не должен мешать открытию главы.
+          return
+        }
         refsRef.current.open = true
-        document.getElementById(decodeURIComponent(window.location.hash.slice(1)))?.scrollIntoView()
+        document.getElementById(id)?.scrollIntoView()
       }
     }
     open()

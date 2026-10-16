@@ -224,7 +224,7 @@ export default function Concordance() {
           selected={selected}
           onSelect={(e) => setSelected(e.embryo)}
           csvName="pgt-mt-atlas_embryo-concordance.csv"
-          csvRow={(e) => ({ embryo: e.embryo, variant: e.variant, publication: e.pub, doi: pubById[e.pub]?.doi, te_biopsy: e.fr.te_biopsy, icm: e.fr.icm, remaining_te: e.fr.remaining_te, range_pp: rangeOf(e.fr) })}
+          csvRow={(e) => ({ embryo: e.embryo, variant: e.variant, publication: e.pub, doi: pubById[e.pub]?.doi, te_biopsy: e.fr.te_biopsy, icm: e.fr.icm, remaining_te: e.fr.remaining_te, combined_te_icm: e.fr.combined_te_icm, range_pp: rangeOf(e.fr) })}
           columns={[
             { key: 'e', header: t('common.embryo'), render: (e) => <>{e.embryo}{hasVerificationIssue(e.embryo) && ' ⚠'}</>, sort: (e) => e.embryo },
             { key: 'v', header: t('common.variant'), render: (e) => e.variant, sort: (e) => e.variant },
