@@ -34,7 +34,8 @@ function* htmlFiles(dir) {
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
-  const launch = process.env.ATLAS_PUBLIC_LAUNCH === '1' && process.env.VITE_ATLAS_PRIVATE_PREVIEW !== '1'
+  const softLaunch = process.env.ATLAS_SOFT_LAUNCH === '1'
+  const launch = !softLaunch && process.env.ATLAS_PUBLIC_LAUNCH === '1' && process.env.VITE_ATLAS_PRIVATE_PREVIEW !== '1'
   let canonicalBase
   if (launch) {
     canonicalBase = new URL(process.env.ATLAS_CANONICAL_BASE || '')
@@ -50,6 +51,9 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
     const html = readFileSync(file, 'utf8')
     let out = relativizeHtml(html, depth)
     const route = relative(dist, file).split(sep).join('/')
+    if (softLaunch) {
+      out = out.replace(/<meta name="robots" content="[^"]*"\s*\/?>/g, '<meta name="robots" content="noindex, follow">')
+    }
     if (launch && route.startsWith('ru/')) {
       const canonical = new URL(route.replace(/index\.html$/, ''), canonicalBase).href
       out = out.replace(/<meta name="robots" content="noindex, nofollow"\s*\/?>/g, '<meta name="robots" content="index, follow">')
@@ -68,11 +72,13 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
   if (launch) {
     writeFileSync(join(dist, 'sitemap.xml'), '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + sitemap.map(url => `<url><loc>${url.replaceAll('&', '&amp;')}</loc></url>`).join('') + '</urlset>')
     writeFileSync(join(dist, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${new URL('sitemap.xml', canonicalBase).href}\n`)
+  } else if (softLaunch) {
+    writeFileSync(join(dist, 'robots.txt'), 'User-agent: *\nAllow: /\n')
   }
 
   writeFileSync(
     join(dist, '404.html'),
-    `<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Атлас ПГТ-мт — страница не найдена</title></head>
+    `<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="${softLaunch ? 'noindex, follow' : 'noindex'}"><title>Атлас ПГТ-мт — страница не найдена</title></head>
 <body style="font-family:system-ui;padding:24px;background:#F7F8F4;color:#182A40"><h1>Атлас ПГТ-мт</h1><p>Страница не найдена</p>
 <p><a href="${base}ru/">Русский</a></p></body></html>\n`,
   )
