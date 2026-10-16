@@ -76,3 +76,64 @@ jobs:
       - uses: actions/configure-pages@v5
       - id: deployment
         uses: actions/deploy-pages@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: github-pages
+          path: pages-artifact
+      - name: Verify anonymous HTTPS pages and noindex after publication
+        env:
+          PAGES_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          python - <<'PY'
+          import json, os, tarfile, time
+          from pathlib import PurePosixPath
+          from urllib.error import HTTPError
+          from urllib.parse import urljoin, urlsplit
+          from urllib.request import Request, urlopen
+          from urllib.robotparser import RobotFileParser
+
+          base = os.environ['PAGES_URL'].rstrip('/') + '/'
+          assert base == 'https://fresll.github.io/pgt-mt-atlas/', base
+          def get(url, expected=200):
+              for attempt in range(6):
+                  try:
+                      with urlopen(Request(url, headers={'User-Agent': 'Atlas-deployment-check'}), timeout=20) as response:
+                          assert response.status == expected, (url, response.status)
+                          assert response.url.startswith(base), response.url
+                          return response.read().decode('utf-8'), dict(response.headers)
+                  except HTTPError as error:
+                      if error.code == expected:
+                          return error.read().decode('utf-8'), dict(error.headers)
+                      if attempt == 5:
+                          raise
+                      time.sleep(5)
+          with tarfile.open('pages-artifact/artifact.tar', 'r:*') as archive:
+              pages = [PurePosixPath(m.name).as_posix() for m in archive.getmembers()
+                       if m.isfile() and m.name.endswith('.html')]
+          assert pages, 'No HTML in the deployed artifact'
+          results = []
+          for path in pages:
+              url = urljoin(base, path.removesuffix('index.html') if path.endswith('index.html') else path)
+              html, headers = get(url)
+              assert '<meta name="robots" content="noindex, follow">' in html, url
+              assert 'text/html' in headers.get('Content-Type', ''), (url, headers.get('Content-Type'))
+              if path == 'ru/index.html':
+                  assert 'https://gc.zgo.at/count.js' in html, 'Counter script is missing'
+              results.append({'url': url, 'status': 200, 'robots': 'noindex, follow',
+                              'headers': {k: headers.get(k) for k in
+                                          ['Content-Type', 'X-Robots-Tag', 'Strict-Transport-Security', 'Server']}})
+          robots, _ = get(urljoin(base, 'robots.txt'))
+          assert robots.strip() == 'User-agent: *\nAllow: /', robots
+          get(urljoin(base, 'sitemap.xml'), expected=404)
+          origin = urlsplit(base)
+          root_robots = f'{origin.scheme}://{origin.netloc}/robots.txt'
+          try:
+              with urlopen(root_robots, timeout=20) as response:
+                  parser = RobotFileParser()
+                  parser.parse(response.read().decode('utf-8').splitlines())
+                  assert parser.can_fetch('Googlebot', base + 'ru/'), 'Root robots.txt blocks Googlebot'
+          except HTTPError as error:
+              assert error.code == 404, (root_robots, error.code)
+          print(json.dumps({'anonymous_https': True, 'pages': results,
+                            'robots_allow': True, 'sitemap_status': 404}, ensure_ascii=False))
+          PY
