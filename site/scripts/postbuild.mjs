@@ -35,6 +35,7 @@ function* htmlFiles(dir) {
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
   const softLaunch = process.env.ATLAS_SOFT_LAUNCH === '1'
+  const englishReview = process.env.VITE_ATLAS_PRIVATE_PREVIEW === '1' && process.env.VITE_ATLAS_ENGLISH_REVIEW === '1'
   const launch = !softLaunch && process.env.ATLAS_PUBLIC_LAUNCH === '1' && process.env.VITE_ATLAS_PRIVATE_PREVIEW !== '1'
   let canonicalBase
   if (launch) {
@@ -60,7 +61,7 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
       out = out.replace('</head>', `<link rel="canonical" href="${canonical}"></head>`)
       sitemap.push(canonical)
     }
-    if (route.startsWith('en/')) {
+    if (route.startsWith('en/') && !englishReview) {
       const destination = '../'.repeat(depth) + route.replace(/^en\//, 'ru/').replace(/index\.html$/, '')
       out = out.replace('<head>', `<head><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0; url=${destination}"><script>location.replace(location.pathname.replace(/\\/en(?=\\/|$)/,'/ru')+location.search+location.hash)</script>`)
     }

@@ -21,10 +21,12 @@ import Methods from './pages/science/Methods'
 import ScienceIndex from './pages/science/ScienceIndex'
 import Sources from './pages/science/Sources'
 
+const englishReview = import.meta.env.VITE_ATLAS_PRIVATE_PREVIEW === '1' && import.meta.env.VITE_ATLAS_ENGLISH_REVIEW === '1'
+
 function langRoutes(lang: Lang): RouteRecord {
   return {
     path: `/${lang}`,
-    element: lang === 'en' ? <RootRedirect /> : <Shell lang={lang} />,
+    element: lang === 'en' && !englishReview ? <RootRedirect /> : <Shell lang={lang} />,
     children: [
       { index: true, element: <Home /> },
       {

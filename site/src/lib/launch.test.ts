@@ -6,6 +6,30 @@ import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 describe('launch remains an explicit build choice', () => {
+  it('opens English HTML only when both owner-review build flags are enabled', () => {
+    const root = mkdtempSync(join(tmpdir(), 'atlas-english-review-'))
+    const script = join(root, 'scripts/postbuild.mjs')
+    const page = join(root, 'dist/en/about/index.html')
+    try {
+      mkdirSync(join(root, 'scripts'))
+      mkdirSync(join(root, 'dist/en/about'), { recursive: true })
+      copyFileSync(fileURLToPath(new URL('../../scripts/postbuild.mjs', import.meta.url)), script)
+      for (const privatePreview of ['0', '1']) {
+        for (const englishReview of ['0', '1']) {
+          writeFileSync(page, '<html><head><meta name="robots" content="noindex, nofollow"></head><body>English review</body></html>')
+          execFileSync(process.execPath, [script], { env: {
+            ...process.env, ATLAS_BASE: '/', ATLAS_SOFT_LAUNCH: '0', ATLAS_PUBLIC_LAUNCH: '0',
+            VITE_ATLAS_PRIVATE_PREVIEW: privatePreview, VITE_ATLAS_ENGLISH_REVIEW: englishReview,
+          } })
+          const output = readFileSync(page, 'utf8')
+          expect(output.includes('http-equiv="refresh"')).toBe(!(privatePreview === '1' && englishReview === '1'))
+          expect(output).toContain('noindex')
+          expect(existsSync(join(root, 'dist/sitemap.xml'))).toBe(false)
+        }
+      }
+    } finally { rmSync(root, { recursive: true, force: true }) }
+  })
+
   it('keeps previews noindex and creates canonical/sitemap only behind the launch flag', () => {
     const root = mkdtempSync(join(tmpdir(), 'atlas-launch-'))
     const script = join(root, 'scripts/postbuild.mjs')
