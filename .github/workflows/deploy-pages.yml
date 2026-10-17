@@ -60,6 +60,19 @@ jobs:
           assert not list(Path('dist').rglob('*sitemap*')), 'Unexpected sitemap'
           print(f'PASS: {len(pages)} HTML pages have noindex; crawler access allowed')
           PY
+      - name: Verify public visit count is available before deployment
+        run: |
+          python - <<'PY'
+          import json, re
+          from urllib.request import Request, urlopen
+          request = Request('https://pgt-mt-atlas.goatcounter.com/counter/TOTAL.json',
+                            headers={'Origin': 'https://fresll.github.io'})
+          with urlopen(request, timeout=20) as response:
+              count = json.load(response).get('count')
+              assert isinstance(count, str) and re.fullmatch(r'\d[\d\s,.]*', count), 'Invalid public visit count'
+              assert response.headers.get('Access-Control-Allow-Origin') in ['*', 'https://fresll.github.io'], 'Public count must allow browser access'
+          print('PASS: anonymous total visit count and browser CORS access')
+          PY
       - uses: actions/upload-pages-artifact@v3
         with: { path: site/dist }
 
@@ -119,6 +132,8 @@ jobs:
               assert 'text/html' in headers.get('Content-Type', ''), (url, headers.get('Content-Type'))
               if path == 'ru/index.html':
                   assert 'https://gc.zgo.at/count.js' in html, 'Counter script is missing'
+              if path.startswith('ru/'):
+                  assert 'class="visitor-count"' in html, ('Visible visit counter is missing', url)
               results.append({'url': url, 'status': 200, 'robots': 'noindex, follow',
                               'headers': {k: headers.get(k) for k in
                                           ['Content-Type', 'X-Robots-Tag', 'Strict-Transport-Security', 'Server']}})

@@ -106,6 +106,42 @@ export function formatDate(iso: string, lang: Lang): string {
     : d.toLocaleDateString(lang === 'ru' ? 'ru-RU' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })
 }
 
+/** Публичное число посещений: чтение статистики не регистрирует новый просмотр. */
+function VisitorCount() {
+  const t = useT()
+  const [count, setCount] = useState<string | null>(null)
+  useEffect(() => {
+    if (import.meta.env.VITE_ATLAS_PRIVATE_PREVIEW === '1') return
+    const controller = new AbortController()
+    const timer = setTimeout(() => controller.abort(), 8000)
+    fetch('https://pgt-mt-atlas.goatcounter.com/counter/TOTAL.json', {
+      credentials: 'omit', signal: controller.signal,
+    })
+      .then(async (response) => {
+        if (!response.ok) return
+        const data: unknown = await response.json()
+        const value = data && typeof data === 'object' && 'count' in data ? data.count : null
+        if (typeof value === 'string' && /^\d[\d\s,.]*$/.test(value) && value.length <= 32 && !controller.signal.aborted) {
+          setCount(value)
+        }
+      })
+      .catch(() => { /* Недоступность статистики не мешает работе сайта. */ })
+      .finally(() => clearTimeout(timer))
+    return () => { clearTimeout(timer); controller.abort() }
+  }, [])
+  if (import.meta.env.VITE_ATLAS_PRIVATE_PREVIEW === '1') return null
+  return (
+    <p className="visitor-count" title={t(count === null ? 'footer.visitsUnavailable' : 'footer.visitsHelp')}>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+        <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" />
+        <circle cx="12" cy="12" r="3" />
+      </svg>
+      <span>{t('footer.visits')}</span>
+      <span className="visitor-count-value" aria-live="polite">{count ?? '—'}</span>
+    </p>
+  )
+}
+
 function Footer({ lang }: { lang: Lang }) {
   const t = useT()
   return (
@@ -117,6 +153,7 @@ function Footer({ lang }: { lang: Lang }) {
             <Link to={`/${lang}/ilya-mazunin/`}>{t('site.curated')}</Link>
           </p>
           <p className="muted">{t('footer.updated', { date: formatDate(atlas.meta.dataset_version, lang), version: atlas.meta.dataset_version })}</p>
+          <VisitorCount />
         </div>
         <nav aria-label={t('footer.linksLabel')}>
           <ul>

@@ -693,6 +693,9 @@ footer.site a { color: var(--sk-ink); }
 footer.site a:hover { color: var(--sk-red); }
 footer.site .curated { color: var(--sk-ink); font-family: var(--font-display); font-size: calc(1.15rem * var(--text-scale)); font-weight: 600; }
 footer.site .muted { color: var(--sk-muted); }
+footer.site .visitor-count { display: flex; align-items: center; gap: 7px; color: var(--sk-ink); font-family: var(--font); }
+.visitor-count svg { flex: 0 0 auto; }
+.visitor-count-value { font-variant-numeric: tabular-nums; }
 
 .prose { max-width: 74ch; }
 /* длинные хеши и идентификаторы переносятся, а не растягивают страницу на телефоне */
