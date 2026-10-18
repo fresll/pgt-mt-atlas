@@ -47,7 +47,12 @@ export default function Data() {
       <PageTitle title={t('data.title')} />
       <h1>{t('data.title')}</h1>
       <p className="lead">{t('data.lead')}</p>
-      <p className="small" data-release="current">{t('data.release', { n: c.landscape_values })}</p>
+      <p className="small" data-release="current">{t('data.release', {
+        n: c.landscape_values,
+        base: atlas.meta.baseline.version,
+        nBase: atlas.meta.baseline.counts.landscape_values,
+        changes: atlas.meta.changes.map((change) => change[lang]).join(' '),
+      })}</p>
 
       <h2>{t('data.embryos')}</h2>
       <div className="controls">

@@ -21,13 +21,13 @@ export const creator = {
 
   /** Краткое представление (шапка страницы). */
   lead: {
-    en: 'Geneticist, Doctor of Biological Sciences (DSc). For about two decades he has studied human mitochondrial DNA: its diversity, mutations, heteroplasmy and approaches to preventing the transmission of mitochondrial disease.',
+    en: 'Geneticist and molecular biologist specialising in the human mitochondrial genome in health and disease.',
     ru: 'Генетик и молекулярный биолог, специализирующийся на изучении роли генома митохондрий в норме и при патологиях.',
   } as Bilingual,
 
   /** Роль в проекте. */
   role: {
-    en: 'Ilya Mazunin created PGT-mt Atlas as an independent international resource that brings together published individual mtDNA heteroplasmy values from preimplantation genetic testing and shows the provenance of every value.',
+    en: 'Ilya Mazunin created PGT-mt Atlas as an independent international resource for published individual mtDNA heteroplasmy values from preimplantation genetic testing, with traceable provenance for every value.',
     ru: 'Илья Мазунин создал Атлас ПГТ-мт как самостоятельный международный ресурс, который собирает опубликованные индивидуальные значения гетероплазмии мтДНК при преимплантационном генетическом тестировании и показывает происхождение каждого значения.',
   } as Bilingual,
 
@@ -39,8 +39,8 @@ export const creator = {
 
   bio: {
     en: [
-      'Ilya Mazunin has devoted his scientific career to studying the human mitochondrial genome. Since his postgraduate studies, he has investigated pathogenic mtDNA variants associated with inherited diseases. Over the years, his research into the distribution of mtDNA mutations expanded to include their origins, technologies to prevent their inheritance, and methods for their gene therapy.',
-      'His work includes, but is not limited to, developing tools for mtDNA editing based on CRISPR-Cas9, CRISPR-Cas12a and prokaryotic Argonautes, as well as approaches to preventing the inheritance of pathogenic mtDNA variants, including PGT-mt and mitochondrial donation.',
+      'Ilya Mazunin’s research focuses on the human mitochondrial genome. Since his postgraduate studies, he has investigated pathogenic mtDNA variants associated with inherited disease. His work on the distribution of mtDNA mutations has expanded to include how they arise, approaches to preventing their transmission, and gene therapy strategies.',
+      'His work includes the development of mtDNA editing tools based on CRISPR-Cas9, CRISPR-Cas12a and prokaryotic Argonaute proteins, alongside approaches to preventing the transmission of pathogenic mtDNA variants, including PGT-mt and mitochondrial donation.',
     ],
     ru: [
       'Илья Мазунин всю научную жизнь специализируется на изучении генома митохондрий человека. Еще с аспирантуры изучал патогенные варианты мтДНК, связанные с различными наследственными болезнями. Спустя годы, изучение распространения мутаций в мтДНК дополнилось изучением природы их возникновения и разработкой как технологий предотвращения их наследования, так и методов их генной терапии.',
@@ -59,7 +59,7 @@ export const creator = {
   education: [
     { years: '2025', text: { en: 'Doctor of Biological Sciences (DSc), Genetics (1.5.7) — Research Centre for Medical Genetics, Moscow', ru: 'Доктор биологических наук, 1.5.7 — генетика. Медико-генетический научный центр, Москва' } },
     { years: '2010', text: { en: 'Candidate of Biological Sciences (PhD), Molecular Genetics (03.01.07) — Institute of Chemical Biology and Fundamental Medicine SB RAS, Novosibirsk', ru: 'Кандидат биологических наук, 03.01.07 — молекулярная генетика. Институт химической биологии и фундаментальной медицины СО РАН, Новосибирск' } },
-    { years: '2006', text: { en: 'Degree in Biology, specialization in Genetics — Chelyabinsk State University', ru: 'Высшее биологическое образование, генетика. Челябинский государственный университет' } },
+    { years: '2006', text: { en: 'Degree in Biology, specialisation in Genetics — Chelyabinsk State University', ru: 'Высшее биологическое образование, генетика. Челябинский государственный университет' } },
   ] as Item[],
 
   current: [

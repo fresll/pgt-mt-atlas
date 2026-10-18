@@ -17,14 +17,14 @@ export default function About() {
       <p className="fd-lead">
         {ru
           ? 'Атлас ПГТ-мт — постоянно обновляемая международная база научных данных о гетероплазмии митохондриальной ДНК при преимплантационном генетическом тестировании (ПГТ-мт).'
-          : 'PGT-mt Atlas is a continuously updated international scientific database of mitochondrial DNA heteroplasmy in preimplantation genetic testing (PGT-mt).'}
+          : 'PGT-mt Atlas is an international scientific database of mitochondrial DNA (mtDNA) heteroplasmy in preimplantation genetic testing for mtDNA variants (PGT-mt). It is updated as new evidence becomes available.'}
       </p>
       </header>
       <div className="fd-text">
       <p>
         {ru
           ? 'Атлас собирает опубликованные индивидуальные значения гетероплазмии для каждого описанного эмбриона и сопоставления «эмбрион — потомство», хранит происхождение каждого значения и открыто показывает ограничения данных. Атлас не является приложением к какой-либо отдельной публикации и развивается по мере выхода новых исследований.'
-          : 'The Atlas brings together published individual heteroplasmy values for every reported embryo and embryo-to-offspring comparisons, keeps the provenance of every value and states the limitations of the data openly. The Atlas is not a supplement to any single publication and grows as new studies appear.'}
+          : 'The Atlas compiles published individual embryo heteroplasmy values and embryo–offspring comparisons. Every value retains its provenance, and the limitations of the evidence are stated explicitly. This is an independent resource, rather than a supplement to a single publication, and it develops as new studies are published.'}
       </p>
 
       <h2>{ru ? 'Создатель и куратор' : 'Creator and curator'}</h2>
@@ -47,8 +47,8 @@ export default function About() {
       <h2>{ru ? 'Принципы' : 'Principles'}</h2>
       <ul>
         <li>{ru ? 'Источники и научные исследования: у каждого значения указаны публикация, её авторы и DOI.' : 'Attribution of primary research: every value is linked to its publication, its authors and DOI.'}</li>
-        <li>{ru ? 'Значения проверяются по опубликованным научным источникам перед включением в Атлас.' : 'Source values are not changed without verification; discrepancies with published material are flagged, not silently corrected.'}</li>
-        <li>{ru ? 'Наблюдаемые данные и модельные расчёты разделены в данных и в интерфейсе.' : 'Observed data and model calculations are kept apart in the data and in the interface.'}</li>
+        <li>{ru ? 'Значения проверяются по опубликованным научным источникам перед включением в Атлас.' : 'Values are checked against published scientific sources before inclusion in the Atlas. Discrepancies are documented rather than corrected silently.'}</li>
+        <li>{ru ? 'Наблюдаемые данные и модельные расчёты разделены в данных и в интерфейсе.' : 'Observed data and model calculations are distinguished both in the dataset and in the interface.'}</li>
         <li>{ru ? 'Только опубликованные источники: медицинские сведения и неопубликованные материалы автоматически не публикуются.' : 'Published sources only: medical information and unpublished material are never published automatically.'}</li>
       </ul>
 

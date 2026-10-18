@@ -1,6 +1,7 @@
 // Типизированный доступ к atlas.json (генерируется etl/atlas_etl/build.py — не редактировать вручную).
 // Правила выборок совпадают с ETL (etl/atlas_etl/curation/rules.yaml).
 import raw from './atlas.json'
+import { dataLabelsEn } from '../i18n/data-labels-en'
 
 export type Lang = 'en' | 'ru'
 export type Bilingual = { ru: string; en: string }
@@ -239,7 +240,7 @@ export const atlas = { ...dataset, landscape, landscape_blocks, concordance, off
 export const pubById: Record<string, Publication> = Object.fromEntries(atlas.publications.map(p => [p.id, p]))
 
 export function label(group: string, code: string, lang: Lang): string {
-  return atlas.labels[group]?.[code]?.[lang] ?? code
+  return (lang === 'en' ? dataLabelsEn[group]?.[code] : undefined) ?? atlas.labels[group]?.[code]?.[lang] ?? code
 }
 
 export function doiUrl(doi: string): string {

@@ -19,9 +19,9 @@ const SYMBOL = ['circle', 'square', 'triangle-up'] as const
 
 // Случаи вне количественного набора (правила включения — лист «Рисунок 5»!A29:A35 исходной таблицы)
 const NOT_INCLUDED = [
-  { pub: 'sallevelt2017', ru: 'm.14487T>C — перенесены два эмбриона с разными значениями; ребёнка нельзя однозначно связать ни с одним из них.', en: 'm.14487T>C — two embryos with different values were transferred; the child cannot be linked to either of them.' },
+  { pub: 'sallevelt2017', ru: 'm.14487T>C — перенесены два эмбриона с разными значениями; ребёнка нельзя однозначно связать ни с одним из них.', en: 'm.14487T>C — two embryos with different heteroplasmy levels were transferred; it is not possible to establish which embryo resulted in the child.' },
   { pub: 'steffann2014', ru: 'm.8344A>G — ткань, в которой измерена гетероплазмия при рождении, не указана.', en: 'm.8344A>G — the tissue measured at birth is not specified.' },
-  { pub: 'monnot2011', ru: 'Перенесены два эмбриона; ребёнка нельзя однозначно связать ни с одним из них.', en: 'Two embryos were transferred; the child cannot be linked to either one.' },
+  { pub: 'monnot2011', ru: 'Перенесены два эмбриона; ребёнка нельзя однозначно связать ни с одним из них.', en: 'Two embryos were transferred; it is not possible to establish which embryo resulted in the child.' },
   { pub: 'hyslop2025', ru: 'Table 1 содержит значения в тестовом бластомере и крови для 10 детей. Восемь пар одиночных переносов включены; двойной перенос не сопоставляется с отдельным ребёнком.', en: 'Table 1 reports test-blastomere and blood values for 10 children. Eight single-transfer pairs are included; double transfers cannot be linked to individual children.' },
 ]
 
