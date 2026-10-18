@@ -1,3 +1,4 @@
+import { sourceText } from '../../i18n/source-text-en'
 import { BackToTop, PageContents } from '../../components/PageContents'
 import { useMemo, useEffect, useState } from 'react'
 import { PlotlyChart } from '../../components/PlotlyChart'
@@ -140,7 +141,7 @@ export default function Model() {
     </div>
     <ul className="small">
       <li>{t('model.pHet')}</li>
-      <li data-testid="p-eupl">{t('model.pEupl')}. {t('model.scenarioNote')} {t('model.pEuplSource')}: <PubRef id={m.p_eupl_publication} />{m.p_eupl_locator && <span className="muted"> — {m.p_eupl_locator}</span>}</li>
+      <li data-testid="p-eupl">{t('model.pEupl')}. {t('model.scenarioNote')} {t('model.pEuplSource')}: <PubRef id={m.p_eupl_publication} />{m.p_eupl_locator && <span className="muted"> — {sourceText(m.p_eupl_locator, lang)}</span>}</li>
     </ul>
 
     <h2 id="model-2">{t('model.tableTitle')}</h2>

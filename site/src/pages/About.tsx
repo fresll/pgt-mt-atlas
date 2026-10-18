@@ -24,7 +24,7 @@ export default function About() {
       <p>
         {ru
           ? 'Атлас собирает опубликованные индивидуальные значения гетероплазмии для каждого описанного эмбриона и сопоставления «эмбрион — потомство», хранит происхождение каждого значения и открыто показывает ограничения данных. Атлас не является приложением к какой-либо отдельной публикации и развивается по мере выхода новых исследований.'
-          : 'The Atlas compiles published individual embryo heteroplasmy values and embryo–offspring comparisons. Every value retains its provenance, and the limitations of the evidence are stated explicitly. This is an independent resource, rather than a supplement to a single publication, and it develops as new studies are published.'}
+          : 'The Atlas compiles published individual embryo heteroplasmy values and embryo–offspring comparisons. Every value retains its provenance, and the limitations of the evidence are stated explicitly. This is an independent resource, rather than a supplement to a single publication.'}
       </p>
 
       <h2>{ru ? 'Создатель и куратор' : 'Creator and curator'}</h2>
@@ -49,7 +49,7 @@ export default function About() {
         <li>{ru ? 'Источники и научные исследования: у каждого значения указаны публикация, её авторы и DOI.' : 'Attribution of primary research: every value is linked to its publication, its authors and DOI.'}</li>
         <li>{ru ? 'Значения проверяются по опубликованным научным источникам перед включением в Атлас.' : 'Values are checked against published scientific sources before inclusion in the Atlas. Discrepancies are documented rather than corrected silently.'}</li>
         <li>{ru ? 'Наблюдаемые данные и модельные расчёты разделены в данных и в интерфейсе.' : 'Observed data and model calculations are distinguished both in the dataset and in the interface.'}</li>
-        <li>{ru ? 'Только опубликованные источники: медицинские сведения и неопубликованные материалы автоматически не публикуются.' : 'Published sources only: medical information and unpublished material are never published automatically.'}</li>
+        <li>{ru ? 'Только опубликованные источники: медицинские сведения и неопубликованные материалы автоматически не публикуются.' : 'The current public dataset contains published observations. Unpublished submissions require separate review before inclusion; medical information and unpublished material are never published automatically.'}</li>
       </ul>
 
       <h2>{ru ? 'Важно' : 'Important'}</h2>

@@ -1,6 +1,7 @@
 import type { TFunction } from 'i18next'
 import type { EmbryoObservation, Lang, OffspringPair } from '../data/atlas'
 import { fmt, pct } from './format'
+import { sourceText } from '../i18n/source-text-en'
 
 export function obsValueText(o: Pick<EmbryoObservation, 'q' | 'value' | 'low' | 'high' | 'lod'>, lang: Lang, t: TFunction): string {
   if (o.q === 'interval') return t('common.interval', { low: fmt(o.low, lang), high: fmt(o.high, lang) })
@@ -11,7 +12,10 @@ export function obsValueText(o: Pick<EmbryoObservation, 'q' | 'value' | 'low' | 
 
 export function pairValueText(v: number | null, q: OffspringPair['q'], raw: string | null, lang: Lang, t: TFunction): string {
   if (q === 'not_detected') return `${lang === 'ru' ? '0% — ' : ''}${t('common.notDetected')}`
-  if (q === 'less_than') return t('common.lessThan', { v: fmt(v, lang) })
-  if (q === 'qualitative') return raw ?? '—'
+  if (q === 'less_than') {
+    if (lang === 'en' && v === null) return raw ? sourceText(raw, lang) : t('common.upperBoundUnknown')
+    return t('common.lessThan', { v: fmt(v, lang) })
+  }
+  if (q === 'qualitative') return raw == null ? '—' : sourceText(raw, lang)
   return pct(v, lang, 2)
 }

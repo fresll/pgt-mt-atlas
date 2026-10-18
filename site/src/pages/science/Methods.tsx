@@ -1,3 +1,4 @@
+import { sourceText } from '../../i18n/source-text-en'
 import { BackToTop, PageContents } from '../../components/PageContents'
 import { PubRef } from '../../components/ui'
 import { atlas, label, pubById } from '../../data/atlas'
@@ -61,7 +62,7 @@ export default function Methods() {
             <strong>{th.value !== undefined ? `${fmt(th.value, lang)}%` : `${th.range?.[0]}–${th.range?.[1]}%`}</strong> · <em>{t(`methodLabels.thresholdRoles.${th.role}`)}</em> — {th[lang]}
             {th.publication && <> (<PubRef id={th.publication} />)</>}
             <br />
-            <span className="small muted" lang="ru">{th.locator ? `${th.locator}. ` : ''}{t('interfaceCopy.Methods.checked')}: {th.checked}</span>
+            <span className="small muted" lang={lang}>{th.locator ? `${sourceText(th.locator, lang)}. ` : ''}{t('interfaceCopy.Methods.checked')}: {sourceText(th.checked, lang)}</span>
           </li>
         ))}
       </ul>
@@ -88,7 +89,7 @@ export default function Methods() {
               <tr key={v}>
                 <td>{v}</td>
                 <td>{label('variant_class', x.class, lang)}</td>
-                <td className="small">{t(`common.classBasis.${x.status}`, { source: pubById[x.publication]?.short ?? x.publication, locator: x.locator ?? '', date: x.checked })}</td>
+                <td className="small">{t(`common.classBasis.${x.status}`, { source: pubById[x.publication]?.short ?? x.publication, locator: sourceText(x.locator ?? '', lang), date: x.checked })}</td>
               </tr>
             ))}
           </tbody>

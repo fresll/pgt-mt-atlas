@@ -1,3 +1,4 @@
+import { sourceText } from '../../i18n/source-text-en'
 import { useMemo, useState } from 'react'
 import { DataTable } from '../../components/DataTable'
 import { PlotlyChart } from '../../components/PlotlyChart'
@@ -62,7 +63,7 @@ export default function Offspring() {
     `<b>${p.id}</b> · ${t('common.child')} ${p.child}<br>${p.variant} · ${pubById[p.pub].short}<br>` +
     `${t('common.embryo')}: ${pairValueText(p.emb, p.emb_q, p.emb_raw, lang, t)}<br>` +
     `${label('tissue', p.tissue, lang)}: ${pairValueText(p.value, p.q, p.value_raw, lang, t)}` +
-    (p.age ? `<br>${t('common.age')}: ${p.age}` : '')
+    (p.age ? `<br>${t('common.age')}: ${sourceText(p.age, lang)}` : '')
   const pick = (e: { points?: { customdata?: unknown }[] }) => {
     const id = e.points?.[0]?.customdata
     if (typeof id === 'string') setSelected(id)
@@ -206,13 +207,13 @@ export default function Offspring() {
             [t('common.source'), <PubRef id={sel.pub} showStatus />],
             [t('common.embryo'), pairValueText(sel.emb, sel.emb_q, sel.emb_raw, lang, t)],
             [t('common.phase'), label('phase', sel.phase, lang)],
-            [t('common.tissue'), `${label('tissue', sel.tissue, lang)} — «${sel.tissue_raw}»`],
+            [t('common.tissue'), `${label('tissue', sel.tissue, lang)} — «${sourceText(sel.tissue_raw, lang)}»`],
             [t('common.value'), pairValueText(sel.value, sel.q, sel.value_raw, lang, t)],
-            [t('common.age'), sel.age],
-            [t('common.method'), sel.method],
+            [t('common.age'), sourceText(sel.age ?? '', lang)],
+            [t('common.method'), sourceText(sel.method ?? '', lang)],
             [t('data.locator'), sel.source_locator],
             [t('data.embryoSample'), sel.emb_sample === 'single_blastomere' ? t('data.day3Blastomere') : '—'],
-            [t('interfaceCopy.Offspring.referenceView'), sel.in_figure ? (t('interfaceCopy.Offspring.yes')) : `${t('interfaceCopy.Offspring.no')} — «${sel.on_plot_raw}»`],
+            [t('interfaceCopy.Offspring.referenceView'), sel.in_figure ? (t('interfaceCopy.Offspring.yes')) : `${t('interfaceCopy.Offspring.no')} — «${sourceText(sel.on_plot_raw, lang)}»`],
             [t('common.provenance'), t('common.sheetRow', { sheet: sel.src.sheet, row: sel.src.row })],
           ]}
         />
@@ -222,7 +223,7 @@ export default function Offspring() {
       <ul className="small prose">
         {excluded.map((p) => (
           <li key={p.id}>
-            <button className="ghost" type="button" onClick={() => setSelected(p.id)}>{p.id}</button> {p.variant}, {pubById[p.pub].short}: {p.on_plot_raw}
+            <button className="ghost" type="button" onClick={() => setSelected(p.id)}>{p.id}</button> {p.variant}, {pubById[p.pub].short}: {sourceText(p.on_plot_raw, lang)}
           </li>
         ))}
         {NOT_INCLUDED.map((c) => (

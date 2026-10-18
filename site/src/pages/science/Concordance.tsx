@@ -1,3 +1,4 @@
+import { sourceText } from '../../i18n/source-text-en'
 import { useMemo, useState } from 'react'
 import { DataTable } from '../../components/DataTable'
 import { PlotlyChart } from '../../components/PlotlyChart'
@@ -243,7 +244,7 @@ export default function Concordance() {
           rowKey={(r) => String(r.sample)}
           columns={[
             { key: 's', header: '#', render: (r) => r.sample, sort: (r) => r.sample, num: true },
-            { key: 'c', header: t('interfaceCopy.Concordance.cells'), render: (r) => `${r.cells_raw} (${r.n_cells_raw})` },
+            { key: 'c', header: t('interfaceCopy.Concordance.cells'), render: (r) => `${sourceText(r.cells_raw, lang)} (${r.n_cells_raw})` },
             { key: 'd', header: t('interfaceCopy.Concordance.coverage'), render: (r) => fmt(r.depth, lang, 0), sort: (r) => r.depth, num: true },
             { key: 'v', header: `${hu.variant}, %`, render: (r) => fmt(r.value, lang, 1), sort: (r) => r.value, num: true },
             { key: 'dv', header: `Δ vs ${fmt(hu.biopsy_value, lang)}%`, render: (r) => fmt(r.value - hu.biopsy_value, lang, 1), sort: (r) => r.value - hu.biopsy_value, num: true },

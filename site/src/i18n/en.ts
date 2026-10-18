@@ -35,7 +35,7 @@ const en: Dict = {
   },
   "site": {
     "title": "PGT-mt Atlas",
-    "tagline": "An open database of published mitochondrial DNA (mtDNA) heteroplasmy values in embryos undergoing preimplantation genetic testing for mtDNA variants (PGT-mt), with a source for every value",
+    "tagline": "An open database of published embryo heteroplasmy values from preimplantation genetic testing for mitochondrial DNA variants (PGT-mt). Each value is linked to its source.",
     "curated": "Created and curated by Ilya Mazunin",
     "preview": "Preview. The site is not yet published; the data and text await review by the curator.",
     "skip": "Skip to content"
@@ -128,6 +128,7 @@ const en: Dict = {
     "lod": "limit of detection: {{lod}}%",
     "interval": "published interval only: {{low}}–{{high}}%",
     "lessThan": "below {{v}}%",
+    "upperBoundUnknown": "Upper bound not reported; see source note",
     "loadingChart": "Loading chart…",
     "main": "Key finding",
     "scrollHint": "The chart is wider than the screen: scroll sideways to see all variants →",
@@ -177,12 +178,12 @@ const en: Dict = {
     "lead": "The Atlas presents published heteroplasmy levels and explains how to interpret these values.",
     "k1": "embryo heteroplasmy values",
     "k2": "{{word}} in which a biopsy sample was compared with other parts of the same embryo (including the inner cell mass in {{icm}})",
-    "k3": "{{word}} between embryo and tissue samples from {{children}} foetuses and children; both results were “not detected” in {{ndChildren}} children",
+    "k3": "{{word}} between embryo and tissue samples from {{children}} foetuses and children; the variant was not detected in either sample for {{ndChildren}} foetuses and children",
     "sciTitle": "For specialists",
-    "sciText": "Interactive data sections, a table tracing every value to its source, and information on sources, methods and limitations.",
+    "sciText": "Interactive charts, a source-linked data table, and an explanation of the methods and limitations.",
     "patTitle": "For patients",
     "fundTitle": "PGT-mt fundamentals",
-    "fundText": "A six-chapter course covering mtDNA inheritance through to interpreting test results — for clinicians, embryologists and students.",
+    "fundText": "A six-chapter course on mtDNA inheritance and the interpretation of PGT-mt results, for clinicians, embryologists and students.",
     "ctaPatients": "Patients and families",
     "ctaSpecialists": "Data for specialists",
     "ctaFundamentals": "PGT-mt fundamentals — a six-chapter course",
@@ -205,7 +206,7 @@ const en: Dict = {
     "landscapeTitle": "Between different embryos",
     "concordanceTitle": "Within individual embryos",
     "concordanceSubtitle": "Agreement in heteroplasmy levels between different parts of the same embryo",
-    "offspringSubtitle": "Changes in heteroplasmy levels over time — from embryo to child",
+    "offspringSubtitle": "Heteroplasmy in embryo biopsies and prenatal or postnatal samples",
     "sectionsTitle": "Sections of the Atlas",
     "sectionsNote": "from biopsy to data",
     "biopsyCaption": "Trophectoderm (TE) biopsy: a sample of a few TE cells in which PGT-mt measures the proportion of mtDNA carrying a pathogenic variant.",
@@ -270,17 +271,17 @@ const en: Dict = {
   },
   "offspring": {
     "bothNDPair": "ND → ND",
-    "bothNDChildren": "Both results were not detected (ND) in {{children}} foetuses and children ({{pairs}} pairs). These results are not exact measurements of zero.",
+    "bothNDChildren": "In {{pairs}} paired comparisons from {{children}} foetuses and children, the variant was not detected (ND) in either sample. These results are not exact measurements of zero.",
     "bothND": "ND → ND: {{n}} pairs",
     "recordSummary": "{{records}} records, including {{pairs}} matched embryo–tissue pairs from {{children}} foetuses and children",
     "childSummary": "The embryo heteroplasmy level was low for {{low}} of {{all}} foetuses and children. In {{concordant}} of these, every tissue result was low or not detected. Results from different laboratories disagree for one child (C5).",
     "deltaBound": "Δ is expressed in percentage points. When only the tissue result is ND, Δ has a lower bound, shown by an open marker and an upward arrow. When only the embryo result is ND, Δ has an upper bound. ND → ND pairs are counted below the group and are not plotted at Δ = 0.",
     "ndBand": "ND (no numeric axis)",
     "title": "Embryo, foetus and child",
-    "subtitle": "Changes in heteroplasmy levels over time — from embryo to child",
+    "subtitle": "Heteroplasmy in embryo biopsies and prenatal or postnatal samples",
     "lead": "Comparisons between the transferred embryo and foetal or child tissue. The observations are not independent: several measurements may come from different tissues or time points in the same child.",
     "main": "{{pairs}} from {{children}} foetuses and children. {{disc}}",
-    "discOne": "All embryo–tissue discrepancies ({{ids}}) relate to one child and arise from re-analysis using a different method.",
+    "discOne": "All comparisons classified here as discordant ({{ids}}) concern one child whose postnatal samples were analysed using a different method. Here, discordant means an embryo result at or below 18% paired with a tissue result above 18%; this is a descriptive grouping, not a clinical threshold.",
     "discMany": "Embryo–tissue discrepancies: {{ids}}.",
     "pairForms": [
       "comparison",
@@ -305,7 +306,7 @@ const en: Dict = {
     "versionLabel": "Model version: {{v}}",
     "title": "PGT-mt × PGT-A model",
     "subtitle": "Scenarios for joint selection using PGT-mt and preimplantation genetic testing for aneuploidy (PGT-A), and sensitivity to model assumptions",
-    "banner": "The model estimates the probability that at least one blastocyst in a given group meets both laboratory criteria. The input proportions come from heterogeneous published series. No probability has been estimated for an individual patient.",
+    "banner": "The model estimates the probability that at least one blastocyst in a given group meets both laboratory criteria. The input proportions come from heterogeneous published series. These estimates are not personalised predictions.",
     "yAxis": "P(≥1 suitable)",
     "xAxis": "Number of blastocysts, N",
     "panelTabs": "Scenario proportion of euploid blastocysts",
@@ -344,7 +345,7 @@ const en: Dict = {
     "tableAge": "Age {{age}}",
     "vus": "Variant of uncertain significance (VUS)",
     "dependentFormula": "For 0 < ρ < 1, the shared probability Q follows a beta distribution with mean q. Embryos are conditionally independent given Q; integrating Q induces positive dependence. At ρ = 0, the binomial limit is used.",
-    "boundsTitle": "When independence of the two tests is unknown",
+    "boundsTitle": "When heteroplasmy status and ploidy may be associated",
     "boundsNote": "The marginal proportions H and E determine only bounds on the joint probability q for one embryo. The table shows these bounds, not confidence intervals. They are conditional on the input proportions and do not describe dependence between embryos.",
     "evidenceTitle": "Joint results from primary studies",
     "evidenceNote": "The endpoint is fixed here: H≤18% and strict euploidy. Each denominator comprises blastocysts assessed by TE biopsy in one published series. These small series describe specific women carrying mtDNA variants; their proportions do not calibrate the scenario curves for other families.",
@@ -363,7 +364,7 @@ const en: Dict = {
     "scenarioNote": "The scenario values are not assigned to specific ages.",
     "symbols": "H — proportion at or below the selected threshold; E — assumed proportion of euploid blastocysts; ◆ model calculation.",
     "teOnly": "Blastocyst TE biopsies only",
-    "carrierCaveat": "With 1–2 women carrying a variant, the proportion describes those women, not the variant as a whole. Record linkages that are unknown remain unestablished. Counts are reported separately for each publication; the same woman may appear in several papers, so the counts must not be summed.",
+    "carrierCaveat": "With 1–2 women carrying a variant, the proportion describes those women, not the variant as a whole. Records are linked across publications only when the available information supports the match. Counts are reported separately for each publication; the same woman may appear in several papers, so the counts must not be summed.",
     "unknown": "not established",
     "carriers": "carriers: {{n}}; records: {{records}}"
   },
@@ -476,7 +477,7 @@ const en: Dict = {
       "p": "Heteroplasmy measurements from all embryos in a cycle — including aneuploid embryos, embryos with developmental arrest and those not transferred — help describe transmission of an mtDNA variant through oogenesis and early development. Without these observations, estimates of risk for a family are incomplete."
     },
     "interest": {
-      "title": "What we are interested in",
+      "title": "Data we welcome",
       "note": "studies and observations",
       "items": [
         "Complete PGT-mt cycles — every started cycle, including those that ended without a transfer.",
@@ -499,7 +500,7 @@ const en: Dict = {
         ],
         [
           "Fill in the template",
-          "Download PGT-mt Research Data Submission and complete the sheets that apply to your data. A published study can also be proposed simply by reference."
+          "Download PGT-mt Research Data Submission and complete the sheets that apply to your data. To suggest a published study, send its citation or DOI."
         ],
         [
           "Agree how to share the data",
@@ -835,13 +836,13 @@ const en: Dict = {
         "paragraphs": [
           "During in vitro fertilisation (IVF), cells are sampled on day 3 or days 5–6. Usually, this means one blastomere (an early embryo cell) on day 3, or several trophectoderm cells on days 5–6. Trophectoderm is the outer layer that contributes to the placenta. The laboratory measures the proportion of mtDNA carrying the variant in this sample.",
           "Embryos from the same woman may have different heteroplasmy levels. Testing helps identify the embryo with the lowest level, provided it falls below a cut-off agreed beforehand with the clinical geneticist for the specific variant. If all embryos exceed that cut-off, transfer is generally not recommended.",
-          "The outcome cannot be predicted precisely before a cycle begins. Some patients obtain more embryos with low heteroplasmy, others fewer, and some cycles produce none."
+          "The outcome cannot be predicted precisely before a cycle begins. The number of embryos with low heteroplasmy varies between patients and treatment cycles; some cycles yield none."
         ]
       },
       {
         "title": "Why is a percentage not a diagnosis?",
         "paragraphs": [
-          "PGT-mt compares embryo heteroplasmy levels against an agreed cut-off. It does not diagnose the health of a future child.",
+          "PGT-mt compares embryo heteroplasmy levels against an agreed cut-off. It cannot determine whether a future child will develop mitochondrial disease.",
           "The test measures the proportion of mtDNA carrying the variant in one or a few cells at a single time point. The child’s health depends on how that variant is distributed across tissues and organs later in development.",
           "There is no universal “safe” heteroplasmy percentage. Published reference values come from different types of evidence: 18% is an estimate based on muscle measurements in adult carriers, whereas 30% is an embryo-selection criterion used by one clinical programme. Thresholds differ between mtDNA variants, and no value guarantees a healthy child. Chapter 6 of the fundamentals course explains these distinctions."
         ]
@@ -868,8 +869,8 @@ const en: Dict = {
           "PGT-mt is one of several reproductive options:"
         ],
         "items": [
-          "Prenatal diagnosis — testing during pregnancy, using chorionic villi or amniotic fluid. Measuring the proportion of the variant does not distinguish outcomes in homoplasmy.",
-          "Donor eggs — using oocytes from a healthy donor. The child will not be genetically related to the intended mother.",
+          "Prenatal diagnosis — testing during pregnancy, using chorionic villi or amniotic fluid. For a homoplasmic variant, measuring its proportion alone cannot predict whether the child will be affected.",
+          "Donor eggs — using oocytes from a healthy donor. The child will inherit nuclear DNA and mtDNA from the egg donor rather than the intended mother.",
           "Mitochondrial donation — transferring the patient’s nuclear material into a donor oocyte or zygote containing mtDNA without the pathogenic variant. Availability depends on national legislation. A small amount of maternal mtDNA may be carried over with the nuclear material, so the risk is reduced rather than eliminated."
         ],
         "closingTitle": "How do you choose?",
@@ -958,7 +959,7 @@ const en: Dict = {
   "interfaceCopy": {
     "Methods": {
       "collectedTitle": "Data collection",
-      "datasetSummary": "Individual embryo heteroplasmy values were extracted from published studies. The current dataset contains {{v0}} values for {{v1}} mtDNA variants; {{v2}} blastocysts with measurements from several samples (TE biopsy, ICM, remaining TE or combined ICM+TE); and post-implantation data for {{v3}} children whose transferred-embryo heteroplasmy level is known. Primary publications were used where available. Values obtained from reviews because the primary source was unavailable are explicitly identified.",
+      "datasetSummary": "Individual embryo heteroplasmy values were extracted from published studies. The current dataset contains {{v0}} values for {{v1}} mtDNA variants; {{v2}} blastocysts with measurements from several samples (TE biopsy, ICM, remaining TE or combined ICM+TE); and prenatal or postnatal measurements from {{v3}} foetuses and children with a matched heteroplasmy result from the transferred embryo. Primary publications were used where available. Values obtained from reviews because the primary source was unavailable are explicitly identified.",
       "incompleteCycles": "Studies do not always report every embryo in a cycle, so the dataset does not represent all embryos from the included cycles. Pooling published cases does not provide a clinical success rate for PGT-mt.",
       "sizeTitle": "Dataset size",
       "measure": "Measure",
@@ -1005,7 +1006,7 @@ const en: Dict = {
     "Offspring": {
       "panelA": "A",
       "panelB": "B",
-      "comparisonSummary": "Of {{v0}} comparisons with low embryo heteroplasmy, {{v1}} had low tissue heteroplasmy or a result reported as not detected. All discordant values ({{v2}}) came from re-analysis of one child using another method.",
+      "comparisonSummary": "Of {{v0}} comparisons with low embryo heteroplasmy, {{v1}} had low tissue heteroplasmy or a result reported as not detected. All comparisons classified here as discordant ({{v2}}) concern one child whose postnatal samples were analysed using a different method.",
       "referenceView": "In the reference view",
       "yes": "yes",
       "no": "no"
@@ -1026,8 +1027,8 @@ const en: Dict = {
       "concordance_records": "blastocyst sample records",
       "cleavage_embryos": "cleavage-stage embryos (two blastomeres)",
       "offspring_records": "embryo → offspring records",
-      "offspring_children": "children in embryo → offspring records",
-      "offspring_children_exact_pair": "children with an exact transferred-embryo–tissue pair",
+      "offspring_children": "foetuses and children in all embryo–offspring records (including excluded records)",
+      "offspring_children_exact_pair": "foetuses and children with matched embryo–tissue pairs in the plotted dataset",
       "publications": "publications"
     },
     "thresholdRoles": {

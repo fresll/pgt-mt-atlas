@@ -1,3 +1,4 @@
+import { sourceText } from '../../i18n/source-text-en'
 import { useState } from 'react'
 import { PubStatus, Seg } from '../../components/ui'
 import { atlas, doiUrl, pubById, type Publication } from '../../data/atlas'
@@ -69,7 +70,7 @@ export default function Sources() {
                       </p>
                     )}
                     {p.id !== 'tofilo2026' && p.data_access_note && <p className="small muted">{p.data_access_note[lang]}</p>}
-                    {p.id !== 'tofilo2026' && p.doi_exception && <p className="small muted" lang="ru">{t('sources.doiException')}: {p.doi_exception}</p>}
+                    {p.id !== 'tofilo2026' && p.doi_exception && <p className="small muted" lang={lang}>{t('sources.doiException')}: {sourceText(p.doi_exception, lang)}</p>}
                     {p.id !== 'tofilo2026' && p.supplementary && <p className="small">{t('sources.supplementary')}: {p.supplementary.map((x) => x.label).join(', ')}</p>}
                   </details>
                 </td>

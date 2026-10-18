@@ -1,3 +1,4 @@
+import { sourceText } from '../../i18n/source-text-en'
 import { useEffect, useMemo, useState } from 'react'
 import { DataTable } from '../../components/DataTable'
 import { PlotlyChart } from '../../components/PlotlyChart'
@@ -27,8 +28,8 @@ export function ObservationDetail({ o, onClose }: { o: EmbryoObservation; onClos
         [t('common.pmid'), p?.pmid ? <a href={`https://pubmed.ncbi.nlm.nih.gov/${p.pmid}/`} target="_blank" rel="noreferrer">{p.pmid}</a> : null],
         [t('common.stage'), `${label('stage', o.stage, lang)} — «${o.stage_raw}»`],
         [t('common.sample'), `${label('sample_type', o.sample, lang)} — «${o.material_raw}»`],
-        [t('common.derivation'), <>{label('derivation', o.derivation, lang)}{o.derivation_evidence && <span className="muted"> · {o.derivation_evidence}</span>}</>],
-        [t('common.note'), o.note],
+        [t('common.derivation'), <>{label('derivation', o.derivation, lang)}{o.derivation_evidence && <span className="muted"> · {sourceText(o.derivation_evidence, lang)}</span>}</>],
+        [t('common.note'), sourceText(o.note ?? '', lang)],
         [t('common.variantClass'), <VariantClassText variant={o.variant} />],
         [t('common.provenance'), t('common.sheetRow', { sheet: o.src.sheet, row: o.src.row })],
         [t('common.legacyId'), o.legacy_id],
@@ -47,7 +48,7 @@ export function VariantClassText({ variant }: { variant: string }) {
     <>
       {label('variant_class', c.class, lang)}
       <span className="muted small">
-        {' '}· {t(`common.classBasis.${c.status}`, { source: pubById[c.publication]?.short ?? c.publication, locator: c.locator ?? '', date: c.checked })}
+        {' '}· {t(`common.classBasis.${c.status}`, { source: pubById[c.publication]?.short ?? c.publication, locator: sourceText(c.locator ?? '', lang), date: c.checked })}
       </span>
     </>
   )
@@ -127,7 +128,7 @@ export default function Landscape() {
     const marker = { size: 8, line: { width: 1, color: th.surface } }
     const special = obs.filter(o => o.non_candidate && o.value !== null)
     const data = [
-      ...special.map(o => ({ type: 'scatter', mode: 'markers', x: [blocks.flatMap(b => b.columns).find(c => c.obs.includes(o))?.x], y: [o.value], customdata: [o.id], text: [`${o.id}: ${o.non_candidate} — ${o.note}`], hovertemplate: '%{text}<extra></extra>', marker: { symbol: 'diamond-open', size: 14, color: th.ink, line: { width: 2 } } })),
+      ...special.map(o => ({ type: 'scatter', mode: 'markers', x: [blocks.flatMap(b => b.columns).find(c => c.obs.includes(o))?.x], y: [o.value], customdata: [o.id], text: [`${o.id}: ${o.non_candidate} — ${sourceText(o.note ?? '', lang)}`], hovertemplate: '%{text}<extra></extra>', marker: { symbol: 'diamond-open', size: 14, color: th.ink, line: { width: 2 } } })),
       { type: 'scatter', mode: 'markers', x: filled.x, y: filled.y, customdata: filled.ids, text: filled.text, hovertemplate: '%{text}<extra></extra>', marker: { ...marker, color: th.ink } },
       { type: 'scatter', mode: 'markers', x: hollow.x, y: hollow.y, customdata: hollow.ids, text: hollow.text, hovertemplate: '%{text}<extra></extra>', marker: { size: 8, color: th.surface, line: { width: 1.6, color: th.ink } } },
       { type: 'scatter', mode: 'markers', x: hoverIv.x, y: hoverIv.y, customdata: hoverIv.ids, text: hoverIv.text, hovertemplate: '%{text}<extra></extra>', marker: { size: 14, opacity: 0 } },
@@ -237,7 +238,7 @@ export default function Landscape() {
                 </button>{' '}
                 <span className="small muted">
                   {label('stage', o.stage, lang)} · {o.material_raw}
-                  {o.note ? ` · ${o.note}` : ''}
+                  {o.note ? ` · ${sourceText(o.note ?? '', lang)}` : ''}
                 </span>
               </li>
             ))}

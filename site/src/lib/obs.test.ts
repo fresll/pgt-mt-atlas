@@ -3,6 +3,7 @@ import { beforeAll, describe, expect, it } from 'vitest'
 import en from '../i18n/en'
 import ru from '../i18n/ru'
 import { obsValueText, pairValueText } from './obs'
+import { atlas } from '../data/atlas'
 
 const i18n = createInstance()
 beforeAll(async () => {
@@ -25,5 +26,23 @@ describe('result wording', () => {
 
   it('preserves the existing Russian display convention', () => {
     expect(pairValueText(0, 'not_detected', null, 'ru', i18n.getFixedT('ru'))).toBe('0% — не выявлено')
+  })
+
+  it('retains the C13 embryo bound and the authors’ interpretation of the qualitative signal', () => {
+    const row = atlas.offspring.find(p => p.id === 'C13')!
+    const t = i18n.getFixedT('en')
+    const embryo = pairValueText(row.emb, row.emb_q, row.emb_raw, 'en', t)
+    expect(embryo).toContain('<5% in each of the two transferred embryos')
+    expect(embryo).toContain('exact level in the embryo that implanted is unknown')
+    expect(embryo).not.toContain('—%')
+    const tissue = pairValueText(row.value, row.q, row.value_raw, 'en', t)
+    expect(tissue).toContain('authors interpreted the variant as not detected')
+    expect(tissue).toContain('0.17%')
+    expect(tissue).toContain('0.28%')
+    expect(pairValueText(row.value, row.q, row.value_raw, 'ru', i18n.getFixedT('ru'))).toBe(row.value_raw)
+  })
+
+  it('does not invent a numeric limit when a less-than result has no bound or source note', () => {
+    expect(pairValueText(null, 'less_than', null, 'en', i18n.getFixedT('en'))).toBe('Upper bound not reported; see source note')
   })
 })
