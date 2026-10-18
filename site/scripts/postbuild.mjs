@@ -79,11 +79,15 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
     writeFileSync(join(dist, 'robots.txt'), 'User-agent: *\nAllow: /\n')
   }
 
+  const title404 = englishEnabled ? 'PGT-mt Atlas — page not found' : 'Атлас ПГТ-мт — страница не найдена'
+  const heading404 = englishEnabled ? 'PGT-mt Atlas' : 'Атлас ПГТ-мт'
+  const message404 = englishEnabled ? 'Page not found' : 'Страница не найдена'
+  const russian404 = englishEnabled ? `<script>if(/\\/ru(?:\\/|$)/.test(location.pathname)){document.documentElement.lang="ru";document.title="Атлас ПГТ-мт — страница не найдена";document.querySelector("h1").textContent="Атлас ПГТ-мт";document.getElementById("not-found").textContent="Страница не найдена";document.getElementById("russian-link").textContent="Русский"}document.currentScript.remove()</script>` : ''
   writeFileSync(
     join(dist, '404.html'),
-    `<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="${softLaunch ? 'noindex, follow' : 'noindex'}"><title>Атлас ПГТ-мт — страница не найдена</title></head>
-<body style="font-family:system-ui;padding:24px;background:#F7F8F4;color:#182A40"><h1>Атлас ПГТ-мт</h1><p>Страница не найдена</p>
-<p><a href="${base}ru/" lang="ru" hreflang="ru">Русский</a>${englishEnabled ? ` · <a href="${base}en/" lang="en" hreflang="en">English</a>` : ''}</p></body></html>\n`,
+    `<!doctype html><html lang="${englishEnabled ? 'en' : 'ru'}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="${softLaunch ? 'noindex, follow' : 'noindex'}"><title>${title404}</title></head>
+<body style="font-family:system-ui;padding:24px;background:#F7F8F4;color:#182A40"><h1>${heading404}</h1><p id="not-found">${message404}</p>
+<p><a id="russian-link" href="${base}ru/" lang="ru" hreflang="ru">${englishEnabled ? 'Russian' : 'Русский'}</a>${englishEnabled ? ` · <a href="${base}en/" lang="en" hreflang="en">English</a>` : ''}</p>${russian404}</body></html>\n`,
   )
   console.log('404.html written')
 }

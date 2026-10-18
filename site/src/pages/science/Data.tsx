@@ -1,3 +1,4 @@
+import { sourceText } from '../../i18n/source-text-en'
 import { useEffect, useMemo, useState } from 'react'
 import { DataTable } from '../../components/DataTable'
 import { ObservedBadge } from '../../components/ui'
@@ -91,7 +92,7 @@ export default function Data() {
           { key: 'doi', header: 'DOI', render: (o) => pubById[o.pub].doi ?? '—', sort: (o) => pubById[o.pub].doi },
           { key: 'pmid', header: 'PMID', render: (o) => pubById[o.pub].pmid ?? '—', sort: (o) => pubById[o.pub].pmid },
           { key: 'atlasrow', header: t('data.atlasRow', { row: '' }), render: (o) => o.src.row },
-          { key: 'locator', header: t('data.locator'), render: (o) => o.source_locator ?? '—' },
+          { key: 'locator', header: t('data.locator'), render: (o) => sourceText(o.source_locator ?? '—', lang) },
           { key: 'st', header: t('common.stage'), render: (o) => label('stage', o.stage, lang), sort: (o) => o.stage },
           { key: 'sm', header: t('common.sample'), render: (o) => label('sample_type', o.sample, lang), sort: (o) => o.sample },
           { key: 'd', header: t('common.derivation'), render: (o) => label('derivation', o.derivation, lang), sort: (o) => o.derivation },
@@ -102,7 +103,7 @@ export default function Data() {
       <ul>
         {CSV.map((n) => (
           <li key={n}>
-            <a href={asset(`data/csv/${n}.csv`)} download>{n}.csv</a>
+            <a href={asset(`data/csv/${lang === 'en' ? 'en/' : ''}${n}.csv`)} download>{n}.csv</a>
           </li>
         ))}
       </ul>

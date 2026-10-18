@@ -199,7 +199,7 @@ export default function Concordance() {
             [t('common.source'), <PubRef id={selEmb.pub} showStatus />],
             ...FR.filter((f) => selEmb.fr[f] !== undefined).map((f): [string, string] => [frLabel(f), pct(selEmb.fr[f] ?? null, lang, 2)]),
             [t('interfaceCopy.Concordance.range'), `${fmt(rangeOf(selEmb.fr), lang, 2)} ${t('common.pp')}`],
-            [t('common.provenance'), atlas.concordance.filter((f) => f.embryo === selEmb.embryo).map((f) => t('common.sheetRow', { sheet: f.src.sheet, row: f.src.row })).join('; ')],
+            [t('common.provenance'), atlas.concordance.filter((f) => f.embryo === selEmb.embryo).map((f) => t('common.sheetRow', { sheet: sourceText(f.src.sheet, lang), row: f.src.row })).join('; ')],
           ]}
         >
         </Detail>
@@ -212,7 +212,7 @@ export default function Concordance() {
             [t('common.variant'), selCleav.variant],
             [t('common.source'), <PubRef id={selCleav.pub} showStatus />],
             [t('interfaceCopy.Concordance.blastomeres'), `${pct(selCleav.b1, lang)} / ${pct(selCleav.b2, lang)} (${t('common.lod', { lod: fmt(selCleav.lod, lang) })})`],
-            [t('common.provenance'), t('common.sheetRow', { sheet: selCleav.src.sheet, row: selCleav.src.row })],
+            [t('common.provenance'), t('common.sheetRow', { sheet: sourceText(selCleav.src.sheet, lang), row: selCleav.src.row })],
           ]}
         />
       )}

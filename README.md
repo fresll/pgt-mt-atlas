@@ -50,6 +50,9 @@ npm run build        # статическая сборка в site/dist (base: /
 npm run e2e          # Playwright (нужен собранный сайт)
 ```
 
+Для сборки и модульных тестов нужны Python 3 и `openpyxl` (`python3 -m pip install openpyxl`).
+Сборка создаёт английские копии CSV и шаблона Excel в `site/dist`; исходные научные файлы не изменяются.
+
 Наблюдаемые данные (Heteroplasmy Landscape, Embryo Concordance, Embryo-to-Offspring) и модельный расчёт
 (PGT-mt × PGT-A Model) разделены в данных, в коде (`site/src/model/`)
 и в интерфейсе (значки «Наблюдаемые данные» / «Модельный расчёт»).

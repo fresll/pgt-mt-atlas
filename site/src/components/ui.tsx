@@ -1,3 +1,4 @@
+import { sourceText } from '../i18n/source-text-en'
 import type { ReactNode } from 'react'
 import { correctionsFor, doiUrl, label, pubById, type Publication, type Verification } from '../data/atlas'
 import { useLang, useT } from '../i18n'
@@ -94,7 +95,7 @@ export function CorrectionList({ embryo }: { embryo: string }) {
       <ul style={{ margin: '6px 0 0', paddingLeft: 18 }}>
         {items.map((c) => (
           <li key={c.id}>
-            {label('fraction', c.target.fraction, lang)}: {show(c.field, c.from)} ({t('verification.sourceValue')}, «{c.target.sheet}», {lang === 'ru' ? 'строка' : 'row'} {c.target.row}) → <strong>{show(c.field, c.to)}</strong>
+            {label('fraction', c.target.fraction, lang)}: {show(c.field, c.from)} ({t('verification.sourceValue')}, «{sourceText(c.target.sheet, lang)}», {lang === 'ru' ? 'строка' : 'row'} {c.target.row}) → <strong>{show(c.field, c.to)}</strong>
             <br />
             <span className="muted">{c.source.document}; {c.source.locator}</span>
           </li>

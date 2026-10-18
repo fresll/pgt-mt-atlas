@@ -28,8 +28,8 @@ test('C13 retains the embryo bound, control signal and qualitative author interp
   await expect(detail).toContainText('0.28%')
   await expect(detail).toContainText('excluded from the set of exact embryo–tissue pairs')
   await expect(detail).not.toContainText('below —%')
-  // Preserve the literal workbook sheet name as a provenance locator.
-  const text = (await detail.innerText()).replaceAll('Рисунок 5', '')
+  await expect(detail).toContainText('Figure 5')
+  const text = await detail.innerText()
   expect(text).not.toMatch(/[А-Яа-яЁё]/)
 })
 

@@ -595,6 +595,9 @@ body:has(.sk-curator-page) main { max-width: 1280px; }
 }
 .curator-card { display: flex; gap: 16px; align-items: center; margin: 12px 0 16px; }
 .curator-card img { width: 72px; height: 96px; object-fit: cover; object-position: 50% 35%; border-radius: 8px; flex: none; }
+.english-portrait { display: block; overflow: hidden; aspect-ratio: 3 / 4; }
+.curator-card .english-portrait { width: 72px; height: 96px; border-radius: 8px; flex: none; }
+.english-portrait img { display: block; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: center; border: 0; border-radius: 0; transform: scale(1.28); transform-origin: 50% 100%; }
 
 /* ——— Элементы управления ——— */
 .controls {

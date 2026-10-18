@@ -376,7 +376,7 @@ const en: Dict = {
     "countSummary": "{{records}} records, including {{pairs}} matched embryo–tissue pairs from {{children}} foetuses and children. {{pubs}} publications, of which {{embryoPubs}} report embryo values.",
     "locator": "Source location",
     "title": "Table of values",
-    "lead": "All observations, with the provenance of every value. The normalised database tables are also available as CSV files.",
+    "lead": "All observations, with the provenance of every value. CSV downloads use English labels and notes; identifiers and numerical data are unchanged.",
     "embryos": "Embryos (Between different embryos)",
     "offspring": "Embryo, foetus and child",
     "filterVariant": "Variant",

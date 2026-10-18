@@ -211,10 +211,10 @@ export default function Offspring() {
             [t('common.value'), pairValueText(sel.value, sel.q, sel.value_raw, lang, t)],
             [t('common.age'), sourceText(sel.age ?? '', lang)],
             [t('common.method'), sourceText(sel.method ?? '', lang)],
-            [t('data.locator'), sel.source_locator],
+            [t('data.locator'), sourceText(sel.source_locator ?? '', lang)],
             [t('data.embryoSample'), sel.emb_sample === 'single_blastomere' ? t('data.day3Blastomere') : '—'],
             [t('interfaceCopy.Offspring.referenceView'), sel.in_figure ? (t('interfaceCopy.Offspring.yes')) : `${t('interfaceCopy.Offspring.no')} — «${sourceText(sel.on_plot_raw, lang)}»`],
-            [t('common.provenance'), t('common.sheetRow', { sheet: sel.src.sheet, row: sel.src.row })],
+            [t('common.provenance'), t('common.sheetRow', { sheet: sourceText(sel.src.sheet, lang), row: sel.src.row })],
           ]}
         />
       )}
@@ -250,7 +250,7 @@ export default function Offspring() {
             { key: 'val', header: t('common.value'), render: (p) => pairValueText(p.value, p.q, p.value_raw, lang, t), sort: (p) => p.value, num: true },
             { key: 'd', header: t('common.delta'), render: (p) => (p.in_figure ? (p.q === 'not_detected' && p.emb_q === 'not_detected' ? t('offspring.bothNDPair') : `${p.q === 'not_detected' ? '≥ ' : p.emb_q === 'not_detected' ? '≤ ' : ''}${fmt((p.value as number) - (p.emb as number), lang, 2)}`) : '—'), sort: (p) => (p.in_figure ? (p.value as number) - (p.emb as number) : null), num: true },
             { key: 'cluster', header: t('data.maternalCluster'), render: (p) => p.carrier_id ?? '—' },
-            { key: 'locator', header: t('data.locator'), render: (p) => p.source_locator ?? '—' },
+            { key: 'locator', header: t('data.locator'), render: (p) => sourceText(p.source_locator ?? '—', lang) },
             { key: 'p', header: t('common.source'), render: (p) => pubById[p.pub].short, sort: (p) => p.pub },
           ]}
         />

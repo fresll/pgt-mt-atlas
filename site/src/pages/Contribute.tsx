@@ -18,7 +18,7 @@ export default function Contribute() {
   const lang = useLang()
   const list = (key: string) => t(key, { returnObjects: true }) as unknown as string[]
   const pairs = (key: string) => t(key, { returnObjects: true }) as unknown as [string, string][]
-  const href = asset(template.file)
+  const href = asset(lang === 'en' ? template.file.replace('templates/', 'templates/en/') : template.file)
   const fileName = template.file.split('/').pop()
   const meta = t('contribute.templateMeta', { v: template.version, date: template.released })
   const subject = (lang === 'ru' ? '[Атлас ПГТ-мт] ' : SUBJECT_PREFIX) + t('contribute.contact.subject')

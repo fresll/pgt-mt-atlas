@@ -1,6 +1,7 @@
 import { useMemo, useState, type ReactNode } from 'react'
 import { downloadCsv } from '../lib/csv'
-import { useT } from '../i18n'
+import { useLang, useT } from '../i18n'
+import { englishRows } from '../i18n/english-text'
 
 export interface Column<R> {
   key: string
@@ -21,6 +22,7 @@ export function DataTable<R>({ rows, columns, rowKey, selected, onSelect, csvNam
   maxHeight?: number
 }) {
   const t = useT()
+  const lang = useLang()
   const [sortKey, setSortKey] = useState<string | null>(null)
   const [asc, setAsc] = useState(true)
   const sorted = useMemo(() => {
@@ -39,7 +41,7 @@ export function DataTable<R>({ rows, columns, rowKey, selected, onSelect, csvNam
     <div>
       {csvName && csvRow && (
         <p style={{ margin: '0 0 8px' }}>
-          <button className="ghost" type="button" onClick={() => downloadCsv(csvName, sorted.map(csvRow))}>
+          <button className="ghost" type="button" onClick={() => downloadCsv(csvName, lang === 'en' ? englishRows(sorted.map(csvRow)) : sorted.map(csvRow))}>
             {t('common.downloadVisibleCsv')}
           </button>{' '}
           <span className="muted small">n = {rows.length}</span>
