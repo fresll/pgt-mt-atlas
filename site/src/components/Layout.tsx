@@ -5,6 +5,7 @@ import { Head } from 'vite-react-ssg'
 import { atlas, type Lang } from '../data/atlas'
 import { LangProvider, useT } from '../i18n'
 import { Illustration } from './Sketch'
+import { englishEnabled } from '../lib/languages'
 
 type Theme = 'system' | 'light' | 'dark'
 
@@ -61,7 +62,9 @@ function useHeaderHeight(ref: React.RefObject<HTMLElement | null>) {
 
 function Header({ lang }: { lang: Lang }) {
   const t = useT()
-  const { pathname } = useLocation()
+  const { pathname, search, hash } = useLocation()
+  const other = lang === 'ru' ? 'en' : 'ru'
+  const languageLabel = `${t('nav.language')}: ${t('nav.switchTo')}`
   const ref = useRef<HTMLElement>(null)
   // Без JavaScript меню всегда раскрыто; после загрузки на телефоне оно сворачивается в кнопку «Меню».
   const [menu, setMenu] = useState<'static' | 'closed' | 'open'>('static')
@@ -92,6 +95,22 @@ function Header({ lang }: { lang: Lang }) {
           <NavLink to={`/${lang}/about/`}>{t('nav.about')}</NavLink>
         </nav>
         <div className="header-tools">
+          {englishEnabled && (
+            <Link
+              className="btn-link language-switch"
+              to={switchLangPath(pathname, lang, other, search, hash)}
+              hrefLang={other}
+              aria-label={languageLabel}
+              title={languageLabel}
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true" focusable="false">
+                <circle cx="12" cy="12" r="9" />
+                <ellipse cx="12" cy="12" rx="4" ry="9" />
+                <path d="M3 12h18" />
+              </svg>
+              <span lang={other}>{other.toUpperCase()}</span>
+            </Link>
+          )}
           <ThemeToggle />
         </div>
       </div>

@@ -44,7 +44,10 @@ jobs:
           ATLAS_SOFT_LAUNCH: '1'
           ATLAS_PUBLIC_LAUNCH: '0'
           VITE_ATLAS_PRIVATE_PREVIEW: '0'
+          VITE_ATLAS_ENGLISH_PUBLIC: '1'
         run: npm run build
+      - name: Verify public bilingual navigation and English pages
+        run: npm run e2e:public
       - name: Verify noindex in generated HTML and crawler access
         run: |
           python - <<'PY'
@@ -56,6 +59,9 @@ jobs:
               html = page.read_text()
               assert '<meta name="robots" content="noindex, follow">' in html, page
               assert not re.search(r'<meta\b[^>]*name=[\"\x27]robots[\"\x27][^>]*content=[\"\x27]index\b', html, re.I), page
+              if page.relative_to('dist').parts[0] in ['ru', 'en']:
+                  assert 'language-switch' in html, page
+                  assert 'http-equiv="refresh"' not in html, page
           assert Path('dist/robots.txt').read_text().strip() == 'User-agent: *\nAllow: /'
           assert not list(Path('dist').rglob('*sitemap*')), 'Unexpected sitemap'
           print(f'PASS: {len(pages)} HTML pages have noindex; crawler access allowed')
@@ -132,8 +138,10 @@ jobs:
               assert 'text/html' in headers.get('Content-Type', ''), (url, headers.get('Content-Type'))
               if path == 'ru/index.html':
                   assert 'https://gc.zgo.at/count.js' in html, 'Counter script is missing'
-              if path.startswith('ru/'):
+              if path.startswith(('ru/', 'en/')):
                   assert 'class="visitor-count"' in html, ('Visible visit counter is missing', url)
+                  assert 'language-switch' in html, ('Language switch is missing', url)
+                  assert 'http-equiv="refresh"' not in html, ('Unexpected language redirect', url)
               results.append({'url': url, 'status': 200, 'robots': 'noindex, follow',
                               'headers': {k: headers.get(k) for k in
                                           ['Content-Type', 'X-Robots-Tag', 'Strict-Transport-Security', 'Server']}})

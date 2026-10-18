@@ -35,7 +35,9 @@ function* htmlFiles(dir) {
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
   const softLaunch = process.env.ATLAS_SOFT_LAUNCH === '1'
-  const englishReview = process.env.VITE_ATLAS_PRIVATE_PREVIEW === '1' && process.env.VITE_ATLAS_ENGLISH_REVIEW === '1'
+  const englishEnabled = process.env.VITE_ATLAS_PRIVATE_PREVIEW === '1'
+    ? process.env.VITE_ATLAS_ENGLISH_REVIEW === '1'
+    : process.env.VITE_ATLAS_ENGLISH_PUBLIC === '1'
   const launch = !softLaunch && process.env.ATLAS_PUBLIC_LAUNCH === '1' && process.env.VITE_ATLAS_PRIVATE_PREVIEW !== '1'
   let canonicalBase
   if (launch) {
@@ -61,7 +63,7 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
       out = out.replace('</head>', `<link rel="canonical" href="${canonical}"></head>`)
       sitemap.push(canonical)
     }
-    if (route.startsWith('en/') && !englishReview) {
+    if (route.startsWith('en/') && !englishEnabled) {
       const destination = '../'.repeat(depth) + route.replace(/^en\//, 'ru/').replace(/index\.html$/, '')
       out = out.replace('<head>', `<head><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0; url=${destination}"><script>location.replace(location.pathname.replace(/\\/en(?=\\/|$)/,'/ru')+location.search+location.hash)</script>`)
     }
@@ -81,7 +83,7 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
     join(dist, '404.html'),
     `<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="${softLaunch ? 'noindex, follow' : 'noindex'}"><title>Атлас ПГТ-мт — страница не найдена</title></head>
 <body style="font-family:system-ui;padding:24px;background:#F7F8F4;color:#182A40"><h1>Атлас ПГТ-мт</h1><p>Страница не найдена</p>
-<p><a href="${base}ru/">Русский</a></p></body></html>\n`,
+<p><a href="${base}ru/" lang="ru" hreflang="ru">Русский</a>${englishEnabled ? ` · <a href="${base}en/" lang="en" hreflang="en">English</a>` : ''}</p></body></html>\n`,
   )
   console.log('404.html written')
 }

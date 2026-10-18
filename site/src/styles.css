@@ -257,6 +257,8 @@ button.ghost:hover, .btn-link:hover { border-color: var(--accent); color: var(--
 header.site .btn-link, header.site button.ghost { color: var(--sk-ink); border: 0; border-radius: 0; padding: 4px 6px; }
 header.site .btn-link { border-bottom: 1px solid var(--sk-rule); font-size: calc(0.86rem * var(--text-scale)); letter-spacing: 0.02em; }
 header.site .btn-link:hover, header.site button.ghost:hover { color: var(--sk-red); border-color: var(--sk-red); }
+header.site .language-switch { display: inline-flex; align-items: center; justify-content: center; gap: 5px; min-width: 44px; min-height: 44px; }
+.language-switch svg { flex: none; }
 .menu-toggle {
   display: none;
   align-items: center;
