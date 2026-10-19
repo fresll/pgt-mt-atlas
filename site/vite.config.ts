@@ -44,6 +44,8 @@ export default defineConfig({
   plugins: [react(), pagesLikePreview(), {
     name: 'private-preview-without-analytics',
     transformIndexHtml(html: string) {
+      // Indexed routes manage robots so the root redirect cannot leave a stale noindex after SPA navigation.
+      if (indexing) html = html.replace(/<meta name="robots" content="noindex, nofollow"\s*\/?>/g, '')
       return process.env.VITE_ATLAS_PRIVATE_PREVIEW === '1'
         ? html.replace(/<script[^>]*data-goatcounter[\s\S]*?<\/script>/g, '') : html
     },

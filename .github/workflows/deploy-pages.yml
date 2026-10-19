@@ -68,7 +68,7 @@ jobs:
               html = page.read_text()
               path = page.relative_to('dist').as_posix()
               if path.startswith(('ru/', 'en/')):
-                  assert '<meta name="robots" content="index, follow">' in html, page
+                  assert re.search(r'<meta\b[^>]*name="robots"[^>]*content="index, follow"', html), page
                   assert not re.search(r'<meta\b[^>]*name=[\"\x27]robots[\"\x27][^>]*content=[\"\x27][^\"\x27]*noindex', html, re.I), page
                   assert 'language-switch' in html and 'http-equiv="refresh"' not in html, page
                   links = Head(html).links
@@ -167,8 +167,8 @@ jobs:
               url = urljoin(base, path.removesuffix('index.html') if path.endswith('index.html') else path)
               html, headers = get(url)
               indexable = path.startswith(('ru/', 'en/'))
-              expected_robots = 'index, follow' if indexable else ('noindex, nofollow' if path == 'index.html' else 'noindex')
-              assert f'<meta name="robots" content="{expected_robots}">' in html, url
+              expected_robots = 'index, follow' if indexable else ('noindex, follow' if path == 'index.html' else 'noindex')
+              assert re.search(r'<meta\b[^>]*name="robots"[^>]*content="' + re.escape(expected_robots) + '"', html), url
               assert 'noindex' not in (headers.get('X-Robots-Tag') or '').lower(), url
               if indexable:
                   assert not re.search(r'<meta\b[^>]*name=[\"\x27]robots[\"\x27][^>]*content=[\"\x27][^\"\x27]*noindex', html, re.I), url

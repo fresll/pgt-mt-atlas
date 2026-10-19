@@ -3,6 +3,13 @@ import { expect, test } from '../e2e/fixtures'
 const base = 'https://fresll.github.io/pgt-mt-atlas/'
 
 test('canonical and language alternates follow in-app navigation without query or hash', async ({ page }) => {
+  await page.goto('')
+  await expect(page).toHaveURL(/\/ru\/$/)
+  await expect(page.locator('meta[name="robots"]')).toHaveCount(1)
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'index, follow')
+  await page.locator('header .language-switch').click()
+  await expect(page.locator('meta[name="robots"]')).toHaveCount(1)
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'index, follow')
   await page.goto('en/?example=1#content')
   await expect(page.locator('head link[rel="canonical"]')).toHaveAttribute('href', `${base}en/`)
   await page.locator('header').getByRole('link', { name: 'For patients', exact: true }).click()

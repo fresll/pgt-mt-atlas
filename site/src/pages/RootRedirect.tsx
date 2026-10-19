@@ -18,7 +18,7 @@ export default function RootRedirect() {
   }, [navigate, target])
   return (
     <main style={{ padding: 24, fontFamily: 'system-ui' }} lang="ru">
-      <Head><title>Атлас ПГТ-мт</title></Head>
+      <Head><title>Атлас ПГТ-мт</title>{import.meta.env.ATLAS_INDEXING_ENABLED && <meta name="robots" content="noindex, follow" />}</Head>
       <h1>Атлас ПГТ-мт</h1>
       <p><Link to={russianPath(pathname)}>Перейти к русской версии</Link></p>
     </main>

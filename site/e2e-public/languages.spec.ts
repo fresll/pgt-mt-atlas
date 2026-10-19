@@ -18,7 +18,7 @@ for (const path of PAGES) {
       const url = `${ROOTS[0]}${lang}/${path}`
       const html = await (await request.get(url)).text()
       expect(html).not.toContain('http-equiv="refresh"')
-      expect(html).toContain('<meta name="robots" content="index, follow">')
+      expect(html).toMatch(/<meta\b[^>]*name="robots"[^>]*content="index, follow"/)
       await page.goto(url)
       await expect(page).toHaveURL(url)
       await expect(page.locator('html')).toHaveAttribute('lang', lang)

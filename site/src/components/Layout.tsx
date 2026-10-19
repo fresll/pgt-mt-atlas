@@ -299,6 +299,7 @@ function ShellInner({ lang }: { lang: Lang }) {
         <title>{`${t('site.title')} — ${t('site.tagline')}`}</title>
         <meta name="description" content={t('site.tagline')} />
         <meta name="author" content="Ilya Mazunin" />
+        {indexing && <meta name="robots" content="index, follow" />}
         {indexing && <link rel="canonical" href={new URL(route, canonicalBase).href} />}
         {indexing && languages.map(language => <link key={language} rel="alternate" hrefLang={language} href={new URL(route.replace(/^(?:ru|en)\//, `${language}/`), canonicalBase).href} />)}
       </Head>
