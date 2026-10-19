@@ -1,6 +1,6 @@
-name: Deploy to GitHub Pages (soft launch)
+name: Deploy to GitHub Pages
 
-# Публичный доступ разрешён куратором; поисковая индексация пока запрещена.
+# Публичная индексация RU/EN разрешена куратором 2026-10-19.
 # Settings → Pages → Source: GitHub Actions. Репозиторий публичный по решению куратора.
 on:
   push:
@@ -38,34 +38,59 @@ jobs:
         run: npm run build
       - run: npx playwright install --with-deps chromium
       - run: npm run e2e
-      - name: Build public site with search indexing disabled
+      - name: Build public bilingual site with search indexing enabled
         env:
           ATLAS_BASE: /pgt-mt-atlas/
-          ATLAS_SOFT_LAUNCH: '1'
-          ATLAS_PUBLIC_LAUNCH: '0'
+          ATLAS_SOFT_LAUNCH: '0'
+          ATLAS_PUBLIC_LAUNCH: '1'
+          ATLAS_CANONICAL_BASE: https://fresll.github.io/pgt-mt-atlas/
           VITE_ATLAS_PRIVATE_PREVIEW: '0'
           VITE_ATLAS_ENGLISH_PUBLIC: '1'
         run: npm run build
       - name: Verify public bilingual navigation and English pages
         run: npm run e2e:public
-      - name: Verify noindex in generated HTML and crawler access
+      - name: Verify indexing, canonical URLs, language alternates and sitemap
         run: |
-          python - <<'PY'
+          python - <<'PYTHON'
           from pathlib import Path
+          from xml.etree import ElementTree as ET
+          from html.parser import HTMLParser
           import re
+          base = 'https://fresll.github.io/pgt-mt-atlas/'
           pages = list(Path('dist').rglob('*.html'))
-          assert pages, 'No HTML generated'
+          indexed = []
+          class Head(HTMLParser):
+              def __init__(self, html):
+                  super().__init__(); self.links = []; self.feed(html)
+              def handle_starttag(self, tag, attrs):
+                  if tag == 'link': self.links.append(dict(attrs))
           for page in pages:
               html = page.read_text()
-              assert '<meta name="robots" content="noindex, follow">' in html, page
-              assert not re.search(r'<meta\b[^>]*name=[\"\x27]robots[\"\x27][^>]*content=[\"\x27]index\b', html, re.I), page
-              if page.relative_to('dist').parts[0] in ['ru', 'en']:
-                  assert 'language-switch' in html, page
-                  assert 'http-equiv="refresh"' not in html, page
-          assert Path('dist/robots.txt').read_text().strip() == 'User-agent: *\nAllow: /'
-          assert not list(Path('dist').rglob('*sitemap*')), 'Unexpected sitemap'
-          print(f'PASS: {len(pages)} HTML pages have noindex; crawler access allowed')
-          PY
+              path = page.relative_to('dist').as_posix()
+              if path.startswith(('ru/', 'en/')):
+                  assert '<meta name="robots" content="index, follow">' in html, page
+                  assert not re.search(r'<meta\b[^>]*name=[\"\x27]robots[\"\x27][^>]*content=[\"\x27][^\"\x27]*noindex', html, re.I), page
+                  assert 'language-switch' in html and 'http-equiv="refresh"' not in html, page
+                  links = Head(html).links
+                  canonical = base + path.removesuffix('index.html')
+                  assert [l['href'] for l in links if l.get('rel') == 'canonical'] == [canonical], page
+                  expected = {lang: base + re.sub(r'^(ru|en)/', lang+'/', path).removesuffix('index.html') for lang in ['ru', 'en']}
+                  assert {l['hreflang']: l['href'] for l in links if l.get('rel') == 'alternate'} == expected, page
+                  indexed.append(canonical)
+              else:
+                  assert 'noindex' in html, page
+          assert len(indexed) == 44, len(indexed)
+          sitemap = ET.parse('dist/sitemap.xml')
+          ns = {'s': 'http://www.sitemaps.org/schemas/sitemap/0.9', 'x': 'http://www.w3.org/1999/xhtml'}
+          urls = sitemap.findall('s:url', ns)
+          assert len(urls) == 44
+          assert {u.findtext('s:loc', namespaces=ns) for u in urls} == set(indexed)
+          for entry in urls:
+              location = entry.findtext('s:loc', namespaces=ns)
+              assert {l.attrib['hreflang']: l.attrib['href'] for l in entry.findall('x:link', ns)} == {lang: re.sub(r'/(ru|en)/', '/'+lang+'/', location, count=1) for lang in ['ru','en']}
+          assert Path('dist/robots.txt').read_text() == f'User-agent: *\nAllow: /\nSitemap: {base}sitemap.xml\n'
+          print(f'PASS: {len(indexed)} indexable RU/EN pages; reciprocal hreflang, canonical URLs and sitemap')
+          PYTHON
       - name: Verify public visit count is available before deployment
         run: |
           python - <<'PY'
@@ -99,12 +124,14 @@ jobs:
         with:
           name: github-pages
           path: pages-artifact
-      - name: Verify anonymous HTTPS pages and noindex after publication
+      - name: Verify anonymous HTTPS indexing and sitemap after publication
         env:
           PAGES_URL: ${{ steps.deployment.outputs.page_url }}
         run: |
           python - <<'PY'
-          import json, os, tarfile, time
+          import json, os, re, tarfile, time
+          from xml.etree import ElementTree as ET
+          from html.parser import HTMLParser
           from pathlib import PurePosixPath
           from urllib.error import HTTPError
           from urllib.parse import urljoin, urlsplit
@@ -126,6 +153,11 @@ jobs:
                       if attempt == 5:
                           raise
                       time.sleep(5)
+          class Head(HTMLParser):
+              def __init__(self, html):
+                  super().__init__(); self.links = []; self.feed(html)
+              def handle_starttag(self, tag, attrs):
+                  if tag == 'link': self.links.append(dict(attrs))
           with tarfile.open('pages-artifact/artifact.tar', 'r:*') as archive:
               pages = [PurePosixPath(m.name).as_posix() for m in archive.getmembers()
                        if m.isfile() and m.name.endswith('.html')]
@@ -134,7 +166,15 @@ jobs:
           for path in pages:
               url = urljoin(base, path.removesuffix('index.html') if path.endswith('index.html') else path)
               html, headers = get(url)
-              assert '<meta name="robots" content="noindex, follow">' in html, url
+              indexable = path.startswith(('ru/', 'en/'))
+              expected_robots = 'index, follow' if indexable else ('noindex, nofollow' if path == 'index.html' else 'noindex')
+              assert f'<meta name="robots" content="{expected_robots}">' in html, url
+              assert 'noindex' not in (headers.get('X-Robots-Tag') or '').lower(), url
+              if indexable:
+                  assert not re.search(r'<meta\b[^>]*name=[\"\x27]robots[\"\x27][^>]*content=[\"\x27][^\"\x27]*noindex', html, re.I), url
+                  links = Head(html).links
+                  assert [l['href'] for l in links if l.get('rel') == 'canonical'] == [url], url
+                  assert {l['hreflang']: l['href'] for l in links if l.get('rel') == 'alternate'} == {lang: re.sub(r'/(ru|en)/', '/'+lang+'/', url, count=1) for lang in ['ru','en']}, url
               assert 'text/html' in headers.get('Content-Type', ''), (url, headers.get('Content-Type'))
               if path == 'ru/index.html':
                   assert 'https://gc.zgo.at/count.js' in html, 'Counter script is missing'
@@ -142,21 +182,31 @@ jobs:
                   assert 'class="visitor-count"' in html, ('Visible visit counter is missing', url)
                   assert 'language-switch' in html, ('Language switch is missing', url)
                   assert 'http-equiv="refresh"' not in html, ('Unexpected language redirect', url)
-              results.append({'url': url, 'status': 200, 'robots': 'noindex, follow',
+              results.append({'url': url, 'status': 200, 'robots': expected_robots,
                               'headers': {k: headers.get(k) for k in
                                           ['Content-Type', 'X-Robots-Tag', 'Strict-Transport-Security', 'Server']}})
           robots, _ = get(urljoin(base, 'robots.txt'))
-          assert robots.strip() == 'User-agent: *\nAllow: /', robots
-          get(urljoin(base, 'sitemap.xml'), expected=404)
+          assert robots == f'User-agent: *\nAllow: /\nSitemap: {base}sitemap.xml\n', robots
+          sitemap, _ = get(urljoin(base, 'sitemap.xml'))
+          ns = {'s': 'http://www.sitemaps.org/schemas/sitemap/0.9', 'x': 'http://www.w3.org/1999/xhtml'}
+          entries = ET.fromstring(sitemap).findall('s:url', ns)
+          indexed = {p['url'] for p in results if p['robots'] == 'index, follow'}
+          assert len(entries) == len(indexed) == 44
+          assert {e.findtext('s:loc', namespaces=ns) for e in entries} == indexed
+          for entry in entries:
+              location = entry.findtext('s:loc', namespaces=ns)
+              assert {l.attrib['hreflang']: l.attrib['href'] for l in entry.findall('x:link', ns)} == {lang: re.sub(r'/(ru|en)/', '/'+lang+'/', location, count=1) for lang in ['ru','en']}, location
           origin = urlsplit(base)
           root_robots = f'{origin.scheme}://{origin.netloc}/robots.txt'
           try:
               with urlopen(root_robots, timeout=20) as response:
                   parser = RobotFileParser()
                   parser.parse(response.read().decode('utf-8').splitlines())
-                  assert parser.can_fetch('Googlebot', base + 'ru/'), 'Root robots.txt blocks Googlebot'
+                  for bot in ['Googlebot', 'bingbot', 'YandexBot']:
+                      for lang in ['ru', 'en']:
+                          assert parser.can_fetch(bot, base + lang + '/'), (root_robots, bot, lang)
           except HTTPError as error:
               assert error.code == 404, (root_robots, error.code)
           print(json.dumps({'anonymous_https': True, 'pages': results,
-                            'robots_allow': True, 'sitemap_status': 404}, ensure_ascii=False))
+                            'robots_allow': True, 'sitemap_status': 200, 'indexed_pages': len(indexed)}, ensure_ascii=False))
           PY

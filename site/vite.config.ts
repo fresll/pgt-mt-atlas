@@ -4,6 +4,12 @@ import { defineConfig, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 
 const base = process.env.ATLAS_BASE ?? '/pgt-mt-atlas/'
+const indexing = process.env.ATLAS_PUBLIC_LAUNCH === '1' && process.env.ATLAS_SOFT_LAUNCH !== '1' && process.env.VITE_ATLAS_PRIVATE_PREVIEW !== '1'
+const canonicalBase = indexing ? new URL(process.env.ATLAS_CANONICAL_BASE || '') : undefined
+if (canonicalBase) {
+  if (canonicalBase.protocol !== 'https:' || canonicalBase.search || canonicalBase.hash) throw new Error('ATLAS_CANONICAL_BASE must be an https URL with the deployment base path')
+  if (!canonicalBase.pathname.endsWith('/')) canonicalBase.pathname += '/'
+}
 
 /** vite preview как GitHub Pages: каталог без завершающего слеша → 301 на адрес со слешем
  *  (без этого preview отдаёт корневой index.html чужой страницы). */
@@ -28,9 +34,13 @@ function pagesLikePreview(): Plugin {
 }
 
 // base: путь проекта на GitHub Pages (https://<owner>.github.io/pgt-mt-atlas/).
-// Публикация отключена до явного решения авторов (docs/implementation_plan.md, раздел 7).
+// Публичная индексация включается явно; закрытые и промежуточные сборки сохраняют noindex.
 export default defineConfig({
   base,
+  define: {
+    'import.meta.env.ATLAS_INDEXING_ENABLED': JSON.stringify(indexing),
+    'import.meta.env.ATLAS_CANONICAL_BASE': JSON.stringify(canonicalBase?.href || ''),
+  },
   plugins: [react(), pagesLikePreview(), {
     name: 'private-preview-without-analytics',
     transformIndexHtml(html: string) {

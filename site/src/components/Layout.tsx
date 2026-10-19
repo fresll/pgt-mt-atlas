@@ -283,6 +283,15 @@ export function Shell({ lang }: { lang: Lang }) {
 
 function ShellInner({ lang }: { lang: Lang }) {
   const t = useT()
+  const { pathname } = useLocation()
+  const englishEnabled = import.meta.env.VITE_ATLAS_PRIVATE_PREVIEW === '1'
+    ? import.meta.env.VITE_ATLAS_ENGLISH_REVIEW === '1'
+    : import.meta.env.VITE_ATLAS_ENGLISH_PUBLIC === '1'
+  const indexing = import.meta.env.ATLAS_INDEXING_ENABLED && (lang === 'ru' || englishEnabled)
+  const canonicalBase = import.meta.env.ATLAS_CANONICAL_BASE
+  const route = pathname.replace(/^\//, '').replace(/\/?$/, '/')
+  const languages = englishEnabled ? ['ru', 'en'] : ['ru']
+
   return (
     <>
       <Head>
@@ -290,6 +299,8 @@ function ShellInner({ lang }: { lang: Lang }) {
         <title>{`${t('site.title')} — ${t('site.tagline')}`}</title>
         <meta name="description" content={t('site.tagline')} />
         <meta name="author" content="Ilya Mazunin" />
+        {indexing && <link rel="canonical" href={new URL(route, canonicalBase).href} />}
+        {indexing && languages.map(language => <link key={language} rel="alternate" hrefLang={language} href={new URL(route.replace(/^(?:ru|en)\//, `${language}/`), canonicalBase).href} />)}
       </Head>
       <a className="skip" href="#content">
         {t('site.skip')}

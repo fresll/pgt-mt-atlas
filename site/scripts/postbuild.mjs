@@ -57,11 +57,14 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
     if (softLaunch) {
       out = out.replace(/<meta name="robots" content="[^"]*"\s*\/?>/g, '<meta name="robots" content="noindex, follow">')
     }
-    if (launch && route.startsWith('ru/')) {
+    if (launch && (route.startsWith('ru/') || (englishEnabled && route.startsWith('en/')))) {
       const canonical = new URL(route.replace(/index\.html$/, ''), canonicalBase).href
       out = out.replace(/<meta name="robots" content="noindex, nofollow"\s*\/?>/g, '<meta name="robots" content="index, follow">')
-      out = out.replace('</head>', `<link rel="canonical" href="${canonical}"></head>`)
-      sitemap.push(canonical)
+      const languages = englishEnabled ? ['ru', 'en'] : ['ru']
+      const alternates = languages.map(lang => ({ lang, url: new URL(route.replace(/^(?:ru|en)\//, `${lang}/`).replace(/index\.html$/, ''), canonicalBase).href }))
+      if (!out.includes('rel="canonical"')) out = out.replace('</head>', `<link rel="canonical" href="${canonical}"></head>`)
+      if (!out.includes('rel="alternate"')) out = out.replace('</head>', alternates.map(({ lang, url }) => `<link rel="alternate" hreflang="${lang}" href="${url}">`).join('') + '</head>')
+      sitemap.push({ canonical, alternates })
     }
     if (route.startsWith('en/') && !englishEnabled) {
       const destination = '../'.repeat(depth) + route.replace(/^en\//, 'ru/').replace(/index\.html$/, '')
@@ -73,7 +76,8 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
   }
   console.log(`relative links: ${n} pages`)
   if (launch) {
-    writeFileSync(join(dist, 'sitemap.xml'), '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + sitemap.map(url => `<url><loc>${url.replaceAll('&', '&amp;')}</loc></url>`).join('') + '</urlset>')
+    const xml = value => value.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')
+    writeFileSync(join(dist, 'sitemap.xml'), '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">' + sitemap.map(({ canonical, alternates }) => `<url><loc>${xml(canonical)}</loc>${alternates.map(({ lang, url }) => `<xhtml:link rel="alternate" hreflang="${lang}" href="${xml(url)}"/>`).join('')}</url>`).join('') + '</urlset>')
     writeFileSync(join(dist, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${new URL('sitemap.xml', canonicalBase).href}\n`)
   } else if (softLaunch) {
     writeFileSync(join(dist, 'robots.txt'), 'User-agent: *\nAllow: /\n')
