@@ -101,8 +101,8 @@ export default function Patients() {
         </section>
       ))}
       <div className="callout">
-        {lang === 'ru' ? 'Информация не заменяет консультацию врача-генетика. ' : 'This information does not replace a consultation with a clinical geneticist. '}
-        <Link to={`/${lang}/science/`}>{lang === 'ru' ? 'Подробнее для специалистов →' : 'More for specialists →'}</Link>
+        {lang === 'ru' ? 'Информация не заменяет консультацию врача-генетика. ' : lang === 'es' ? "Esta informaci\u00F3n no sustituye una consulta con un especialista en gen\u00E9tica cl\u00EDnica. " : 'This information does not replace a consultation with a clinical geneticist. '}
+        <Link to={`/${lang}/science/`}>{lang === 'ru' ? 'Подробнее для специалистов →' : lang === 'es' ? "M\u00E1s informaci\u00F3n para especialistas \u2192" : 'More for specialists →'}</Link>
       </div>
     </article>
   )

@@ -18,9 +18,9 @@ const SYMBOL = ['circle', 'square', 'triangle-up'] as const
 
 // Случаи вне количественного набора (правила включения — лист «Рисунок 5»!A29:A35 исходной таблицы)
 const NOT_INCLUDED = [
-  { pub: 'sallevelt2017', ru: 'm.14487T>C — перенесены два эмбриона с разными значениями; ребёнка нельзя однозначно связать ни с одним из них.', en: 'm.14487T>C — two embryos with different values were transferred; the child cannot be linked to either of them.' },
-  { pub: 'steffann2014', ru: 'm.8344A>G — ткань, в которой измерена гетероплазмия при рождении, не указана.', en: 'm.8344A>G — the tissue measured at birth is not specified.' },
-  { pub: 'hyslop2025', ru: 'Программа Newcastle — постнатальные данные опубликованы только для подгруппы в целом, без индивидуальных пар.', en: 'Newcastle programme — postnatal data are published only for the subgroup as a whole, without individual pairs.' },
+  { pub: 'sallevelt2017', ru: 'm.14487T>C — перенесены два эмбриона с разными значениями; ребёнка нельзя однозначно связать ни с одним из них.', en: 'm.14487T>C — two embryos with different values were transferred; the child cannot be linked to either of them.', es: "m.14487T>C: se transfirieron dos embriones con valores diferentes; no puede vincularse al niño con uno de ellos." },
+  { pub: 'steffann2014', ru: 'm.8344A>G — ткань, в которой измерена гетероплазмия при рождении, не указана.', en: 'm.8344A>G — the tissue measured at birth is not specified.', es: "m.8344A>G: no se especifica el tejido medido al nacer." },
+  { pub: 'hyslop2025', ru: 'Программа Newcastle — постнатальные данные опубликованы только для подгруппы в целом, без индивидуальных пар.', en: 'Newcastle programme — postnatal data are published only for the subgroup as a whole, without individual pairs.', es: "Programa de Newcastle: los datos posnatales se publicaron solo para el subgrupo en conjunto, sin pares individuales." },
 ]
 
 // Цвет — вариант (не более 3 категориальных цветов на точечном графике; m.3697G>A — нейтральный тон, пространственно отделён)
@@ -178,7 +178,7 @@ export default function Fig5() {
       <p className="small"><strong>{t('fig5.dependency', { pairs: s.n_pairs, children: s.n_children, ...topChild })}</strong>{' '}
         {lang === 'ru'
           ? `Из ${s.n_low_embryo} сопоставлений с низкой гетероплазмией эмбриона ${s.n_concordant_low} сопровождались низкой или неопределяемой гетероплазмией в ткани; все расхождения (${s.discordant_ids.join(', ')}) — повторный анализ одного ребёнка другим методом.`
-          : `Of ${s.n_low_embryo} comparisons with low embryo heteroplasmy, ${s.n_concordant_low} showed low or undetectable tissue heteroplasmy; all discordant values (${s.discordant_ids.join(', ')}) come from re-analysis of one child by another method.`}
+          : lang === 'es' ? `De ${s.n_low_embryo} comparaciones con heteroplasmia embrionaria baja, ${s.n_concordant_low} mostraron heteroplasmia tisular baja o indetectable; todos los valores discordantes (${s.discordant_ids.join(", ")}) proceden del rean\u00E1lisis de un mismo ni\u00F1o mediante otro m\u00E9todo.` : `Of ${s.n_low_embryo} comparisons with low embryo heteroplasmy, ${s.n_concordant_low} showed low or undetectable tissue heteroplasmy; all discordant values (${s.discordant_ids.join(', ')}) come from re-analysis of one child by another method.`}
       </p>
       {sel && (
         <Detail
@@ -193,7 +193,7 @@ export default function Fig5() {
             [t('common.value'), pairValueText(sel.value, sel.q, sel.value_raw, lang, t)],
             [t('common.age'), sel.age],
             [t('common.method'), sel.method],
-            [lang === 'ru' ? 'В базовом виде графика' : 'In the reference view', sel.in_figure ? (lang === 'ru' ? 'да' : 'yes') : `${lang === 'ru' ? 'нет' : 'no'} — «${sel.on_plot_raw}»`],
+            [lang === 'ru' ? 'В базовом виде графика' : lang === 'es' ? "En la vista de referencia" : 'In the reference view', sel.in_figure ? (lang === 'ru' ? 'да' : lang === 'es' ? "s\u00ED" : 'yes') : `${lang === 'ru' ? 'нет' : lang === 'es' ? "no" : 'no'} — «${sel.on_plot_raw}»`],
             [t('common.provenance'), t('common.sheetRow', { sheet: sel.src.sheet, row: sel.src.row })],
           ]}
         />

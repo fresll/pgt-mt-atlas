@@ -12,27 +12,27 @@ export type Item = { years: string; text: Bilingual }
 export type Pub = { authors: string; title: string; journal: string; year: number; doi: string | null; topic: 'pgt' | 'editing' | 'mito' | 'repro' }
 
 export const creator = {
-  name: { en: 'Ilya Mazunin', ru: 'Илья Мазунин' } as Bilingual,
-  degree: { en: 'Doctor of Biological Sciences (DSc), Genetics', ru: 'Доктор биологических наук, генетика' } as Bilingual,
+  name: { en: 'Ilya Mazunin', es: "Ilya Mazunin", ru: 'Илья Мазунин' } as Bilingual,
+  degree: { en: 'Doctor of Biological Sciences (DSc), Genetics', es: "Doctor en Ciencias Biológicas (DSc), Genética", ru: 'Доктор биологических наук, генетика' } as Bilingual,
   photo: { src: 'img/ilya-mazunin.jpg', w: 720, h: 960 },
 
   /** Краткое представление (шапка страницы). */
   lead: {
-    en: 'Geneticist, Doctor of Biological Sciences (DSc). For about two decades he has studied human mitochondrial DNA: its diversity, mutations, heteroplasmy and approaches to preventing the transmission of mitochondrial disease.',
+    en: 'Geneticist, Doctor of Biological Sciences (DSc). For about two decades he has studied human mitochondrial DNA: its diversity, mutations, heteroplasmy and approaches to preventing the transmission of mitochondrial disease.', es: "Genetista, doctor en Ciencias Biológicas (DSc). Desde hace unas dos décadas estudia el ADN mitocondrial humano: su diversidad, mutaciones, heteroplasmia y los enfoques para prevenir la transmisión de enfermedades mitocondriales.",
     ru: 'Генетик, доктор биологических наук. Около двадцати лет изучает митохондриальную ДНК человека: её разнообразие, мутации, гетероплазмию и подходы к предотвращению передачи митохондриальных заболеваний.',
   } as Bilingual,
 
   /** Роль в проекте. */
   role: {
-    en: 'Ilya Mazunin created PGT-mt Atlas as an independent international resource that brings together published individual mtDNA heteroplasmy values from preimplantation genetic testing and shows the provenance of every value. He is solely responsible for the concept, data curation and development of the platform.',
+    en: 'Ilya Mazunin created PGT-mt Atlas as an independent international resource that brings together published individual mtDNA heteroplasmy values from preimplantation genetic testing and shows the provenance of every value. He is solely responsible for the concept, data curation and development of the platform.', es: "Ilya Mazunin creó PGT-mt Atlas como un recurso internacional independiente que reúne valores individuales publicados de heteroplasmia del ADNmt en el test genético preimplantacional y muestra la procedencia de cada valor. Es el único responsable del concepto, la curación de los datos y el desarrollo de la plataforma.",
     ru: 'Илья Мазунин создал PGT-mt Atlas как самостоятельный международный ресурс, который собирает опубликованные индивидуальные значения гетероплазмии мтДНК при преимплантационном генетическом тестировании и показывает происхождение каждого значения. Он единолично отвечает за концепцию, курирование данных и развитие платформы.',
   } as Bilingual,
 
   /** Основные академические должности (для шапки и карточки на главной). */
   headline: [
-    { en: 'Head of the Department of Biology and Genetics, Petrovsky Medical University, Moscow', ru: 'Заведующий кафедрой биологии и генетики, Медицинский университет Петровского, Москва' },
-    { en: 'Leading Research Scientist, Research Centre for Medical Genetics named after Academician N.P. Bochkov, Moscow', ru: 'Ведущий научный сотрудник, Медико-генетический научный центр имени академика Н.П. Бочкова, Москва' },
-    { en: 'Senior Research Scientist, Skolkovo Institute of Science and Technology (Skoltech), Moscow', ru: 'Старший научный сотрудник, Сколковский институт науки и технологий, Москва' },
+    { en: 'Head of the Department of Biology and Genetics, Petrovsky Medical University, Moscow', es: "Jefe del Departamento de Biología y Genética, Universidad Médica Petrovsky, Moscú", ru: 'Заведующий кафедрой биологии и генетики, Медицинский университет Петровского, Москва' },
+    { en: 'Leading Research Scientist, Research Centre for Medical Genetics named after Academician N.P. Bochkov, Moscow', es: "Investigador principal, Centro de Investigación de Genética Médica Académico N. P. Bochkov, Moscú", ru: 'Ведущий научный сотрудник, Медико-генетический научный центр имени академика Н.П. Бочкова, Москва' },
+    { en: 'Senior Research Scientist, Skolkovo Institute of Science and Technology (Skoltech), Moscow', es: "Investigador sénior, Instituto de Ciencia y Tecnología de Skolkovo (Skoltech), Moscú", ru: 'Старший научный сотрудник, Сколковский институт науки и технологий, Москва' },
   ] as Bilingual[],
 
   bio: {
@@ -40,69 +40,73 @@ export const creator = {
       'Ilya Mazunin is a geneticist who studies the human mitochondrial genome: its variation, its role in inherited disease and its transmission in human reproduction. He holds a Doctor of Biological Sciences degree in genetics (Research Centre for Medical Genetics, 2025) and a Candidate of Biological Sciences (PhD) degree in molecular genetics (Institute of Chemical Biology and Fundamental Medicine, Siberian Branch of the Russian Academy of Sciences, 2010).',
       'His work spans tools for targeted manipulation of mitochondrial DNA — CRISPR-Cas9, Cas12a and prokaryotic Argonaute systems — as well as mtDNA heteroplasmy in human embryos and preimplantation genetic testing for mitochondrial DNA variants (PGT-mt). He heads the Department of Biology and Genetics at Petrovsky Medical University and holds research appointments at the Research Centre for Medical Genetics and Skoltech.',
       'He created PGT-mt Atlas and curates its content and data.',
-    ],
+    ], es: [
+  "Ilya Mazunin es un genetista que estudia el genoma mitocondrial humano: su variación, su función en las enfermedades hereditarias y su transmisión en la reproducción humana. Es doctor en Ciencias Biológicas en Genética (Centro de Investigación de Genética Médica, 2025) y candidato en Ciencias Biológicas (PhD) en Genética Molecular (Instituto de Biología Química y Medicina Fundamental, Rama Siberiana de la Academia de Ciencias de Rusia, 2010).",
+  "Su trabajo abarca herramientas de manipulación dirigida del ADN mitocondrial —CRISPR-Cas9, Cas12a y sistemas Argonauta procariotas—, así como la heteroplasmia del ADNmt en embriones humanos y el test genético preimplantacional para variantes del ADN mitocondrial (PGT-mt). Dirige el Departamento de Biología y Genética de la Universidad Médica Petrovsky y ocupa puestos de investigación en el Centro de Investigación de Genética Médica y en Skoltech.",
+  "Creó PGT-mt Atlas y es responsable de la curación de sus contenidos y datos."
+],
     ru: [
       'Илья Мазунин — генетик, изучающий митохондриальный геном человека: его изменчивость, роль в наследственных болезнях и передачу в репродукции человека. Доктор биологических наук по специальности «генетика» (Медико-генетический научный центр, 2025), кандидат биологических наук по специальности «молекулярная генетика» (Институт химической биологии и фундаментальной медицины СО РАН, 2010).',
       'Его работы охватывают инструменты направленного воздействия на митохондриальную ДНК — системы CRISPR-Cas9, Cas12a и прокариотические белки-аргонавты, — а также гетероплазмию мтДНК в эмбрионах человека и преимплантационное генетическое тестирование вариантов митохондриальной ДНК (ПГТ-мт). Заведует кафедрой биологии и генетики Медицинского университета Петровского, работает в Медико-генетическом научном центре и Сколтехе.',
       'Создатель PGT-mt Atlas и научный куратор его содержания и данных.',
     ],
-  } as Record<'en' | 'ru', string[]>,
+  } as Record<'en' | 'ru' | 'es', string[]>,
 
   research: [
-    { en: 'Preimplantation genetic testing for mitochondrial DNA variants (PGT-mt) and mtDNA heteroplasmy in human embryos', ru: 'Преимплантационное генетическое тестирование вариантов мтДНК (ПГТ-мт) и гетероплазмия мтДНК в эмбрионах человека' },
-    { en: 'Targeted editing and elimination of mitochondrial DNA: CRISPR-Cas9, Cas12a and prokaryotic Argonautes', ru: 'Направленное редактирование и элиминация митохондриальной ДНК: CRISPR-Cas9, Cas12a и прокариотические аргонавты' },
-    { en: 'Genetics and diagnosis of mitochondrial diseases', ru: 'Генетика и диагностика митохондриальных заболеваний' },
-    { en: 'Mitochondrial mutagenesis: mutational spectra and deletion formation', ru: 'Мутагенез митохондриального генома: мутационные спектры и образование делеций' },
-    { en: 'Reproductive genetics: chromosomal abnormalities and mosaicism in human embryos, embryo selection', ru: 'Репродуктивная генетика: хромосомные нарушения и мозаицизм эмбрионов человека, выбор эмбрионов для переноса' },
+    { en: 'Preimplantation genetic testing for mitochondrial DNA variants (PGT-mt) and mtDNA heteroplasmy in human embryos', es: "Test genético preimplantacional para variantes del ADN mitocondrial (PGT-mt) y heteroplasmia del ADNmt en embriones humanos", ru: 'Преимплантационное генетическое тестирование вариантов мтДНК (ПГТ-мт) и гетероплазмия мтДНК в эмбрионах человека' },
+    { en: 'Targeted editing and elimination of mitochondrial DNA: CRISPR-Cas9, Cas12a and prokaryotic Argonautes', es: "Edición y eliminación dirigidas del ADN mitocondrial: CRISPR-Cas9, Cas12a y Argonautas procariotas", ru: 'Направленное редактирование и элиминация митохондриальной ДНК: CRISPR-Cas9, Cas12a и прокариотические аргонавты' },
+    { en: 'Genetics and diagnosis of mitochondrial diseases', es: "Genética y diagnóstico de las enfermedades mitocondriales", ru: 'Генетика и диагностика митохондриальных заболеваний' },
+    { en: 'Mitochondrial mutagenesis: mutational spectra and deletion formation', es: "Mutagénesis mitocondrial: espectros mutacionales y formación de deleciones", ru: 'Мутагенез митохондриального генома: мутационные спектры и образование делеций' },
+    { en: 'Reproductive genetics: chromosomal abnormalities and mosaicism in human embryos, embryo selection', es: "Genética reproductiva: anomalías cromosómicas y mosaicismo en embriones humanos, selección embrionaria", ru: 'Репродуктивная генетика: хромосомные нарушения и мозаицизм эмбрионов человека, выбор эмбрионов для переноса' },
   ] as Bilingual[],
 
   education: [
-    { years: '2025', text: { en: 'Doctor of Biological Sciences (DSc), Genetics (1.5.7) — Research Centre for Medical Genetics, Moscow', ru: 'Доктор биологических наук, 1.5.7 — генетика. Медико-генетический научный центр, Москва' } },
-    { years: '2010', text: { en: 'Candidate of Biological Sciences (PhD), Molecular Genetics (03.01.07) — Institute of Chemical Biology and Fundamental Medicine SB RAS, Novosibirsk', ru: 'Кандидат биологических наук, 03.01.07 — молекулярная генетика. Институт химической биологии и фундаментальной медицины СО РАН, Новосибирск' } },
-    { years: '2006', text: { en: 'Degree in Biology, specialization in Genetics — Chelyabinsk State University', ru: 'Высшее биологическое образование, генетика. Челябинский государственный университет' } },
+    { years: '2025', text: { en: 'Doctor of Biological Sciences (DSc), Genetics (1.5.7) — Research Centre for Medical Genetics, Moscow', es: "Doctor en Ciencias Biológicas (DSc), Genética (1.5.7), Centro de Investigación de Genética Médica, Moscú", ru: 'Доктор биологических наук, 1.5.7 — генетика. Медико-генетический научный центр, Москва' } },
+    { years: '2010', text: { en: 'Candidate of Biological Sciences (PhD), Molecular Genetics (03.01.07) — Institute of Chemical Biology and Fundamental Medicine SB RAS, Novosibirsk', es: "Candidato en Ciencias Biológicas (PhD), Genética Molecular (03.01.07), Instituto de Biología Química y Medicina Fundamental, Rama Siberiana de la Academia de Ciencias de Rusia, Novosibirsk", ru: 'Кандидат биологических наук, 03.01.07 — молекулярная генетика. Институт химической биологии и фундаментальной медицины СО РАН, Новосибирск' } },
+    { years: '2006', text: { en: 'Degree in Biology, specialization in Genetics — Chelyabinsk State University', es: "Título en Biología, especialidad en Genética, Universidad Estatal de Cheliábinsk", ru: 'Высшее биологическое образование, генетика. Челябинский государственный университет' } },
   ] as Item[],
 
   current: [
-    { years: '2024 –', text: { en: 'Head of Department of Biology and Genetics, Petrovsky Medical University, Moscow', ru: 'Заведующий кафедрой биологии и генетики, Медицинский университет Петровского, Москва' } },
-    { years: '2024 –', text: { en: 'Leading Research Scientist, Laboratory of Experimental Gene Therapy for Inherited Metabolic Diseases, Research Centre for Medical Genetics named after Academician N.P. Bochkov, Moscow', ru: 'Ведущий научный сотрудник лаборатории экспериментальной генетической терапии наследственных болезней обмена веществ, Медико-генетический научный центр имени академика Н.П. Бочкова, Москва' } },
-    { years: '2019 –', text: { en: 'Senior Research Scientist, Center for Bio- and Medical Technologies, Skolkovo Institute of Science and Technology (Skoltech), Moscow', ru: 'Старший научный сотрудник Центра био- и медицинских технологий, Сколковский институт науки и технологий, Москва' } },
-    { years: '2025 –', text: { en: 'Chief Executive Officer, MODICUM LLC, Moscow', ru: 'Генеральный директор ООО «МОДИКУМ», Москва' } },
+    { years: '2024 –', text: { en: 'Head of Department of Biology and Genetics, Petrovsky Medical University, Moscow', es: "Jefe del Departamento de Biología y Genética, Universidad Médica Petrovsky, Moscú", ru: 'Заведующий кафедрой биологии и генетики, Медицинский университет Петровского, Москва' } },
+    { years: '2024 –', text: { en: 'Leading Research Scientist, Laboratory of Experimental Gene Therapy for Inherited Metabolic Diseases, Research Centre for Medical Genetics named after Academician N.P. Bochkov, Moscow', es: "Investigador principal, Laboratorio de Terapia Génica Experimental de Enfermedades Metabólicas Hereditarias, Centro de Investigación de Genética Médica Académico N. P. Bochkov, Moscú", ru: 'Ведущий научный сотрудник лаборатории экспериментальной генетической терапии наследственных болезней обмена веществ, Медико-генетический научный центр имени академика Н.П. Бочкова, Москва' } },
+    { years: '2019 –', text: { en: 'Senior Research Scientist, Center for Bio- and Medical Technologies, Skolkovo Institute of Science and Technology (Skoltech), Moscow', es: "Investigador sénior, Centro de Biotecnologías y Tecnologías Médicas, Instituto de Ciencia y Tecnología de Skolkovo (Skoltech), Moscú", ru: 'Старший научный сотрудник Центра био- и медицинских технологий, Сколковский институт науки и технологий, Москва' } },
+    { years: '2025 –', text: { en: 'Chief Executive Officer, MODICUM LLC, Moscow', es: "Director general, MODICUM LLC, Moscú", ru: 'Генеральный директор ООО «МОДИКУМ», Москва' } },
   ] as Item[],
 
   past: [
-    { years: '2024 – 2026', text: { en: 'Deputy Head, Reference Center for Assessment of Genetic Purity of Laboratory Animals, Avtsyn Research Institute of Human Morphology, Moscow', ru: 'Заместитель руководителя Референс-центра по оценке генетической чистоты лабораторных животных, НИИ морфологии человека имени академика А.П. Авцына, Москва' } },
-    { years: '2020 – 2023', text: { en: 'Head of Genetic Laboratory, Medical Genomics LLC, Moscow and Tver', ru: 'Заведующий генетической лабораторией «Медикал Геномикс», Москва и Тверь' } },
-    { years: '2020 – 2022', text: { en: 'Scientific Director, Network of Medical Centers “Fomin Clinics”', ru: 'Директор по науке, Федеральная сеть медицинских центров «Клиника Фомина»' } },
-    { years: '2019 – 2020', text: { en: 'Leading Research Scientist, Genome Research Centre, Immanuel Kant Baltic Federal University, Kaliningrad', ru: 'Ведущий научный сотрудник, Центр геномных исследований, Балтийский федеральный университет имени Иммануила Канта, Калининград' } },
-    { years: '2012 – 2019', text: { en: 'Head of Molecular Genetics Laboratory, Immanuel Kant Baltic Federal University, Kaliningrad', ru: 'Заведующий лабораторией молекулярно-генетических технологий, Балтийский федеральный университет имени Иммануила Канта, Калининград' } },
-    { years: '2016 – 2019', text: { en: 'Associate Professor, Institute of Living Systems, Immanuel Kant Baltic Federal University', ru: 'Доцент, Институт живых систем, Балтийский федеральный университет имени Иммануила Канта' } },
-    { years: '2012 – 2015', text: { en: 'Associate Professor, Department of Obstetrics and Gynecology, Medical Institute, Immanuel Kant Baltic Federal University', ru: 'Доцент, кафедра акушерства и гинекологии, Медицинский институт, Балтийский федеральный университет имени Иммануила Канта' } },
-    { years: '2011 – 2012', text: { en: 'Research Scientist, Ural Research Center for Radiation Medicine, Chelyabinsk', ru: 'Научный сотрудник, Уральский научно-практический центр радиационной медицины, Челябинск' } },
-    { years: '2009 – 2011', text: { en: 'Junior Research Scientist, Institute of Chemical Biology and Fundamental Medicine SB RAS, Novosibirsk', ru: 'Младший научный сотрудник, Институт химической биологии и фундаментальной медицины СО РАН, Новосибирск' } },
-    { years: '2006 – 2009', text: { en: 'Senior Laboratory Assistant, Institute of Cytology and Genetics SB RAS, Novosibirsk', ru: 'Старший лаборант, Институт цитологии и генетики СО РАН, Новосибирск' } },
+    { years: '2024 – 2026', text: { en: 'Deputy Head, Reference Center for Assessment of Genetic Purity of Laboratory Animals, Avtsyn Research Institute of Human Morphology, Moscow', es: "Subdirector, Centro de Referencia para la Evaluación de la Pureza Genética de Animales de Laboratorio, Instituto de Investigación de Morfología Humana Avtsyn, Moscú", ru: 'Заместитель руководителя Референс-центра по оценке генетической чистоты лабораторных животных, НИИ морфологии человека имени академика А.П. Авцына, Москва' } },
+    { years: '2020 – 2023', text: { en: 'Head of Genetic Laboratory, Medical Genomics LLC, Moscow and Tver', es: "Jefe del Laboratorio de Genética, Medical Genomics LLC, Moscú y Tver", ru: 'Заведующий генетической лабораторией «Медикал Геномикс», Москва и Тверь' } },
+    { years: '2020 – 2022', text: { en: 'Scientific Director, Network of Medical Centers “Fomin Clinics”', es: "Director científico, red de centros médicos Fomin Clinics", ru: 'Директор по науке, Федеральная сеть медицинских центров «Клиника Фомина»' } },
+    { years: '2019 – 2020', text: { en: 'Leading Research Scientist, Genome Research Centre, Immanuel Kant Baltic Federal University, Kaliningrad', es: "Investigador principal, Centro de Investigación del Genoma, Universidad Federal del Báltico Immanuel Kant, Kaliningrado", ru: 'Ведущий научный сотрудник, Центр геномных исследований, Балтийский федеральный университет имени Иммануила Канта, Калининград' } },
+    { years: '2012 – 2019', text: { en: 'Head of Molecular Genetics Laboratory, Immanuel Kant Baltic Federal University, Kaliningrad', es: "Jefe del Laboratorio de Genética Molecular, Universidad Federal del Báltico Immanuel Kant, Kaliningrado", ru: 'Заведующий лабораторией молекулярно-генетических технологий, Балтийский федеральный университет имени Иммануила Канта, Калининград' } },
+    { years: '2016 – 2019', text: { en: 'Associate Professor, Institute of Living Systems, Immanuel Kant Baltic Federal University', es: "Profesor asociado, Instituto de Sistemas Vivos, Universidad Federal del Báltico Immanuel Kant", ru: 'Доцент, Институт живых систем, Балтийский федеральный университет имени Иммануила Канта' } },
+    { years: '2012 – 2015', text: { en: 'Associate Professor, Department of Obstetrics and Gynecology, Medical Institute, Immanuel Kant Baltic Federal University', es: "Profesor asociado, Departamento de Obstetricia y Ginecología, Instituto Médico, Universidad Federal del Báltico Immanuel Kant", ru: 'Доцент, кафедра акушерства и гинекологии, Медицинский институт, Балтийский федеральный университет имени Иммануила Канта' } },
+    { years: '2011 – 2012', text: { en: 'Research Scientist, Ural Research Center for Radiation Medicine, Chelyabinsk', es: "Investigador, Centro de Investigación de Medicina Radiológica de los Urales, Cheliábinsk", ru: 'Научный сотрудник, Уральский научно-практический центр радиационной медицины, Челябинск' } },
+    { years: '2009 – 2011', text: { en: 'Junior Research Scientist, Institute of Chemical Biology and Fundamental Medicine SB RAS, Novosibirsk', es: "Investigador júnior, Instituto de Biología Química y Medicina Fundamental, Rama Siberiana de la Academia de Ciencias de Rusia, Novosibirsk", ru: 'Младший научный сотрудник, Институт химической биологии и фундаментальной медицины СО РАН, Новосибирск' } },
+    { years: '2006 – 2009', text: { en: 'Senior Laboratory Assistant, Institute of Cytology and Genetics SB RAS, Novosibirsk', es: "Técnico de laboratorio sénior, Instituto de Citología y Genética, Rama Siberiana de la Academia de Ciencias de Rusia, Novosibirsk", ru: 'Старший лаборант, Институт цитологии и генетики СО РАН, Новосибирск' } },
   ] as Item[],
 
   /** Профессиональная деятельность (в CV — раздел «Additional activities» / «Доп. активности»). */
   professional: [
-    { years: '2021 –', text: { en: 'Board Member, Interdisciplinary Clinical Association for Reproductive Medicine (ICARM)', ru: 'Член правления, Междисциплинарная клиническая ассоциация репродуктивной медицины' } },
+    { years: '2021 –', text: { en: 'Board Member, Interdisciplinary Clinical Association for Reproductive Medicine (ICARM)', es: "Miembro de la junta directiva, Asociación Clínica Interdisciplinar de Medicina Reproductiva (ICARM)", ru: 'Член правления, Междисциплинарная клиническая ассоциация репродуктивной медицины' } },
   ] as Item[],
 
   /** Предпринимательская деятельность — раскрывается и как конфликт интересов (страница «О проекте»). */
   ventures: [
-    { years: '2026 –', text: { en: 'Co-founder, CellKinetica SARL (Switzerland): genomic data analysis providing additional information for ranking human embryos for transfer in ART cycles', ru: 'Сооснователь, CellKinetica SARL (Швейцария): анализ геномных данных для дополнительной информации при ранжировании эмбрионов человека на перенос в циклах ВРТ' } },
-    { years: '2025 –', text: { en: 'Co-founder, Florence Labs LLC: reagents and software for whole-genome screening of embryos in ART cycles', ru: 'Сооснователь, ООО «Флоренс Лабс»: реагенты и программное обеспечение для полногеномного скрининга эмбрионов в циклах ВРТ' } },
-    { years: '2025 –', text: { en: 'Founder, MODICUM LLC (Skolkovo resident): genomic data analysis providing additional information for ranking human embryos for transfer in ART cycles', ru: 'Основатель, ООО «МОДИКУМ» (резидент Сколково): анализ геномных данных для дополнительной информации при ранжировании эмбрионов человека на перенос в циклах ВРТ' } },
+    { years: '2026 –', text: { en: 'Co-founder, CellKinetica SARL (Switzerland): genomic data analysis providing additional information for ranking human embryos for transfer in ART cycles', es: "Cofundador, CellKinetica SARL (Suiza): análisis de datos genómicos que aporta información adicional para ordenar embriones humanos destinados a transferencia en ciclos de reproducción asistida", ru: 'Сооснователь, CellKinetica SARL (Швейцария): анализ геномных данных для дополнительной информации при ранжировании эмбрионов человека на перенос в циклах ВРТ' } },
+    { years: '2025 –', text: { en: 'Co-founder, Florence Labs LLC: reagents and software for whole-genome screening of embryos in ART cycles', es: "Cofundador, Florence Labs LLC: reactivos y software para el cribado del genoma completo de embriones en ciclos de reproducción asistida", ru: 'Сооснователь, ООО «Флоренс Лабс»: реагенты и программное обеспечение для полногеномного скрининга эмбрионов в циклах ВРТ' } },
+    { years: '2025 –', text: { en: 'Founder, MODICUM LLC (Skolkovo resident): genomic data analysis providing additional information for ranking human embryos for transfer in ART cycles', es: "Fundador, MODICUM LLC (residente de Skolkovo): análisis de datos genómicos que aporta información adicional para ordenar embriones humanos destinados a transferencia en ciclos de reproducción asistida", ru: 'Основатель, ООО «МОДИКУМ» (резидент Сколково): анализ геномных данных для дополнительной информации при ранжировании эмбрионов человека на перенос в циклах ВРТ' } },
   ] as Item[],
 
   /** Раскрытие интересов. */
   coi: {
-    en: 'CEO and founder of MODICUM LLC; co-founder of Florence Labs LLC and CellKinetica SARL (Switzerland). These companies develop genomic data analysis for embryos in assisted reproduction. The Atlas is a non-commercial scientific resource; it presents data from published sources only.',
+    en: 'CEO and founder of MODICUM LLC; co-founder of Florence Labs LLC and CellKinetica SARL (Switzerland). These companies develop genomic data analysis for embryos in assisted reproduction. The Atlas is a non-commercial scientific resource; it presents data from published sources only.', es: "Director general y fundador de MODICUM LLC; cofundador de Florence Labs LLC y CellKinetica SARL (Suiza). Estas empresas desarrollan análisis de datos genómicos de embriones en reproducción asistida. El Atlas es un recurso científico no comercial; presenta únicamente datos de fuentes publicadas.",
     ru: 'Генеральный директор и основатель ООО «МОДИКУМ»; сооснователь ООО «Флоренс Лабс» и CellKinetica SARL (Швейцария). Компании разрабатывают решения для анализа геномных данных эмбрионов в программах ВРТ. Atlas — некоммерческий научный ресурс; данные в нём представлены только по опубликованным источникам.',
   } as Bilingual,
 
   teaching: [
-    { years: '2026', text: { en: 'Cell Biology: textbook for medical students / I.O. Mazunin, Yu.V. Markina, T.V. Kirichenko, B.A. Rimskaya, A.M. Markin. Petrovsky Medical University. Moscow: MDV Group, 2026. ISBN 978-5-906748-37-9', ru: 'Биология клетки: учебное пособие для студентов медицинских вузов / И.О. Мазунин, Ю.В. Маркина, Т.В. Кириченко, Б.А. Римская, А.М. Маркин. Мед. ун-т им. акад. Б.В. Петровского. М.: Группа МДВ, 2026. ISBN 978-5-906748-37-9' } },
-    { years: '2026', text: { en: 'Template Processes in the Cell: textbook for medical students / I.O. Mazunin, T.V. Kirichenko, Yu.V. Markina, I.A. Marinina, B.A. Rimskaya, U.S. Khovantseva. Petrovsky Medical University. Moscow: MDV Group, 2026. ISBN 978-5-906748-38-6', ru: 'Матричные процессы в клетке: учебное пособие для студентов медицинских вузов / И.О. Мазунин, Т.В. Кириченко, Ю.В. Маркина, И.А. Маринина, Б.А. Римская, У.С. Хованцева. Мед. ун-т им. акад. Б.В. Петровского. М.: Группа МДВ, 2026. ISBN 978-5-906748-38-6' } },
+    { years: '2026', text: { en: 'Cell Biology: textbook for medical students / I.O. Mazunin, Yu.V. Markina, T.V. Kirichenko, B.A. Rimskaya, A.M. Markin. Petrovsky Medical University. Moscow: MDV Group, 2026. ISBN 978-5-906748-37-9', es: "Biología celular: libro de texto para estudiantes de medicina / I. O. Mazunin, Yu. V. Markina, T. V. Kirichenko, B. A. Rimskaya, A. M. Markin. Universidad Médica Petrovsky. Moscú: MDV Group, 2026. ISBN 978-5-906748-37-9", ru: 'Биология клетки: учебное пособие для студентов медицинских вузов / И.О. Мазунин, Ю.В. Маркина, Т.В. Кириченко, Б.А. Римская, А.М. Маркин. Мед. ун-т им. акад. Б.В. Петровского. М.: Группа МДВ, 2026. ISBN 978-5-906748-37-9' } },
+    { years: '2026', text: { en: 'Template Processes in the Cell: textbook for medical students / I.O. Mazunin, T.V. Kirichenko, Yu.V. Markina, I.A. Marinina, B.A. Rimskaya, U.S. Khovantseva. Petrovsky Medical University. Moscow: MDV Group, 2026. ISBN 978-5-906748-38-6', es: "Procesos de molde en la célula: libro de texto para estudiantes de medicina / I. O. Mazunin, T. V. Kirichenko, Yu. V. Markina, I. A. Marinina, B. A. Rimskaya, U. S. Khovantseva. Universidad Médica Petrovsky. Moscú: MDV Group, 2026. ISBN 978-5-906748-38-6", ru: 'Матричные процессы в клетке: учебное пособие для студентов медицинских вузов / И.О. Мазунин, Т.В. Кириченко, Ю.В. Маркина, И.А. Маринина, Б.А. Римская, У.С. Хованцева. Мед. ун-т им. акад. Б.В. Петровского. М.: Группа МДВ, 2026. ISBN 978-5-906748-38-6' } },
   ] as Item[],
 
   /** Избранные публикации — авторы, названия и DOI точно по CV. */
@@ -145,8 +149,8 @@ export const creator = {
 
 /** Метки тематик избранных публикаций. */
 export const topicLabel: Record<Pub['topic'], Bilingual> = {
-  pgt: { en: 'PGT-mt and mitochondrial disease prevention', ru: 'ПГТ-мт и профилактика митохондриальных заболеваний' },
-  repro: { en: 'Reproductive genetics', ru: 'Репродуктивная генетика' },
-  editing: { en: 'Mitochondrial genome editing', ru: 'Редактирование митохондриального генома' },
-  mito: { en: 'Mitochondrial genome variation and mutagenesis', ru: 'Изменчивость и мутагенез митохондриального генома' },
+  pgt: { en: 'PGT-mt and mitochondrial disease prevention', es: "PGT-mt y prevención de enfermedades mitocondriales", ru: 'ПГТ-мт и профилактика митохондриальных заболеваний' },
+  repro: { en: 'Reproductive genetics', es: "Genética reproductiva", ru: 'Репродуктивная генетика' },
+  editing: { en: 'Mitochondrial genome editing', es: "Edición del genoma mitocondrial", ru: 'Редактирование митохондриального генома' },
+  mito: { en: 'Mitochondrial genome variation and mutagenesis', es: "Variación y mutagénesis del genoma mitocondrial", ru: 'Изменчивость и мутагенез митохондриального генома' },
 }

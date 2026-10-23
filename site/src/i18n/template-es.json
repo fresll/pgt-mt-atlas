@@ -1,0 +1,8 @@
+{
+  "One row per study or data set: who generated the data, where, and in what publication status.": "Una fila por estudio o conjunto de datos: quién generó los datos, dónde y cuál es su estado de publicación.",
+  "One row per started IVF/PGT-mt cycle — including cycles that ended without a suitable embryo or without transfer.": "Una fila por ciclo de FIV/PGT-mt iniciado, incluidos los ciclos que terminaron sin embrión apto o sin transferencia.",
+  "One row per embryo (or tested oocyte) — every embryo of the cycle, not only the transferred ones.": "Una fila por embrión (u ovocito analizado): todos los embriones del ciclo, no solo los transferidos.",
+  "One row per measurement: carrier tissues, oocytes, polar bodies, embryo fractions, prenatal and postnatal samples. Replicates are separate rows.": "Una fila por medición: tejidos de la portadora, ovocitos, corpúsculos polares, fracciones embrionarias y muestras prenatales y posnatales. Las réplicas se registran en filas independientes.",
+  "One row per analytical method or protocol version used in the measurements.": "Una fila por método analítico o versión del protocolo utilizados en las mediciones.",
+  "One row per outcome event: cycles without a suitable embryo, transfers without implantation, pregnancy losses, births and each follow-up visit.": "Una fila por desenlace: ciclos sin embrión apto, transferencias sin implantación, pérdidas gestacionales, nacimientos y cada visita de seguimiento."
+}

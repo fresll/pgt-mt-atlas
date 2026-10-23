@@ -7,17 +7,17 @@ export default function RootRedirect() {
   useEffect(() => {
     let lang = 'en'
     try {
-      lang = localStorage.getItem('atlas-lang') ?? (navigator.language.toLowerCase().startsWith('ru') ? 'ru' : 'en')
+      lang = localStorage.getItem('atlas-lang') ?? (['ru', 'es'].find((code) => navigator.language.toLowerCase().startsWith(code)) ?? 'en')
     } catch {
-      lang = navigator.language.toLowerCase().startsWith('ru') ? 'ru' : 'en'
+      lang = ['ru', 'es'].find((code) => navigator.language.toLowerCase().startsWith(code)) ?? 'en'
     }
-    navigate(`/${lang === 'ru' ? 'ru' : 'en'}/`, { replace: true })
+    navigate(`/${['en', 'ru', 'es'].includes(lang) ? lang : 'en'}/`, { replace: true })
   }, [navigate])
   return (
     <main style={{ padding: 24, fontFamily: 'system-ui' }}>
       <h1>PGT-mt Atlas</h1>
       <p>
-        <a href="en/">English</a> · <a href="ru/">Русский</a>
+        <a href="en/">English</a> · <a href="ru/">Русский</a> · <a href="es/" lang="es">Español</a>
       </p>
     </main>
   )

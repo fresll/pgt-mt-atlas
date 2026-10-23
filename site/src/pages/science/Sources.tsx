@@ -34,7 +34,7 @@ export default function Sources() {
             <p className="small" style={{ margin: '4px 0 0' }}>
               {p.doi ? <a href={doiUrl(p.doi)} target="_blank" rel="noreferrer">doi:{p.doi}</a> : <span className="muted">{t('common.noDoi')}</span>}
               {p.pmid && <> · PMID <a href={`https://pubmed.ncbi.nlm.nih.gov/${p.pmid}/`} target="_blank" rel="noreferrer">{p.pmid}</a></>}
-              {p.published_date && <> · {new Date(p.published_date).toLocaleDateString(lang === 'ru' ? 'ru-RU' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</>}
+              {p.published_date && <> · {new Date(p.published_date).toLocaleDateString(lang === 'ru' ? 'ru-RU' : lang === 'es' ? "es-ES" : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</>}
               {count(p.id) > 0 && <> · {count(p.id)} {t('sources.records')}</>}
             </p>
             {p.roles.length > 0 && (
@@ -55,7 +55,7 @@ export default function Sources() {
                 <summary>{t('verification.title')}</summary>
                 <div className="table-wrap" style={{ marginTop: 8 }}>
                   <table className="data">
-                    <thead><tr><th>{t('common.embryo')}</th><th>ESM 2</th><th>ESM, %</th><th>{lang === 'ru' ? 'Исходная таблица, %' : 'Source workbook, %'}</th><th>{lang === 'ru' ? 'На сайте' : 'On the site'}</th><th>{t('common.status')}</th></tr></thead>
+                    <thead><tr><th>{t('common.embryo')}</th><th>ESM 2</th><th>ESM, %</th><th>{lang === 'ru' ? 'Исходная таблица, %' : lang === 'es' ? "Libro de origen, %" : 'Source workbook, %'}</th><th>{lang === 'ru' ? 'На сайте' : lang === 'es' ? "En el sitio" : 'On the site'}</th><th>{t('common.status')}</th></tr></thead>
                     <tbody>
                       {ver.filter((v) => v.embryo).map((v, i) => (
                         <tr key={i}>

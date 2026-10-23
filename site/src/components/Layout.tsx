@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { Head } from 'vite-react-ssg'
 import { atlas, type Lang } from '../data/atlas'
-import { LangProvider, useT } from '../i18n'
+import { LANGS, LangProvider, useT } from '../i18n'
 import { Illustration } from './Sketch'
 
 type Theme = 'system' | 'light' | 'dark'
@@ -48,7 +48,6 @@ export function switchLangPath(pathname: string, lang: Lang, other: Lang, search
 function Header({ lang }: { lang: Lang }) {
   const t = useT()
   const { pathname, search, hash } = useLocation()
-  const other: Lang = lang === 'en' ? 'ru' : 'en'
   // query и hash известны только в браузере: добавляются после гидратации, чтобы первый клиентский рендер
   // совпадал со статическим HTML
   const [hydrated, setHydrated] = useState(false)
@@ -75,9 +74,13 @@ function Header({ lang }: { lang: Lang }) {
           <NavLink to={`/${lang}/ilya-mazunin/`}>{t('nav.curator')}</NavLink>
         </nav>
         <div className="header-tools">
-          <Link className="btn-link" to={switchLangPath(pathname, lang, other, hydrated ? search : '', hydrated ? hash : '')} hrefLang={other} lang={other}>
-            {t('nav.switchTo')}
-          </Link>
+          <nav aria-label={t('nav.language')} className="language-switch">
+            {LANGS.filter((other) => other !== lang).map((other) => (
+              <Link key={other} className="btn-link" to={switchLangPath(pathname, lang, other, hydrated ? search : '', hydrated ? hash : '')} hrefLang={other} lang={other}>
+                {{ en: 'English', ru: 'Русский', es: 'Español' }[other]}
+              </Link>
+            ))}
+          </nav>
           <ThemeToggle />
         </div>
       </div>

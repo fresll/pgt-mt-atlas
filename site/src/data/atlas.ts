@@ -2,7 +2,7 @@
 // Правила выборок совпадают с ETL (etl/atlas_etl/curation/rules.yaml).
 import raw from './atlas.json'
 
-export type Lang = 'en' | 'ru'
+export type Lang = 'en' | 'ru' | 'es'
 export type Bilingual = { ru: string; en: string }
 export type Qualifier = 'exact' | 'not_detected' | 'less_than' | 'interval' | 'qualitative'
 export type SrcRef = { sheet: string; row: number }

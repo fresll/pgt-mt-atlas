@@ -137,7 +137,7 @@ export default function Fig6() {
               <th>{t('common.variant')}</th>
               <th>p_het ≤18%</th>
               <th>p_het ≤30%</th>
-              {m.p_eupl.map((a) => <th key={a.age}>{lang === 'ru' ? `${a.age} лет` : `age ${a.age}`} (≤18%)</th>)}
+              {m.p_eupl.map((a) => <th key={a.age}>{lang === 'ru' ? `${a.age} лет` : lang === 'es' ? `edad ${a.age}` : `age ${a.age}`} (≤18%)</th>)}
             </tr>
           </thead>
           <tbody>
