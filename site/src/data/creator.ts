@@ -6,34 +6,34 @@
 // данных атласа — 10.1007/s10815-026-04012-y (PMID 42649365); показывается DOI из набора данных.
 // Публичные ссылки и контакты включаются только после утверждения (null — «по согласованию»).
 import { CURATOR_CONTACT } from '../lib/contribute'
-import type { Bilingual } from './atlas'
+import type { LocalizedText } from './atlas'
 
-export type Item = { years: string; text: Bilingual }
+export type Item = { years: string; text: LocalizedText }
 export type Pub = { authors: string; title: string; journal: string; year: number; doi: string | null; topic: 'pgt' | 'editing' | 'mito' | 'repro' }
 
 export const creator = {
-  name: { en: 'Ilya Mazunin', es: "Ilya Mazunin", ru: 'Илья Мазунин' } as Bilingual,
-  degree: { en: 'Doctor of Biological Sciences (DSc), Genetics', es: "Doctor en Ciencias Biológicas (DSc), Genética", ru: 'Доктор биологических наук, генетика' } as Bilingual,
+  name: { en: 'Ilya Mazunin', es: "Ilya Mazunin", ru: 'Илья Мазунин' } as LocalizedText,
+  degree: { en: 'Doctor of Biological Sciences (DSc), Genetics', es: "Doctor en Ciencias Biológicas (DSc), Genética", ru: 'Доктор биологических наук, генетика' } as LocalizedText,
   photo: { src: 'img/ilya-mazunin.jpg', w: 720, h: 960 },
 
   /** Краткое представление (шапка страницы). */
   lead: {
     en: 'Geneticist, Doctor of Biological Sciences (DSc). For about two decades he has studied human mitochondrial DNA: its diversity, mutations, heteroplasmy and approaches to preventing the transmission of mitochondrial disease.', es: "Genetista, doctor en Ciencias Biológicas (DSc). Desde hace unas dos décadas estudia el ADN mitocondrial humano: su diversidad, mutaciones, heteroplasmia y los enfoques para prevenir la transmisión de enfermedades mitocondriales.",
     ru: 'Генетик, доктор биологических наук. Около двадцати лет изучает митохондриальную ДНК человека: её разнообразие, мутации, гетероплазмию и подходы к предотвращению передачи митохондриальных заболеваний.',
-  } as Bilingual,
+  } as LocalizedText,
 
   /** Роль в проекте. */
   role: {
     en: 'Ilya Mazunin created PGT-mt Atlas as an independent international resource that brings together published individual mtDNA heteroplasmy values from preimplantation genetic testing and shows the provenance of every value. He is solely responsible for the concept, data curation and development of the platform.', es: "Ilya Mazunin creó PGT-mt Atlas como un recurso internacional independiente que reúne valores individuales publicados de heteroplasmia del ADNmt en el test genético preimplantacional y muestra la procedencia de cada valor. Es el único responsable del concepto, la curación de los datos y el desarrollo de la plataforma.",
     ru: 'Илья Мазунин создал PGT-mt Atlas как самостоятельный международный ресурс, который собирает опубликованные индивидуальные значения гетероплазмии мтДНК при преимплантационном генетическом тестировании и показывает происхождение каждого значения. Он единолично отвечает за концепцию, курирование данных и развитие платформы.',
-  } as Bilingual,
+  } as LocalizedText,
 
   /** Основные академические должности (для шапки и карточки на главной). */
   headline: [
     { en: 'Head of the Department of Biology and Genetics, Petrovsky Medical University, Moscow', es: "Jefe del Departamento de Biología y Genética, Universidad Médica Petrovsky, Moscú", ru: 'Заведующий кафедрой биологии и генетики, Медицинский университет Петровского, Москва' },
     { en: 'Leading Research Scientist, Research Centre for Medical Genetics named after Academician N.P. Bochkov, Moscow', es: "Investigador principal, Centro de Investigación de Genética Médica Académico N. P. Bochkov, Moscú", ru: 'Ведущий научный сотрудник, Медико-генетический научный центр имени академика Н.П. Бочкова, Москва' },
     { en: 'Senior Research Scientist, Skolkovo Institute of Science and Technology (Skoltech), Moscow', es: "Investigador sénior, Instituto de Ciencia y Tecnología de Skolkovo (Skoltech), Moscú", ru: 'Старший научный сотрудник, Сколковский институт науки и технологий, Москва' },
-  ] as Bilingual[],
+  ] as LocalizedText[],
 
   bio: {
     en: [
@@ -58,7 +58,7 @@ export const creator = {
     { en: 'Genetics and diagnosis of mitochondrial diseases', es: "Genética y diagnóstico de las enfermedades mitocondriales", ru: 'Генетика и диагностика митохондриальных заболеваний' },
     { en: 'Mitochondrial mutagenesis: mutational spectra and deletion formation', es: "Mutagénesis mitocondrial: espectros mutacionales y formación de deleciones", ru: 'Мутагенез митохондриального генома: мутационные спектры и образование делеций' },
     { en: 'Reproductive genetics: chromosomal abnormalities and mosaicism in human embryos, embryo selection', es: "Genética reproductiva: anomalías cromosómicas y mosaicismo en embriones humanos, selección embrionaria", ru: 'Репродуктивная генетика: хромосомные нарушения и мозаицизм эмбрионов человека, выбор эмбрионов для переноса' },
-  ] as Bilingual[],
+  ] as LocalizedText[],
 
   education: [
     { years: '2025', text: { en: 'Doctor of Biological Sciences (DSc), Genetics (1.5.7) — Research Centre for Medical Genetics, Moscow', es: "Doctor en Ciencias Biológicas (DSc), Genética (1.5.7), Centro de Investigación de Genética Médica, Moscú", ru: 'Доктор биологических наук, 1.5.7 — генетика. Медико-генетический научный центр, Москва' } },
@@ -102,7 +102,7 @@ export const creator = {
   coi: {
     en: 'CEO and founder of MODICUM LLC; co-founder of Florence Labs LLC and CellKinetica SARL (Switzerland). These companies develop genomic data analysis for embryos in assisted reproduction. The Atlas is a non-commercial scientific resource; it presents data from published sources only.', es: "Director general y fundador de MODICUM LLC; cofundador de Florence Labs LLC y CellKinetica SARL (Suiza). Estas empresas desarrollan análisis de datos genómicos de embriones en reproducción asistida. El Atlas es un recurso científico no comercial; presenta únicamente datos de fuentes publicadas.",
     ru: 'Генеральный директор и основатель ООО «МОДИКУМ»; сооснователь ООО «Флоренс Лабс» и CellKinetica SARL (Швейцария). Компании разрабатывают решения для анализа геномных данных эмбрионов в программах ВРТ. Atlas — некоммерческий научный ресурс; данные в нём представлены только по опубликованным источникам.',
-  } as Bilingual,
+  } as LocalizedText,
 
   teaching: [
     { years: '2026', text: { en: 'Cell Biology: textbook for medical students / I.O. Mazunin, Yu.V. Markina, T.V. Kirichenko, B.A. Rimskaya, A.M. Markin. Petrovsky Medical University. Moscow: MDV Group, 2026. ISBN 978-5-906748-37-9', es: "Biología celular: libro de texto para estudiantes de medicina / I. O. Mazunin, Yu. V. Markina, T. V. Kirichenko, B. A. Rimskaya, A. M. Markin. Universidad Médica Petrovsky. Moscú: MDV Group, 2026. ISBN 978-5-906748-37-9", ru: 'Биология клетки: учебное пособие для студентов медицинских вузов / И.О. Мазунин, Ю.В. Маркина, Т.В. Кириченко, Б.А. Римская, А.М. Маркин. Мед. ун-т им. акад. Б.В. Петровского. М.: Группа МДВ, 2026. ISBN 978-5-906748-37-9' } },
@@ -148,7 +148,7 @@ export const creator = {
 }
 
 /** Метки тематик избранных публикаций. */
-export const topicLabel: Record<Pub['topic'], Bilingual> = {
+export const topicLabel: Record<Pub['topic'], LocalizedText> = {
   pgt: { en: 'PGT-mt and mitochondrial disease prevention', es: "PGT-mt y prevención de enfermedades mitocondriales", ru: 'ПГТ-мт и профилактика митохондриальных заболеваний' },
   repro: { en: 'Reproductive genetics', es: "Genética reproductiva", ru: 'Репродуктивная генетика' },
   editing: { en: 'Mitochondrial genome editing', es: "Edición del genoma mitocondrial", ru: 'Редактирование митохондриального генома' },

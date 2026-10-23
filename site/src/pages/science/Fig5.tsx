@@ -178,7 +178,7 @@ export default function Fig5() {
       <p className="small"><strong>{t('fig5.dependency', { pairs: s.n_pairs, children: s.n_children, ...topChild })}</strong>{' '}
         {lang === 'ru'
           ? `Из ${s.n_low_embryo} сопоставлений с низкой гетероплазмией эмбриона ${s.n_concordant_low} сопровождались низкой или неопределяемой гетероплазмией в ткани; все расхождения (${s.discordant_ids.join(', ')}) — повторный анализ одного ребёнка другим методом.`
-          : lang === 'es' ? `De ${s.n_low_embryo} comparaciones con heteroplasmia embrionaria baja, ${s.n_concordant_low} mostraron heteroplasmia tisular baja o indetectable; todos los valores discordantes (${s.discordant_ids.join(", ")}) proceden del rean\u00E1lisis de un mismo ni\u00F1o mediante otro m\u00E9todo.` : `Of ${s.n_low_embryo} comparisons with low embryo heteroplasmy, ${s.n_concordant_low} showed low or undetectable tissue heteroplasmy; all discordant values (${s.discordant_ids.join(', ')}) come from re-analysis of one child by another method.`}
+          : lang === 'es' ? `De ${s.n_low_embryo} comparaciones con heteroplasmia embrionaria baja, ${s.n_concordant_low} mostraron heteroplasmia tisular baja o indetectable; todos los valores discordantes (${s.discordant_ids.join(", ")}) proceden del reanálisis de un mismo niño mediante otro método.` : `Of ${s.n_low_embryo} comparisons with low embryo heteroplasmy, ${s.n_concordant_low} showed low or undetectable tissue heteroplasmy; all discordant values (${s.discordant_ids.join(', ')}) come from re-analysis of one child by another method.`}
       </p>
       {sel && (
         <Detail
@@ -193,7 +193,7 @@ export default function Fig5() {
             [t('common.value'), pairValueText(sel.value, sel.q, sel.value_raw, lang, t)],
             [t('common.age'), sel.age],
             [t('common.method'), sel.method],
-            [lang === 'ru' ? 'В базовом виде графика' : lang === 'es' ? "En la vista de referencia" : 'In the reference view', sel.in_figure ? (lang === 'ru' ? 'да' : lang === 'es' ? "s\u00ED" : 'yes') : `${lang === 'ru' ? 'нет' : lang === 'es' ? "no" : 'no'} — «${sel.on_plot_raw}»`],
+            [lang === 'ru' ? 'В базовом виде графика' : lang === 'es' ? "En la vista de referencia" : 'In the reference view', sel.in_figure ? (lang === 'ru' ? 'да' : lang === 'es' ? "sí" : 'yes') : `${lang === 'ru' ? 'нет' : lang === 'es' ? "no" : 'no'} — «${sel.on_plot_raw}»`],
             [t('common.provenance'), t('common.sheetRow', { sheet: sel.src.sheet, row: sel.src.row })],
           ]}
         />

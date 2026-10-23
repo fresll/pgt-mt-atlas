@@ -119,7 +119,7 @@ export default function Fig4() {
 
   const panelC = useMemo(() => {
     const cols = [
-      { name: t('fig4.cleavage'), items: atlas.cleavage.map((c) => ({ key: c.embryo, y: c.range, cls: 'pathogenic', text: `<b>${c.embryo}</b><br>${fmt(c.b1, lang)}% / ${fmt(c.b2, lang)}% → ${fmt(c.range, lang)} ${t('common.pp')}<br>${c.variant} · ${pubById[c.pub].short}` })) },
+      { name: t('fig4.cleavage'), items: atlas.cleavage.map((c) => ({ key: c.embryo, y: c.range, cls: 'pathogenic', text: `<b>${c.embryo}</b><br>${pct(c.b1, lang)} / ${pct(c.b2, lang)} → ${fmt(c.range, lang)} ${t('common.pp')}<br>${c.variant} · ${pubById[c.pub].short}` })) },
       ...[false, true]
         .filter((hv2) => showHv2 || !hv2)
         .map((hv2) => ({
@@ -181,7 +181,7 @@ export default function Fig4() {
       <p className="small">
         {lang === 'ru'
           ? `Медиана размаха: ${fmt(s.median_range_pathogenic, lang)} п.п. (${s.n_pathogenic} патогенных бластоцист), ${fmt(s.median_range_hv2, lang)} п.п. (HV2), ${fmt(s.median_range_all, lang)} п.п. (все ${s.n_embryos}); стадия дробления — ${fmt(s.median_range_cleavage, lang)} п.п. (n = ${s.n_cleavage}).`
-          : lang === 'es' ? `Mediana de la amplitud: ${fmt(s.median_range_pathogenic, lang)} p. p. (${s.n_pathogenic} blastocistos con variantes patog\u00E9nicas), ${fmt(s.median_range_hv2, lang)} p. p. (HV2), ${fmt(s.median_range_all, lang)} p. p. (los ${s.n_embryos}); estadio de segmentaci\u00F3n: ${fmt(s.median_range_cleavage, lang)} p. p. (n = ${s.n_cleavage}).` : `Median range: ${fmt(s.median_range_pathogenic, lang)} pp (${s.n_pathogenic} pathogenic blastocysts), ${fmt(s.median_range_hv2, lang)} pp (HV2), ${fmt(s.median_range_all, lang)} pp (all ${s.n_embryos}); cleavage stage — ${fmt(s.median_range_cleavage, lang)} pp (n = ${s.n_cleavage}).`}
+          : lang === 'es' ? `Mediana de la amplitud: ${fmt(s.median_range_pathogenic, lang)} p. p. (${s.n_pathogenic} blastocistos con variantes patogénicas), ${fmt(s.median_range_hv2, lang)} p. p. (HV2), ${fmt(s.median_range_all, lang)} p. p. (los ${s.n_embryos}); estadio de segmentación: ${fmt(s.median_range_cleavage, lang)} p. p. (n = ${s.n_cleavage}).` : `Median range: ${fmt(s.median_range_pathogenic, lang)} pp (${s.n_pathogenic} pathogenic blastocysts), ${fmt(s.median_range_hv2, lang)} pp (HV2), ${fmt(s.median_range_all, lang)} pp (all ${s.n_embryos}); cleavage stage — ${fmt(s.median_range_cleavage, lang)} pp (n = ${s.n_cleavage}).`}
       </p>
       <div className="callout warn small">{t('fig4.verifyNote')}</div>
 
@@ -193,7 +193,7 @@ export default function Fig4() {
             [t('common.variant'), `${selEmb.variant} (${label('variant_class', selEmb.cls, lang)})`],
             [t('common.source'), <PubRef id={selEmb.pub} showStatus />],
             ...FR.filter((f) => selEmb.fr[f] !== undefined).map((f): [string, string] => [frLabel(f), pct(selEmb.fr[f] ?? null, lang, 2)]),
-            [lang === 'ru' ? 'Размах' : lang === 'es' ? "Amplitud (m\u00E1ximo \u2212 m\u00EDnimo)" : 'Range', `${fmt(rangeOf(selEmb.fr), lang, 2)} ${t('common.pp')}`],
+            [lang === 'ru' ? 'Размах' : lang === 'es' ? "Amplitud (máximo − mínimo)" : 'Range', `${fmt(rangeOf(selEmb.fr), lang, 2)} ${t('common.pp')}`],
             [t('common.provenance'), atlas.fig4.filter((f) => f.embryo === selEmb.embryo).map((f) => t('common.sheetRow', { sheet: f.src.sheet, row: f.src.row })).join('; ')],
           ]}
         >
@@ -208,7 +208,7 @@ export default function Fig4() {
           rows={[
             [t('common.variant'), selCleav.variant],
             [t('common.source'), <PubRef id={selCleav.pub} showStatus />],
-            [lang === 'ru' ? 'Бластомеры' : lang === 'es' ? "Blast\u00F3meros" : 'Blastomeres', `${pct(selCleav.b1, lang)} / ${pct(selCleav.b2, lang)} (${t('common.lod', { lod: fmt(selCleav.lod, lang) })})`],
+            [lang === 'ru' ? 'Бластомеры' : lang === 'es' ? "Blastómeros" : 'Blastomeres', `${pct(selCleav.b1, lang)} / ${pct(selCleav.b2, lang)} (${t('common.lod', { lod: fmt(selCleav.lod, lang) })})`],
             [t('common.provenance'), t('common.sheetRow', { sheet: selCleav.src.sheet, row: selCleav.src.row })],
           ]}
         />
@@ -241,10 +241,10 @@ export default function Fig4() {
           rowKey={(r) => String(r.sample)}
           columns={[
             { key: 's', header: '#', render: (r) => r.sample, sort: (r) => r.sample, num: true },
-            { key: 'c', header: lang === 'ru' ? 'Клетки' : lang === 'es' ? "C\u00E9lulas" : 'Cells', render: (r) => `${r.cells_raw} (${r.n_cells_raw})` },
-            { key: 'd', header: lang === 'ru' ? 'Покрытие, ×' : lang === 'es' ? "Profundidad, \u00D7" : 'Depth, ×', render: (r) => fmt(r.depth, lang, 0), sort: (r) => r.depth, num: true },
+            { key: 'c', header: lang === 'ru' ? 'Клетки' : lang === 'es' ? "Células" : 'Cells', render: (r) => `${r.cells_raw} (${r.n_cells_raw})` },
+            { key: 'd', header: lang === 'ru' ? 'Покрытие, ×' : lang === 'es' ? "Profundidad, ×" : 'Depth, ×', render: (r) => fmt(r.depth, lang, 0), sort: (r) => r.depth, num: true },
             { key: 'v', header: `${hu.variant}, %`, render: (r) => fmt(r.value, lang, 1), sort: (r) => r.value, num: true },
-            { key: 'dv', header: `Δ vs ${fmt(hu.biopsy_value, lang)}%`, render: (r) => fmt(r.value - hu.biopsy_value, lang, 1), sort: (r) => r.value - hu.biopsy_value, num: true },
+            { key: 'dv', header: `Δ vs ${pct(hu.biopsy_value, lang)}`, render: (r) => fmt(r.value - hu.biopsy_value, lang, 1), sort: (r) => r.value - hu.biopsy_value, num: true },
           ]}
         />
       </details>

@@ -158,7 +158,7 @@ function BottleneckSimulator() {
   const values = useMemo(() => simulateOocytes(h0 / 100, N, count, 7919 * draw), [h0, N, count, draw])
   const s = summarize(values)
   const pc = (v: number) => String(Math.round(v * 100))
-  const sd = (theoreticalSd(h0 / 100, N) * 100).toFixed(1)
+  const sd = (theoreticalSd(h0 / 100, N) * 100).toFixed(1).replace('.', lang === 'es' ? ',' : '.')
   // точечный график: столбики по 2.5%
   const W = 640, x0 = 28, x1 = 616, base = 214, top = 18
   const dots = stackDots(values, 0.025)
@@ -173,7 +173,7 @@ function BottleneckSimulator() {
       <div className="fd-controls">
         <label className="fd-range">
           <span>
-            {t('fundamentals.bn.h0')}: <strong>{h0}%</strong>
+            {t('fundamentals.bn.h0')}: <strong>{h0}{lang === 'es' ? '\u00a0' : ''}%</strong>
           </span>
           <input type="range" min={0} max={100} step={1} value={h0} onChange={(e) => setH0(Number(e.target.value))} aria-valuetext={`${h0}%`} />
         </label>

@@ -31,7 +31,7 @@ async function expectIllustration(page: Page) {
 }
 
 for (const [host, root] of Object.entries(HOSTS)) {
-  for (const lang of ['en', 'ru']) {
+  for (const lang of ['en', 'ru', 'es']) {
     test(`${host} ${lang}: photos, illustrations and all four charts load on direct entry`, async ({ page }) => {
       const problems = watch(page)
       await page.goto(`${root}${lang}/`)

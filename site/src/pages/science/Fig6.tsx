@@ -1,9 +1,10 @@
+import { scientificText } from '../../i18n/scientificText'
 import { useMemo, useState } from 'react'
 import { PlotlyChart } from '../../components/PlotlyChart'
 import { ModelBadge, PubRef, Seg } from '../../components/ui'
 import { atlas, fractionAtOrBelow, obsByVariant } from '../../data/atlas'
 import { useLang, useT } from '../../i18n'
-import { fmt, fmtFixed } from '../../lib/format'
+import { fmt, fmtFixed, pct } from '../../lib/format'
 import { curve, pAtLeastOne } from '../../model/scenario'
 import { axis, baseLayout, useChartTheme } from '../../lib/theme'
 
@@ -37,7 +38,7 @@ export default function Fig6() {
             const c = curve(p18, pe, m.n_max)
             data.push({
               type: 'scatter', mode: 'lines+markers', x: c.map((q) => q.n), y: c.map((q) => q.p), line: { color: x.color, width: 2 }, marker: { size: 6, color: x.color },
-              hovertemplate: `${x.v}, ≤18%<br>p_het = ${x.f18.k}/${x.f18.n}, p_eupl = ${pe}<br>N = %{x}: P = %{y:.2f}<extra></extra>`,
+              hovertemplate: `${x.v}, ≤18${lang === 'es' ? '\u00a0' : ''}%<br>p_het = ${x.f18.k}/${x.f18.n}, p_eupl = ${fmt(pe, lang)}<br>N = %{x}: P = %{y:.2f}<extra></extra>`,
             })
             ann.push({ x: m.n_max + 0.1, y: c[c.length - 1].p, xanchor: 'left', text: x.v, showarrow: false, font: { size: 10, color: th.ink2 } })
           }
@@ -45,7 +46,7 @@ export default function Fig6() {
             const c = curve(p30, pe, m.n_max)
             data.push({
               type: 'scatter', mode: 'lines', x: c.map((q) => q.n), y: c.map((q) => q.p), line: { color: x.color, width: 1.4, dash: cut === '30' ? 'solid' : 'dash' },
-              hovertemplate: `${x.v}, ≤30%<br>p_het = ${x.f30.k}/${x.f30.n}, p_eupl = ${pe}<br>N = %{x}: P = %{y:.2f}<extra></extra>`,
+              hovertemplate: `${x.v}, ≤30${lang === 'es' ? '\u00a0' : ''}%<br>p_het = ${x.f30.k}/${x.f30.n}, p_eupl = ${fmt(pe, lang)}<br>N = %{x}: P = %{y:.2f}<extra></extra>`,
             })
             if (cut === '30') ann.push({ x: m.n_max + 0.1, y: c[c.length - 1].p, xanchor: 'left', text: x.v, showarrow: false, font: { size: 10, color: th.ink2 } })
           }
@@ -80,9 +81,9 @@ export default function Fig6() {
         <span>
           {t('common.threshold')}:{' '}
           <Seg label={t('common.threshold')} value={cut} onChange={setCut} options={[
-            { v: 'both', label: `18% + 30%` },
-            { v: '18', label: '≤18%' },
-            { v: '30', label: '≤30%' },
+            { v: 'both', label: `${pct(18, lang)} + ${pct(30, lang)}` },
+            { v: '18', label: `≤${pct(18, lang)}` },
+            { v: '30', label: `≤${pct(30, lang)}` },
           ]} />
         </span>
       </div>
@@ -100,14 +101,14 @@ export default function Fig6() {
         {panels.map((p, i) => (
           <div key={p.age}>
             <h3>{['A', 'B', 'C'][i] && (lang === 'ru' ? ['А', 'Б', 'В'][i] : ['A', 'B', 'C'][i])}. {t('fig6.panel', { age: p.age, p: fmt(p.pe, lang) })}</h3>
-            <PlotlyChart ariaLabel={t('fig6.panel', { age: p.age, p: p.pe })} height={360} data={p.data as never} layout={p.layout as never} />
+            <PlotlyChart ariaLabel={t('fig6.panel', { age: p.age, p: fmt(p.pe, lang) })} height={360} data={p.data as never} layout={p.layout as never} />
           </div>
         ))}
       </div>
       <ul className="small">
         <li>{t('fig6.pHet')}</li>
         <li data-testid="p-eupl">
-          {t('fig6.pEupl')}. {m.p_eupl_note[lang]} {t('fig6.pEuplSource')}: <PubRef id={m.p_eupl_publication} />
+          {t('fig6.pEupl')}. {scientificText(m.p_eupl_note, lang)} {t('fig6.pEuplSource')}: <PubRef id={m.p_eupl_publication} />
           {m.p_eupl_locator && <span className="muted"> — {m.p_eupl_locator}</span>}
         </li>
       </ul>
@@ -135,9 +136,9 @@ export default function Fig6() {
           <thead>
             <tr>
               <th>{t('common.variant')}</th>
-              <th>p_het ≤18%</th>
-              <th>p_het ≤30%</th>
-              {m.p_eupl.map((a) => <th key={a.age}>{lang === 'ru' ? `${a.age} лет` : lang === 'es' ? `edad ${a.age}` : `age ${a.age}`} (≤18%)</th>)}
+              <th>p_het ≤{pct(18, lang)}</th>
+              <th>p_het ≤{pct(30, lang)}</th>
+              {m.p_eupl.map((a) => <th key={a.age}>{lang === 'ru' ? `${a.age} лет` : lang === 'es' ? `edad ${a.age}` : `age ${a.age}`} (≤{pct(18, lang)})</th>)}
             </tr>
           </thead>
           <tbody>

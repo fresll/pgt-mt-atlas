@@ -1,8 +1,10 @@
 // Типизированный доступ к atlas.json (генерируется etl/atlas_etl/build.py — не редактировать вручную).
 // Правила выборок совпадают с ETL (etl/atlas_etl/curation/rules.yaml).
 import raw from './atlas.json'
+import { scientificText } from '../i18n/scientificText'
 
 export type Lang = 'en' | 'ru' | 'es'
+export type LocalizedText = Record<Lang, string>
 export type Bilingual = { ru: string; en: string }
 export type Qualifier = 'exact' | 'not_detected' | 'less_than' | 'interval' | 'qualitative'
 export type SrcRef = { sheet: string; row: number }
@@ -222,7 +224,8 @@ export const atlas = raw as unknown as Atlas
 export const pubById: Record<string, Publication> = Object.fromEntries(atlas.publications.map((p) => [p.id, p]))
 
 export function label(group: string, code: string, lang: Lang): string {
-  return atlas.labels[group]?.[code]?.[lang] ?? code
+  const text = atlas.labels[group]?.[code]
+  return text ? scientificText(text, lang) : code
 }
 
 export function doiUrl(doi: string): string {

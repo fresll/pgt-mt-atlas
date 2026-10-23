@@ -21,7 +21,7 @@ const es: Dict = {
     noClient: 'Si no se abre una aplicación de correo, copie la dirección y escriba desde su propio correo.',
   },
   common: {
-    source: 'Fuente', variant: 'Variante', value: 'Heteroplasmia, %', provenance: 'Procedencia del valor', stage: 'Estadio', material: 'Material', sample: 'Tipo de muestra', derivation: 'Obtención del valor', note: 'Nota del libro de datos', sheetRow: 'hoja «{{sheet}}», fila {{row}}', legacyId: 'ID anterior',
+    source: 'Fuente', variant: 'Variante', value: 'Valor', provenance: 'Procedencia del valor', stage: 'Estadio', material: 'Material', sample: 'Tipo de muestra', derivation: 'Obtención del valor', note: 'Nota del libro de datos', sheetRow: 'hoja «{{sheet}}», fila {{row}}', legacyId: 'ID anterior',
     variantClass: 'Clasificación de la variante', classBasis: {
       stated_in_source: 'fundamento: {{source}}, {{locator}}; comprobado el {{date}}',
       implied_in_source: 'implícito: {{source}}, {{locator}}; comprobado el {{date}}',

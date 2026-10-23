@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import { correctionsFor, doiUrl, label, pubById, type Publication, type Verification } from '../data/atlas'
 import { useLang, useT } from '../i18n'
+import { pct } from '../lib/format'
 
 export function Badge({ kind, children }: { kind: 'observed' | 'model' | 'warn' | 'neutral'; children: ReactNode }) {
   return <span className={`badge ${kind}`}>{children}</span>
@@ -87,7 +88,7 @@ export function CorrectionList({ embryo }: { embryo: string }) {
   const lang = useLang()
   const items = correctionsFor(embryo)
   if (!items.length) return null
-  const show = (field: string, v: number | string) => (field === 'fraction' ? label('fraction', String(v), lang) : `${String(v).replace('.', lang === 'ru' ? ',' : lang === 'es' ? "." : '.')}%`)
+  const show = (field: string, v: number | string) => (field === 'fraction' ? label('fraction', String(v), lang) : pct(Number(v), lang, 2))
   return (
     <div className="callout small" style={{ marginBottom: 8 }} data-corrections={items.length}>
       <strong>{t('verification.correctedTitle')}</strong>
@@ -117,7 +118,7 @@ export function VerificationList({ items }: { items: Verification[] }) {
             {v.esm_label}: ESM {String(v.esm_value)}% · {t(`verification.${v.status}`)}
             {v.resolution === 'corrected' && <> · <strong>{t('verification.corrected')}</strong></>}
             {v.dataset_value !== null && ` · ${lang === 'ru' ? 'набор' : lang === 'es' ? "conjunto de datos" : 'dataset'} ${String(v.dataset_value)}%`}
-            {(lang === 'ru' ? v.comment_ru : v.comment_en) && <> — {lang === 'ru' ? v.comment_ru : v.comment_en}</>}
+            {(lang === 'ru' ? v.comment_ru : v.comment_en) && <> — <span lang={lang === 'ru' ? 'ru' : 'en'}>{lang === 'ru' ? v.comment_ru : v.comment_en}</span></>}
           </li>
         ))}
       </ul>

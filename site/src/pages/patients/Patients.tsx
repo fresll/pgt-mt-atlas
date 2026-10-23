@@ -44,6 +44,45 @@ const TEXT = {
       ]],
     ] as [string, string[]][],
   },
+  es: {
+    intro: 'Esta página explica de forma sencilla qué es el test genético preimplantacional del ADN mitocondrial (PGT-mt), qué puede hacer y cuáles son sus límites. No sustituye una consulta con un especialista en genética clínica.',
+    sections: [
+      ['Qué es el ADN mitocondrial', [
+        'Las mitocondrias son las «centrales energéticas» de las células. Tienen un pequeño ADN propio (ADNmt), que el hijo hereda únicamente de la madre.',
+        'Cada célula contiene cientos o miles de copias de ADNmt. A veces, algunas llevan un cambio (variante) que puede causar una enfermedad y otras no. La proporción de copias alteradas se denomina nivel de heteroplasmia y se expresa en porcentaje.',
+        'Que se manifieste una enfermedad depende de cuántas copias alteradas haya en los distintos tejidos del organismo. En una misma mujer, el porcentaje puede diferir entre sangre, orina y músculo, y entre sus ovocitos.',
+      ]],
+      ['Qué hace el PGT-mt', [
+        'Durante la fecundación in vitro (FIV), se extraen unas pocas células del embrión el día 3 o los días 5–6 y se mide en ellas el porcentaje de ADNmt alterado.',
+        'Los embriones de una misma mujer pueden diferir mucho en este porcentaje. El PGT-mt permite elegir para transferencia el embrión con la menor proporción de ADNmt alterado.',
+        'No se puede predecir de antemano cuántos embriones de un ciclo tendrán un porcentaje bajo; en algunos ciclos no hay ninguno.',
+      ]],
+      ['Por qué el porcentaje no es un diagnóstico', [
+        'El resultado del PGT-mt permite comparar los embriones entre sí, pero no es una declaración sobre la salud del futuro niño.',
+        'La medición se realiza en unas pocas células de un embrión en un momento concreto, mientras que para la salud importa cuánto ADNmt alterado habrá en todos los tejidos a lo largo de la vida.',
+        'No existe un porcentaje «seguro» universal. Las cifras de la literatura (por ejemplo, 18 % o 30 %) se obtuvieron para fines distintos y no son una norma para un embrión individual.',
+      ]],
+      ['PGT-mt y análisis de los cromosomas (PGT-A)', [
+        'Para la transferencia importa tanto una proporción baja de ADNmt alterado como una dotación cromosómica normal. Por eso, el PGT-mt suele realizarse junto con el PGT-A, que analiza las anomalías cromosómicas.',
+        'Con la edad disminuye la proporción de embriones con una dotación cromosómica normal, lo que puede convertirse en la principal limitación de un ciclo.',
+      ]],
+      ['El riesgo se reduce, pero no desaparece', [
+        'Según los datos publicados, el PGT-mt reduce el riesgo de transmitir la enfermedad, pero no lo elimina por completo.',
+        'Si se ha transferido un embrión con un nivel detectable de ADNmt alterado, conviene discutir con el médico el diagnóstico prenatal y el seguimiento del niño después del nacimiento.',
+      ]],
+      ['Qué opciones existen', [
+        'El PGT-mt es una de las opciones. Las revisiones también tratan el diagnóstico prenatal, los ovocitos de donante y la donación mitocondrial. La elección depende de la variante del ADNmt, los antecedentes familiares, las circunstancias personales y la disponibilidad de las tecnologías; se toma junto con el médico.',
+      ]],
+      ['Qué preguntar al especialista en genética clínica', [
+        '¿Qué variante del ADNmt tengo y qué se sabe de ella?',
+        '¿Qué porcentaje de ADNmt alterado hay en mis tejidos y qué significa para mis ovocitos?',
+        '¿Qué valor de corte para elegir un embrión propone en mi caso y por qué?',
+        '¿Se realizará PGT-A junto con PGT-mt?',
+        '¿Qué ocurre si no se encuentra un embrión apto en un ciclo?',
+        '¿Qué seguimiento será necesario durante el embarazo y después del nacimiento?',
+      ]],
+    ] as [string, string[]][],
+  },
   en: {
     intro: 'This page explains in plain words what preimplantation genetic testing for mitochondrial DNA (PGT-mt) is, what it can and cannot do. It does not replace a consultation with a clinical geneticist.',
     sections: [
@@ -101,8 +140,8 @@ export default function Patients() {
         </section>
       ))}
       <div className="callout">
-        {lang === 'ru' ? 'Информация не заменяет консультацию врача-генетика. ' : lang === 'es' ? "Esta informaci\u00F3n no sustituye una consulta con un especialista en gen\u00E9tica cl\u00EDnica. " : 'This information does not replace a consultation with a clinical geneticist. '}
-        <Link to={`/${lang}/science/`}>{lang === 'ru' ? 'Подробнее для специалистов →' : lang === 'es' ? "M\u00E1s informaci\u00F3n para especialistas \u2192" : 'More for specialists →'}</Link>
+        {lang === 'ru' ? 'Информация не заменяет консультацию врача-генетика. ' : lang === 'es' ? "Esta información no sustituye una consulta con un especialista en genética clínica. " : 'This information does not replace a consultation with a clinical geneticist. '}
+        <Link to={`/${lang}/science/`}>{lang === 'ru' ? 'Подробнее для специалистов →' : lang === 'es' ? "Más información para especialistas →" : 'More for specialists →'}</Link>
       </div>
     </article>
   )

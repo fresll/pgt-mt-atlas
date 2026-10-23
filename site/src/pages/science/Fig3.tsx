@@ -5,7 +5,7 @@ import { Detail, ObservedBadge, PubRef, Seg } from '../../components/ui'
 import { atlas, fractionAtOrBelow, label, pubById, type EmbryoObservation } from '../../data/atlas'
 import { isDerived, layoutBlocks, placeColumn } from '../../figures/fig3Layout'
 import { useLang, useT } from '../../i18n'
-import { fmt, frac } from '../../lib/format'
+import { frac, pct } from '../../lib/format'
 import { obsValueText } from '../../lib/obs'
 import { axis, baseLayout, useChartTheme } from '../../lib/theme'
 
@@ -113,7 +113,7 @@ export default function Fig3() {
       }
       shapes.push({ type: 'line', x0: b.x1, x1: b.x1, y0: -4, y1: 140, yref: 'y', line: { color: th.grid, width: 1 } })
       const all = b.columns.flatMap((c) => c.obs)
-      const lines = thresholds.map((th0) => `≤${fmt(th0, lang)}%: ${frac(fractionAtOrBelow(all, th0).k, all.length, lang).replace(' (', '<br>(')}`)
+      const lines = thresholds.map((th0) => `≤${pct(th0, lang)}: ${frac(fractionAtOrBelow(all, th0).k, all.length, lang).replace(' (', '<br>(')}`)
       if (!explore && fractionAtOrBelow(all, 18).k === fractionAtOrBelow(all, 30).k) lines.pop()
       annotations.push({ x: (b.x0 + b.x1) / 2, y: 136, text: `<b>${b.variant}</b>`, showarrow: false, font: { size: 13, color: th.ink } })
       annotations.push({ x: (b.x0 + b.x1) / 2, y: 131, yanchor: 'top', text: lines.join('<br>'), showarrow: false, font: { size: 11, color: th.ink2 } })

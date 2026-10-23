@@ -3,7 +3,7 @@ import { expect, test } from '@playwright/test'
 const CH = (slug: string) => `fundamentals/${slug}/`
 
 test('Fundamentals is in the main menu and lists six chapters', async ({ page }) => {
-  for (const [lang, label] of [['en', 'Fundamentals'], ['ru', 'Основы ПГТ-мт']]) {
+  for (const [lang, label] of [['en', 'Fundamentals'], ['ru', 'Основы ПГТ-мт'], ['es', 'Fundamentos']]) {
     await page.goto(`${lang}/`)
     await page.locator('nav.primary').getByRole('link', { name: label }).click()
     await expect(page).toHaveURL(new RegExp(`/${lang}/fundamentals/?$`))
@@ -12,11 +12,12 @@ test('Fundamentals is in the main menu and lists six chapters', async ({ page })
 })
 
 test('every chapter has both reading levels, sources with DOI and links to Atlas data', async ({ page }) => {
+  test.setTimeout(180_000)
   await page.goto('en/fundamentals/')
   const hrefs = await page.locator('.fd-chapter-index a').evaluateAll((as) => as.map((a) => a.getAttribute('href')!))
   for (const href of hrefs) {
-    for (const lang of ['en', 'ru']) {
-      await page.goto(href.replace(/^.*\/(en|ru)\//, `${lang}/`))
+    for (const lang of ['en', 'ru', 'es']) {
+      await page.goto(href.replace(/^.*\/(en|ru|es)\//, `${lang}/`))
       await expect(page.locator('.fd-essentials')).toBeVisible()
       await expect(page.locator('.fd-advanced')).toBeHidden()
       expect(await page.locator('.fd-refs li a[href^="https://doi.org/10."]').count()).toBeGreaterThan(3)

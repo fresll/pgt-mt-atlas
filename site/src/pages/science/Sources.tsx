@@ -1,6 +1,7 @@
+import { scientificText } from '../../i18n/scientificText'
 import { PubStatus } from '../../components/ui'
 import { atlas, doiUrl, label, type Publication } from '../../data/atlas'
-import { fmt } from '../../lib/format'
+import { pct } from '../../lib/format'
 import { useLang, useT } from '../../i18n'
 
 export default function Sources() {
@@ -17,7 +18,7 @@ export default function Sources() {
     if (r.role === 'observations') return t('sources.roles.observations', { section: t(`sources.sections.${r.section}`) })
     if (r.role === 'threshold') {
       const th = atlas.thresholds.find((x) => x.id === r.section)
-      return t('sources.roles.threshold', { section: th ? (th.value !== undefined ? `${fmt(th.value, lang)}%` : `${th.range?.[0]}–${th.range?.[1]}%`) : r.section })
+      return t('sources.roles.threshold', { section: th ? (th.value !== undefined ? pct(th.value, lang) : `${th.range?.[0]}–${th.range?.[1]}%`) : r.section })
     }
     return t(`sources.roles.${r.role}`, { section: r.section })
   }
@@ -42,7 +43,7 @@ export default function Sources() {
                 <strong>{t('sources.rolesTitle')}:</strong> {p.roles.map(roleText).join('; ')}
               </p>
             )}
-            {p.data_access_note && <p className="small muted" style={{ margin: '4px 0 0' }}>{p.data_access_note[lang]}</p>}
+            {p.data_access_note && <p className="small muted" style={{ margin: '4px 0 0' }}>{scientificText(p.data_access_note, lang)}</p>}
             {p.doi_exception && <p className="small muted" style={{ margin: '4px 0 0' }} lang="ru">{t('sources.doiException')}: {p.doi_exception}</p>}
             {p.verified && <p className="small muted" style={{ margin: '4px 0 0' }} lang="ru">{t('sources.verified')} {p.verified.date}: {p.verified.by}{p.verified.note ? ` ${p.verified.note}` : ''}</p>}
             {p.supplementary && (

@@ -12,7 +12,7 @@ function collectErrors(page: Page) {
   return errors
 }
 
-for (const lang of ['en', 'ru']) {
+for (const lang of ['en', 'ru', 'es']) {
   for (const p of PAGES) {
     test(`${lang}/${p} renders without errors`, async ({ page }) => {
       const errors = collectErrors(page)
@@ -61,7 +61,8 @@ test('embryo concordance flags ESM discrepancies in the embryo card', async ({ p
 })
 
 test('the Atlas is presented independently of any single publication', async ({ page }) => {
-  for (const lang of ['en', 'ru']) {
+  test.setTimeout(180_000)
+  for (const lang of ['en', 'ru', 'es']) {
     for (const p of PAGES) {
       await page.goto(`${lang}/${p}`)
       const text = await page.locator('body').innerText()
@@ -87,7 +88,7 @@ test('language switch keeps the section', async ({ page }) => {
 })
 
 test('curator page keeps the full CV content in both languages', async ({ page }) => {
-  for (const lang of ['en', 'ru']) {
+  for (const lang of ['en', 'ru', 'es']) {
     await page.goto(`${lang}/ilya-mazunin/`)
     await expect(page.locator('.cv-research li')).toHaveCount(5)
     await expect(page.locator('.cv-topic')).toHaveCount(4)
@@ -103,6 +104,7 @@ test('contribute page: template download, review statuses and a working e-mail c
   for (const [lang, title, copy] of [
     ['en', 'Contribute Data', 'Copy address'],
     ['ru', 'Поделиться данными', 'Скопировать адрес'],
+    ['es', 'Aportar datos', 'Copiar dirección'],
   ]) {
     await page.goto(`${lang}/`)
     await page.locator('nav.primary').getByRole('link', { name: title }).click()
@@ -135,7 +137,7 @@ test('contribute page: template download, review statuses and a working e-mail c
 
 test('contribute page fits a phone screen', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 })
-  for (const lang of ['en', 'ru']) {
+  for (const lang of ['en', 'ru', 'es']) {
     await page.goto(`${lang}/contribute/`)
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)
     expect(overflow, lang).toBeLessThanOrEqual(0)

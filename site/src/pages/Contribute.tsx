@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { EmailCopy } from '../components/EmailContact'
 import { HandRule, Illustration } from '../components/Sketch'
 import template from '../data/submissionTemplate.json'
+import templateEs from '../i18n/template-es.json'
 import { useLang, useT } from '../i18n'
 import labels from '../illustrations/labels.json'
 import { CURATOR_CONTACT, EVIDENCE_TIERS, SUBJECT_PREFIX, SUBMISSION_STATUSES, UNPUBLISHED_CHECKS, mailtoHref } from '../lib/contribute'
@@ -132,7 +133,7 @@ export default function Contribute() {
                     {lang === 'ru' && <span className="sk-c-sheet-ru">{s.title_ru}</span>}
                   </th>
                   <td>
-                    {lang === 'ru' ? s.purpose_ru : s.purpose_en}
+                    {lang === 'ru' ? s.purpose_ru : lang === 'es' ? (templateEs as Record<string, string>)[s.purpose_en] : s.purpose_en}
                     <span className="sk-c-count">{t('contribute.template.fields', { n: s.n_fields, r: s.n_required })}</span>
                   </td>
                 </tr>
