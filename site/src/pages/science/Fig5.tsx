@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { DataTable } from '../../components/DataTable'
 import { PlotlyChart } from '../../components/PlotlyChart'
+import { observationText } from '../../i18n/scientificText'
 import { Detail, ObservedBadge, PubRef } from '../../components/ui'
 import { atlas, label, pubById, type OffspringPair } from '../../data/atlas'
 import { useLang, useT } from '../../i18n'
@@ -60,7 +61,7 @@ export default function Fig5() {
     `<b>${p.id}</b> · ${t('common.child')} ${p.child}<br>${p.variant} · ${pubById[p.pub].short}<br>` +
     `${t('common.embryo')}: ${pairValueText(p.emb, p.emb_q, p.emb_raw, lang, t)}<br>` +
     `${label('tissue', p.tissue, lang)}: ${pairValueText(p.value, p.q, p.value_raw, lang, t)}` +
-    (p.age ? `<br>${t('common.age')}: ${p.age}` : '')
+    (p.age ? `<br>${t('common.age')}: ${observationText(p.age, lang)}` : '')
   const pick = (e: { points?: { customdata?: unknown }[] }) => {
     const id = e.points?.[0]?.customdata
     if (typeof id === 'string') setSelected(id)
@@ -191,7 +192,7 @@ export default function Fig5() {
             [t('common.phase'), label('phase', sel.phase, lang)],
             [t('common.tissue'), `${label('tissue', sel.tissue, lang)} — «${sel.tissue_raw}»`],
             [t('common.value'), pairValueText(sel.value, sel.q, sel.value_raw, lang, t)],
-            [t('common.age'), sel.age],
+            [t('common.age'), observationText(sel.age, lang)],
             [t('common.method'), sel.method],
             [lang === 'ru' ? 'В базовом виде графика' : lang === 'es' ? "En la vista de referencia" : 'In the reference view', sel.in_figure ? (lang === 'ru' ? 'да' : lang === 'es' ? "sí" : 'yes') : `${lang === 'ru' ? 'нет' : lang === 'es' ? "no" : 'no'} — «${sel.on_plot_raw}»`],
             [t('common.provenance'), t('common.sheetRow', { sheet: sel.src.sheet, row: sel.src.row })],

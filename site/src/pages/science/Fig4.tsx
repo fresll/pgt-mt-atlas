@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { DataTable } from '../../components/DataTable'
 import { PlotlyChart } from '../../components/PlotlyChart'
+import { observationText } from '../../i18n/scientificText'
 import { CorrectionList, Detail, ObservedBadge, PubRef, VerificationList } from '../../components/ui'
 import { atlas, fig4Embryos, hasVerificationIssue, label, median, pubById, rangeOf, verificationFor } from '../../data/atlas'
 import { useLang, useT } from '../../i18n'
@@ -57,7 +58,7 @@ export default function Fig4() {
         return {
           type: 'scatter', mode: 'lines+markers', x: xs, y: xs.map((i) => e.fr[FR[i]]),
           customdata: xs.map(() => e.embryo),
-          text: xs.map((i) => `<b>${e.embryo}</b><br>${frLabel(FR[i])}: ${pct(e.fr[FR[i]] ?? null, lang, 2)}<br>${e.variant} · ${pubById[e.pub].short}`),
+          text: xs.map((i) => `<b>${e.embryo}</b><br>${frLabel(FR[i])}: ${pct(e.fr[FR[i]] ?? null, lang, 2)}<br>${observationText(e.variant, lang)} · ${pubById[e.pub].short}`),
           hovertemplate: '%{text}<extra></extra>',
           line: { color: sel ? th.accent : hv2 ? th.muted : th.ink2, width: sel ? 3 : 1 },
           marker: markerFor(e.cls, hasVerificationIssue(e.embryo), sel, th),
@@ -90,7 +91,7 @@ export default function Fig4() {
         const e = rows.find((r) => r.embryo === p.key)!
         data.push({
           type: 'scatter', mode: 'markers', x: [p.x], y: [p.y], customdata: [e.embryo],
-          text: [`<b>${e.embryo}</b><br>${frLabel(g.frac)} − ${frLabel('te_biopsy')}: ${fmt(p.y, lang, 2)} ${t('common.pp')}<br>${e.variant} · ${pubById[e.pub].short}`],
+          text: [`<b>${e.embryo}</b><br>${frLabel(g.frac)} − ${frLabel('te_biopsy')}: ${fmt(p.y, lang, 2)} ${t('common.pp')}<br>${observationText(e.variant, lang)} · ${pubById[e.pub].short}`],
           hovertemplate: '%{text}<extra></extra>', marker: markerFor(e.cls, hasVerificationIssue(e.embryo), e.embryo === selected, th),
         })
       }
@@ -124,7 +125,7 @@ export default function Fig4() {
         .filter((hv2) => showHv2 || !hv2)
         .map((hv2) => ({
           name: hv2 ? t('fig4.blastHv2') : t('fig4.blastPat'),
-          items: embryos.filter((e) => (e.cls === 'neutral_polymorphism') === hv2).map((e) => ({ key: e.embryo, y: rangeOf(e.fr), cls: e.cls, text: `<b>${e.embryo}</b><br>${fmt(rangeOf(e.fr), lang, 2)} ${t('common.pp')}<br>${e.variant} · ${pubById[e.pub].short}` })),
+          items: embryos.filter((e) => (e.cls === 'neutral_polymorphism') === hv2).map((e) => ({ key: e.embryo, y: rangeOf(e.fr), cls: e.cls, text: `<b>${e.embryo}</b><br>${fmt(rangeOf(e.fr), lang, 2)} ${t('common.pp')}<br>${observationText(e.variant, lang)} · ${pubById[e.pub].short}` })),
         })),
     ]
     const data: Record<string, unknown>[] = []
@@ -190,7 +191,7 @@ export default function Fig4() {
           title={`${t('common.embryo')}: ${selEmb.embryo}`}
           onClose={() => setSelected(null)}
           rows={[
-            [t('common.variant'), `${selEmb.variant} (${label('variant_class', selEmb.cls, lang)})`],
+            [t('common.variant'), `${observationText(selEmb.variant, lang)} (${label('variant_class', selEmb.cls, lang)})`],
             [t('common.source'), <PubRef id={selEmb.pub} showStatus />],
             ...FR.filter((f) => selEmb.fr[f] !== undefined).map((f): [string, string] => [frLabel(f), pct(selEmb.fr[f] ?? null, lang, 2)]),
             [lang === 'ru' ? 'Размах' : lang === 'es' ? "Amplitud (máximo − mínimo)" : 'Range', `${fmt(rangeOf(selEmb.fr), lang, 2)} ${t('common.pp')}`],
@@ -225,7 +226,7 @@ export default function Fig4() {
           csvRow={(e) => ({ embryo: e.embryo, variant: e.variant, publication: e.pub, doi: pubById[e.pub]?.doi, te_biopsy: e.fr.te_biopsy, icm: e.fr.icm, remaining_te: e.fr.remaining_te, range_pp: rangeOf(e.fr) })}
           columns={[
             { key: 'e', header: t('common.embryo'), render: (e) => <>{e.embryo}{hasVerificationIssue(e.embryo) && ' ⚠'}</>, sort: (e) => e.embryo },
-            { key: 'v', header: t('common.variant'), render: (e) => e.variant, sort: (e) => e.variant },
+            { key: 'v', header: t('common.variant'), render: (e) => observationText(e.variant, lang), sort: (e) => e.variant },
             { key: 'p', header: t('common.source'), render: (e) => pubById[e.pub].short, sort: (e) => e.pub },
             ...FR.map((f) => ({ key: f, header: frLabel(f), render: (e: (typeof embryos)[number]) => pct(e.fr[f] ?? null, lang, 2), sort: (e: (typeof embryos)[number]) => e.fr[f] ?? null, num: true })),
             { key: 'r', header: lang === 'ru' ? 'Размах, п.п.' : lang === 'es' ? "Amplitud, p. p." : 'Range, pp', render: (e) => fmt(rangeOf(e.fr), lang, 2), sort: (e) => rangeOf(e.fr), num: true },

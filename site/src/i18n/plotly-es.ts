@@ -1,6 +1,9 @@
 /** Spanish strings for the Plotly controls used by the Atlas. */
 export const plotlyEs = {
   dictionary: {
+    'Click to enter X axis title': 'Hacer clic para introducir el título del eje X',
+    'Click to enter Y axis title': 'Hacer clic para introducir el título del eje Y',
+    'Click to enter Plot title': 'Hacer clic para introducir el título del gráfico',
     'Autoscale': 'Ajustar escala',
     'Box Select': 'Seleccionar un área',
     'Compare data on hover': 'Comparar datos al pasar el cursor',

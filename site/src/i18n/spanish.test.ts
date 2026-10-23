@@ -11,7 +11,7 @@ import enContent from '../content/fundamentals/en'
 import esContent from '../content/fundamentals/es'
 import { blockStrings, citeIds, linkPaths } from '../content/fundamentals/markup'
 import { switchLangPath } from '../components/Layout'
-import { scientificText } from './scientificText'
+import { observationText, scientificText } from './scientificText'
 import { fmt, pct } from '../lib/format'
 import { obsValueText } from '../lib/obs'
 
@@ -99,5 +99,25 @@ describe('Spanish localization integrity', () => {
       .toBe('solo se publicó un intervalo: 5–10\u00a0%')
     expect(es.common.delta).toBe('Δ (tejido − embrión), p. p.')
     expect(es.fig6.meaning).toContain('No es la probabilidad de embarazo')
+  })
+  it('localizes every recorded follow-up age while preserving numbers, missingness and source data', () => {
+    const before = JSON.stringify(raw)
+    for (const p of raw.fig5) {
+      const text = observationText(p.age, 'es')
+      if (text !== null) expect(text).not.toMatch(/[А-Яа-яЁё]/)
+      expect(text?.match(/\d+/g) ?? []).toEqual(p.age?.match(/\d+/g) ?? [])
+      for (const lang of ['en', 'ru'] as const) expect(observationText(p.age, lang)).toBe(p.age)
+    }
+    expect(observationText(null, 'es')).toBeNull()
+    expect(observationText('при рождении', 'es')).toBe('al nacer')
+    expect(observationText('18 нед гестации', 'es')).toBe('18 semanas de gestación')
+    expect(observationText('5 и 12 мес (серия исследований; отдельные ткани к конкретному сроку не привязаны)', 'es'))
+      .toContain('los tejidos individuales no están vinculados a un momento concreto')
+    expect(JSON.stringify(raw)).toBe(before)
+  })
+  it('translates the descriptive HV2 label without translating scientific identifiers', () => {
+    expect(observationText('HV2 polymorphism', 'es')).toBe('Polimorfismo HV2')
+    for (const p of raw.fig4) if (p.variant !== 'HV2 polymorphism') expect(observationText(p.variant, 'es')).toBe(p.variant)
+    for (const lang of ['en', 'ru'] as const) expect(observationText('HV2 polymorphism', lang)).toBe('HV2 polymorphism')
   })
 })
