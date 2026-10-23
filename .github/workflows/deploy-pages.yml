@@ -38,7 +38,7 @@ jobs:
         run: npm run build
       - run: npx playwright install --with-deps chromium
       - run: npm run e2e
-      - name: Build public bilingual site with search indexing enabled
+      - name: Build public trilingual site with search indexing enabled
         env:
           ATLAS_BASE: /pgt-mt-atlas/
           ATLAS_SOFT_LAUNCH: '0'
@@ -47,7 +47,7 @@ jobs:
           VITE_ATLAS_PRIVATE_PREVIEW: '0'
           VITE_ATLAS_ENGLISH_PUBLIC: '1'
         run: npm run build
-      - name: Verify public bilingual navigation and English pages
+      - name: Verify public trilingual navigation and English pages
         run: npm run e2e:public
       - name: Verify indexing, canonical URLs, language alternates and sitemap
         run: |
@@ -67,29 +67,29 @@ jobs:
           for page in pages:
               html = page.read_text()
               path = page.relative_to('dist').as_posix()
-              if path.startswith(('ru/', 'en/')):
+              if path.startswith(('ru/', 'en/', 'es/')):
                   assert re.search(r'<meta\b[^>]*name="robots"[^>]*content="index, follow"', html), page
                   assert not re.search(r'<meta\b[^>]*name=[\"\x27]robots[\"\x27][^>]*content=[\"\x27][^\"\x27]*noindex', html, re.I), page
                   assert 'language-switch' in html and 'http-equiv="refresh"' not in html, page
                   links = Head(html).links
                   canonical = base + path.removesuffix('index.html')
                   assert [l['href'] for l in links if l.get('rel') == 'canonical'] == [canonical], page
-                  expected = {lang: base + re.sub(r'^(ru|en)/', lang+'/', path).removesuffix('index.html') for lang in ['ru', 'en']}
+                  expected = {lang: base + re.sub(r'^(ru|en|es)/', lang+'/', path).removesuffix('index.html') for lang in ['ru', 'en', 'es']}
                   assert {l['hreflang']: l['href'] for l in links if l.get('rel') == 'alternate'} == expected, page
                   indexed.append(canonical)
               else:
                   assert 'noindex' in html, page
-          assert len(indexed) == 44, len(indexed)
+          assert len(indexed) == 66, len(indexed)
           sitemap = ET.parse('dist/sitemap.xml')
           ns = {'s': 'http://www.sitemaps.org/schemas/sitemap/0.9', 'x': 'http://www.w3.org/1999/xhtml'}
           urls = sitemap.findall('s:url', ns)
-          assert len(urls) == 44
+          assert len(urls) == 66
           assert {u.findtext('s:loc', namespaces=ns) for u in urls} == set(indexed)
           for entry in urls:
               location = entry.findtext('s:loc', namespaces=ns)
-              assert {l.attrib['hreflang']: l.attrib['href'] for l in entry.findall('x:link', ns)} == {lang: re.sub(r'/(ru|en)/', '/'+lang+'/', location, count=1) for lang in ['ru','en']}
+              assert {l.attrib['hreflang']: l.attrib['href'] for l in entry.findall('x:link', ns)} == {lang: re.sub(r'/(ru|en|es)/', '/'+lang+'/', location, count=1) for lang in ['ru','en','es']}
           assert Path('dist/robots.txt').read_text() == f'User-agent: *\nAllow: /\nSitemap: {base}sitemap.xml\n'
-          print(f'PASS: {len(indexed)} indexable RU/EN pages; reciprocal hreflang, canonical URLs and sitemap')
+          print(f'PASS: {len(indexed)} indexable RU/EN/ES pages; reciprocal hreflang, canonical URLs and sitemap')
           PYTHON
       - name: Verify public visit count is available before deployment
         run: |
@@ -166,7 +166,7 @@ jobs:
           for path in pages:
               url = urljoin(base, path.removesuffix('index.html') if path.endswith('index.html') else path)
               html, headers = get(url)
-              indexable = path.startswith(('ru/', 'en/'))
+              indexable = path.startswith(('ru/', 'en/', 'es/'))
               expected_robots = 'index, follow' if indexable else ('noindex, follow' if path == 'index.html' else 'noindex')
               assert re.search(r'<meta\b[^>]*name="robots"[^>]*content="' + re.escape(expected_robots) + '"', html), url
               assert 'noindex' not in (headers.get('X-Robots-Tag') or '').lower(), url
@@ -174,11 +174,11 @@ jobs:
                   assert not re.search(r'<meta\b[^>]*name=[\"\x27]robots[\"\x27][^>]*content=[\"\x27][^\"\x27]*noindex', html, re.I), url
                   links = Head(html).links
                   assert [l['href'] for l in links if l.get('rel') == 'canonical'] == [url], url
-                  assert {l['hreflang']: l['href'] for l in links if l.get('rel') == 'alternate'} == {lang: re.sub(r'/(ru|en)/', '/'+lang+'/', url, count=1) for lang in ['ru','en']}, url
+                  assert {l['hreflang']: l['href'] for l in links if l.get('rel') == 'alternate'} == {lang: re.sub(r'/(ru|en|es)/', '/'+lang+'/', url, count=1) for lang in ['ru','en','es']}, url
               assert 'text/html' in headers.get('Content-Type', ''), (url, headers.get('Content-Type'))
               if path == 'ru/index.html':
                   assert 'https://gc.zgo.at/count.js' in html, 'Counter script is missing'
-              if path.startswith(('ru/', 'en/')):
+              if path.startswith(('ru/', 'en/', 'es/')):
                   assert 'class="visitor-count"' in html, ('Visible visit counter is missing', url)
                   assert 'language-switch' in html, ('Language switch is missing', url)
                   assert 'http-equiv="refresh"' not in html, ('Unexpected language redirect', url)
@@ -191,11 +191,11 @@ jobs:
           ns = {'s': 'http://www.sitemaps.org/schemas/sitemap/0.9', 'x': 'http://www.w3.org/1999/xhtml'}
           entries = ET.fromstring(sitemap).findall('s:url', ns)
           indexed = {p['url'] for p in results if p['robots'] == 'index, follow'}
-          assert len(entries) == len(indexed) == 44
+          assert len(entries) == len(indexed) == 66
           assert {e.findtext('s:loc', namespaces=ns) for e in entries} == indexed
           for entry in entries:
               location = entry.findtext('s:loc', namespaces=ns)
-              assert {l.attrib['hreflang']: l.attrib['href'] for l in entry.findall('x:link', ns)} == {lang: re.sub(r'/(ru|en)/', '/'+lang+'/', location, count=1) for lang in ['ru','en']}, location
+              assert {l.attrib['hreflang']: l.attrib['href'] for l in entry.findall('x:link', ns)} == {lang: re.sub(r'/(ru|en|es)/', '/'+lang+'/', location, count=1) for lang in ['ru','en','es']}, location
           origin = urlsplit(base)
           root_robots = f'{origin.scheme}://{origin.netloc}/robots.txt'
           try:
@@ -203,7 +203,7 @@ jobs:
                   parser = RobotFileParser()
                   parser.parse(response.read().decode('utf-8').splitlines())
                   for bot in ['Googlebot', 'bingbot', 'YandexBot']:
-                      for lang in ['ru', 'en']:
+                      for lang in ['ru', 'en', 'es']:
                           assert parser.can_fetch(bot, base + lang + '/'), (root_robots, bot, lang)
           except HTTPError as error:
               assert error.code == 404, (root_robots, error.code)

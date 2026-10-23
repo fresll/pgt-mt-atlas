@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import en from './en'
+import es from './es'
+import esDict from '../../i18n/es'
 import ru from './ru'
 import { blockStrings, chapterStrings, citeIds, linkPaths } from './markup'
 import { REFS, refById } from './references'
@@ -46,8 +48,8 @@ describe('Fundamentals content', () => {
 
   it('every citation resolves to a bibliography entry with a DOI', () => {
     const cited = new Set<string>()
-    for (const c of [...ru.chapters, ...en.chapters]) for (const id of chapterStrings(c).flatMap(citeIds)) cited.add(id)
-    for (const dict of [ruDict, enDict]) for (const id of flat(dict.fundamentals).flatMap(citeIds)) cited.add(id)
+    for (const c of [...ru.chapters, ...en.chapters, ...es.chapters]) for (const id of chapterStrings(c).flatMap(citeIds)) cited.add(id)
+    for (const dict of [ruDict, enDict, esDict]) for (const id of flat(dict.fundamentals).flatMap(citeIds)) cited.add(id)
     for (const id of cited) {
       expect(refById[id], id).toBeDefined()
       expect(refById[id].doi).toMatch(/^10\.\d{4,}\//)
@@ -58,24 +60,24 @@ describe('Fundamentals content', () => {
   })
 
   it('internal links point to existing pages', () => {
-    for (const c of [...ru.chapters, ...en.chapters]) {
+    for (const c of [...ru.chapters, ...en.chapters, ...es.chapters]) {
       for (const p of [...chapterStrings(c).flatMap(linkPaths), ...c.data.map((d) => d.to)]) expect(ROUTES.has(p), p).toBe(true)
     }
   })
 
   it('each chapter is a full text, not a stub (≥600 words per language)', () => {
-    for (const set of [ru, en]) for (const c of set.chapters) expect(words(chapterStrings(c).join(' ')), c.slug).toBeGreaterThanOrEqual(600)
+    for (const set of [ru, en, es]) for (const c of set.chapters) expect(words(chapterStrings(c).join(' ')), c.slug).toBeGreaterThanOrEqual(600)
   })
 
   it('both reading levels are present and Essentials is not empty', () => {
-    for (const c of [...ru.chapters, ...en.chapters]) {
+    for (const c of [...ru.chapters, ...en.chapters, ...es.chapters]) {
       expect(c.essentials.length).toBeGreaterThanOrEqual(3)
       expect(c.advanced.length).toBeGreaterThan(3)
     }
   })
 
   it('texts stay independent of any single publication and of figure numbering', () => {
-    const all = [...ru.chapters, ...en.chapters].flatMap(chapterStrings).join('\n') + flat(ruDict.fundamentals).join('\n') + flat(enDict.fundamentals).join('\n')
+    const all = [...ru.chapters, ...en.chapters, ...es.chapters].flatMap(chapterStrings).join('\n') + flat(ruDict.fundamentals).join('\n') + flat(enDict.fundamentals).join('\n')
     expect(all).not.toMatch(/Acta Naturae|Тофило|Figure [0-9]|Fig\. [0-9]|Рис(унок|\.) [0-9]/)
   })
 })

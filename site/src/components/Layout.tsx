@@ -63,9 +63,8 @@ function useHeaderHeight(ref: React.RefObject<HTMLElement | null>) {
 function Header({ lang }: { lang: Lang }) {
   const t = useT()
   const { pathname, search, hash } = useLocation()
-  const other = lang === 'ru' ? 'en' : 'ru'
-  const languageLabel = `${t('nav.language')}: ${t('nav.switchTo')}`
   const ref = useRef<HTMLElement>(null)
+  const hydrated = useHydrated()
   // Без JavaScript меню всегда раскрыто; после загрузки на телефоне оно сворачивается в кнопку «Меню».
   const [menu, setMenu] = useState<'static' | 'closed' | 'open'>('static')
   useHeaderHeight(ref)
@@ -95,22 +94,13 @@ function Header({ lang }: { lang: Lang }) {
           <NavLink to={`/${lang}/about/`}>{t('nav.about')}</NavLink>
         </nav>
         <div className="header-tools">
-          {englishEnabled && (
-            <Link
-              className="btn-link language-switch"
-              to={switchLangPath(pathname, lang, other, search, hash)}
-              hrefLang={other}
-              aria-label={languageLabel}
-              title={languageLabel}
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true" focusable="false">
-                <circle cx="12" cy="12" r="9" />
-                <ellipse cx="12" cy="12" rx="4" ry="9" />
-                <path d="M3 12h18" />
-              </svg>
-              <span lang={other}>{other.toUpperCase()}</span>
-            </Link>
-          )}
+          <nav className="language-switch" aria-label={t('nav.language')}>
+            {(['ru', ...(englishEnabled ? ['en'] : []), 'es'] as Lang[]).filter(other => other !== lang).map(other => (
+              <Link key={`${other}-${hydrated}`} className="btn-link" to={switchLangPath(pathname, lang, other, search, hash)} hrefLang={other} lang={other} title={`${t('nav.language')}: ${other === 'ru' ? 'Русский' : other === 'es' ? 'Español' : 'English'}`} aria-label={other === 'ru' ? 'Русский' : other === 'es' ? 'Español' : 'English'}>
+                {other.toUpperCase()}
+              </Link>
+            ))}
+          </nav>
           <ThemeToggle />
         </div>
       </div>
@@ -122,7 +112,7 @@ export function formatDate(iso: string, lang: Lang): string {
   const d = new Date(`${iso}T00:00:00Z`)
   return Number.isNaN(d.getTime())
     ? iso
-    : d.toLocaleDateString(lang === 'ru' ? 'ru-RU' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })
+    : d.toLocaleDateString(lang === 'ru' ? 'ru-RU' : lang === 'es' ? 'es-ES' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })
 }
 
 /** Публичное число посещений: чтение статистики не регистрирует новый просмотр. */
@@ -287,10 +277,10 @@ function ShellInner({ lang }: { lang: Lang }) {
   const englishEnabled = import.meta.env.VITE_ATLAS_PRIVATE_PREVIEW === '1'
     ? import.meta.env.VITE_ATLAS_ENGLISH_REVIEW === '1'
     : import.meta.env.VITE_ATLAS_ENGLISH_PUBLIC === '1'
-  const indexing = import.meta.env.ATLAS_INDEXING_ENABLED && (lang === 'ru' || englishEnabled)
+  const indexing = import.meta.env.ATLAS_INDEXING_ENABLED && (lang !== 'en' || englishEnabled)
   const canonicalBase = import.meta.env.ATLAS_CANONICAL_BASE
   const route = pathname.replace(/^\//, '').replace(/\/?$/, '/')
-  const languages = englishEnabled ? ['ru', 'en'] : ['ru']
+  const languages = englishEnabled ? ['ru', 'en', 'es'] : ['ru', 'es']
 
   return (
     <>
@@ -301,7 +291,7 @@ function ShellInner({ lang }: { lang: Lang }) {
         <meta name="author" content="Ilya Mazunin" />
         {indexing && <meta name="robots" content="index, follow" />}
         {indexing && <link rel="canonical" href={new URL(route, canonicalBase).href} />}
-        {indexing && languages.map(language => <link key={language} rel="alternate" hrefLang={language} href={new URL(route.replace(/^(?:ru|en)\//, `${language}/`), canonicalBase).href} />)}
+        {indexing && languages.map(language => <link key={language} rel="alternate" hrefLang={language} href={new URL(route.replace(/^(?:ru|en|es)\//, `${language}/`), canonicalBase).href} />)}
       </Head>
       <a className="skip" href="#content">
         {t('site.skip')}

@@ -1,3 +1,4 @@
+import { spanishText } from '../../i18n/spanish-text'
 import { DataTable } from '../../components/DataTable'
 import { ObservedBadge, PubRef } from '../../components/ui'
 import { atlas } from '../../data/atlas'
@@ -8,7 +9,7 @@ import { PageTitle } from '../../components/Layout'
 export default function Cases() {
   const t = useT()
   const lang = useLang()
-  const text = (value: string) => lang === 'en' ? caseTextEn[value] ?? value : value
+  const text = (value: string) => lang === 'en' ? caseTextEn[value] ?? value : lang === 'es' ? spanishText(value) : value
   return (
     <article>
       <p><ObservedBadge /></p>

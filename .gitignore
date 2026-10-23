@@ -12,3 +12,6 @@ site/tsconfig.tsbuildinfo
 submissions/
 incoming/
 *.submission.xlsx
+
+# Also ignore a local dependency-directory symlink.
+/site/node_modules

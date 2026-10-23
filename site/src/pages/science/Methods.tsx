@@ -1,3 +1,4 @@
+import { scientificText } from '../../i18n/scientificText'
 import { sourceText } from '../../i18n/source-text-en'
 import { BackToTop, PageContents } from '../../components/PageContents'
 import { PubRef } from '../../components/ui'
@@ -59,7 +60,7 @@ export default function Methods() {
       <ul>
         {atlas.thresholds.filter(t => t.role !== 'chart_convention').map((th) => (
           <li key={th.id}>
-            <strong>{th.value !== undefined ? `${fmt(th.value, lang)}%` : `${th.range?.[0]}–${th.range?.[1]}%`}</strong> · <em>{t(`methodLabels.thresholdRoles.${th.role}`)}</em> — {th[lang]}
+            <strong>{th.value !== undefined ? `${fmt(th.value, lang)}%` : `${th.range?.[0]}–${th.range?.[1]}%`}</strong> · <em>{t(`methodLabels.thresholdRoles.${th.role}`)}</em> — {scientificText(th, lang)}
             {th.publication && <> (<PubRef id={th.publication} />)</>}
             <br />
             <span className="small muted" lang={lang}>{th.locator ? `${sourceText(th.locator, lang)}. ` : ''}{t('interfaceCopy.Methods.checked')}: {sourceText(th.checked, lang)}</span>

@@ -1,10 +1,11 @@
 // Типизированный доступ к atlas.json (генерируется etl/atlas_etl/build.py — не редактировать вручную).
 // Правила выборок совпадают с ETL (etl/atlas_etl/curation/rules.yaml).
 import raw from './atlas.json'
+import { withSpanish, spanishText } from '../i18n/spanish-text'
 import { dataLabelsEn } from '../i18n/data-labels-en'
 
-export type Lang = 'en' | 'ru'
-export type Bilingual = { ru: string; en: string }
+export type Lang = 'en' | 'ru' | 'es'
+export type Bilingual = { ru: string; en: string; es: string }
 export type Qualifier = 'exact' | 'not_detected' | 'less_than' | 'interval' | 'qualitative'
 export type SrcRef = { sheet: string; row: number }
 
@@ -235,12 +236,12 @@ export interface Atlas {
 
 // Adapt the legacy ETL wire schema at this boundary; public code uses semantic section names.
 const { fig3: landscape, fig3_blocks: landscape_blocks, fig4: concordance, fig5: offspring, ...dataset } = raw
-export const atlas = { ...dataset, landscape, landscape_blocks, concordance, offspring } as unknown as Atlas
+export const atlas = withSpanish({ ...dataset, landscape, landscape_blocks, concordance, offspring }) as unknown as Atlas
 
 export const pubById: Record<string, Publication> = Object.fromEntries(atlas.publications.map(p => [p.id, p]))
 
 export function label(group: string, code: string, lang: Lang): string {
-  return (lang === 'en' ? dataLabelsEn[group]?.[code] : undefined) ?? atlas.labels[group]?.[code]?.[lang] ?? code
+  return (lang !== 'ru' && dataLabelsEn[group]?.[code] ? (lang === 'es' ? spanishText(dataLabelsEn[group][code]) : dataLabelsEn[group][code]) : undefined) ?? atlas.labels[group]?.[code]?.[lang] ?? code
 }
 
 export function doiUrl(doi: string): string {

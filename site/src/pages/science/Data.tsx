@@ -1,3 +1,4 @@
+import { scientificText } from '../../i18n/scientificText'
 import { sourceText } from '../../i18n/source-text-en'
 import { useEffect, useMemo, useState } from 'react'
 import { DataTable } from '../../components/DataTable'
@@ -52,7 +53,7 @@ export default function Data() {
         n: c.landscape_values,
         base: atlas.meta.baseline.version,
         nBase: atlas.meta.baseline.counts.landscape_values,
-        changes: atlas.meta.changes.map((change) => change[lang]).join(' '),
+        changes: atlas.meta.changes.map((change) => scientificText(change, lang)).join(' '),
       })}</p>
 
       <h2>{t('data.embryos')}</h2>
@@ -103,7 +104,7 @@ export default function Data() {
       <ul>
         {CSV.map((n) => (
           <li key={n}>
-            <a href={asset(`data/csv/${lang === 'en' ? 'en/' : ''}${n}.csv`)} download>{n}.csv</a>
+            <a href={asset(`data/csv/${lang !== 'ru' ? 'en/' : ''}${n}.csv`)} download>{n}.csv</a>
           </li>
         ))}
       </ul>

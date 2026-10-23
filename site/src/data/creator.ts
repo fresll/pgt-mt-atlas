@@ -10,11 +10,12 @@
 // Публичные ссылки и контакты включаются только после утверждения (null — «по согласованию»).
 import { CURATOR_CONTACT } from '../lib/contribute'
 import type { Bilingual } from './atlas'
+import { withSpanish } from '../i18n/spanish-text'
 
 export type Item = { years: string; text: Bilingual }
 export type Pub = { authors: string; title: string; journal: string; year: number; doi: string | null; topic: 'pgt' | 'editing' | 'mito' | 'repro' }
 
-export const creator = {
+const creatorSource = {
   name: { en: 'Ilya Mazunin', ru: 'Илья Мазунин' } as Bilingual,
   degree: { en: 'Doctor of Biological Sciences (DSc), Genetics', ru: 'Доктор биологических наук, генетика' } as Bilingual,
   photo: { src: 'img/ilya-mazunin.jpg', w: 720, h: 960 },
@@ -144,9 +145,13 @@ export const creator = {
 }
 
 /** Метки тематик избранных публикаций. */
-export const topicLabel: Record<Pub['topic'], Bilingual> = {
+export const creator = withSpanish(creatorSource)
+
+const topicLabelSource: Record<Pub['topic'], Pick<Bilingual, 'en' | 'ru'>> = {
   pgt: { en: 'PGT-mt and mitochondrial disease prevention', ru: 'ПГТ-мт и профилактика митохондриальных заболеваний' },
   repro: { en: 'Reproductive genetics', ru: 'Репродуктивная генетика' },
   editing: { en: 'Mitochondrial genome editing', ru: 'Редактирование митохондриального генома' },
   mito: { en: 'Mitochondrial genome variation and mutagenesis', ru: 'Изменчивость и мутагенез митохондриального генома' },
 }
+
+export const topicLabel = withSpanish(topicLabelSource)

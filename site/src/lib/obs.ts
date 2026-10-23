@@ -13,7 +13,7 @@ export function obsValueText(o: Pick<EmbryoObservation, 'q' | 'value' | 'low' | 
 export function pairValueText(v: number | null, q: OffspringPair['q'], raw: string | null, lang: Lang, t: TFunction): string {
   if (q === 'not_detected') return `${lang === 'ru' ? '0% — ' : ''}${t('common.notDetected')}`
   if (q === 'less_than') {
-    if (lang === 'en' && v === null) return raw ? sourceText(raw, lang) : t('common.upperBoundUnknown')
+    if (lang !== 'ru' && v === null) return raw ? sourceText(raw, lang) : t('common.upperBoundUnknown')
     return t('common.lessThan', { v: fmt(v, lang) })
   }
   if (q === 'qualitative') return raw == null ? '—' : sourceText(raw, lang)

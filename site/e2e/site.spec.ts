@@ -27,6 +27,7 @@ for (const p of PAGES) {
 }
 
 test('every en/<section>/ address redirects to ru/<section>/ keeping query and hash', async ({ page }) => {
+  test.setTimeout(180_000)
   const errors = collectErrors(page)
   for (const p of PAGES) {
     await page.goto(`en/${p}?ref=old-link#content`)

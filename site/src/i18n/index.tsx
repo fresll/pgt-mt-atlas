@@ -5,8 +5,9 @@ import { I18nextProvider, initReactI18next, useTranslation } from 'react-i18next
 import type { Lang } from '../data/atlas'
 import en from './en'
 import ru from './ru'
+import es from './es'
 
-export const LANGS: Lang[] = ['en', 'ru']
+export const LANGS: Lang[] = ['en', 'ru', 'es']
 
 // По экземпляру i18next на язык: при статической генерации страницы разных языков
 // рендерятся последовательно, и общий экземпляр со сменой языка дал бы гонку.
@@ -16,7 +17,7 @@ const instances = Object.fromEntries(
     inst.use(initReactI18next).init({
       lng,
       fallbackLng: 'en',
-      resources: { en: { translation: en }, ru: { translation: ru } },
+      resources: { en: { translation: en }, ru: { translation: ru }, es: { translation: es } },
       interpolation: { escapeValue: false },
       initAsync: false,
     })

@@ -66,7 +66,7 @@ describe('launch remains an explicit build choice', () => {
       mkdirSync(join(root, 'scripts'))
       copyFileSync(fileURLToPath(new URL('../../scripts/postbuild.mjs', import.meta.url)), script)
       for (const english of ['0', '1']) {
-        for (const route of ['', 'ru/about', 'en/about']) {
+        for (const route of ['', 'ru/about', 'en/about', 'es/about']) {
           mkdirSync(join(root, 'dist', route), { recursive: true })
           writeFileSync(join(root, 'dist', route, 'index.html'), html)
         }
@@ -80,14 +80,14 @@ describe('launch remains an explicit build choice', () => {
         const englishPage = readFileSync(join(root, 'dist/en/about/index.html'), 'utf8')
         expect(russian).toContain('content="index, follow"')
         expect(russian).toContain('rel="canonical" href="https://atlas.example/atlas/ru/about/"')
-        expect(sitemap.match(/<loc>/g)).toHaveLength(english === '1' ? 2 : 1)
+        expect(sitemap.match(/<loc>/g)).toHaveLength(english === '1' ? 3 : 2)
         if (english === '1') {
           expect(englishPage).toContain('content="index, follow"')
           expect(englishPage).not.toContain('noindex')
-          for (const page of [russian, englishPage]) for (const lang of ['ru', 'en']) {
+          for (const page of [russian, englishPage]) for (const lang of ['ru', 'en', 'es']) {
             expect(page).toContain(`rel="alternate" hreflang="${lang}" href="https://atlas.example/atlas/${lang}/about/"`)
           }
-          expect(sitemap.match(/<xhtml:link /g)).toHaveLength(4)
+          expect(sitemap.match(/<xhtml:link /g)).toHaveLength(9)
         } else {
           expect(englishPage).toContain('noindex')
           expect(englishPage).not.toContain('rel="canonical"')
@@ -103,7 +103,7 @@ describe('launch remains an explicit build choice', () => {
     const root = mkdtempSync(join(tmpdir(), 'atlas-soft-launch-'))
     const script = join(root, 'scripts/postbuild.mjs')
     const html = '<html><head><meta name="robots" content="noindex, nofollow"></head><body></body></html>'
-    const routes = ['', 'ru/about', 'en/about']
+    const routes = ['', 'ru/about', 'en/about', 'es/about']
     try {
       mkdirSync(join(root, 'scripts'))
       copyFileSync(fileURLToPath(new URL('../../scripts/postbuild.mjs', import.meta.url)), script)

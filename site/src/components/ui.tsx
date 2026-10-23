@@ -1,3 +1,4 @@
+import { spanishText } from '../i18n/spanish-text'
 import { sourceText } from '../i18n/source-text-en'
 import type { ReactNode } from 'react'
 import { correctionsFor, doiUrl, label, pubById, type Publication, type Verification } from '../data/atlas'
@@ -88,14 +89,14 @@ export function CorrectionList({ embryo }: { embryo: string }) {
   const lang = useLang()
   const items = correctionsFor(embryo)
   if (!items.length) return null
-  const show = (field: string, v: number | string) => (field === 'fraction' ? label('fraction', String(v), lang) : `${String(v).replace('.', lang === 'ru' ? ',' : '.')}%`)
+  const show = (field: string, v: number | string) => (field === 'fraction' ? label('fraction', String(v), lang) : `${String(v).replace('.', lang !== 'en' ? ',' : '.')}%`)
   return (
     <div className="callout small" style={{ marginBottom: 8 }} data-corrections={items.length}>
       <strong>{t('verification.correctedTitle')}</strong>
       <ul style={{ margin: '6px 0 0', paddingLeft: 18 }}>
         {items.map((c) => (
           <li key={c.id}>
-            {label('fraction', c.target.fraction, lang)}: {show(c.field, c.from)} ({t('verification.sourceValue')}, «{sourceText(c.target.sheet, lang)}», {lang === 'ru' ? 'строка' : 'row'} {c.target.row}) → <strong>{show(c.field, c.to)}</strong>
+            {label('fraction', c.target.fraction, lang)}: {show(c.field, c.from)} ({t('verification.sourceValue')}, «{sourceText(c.target.sheet, lang)}», {lang === 'ru' ? 'строка' : lang === 'es' ? 'fila' : 'row'} {c.target.row}) → <strong>{show(c.field, c.to)}</strong>
             <br />
             <span className="muted">{c.source.document}; {c.source.locator}</span>
           </li>
@@ -117,8 +118,8 @@ export function VerificationList({ items }: { items: Verification[] }) {
           <li key={i}>
             {v.esm_label}: ESM {String(v.esm_value)}% · {t(`verification.${v.status}`)}
             {v.resolution === 'corrected' && <> · <strong>{t('verification.corrected')}</strong></>}
-            {v.dataset_value !== null && ` · ${lang === 'ru' ? 'набор' : 'dataset'} ${String(v.dataset_value)}%`}
-            {(lang === 'ru' ? v.comment_ru : v.comment_en) && <> — {lang === 'ru' ? v.comment_ru : v.comment_en}</>}
+            {v.dataset_value !== null && ` · ${lang === 'ru' ? 'набор' : lang === 'es' ? 'conjunto de datos' : 'dataset'} ${String(v.dataset_value)}%`}
+            {(lang === 'ru' ? v.comment_ru : lang === 'es' ? spanishText(v.comment_en ?? '') : v.comment_en) && <> — {lang === 'ru' ? v.comment_ru : lang === 'es' ? spanishText(v.comment_en ?? '') : v.comment_en}</>}
           </li>
         ))}
       </ul>

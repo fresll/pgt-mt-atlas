@@ -1,3 +1,4 @@
+import { scientificText } from '../../i18n/scientificText'
 import { sourceText } from '../../i18n/source-text-en'
 import { useMemo, useState } from 'react'
 import { DataTable } from '../../components/DataTable'
@@ -228,7 +229,7 @@ export default function Offspring() {
         ))}
         {NOT_INCLUDED.map((c) => (
           <li key={c.pub}>
-            <PubRef id={c.pub} />: {c[lang]}
+            <PubRef id={c.pub} />: {scientificText(c, lang)}
           </li>
         ))}
       </ul>

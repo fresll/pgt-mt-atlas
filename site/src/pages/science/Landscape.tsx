@@ -6,7 +6,7 @@ import { Detail, ObservedBadge, PubRef, Seg } from '../../components/ui'
 import { atlas, fractionAtOrBelow, label, pubById, type EmbryoObservation } from '../../data/atlas'
 import { isDerived, layoutBlocks, placeColumn } from '../../figures/fig3Layout'
 import { useLang, useT } from '../../i18n'
-import { fmt, frac } from '../../lib/format'
+import { frac, pct } from '../../lib/format'
 import { obsValueText } from '../../lib/obs'
 import { axis, baseLayout, useChartTheme } from '../../lib/theme'
 import { PageTitle } from '../../components/Layout'
@@ -26,8 +26,8 @@ export function ObservationDetail({ o, onClose }: { o: EmbryoObservation; onClos
         [t('common.variant'), o.variant],
         [t('common.source'), <PubRef id={o.pub} showStatus />],
         [t('common.pmid'), p?.pmid ? <a href={`https://pubmed.ncbi.nlm.nih.gov/${p.pmid}/`} target="_blank" rel="noreferrer">{p.pmid}</a> : null],
-        [t('common.stage'), `${label('stage', o.stage, lang)} — «${o.stage_raw}»`],
-        [t('common.sample'), `${label('sample_type', o.sample, lang)} — «${o.material_raw}»`],
+        [t('common.stage'), `${label('stage', o.stage, lang)} — «${sourceText(o.stage_raw, lang)}»`],
+        [t('common.sample'), `${label('sample_type', o.sample, lang)} — «${sourceText(o.material_raw, lang)}»`],
         [t('common.derivation'), <>{label('derivation', o.derivation, lang)}{o.derivation_evidence && <span className="muted"> · {sourceText(o.derivation_evidence, lang)}</span>}</>],
         [t('common.note'), sourceText(o.note ?? '', lang)],
         [t('common.variantClass'), <VariantClassText variant={o.variant} />],
@@ -115,7 +115,7 @@ export default function Landscape() {
       }
       shapes.push({ type: 'line', x0: b.x1, x1: b.x1, y0: -4, y1: 140, yref: 'y', line: { color: th.grid, width: 1 } })
       const all = b.columns.flatMap((c) => c.obs)
-      const lines = thresholds.map((th0) => `≤${fmt(th0, lang)}%: ${frac(fractionAtOrBelow(all, th0).k, all.length, lang).replace(' (', '<br>(')}`)
+      const lines = thresholds.map((th0) => `≤${pct(th0, lang)}: ${frac(fractionAtOrBelow(all, th0).k, all.length, lang).replace(' (', '<br>(')}`)
       if (!explore && fractionAtOrBelow(all, 18).k === fractionAtOrBelow(all, 30).k) lines.pop()
       annotations.push({ x: (b.x0 + b.x1) / 2, y: 136, text: `<b>${b.variant}</b>`, showarrow: false, font: { size: 13, color: th.ink } })
       annotations.push({ x: (b.x0 + b.x1) / 2, y: 131, yanchor: 'top', text: lines.join('<br>'), showarrow: false, font: { size: 12, color: th.ink2 } })
@@ -163,7 +163,7 @@ export default function Landscape() {
           list: Object.entries(atlas.stats.fig3.by_variant)
             .filter(([, v]) => v.n >= 20)
             .sort((a, b) => b[1].le18.k / b[1].le18.n - a[1].le18.k / a[1].le18.n)
-            .map(([variant, v]) => `${variant} — ${v.le18.k} ${lang === 'ru' ? 'из' : 'of'} ${v.le18.n}`)
+            .map(([variant, v]) => `${variant} — ${v.le18.k} ${lang === 'ru' ? 'из' : lang === 'es' ? 'de' : 'of'} ${v.le18.n}`)
             .join('; '),
         })}
       </p>
@@ -237,7 +237,7 @@ export default function Landscape() {
                   {o.id}
                 </button>{' '}
                 <span className="small muted">
-                  {label('stage', o.stage, lang)} · {o.material_raw}
+                  {label('stage', o.stage, lang)} · {sourceText(o.material_raw, lang)}
                   {o.note ? ` · ${sourceText(o.note ?? '', lang)}` : ''}
                 </span>
               </li>
@@ -272,7 +272,7 @@ export default function Landscape() {
             { key: 'value', header: t('common.value'), render: (o) => obsValueText(o, lang, t), sort: (o) => (o.q === 'interval' ? o.high : o.value), num: true },
             { key: 'pub', header: t('common.source'), render: (o) => pubById[o.pub].short, sort: (o) => pubById[o.pub].short },
             { key: 'stage', header: t('common.stage'), render: (o) => label('stage', o.stage, lang), sort: (o) => o.stage },
-            { key: 'mat', header: t('common.material'), render: (o) => o.material_raw, sort: (o) => o.material_raw },
+            { key: 'mat', header: t('common.material'), render: (o) => sourceText(o.material_raw, lang), sort: (o) => o.material_raw },
             { key: 'der', header: t('common.derivation'), render: (o) => label('derivation', o.derivation, lang), sort: (o) => o.derivation },
           ]}
         />

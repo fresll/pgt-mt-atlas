@@ -57,11 +57,11 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
     if (softLaunch) {
       out = out.replace(/<meta name="robots" content="[^"]*"\s*\/?>/g, '<meta name="robots" content="noindex, follow">')
     }
-    if (launch && (route.startsWith('ru/') || (englishEnabled && route.startsWith('en/')))) {
+    if (launch && (route.startsWith('ru/') || route.startsWith('es/') || (englishEnabled && route.startsWith('en/')))) {
       const canonical = new URL(route.replace(/index\.html$/, ''), canonicalBase).href
       out = out.replace(/<meta name="robots" content="noindex, nofollow"\s*\/?>/g, '<meta name="robots" content="index, follow">')
-      const languages = englishEnabled ? ['ru', 'en'] : ['ru']
-      const alternates = languages.map(lang => ({ lang, url: new URL(route.replace(/^(?:ru|en)\//, `${lang}/`).replace(/index\.html$/, ''), canonicalBase).href }))
+      const languages = englishEnabled ? ['ru', 'en', 'es'] : ['ru', 'es']
+      const alternates = languages.map(lang => ({ lang, url: new URL(route.replace(/^(?:ru|en|es)\//, `${lang}/`).replace(/index\.html$/, ''), canonicalBase).href }))
       if (!out.includes('rel="canonical"')) out = out.replace('</head>', `<link rel="canonical" href="${canonical}"></head>`)
       if (!out.includes('rel="alternate"')) out = out.replace('</head>', alternates.map(({ lang, url }) => `<link rel="alternate" hreflang="${lang}" href="${url}">`).join('') + '</head>')
       sitemap.push({ canonical, alternates })
@@ -91,7 +91,7 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
     join(dist, '404.html'),
     `<!doctype html><html lang="${englishEnabled ? 'en' : 'ru'}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="${softLaunch ? 'noindex, follow' : 'noindex'}"><title>${title404}</title></head>
 <body style="font-family:system-ui;padding:24px;background:#F7F8F4;color:#182A40"><h1>${heading404}</h1><p id="not-found">${message404}</p>
-<p><a id="russian-link" href="${base}ru/" lang="ru" hreflang="ru">${englishEnabled ? 'Russian' : 'Русский'}</a>${englishEnabled ? ` · <a href="${base}en/" lang="en" hreflang="en">English</a>` : ''}</p>${russian404}</body></html>\n`,
+<p><a id="russian-link" href="${base}ru/" lang="ru" hreflang="ru">${englishEnabled ? 'Russian' : 'Русский'}</a>${englishEnabled ? ` · <a href="${base}en/" lang="en" hreflang="en">English</a>` : ''} · <a href="${base}es/" lang="es" hreflang="es">Español</a></p>${russian404}<script>if(/\\/es(?:\\/|$)/.test(location.pathname)){document.documentElement.lang="es";document.title="PGT-mt Atlas — página no encontrada";document.getElementById("not-found").textContent="Página no encontrada"}document.currentScript.remove()</script></body></html>\n`,
   )
   console.log('404.html written')
 }

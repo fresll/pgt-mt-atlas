@@ -103,7 +103,7 @@ export default function Model() {
     <p data-testid="model-without-3pn">{t('model.without3pn', { k: without3PN.k, n: without3PN.n, sign: symbol })}</p>
     <p>{t('model.symbols')}</p>
     <p>{t('model.carrierCaveat')}</p>
-    <details><summary>{t('model.publicationCarriers')}</summary><ul>{publicationCarriers.map(p => <li key={p.publication}><PubRef id={p.publication} />: {p.n}; {p.locator}</li>)}</ul></details>
+    <details><summary>{t('model.publicationCarriers')}</summary><ul>{publicationCarriers.map(p => <li key={p.publication}><PubRef id={p.publication} />: {p.n}; {sourceText(p.locator, lang)}</li>)}</ul></details>
     <div className="controls">
       <label><input type="checkbox" checked={teOnly} onChange={e => setTeOnly(e.target.checked)} data-testid="model-te-only" /> {t('model.teOnly')}</label>
       <span>{t('common.threshold')}: <Seg label={t('common.threshold')} value={cut} onChange={setCut} options={[
@@ -191,9 +191,9 @@ export default function Model() {
     <p>{t('model.evidenceNote')}</p>
     <div className="table-wrap"><table className="data" data-testid="joint-evidence">
       <thead><tr><th>{t('common.source')}</th><th>{t('common.variant')}</th><th>H≤18%</th><th>{t('model.confirmedEuploid')}</th><th>{t('model.jointPass')}</th></tr></thead>
-      <tbody>{jointEvidence.map((r) => <tr key={r.key}><td><PubRef id={r.publication} /><div className="small">{r.locator}</div><div className="small">{t(`model.evidence.${r.key}`)}</div></td><td>{r.variant}</td><td className="num">{r.h}/{r.n}</td><td className="num">{r.confirmedEuploid}/{r.n}</td><td className="num">{r.joint}/{r.n}</td></tr>)}</tbody>
+      <tbody>{jointEvidence.map((r) => <tr key={r.key}><td><PubRef id={r.publication} /><div className="small">{sourceText(r.locator, lang)}</div><div className="small">{t(`model.evidence.${r.key}`)}</div></td><td>{r.variant}</td><td className="num">{r.h}/{r.n}</td><td className="num">{r.confirmedEuploid}/{r.n}</td><td className="num">{r.joint}/{r.n}</td></tr>)}</tbody>
     </table></div>
-    <p className="small" data-testid="sallevelt-note">{t('model.salleveltNote')} <PubRef id="sallevelt2017" /> — pp. 700–701; Supplementary Table SI.</p>
+    <p className="small" data-testid="sallevelt-note">{t('model.salleveltNote')} <PubRef id="sallevelt2017" /> — {sourceText('pp. 700–701; Supplementary Table SI.', lang)}</p>
   <BackToTop />
     </article>
 }

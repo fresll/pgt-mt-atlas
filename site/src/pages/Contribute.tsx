@@ -9,6 +9,7 @@ import { templatePurposesEn } from '../i18n/data-labels-en'
 import labels from '../illustrations/labels.json'
 import { CURATOR_CONTACT, EVIDENCE_TIERS, SUBJECT_PREFIX, SUBMISSION_STATUSES, UNPUBLISHED_CHECKS, mailtoHref } from '../lib/contribute'
 import { asset } from '../lib/base'
+import { spanishText } from '../i18n/spanish-text'
 import { PageTitle } from '../components/Layout'
 
 // Раздел Contribute Data / Поделиться данными. Сайт ничего не принимает и не хранит:
@@ -18,7 +19,7 @@ export default function Contribute() {
   const lang = useLang()
   const list = (key: string) => t(key, { returnObjects: true }) as unknown as string[]
   const pairs = (key: string) => t(key, { returnObjects: true }) as unknown as [string, string][]
-  const href = asset(lang === 'en' ? template.file.replace('templates/', 'templates/en/') : template.file)
+  const href = asset(lang !== 'ru' ? template.file.replace('templates/', 'templates/en/') : template.file)
   const fileName = template.file.split('/').pop()
   const meta = t('contribute.templateMeta', { v: template.version, date: template.released })
   const subject = (lang === 'ru' ? '[Атлас ПГТ-мт] ' : SUBJECT_PREFIX) + t('contribute.contact.subject')
@@ -131,7 +132,7 @@ export default function Contribute() {
                     {lang === 'ru' && <span className="sk-c-sheet-ru">{s.title_ru}</span>}
                   </th>
                   <td>
-                    {lang === 'ru' ? s.purpose_ru : templatePurposesEn[s.name] ?? s.purpose_en}
+                    {lang === 'ru' ? s.purpose_ru : lang === 'es' ? spanishText(templatePurposesEn[s.name] ?? s.purpose_en) : templatePurposesEn[s.name] ?? s.purpose_en}
                     <span className="sk-c-count">{t('contribute.template.fields', { n: s.n_fields, r: s.n_required })}</span>
                   </td>
                 </tr>

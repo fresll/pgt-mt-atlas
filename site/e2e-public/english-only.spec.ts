@@ -47,7 +47,7 @@ test('all English pages, expanded tables, 446 details and chart text contain no 
       return found
     })
     expect(untranslated, path).toEqual([])
-    await expect(page.locator('header .language-switch')).toHaveAttribute('title', 'Language: Русский')
+    await expect(page.locator('header .language-switch a[lang=ru]')).toHaveAttribute('title', 'Language: Русский')
   }
   expect(selections).toBe(446)
 })
