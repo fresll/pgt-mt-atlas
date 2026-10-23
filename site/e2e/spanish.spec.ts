@@ -63,7 +63,7 @@ test('Spanish static content and language links work without JavaScript', async 
 test('Spanish pages fit phone and desktop widths, in light and dark themes', async ({ page }) => {
   for (const width of [390, 1440]) {
     await page.setViewportSize({ width, height: 900 })
-    for (const path of ['', 'fundamentals/', 'fundamentals/embryo-development-and-biopsy/', 'science/', 'science/pgt-mt-pgt-a-model/', 'science/methods/', 'patients/', 'contribute/', 'ilya-mazunin/']) {
+    for (const path of ['', 'fundamentals/', 'fundamentals/embryo-development-and-biopsy/', 'fundamentals/mitochondrial-genetic-bottleneck/', 'fundamentals/how-pgt-mt-works/#advanced', 'fundamentals/interpretation-and-limitations/#advanced', 'science/', 'science/pgt-mt-pgt-a-model/', 'science/methods/', 'patients/', 'contribute/', 'ilya-mazunin/']) {
       await page.goto(`es/${path}`)
       if (!path) await page.screenshot({ path: test.info().outputPath(`atlas-es-home-${width}.png`) })
       expect(await page.evaluate(() => document.documentElement.scrollWidth), `${width}/es/${path}`).toBeLessThanOrEqual(width)

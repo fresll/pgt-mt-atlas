@@ -48,7 +48,7 @@ const TEXT = {
     intro: 'Esta página explica de forma sencilla qué es el test genético preimplantacional del ADN mitocondrial (PGT-mt), qué puede hacer y cuáles son sus límites. No sustituye una consulta con un especialista en genética clínica.',
     sections: [
       ['Qué es el ADN mitocondrial', [
-        'Las mitocondrias son las «centrales energéticas» de las células. Tienen un pequeño ADN propio (ADNmt), que el hijo hereda únicamente de la madre.',
+        'Las mitocondrias son las «centrales energéticas» de las células. Contienen un pequeño genoma propio, el ADN mitocondrial (ADNmt), que se hereda únicamente de la madre.',
         'Cada célula contiene cientos o miles de copias de ADNmt. A veces, algunas llevan un cambio (variante) que puede causar una enfermedad y otras no. La proporción de copias alteradas se denomina nivel de heteroplasmia y se expresa en porcentaje.',
         'Que se manifieste una enfermedad depende de cuántas copias alteradas haya en los distintos tejidos del organismo. En una misma mujer, el porcentaje puede diferir entre sangre, orina y músculo, y entre sus ovocitos.',
       ]],
@@ -58,7 +58,7 @@ const TEXT = {
         'No se puede predecir de antemano cuántos embriones de un ciclo tendrán un porcentaje bajo; en algunos ciclos no hay ninguno.',
       ]],
       ['Por qué el porcentaje no es un diagnóstico', [
-        'El resultado del PGT-mt permite comparar los embriones entre sí, pero no es una declaración sobre la salud del futuro niño.',
+        'El resultado del PGT-mt permite comparar los embriones entre sí, pero no constituye un diagnóstico del futuro niño.',
         'La medición se realiza en unas pocas células de un embrión en un momento concreto, mientras que para la salud importa cuánto ADNmt alterado habrá en todos los tejidos a lo largo de la vida.',
         'No existe un porcentaje «seguro» universal. Las cifras de la literatura (por ejemplo, 18 % o 30 %) se obtuvieron para fines distintos y no son una norma para un embrión individual.',
       ]],
@@ -68,7 +68,7 @@ const TEXT = {
       ]],
       ['El riesgo se reduce, pero no desaparece', [
         'Según los datos publicados, el PGT-mt reduce el riesgo de transmitir la enfermedad, pero no lo elimina por completo.',
-        'Si se ha transferido un embrión con un nivel detectable de ADNmt alterado, conviene discutir con el médico el diagnóstico prenatal y el seguimiento del niño después del nacimiento.',
+        'Si se ha transferido un embrión con un nivel detectable de ADNmt alterado, conviene comentar con el médico el diagnóstico prenatal y el seguimiento del niño después del nacimiento.',
       ]],
       ['Qué opciones existen', [
         'El PGT-mt es una de las opciones. Las revisiones también tratan el diagnóstico prenatal, los ovocitos de donante y la donación mitocondrial. La elección depende de la variante del ADNmt, los antecedentes familiares, las circunstancias personales y la disponibilidad de las tecnologías; se toma junto con el médico.',
