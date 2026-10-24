@@ -14,6 +14,7 @@ export function PlotlyChart({ ariaLabel, height = 420, ...props }: Omit<PlotPara
   const [Plot, setPlot] = useState<ComponentType<PlotParams> | null>(cached)
   const [failed, setFailed] = useState(false)
   const [reset, setReset] = useState(0)
+  const frame = useRef<HTMLDivElement>(null)
   // Plotly mutates layouts; a fresh copy also restores defaults on explicit reset.
   const layout = useMemo(() => ({
     uirevision: 'atlas-view',
@@ -38,8 +39,28 @@ export function PlotlyChart({ ariaLabel, height = 420, ...props }: Omit<PlotPara
       alive = false
     }
   }, [])
+  useEffect(() => {
+    const container = frame.current
+    if (!Plot || !container || typeof ResizeObserver === 'undefined') return
+    let width = 0
+    // A plot initialized in a hidden mobile tab has no measurable width.
+    // Resize it when the tab becomes visible, without waiting for window resize.
+    const observer = new ResizeObserver(([entry]) => {
+      if (entry.contentRect.width <= 0) { width = 0; return }
+      if (entry.contentRect.width === width) return
+      width = entry.contentRect.width
+      const graph = container.querySelector<HTMLElement & { _fullLayout?: unknown }>('.js-plotly-plot')
+      if (plotlyApi && graph?._fullLayout && graph.getBoundingClientRect().width > 0) {
+        void Promise.resolve(plotlyApi.Plots.resize(graph)).catch(error => {
+          console.error('PGT-mt Atlas: resizing visible chart failed', error)
+        })
+      }
+    })
+    observer.observe(container)
+    return () => observer.disconnect()
+  }, [Plot])
   return (
-    <div className="chart-frame" role="figure" aria-label={ariaLabel}>
+    <div ref={frame} className="chart-frame" role="figure" aria-label={ariaLabel}>
       <div className="chart-actions">
         <button type="button" className="ghost" disabled={!Plot} onClick={() => {
           view.current = {}

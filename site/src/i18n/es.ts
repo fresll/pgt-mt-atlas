@@ -97,7 +97,7 @@ const es: Dict = {
   },
   "common": {
     "value": "Valor",
-    "variant": "Variante",
+    "variant": "Variante del ADNmt",
     "source": "Fuente",
     "stage": "Estadio",
     "material": "Material de la muestra",
@@ -442,7 +442,7 @@ const es: Dict = {
     "lead": "PGT-mt Atlas recibe aportaciones de grupos de investigación y clínicas de todo el mundo. Si ha realizado PGT-mt o estudiado embriones portadores de variantes del ADNmt, sus resultados pueden ayudar a describir el método de forma más completa, incluidos los ciclos sin éxito y los embriones no transferidos.",
     "downloadTemplate": "Descargar la plantilla (.xlsx)",
     "contactLink": "Contactar con el curador",
-    "templateMeta": "PGT-mt Research Data Submission · versión {{v}} · {{date}} · Excel",
+    "templateMeta": "Envío de datos de investigación de PGT-mt · versión {{v}} · {{date}} · Excel",
     "why": {
       "title": "Por qué cada resultado cuenta",
       "note": "sesgo de publicación",
@@ -501,7 +501,7 @@ const es: Dict = {
         ],
         [
           "Completar la plantilla",
-          "Descargue PGT-mt Research Data Submission y complete las hojas pertinentes para sus datos. Para proponer un estudio publicado, envíe su referencia o DOI."
+          "Descargue la plantilla de envío de datos de investigación de PGT-mt y complete las hojas pertinentes para sus datos. Para proponer un estudio publicado, envíe su referencia o DOI."
         ],
         [
           "Acordar cómo compartir los datos",
@@ -521,7 +521,7 @@ const es: Dict = {
       "detailsTitle": "Detalles de la plantilla: hojas, instrucciones de cumplimentación y desidentificación",
       "title": "Una plantilla estructurada para datos de investigación",
       "note": "plantilla Excel",
-      "lead": "La plantilla PGT-mt Research Data Submission recoge el conjunto mínimo de datos de un ciclo de PGT-mt —paciente y ciclo, embrión, método y desenlace—, con campos adicionales para ciclos completos y resultados desfavorables. Sus hojas vinculadas describen cada ovocito, embrión, muestra y desenlace sin identificadores directos.",
+      "lead": "La plantilla de envío de datos de investigación de PGT-mt recoge el conjunto mínimo de datos de un ciclo de PGT-mt —paciente y ciclo, embrión, método y desenlace—, con campos adicionales para ciclos completos y resultados desfavorables. Sus hojas vinculadas describen cada ovocito, embrión, muestra y desenlace sin identificadores directos.",
       "sheetsTitle": "Hojas de la plantilla",
       "fields": "{{n}} campos, {{r}} obligatorios",
       "extra": "También incluye instrucciones (EN/RU), un diccionario de datos con la definición, la unidad y los valores permitidos de cada campo y listas desplegables.",
@@ -686,7 +686,7 @@ const es: Dict = {
     "title": "Fundamentos de PGT-mt",
     "kicker": "Bases científicas y formación",
     "lead": "Un curso de seis capítulos sobre genética mitocondrial, heteroplasmia, cuello de botella genético, desarrollo embrionario y biopsia, métodos de PGT-mt e interpretación de resultados. Las afirmaciones científicas están vinculadas a publicaciones primarias.",
-    "howTo": "Cada capítulo ofrece dos niveles: «Esencial» explica los conceptos clave en un lenguaje accesible; «Avanzado» examina los mecanismos, las limitaciones metodológicas y las fuentes primarias. Ambos niveles comparten los mismos esquemas y modelos.",
+    "howTo": "Cada capítulo ofrece dos niveles: «Conceptos básicos» explica los conceptos clave en un lenguaje accesible; «Avanzado» examina los mecanismos, las limitaciones metodológicas y las fuentes primarias. Ambos niveles comparten los mismos esquemas y modelos.",
     "tocTitle": "Contenido",
     "tocNote": "seis capítulos",
     "chapter": "Capítulo {{n}}",

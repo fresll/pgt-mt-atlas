@@ -52,7 +52,13 @@ for (const [route, plots, selector, count] of ROUTES) {
         await expect(figures).toHaveCount(count)
         for (let i = 0; i < count; i++) {
           const figure = figures.nth(i)
-          if (route.includes('model') && await page.locator('.panel-tabs').isVisible()) await page.locator('.panel-tabs button').nth(i).click()
+          if (route.includes('model') && await page.locator('.panel-tabs').isVisible()) {
+            await page.locator('.panel-tabs button').nth(i).click()
+            // Every newly visible tab must fit the viewport, including the
+            // plots that were initialized while display:none.
+            await expect.poll(() => figure.evaluate(el => Math.abs(el.getBoundingClientRect().width - el.querySelector('.main-svg')!.getBoundingClientRect().width))).toBeLessThan(1)
+            expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(view.viewport.width)
+          }
           await figure.scrollIntoViewIfNeeded()
           await page.mouse.move(0, 0)
           const contract = await drawing(figure)
@@ -67,6 +73,20 @@ for (const [route, plots, selector, count] of ROUTES) {
           const scroller = figures.first().locator('xpath=ancestor::div[contains(@style,"overflow-x")][1]')
           await scroller.evaluate((el) => { el.scrollLeft = el.scrollWidth })
           await scroller.screenshot({ ...CAPTURE, path: info.outputPath(`${view.name}-${lang}-1-right.png`) })
+        }
+      }
+      if (route.includes('model') && view.name === 'phone-dark') {
+        for (const lang of ['en', 'ru', 'es'] as const) {
+          await page.locator(`.language-switch a[lang=${lang}]`).click()
+          await expect(page.locator('html')).toHaveAttribute('lang', lang)
+          for (let i = 0; i < count; i++) {
+            await page.locator('.panel-tabs button').nth(i).click()
+            const figure = page.locator(selector).nth(i)
+            await expect(figure.locator('.ytitle')).toHaveText({ en, ru, es }[lang].model.yAxis)
+            await expect.poll(() => figure.evaluate(el => Math.abs(el.getBoundingClientRect().width - el.querySelector('.main-svg')!.getBoundingClientRect().width))).toBeLessThan(1)
+            expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(view.viewport.width)
+            await expect.poll(() => drawing(figure)).toEqual(baseline[i])
+          }
         }
       }
       expect(errors).toEqual([])
@@ -106,7 +126,12 @@ test('changing language preserves filters, selection, zoom, pan and reset on eve
         await zoom.click()
         await chart.getByRole('button', { name: 'Pan', exact: true }).click()
         const before = await chart.evaluate((e: any) => [e._fullLayout.xaxis.range, e._fullLayout.yaxis.range])
-        const box = await chart.locator('.nsewdrag').first().boundingBox()
+        // A toolbar can be visible while the plot centre is below the viewport
+        // (notably Offspring after selecting an observation). Mouse coordinates
+        // do not scroll automatically, so bring the primary XY surface into view.
+        const area = chart.locator('.nsewdrag[data-subplot="xy"]')
+        await area.scrollIntoViewIfNeeded()
+        const box = await area.boundingBox()
         expect(box).not.toBeNull()
         if (box) {
           await page.mouse.move(box.x + box.width * 0.5, box.y + box.height * 0.5)

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { sourceText } from '../../i18n/source-text-en'
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom'
 import { Head } from 'vite-react-ssg'
 import { SectionSelect, useHydrated } from '../../components/Layout'
@@ -156,7 +157,7 @@ function RefItem({ r, chapters }: { r: Ref; chapters?: number[] }) {
   const list = FUNDAMENTALS[lang].chapters
   return (
     <li id={`ref-${r.id}`}>
-      <span className="fd-ref-authors">{r.authors}</span> ({r.yearLabel ?? r.year}). {r.title}. <em>{r.source}</em>.{' '}
+      <span className="fd-ref-authors">{r.authors}</span> ({r.yearLabel ?? r.year}). <span className="fd-ref-title" lang="en">{r.title}</span>. <em>{sourceText(r.source, lang)}</em>.{' '}
       <a href={doiHref(r.doi)} target="_blank" rel="noreferrer">
         doi:{r.doi}
       </a>

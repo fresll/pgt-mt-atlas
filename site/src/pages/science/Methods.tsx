@@ -1,4 +1,4 @@
-import { scientificText } from '../../i18n/scientificText'
+import { observationText, scientificText } from '../../i18n/scientificText'
 import { sourceText } from '../../i18n/source-text-en'
 import { BackToTop, PageContents } from '../../components/PageContents'
 import { PubRef } from '../../components/ui'
@@ -88,7 +88,7 @@ export default function Methods() {
           <tbody>
             {Object.entries(atlas.variant_classes).map(([v, x]) => (
               <tr key={v}>
-                <td>{v}</td>
+                <td>{observationText(v, lang)}</td>
                 <td>{label('variant_class', x.class, lang)}</td>
                 <td className="small">{t(`common.classBasis.${x.status}`, { source: pubById[x.publication]?.short ?? x.publication, locator: sourceText(x.locator ?? '', lang), date: x.checked })}</td>
               </tr>

@@ -9,7 +9,7 @@ const PLOTS = [
   ['pgt-mt-pgt-a-model', 3],
 ] as const
 const CAPTURE = { style: 'header.site, .fd-level-switch { visibility: hidden !important; }', animations: 'disabled' as const }
-const FOREIGN = /[А-Яа-яЁё]|\b(?:polymorphism|biopsy|blastocyst|cleavage|remaining|blood|tissues|months|weeks|birth|Zoom|Reset axes|Click to enter|Download plot|Share chart)\b/
+const FOREIGN = /[А-Яа-яЁё]|(?<![\p{L}\p{N}_])(?:polymorphism|biopsy|blastocyst|cleavage|remaining|blood|tissues|months|weeks|birth|euploid|aneuploid|mosaic|Zoom|Reset axes|Click to enter|Download plot|Share chart)(?![\p{L}\p{N}_])/u
 
 async function surface(chart: Locator) {
   return chart.evaluate((node) => {

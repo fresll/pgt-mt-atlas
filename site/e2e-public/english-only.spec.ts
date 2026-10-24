@@ -71,7 +71,7 @@ test('static English CSV links and downloaded visible rows are English', async (
   }
 })
 
-test('English template is separate and unknown English addresses use an English 404', async ({ page }) => {
+test('English template is separate and EN/RU/ES error pages retain language and working links', async ({ page, request }) => {
   await page.goto('en/contribute/')
   await expect(page.locator('a[download]').first()).toHaveAttribute('href', /templates\/en\//)
   const response = await page.goto('http://localhost:4174/pgt-mt-atlas/en/no-such-page/')
@@ -80,4 +80,20 @@ test('English template is separate and unknown English addresses use an English 
   await expect(page.locator('h1')).toHaveText('PGT-mt Atlas')
   await page.goto('http://localhost:4174/pgt-mt-atlas/ru/no-such-page/')
   await expect(page.locator('h1')).toHaveText('Атлас ПГТ-мт')
+  for (const root of ['http://localhost:4174/pgt-mt-atlas/', 'http://localhost:4175/']) {
+    for (const lang of ['en', 'ru', 'es']) {
+      const response = await page.goto(`${root}${lang}/no-such-page/`)
+      expect(response!.status()).toBe(404)
+      await expect(page.locator('html')).toHaveAttribute('lang', lang)
+      if (lang === 'es') {
+        await expect(page.locator('#not-found')).toHaveText('Página no encontrada')
+        await expect(page.locator('a[hreflang]')).toHaveText(['Ruso', 'Inglés', 'Español'])
+      }
+      for (const link of await page.locator('a[hreflang]').all()) {
+        const target = await link.getAttribute('hreflang')
+        expect(await link.evaluate(el => (el as HTMLAnchorElement).href)).toBe(`${root}${target}/`)
+        expect((await request.get(`${root}${target}/`)).status()).toBe(200)
+      }
+    }
+  }
 })

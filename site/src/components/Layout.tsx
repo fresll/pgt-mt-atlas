@@ -63,6 +63,7 @@ function useHeaderHeight(ref: React.RefObject<HTMLElement | null>) {
 function Header({ lang }: { lang: Lang }) {
   const t = useT()
   const { pathname, search, hash } = useLocation()
+  const navigate = useNavigate()
   const ref = useRef<HTMLElement>(null)
   const hydrated = useHydrated()
   // Без JavaScript меню всегда раскрыто; после загрузки на телефоне оно сворачивается в кнопку «Меню».
@@ -96,7 +97,14 @@ function Header({ lang }: { lang: Lang }) {
         <div className="header-tools">
           <nav className="language-switch" aria-label={t('nav.language')}>
             {(['ru', ...(englishEnabled ? ['en'] : []), 'es'] as Lang[]).filter(other => other !== lang).map(other => (
-              <Link key={`${other}-${hydrated}`} className="btn-link" to={switchLangPath(pathname, lang, other, search, hash)} hrefLang={other} lang={other} title={`${t('nav.language')}: ${other === 'ru' ? 'Русский' : other === 'es' ? 'Español' : 'English'}`} aria-label={other === 'ru' ? 'Русский' : other === 'es' ? 'Español' : 'English'}>
+              <Link key={other} className="btn-link" to={switchLangPath(pathname, lang, other, hydrated ? search : '', hydrated ? hash : '')} hrefLang={other} lang={other} title={`${t('nav.language')}: ${other === 'ru' ? 'Русский' : other === 'es' ? 'Español' : 'English'}`} aria-label={other === 'ru' ? 'Русский' : other === 'es' ? 'Español' : 'English'} onClick={event => {
+                if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+                // Match the static href on the first render, then update it in
+                // place. Keep keyboard focus and retain the URL even if the
+                // first activation arrives before the hydration effect.
+                event.preventDefault()
+                navigate(switchLangPath(pathname, lang, other, search, hash))
+              }}>
                 {other.toUpperCase()}
               </Link>
             ))}

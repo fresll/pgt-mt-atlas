@@ -2,6 +2,7 @@ import { Fragment, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import type { Lang } from '../../data/atlas'
 import { refById } from './references'
+import { sourceText } from '../../i18n/source-text-en'
 import type { Block, Chapter } from './types'
 
 const TOKEN = /(\[@[^\]]+\]|\[\[[^\]]+\]\]|\*\*[^*]+\*\*|\*[^*]+\*)/g
@@ -55,7 +56,7 @@ export function Inline({ s, lang }: { s: string; lang: Lang }) {
               {ids.map((id, k) => (
                 <Fragment key={id}>
                   {k > 0 && '; '}
-                  <a href={`#ref-${id}`}>{refById[id]?.cite ?? id}</a>
+                  <a href={`#ref-${id}`}>{sourceText(refById[id]?.cite ?? id, lang)}</a>
                 </Fragment>
               ))}
               )

@@ -52,6 +52,10 @@ describe('Spanish localization integrity', () => {
         expect(chapter[level].map((b) => b.t)).toEqual(source[level].map((b) => b.t))
         chapter[level].forEach((block, j) => {
           const a = blockStrings(source[level][j]), b = blockStrings(block), context = `${level}/${j}`
+          // These English clinical labels once survived inside a teaching table,
+          // even though keys, numbers and citations were all correct.
+          const visibleText = b.join(' ').replace(/\[\[([^|]+)\|[^\]]+\]\]/g, '$1')
+          expect(visibleText, context).not.toMatch(/(?<![\p{L}\p{N}_])(?:euploid|aneuploid|mosaic|biopsy|blastocyst|threshold|remaining|tissues)(?![\p{L}\p{N}_])/u)
           expect(b.length, context).toBe(a.length)
           const originalBlock = source[level][j]
           if (block.t === 'flow' && originalBlock.t === 'flow') expect(block.phases.map(p => p[1]), context).toEqual(originalBlock.phases.map(p => p[1]))
@@ -91,10 +95,18 @@ describe('Spanish localization integrity', () => {
     for (const [source, translated] of Object.entries(displayEs)) {
       expect(numbers(translated, true), source).toEqual(numbers(source))
       expect(translated, source).not.toMatch(/[А-Яа-яЁё]/)
+      const text = translated.replace(/references\/[^)]+\.(?:pdf|xlsx|docx)/g, '')
+      expect(text, source).not.toMatch(/(?<![\p{L}\p{N}_])(?:cleavage|biopsy|blastocyst|blood|remaining|tissues|months|weeks|euploid|aneuploid|mosaic|preprint)(?![\p{L}\p{N}_])/u)
     }
   })
   it('translates all current English display label overrides', () => {
     for (const group of Object.values(dataLabelsEn)) for (const value of Object.values(group)) expect(spanishText(value), value).not.toBe(value)
+    for (const record of raw.fig3) {
+      for (const field of ['stage_raw', 'material_raw'] as const) {
+        const value = record[field]
+        if (value) expect(spanishText(value), value).not.toMatch(/(?<![\p{L}\p{N}_])(?:Day|cleavage|biopsy|blastocyst|blastomeres|cells|arrested|remaining|euploid|aneuploid|mosaic)(?![\p{L}\p{N}_])/u)
+      }
+    }
   })
   it('preserves the section, query and anchor across all three languages', () => {
     for (const from of ['en', 'ru', 'es'] as const) for (const to of ['en', 'ru', 'es'] as const) {

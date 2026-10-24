@@ -385,10 +385,10 @@ const es: FundamentalsContent = {
             "**Selección en células germinales primordiales.** Floros y colaboradores encontraron señales de selección contra variantes no sinónimas, de genes de ARNt y del bucle D, coincidiendo con un cambio hacia el metabolismo oxidativo [@floros2018].",
             "**Propagación preferente del ADNmt mutante en el ovocito.** En ratones con la mutación m.5024C>T, la proporción de ADNmt mutante aumentó al madurar los ovocitos (sin división celular), pero la acumulación de niveles críticamente altos fue bloqueada por selección purificadora; se ha descrito un patrón similar —transmisión preferente con cargas bajas y selección con cargas altas— en genealogías con m.3243A>G, m.8344A>G y m.8993T>G/C [@zhang2021].",
             "**Selección purificadora y edad.** En ratones con mutaciones de genes del complejo I generadas mediante edición de bases, la selección purificadora tuvo lugar principalmente durante la maduración posnatal de los ovocitos y se intensificó al aumentar la edad materna [@ru2024]. Son datos de ratón; por el contrario, en estudios genealógicos humanos, el número de nuevas mutaciones del ADNmt en los hijos se correlacionó positivamente con la edad materna, y se necesitan observaciones directas antes de extraer conclusiones clínicas [@xie2026].",
-            "**Ovocitos humanos.** La secuenciación dúplex del ADNmt de ovocitos individuales no encontró un aumento de nuevas mutaciones con la edad y apuntó a selección purificadora dependiente de la frecuencia [@arbeithuber2025]; un preprint que reanaliza los mismos datos llega a una conclusión diferente: la selección positiva predomina en promedio, para mutaciones de la región de control no codificante y, según los autores, incluso para mutaciones codificantes [@franco2026].",
+            "**Ovocitos humanos.** La secuenciación dúplex del ADNmt de ovocitos individuales no encontró un aumento de nuevas mutaciones con la edad y apuntó a selección purificadora dependiente de la frecuencia [@arbeithuber2025]; una prepublicación que reanaliza los mismos datos llega a una conclusión diferente: la selección positiva predomina en promedio, para mutaciones de la región de control no codificante y, según los autores, incluso para mutaciones codificantes [@franco2026].",
             "**Distintas ventanas de selección.** En ratón, la eliminación de ADNmt defectuoso está vinculada a distintos estadios de desarrollo según la mutación concreta. La selección puede comenzar después de los estadios de célula germinal primordial y ovocito (m.3875delC), durante la maduración folicular (m.2820G>A, m.12918G>A), en el estadio de folículo secundario (m.3177G>A) o durante la embriogénesis temprana mediante mitofagia (m.5019A>G). Todavía no está claro qué parte de estas diferencias refleja biología real y qué parte refleja los métodos de investigación utilizados [@xie2026].",
             "**Niveles de actuación de la selección.** Se han descrito mecanismos a nivel de células (atresia folicular), orgánulos (fisión mitocondrial, mitofagia) y moléculas (replicación preferencial); la mayoría de los datos procede de ratones, Drosophila y nematodos [@xie2026].",
-            "**Datos poblacionales.** Las variantes patogénicas del ADNmt con niveles bajos de heteroplasmia aparecen en aproximadamente 1 de cada 200 personas, mientras que las enfermedades del ADNmt afectan a alrededor de 1 de cada 5000–10 000; esta discrepancia apunta a selección contra la transmisión de variantes perjudiciales. Los datos humanos son menos consistentes que los de ratón: las grandes deleciones rara vez se heredan; en un estudio amplio de pares madre–hijo, las mutaciones de genes de ARNr se transmitieron a la descendencia con menor frecuencia de la esperada, mientras que las variantes de la región D-loop se heredaron de forma neutra o con ventaja [@xie2026].",
+            "**Datos poblacionales.** Las variantes patogénicas del ADNmt con niveles bajos de heteroplasmia aparecen en aproximadamente 1 de cada 200 personas, mientras que las enfermedades del ADNmt afectan a alrededor de 1 de cada 5000–10 000; esta discrepancia apunta a selección contra la transmisión de variantes perjudiciales. Los datos humanos son menos consistentes que los de ratón: las grandes deleciones rara vez se heredan; en un estudio amplio de pares madre–hijo, las mutaciones de genes de ARNr se transmitieron a la descendencia con menor frecuencia de la esperada, mientras que las variantes de la región del bucle D se heredaron de forma neutra o con ventaja [@xie2026].",
             "**Especificidad de cada variante en portadoras.** Para m.3243A>G, los datos se describieron mejor mediante una distribución de Kimura truncada en el 76,5 % (sin cargas elevadas); para m.8993T>G, los valores fueron predominantemente extremos y, en los datos genealógicos, los niveles de la descendencia fueron más frecuentemente superiores a los maternos; para m.14487T>C no se encontraron indicios de selección [@otten2018]."
           ]
         },
@@ -891,31 +891,31 @@ const es: FundamentalsContent = {
             [
               "1",
               "3%",
-              "euploid",
+              "euploide",
               "por debajo del valor de corte: primer candidato para la transferencia"
             ],
             [
               "2",
               "no detectada (límite de detección del ensayo: 2 %)",
-              "aneuploid",
+              "aneuploide",
               "no se transfiere por aneuploidía; «no detectada» no significa 0 %"
             ],
             [
               "3",
               "11%",
-              "euploid",
+              "euploide",
               "por debajo del valor de corte: segundo candidato"
             ],
             [
               "4",
               "38%",
-              "euploid",
+              "euploide",
               "por encima del valor de corte acordado: normalmente no se transfiere"
             ],
             [
               "5",
               "6%",
-              "mosaic",
+              "mosaico",
               "la decisión se comenta por separado con el genetista clínico"
             ]
           ]
