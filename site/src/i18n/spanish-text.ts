@@ -1,3 +1,4 @@
+import { chineseText } from './chinese-text'
 import display from './display-es.json'
 import atlas from './atlas-es.json'
 import observations from './observation-es.json'
@@ -14,7 +15,7 @@ export function spanishText(value: string): string {
   return text
 }
 
-type Localized<T> = T extends { en: infer E; ru: unknown } ? T & { es: E }
+type Localized<T> = T extends { en: infer E; ru: unknown } ? T & { es: E; 'zh-Hans': E }
   : T extends (infer I)[] ? Localized<I>[]
   : T extends object ? { [K in keyof T]: Localized<T[K]> } : T
 
@@ -25,8 +26,8 @@ export function withSpanish<T>(value: T): Localized<T> {
     if (!v || typeof v !== 'object') return v
     const source = v as Record<string, unknown>
     const out = Object.fromEntries(Object.entries(source).map(([key, item]) => [key, visit(item)]))
-    if (typeof source.en === 'string' && typeof source.ru === 'string') out.es = spanishText(source.en)
-    else if (Array.isArray(source.en) && Array.isArray(source.ru)) out.es = source.en.map((s) => typeof s === 'string' ? spanishText(s) : visit(s))
+    if (typeof source.en === 'string' && typeof source.ru === 'string') { out.es = spanishText(source.en); out['zh-Hans'] = chineseText(source.en) }
+    else if (Array.isArray(source.en) && Array.isArray(source.ru)) { out.es = source.en.map((s) => typeof s === 'string' ? spanishText(s) : visit(s)); out['zh-Hans'] = source.en.map((s) => typeof s === 'string' ? chineseText(s) : visit(s)) }
     return out
   }
   return visit(value) as Localized<T>

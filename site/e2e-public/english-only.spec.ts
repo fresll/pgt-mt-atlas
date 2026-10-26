@@ -87,7 +87,7 @@ test('English template is separate and EN/RU/ES error pages retain language and 
       await expect(page.locator('html')).toHaveAttribute('lang', lang)
       if (lang === 'es') {
         await expect(page.locator('#not-found')).toHaveText('Página no encontrada')
-        await expect(page.locator('a[hreflang]')).toHaveText(['Ruso', 'Inglés', 'Español'])
+        await expect(page.locator('a[hreflang]')).toHaveText(['Ruso', 'Inglés', 'Español', '简体中文'])
       }
       for (const link of await page.locator('a[hreflang]').all()) {
         const target = await link.getAttribute('hreflang')

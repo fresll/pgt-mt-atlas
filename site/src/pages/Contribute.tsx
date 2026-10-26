@@ -1,3 +1,4 @@
+import { chineseText } from '../i18n/chinese-text'
 import { BackToTop, PageContents } from '../components/PageContents'
 import type { CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
@@ -22,7 +23,7 @@ export default function Contribute() {
   const href = asset(lang !== 'ru' ? template.file.replace('templates/', 'templates/en/') : template.file)
   const fileName = template.file.split('/').pop()
   const meta = t('contribute.templateMeta', { v: template.version, date: template.released })
-  const subject = (lang === 'ru' ? '[Атлас ПГТ-мт] ' : SUBJECT_PREFIX) + t('contribute.contact.subject')
+  const subject = (lang === 'ru' ? '[Атлас ПГТ-мт] ' : lang === 'zh-Hans' ? '[PGT-mt图谱] ' : SUBJECT_PREFIX) + t('contribute.contact.subject')
   const email = CURATOR_CONTACT.email
 
   const Download = ({ primary = false }: { primary?: boolean }) => (
@@ -128,11 +129,11 @@ export default function Contribute() {
               {template.sheets.map((s) => (
                 <tr key={s.name}>
                   <th scope="row">
-                    <span className="sk-c-sheet">{s.name}</span>
+                    <span className="sk-c-sheet">{lang === 'zh-Hans' ? chineseText(s.name) : s.name}</span>
                     {lang === 'ru' && <span className="sk-c-sheet-ru">{s.title_ru}</span>}
                   </th>
                   <td>
-                    {lang === 'ru' ? s.purpose_ru : lang === 'es' ? spanishText(templatePurposesEn[s.name] ?? s.purpose_en) : templatePurposesEn[s.name] ?? s.purpose_en}
+                    {lang === 'ru' ? s.purpose_ru : lang === 'zh-Hans' ? chineseText(templatePurposesEn[s.name] ?? s.purpose_en) : lang === 'es' ? spanishText(templatePurposesEn[s.name] ?? s.purpose_en) : templatePurposesEn[s.name] ?? s.purpose_en}
                     <span className="sk-c-count">{t('contribute.template.fields', { n: s.n_fields, r: s.n_required })}</span>
                   </td>
                 </tr>

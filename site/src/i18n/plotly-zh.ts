@@ -1,0 +1,41 @@
+export const plotlyZh = {
+  "dictionary": {
+    "Click to enter X axis title": "点击输入X轴标题",
+    "Click to enter Y axis title": "点击输入Y轴标题",
+    "Click to enter Plot title": "点击输入图表标题",
+    "Autoscale": "自动缩放",
+    "Box Select": "框选",
+    "Compare data on hover": "悬停比较数据",
+    "Double-click on legend to isolate one trace": "双击图例以仅显示一条序列",
+    "Double-click to zoom back out": "双击恢复缩放",
+    "Download plot as a PNG": "下载图表为PNG",
+    "Share chart...": "分享图表…",
+    "Share chart": "分享图表",
+    "Share": "分享",
+    "Cancel": "取消",
+    "This chart will be uploaded to {Plotly Cloud} to create a sharing link. Only you can see it until you change its visibility.": "此图表将上传至{Plotly Cloud}以创建分享链接。在您更改可见性前，仅您可查看。",
+    "If you don't have a Plotly Cloud account yet, you'll have a chance to create one.": "若尚无Plotly Cloud账户，您可创建账户。",
+    "This chart will be sent to {serverUrl}.": "此图表将发送至{serverUrl}。",
+    "Download plot as JSON": "下载图表为JSON",
+    "JSON download succeeded": "JSON下载成功",
+    "Sorry, there was a problem downloading your JSON file!": "无法下载JSON文件。",
+    "Download plot": "下载图表",
+    "Image download succeeded": "图像下载成功",
+    "Sorry, there was a problem downloading your image!": "无法下载图像。",
+    "Preparing image - this may take a few seconds": "正在准备图像，可能需要几秒",
+    "Pan": "平移",
+    "Reset": "重置",
+    "Reset axes": "重置坐标轴",
+    "Reset view": "重置视图",
+    "Reset views": "重置视图",
+    "Show closest data on hover": "悬停显示最近数据",
+    "Toggle Spike Lines": "切换参考线",
+    "Zoom": "框选放大",
+    "Zoom in": "放大",
+    "Zoom out": "缩小"
+  },
+  "format": {
+    "decimal": ".",
+    "thousands": ","
+  }
+}

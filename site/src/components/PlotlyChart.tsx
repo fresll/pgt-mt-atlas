@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState, type ComponentType, type ReactNod
 import type { Layout } from 'plotly.js'
 import type { PlotParams } from 'react-plotly.js'
 import { useLang, useT } from '../i18n'
+import { plotlyZh } from '../i18n/plotly-zh'
 import { plotlyEs } from '../i18n/plotly-es'
 
 let cached: ComponentType<PlotParams> | null = null
@@ -109,8 +110,8 @@ export function PlotlyChart({ ariaLabel, height = 420, ...props }: Omit<PlotPara
           useResizeHandler
           config={{
             displaylogo: false,
-            locale: lang === 'es' ? 'es' : 'en-US',
-            locales: { es: plotlyEs },
+            locale: lang === 'zh-Hans' ? 'zh-Hans' : lang === 'es' ? 'es' : 'en-US',
+            locales: { es: plotlyEs, 'zh-Hans': plotlyZh },
             responsive: true,
             modeBarButtonsToRemove: ['lasso2d', 'select2d', 'autoScale2d'],
             toImageButtonOptions: { format: 'png', scale: 3 },

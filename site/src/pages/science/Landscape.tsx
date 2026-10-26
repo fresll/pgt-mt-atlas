@@ -163,7 +163,7 @@ export default function Landscape() {
           list: Object.entries(atlas.stats.fig3.by_variant)
             .filter(([, v]) => v.n >= 20)
             .sort((a, b) => b[1].le18.k / b[1].le18.n - a[1].le18.k / a[1].le18.n)
-            .map(([variant, v]) => `${variant} — ${v.le18.k} ${lang === 'ru' ? 'из' : lang === 'es' ? 'de' : 'of'} ${v.le18.n}`)
+            .map(([variant, v]) => `${variant} — ${v.le18.k} ${lang === 'zh-Hans' ? '/' : lang === 'ru' ? 'из' : lang === 'es' ? 'de' : 'of'} ${v.le18.n}`)
             .join('; '),
         })}
       </p>

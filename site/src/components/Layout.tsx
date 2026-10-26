@@ -5,7 +5,7 @@ import { Head } from 'vite-react-ssg'
 import { atlas, type Lang } from '../data/atlas'
 import { LangProvider, useT } from '../i18n'
 import { Illustration } from './Sketch'
-import { englishEnabled } from '../lib/languages'
+import { chineseEnabled, englishEnabled } from '../lib/languages'
 
 type Theme = 'system' | 'light' | 'dark'
 
@@ -66,6 +66,9 @@ function Header({ lang }: { lang: Lang }) {
   const navigate = useNavigate()
   const ref = useRef<HTMLElement>(null)
   const hydrated = useHydrated()
+  const languageName = (other: Lang) => lang === 'zh-Hans'
+    ? ({ ru: '俄语', en: '英语', es: '西班牙语', 'zh-Hans': '简体中文' })[other]
+    : other === 'zh-Hans' ? '简体中文' : other === 'ru' ? 'Русский' : other === 'es' ? 'Español' : 'English'
   // Без JavaScript меню всегда раскрыто; после загрузки на телефоне оно сворачивается в кнопку «Меню».
   const [menu, setMenu] = useState<'static' | 'closed' | 'open'>('static')
   useHeaderHeight(ref)
@@ -96,8 +99,8 @@ function Header({ lang }: { lang: Lang }) {
         </nav>
         <div className="header-tools">
           <nav className="language-switch" aria-label={t('nav.language')}>
-            {(['ru', ...(englishEnabled ? ['en'] : []), 'es'] as Lang[]).filter(other => other !== lang).map(other => (
-              <Link key={other} className="btn-link" to={switchLangPath(pathname, lang, other, hydrated ? search : '', hydrated ? hash : '')} hrefLang={other} lang={other} title={`${t('nav.language')}: ${other === 'ru' ? 'Русский' : other === 'es' ? 'Español' : 'English'}`} aria-label={other === 'ru' ? 'Русский' : other === 'es' ? 'Español' : 'English'} onClick={event => {
+            {(['ru', ...(englishEnabled ? ['en'] : []), 'es', ...(chineseEnabled ? ['zh-Hans'] : [])] as Lang[]).filter(other => other !== lang).map(other => (
+              <Link key={other} className="btn-link" to={switchLangPath(pathname, lang, other, hydrated ? search : '', hydrated ? hash : '')} hrefLang={other} lang={lang === 'zh-Hans' ? 'zh-Hans' : other} title={`${t('nav.language')}: ${languageName(other)}`} aria-label={languageName(other)} onClick={event => {
                 if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
                 // Match the static href on the first render, then update it in
                 // place. Keep keyboard focus and retain the URL even if the
@@ -105,7 +108,7 @@ function Header({ lang }: { lang: Lang }) {
                 event.preventDefault()
                 navigate(switchLangPath(pathname, lang, other, search, hash))
               }}>
-                {other.toUpperCase()}
+                {lang === 'zh-Hans' ? languageName(other) : other === 'zh-Hans' ? '中文' : other.toUpperCase()}
               </Link>
             ))}
           </nav>
@@ -120,7 +123,7 @@ export function formatDate(iso: string, lang: Lang): string {
   const d = new Date(`${iso}T00:00:00Z`)
   return Number.isNaN(d.getTime())
     ? iso
-    : d.toLocaleDateString(lang === 'ru' ? 'ru-RU' : lang === 'es' ? 'es-ES' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })
+    : d.toLocaleDateString(lang === 'zh-Hans' ? 'zh-CN' : lang === 'ru' ? 'ru-RU' : lang === 'es' ? 'es-ES' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })
 }
 
 /** Публичное число посещений: чтение статистики не регистрирует новый просмотр. */
@@ -288,7 +291,7 @@ function ShellInner({ lang }: { lang: Lang }) {
   const indexing = import.meta.env.ATLAS_INDEXING_ENABLED && (lang !== 'en' || englishEnabled)
   const canonicalBase = import.meta.env.ATLAS_CANONICAL_BASE
   const route = pathname.replace(/^\//, '').replace(/\/?$/, '/')
-  const languages = englishEnabled ? ['ru', 'en', 'es'] : ['ru', 'es']
+  const languages = ['ru', ...(englishEnabled ? ['en'] : []), 'es', ...(chineseEnabled ? ['zh-Hans'] : [])]
 
   return (
     <>
@@ -299,7 +302,7 @@ function ShellInner({ lang }: { lang: Lang }) {
         <meta name="author" content="Ilya Mazunin" />
         {indexing && <meta name="robots" content="index, follow" />}
         {indexing && <link rel="canonical" href={new URL(route, canonicalBase).href} />}
-        {indexing && languages.map(language => <link key={language} rel="alternate" hrefLang={language} href={new URL(route.replace(/^(?:ru|en|es)\//, `${language}/`), canonicalBase).href} />)}
+        {indexing && languages.map(language => <link key={language} rel="alternate" hrefLang={language} href={new URL(route.replace(/^(?:ru|en|es|zh-Hans)\//, `${language}/`), canonicalBase).href} />)}
       </Head>
       <a className="skip" href="#content">
         {t('site.skip')}

@@ -38,6 +38,7 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
   const englishEnabled = process.env.VITE_ATLAS_PRIVATE_PREVIEW === '1'
     ? process.env.VITE_ATLAS_ENGLISH_REVIEW === '1'
     : process.env.VITE_ATLAS_ENGLISH_PUBLIC === '1'
+  const chineseEnabled = process.env.VITE_ATLAS_PRIVATE_PREVIEW === '1' ? process.env.VITE_ATLAS_CHINESE_REVIEW === '1' : process.env.VITE_ATLAS_CHINESE_PUBLIC === '1'
   const launch = !softLaunch && process.env.ATLAS_PUBLIC_LAUNCH === '1' && process.env.VITE_ATLAS_PRIVATE_PREVIEW !== '1'
   let canonicalBase
   if (launch) {
@@ -57,11 +58,11 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
     if (softLaunch) {
       out = out.replace(/<meta name="robots" content="[^"]*"\s*\/?>/g, '<meta name="robots" content="noindex, follow">')
     }
-    if (launch && (route.startsWith('ru/') || route.startsWith('es/') || (englishEnabled && route.startsWith('en/')))) {
+    if (launch && (route.startsWith('ru/') || route.startsWith('es/') || (englishEnabled && route.startsWith('en/')) || (chineseEnabled && route.startsWith('zh-Hans/')))) {
       const canonical = new URL(route.replace(/index\.html$/, ''), canonicalBase).href
       out = out.replace(/<meta name="robots" content="noindex, nofollow"\s*\/?>/g, '<meta name="robots" content="index, follow">')
-      const languages = englishEnabled ? ['ru', 'en', 'es'] : ['ru', 'es']
-      const alternates = languages.map(lang => ({ lang, url: new URL(route.replace(/^(?:ru|en|es)\//, `${lang}/`).replace(/index\.html$/, ''), canonicalBase).href }))
+      const languages = ['ru', ...(englishEnabled ? ['en'] : []), 'es', ...(chineseEnabled ? ['zh-Hans'] : [])]
+      const alternates = languages.map(lang => ({ lang, url: new URL(route.replace(/^(?:ru|en|es|zh-Hans)\//, `${lang}/`).replace(/index\.html$/, ''), canonicalBase).href }))
       if (!out.includes('rel="canonical"')) out = out.replace('</head>', `<link rel="canonical" href="${canonical}"></head>`)
       if (!out.includes('rel="alternate"')) out = out.replace('</head>', alternates.map(({ lang, url }) => `<link rel="alternate" hreflang="${lang}" href="${url}">`).join('') + '</head>')
       sitemap.push({ canonical, alternates })
@@ -91,7 +92,7 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
     join(dist, '404.html'),
     `<!doctype html><html lang="${englishEnabled ? 'en' : 'ru'}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="${softLaunch ? 'noindex, follow' : 'noindex'}"><title>${title404}</title></head>
 <body style="font-family:system-ui;padding:24px;background:#F7F8F4;color:#182A40"><h1>${heading404}</h1><p id="not-found">${message404}</p>
-<p><a id="russian-link" href="${base}ru/" lang="ru" hreflang="ru">${englishEnabled ? 'Russian' : 'Русский'}</a>${englishEnabled ? ` · <a href="${base}en/" lang="en" hreflang="en">English</a>` : ''} · <a href="${base}es/" lang="es" hreflang="es">Español</a></p>${russian404}<script>var root=location.pathname.match(/^(.*?\\/)(?:ru|en|es)(?:\\/|$)/);if(root)document.querySelectorAll("a[hreflang]").forEach(function(a){a.href=root[1]+a.hreflang+"/"});if(/\\/es(?:\\/|$)/.test(location.pathname)){document.documentElement.lang="es";document.title="PGT-mt Atlas — página no encontrada";document.getElementById("not-found").textContent="Página no encontrada";document.getElementById("russian-link").textContent="Ruso";var enLink=document.querySelector('a[lang="en"]');if(enLink)enLink.textContent="Inglés"}document.currentScript.remove()</script></body></html>\n`,
+<p><a id="russian-link" href="${base}ru/" lang="ru" hreflang="ru">${englishEnabled ? 'Russian' : 'Русский'}</a>${englishEnabled ? ` · <a href="${base}en/" lang="en" hreflang="en">English</a>` : ''} · <a href="${base}es/" lang="es" hreflang="es">Español</a></p>${chineseEnabled ? `<script>var a=document.createElement("a");a.href="${base}zh-Hans/";a.hreflang="zh-Hans";a.lang="zh-Hans";a.textContent="简体中文";document.querySelector("p:last-of-type").append(" · ",a)</script>` : ''}${russian404}<script>var root=location.pathname.match(/^(.*?\\/)(?:ru|en|es|zh-Hans)(?:\\/|$)/);if(root)document.querySelectorAll("a[hreflang]").forEach(function(a){a.href=root[1]+a.hreflang+"/"});if(/\\/es(?:\\/|$)/.test(location.pathname)){document.documentElement.lang="es";document.title="PGT-mt Atlas — página no encontrada";document.getElementById("not-found").textContent="Página no encontrada";document.getElementById("russian-link").textContent="Ruso";var enLink=document.querySelector('a[lang="en"]');if(enLink)enLink.textContent="Inglés"}if(/\\/zh-Hans(?:\\/|$)/.test(location.pathname)){document.documentElement.lang="zh-Hans";document.title="PGT-mt图谱 — 页面未找到";document.querySelector("h1").textContent="PGT-mt图谱";document.getElementById("not-found").textContent="页面未找到";document.querySelectorAll("a[hreflang]").forEach(function(a){a.textContent=({ru:"俄语",en:"英语",es:"西班牙语","zh-Hans":"简体中文"})[a.hreflang]})}document.currentScript.remove()</script></body></html>\n`,
   )
   console.log('404.html written')
 }

@@ -63,7 +63,7 @@ export default function Sources() {
                   <details>
                     <summary><strong>{p.short}</strong></summary>
                     <p className="small">{p.citation.replace(/\s*doi:.*$/i, '')}</p>
-                    {p.published_date && <p className="small muted">{new Date(p.published_date).toLocaleDateString(lang === 'ru' ? 'ru-RU' : lang === 'es' ? 'es-ES' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</p>}
+                    {p.published_date && <p className="small muted">{new Date(p.published_date).toLocaleDateString(lang === 'zh-Hans' ? 'zh-CN' : lang === 'ru' ? 'ru-RU' : lang === 'es' ? 'es-ES' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</p>}
                     {p.roles.length > 0 && (
                       <p className="small" data-roles={p.roles.map((r) => r.role).join(' ')}>
                         <strong>{t('sources.rolesTitle')}:</strong> {p.roles.map(roleText).join('; ')}
