@@ -4,7 +4,7 @@ name: Deploy to GitHub Pages
 # Settings → Pages → Source: GitHub Actions. Репозиторий публичный по решению куратора.
 on:
   push:
-    branches: [audit/v13-preview]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   build:
-    if: github.ref == 'refs/heads/audit/v13-preview'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     defaults: { run: { working-directory: site } }
     steps:
@@ -38,7 +38,7 @@ jobs:
         run: npm run build
       - run: npx playwright install --with-deps chromium
       - run: npm run e2e
-      - name: Build public four-language site with search indexing enabled
+      - name: Build public five-language site with search indexing enabled
         env:
           ATLAS_BASE: /pgt-mt-atlas/
           ATLAS_SOFT_LAUNCH: '0'
@@ -49,7 +49,7 @@ jobs:
           VITE_ATLAS_CHINESE_PUBLIC: '1'
           VITE_ATLAS_ARABIC_PUBLIC: '1'
         run: npm run build
-      - name: Verify public four-language navigation and English pages
+      - name: Verify public five-language navigation and English pages
         run: npm run e2e:public
       - name: Verify Chinese pages, interactive charts and navigation
         run: npx playwright test --config playwright.chinese.config.ts
@@ -93,7 +93,7 @@ jobs:
               location = entry.findtext('s:loc', namespaces=ns)
               assert {l.attrib['hreflang']: l.attrib['href'] for l in entry.findall('x:link', ns)} == {lang: re.sub(r'/(ru|en|es|zh-Hans|ar)/', '/'+lang+'/', location, count=1) for lang in ['ru','en','es','zh-Hans','ar']}
           assert Path('dist/robots.txt').read_text() == f'User-agent: *\nAllow: /\nSitemap: {base}sitemap.xml\n'
-          print(f'PASS: {len(indexed)} indexable RU/EN/ES/ZH pages; reciprocal hreflang, canonical URLs and sitemap')
+          print(f'PASS: {len(indexed)} indexable RU/EN/ES/ZH/AR pages; reciprocal hreflang, canonical URLs and sitemap')
           PYTHON
       - name: Verify public visit count is available before deployment
         run: |
