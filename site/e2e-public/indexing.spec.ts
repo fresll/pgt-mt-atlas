@@ -1,5 +1,7 @@
+import { existsSync } from 'node:fs'
 import { expect, test } from '../e2e/fixtures'
 
+const languages = ['ru', 'en', 'es', 'zh-Hans', ...(existsSync('dist/ar/index.html') ? ['ar'] : [])]
 const base = 'https://fresll.github.io/pgt-mt-atlas/'
 
 test('canonical and language alternates follow in-app navigation without query or hash', async ({ page }) => {
@@ -17,18 +19,18 @@ test('canonical and language alternates follow in-app navigation without query o
   await page.locator('header .language-switch a[lang=ru]').click()
   await expect(page.locator('head link[rel="canonical"]')).toHaveAttribute('href', `${base}ru/patients/`)
   await expect(page.locator('head link[rel="canonical"]')).toHaveCount(1)
-  for (const language of ['ru', 'en', 'es', 'zh-Hans']) await expect(page.locator(`head link[rel="alternate"][hreflang="${language}"]`)).toHaveAttribute('href', `${base}${language}/patients/`)
+  for (const language of languages) await expect(page.locator(`head link[rel="alternate"][hreflang="${language}"]`)).toHaveAttribute('href', `${base}${language}/patients/`)
 })
 
-test('sitemap lists both languages while redirects and error pages stay noindex', async ({ request }) => {
+test('sitemap lists every enabled language while redirects and error pages stay noindex', async ({ request }) => {
   const sitemapResponse = await request.get('sitemap.xml')
   expect(sitemapResponse.status()).toBe(200)
   const sitemap = await sitemapResponse.text()
   const locations = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1])
-  expect(locations).toHaveLength(88)
-  expect(new Set(locations).size).toBe(88)
-  for (const language of ['ru', 'en', 'es', 'zh-Hans']) expect(locations.filter(url => url.startsWith(`${base}${language}/`))).toHaveLength(22)
-  expect(sitemap.match(/<xhtml:link /g)).toHaveLength(352)
+  expect(locations).toHaveLength(22 * languages.length)
+  expect(new Set(locations).size).toBe(22 * languages.length)
+  for (const language of languages) expect(locations.filter(url => url.startsWith(`${base}${language}/`))).toHaveLength(22)
+  expect(sitemap.match(/<xhtml:link /g)).toHaveLength(22 * languages.length ** 2)
   expect(await (await request.get('robots.txt')).text()).toBe(`User-agent: *\nAllow: /\nSitemap: ${base}sitemap.xml\n`)
   for (const path of ['', '404.html']) expect(await (await request.get(path)).text()).toContain('content="noindex')
 })
