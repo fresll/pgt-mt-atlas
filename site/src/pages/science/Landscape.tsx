@@ -200,29 +200,25 @@ export default function Landscape() {
         </label>
       </div>
 
-      <p className="scroll-hint">{t('common.scrollHint')}</p>
-      <div style={{ overflowX: 'auto' }}>
-        <div style={{ minWidth: 960 }}>
-          <PlotlyChart
-            ariaLabel={t('landscape.title')}
-            height={600}
-            data={plot.data as never}
-            layout={plot.layout as never}
-            onClick={(e) => {
-              const raw = e.points?.[0]?.customdata
-              if (typeof raw !== 'string') return
-              const ids = raw.split(' ')
-              if (ids.length > 1) {
-                setGroup(ids)
-                setSelected(null)
-              } else {
-                setGroup(null)
-                setSelected(ids[0])
-              }
-            }}
-          />
-        </div>
-      </div>
+      <PlotlyChart
+        minWidth={Math.ceil(100 * xmax + 100)}
+        ariaLabel={t('landscape.title')}
+        height={600}
+        data={plot.data as never}
+        layout={plot.layout as never}
+        onClick={(e) => {
+          const raw = e.points?.[0]?.customdata
+          if (typeof raw !== 'string') return
+          const ids = raw.split(' ')
+          if (ids.length > 1) {
+            setGroup(ids)
+            setSelected(null)
+          } else {
+            setGroup(null)
+            setSelected(ids[0])
+          }
+        }}
+      />
       <p className="small muted">{t('common.clickHint')} {highlightDerived && t('landscape.derivedLegend')}.</p>
       {groupObs && groupObs.length > 1 && (
         <div className="detail obs-group" role="region" aria-label={t('landscape.groupTitle', { n: groupObs.length })} data-group-size={groupObs.length}>

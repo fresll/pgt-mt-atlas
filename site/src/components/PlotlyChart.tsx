@@ -9,13 +9,25 @@ let cached: ComponentType<PlotParams> | null = null
 let plotlyApi: typeof import('plotly.js') | null = null
 
 /** Plotly только в браузере: при статической генерации показывается заглушка, а данные доступны в таблице. */
-export function PlotlyChart({ ariaLabel, height = 420, ...props }: Omit<PlotParams, 'style'> & { ariaLabel: string; height?: number; children?: ReactNode }) {
+export function PlotlyChart({ ariaLabel, height = 420, minWidth = 0, ...props }: Omit<PlotParams, 'style'> & { ariaLabel: string; height?: number; minWidth?: number; children?: ReactNode }) {
   const t = useT()
   const lang = useLang()
   const [Plot, setPlot] = useState<ComponentType<PlotParams> | null>(cached)
   const [failed, setFailed] = useState(false)
   const [reset, setReset] = useState(0)
   const frame = useRef<HTMLDivElement>(null)
+  const viewport = useRef<HTMLDivElement>(null)
+  const [scrollable, setScrollable] = useState(false)
+  useEffect(() => {
+    const el = viewport.current
+    if (!el) return
+    const update = () => setScrollable(el.scrollWidth > el.clientWidth + 1)
+    update()
+    const observer = new ResizeObserver(update)
+    observer.observe(el)
+    if (frame.current) observer.observe(frame.current)
+    return () => observer.disconnect()
+  }, [minWidth])
   // Plotly mutates layouts; a fresh copy also restores defaults on explicit reset.
   const layout = useMemo(() => ({
     uirevision: 'atlas-view',
@@ -61,7 +73,10 @@ export function PlotlyChart({ ariaLabel, height = 420, ...props }: Omit<PlotPara
     return () => observer.disconnect()
   }, [Plot])
   return (
-    <div ref={frame} className="chart-frame" role="figure" aria-label={ariaLabel}>
+    <div className="chart-container">
+      {scrollable && <p className="scroll-hint">{t('common.chartScrollHint')}</p>}
+      <div ref={viewport} className="chart-viewport" role="region" aria-label={ariaLabel} tabIndex={scrollable ? 0 : undefined} dir="ltr">
+    <div ref={frame} className="chart-frame" role="figure" aria-label={ariaLabel} style={{ minWidth: minWidth || undefined }}>
       <div className="chart-actions">
         <button type="button" className="ghost" disabled={!Plot} onClick={() => {
           view.current = {}
@@ -129,6 +144,8 @@ export function PlotlyChart({ ariaLabel, height = 420, ...props }: Omit<PlotPara
           </span>
         </div>
       )}
+    </div>
+      </div>
     </div>
   )
 }

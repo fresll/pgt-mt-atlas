@@ -132,6 +132,7 @@ const es: Dict = {
     "upperBoundUnknown": "No se indica el límite superior; consulte la nota de la fuente",
     "loadingChart": "Cargando gráfico…",
     "main": "Resultado principal",
+    "chartScrollHint": "El gráfico es más ancho que la pantalla: desplácese horizontalmente para verlo completo →",
     "scrollHint": "El gráfico es más ancho que la pantalla: desplácese horizontalmente para ver todas las variantes →",
     "noJs": "El gráfico interactivo requiere JavaScript. Los mismos datos se muestran en la tabla inferior.",
     "chartError": "No se pudo cargar el módulo del gráfico interactivo. Compruebe la conexión y recargue la página; los mismos datos se muestran en la tabla inferior.",
