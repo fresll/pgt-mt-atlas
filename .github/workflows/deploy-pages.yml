@@ -4,7 +4,7 @@ name: Deploy to GitHub Pages
 # Settings → Pages → Source: GitHub Actions. Репозиторий публичный по решению куратора.
 on:
   push:
-    branches: [audit/v13-preview]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   build:
-    if: github.ref == 'refs/heads/audit/v13-preview'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     defaults: { run: { working-directory: site } }
     steps:
