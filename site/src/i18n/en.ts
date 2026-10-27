@@ -131,6 +131,7 @@ const en: Dict = {
     "upperBoundUnknown": "Upper bound not reported; see source note",
     "loadingChart": "Loading chart…",
     "main": "Key finding",
+    "chartScrollHint": "The chart is wider than the screen: scroll sideways to see it all →",
     "scrollHint": "The chart is wider than the screen: scroll sideways to see all variants →",
     "noJs": "The interactive chart needs JavaScript. The same data are shown in the table below.",
     "chartError": "The interactive chart module could not be loaded. Check your connection and reload the page; the same data are shown in the table below.",

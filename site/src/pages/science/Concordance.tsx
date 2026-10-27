@@ -182,9 +182,9 @@ export default function Concordance() {
         </span>
       </div>
       <div className="grid-3">
-        <div><h3>{t('concordance.a')}</h3><PlotlyChart ariaLabel={t('concordance.a')} height={400} data={panelA.data as never} layout={panelA.layout as never} onClick={pick} /></div>
-        <div><h3>{t('concordance.b')}</h3><PlotlyChart ariaLabel={t('concordance.b')} height={400} data={panelB.data as never} layout={panelB.layout as never} onClick={pick} /></div>
-        <div><h3>{t('concordance.c')}</h3><PlotlyChart ariaLabel={t('concordance.c')} height={400} data={panelC.data as never} layout={panelC.layout as never} onClick={pick} /></div>
+        <div><h3>{t('concordance.a')}</h3><PlotlyChart minWidth={640} ariaLabel={t('concordance.a')} height={400} data={panelA.data as never} layout={panelA.layout as never} onClick={pick} /></div>
+        <div><h3>{t('concordance.b')}</h3><PlotlyChart minWidth={640} ariaLabel={t('concordance.b')} height={400} data={panelB.data as never} layout={panelB.layout as never} onClick={pick} /></div>
+        <div><h3>{t('concordance.c')}</h3><PlotlyChart minWidth={640} ariaLabel={t('concordance.c')} height={400} data={panelC.data as never} layout={panelC.layout as never} onClick={pick} /></div>
       </div>
       <p className="small muted">{t('common.clickHint')} {t('concordance.band5')}. {t('concordance.fractionCounts')}; {t('concordance.median')} — {t('interfaceCopy.Concordance.medianBar')}.</p>
       <p className="small">

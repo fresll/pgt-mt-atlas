@@ -1167,3 +1167,14 @@ body:has(.pt-page) { background: var(--sk-paper); }
 article h2[id], article section[id] { scroll-margin-top: calc(var(--header-h, 94px) + 20px); }
 
 header.site .language-switch a { min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
+
+/* Keep dense charts readable without widening the page. */
+.chart-container { min-width: 0; }
+.chart-viewport { max-width: 100%; overflow-x: auto; overscroll-behavior-x: contain; }
+.chart-viewport:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (orientation: landscape) and (max-height: 500px) {
+  header.site { position: relative; }
+  .fd-level-switch { position: relative; top: auto; }
+}
+
+.grid-2 > *, .grid-3 > * { min-width: 0; }

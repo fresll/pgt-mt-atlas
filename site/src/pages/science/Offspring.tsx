@@ -193,7 +193,7 @@ export default function Offspring() {
       </div>
       <div className="grid-2">
         <div><h3>{t('interfaceCopy.Offspring.panelA')}</h3><PlotlyChart ariaLabel={t('offspring.subtitle')} height={460} data={panelA.data as never} layout={panelA.layout as never} onClick={pick} /></div>
-        <div><h3>{t('interfaceCopy.Offspring.panelB')}</h3><PlotlyChart ariaLabel={t('offspring.yB')} height={460} data={panelB.data as never} layout={panelB.layout as never} onClick={pick} /></div>
+        <div><h3>{t('interfaceCopy.Offspring.panelB')}</h3><PlotlyChart minWidth={520} ariaLabel={t('offspring.yB')} height={460} data={panelB.data as never} layout={panelB.layout as never} onClick={pick} /></div>
       </div>
       <p className="small muted">{t('common.clickHint')} {t('offspring.lowSpread')} {t('offspring.deltaBound')}</p>
       <p className="small"><strong>{t('offspring.dependency', { pairs: s.n_pairs, children: s.n_children, ...topChild })}</strong>{' '}

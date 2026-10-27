@@ -131,6 +131,7 @@ const zh: Dict = {
     "upperBoundUnknown": "未报告上界，请参阅来源备注",
     "loadingChart": "正在加载图表…",
     "main": "主要发现",
+    "chartScrollHint": "图表宽于屏幕，请横向滚动以查看完整图表 →",
     "scrollHint": "图表宽于屏幕，请横向滚动以查看全部变异 →",
     "noJs": "交互图表需要JavaScript。相同数据见下方表格。",
     "chartError": "无法加载交互图表模块。请检查网络并刷新页面；相同数据见下方表格。",
