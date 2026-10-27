@@ -1,3 +1,6 @@
+import { publicationText } from '../i18n/arabic-text'
+import { ScientificText } from './ScientificText'
+import { arabicText } from '../i18n/arabic-text'
 import { chineseText } from '../i18n/chinese-text'
 import { spanishText } from '../i18n/spanish-text'
 import { sourceText } from '../i18n/source-text-en'
@@ -34,14 +37,15 @@ export function PubStatus({ p }: { p: Publication }) {
 
 /** Ссылка на публикацию: краткое имя + DOI (если подтверждён) + статус. */
 export function PubRef({ id, showStatus = false }: { id: string; showStatus?: boolean }) {
+  const lang = useLang()
   const t = useT()
   const p = pubById[id]
   if (!p) return <span>{id}</span>
   return (
     <span>
-      {p.short}{' '}
+      <bdi dir={lang === 'ar' ? 'auto' : 'ltr'}>{publicationText(p.short, lang)}</bdi>{' '}
       {p.doi ? (
-        <a href={doiUrl(p.doi)} target="_blank" rel="noreferrer">
+        <a dir="ltr" href={doiUrl(p.doi)} target="_blank" rel="noreferrer">
           doi:{p.doi}
         </a>
       ) : (
@@ -59,6 +63,7 @@ export function PubRef({ id, showStatus = false }: { id: string; showStatus?: bo
 
 export function Detail({ title, rows, onClose, children }: { title: ReactNode; rows: [ReactNode, ReactNode][]; onClose?: () => void; children?: ReactNode }) {
   const t = useT()
+  const lang = useLang()
   return (
     <section className="detail" aria-live="polite">
       <div className="head">
@@ -75,7 +80,7 @@ export function Detail({ title, rows, onClose, children }: { title: ReactNode; r
           .map(([k, v], i) => (
             <div key={i} style={{ display: 'contents' }}>
               <dt>{k}</dt>
-              <dd>{v}</dd>
+              <dd>{lang === 'ar' && typeof v === 'string' ? <ScientificText text={v} /> : <bdi>{v}</bdi>}</dd>
             </div>
           ))}
       </dl>
@@ -97,7 +102,7 @@ export function CorrectionList({ embryo }: { embryo: string }) {
       <ul style={{ margin: '6px 0 0', paddingLeft: 18 }}>
         {items.map((c) => (
           <li key={c.id}>
-            {label('fraction', c.target.fraction, lang)}: {show(c.field, c.from)} ({t('verification.sourceValue')}, «{sourceText(c.target.sheet, lang)}», {lang === 'zh-Hans' ? '行' : lang === 'ru' ? 'строка' : lang === 'es' ? 'fila' : 'row'} {c.target.row}) → <strong>{show(c.field, c.to)}</strong>
+            {label('fraction', c.target.fraction, lang)}: {show(c.field, c.from)} ({t('verification.sourceValue')}, «{sourceText(c.target.sheet, lang)}», {lang === 'ar' ? 'الصف' : lang === 'zh-Hans' ? '行' : lang === 'ru' ? 'строка' : lang === 'es' ? 'fila' : 'row'} {c.target.row}) → <strong>{show(c.field, c.to)}</strong>
             <br />
             <span className="muted">{c.source.document}; {c.source.locator}</span>
           </li>
@@ -119,8 +124,8 @@ export function VerificationList({ items }: { items: Verification[] }) {
           <li key={i}>
             {v.esm_label}: ESM {String(v.esm_value)}% · {t(`verification.${v.status}`)}
             {v.resolution === 'corrected' && <> · <strong>{t('verification.corrected')}</strong></>}
-            {v.dataset_value !== null && ` · ${lang === 'zh-Hans' ? '数据集' : lang === 'ru' ? 'набор' : lang === 'es' ? 'conjunto de datos' : 'dataset'} ${String(v.dataset_value)}%`}
-            {(lang === 'zh-Hans' ? chineseText(v.comment_en ?? '') : lang === 'ru' ? v.comment_ru : lang === 'es' ? spanishText(v.comment_en ?? '') : v.comment_en) && <> — {lang === 'zh-Hans' ? chineseText(v.comment_en ?? '') : lang === 'ru' ? v.comment_ru : lang === 'es' ? spanishText(v.comment_en ?? '') : v.comment_en}</>}
+            {v.dataset_value !== null && ` · ${lang === 'ar' ? 'مجموعة البيانات' : lang === 'zh-Hans' ? '数据集' : lang === 'ru' ? 'набор' : lang === 'es' ? 'conjunto de datos' : 'dataset'} ${String(v.dataset_value)}%`}
+            {(lang === 'ar' ? arabicText(v.comment_en ?? '') : lang === 'zh-Hans' ? chineseText(v.comment_en ?? '') : lang === 'ru' ? v.comment_ru : lang === 'es' ? spanishText(v.comment_en ?? '') : v.comment_en) && <> — {lang === 'ar' ? arabicText(v.comment_en ?? '') : lang === 'zh-Hans' ? chineseText(v.comment_en ?? '') : lang === 'ru' ? v.comment_ru : lang === 'es' ? spanishText(v.comment_en ?? '') : v.comment_en}</>}
           </li>
         ))}
       </ul>

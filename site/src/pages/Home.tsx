@@ -20,16 +20,16 @@ export default function Home() {
   ]
   const ledger: [number, string][] = [
     [s.fig3.n, t('home.k1')],
-    [s.fig4.n_embryos, t('home.k2', { icm: new Set(atlas.concordance.filter((f) => f.fraction === 'icm').map((f) => f.embryo)).size, word: plural(s.fig4.n_embryos, lang, lang === 'zh-Hans' ? ['个囊胚', '个囊胚', '个囊胚'] : lang === 'ru' ? ['бластоциста', 'бластоцисты', 'бластоцист'] : lang === 'es' ? ['blastocisto', 'blastocistos', 'blastocistos'] : ['blastocyst', 'blastocysts', 'blastocysts']) })],
+    [s.fig4.n_embryos, t('home.k2', { icm: new Set(atlas.concordance.filter((f) => f.fraction === 'icm').map((f) => f.embryo)).size, word: plural(s.fig4.n_embryos, lang, lang === 'ar' ? ['كيسة أريمية', 'كيسات أريمية', 'كيسة أريمية'] : lang === 'zh-Hans' ? ['个囊胚', '个囊胚', '个囊胚'] : lang === 'ru' ? ['бластоциста', 'бластоцисты', 'бластоцист'] : lang === 'es' ? ['blastocisto', 'blastocistos', 'blastocistos'] : ['blastocyst', 'blastocysts', 'blastocysts']) })],
     [s.fig5.n_pairs, t('home.k3', { children: s.fig5.n_children, ndChildren: s.fig5.n_both_nd_children, word: word(s.fig5.n_pairs, 'comparison') })],
-    [atlas.publications.length, t('home.k4', { doi: atlas.publications.filter((p) => p.doi).length, word: plural(atlas.publications.length, lang, lang === 'zh-Hans' ? ['篇文献', '篇文献', '篇文献'] : lang === 'ru' ? ['публикация', 'публикации', 'публикаций'] : lang === 'es' ? ['publicación', 'publicaciones', 'publicaciones'] : ['publication', 'publications', 'publications']) })],
+    [atlas.publications.length, t('home.k4', { doi: atlas.publications.filter((p) => p.doi).length, word: plural(atlas.publications.length, lang, lang === 'ar' ? ['منشور', 'منشورات', 'منشورًا'] : lang === 'zh-Hans' ? ['篇文献', '篇文献', '篇文献'] : lang === 'ru' ? ['публикация', 'публикации', 'публикаций'] : lang === 'es' ? ['publicación', 'publicaciones', 'publicaciones'] : ['publication', 'publications', 'publications']) })],
   ]
   return (
     <article className="sk-home">
       <section className="sk-hero">
         <div className="sk-hero-text">
           <h1>
-            {lang === 'ru' ? <>Атлас<br /><em>ПГТ-мт</em></> : lang === 'zh-Hans' ? <>PGT-mt <em>图谱</em></> : <>PGT-mt <em>Atlas</em></>}
+            {lang === 'ar' ? <>أطلس<br /><em>PGT-mt</em></> : lang === 'ru' ? <>Атлас<br /><em>ПГТ-мт</em></> : lang === 'zh-Hans' ? <>PGT-mt <em>图谱</em></> : <>PGT-mt <em>Atlas</em></>}
           </h1>
           <HandRule className="sk-title-rule" />
           <p className="sk-subtitle">{t('site.tagline')}</p>

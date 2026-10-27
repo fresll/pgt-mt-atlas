@@ -1,3 +1,4 @@
+import { publicationText } from '../../i18n/arabic-text'
 import { sourceText } from '../../i18n/source-text-en'
 import { useEffect, useMemo, useState } from 'react'
 import { DataTable } from '../../components/DataTable'
@@ -48,7 +49,7 @@ export function VariantClassText({ variant }: { variant: string }) {
     <>
       {label('variant_class', c.class, lang)}
       <span className="muted small">
-        {' '}· {t(`common.classBasis.${c.status}`, { source: pubById[c.publication]?.short ?? c.publication, locator: sourceText(c.locator ?? '', lang), date: c.checked })}
+        {' '}· {t(`common.classBasis.${c.status}`, { source: publicationText(pubById[c.publication]?.short ?? c.publication, lang), locator: sourceText(c.locator ?? '', lang), date: c.checked })}
       </span>
     </>
   )
@@ -96,7 +97,7 @@ export default function Landscape() {
           target.y.push(pt.y)
           target.ids.push(pt.ids.join(' '))
           target.text.push(
-            `<b>${head}</b><br>${o.variant} · ${p.short}<br>${label('stage', o.stage, lang)} · ${label('sample_type', o.sample, lang)}` +
+            `<b>${head}</b><br>${o.variant} · ${publicationText(p.short, lang)}<br>${label('stage', o.stage, lang)} · ${label('sample_type', o.sample, lang)}` +
               (isDerived(o) ? `<br><i>${label('derivation', o.derivation, lang)}</i>` : '') +
               (pt.count > 1 ? `<br><i>${t('landscape.groupClick')}</i>` : `<br><span style="font-size:11px">${o.id}</span>`),
           )
@@ -110,7 +111,7 @@ export default function Landscape() {
           hoverIv.x.push(xx)
           hoverIv.y.push(((o.low as number) + (o.high as number)) / 2)
           hoverIv.ids.push(o.id)
-          hoverIv.text.push(`<b>${obsValueText(o, lang, t)}</b><br>${o.variant} · ${p.short}<br>${o.id}`)
+          hoverIv.text.push(`<b>${obsValueText(o, lang, t)}</b><br>${o.variant} · ${publicationText(p.short, lang)}<br>${o.id}`)
         }
       }
       shapes.push({ type: 'line', x0: b.x1, x1: b.x1, y0: -4, y1: 140, yref: 'y', line: { color: th.grid, width: 1 } })
@@ -163,7 +164,7 @@ export default function Landscape() {
           list: Object.entries(atlas.stats.fig3.by_variant)
             .filter(([, v]) => v.n >= 20)
             .sort((a, b) => b[1].le18.k / b[1].le18.n - a[1].le18.k / a[1].le18.n)
-            .map(([variant, v]) => `${variant} — ${v.le18.k} ${lang === 'zh-Hans' ? '/' : lang === 'ru' ? 'из' : lang === 'es' ? 'de' : 'of'} ${v.le18.n}`)
+            .map(([variant, v]) => `${variant} — ${v.le18.k} ${lang === 'ar' ? 'من' : lang === 'zh-Hans' ? '/' : lang === 'ru' ? 'из' : lang === 'es' ? 'de' : 'of'} ${v.le18.n}`)
             .join('; '),
         })}
       </p>
@@ -201,7 +202,7 @@ export default function Landscape() {
       </div>
 
       <PlotlyChart
-        minWidth={Math.ceil(100 * xmax + 100)}
+        minWidth={Math.ceil(100 * xmax + 100)} arMinWidth={Math.ceil(110 * xmax + 180)}
         ariaLabel={t('landscape.title')}
         height={600}
         data={plot.data as never}
@@ -224,7 +225,7 @@ export default function Landscape() {
         <div className="detail obs-group" role="region" aria-label={t('landscape.groupTitle', { n: groupObs.length })} data-group-size={groupObs.length}>
           <h3>{t('landscape.groupTitle', { n: groupObs.length })}</h3>
           <p className="small">
-            {t('landscape.groupHint', { n: groupObs.length })} {obsValueText(groupObs[0], lang, t)} · {groupObs[0].variant} · {pubById[groupObs[0].pub].short}
+            {t('landscape.groupHint', { n: groupObs.length })} {obsValueText(groupObs[0], lang, t)} · {groupObs[0].variant} · {publicationText(pubById[groupObs[0].pub].short, lang)}
           </p>
           <ul className="obs-group-list">
             {groupObs.map((o) => (
@@ -263,10 +264,10 @@ export default function Landscape() {
           csvName="pgt-mt-atlas_heteroplasmy-landscape.csv"
           csvRow={(o) => ({ id: o.id, variant: o.variant, value_pct: o.value, qualifier: o.q, low: o.low, high: o.high, publication: o.pub, doi: pubById[o.pub]?.doi, pmid: pubById[o.pub]?.pmid, source_locator: o.source_locator, stage: o.stage, stage_raw: o.stage_raw, sample_type: o.sample, material_raw: o.material_raw, derivation: o.derivation, sheet: sourceText(o.src.sheet, lang), row: o.src.row })}
           columns={[
-            { key: 'id', header: 'ID', render: (o) => o.id, sort: (o) => o.id },
+            { key: 'id', header: lang === 'ar' ? 'المعرّف' : 'ID', render: (o) => o.id, sort: (o) => o.id },
             { key: 'variant', header: t('common.variant'), render: (o) => o.variant, sort: (o) => o.variant },
             { key: 'value', header: t('common.value'), render: (o) => obsValueText(o, lang, t), sort: (o) => (o.q === 'interval' ? o.high : o.value), num: true },
-            { key: 'pub', header: t('common.source'), render: (o) => pubById[o.pub].short, sort: (o) => pubById[o.pub].short },
+            { key: 'pub', header: t('common.source'), render: (o) => publicationText(pubById[o.pub].short, lang), sort: (o) => pubById[o.pub].short },
             { key: 'stage', header: t('common.stage'), render: (o) => label('stage', o.stage, lang), sort: (o) => o.stage },
             { key: 'mat', header: t('common.material'), render: (o) => sourceText(o.material_raw, lang), sort: (o) => o.material_raw },
             { key: 'der', header: t('common.derivation'), render: (o) => label('derivation', o.derivation, lang), sort: (o) => o.derivation },

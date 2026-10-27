@@ -1,3 +1,4 @@
+import { publicationText } from '../../i18n/arabic-text'
 import { sourceText } from '../../i18n/source-text-en'
 import { useState } from 'react'
 import { PubStatus, Seg } from '../../components/ui'
@@ -61,9 +62,9 @@ export default function Sources() {
               <tr key={p.id} id={p.id}>
                 <td>
                   <details>
-                    <summary><strong>{p.short}</strong></summary>
+                    <summary><strong>{publicationText(p.short, lang)}</strong></summary>
                     <p className="small">{p.citation.replace(/\s*doi:.*$/i, '')}</p>
-                    {p.published_date && <p className="small muted">{new Date(p.published_date).toLocaleDateString(lang === 'zh-Hans' ? 'zh-CN' : lang === 'ru' ? 'ru-RU' : lang === 'es' ? 'es-ES' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</p>}
+                    {p.published_date && <p className="small muted">{new Date(p.published_date).toLocaleDateString(lang === 'ar' ? 'ar-u-nu-latn' : lang === 'zh-Hans' ? 'zh-CN' : lang === 'ru' ? 'ru-RU' : lang === 'es' ? 'es-ES' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}</p>}
                     {p.roles.length > 0 && (
                       <p className="small" data-roles={p.roles.map((r) => r.role).join(' ')}>
                         <strong>{t('sources.rolesTitle')}:</strong> {p.roles.map(roleText).join('; ')}
@@ -71,7 +72,7 @@ export default function Sources() {
                     )}
                     {p.id !== 'tofilo2026' && p.data_access_note && <p className="small muted">{p.data_access_note[lang]}</p>}
                     {p.id !== 'tofilo2026' && p.doi_exception && <p className="small muted" lang={lang}>{t('sources.doiException')}: {sourceText(p.doi_exception, lang)}</p>}
-                    {p.id !== 'tofilo2026' && p.supplementary && <p className="small">{t('sources.supplementary')}: {p.supplementary.map((x) => x.label).join(', ')}</p>}
+                    {p.id !== 'tofilo2026' && p.supplementary && <p className="small">{t('sources.supplementary')}: {p.supplementary.map((x) => lang === 'ar' ? sourceText(x.label, lang) : x.label).join(', ')}</p>}
                   </details>
                 </td>
                 <td data-label={t('sources.colType')}><PubStatus p={p} /></td>

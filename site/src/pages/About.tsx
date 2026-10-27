@@ -1,3 +1,4 @@
+import { arabicText } from '../i18n/arabic-text'
 import { chineseText } from '../i18n/chinese-text'
 import { spanishText } from '../i18n/spanish-text'
 import { Link } from 'react-router-dom'
@@ -10,7 +11,7 @@ export default function About() {
   const t = useT()
   const lang = useLang()
   const ru = lang === 'ru'
-  const text = (value: string) => lang === 'zh-Hans' ? chineseText(value) : lang === 'es' ? spanishText(value) : value
+  const text = (value: string) => lang === 'ar' ? arabicText(value) : lang === 'zh-Hans' ? chineseText(value) : lang === 'es' ? spanishText(value) : value
   return (
     <article className="pt-page">
       <PageTitle title={t('about.title')} />

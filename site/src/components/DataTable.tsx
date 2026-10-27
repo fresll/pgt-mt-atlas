@@ -1,3 +1,4 @@
+import { ScientificText } from './ScientificText'
 import { useMemo, useState, type ReactNode } from 'react'
 import { downloadCsv } from '../lib/csv'
 import { useLang, useT } from '../i18n'
@@ -89,7 +90,7 @@ export function DataTable<R>({ rows, columns, rowKey, selected, onSelect, csvNam
                 >
                   {columns.map((c) => (
                     <td key={c.key} className={c.num ? 'num' : undefined}>
-                      {c.render(r)}
+                      {lang === 'ar' && typeof c.render(r) === 'string' ? <ScientificText text={c.render(r) as string} /> : <bdi>{c.render(r)}</bdi>}
                     </td>
                   ))}
                 </tr>

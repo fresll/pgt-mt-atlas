@@ -139,6 +139,8 @@ const ru = {
     "mode": "Режим",
     "threshold": "Граница",
     "reset": "Сбросить",
+    "expandChart": "Увеличить график",
+    "collapseChart": "Закрыть увеличенный график",
     "resetChartView": "Вернуться к исходному варианту",
     "embryo": "Эмбрион",
     "child": "Ребёнок",

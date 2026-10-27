@@ -1,3 +1,4 @@
+import { publicationText } from '../../i18n/arabic-text'
 import { observationText } from '../../i18n/scientificText'
 import { sourceText } from '../../i18n/source-text-en'
 import { useMemo, useState } from 'react'
@@ -61,7 +62,7 @@ export default function Concordance() {
         return {
           type: 'scatter', mode: 'lines+markers', x: xs, y: xs.map((i) => e.fr[FR[i]]),
           customdata: xs.map(() => e.embryo),
-          text: xs.map((i) => `<b>${e.embryo}</b><br>${frLabel(FR[i])}: ${pct(e.fr[FR[i]] ?? null, lang, 2)}<br>${observationText(e.variant, lang)} · ${pubById[e.pub].short}`),
+          text: xs.map((i) => `<b>${e.embryo}</b><br>${frLabel(FR[i])}: ${pct(e.fr[FR[i]] ?? null, lang, 2)}<br>${observationText(e.variant, lang)} · ${publicationText(pubById[e.pub].short, lang)}`),
           hovertemplate: '%{text}<extra></extra>',
           line: { color: sel ? th.accent : hv2 ? th.muted : th.ink2, width: sel ? 3 : 1 },
           marker: markerFor(e.cls, hasVerificationIssue(e.embryo), sel, th),
@@ -94,7 +95,7 @@ export default function Concordance() {
         const e = rows.find((r) => r.embryo === p.key)!
         data.push({
           type: 'scatter', mode: 'markers', x: [p.x], y: [p.y], customdata: [e.embryo],
-          text: [`<b>${e.embryo}</b><br>${frLabel(g.frac)} − ${frLabel('te_biopsy')}: ${fmt(p.y, lang, 2)} ${t('common.pp')}<br>${observationText(e.variant, lang)} · ${pubById[e.pub].short}`],
+          text: [`<b>${e.embryo}</b><br>${frLabel(g.frac)} − ${frLabel('te_biopsy')}: ${fmt(p.y, lang, 2)} ${t('common.pp')}<br>${observationText(e.variant, lang)} · ${publicationText(pubById[e.pub].short, lang)}`],
           hovertemplate: '%{text}<extra></extra>', marker: markerFor(e.cls, hasVerificationIssue(e.embryo), e.embryo === selected, th),
         })
       }
@@ -123,12 +124,12 @@ export default function Concordance() {
 
   const panelC = useMemo(() => {
     const cols = [
-      { name: t('concordance.cleavage'), items: atlas.cleavage.map((c) => ({ key: c.embryo, y: c.range, cls: 'pathogenic', text: `<b>${c.embryo}</b><br>${fmt(c.b1, lang)}% / ${fmt(c.b2, lang)}% → ${fmt(c.range, lang)} ${t('common.pp')}<br>${c.variant} · ${pubById[c.pub].short}` })) },
+      { name: t('concordance.cleavage'), items: atlas.cleavage.map((c) => ({ key: c.embryo, y: c.range, cls: 'pathogenic', text: `<b>${c.embryo}</b><br>${fmt(c.b1, lang)}% / ${fmt(c.b2, lang)}% → ${fmt(c.range, lang)} ${t('common.pp')}<br>${c.variant} · ${publicationText(pubById[c.pub].short, lang)}` })) },
       ...[false, true]
         .filter((hv2) => showHv2 || !hv2)
         .map((hv2) => ({
           name: hv2 ? t('concordance.blastHv2') : t('concordance.blastPat'),
-          items: embryos.filter((e) => (e.cls === 'neutral_polymorphism') === hv2).map((e) => ({ key: e.embryo, y: rangeOf(e.fr), cls: e.cls, text: `<b>${e.embryo}</b><br>${fmt(rangeOf(e.fr), lang, 2)} ${t('common.pp')}<br>${observationText(e.variant, lang)} · ${pubById[e.pub].short}` })),
+          items: embryos.filter((e) => (e.cls === 'neutral_polymorphism') === hv2).map((e) => ({ key: e.embryo, y: rangeOf(e.fr), cls: e.cls, text: `<b>${e.embryo}</b><br>${fmt(rangeOf(e.fr), lang, 2)} ${t('common.pp')}<br>${observationText(e.variant, lang)} · ${publicationText(pubById[e.pub].short, lang)}` })),
         })),
     ]
     const data: Record<string, unknown>[] = []
@@ -182,9 +183,9 @@ export default function Concordance() {
         </span>
       </div>
       <div className="grid-3">
-        <div><h3>{t('concordance.a')}</h3><PlotlyChart minWidth={640} ariaLabel={t('concordance.a')} height={400} data={panelA.data as never} layout={panelA.layout as never} onClick={pick} /></div>
-        <div><h3>{t('concordance.b')}</h3><PlotlyChart minWidth={640} ariaLabel={t('concordance.b')} height={400} data={panelB.data as never} layout={panelB.layout as never} onClick={pick} /></div>
-        <div><h3>{t('concordance.c')}</h3><PlotlyChart minWidth={640} ariaLabel={t('concordance.c')} height={400} data={panelC.data as never} layout={panelC.layout as never} onClick={pick} /></div>
+        <div><h3>{t('concordance.a')}</h3><PlotlyChart arMinWidth={1100} minWidth={640} ariaLabel={t('concordance.a')} height={400} data={panelA.data as never} layout={panelA.layout as never} onClick={pick} /></div>
+        <div><h3>{t('concordance.b')}</h3><PlotlyChart arMinWidth={1200} minWidth={640} ariaLabel={t('concordance.b')} height={400} data={panelB.data as never} layout={panelB.layout as never} onClick={pick} /></div>
+        <div><h3>{t('concordance.c')}</h3><PlotlyChart arMinWidth={1000} minWidth={640} ariaLabel={t('concordance.c')} height={400} data={panelC.data as never} layout={panelC.layout as never} onClick={pick} /></div>
       </div>
       <p className="small muted">{t('common.clickHint')} {t('concordance.band5')}. {t('concordance.fractionCounts')}; {t('concordance.median')} — {t('interfaceCopy.Concordance.medianBar')}.</p>
       <p className="small">
@@ -230,7 +231,7 @@ export default function Concordance() {
           columns={[
             { key: 'e', header: t('common.embryo'), render: (e) => <>{e.embryo}{hasVerificationIssue(e.embryo) && ' ⚠'}</>, sort: (e) => e.embryo },
             { key: 'v', header: t('common.variant'), render: (e) => observationText(e.variant, lang), sort: (e) => e.variant },
-            { key: 'p', header: t('common.source'), render: (e) => pubById[e.pub].short, sort: (e) => e.pub },
+            { key: 'p', header: t('common.source'), render: (e) => publicationText(pubById[e.pub].short, lang), sort: (e) => e.pub },
             ...FR.map((f) => ({ key: f, header: frLabel(f), render: (e: (typeof embryos)[number]) => pct(e.fr[f] ?? null, lang, 2), sort: (e: (typeof embryos)[number]) => e.fr[f] ?? null, num: true })),
             { key: 'r', header: t('interfaceCopy.Concordance.rangePp'), render: (e) => fmt(rangeOf(e.fr), lang, 2), sort: (e) => rangeOf(e.fr), num: true },
           ]}
@@ -248,7 +249,7 @@ export default function Concordance() {
             { key: 'c', header: t('interfaceCopy.Concordance.cells'), render: (r) => `${sourceText(r.cells_raw, lang)} (${r.n_cells_raw})` },
             { key: 'd', header: t('interfaceCopy.Concordance.coverage'), render: (r) => fmt(r.depth, lang, 0), sort: (r) => r.depth, num: true },
             { key: 'v', header: `${hu.variant}, %`, render: (r) => fmt(r.value, lang, 1), sort: (r) => r.value, num: true },
-            { key: 'dv', header: `Δ vs ${fmt(hu.biopsy_value, lang)}%`, render: (r) => fmt(r.value - hu.biopsy_value, lang, 1), sort: (r) => r.value - hu.biopsy_value, num: true },
+            { key: 'dv', header: `Δ ${lang === 'ar' ? 'مقابل' : 'vs'} ${fmt(hu.biopsy_value, lang)}%`, render: (r) => fmt(r.value - hu.biopsy_value, lang, 1), sort: (r) => r.value - hu.biopsy_value, num: true },
           ]}
         />
       </details>

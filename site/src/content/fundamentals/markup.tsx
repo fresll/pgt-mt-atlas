@@ -1,3 +1,4 @@
+import { ScientificText } from '../../components/ScientificText'
 import { Fragment, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import type { Lang } from '../../data/atlas'
@@ -71,9 +72,9 @@ export function Inline({ s, lang }: { s: string; lang: Lang }) {
             </Link>
           )
         }
-        if (p.startsWith('**')) return <strong key={i}>{p.slice(2, -2)}</strong>
-        if (p.startsWith('*') && p.length > 2) return <em key={i}>{p.slice(1, -1)}</em>
-        return <Fragment key={i}>{p}</Fragment>
+        if (p.startsWith('**')) return <strong key={i}>{lang === 'ar' ? <ScientificText text={p.slice(2, -2)} /> : p.slice(2, -2)}</strong>
+        if (p.startsWith('*') && p.length > 2) return <em key={i}>{lang === 'ar' ? <ScientificText text={p.slice(1, -1)} /> : p.slice(1, -1)}</em>
+        return <Fragment key={i}>{lang === 'ar' ? <ScientificText text={p} /> : p}</Fragment>
       })}
     </>
   )

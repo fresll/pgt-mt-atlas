@@ -1,3 +1,4 @@
+import { publicationText } from '../../i18n/arabic-text'
 import { scientificText } from '../../i18n/scientificText'
 import { sourceText } from '../../i18n/source-text-en'
 import { useEffect, useMemo, useState } from 'react'
@@ -69,7 +70,7 @@ export default function Data() {
           {t('data.filterSource')}
           <select value={pub} onChange={(e) => setPub(e.target.value)}>
             <option value="">{t('common.all')}</option>
-            {pubs.map((p) => <option key={p} value={p}>{pubById[p].short}</option>)}
+            {pubs.map((p) => <option key={p} value={p}>{publicationText(pubById[p].short, lang)}</option>)}
           </select>
         </label>
         <label>
@@ -86,10 +87,10 @@ export default function Data() {
         csvName="pgt-mt-atlas_embryos.csv"
         csvRow={(o) => ({ id: o.id, legacy_id: o.legacy_id, variant: o.variant, value_pct: o.value, qualifier: o.q, low: o.low, high: o.high, lod_pct: o.lod, publication: o.pub, pmid: pubById[o.pub]?.pmid, source_locator: o.source_locator, doi: pubById[o.pub]?.doi, pub_status: pubById[o.pub]?.pub_status, stage: o.stage, stage_raw: o.stage_raw, sample_type: o.sample, material_raw: o.material_raw, derivation: o.derivation, note: o.note, sheet: o.src.sheet, row: o.src.row })}
         columns={[
-          { key: 'id', header: 'ID', render: (o) => o.id, sort: (o) => o.id },
+          { key: 'id', header: lang === 'ar' ? 'المعرّف' : 'ID', render: (o) => o.id, sort: (o) => o.id },
           { key: 'v', header: t('common.variant'), render: (o) => o.variant, sort: (o) => o.variant },
           { key: 'val', header: t('common.value'), render: (o) => obsValueText(o, lang, t), sort: (o) => (o.q === 'interval' ? o.high : o.value), num: true },
-          { key: 'p', header: t('common.source'), render: (o) => pubById[o.pub].short, sort: (o) => o.pub },
+          { key: 'p', header: t('common.source'), render: (o) => publicationText(pubById[o.pub].short, lang), sort: (o) => o.pub },
           { key: 'doi', header: 'DOI', render: (o) => pubById[o.pub].doi ?? '—', sort: (o) => pubById[o.pub].doi },
           { key: 'pmid', header: 'PMID', render: (o) => pubById[o.pub].pmid ?? '—', sort: (o) => pubById[o.pub].pmid },
           { key: 'atlasrow', header: t('data.atlasRow', { row: '' }), render: (o) => o.src.row },

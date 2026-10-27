@@ -15,3 +15,6 @@ incoming/
 
 # Also ignore a local dependency-directory symlink.
 /site/node_modules
+
+# Local browser review evidence is delivered separately, never deployed.
+/artifacts/

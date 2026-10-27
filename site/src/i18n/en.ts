@@ -141,6 +141,8 @@ const en: Dict = {
     "mode": "Mode",
     "threshold": "Cut-off",
     "reset": "Reset",
+    "expandChart": "Enlarge chart",
+    "collapseChart": "Close enlarged chart",
     "resetChartView": "Return to the original view",
     "embryo": "Embryo",
     "child": "Child",

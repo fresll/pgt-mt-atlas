@@ -7,9 +7,10 @@ import en from './en'
 import ru from './ru'
 import es from './es'
 import zh from './zh'
-import { chineseEnabled } from '../lib/languages'
+import ar from './ar'
+import { arabicEnabled, chineseEnabled } from '../lib/languages'
 
-export const LANGS: Lang[] = ['en', 'ru', 'es', ...(chineseEnabled ? ['zh-Hans' as const] : [])]
+export const LANGS: Lang[] = ['en', 'ru', 'es', ...(arabicEnabled ? ['ar' as const] : []), ...(chineseEnabled ? ['zh-Hans' as const] : [])]
 
 // По экземпляру i18next на язык: при статической генерации страницы разных языков
 // рендерятся последовательно, и общий экземпляр со сменой языка дал бы гонку.
@@ -19,7 +20,7 @@ const instances = Object.fromEntries(
     inst.use(initReactI18next).init({
       lng,
       fallbackLng: 'en',
-      resources: { en: { translation: en }, ru: { translation: ru }, es: { translation: es }, 'zh-Hans': { translation: zh } },
+      resources: { ar: { translation: ar }, en: { translation: en }, ru: { translation: ru }, es: { translation: es }, 'zh-Hans': { translation: zh } },
       interpolation: { escapeValue: false },
       initAsync: false,
     })

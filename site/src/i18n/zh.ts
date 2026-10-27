@@ -141,6 +141,8 @@ const zh: Dict = {
     "mode": "模式",
     "threshold": "筛选界值",
     "reset": "重置",
+    "expandChart": "放大图表",
+    "collapseChart": "关闭放大图表",
     "resetChartView": "恢复初始视图",
     "embryo": "胚胎",
     "child": "儿童",

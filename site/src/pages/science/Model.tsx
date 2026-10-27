@@ -136,7 +136,7 @@ export default function Model() {
     <div className="grid-3 model-panels">
       {panels.map((p, i) => <div key={p.age} className={i === panelIdx ? 'is-active' : 'is-inactive'}>
         <h3>{t('model.panel', { age: p.age, p: fmt(p.pe, lang) })}</h3>
-        <PlotlyChart ariaLabel={t('model.panel', { age: p.age, p: fmt(p.pe, lang) })} height={360} data={p.data as never} layout={p.layout as never} />
+        <PlotlyChart arMinWidth={850} ariaLabel={t('model.panel', { age: p.age, p: fmt(p.pe, lang) })} height={360} data={p.data as never} layout={p.layout as never} />
       </div>)}
     </div>
     <ul className="small">

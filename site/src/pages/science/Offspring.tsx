@@ -1,3 +1,4 @@
+import { publicationText } from '../../i18n/arabic-text'
 import { scientificText } from '../../i18n/scientificText'
 import { sourceText } from '../../i18n/source-text-en'
 import { useMemo, useState } from 'react'
@@ -61,7 +62,7 @@ export default function Offspring() {
   const excluded = atlas.offspring.filter((p) => !p.in_figure)
   const catName = [t('offspring.prenatal'), t('offspring.blood'), t('offspring.otherPost')]
   const hover = (p: OffspringPair) =>
-    `<b>${p.id}</b> · ${t('common.child')} ${p.child}<br>${p.variant} · ${pubById[p.pub].short}<br>` +
+    `<b>${p.id}</b> · ${t('common.child')} ${p.child}<br>${p.variant} · ${publicationText(pubById[p.pub].short, lang)}<br>` +
     `${t('common.embryo')}: ${pairValueText(p.emb, p.emb_q, p.emb_raw, lang, t)}<br>` +
     `${label('tissue', p.tissue, lang)}: ${pairValueText(p.value, p.q, p.value_raw, lang, t)}` +
     (p.age ? `<br>${t('common.age')}: ${sourceText(p.age, lang)}` : '')
@@ -192,8 +193,8 @@ export default function Offspring() {
         <span>- - {t('offspring.identity')}</span>
       </div>
       <div className="grid-2">
-        <div><h3>{t('interfaceCopy.Offspring.panelA')}</h3><PlotlyChart ariaLabel={t('offspring.subtitle')} height={460} data={panelA.data as never} layout={panelA.layout as never} onClick={pick} /></div>
-        <div><h3>{t('interfaceCopy.Offspring.panelB')}</h3><PlotlyChart minWidth={520} ariaLabel={t('offspring.yB')} height={460} data={panelB.data as never} layout={panelB.layout as never} onClick={pick} /></div>
+        <div><h3>{t('interfaceCopy.Offspring.panelA')}</h3><PlotlyChart arMinWidth={700} ariaLabel={t('offspring.subtitle')} height={460} data={panelA.data as never} layout={panelA.layout as never} onClick={pick} /></div>
+        <div><h3>{t('interfaceCopy.Offspring.panelB')}</h3><PlotlyChart arMinWidth={1050} minWidth={520} ariaLabel={t('offspring.yB')} height={460} data={panelB.data as never} layout={panelB.layout as never} onClick={pick} /></div>
       </div>
       <p className="small muted">{t('common.clickHint')} {t('offspring.lowSpread')} {t('offspring.deltaBound')}</p>
       <p className="small"><strong>{t('offspring.dependency', { pairs: s.n_pairs, children: s.n_children, ...topChild })}</strong>{' '}
@@ -224,7 +225,7 @@ export default function Offspring() {
       <ul className="small prose">
         {excluded.map((p) => (
           <li key={p.id}>
-            <button className="ghost" type="button" onClick={() => setSelected(p.id)}>{p.id}</button> {p.variant}, {pubById[p.pub].short}: {sourceText(p.on_plot_raw, lang)}
+            <button className="ghost" type="button" onClick={() => setSelected(p.id)}>{p.id}</button> {p.variant}, {publicationText(pubById[p.pub].short, lang)}: {sourceText(p.on_plot_raw, lang)}
           </li>
         ))}
         {NOT_INCLUDED.map((c) => (
@@ -244,7 +245,7 @@ export default function Offspring() {
           csvName="pgt-mt-atlas_embryo-to-offspring.csv"
           csvRow={(p) => ({ id: p.id, child: p.child, variant: p.variant, publication: p.pub, pmid: pubById[p.pub]?.pmid, source_locator: p.source_locator, carrier_id: p.carrier_id, doi: pubById[p.pub]?.doi, embryo_pct: p.emb, embryo_raw: p.emb_raw, phase: p.phase, tissue: p.tissue, tissue_raw: p.tissue_raw, value_pct: p.value, qualifier: p.q, age: p.age, method: p.method, in_figure: p.in_figure })}
           columns={[
-            { key: 'id', header: 'ID', render: (p) => p.id, sort: (p) => p.id },
+            { key: 'id', header: lang === 'ar' ? 'المعرّف' : 'ID', render: (p) => p.id, sort: (p) => p.id },
             { key: 'v', header: t('common.variant'), render: (p) => p.variant, sort: (p) => p.variant },
             { key: 'e', header: t('common.embryo'), render: (p) => pairValueText(p.emb, p.emb_q, p.emb_raw, lang, t), sort: (p) => p.emb, num: true },
             { key: 'ti', header: t('common.tissue'), render: (p) => label('tissue', p.tissue, lang), sort: (p) => p.tissue },
@@ -252,7 +253,7 @@ export default function Offspring() {
             { key: 'd', header: t('common.delta'), render: (p) => (p.in_figure ? (p.q === 'not_detected' && p.emb_q === 'not_detected' ? t('offspring.bothNDPair') : `${p.q === 'not_detected' ? '≥ ' : p.emb_q === 'not_detected' ? '≤ ' : ''}${fmt((p.value as number) - (p.emb as number), lang, 2)}`) : '—'), sort: (p) => (p.in_figure ? (p.value as number) - (p.emb as number) : null), num: true },
             { key: 'cluster', header: t('data.maternalCluster'), render: (p) => p.carrier_id ?? '—' },
             { key: 'locator', header: t('data.locator'), render: (p) => sourceText(p.source_locator ?? '—', lang) },
-            { key: 'p', header: t('common.source'), render: (p) => pubById[p.pub].short, sort: (p) => p.pub },
+            { key: 'p', header: t('common.source'), render: (p) => publicationText(pubById[p.pub].short, lang), sort: (p) => p.pub },
           ]}
         />
       </details>

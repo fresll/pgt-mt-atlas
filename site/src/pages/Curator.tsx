@@ -52,8 +52,8 @@ export default function Curator() {
               Илья Олегович преподаёт в Медицинском университете Петровского, где заведует{' '}
               <a href={DEPARTMENT_URL} target="_blank" rel="noreferrer">кафедрой биологии и генетики</a>.
             </> : <>
-              {lang === 'zh-Hans' ? 'Ilya Mazunin任教于彼得罗夫斯基医科大学，主持' : lang === 'es' ? 'Ilya Mazunin enseña en la Universidad Médica Petrovsky, donde dirige el' : 'Ilya Mazunin teaches at Petrovsky Medical University, where he heads the'}{' '}
-              <a href={DEPARTMENT_URL} target="_blank" rel="noreferrer">{lang === 'zh-Hans' ? '生物学与遗传学教研室' : lang === 'es' ? 'Departamento de Biología y Genética' : 'Department of Biology and Genetics'}</a>.
+              {lang === 'ar' ? 'يُدرّس Ilya Mazunin في جامعة بيتروفسكي الطبية، حيث يرأس' : lang === 'zh-Hans' ? 'Ilya Mazunin任教于彼得罗夫斯基医科大学，主持' : lang === 'es' ? 'Ilya Mazunin enseña en la Universidad Médica Petrovsky, donde dirige el' : 'Ilya Mazunin teaches at Petrovsky Medical University, where he heads the'}{' '}
+              <a href={DEPARTMENT_URL} target="_blank" rel="noreferrer">{lang === 'ar' ? 'قسم الأحياء والوراثة' : lang === 'zh-Hans' ? '生物学与遗传学教研室' : lang === 'es' ? 'Departamento de Biología y Genética' : 'Department of Biology and Genetics'}</a>.
             </>}
           </p>
           <h3>{t('curator.projectRole')}</h3>

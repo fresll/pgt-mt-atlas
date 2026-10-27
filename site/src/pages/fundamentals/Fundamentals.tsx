@@ -126,7 +126,7 @@ export function FundamentalsIndex() {
           <ul className="fd-model-list">
             {models.map(([id, title, ci], k) => (
               <li key={id}>
-                <span className="fd-model-letter" aria-hidden="true">{(lang === 'ru' ? 'АБВ' : 'ABC')[k]}</span>
+                <span className="fd-model-letter" aria-hidden="true">{(lang === 'ar' ? 'أبج' : lang === 'ru' ? 'АБВ' : 'ABC')[k]}</span>
                 <Link to={`${base(lang)}${chapters[ci].slug}/#model-${id}`}>{t(title)}</Link>
                 <span className="muted"> — {t('fundamentals.chapter', { n: ci + 1 })}</span>
               </li>

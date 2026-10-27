@@ -1,0 +1,41 @@
+export const plotlyAr = {
+  "dictionary": {
+    "Click to enter X axis title": "انقر لإدخال عنوان المحور السيني",
+    "Click to enter Y axis title": "انقر لإدخال عنوان المحور الصادي",
+    "Click to enter Plot title": "انقر لإدخال عنوان الرسم",
+    "Autoscale": "ضبط المقياس تلقائيًا",
+    "Box Select": "تحديد منطقة",
+    "Compare data on hover": "مقارنة البيانات عند تمرير المؤشر",
+    "Double-click on legend to isolate one trace": "انقر مرتين على مفتاح الرسم لعزل سلسلة واحدة",
+    "Double-click to zoom back out": "انقر مرتين لاستعادة المقياس",
+    "Download plot as a PNG": "تنزيل الرسم بصيغة PNG",
+    "Share chart...": "مشاركة الرسم…",
+    "Share chart": "مشاركة الرسم",
+    "Share": "مشاركة",
+    "Cancel": "إلغاء",
+    "This chart will be uploaded to {Plotly Cloud} to create a sharing link. Only you can see it until you change its visibility.": "سيُرفع الرسم إلى {Plotly Cloud} لإنشاء رابط مشاركة. لن يراه سواك حتى تغير إعداد ظهوره.",
+    "If you don't have a Plotly Cloud account yet, you'll have a chance to create one.": "إذا لم يكن لديك حساب Plotly Cloud فستتاح لك فرصة إنشائه.",
+    "This chart will be sent to {serverUrl}.": "سيُرسل الرسم إلى {serverUrl}.",
+    "Download plot as JSON": "تنزيل الرسم بصيغة JSON",
+    "JSON download succeeded": "تم تنزيل JSON",
+    "Sorry, there was a problem downloading your JSON file!": "تعذر تنزيل ملف JSON.",
+    "Download plot": "تنزيل الرسم",
+    "Image download succeeded": "تم تنزيل الصورة",
+    "Sorry, there was a problem downloading your image!": "تعذر تنزيل الصورة.",
+    "Preparing image - this may take a few seconds": "جارٍ تجهيز الصورة؛ قد يستغرق ذلك بضع ثوانٍ",
+    "Pan": "تحريك",
+    "Reset": "إعادة الضبط",
+    "Reset axes": "إعادة ضبط المحاور",
+    "Reset view": "إعادة ضبط العرض",
+    "Reset views": "إعادة ضبط العروض",
+    "Show closest data on hover": "عرض أقرب قيمة عند تمرير المؤشر",
+    "Toggle Spike Lines": "إظهار خطوط الإرشاد أو إخفاؤها",
+    "Zoom": "تكبير منطقة",
+    "Zoom in": "تكبير",
+    "Zoom out": "تصغير"
+  },
+  "format": {
+    "decimal": ".",
+    "thousands": ","
+  }
+}

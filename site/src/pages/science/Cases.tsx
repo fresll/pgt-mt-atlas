@@ -1,3 +1,4 @@
+import { arabicText } from '../../i18n/arabic-text'
 import { chineseText } from '../../i18n/chinese-text'
 import { spanishText } from '../../i18n/spanish-text'
 import { DataTable } from '../../components/DataTable'
@@ -10,7 +11,7 @@ import { PageTitle } from '../../components/Layout'
 export default function Cases() {
   const t = useT()
   const lang = useLang()
-  const text = (value: string) => lang === 'zh-Hans' ? chineseText(value) : lang === 'en' ? caseTextEn[value] ?? value : lang === 'es' ? spanishText(value) : value
+  const text = (value: string) => lang === 'ar' ? arabicText(value) : lang === 'zh-Hans' ? chineseText(value) : lang === 'en' ? caseTextEn[value] ?? value : lang === 'es' ? spanishText(value) : value
   return (
     <article>
       <p><ObservedBadge /></p>

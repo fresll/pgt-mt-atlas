@@ -1,3 +1,4 @@
+import { arabicText } from '../i18n/arabic-text'
 import { chineseText } from '../i18n/chinese-text'
 import { BackToTop, PageContents } from '../components/PageContents'
 import type { CSSProperties } from 'react'
@@ -129,11 +130,11 @@ export default function Contribute() {
               {template.sheets.map((s) => (
                 <tr key={s.name}>
                   <th scope="row">
-                    <span className="sk-c-sheet">{lang === 'zh-Hans' ? chineseText(s.name) : s.name}</span>
+                    <span className="sk-c-sheet">{lang === 'ar' ? arabicText(s.name) : lang === 'zh-Hans' ? chineseText(s.name) : s.name}</span>
                     {lang === 'ru' && <span className="sk-c-sheet-ru">{s.title_ru}</span>}
                   </th>
                   <td>
-                    {lang === 'ru' ? s.purpose_ru : lang === 'zh-Hans' ? chineseText(templatePurposesEn[s.name] ?? s.purpose_en) : lang === 'es' ? spanishText(templatePurposesEn[s.name] ?? s.purpose_en) : templatePurposesEn[s.name] ?? s.purpose_en}
+                    {lang === 'ar' ? arabicText(templatePurposesEn[s.name] ?? s.purpose_en) : lang === 'ru' ? s.purpose_ru : lang === 'zh-Hans' ? chineseText(templatePurposesEn[s.name] ?? s.purpose_en) : lang === 'es' ? spanishText(templatePurposesEn[s.name] ?? s.purpose_en) : templatePurposesEn[s.name] ?? s.purpose_en}
                     <span className="sk-c-count">{t('contribute.template.fields', { n: s.n_fields, r: s.n_required })}</span>
                   </td>
                 </tr>

@@ -1,3 +1,4 @@
+import { publicationText } from '../../i18n/arabic-text'
 import { observationText, scientificText } from '../../i18n/scientificText'
 import { sourceText } from '../../i18n/source-text-en'
 import { BackToTop, PageContents } from '../../components/PageContents'
@@ -90,7 +91,7 @@ export default function Methods() {
               <tr key={v}>
                 <td>{observationText(v, lang)}</td>
                 <td>{label('variant_class', x.class, lang)}</td>
-                <td className="small">{t(`common.classBasis.${x.status}`, { source: pubById[x.publication]?.short ?? x.publication, locator: sourceText(x.locator ?? '', lang), date: x.checked })}</td>
+                <td className="small">{t(`common.classBasis.${x.status}`, { source: publicationText(pubById[x.publication]?.short ?? x.publication, lang), locator: sourceText(x.locator ?? '', lang), date: x.checked })}</td>
               </tr>
             ))}
           </tbody>
