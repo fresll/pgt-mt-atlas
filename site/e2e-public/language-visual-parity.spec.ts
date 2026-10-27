@@ -70,7 +70,7 @@ for (const [route, plots, selector, count] of ROUTES) {
           await capture.screenshot({ ...CAPTURE, path: info.outputPath(`${view.name}-${lang}-${i + 1}.png`) })
         }
         if (view.name === '200-percent' && route === 'science/heteroplasmy-landscape/') {
-          const scroller = figures.first().locator('xpath=ancestor::div[contains(@style,"overflow-x")][1]')
+          const scroller = figures.first().locator('xpath=ancestor::div[contains(concat(" ",normalize-space(@class)," ")," chart-viewport ")][1]')
           await scroller.evaluate((el) => { el.scrollLeft = el.scrollWidth })
           await scroller.screenshot({ ...CAPTURE, path: info.outputPath(`${view.name}-${lang}-1-right.png`) })
         }

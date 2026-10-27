@@ -89,10 +89,17 @@ for (const [slug, count] of PLOTS) {
         await chart.getByRole('button', { name: 'Restablecer ejes', exact: true }).click()
         await expect.poll(ranges).toEqual(initial)
         const area = chart.locator('.nsewdrag').first()
-        const box = await area.boundingBox()
-        expect(box).not.toBeNull()
+        await chart.getByRole('button', { name: 'Ampliar un área', exact: true }).click()
+        const box = await area.evaluate(el => {
+          const a = el.getBoundingClientRect()
+          const v = el.closest('.chart-viewport')!.getBoundingClientRect()
+          const left = Math.max(a.left, v.left, 0), right = Math.min(a.right, v.right, innerWidth)
+          const top = Math.max(a.top, v.top, 0), bottom = Math.min(a.bottom, v.bottom, innerHeight)
+          return { x: left, y: top, width: right - left, height: bottom - top }
+        })
+        expect(box.width).toBeGreaterThan(20)
+        expect(box.height).toBeGreaterThan(20)
         if (box) {
-          await chart.getByRole('button', { name: 'Ampliar un área', exact: true }).click()
           await page.mouse.move(box.x + box.width * 0.25, box.y + box.height * 0.25)
           await page.mouse.down()
           await page.mouse.move(box.x + box.width * 0.75, box.y + box.height * 0.75, { steps: 12 })
@@ -132,7 +139,7 @@ for (const [slug, count] of PLOTS) {
       expect(JSON.stringify(await surface(chart))).not.toMatch(FOREIGN)
       await chart.screenshot({ ...CAPTURE, path: info.outputPath(`${slug}-${i + 1}-enlarged-200.png`) })
       if (slug === 'heteroplasmy-landscape') {
-        const scroller = chart.locator('xpath=ancestor::div[contains(@style,"overflow-x")][1]')
+        const scroller = chart.locator('xpath=ancestor::div[contains(concat(" ",normalize-space(@class)," ")," chart-viewport ")][1]')
         await scroller.evaluate((el) => { el.scrollLeft = el.scrollWidth })
         expect(await scroller.evaluate((el) => el.scrollLeft)).toBeGreaterThan(0)
         await scroller.screenshot({ ...CAPTURE, path: info.outputPath(`${slug}-${i + 1}-enlarged-200-right.png`) })
