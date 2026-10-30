@@ -1,6 +1,6 @@
 # Миграция Atlas: старые URL и варианты без прерывания
 
-Состояние исследования: 30 октября 2026. Рабочая основа: `fresll/pgt-mt-atlas`, `main` a108f0ac20d4a8a4f0d11c6f6ac821c1bfc76fcd. Никакие DNS, Pages или публикация не изменялись. Старый URL `https://fresll.github.io/pgt-mt-atlas/ru/science/embryo-concordance/?atlas_redirect_check=1` ответил HTTP 200 без перенаправления; `atlas.mazunin.science` на момент проверки не разрешался. Это исходное состояние, а не эксперимент после назначения домена.
+Состояние исследования: 30 октября 2026. Рабочая основа: `fresll/pgt-mt-atlas`, `main` a108f0ac20d4a8a4f0d11c6f6ac821c1bfc76fcd. Никакие DNS, Pages или публикация не изменялись. Старый URL `https://fresll.github.io/pgt-mt-atlas/ru/science/embryo-concordance/?atlas_redirect_check=1` ответил HTTP 200 без перенаправления; `atlas.mazunin.science` на момент проверки не разрешался. Это исходное состояние, а не эксперимент после назначения домена. Дополнительные GET без автоматического следования: корень, RU, глубокие EN/ES/ZH/AR и `data/csv/verification.csv` вернули 200; глубокий RU-адрес без завершающего слеша вернул 301 на тот же старый путь со слешем и сохранённым `?x=1`. Это не устанавливает поведение после изменения Pages.
 
 ## Что известно о старых ссылках
 
