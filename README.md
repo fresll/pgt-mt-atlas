@@ -47,8 +47,8 @@ cd site
 npm ci
 npm run dev          # разработка
 npm test             # модульные тесты (модель ПГТ-мт × ПГТ-А, раскладка распределения гетероплазмии)
-npm run build        # статическая сборка в site/dist (base: /pgt-mt-atlas/)
-npm run e2e          # Playwright (нужен собранный сайт)
+npm run build        # статическая сборка в site/dist (по умолчанию base: /)
+ATLAS_BASE=/pgt-mt-atlas/ npm run build && ATLAS_BASE=/pgt-mt-atlas/ npm run e2e  # прежний путь, закрытые языки
 ```
 
 Для сборки и модульных тестов нужны Python 3 и `openpyxl` (`python3 -m pip install openpyxl`).
@@ -62,14 +62,19 @@ npm run e2e          # Playwright (нужен собранный сайт)
 
 Научные записи, источники и модель сохраняются. Испанские подписи добавлены слоем представления. Статические CSV и шаблон ведут к текущим английским экспортам; выгрузка видимых записей сохраняет исходные значения и метаданные. Для проверки неизменности научной основы: `python site/scripts/audit-spanish-release.py`.
 
-Для локальной сборки всех трёх публичных языковых версий без публикации:
+Для локальной проверки будущей корневой сборки всех пяти языков без публикации:
 
 ```bash
 cd site
-ATLAS_BASE=/pgt-mt-atlas/ ATLAS_SOFT_LAUNCH=0 ATLAS_PUBLIC_LAUNCH=1 \
-ATLAS_CANONICAL_BASE=https://fresll.github.io/pgt-mt-atlas/ \
-VITE_ATLAS_PRIVATE_PREVIEW=0 VITE_ATLAS_ENGLISH_PUBLIC=1 npm run build
-node e2e/static-server.mjs 4177 /pgt-mt-atlas
+ATLAS_BASE=/ ATLAS_SOFT_LAUNCH=0 ATLAS_PUBLIC_LAUNCH=1 \
+ATLAS_CANONICAL_BASE=https://atlas.mazunin.science/ \
+VITE_ATLAS_PRIVATE_PREVIEW=0 VITE_ATLAS_ENGLISH_PUBLIC=1 \
+VITE_ATLAS_CHINESE_PUBLIC=1 VITE_ATLAS_ARABIC_PUBLIC=1 npm run build
+python3 scripts/audit-indexing.py
+npx playwright test --config playwright.domain.config.ts
+node e2e/static-server.mjs 4177 ""
 ```
 
-Испанский адрес: `http://localhost:4177/pgt-mt-atlas/es/`. Эти команды не выполняют deploy или push.
+Испанский адрес: `http://localhost:4177/es/`. Эти команды не выполняют deploy или push. Порядок переключения и проверка старых ссылок: [custom-domain-cutover.md](docs/custom-domain-cutover.md).
+
+Сравнение прямого переключения и параллельной публикации: [анализ миграции](docs/custom-domain-migration-analysis.md).

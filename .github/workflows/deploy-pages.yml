@@ -35,15 +35,17 @@ jobs:
       - run: npm run typecheck
       - run: npm test
       - name: Build for existing e2e suite
+        env: { ATLAS_BASE: /pgt-mt-atlas/ }
         run: npm run build
       - run: npx playwright install --with-deps chromium
       - run: npm run e2e
+        env: { ATLAS_BASE: /pgt-mt-atlas/ }
       - name: Build public five-language site with search indexing enabled
         env:
           ATLAS_BASE: /pgt-mt-atlas/
           ATLAS_SOFT_LAUNCH: '0'
           ATLAS_PUBLIC_LAUNCH: '1'
-          ATLAS_CANONICAL_BASE: https://fresll.github.io/pgt-mt-atlas/
+          ATLAS_CANONICAL_BASE: https://atlas.mazunin.science/
           VITE_ATLAS_PRIVATE_PREVIEW: '0'
           VITE_ATLAS_ENGLISH_PUBLIC: '1'
           VITE_ATLAS_CHINESE_PUBLIC: '1'
@@ -51,8 +53,23 @@ jobs:
         run: npm run build
       - name: Verify public five-language navigation and English pages
         run: npm run e2e:public
+        env: { ATLAS_BASE: /pgt-mt-atlas/ }
       - name: Verify Chinese pages, interactive charts and navigation
         run: npx playwright test --config playwright.chinese.config.ts
+        env: { ATLAS_BASE: /pgt-mt-atlas/ }
+      - name: Build production site at the custom-domain root
+        env:
+          ATLAS_BASE: /
+          ATLAS_SOFT_LAUNCH: '0'
+          ATLAS_PUBLIC_LAUNCH: '1'
+          ATLAS_CANONICAL_BASE: https://atlas.mazunin.science/
+          VITE_ATLAS_PRIVATE_PREVIEW: '0'
+          VITE_ATLAS_ENGLISH_PUBLIC: '1'
+          VITE_ATLAS_CHINESE_PUBLIC: '1'
+          VITE_ATLAS_ARABIC_PUBLIC: '1'
+        run: npm run build
+      - name: Verify root deployment in all five languages
+        run: npx playwright test --config playwright.domain.config.ts
       - name: Verify indexing, canonical URLs, language alternates and sitemap
         run: |
           python - <<'PYTHON'
@@ -60,7 +77,7 @@ jobs:
           from xml.etree import ElementTree as ET
           from html.parser import HTMLParser
           import re
-          base = 'https://fresll.github.io/pgt-mt-atlas/'
+          base = 'https://atlas.mazunin.science/'
           pages = list(Path('dist').rglob('*.html'))
           indexed = []
           class Head(HTMLParser):
@@ -101,11 +118,11 @@ jobs:
           import json, re
           from urllib.request import Request, urlopen
           request = Request('https://pgt-mt-atlas.goatcounter.com/counter/TOTAL.json',
-                            headers={'Origin': 'https://fresll.github.io'})
+                            headers={'Origin': 'https://atlas.mazunin.science'})
           with urlopen(request, timeout=20) as response:
               count = json.load(response).get('count')
               assert isinstance(count, str) and re.fullmatch(r'\d[\d\s,.]*', count), 'Invalid public visit count'
-              assert response.headers.get('Access-Control-Allow-Origin') in ['*', 'https://fresll.github.io'], 'Public count must allow browser access'
+              assert response.headers.get('Access-Control-Allow-Origin') in ['*', 'https://atlas.mazunin.science'], 'Public count must allow browser access'
           print('PASS: anonymous total visit count and browser CORS access')
           PY
       - uses: actions/upload-pages-artifact@v3
@@ -143,7 +160,7 @@ jobs:
           from urllib.robotparser import RobotFileParser
 
           base = os.environ['PAGES_URL'].rstrip('/') + '/'
-          assert base == 'https://fresll.github.io/pgt-mt-atlas/', base
+          assert base == 'https://atlas.mazunin.science/', base
           def get(url, expected=200):
               for attempt in range(6):
                   try:

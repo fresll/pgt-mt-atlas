@@ -43,8 +43,10 @@ jobs:
       - run: npm run typecheck
       - run: npm test
       - run: npm run build
+        env: { ATLAS_BASE: /pgt-mt-atlas/ }
       - run: npx playwright install --with-deps chromium
       - run: npx playwright test --reporter=line
+        env: { ATLAS_BASE: /pgt-mt-atlas/ }
       - uses: actions/upload-artifact@v4
         with:
           name: site-dist

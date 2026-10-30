@@ -2,7 +2,7 @@ import { existsSync } from 'node:fs'
 import { expect, test } from '../e2e/fixtures'
 
 const languages = ['ru', 'en', 'es', 'zh-Hans', ...(existsSync('dist/ar/index.html') ? ['ar'] : [])]
-const base = 'https://fresll.github.io/pgt-mt-atlas/'
+const base = 'https://atlas.mazunin.science/'
 
 test('canonical and language alternates follow in-app navigation without query or hash', async ({ page }) => {
   await page.goto('')

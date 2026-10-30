@@ -3,7 +3,7 @@ import { join } from 'node:path'
 import { defineConfig, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 
-const base = process.env.ATLAS_BASE ?? '/pgt-mt-atlas/'
+const base = process.env.ATLAS_BASE ?? '/'
 const indexing = process.env.ATLAS_PUBLIC_LAUNCH === '1' && process.env.ATLAS_SOFT_LAUNCH !== '1' && process.env.VITE_ATLAS_PRIVATE_PREVIEW !== '1'
 const canonicalBase = indexing ? new URL(process.env.ATLAS_CANONICAL_BASE || '') : undefined
 if (canonicalBase) {
@@ -33,7 +33,7 @@ function pagesLikePreview(): Plugin {
   }
 }
 
-// base: путь проекта на GitHub Pages (https://<owner>.github.io/pgt-mt-atlas/).
+// По умолчанию сборка для корня собственного домена; ATLAS_BASE задаёт другой путь.
 // Публичная индексация включается явно; закрытые и промежуточные сборки сохраняют noindex.
 export default defineConfig({
   base,
