@@ -1,19 +1,10 @@
-import { readFileSync } from 'node:fs'
 import { expect, test } from './fixtures'
 
 // Навигация (components/Layout.tsx): основное меню из четырёх разделов, на телефоне — кнопка «Меню»;
-// подвал с куратором, датой обновления данных, дисклеймером и служебными ссылками;
+// подвал с куратором, датой обновления Атласа, дисклеймером и служебными ссылками;
 // на узком экране боковое меню раздела «Данные для специалистов» заменено выпадающим списком.
 const PRIMARY = ['Пациентам', 'Основы ПГТ-мт', 'Данные для специалистов', 'О проекте']
 const SCIENCE = ['Обзор разделов', 'Между разными эмбрионами', 'Внутри индивидуальных эмбрионов', 'Эмбрион, плод и ребёнок', 'Модель ПГТ-мт + ПГТ-А', 'Опубликованные случаи', 'Таблица значений', 'Источники', 'Методы и ограничения']
-const MONTHS = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря']
-
-/** Дата версии набора данных (src/data/atlas.json, meta.dataset_version) по-русски: «11 октября 2026». */
-function datasetDate(): string {
-  const atlas = JSON.parse(readFileSync(new URL('../src/data/atlas.json', import.meta.url), 'utf8'))
-  const [y, m, d] = String(atlas.meta.dataset_version).split('-').map(Number)
-  return `${d} ${MONTHS[m - 1]} ${y}`
-}
 
 test('main menu: four sections on a wide screen; on a 390 px phone the «Меню» button opens nav.primary', async ({ page }) => {
   await page.goto('ru/')
@@ -59,14 +50,13 @@ test.describe('without JavaScript', () => {
   })
 })
 
-test('footer names the creator and curator, the data update date, the disclaimer and service links', async ({ page }) => {
-  const date = datasetDate()
+test('footer names the creator and curator, the Atlas update date, the disclaimer and service links', async ({ page }) => {
   for (const p of ['', 'patients/', 'fundamentals/how-pgt-mt-works/', 'science/methods/']) {
     await page.goto(`ru/${p}`)
     const footer = page.locator('footer.site')
     const curator = footer.getByRole('link', { name: 'Создатель и куратор — Илья Мазунин' })
     await expect(curator, p).toHaveAttribute('href', /\/ru\/ilya-mazunin\/$/)
-    await expect(footer, p).toContainText(`Данные обновлены ${date}`)
+    await expect(footer.locator('p.muted'), p).toHaveText(/^Атлас обновлён 9 ноября 2026 г\.$/)
     await expect(footer, p).toContainText('Атлас ПГТ-мт не заменяет консультацию врача-генетика. Создатель и куратор Атласа ПГТ-мт не оказывает медицинских консультаций.')
     await expect(footer.getByRole('navigation').getByRole('link'), p).toHaveText(['О проекте', 'Методы и ограничения', 'Источники', 'Исследователям: передать данные'])
   }

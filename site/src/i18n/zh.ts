@@ -76,7 +76,7 @@ const zh: Dict = {
     "visits": "访问次数：",
     "visitsHelp": "图谱总访问次数",
     "visitsUnavailable": "暂时无法获取访问次数",
-    "updated": "数据更新于{{date}} · 数据集版本{{version}}",
+    "updated": "图谱更新于{{date}}",
     "disclaimer": "PGT-mt图谱不能替代临床遗传学咨询。PGT-mt图谱的创建与维护者不提供医疗建议。",
     "contribute": "研究人员：提交数据",
     "linksLabel": "网站链接"
