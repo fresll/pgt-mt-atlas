@@ -170,7 +170,7 @@ export default function Model() {
     <p>{t('model.dependentFormula')}</p>
     <p className="formula">Q ~ Beta(α, β); α = q(1/ρ − 1), β = (1 − q)(1/ρ − 1)<br />P(≥1) = 1 − B(α, β + N) / B(α, β)</p>
     <h3>{t('model.assumptions')}</h3>
-    <ul className="prose">{['a1', 'a2', 'a3', 'a4'].map((key) => <li key={key}>{t(`model.${key}`)}</li>)}</ul>
+    <ul className="prose">{['a1', 'a2', 'a3', 'a4', 'a5'].map((key) => <li key={key}>{t(`model.${key}`)}</li>)}</ul>
     <p className="small muted">{t('model.improvement')}</p>
 
     <h2 id="model-4">{t('model.boundsTitle')}</h2>
