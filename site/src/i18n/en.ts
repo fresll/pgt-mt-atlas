@@ -282,7 +282,7 @@ const en: Dict = {
     "ndBand": "ND (no numeric axis)",
     "title": "Embryo, foetus and child",
     "subtitle": "Heteroplasmy in embryo biopsies and prenatal or postnatal samples",
-    "lead": "Comparisons between the transferred embryo and foetal or child tissue. The observations are not independent: several measurements may come from different tissues or time points in the same child.",
+    "lead": "Comparisons between the transferred embryo and foetal or child tissue. The observations are not independent: several measurements may come from different tissues or time points in the same child. Levels in different tissues cannot be compared directly. For example, m.3243A>G heteroplasmy is usually higher in urine than in blood (chapter 2, “Heteroplasmy and threshold effects”).",
     "main": "{{pairs}} from {{children}} foetuses and children. {{disc}}",
     "discOne": "All comparisons classified here as discordant ({{ids}}) concern one child whose postnatal samples were analysed using a different method. Here, discordant means an embryo result at or below 18% paired with a tissue result above 18%; this is a descriptive grouping, not a clinical threshold.",
     "discMany": "Embryo–tissue discrepancies: {{ids}}.",
@@ -326,6 +326,7 @@ const en: Dict = {
     "a2": "at ρ = 0, blastocysts are independent trials with the same probability; N is a given number of blastocysts, not an oocyte count or mean cycle yield;",
     "a3": "at ρ > 0, embryos share a random probability of meeting both criteria. The selected ρ is a scenario parameter; it has not been estimated from Atlas data;",
     "a4": "H describes pooled published records from different developmental stages and analytical methods; E is an assumed proportion of euploid blastocysts.",
+    "a5": "The model treats ploidy as two categories. Mosaic blastocysts fall within the non-euploid category. In a single-centre cohort, approximately 12–20% of blastocysts were mosaic, depending on the indication for PGT (Liu et al., 2026).",
     "tableTitle": "P(≥1) for all variants in the dataset",
     "smallN": "small n — the estimated proportion is unstable",
     "dashed": "thin, long-dashed lines — 30% cut-off, where it differs from 18%; the main line patterns distinguish variants",
@@ -364,7 +365,7 @@ const en: Dict = {
     "salleveltNote": "Sallevelt 2017: 3/22 numerical records below 18% include a low value in a 3PN embryo. Confirmed diagnostic yield for 2PN is 2/23. Four analyses are inconclusive due to a positive blank control; accepting the other 19 classifications bounds the below-18% fraction at 2/23–6/23. These are incomplete-data bounds, not a confidence interval.",
     "publicationCarriers": "Carriers reported per publication (do not sum)",
     "correlationExample": "Teaching example using current data: H = {{h}}, E = {{e}}, N = 6 gives {{p0}} at ρ = 0 and {{p2}} at ρ = 0.2. This is a scenario calculation, not an individual prediction.",
-    "scenarioNote": "The scenario values are not assigned to specific ages.",
+    "scenarioNote": "The scenario values for E are not assigned to specific ages. For comparison, 52.3% of blastocysts were euploid in the PGT-M group of a single-centre cohort. The mean age of women in this group was 31.3 years (Liu et al., 2026).",
     "symbols": "H — proportion at or below the selected threshold; E — assumed proportion of euploid blastocysts; ◆ model calculation.",
     "teOnly": "Blastocyst TE biopsies only",
     "carrierCaveat": "With 1–2 women carrying a variant, the proportion describes those women, not the variant as a whole. Records are linked across publications only when the available information supports the match. Counts are reported separately for each publication; the same woman may appear in several papers, so the counts must not be summed.",
@@ -830,7 +831,7 @@ const en: Dict = {
         "paragraphs": [
           "Mitochondria help supply cells with energy. They contain a small genome of their own, called mitochondrial DNA (mtDNA), which children inherit from their mother.",
           "Cells typically contain hundreds or thousands of mtDNA copies. A pathogenic variant is a change that can cause disease. It is usually inherited from the mother, although it can arise for the first time. Often, only some mtDNA copies carry the variant. Their proportion is called the heteroplasmy level and is expressed as a percentage.",
-          "In the same woman, heteroplasmy levels may differ between blood, urine, muscle and individual eggs (oocytes).",
+          "In the same woman, heteroplasmy levels may differ between blood, urine, muscle and individual eggs (oocytes). A mother can pass on a variant even if the proportion of altered mtDNA in her blood is very low. For some variants, such as m.3243A>G, a urine test may show a higher level than a blood test.",
           "PGT-mt is useful when a woman carries a pathogenic mtDNA variant in a heteroplasmic state: some copies carry the variant and others do not. If every copy carries it (homoplasmy), testing cannot identify an embryo with a lower proportion. If the disease is caused by a variant in a nuclear gene, a different test, PGT-M, is needed. Men do not pass mtDNA variants to their children."
         ]
       },
@@ -888,7 +889,7 @@ const en: Dict = {
           "title": "About your situation",
           "items": [
             "“Which pathogenic mtDNA variant do I carry, and what does current evidence tell us about it?”",
-            "“What is the heteroplasmy level in my tissues, such as blood or epithelial cells, and what can this tell us about transmission to my eggs?”"
+            "“What proportion of my mtDNA carries the variant in samples of blood, urine or cells from inside my cheek? Should another sample type be tested? What can these results tell us about passing the variant on to my eggs?”"
           ]
         },
         {

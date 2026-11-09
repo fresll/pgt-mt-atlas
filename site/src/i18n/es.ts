@@ -283,7 +283,7 @@ const es: Dict = {
     "ndBand": "ND (sin eje numérico)",
     "title": "Embrión, feto y niño",
     "subtitle": "Heteroplasmia en biopsias embrionarias y muestras prenatales o posnatales",
-    "lead": "Comparaciones entre el embrión transferido y tejidos del feto o del niño. Las observaciones no son independientes: varias mediciones pueden proceder de distintos tejidos o momentos de un mismo niño.",
+    "lead": "Comparaciones entre el embrión transferido y tejidos del feto o del niño. Las observaciones no son independientes: varias mediciones pueden proceder de distintos tejidos o momentos de un mismo niño. Los niveles de distintos tejidos no se pueden comparar directamente. Por ejemplo, la heteroplasmia de m.3243A>G suele ser mayor en orina que en sangre (capítulo 2, «Heteroplasmia y efectos umbral»).",
     "main": "{{pairs}} de {{children}} fetos y niños. {{disc}}",
     "discOne": "Todas las comparaciones clasificadas aquí como discordantes ({{ids}}) corresponden a un niño cuyas muestras posnatales se analizaron mediante otro método. Aquí, discordante significa un resultado embrionario igual o inferior al 18 % junto con un resultado tisular superior al 18 %; es una agrupación descriptiva, no un umbral clínico.",
     "discMany": "Discrepancias entre embrión y tejido: {{ids}}.",
@@ -327,6 +327,7 @@ const es: Dict = {
     "a2": "con ρ = 0, los blastocistos son ensayos independientes con la misma probabilidad; N es un número dado de blastocistos, no el número de ovocitos ni el rendimiento medio de un ciclo;",
     "a3": "con ρ > 0, los embriones comparten una probabilidad aleatoria de cumplir ambos criterios. El ρ seleccionado es un parámetro de escenario; no se ha estimado a partir de los datos del Atlas;",
     "a4": "H describe registros publicados agrupados de distintos estadios de desarrollo y métodos analíticos; E es una proporción supuesta de blastocistos euploides.",
+    "a5": "El modelo distingue dos categorías según la ploidía. Los blastocistos con mosaicismo se incluyen entre los no euploides. En una cohorte de un solo centro, entre aproximadamente el 12 % y el 20 % de los blastocistos presentaron mosaicismo, según la indicación del PGT (Liu et al., 2026).",
     "tableTitle": "P(≥1) para todas las variantes del conjunto de datos",
     "smallN": "n pequeño: la proporción estimada es inestable",
     "dashed": "líneas finas de trazos largos: valor de corte del 30 %, cuando difiere del 18 %; los patrones de las líneas principales distinguen las variantes",
@@ -365,7 +366,7 @@ const es: Dict = {
     "salleveltNote": "Sallevelt 2017: los 3/22 registros numéricos por debajo del 18 % incluyen un valor bajo en un embrión 3PN. El rendimiento diagnóstico confirmado para 2PN es de 2/23. Cuatro análisis no son concluyentes debido a un control blanco positivo; si se aceptan las otras 19 clasificaciones, la fracción por debajo del 18 % queda limitada a 2/23–6/23. Son límites por datos incompletos, no un intervalo de confianza.",
     "publicationCarriers": "Portadoras indicadas por publicación (no sumar)",
     "correlationExample": "Ejemplo didáctico con los datos actuales: H = {{h}}, E = {{e}}, N = 6 da {{p0}} con ρ = 0 y {{p2}} con ρ = 0,2. Es un cálculo de escenario, no un pronóstico individual.",
-    "scenarioNote": "Los valores de escenario no se asignan a edades concretas.",
+    "scenarioNote": "Los valores de E en el escenario no se asignan a edades concretas. Como referencia, en el grupo de PGT-M de una cohorte de un solo centro, el 52,3 % de los blastocistos fueron euploides. La edad media de las mujeres de ese grupo fue de 31,3 años (Liu et al., 2026).",
     "symbols": "H: proporción igual o inferior al valor de corte seleccionado; E: proporción supuesta de blastocistos euploides; ◆ cálculo del modelo.",
     "teOnly": "Solo biopsias del TE de blastocistos",
     "carrierCaveat": "Con 1–2 mujeres portadoras de una variante, la proporción describe a esas mujeres, no a la variante en general. Los registros se vinculan entre publicaciones solo cuando la información disponible respalda esa correspondencia. Los recuentos se indican por separado para cada publicación; la misma mujer puede aparecer en varios artículos, por lo que no deben sumarse.",
@@ -831,7 +832,7 @@ const es: Dict = {
         "paragraphs": [
           "Las mitocondrias contribuyen al suministro de energía de las células. Contienen un pequeño genoma propio, denominado ADN mitocondrial (ADNmt), que los hijos heredan de su madre.",
           "Las células suelen contener cientos o miles de copias de ADNmt. Una variante patogénica es un cambio que puede causar enfermedad. Habitualmente se hereda de la madre, aunque puede aparecer por primera vez. A menudo, solo algunas copias de ADNmt contienen la variante. Su proporción se denomina nivel de heteroplasmia y se expresa como porcentaje.",
-          "En una misma mujer, los niveles de heteroplasmia pueden diferir entre sangre, orina, músculo y cada uno de sus óvulos (ovocitos).",
+          "En una misma mujer, los niveles de heteroplasmia pueden diferir entre sangre, orina, músculo y cada uno de sus óvulos (ovocitos). Aunque la proporción de ADNmt con la variante sea muy baja en la sangre de la madre, la variante puede transmitirse a sus hijos. Para algunas variantes, como m.3243A>G, un análisis de orina puede mostrar un nivel mayor que un análisis de sangre.",
           "PGT-mt es útil cuando una mujer porta una variante patogénica del ADNmt en estado heteroplásmico: algunas copias contienen la variante y otras no. Si todas las copias la contienen (homoplasmia), el análisis no permite identificar un embrión con una proporción inferior. Si la enfermedad se debe a una variante de un gen nuclear, se necesita otro análisis, PGT-M. Los hombres no transmiten variantes del ADNmt a sus hijos."
         ]
       },
@@ -889,7 +890,7 @@ const es: Dict = {
           "title": "Sobre su situación",
           "items": [
             "«¿Qué variante patogénica del ADNmt porto y qué indica la evidencia actual sobre ella?»",
-            "«¿Cuál es el nivel de heteroplasmia en mis tejidos, como la sangre o las células epiteliales, y qué puede indicar sobre su transmisión a mis óvulos?»"
+            "«¿Qué proporción de mi ADNmt tiene la variante en muestras de sangre, orina o células de la cara interna de la mejilla? ¿Habría que analizar otro tipo de muestra? ¿Qué pueden indicar estos resultados sobre la transmisión de la variante a mis óvulos?»"
           ]
         },
         {
