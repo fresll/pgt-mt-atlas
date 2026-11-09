@@ -77,7 +77,7 @@ const es: Dict = {
     "visits": "Visitas:",
     "visitsHelp": "Número total de visitas al Atlas",
     "visitsUnavailable": "El contador de visitas no está disponible temporalmente",
-    "updated": "Datos actualizados el {{date}} · versión del conjunto de datos {{version}}",
+    "updated": "Atlas actualizado el {{date}}",
     "disclaimer": "PGT-mt Atlas no sustituye la consulta con un especialista en genética clínica. El creador y curador de PGT-mt Atlas no ofrece asesoramiento médico.",
     "contribute": "Para investigadores: aportar datos",
     "linksLabel": "Enlaces del sitio"

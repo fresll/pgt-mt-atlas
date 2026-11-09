@@ -2,10 +2,12 @@ import { SITE_BASE } from '../lib/base'
 import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { Head } from 'vite-react-ssg'
-import { atlas, type Lang } from '../data/atlas'
+import type { Lang } from '../data/atlas'
 import { LangProvider, useT } from '../i18n'
 import { Illustration } from './Sketch'
 import { arabicEnabled, chineseEnabled, englishEnabled } from '../lib/languages'
+
+const ATLAS_UPDATED_ON = '2026-11-09'
 
 type Theme = 'system' | 'light' | 'dark'
 
@@ -172,7 +174,7 @@ function Footer({ lang }: { lang: Lang }) {
           <p>
             <Link to={`/${lang}/ilya-mazunin/`}>{t('site.curated')}</Link>
           </p>
-          <p className="muted">{t('footer.updated', { date: formatDate(atlas.meta.dataset_version, lang), version: atlas.meta.dataset_version })}</p>
+          <p className="muted">{t('footer.updated', { date: formatDate(ATLAS_UPDATED_ON, lang) })}</p>
           <VisitorCount />
         </div>
         <nav aria-label={t('footer.linksLabel')}>
