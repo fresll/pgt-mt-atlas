@@ -3,10 +3,10 @@
 // и попадают в набор данных только через проверенный PR с меткой `data-change` (CLAUDE.md).
 
 /**
- * Канал связи с куратором: адрес утверждён куратором (раунд 1 рецензии, 2026-10).
+ * Канал связи с куратором. Адрес используется во всех локализациях.
  * null означал бы, что канал не выбран: тогда интерфейс показывает, что связь не активирована, и не имитирует отправку.
  */
-export const CURATOR_CONTACT: { email: string | null } = { email: 'ilya.mazunin@gmail.com' }
+export const CURATOR_CONTACT: { email: string | null } = { email: 'post@mazunin.science' }
 
 export const SUBJECT_PREFIX = '[PGT-mt Atlas] '
 

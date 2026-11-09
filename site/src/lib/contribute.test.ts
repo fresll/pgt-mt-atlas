@@ -36,7 +36,7 @@ describe('submission review', () => {
 
 describe('curator contact', () => {
   it('uses the address confirmed by the curator', () => {
-    expect(CURATOR_CONTACT.email).toBe('ilya.mazunin@gmail.com')
+    expect(CURATOR_CONTACT.email).toBe('post@mazunin.science')
   })
 
   it('builds an encoded mailto link', () => {
