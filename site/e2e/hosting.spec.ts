@@ -145,8 +145,8 @@ test('user path: home → specialists → chart → old English link → reload 
   await page.locator('footer.site').getByRole('link', { name: 'Исследователям: передать данные' }).click()
   await expect(page).toHaveURL(/\/ru\/contribute\/$/)
   const mail = page.locator('#contact a[href^="mailto:"]')
-  await expect(mail).toHaveAttribute('href', /^mailto:ilya\.mazunin@gmail\.com\?/)
-  await expect(page.locator('#contact .email-address')).toHaveText('ilya.mazunin@gmail.com')
+  await expect(mail).toHaveAttribute('href', /^mailto:post@mazunin\.science\?/)
+  await expect(page.locator('#contact .email-address')).toHaveText('post@mazunin.science')
   expect(problems).toEqual([])
 })
 
