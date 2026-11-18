@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import { Badge } from '../../components/ui'
 import { HandRule } from '../../components/Sketch'
 import { FUNDAMENTALS } from '../../content/fundamentals'
 import { useLang, useT } from '../../i18n'
@@ -39,7 +38,6 @@ export default function Patients() {
     <article className="pt-page">
       <PageTitle title={t('patients.title')} />
       <header className="fd-head">
-        <p className="sk-kicker"><Badge kind="warn">{t('badge.draft')}</Badge></p>
         <h1>{t('patients.title')}</h1>
         <HandRule className="sk-title-rule" />
         <p className="fd-lead">{c.intro}</p>
